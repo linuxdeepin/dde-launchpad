@@ -1,0 +1,40 @@
+Source: dde-launchpad
+Section: unknown
+Priority: optional
+Maintainer: Gary Wang <wangzichong@deepin.org>
+Build-Depends:
+ debhelper-compat (= 13),
+ cmake,
+ pkg-config,
+ libglib2.0-dev,
+ qtbase5-dev,
+ libqt5svg5-dev,
+ qtdeclarative5-dev,
+ qttools5-dev,
+ qttools5-dev-tools,
+ qtquickcontrols2-5-dev,
+ libdtkcommon-dev,
+ libdtkcore-dev,
+# v-- provides DHiDPIHelper
+ libdtkwidget-dev,
+ libdtkgui-dev,
+ libdtkdeclarative-dev,
+ libappstreamqt-dev
+Standards-Version: 4.6.0
+Rules-Requires-Root: no
+
+Package: dde-launchpad
+Architecture: any
+Depends:
+ ${shlibs:Depends},
+ ${misc:Depends},
+ qml-module-qtquick-layouts,
+ qml-module-qtquick-window2,
+ qml-module-qtquick-controls2,
+ qml-module-qtquick-controls2-styles-chameleon,
+# v-- actually should be depended by qqc2-styles-chameleon
+ qml-module-qtgraphicaleffects,
+ qml-module-org-kde-kitemmodels
+Replaces: dde-launcher
+Description: <insert up to 60 chars description>
+ <insert long description, indented with spaces>

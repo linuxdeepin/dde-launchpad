@@ -1,0 +1,26 @@
+<RCC>
+    <qresource prefix="/">
+        <file>qml/Main.qml</file>
+        <file>qml/FullscreenFrame.qml</file>
+        <file>qml/WindowedFrame.qml</file>
+        <file>qml/AppListView.qml</file>
+        <file>qml/IconItemDelegate.qml</file>
+        <file>qml/GridViewContainer.qml</file>
+        <file>qml/AppItemMenu.qml</file>
+        <file>images/application-x-desktop.svg</file>
+    </qresource>
+    <qresource prefix="/icons/deepin/builtin/">
+        <file alias="light/icons/setting_128px.svg">images/setting.svg</file>
+        <file alias="dark/icons/setting_128px.svg">images/setting_dark.svg</file>
+        <file alias="light/icons/shutdown_128px.svg">images/shutdown.svg</file>
+        <file alias="dark/icons/shutdown_128px.svg">images/shutdown_dark.svg</file>
+        <file alias="icons/letter-icon_128px.svg/normal.svg">images/letter-icon-normal.svg</file>
+        <file alias="icons/letter-icon_128px.svg/selected_on.svg">images/letter-icon-checked.svg</file>
+        <file alias="icons/title-icon_128px.svg/normal.svg">images/title-icon-normal.svg</file>
+        <file alias="icons/title-icon_128px.svg/selected_on.svg">images/title-icon-checked.svg</file>
+    </qresource>
+    <qresource prefix="/dsg/built-in-icons/">
+        <file alias="exit_fullscreen.dci">images/exit_fullscreen.dci</file>
+        <file alias="switch_to_fullscreen.dci">images/switch_to_fullscreen.dci</file>
+    </qresource>
+</RCC>
