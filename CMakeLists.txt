@@ -37,6 +37,7 @@ set(SOURCE_FILES
     main.cpp
     desktopintegration.cpp desktopintegration.h
     launchercontroller.cpp launchercontroller.h
+    debughelper.cpp debughelper.h
 )
 
 set(QML_FILES

@@ -1,6 +1,7 @@
 <RCC>
     <qresource prefix="/">
         <file>qml/Main.qml</file>
+        <file>qml/DebugDialog.qml</file>
         <file>qml/FullscreenFrame.qml</file>
         <file>qml/WindowedFrame.qml</file>
         <file>qml/AppListView.qml</file>

@@ -9,6 +9,7 @@
 #include "categorizedsortproxymodel.h"
 #include "multipageproxymodel.h"
 #include "launchercontroller.h"
+#include "debughelper.h"
 
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
@@ -82,6 +83,7 @@ int main(int argc, char* argv[])
     qmlRegisterSingletonInstance("org.deepin.launchpad", 1, 0, "MultipageProxyModel", &MultipageProxyModel::instance());
     qmlRegisterSingletonInstance("org.deepin.launchpad", 1, 0, "DesktopIntegration", &DesktopIntegration::instance());
     qmlRegisterSingletonInstance("org.deepin.launchpad", 1, 0, "LauncherController", &LauncherController::instance());
+    qmlRegisterSingletonInstance("org.deepin.launchpad", 1, 0, "DebugHelper", &DebugHelper::instance());
 
     CategorizedSortProxyModel::instance().setCategoryType(CategorizedSortProxyModel::Alphabetary);
 
@@ -93,11 +95,6 @@ int main(int argc, char* argv[])
     engine.addImageProvider(QLatin1String("blurhash"), new BlurhashImageProvider);
 
     QQmlContext * ctx = engine.rootContext();
-#ifdef QT_DEBUG
-    ctx->setContextProperty("isDebugInstance", true);
-#else
-    ctx->setContextProperty("isDebugInstance", false);
-#endif // QT_DEBUG
 
     engine.load(QUrl("qrc:/qml/Main.qml"));
     if (engine.rootObjects().isEmpty())

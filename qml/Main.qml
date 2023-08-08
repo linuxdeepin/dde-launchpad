@@ -33,12 +33,15 @@ ApplicationWindow {
     }
 
     function launchApp(desktopId) {
-        if (isDebugInstance) {
+        if (DebugHelper.avoidLaunchApp) {
             DTK.sendSystemMessage("dde-launchpad (debug)",
                                   "clicked " + desktopId + " but won't attempt to launch it cause it's debug mode",
                                   "dialog-warning")
         } else {
             DesktopIntegration.launchByDesktopId(desktopId);
+        }
+
+        if (!DebugHelper.avoidHideWindow) {
             LauncherController.visible = false
         }
     }
@@ -97,7 +100,7 @@ ApplicationWindow {
 
     Connections {
         target: DesktopIntegration
-        onDockPositionChanged: {
+        function onDockPositionChanged() {
             updateWindowVisibilityAndPosition()
         }
     }
@@ -111,17 +114,37 @@ ApplicationWindow {
         }
 
         Label {
-            visible: isDebugInstance
+            visible: DebugHelper.qtDebugEnabled
             z: 999
 
             anchors.right: parent.right
             anchors.bottom: parent.bottom
             text: "/ / Under Construction / /"
 
-            Rectangle {
-                anchors.fill: parent
+            background: Rectangle {
                 color: Qt.rgba(1, 1, 0, 0.5)
             }
+
+            MouseArea {
+                anchors.fill: parent
+                onClicked: { debugDialog.open() }
+            }
+        }
+    }
+
+    Dialog {
+        id: debugDialog
+        modal: true
+
+        standardButtons: Dialog.Close
+
+        x: (parent.width - width) / 2
+        y: (parent.height - height) / 2
+
+        Loader {
+            active: debugDialog.visible
+
+            source: 'DebugDialog.qml'
         }
     }
 }
