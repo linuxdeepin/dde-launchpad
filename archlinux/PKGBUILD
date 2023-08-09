@@ -9,8 +9,8 @@ pkgdesc='Deepin desktop-environment - Launchpad module'
 arch=('x86_64' 'aarch64')
 url="https://github.com/linuxdeepin/dde-launchpad"
 license=('GPL3')
-depends=('qt5-svg' 'deepin-daemon' 'kitemmodels' 'qt5-quickcontrols'
-         'appstream-qt' 'dtkdeclarative' 'dtkwidget' 'dtkcore'
+depends=('qt5-svg' 'kitemmodels' 'qt5-quickcontrols' 'appstream-qt'
+         'dtkdeclarative-git' 'dtkgui-git' 'dtkwidget-git' 'dtkcore-git'
          'qt5-base' 'qt5-x11extras' 'qt5-svg')
 makedepends=('git' 'cmake' 'ninja' 'qt5-tools' 'dtkcommon' )
 conflicts=('deepin-launcher')
