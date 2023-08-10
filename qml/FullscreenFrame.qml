@@ -87,6 +87,7 @@ Control {
 
                     Loader {
                         active: SwipeView.isCurrentItem || SwipeView.isNextItem || SwipeView.isPreviousItem
+                        id: gridViewLoader
 
                         sourceComponent: Rectangle {
                             color: "transparent"
@@ -115,6 +116,7 @@ Control {
                                     height: gridViewContainer.cellSize
                                     icons: folderIcons
                                     padding: 5
+                                    activeFocusOnTab: gridViewLoader.SwipeView.isCurrentItem
                                     onItemClicked: {
                                         launchApp(desktopId)
                                     }
@@ -284,6 +286,15 @@ Control {
                     interactive: true
                 }
             }
+        }
+    }
+
+    Keys.onPressed: {
+        if (searchEdit.focus === false && !searchEdit.text
+                && event.modifiers === Qt.NoModifier
+                && event.key >= Qt.Key_A && event.key <= Qt.Key_Z) {
+            searchEdit.focus = true
+            searchEdit.text = event.text
         }
     }
 }

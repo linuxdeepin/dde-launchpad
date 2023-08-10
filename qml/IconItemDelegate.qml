@@ -22,6 +22,8 @@ Control {
 
     property string iconSource
 
+    Accessible.name: iconItemLabel.text
+
     signal folderClicked()
     signal itemClicked()
     signal menuTriggered()
@@ -32,6 +34,19 @@ Control {
         radius: 5
 
         Behavior on color { PropertyAnimation {} }
+
+        FocusBoxBorder {
+            anchors {
+                fill: parent
+                margins: 5
+            }
+            radius: 8
+            color: root.palette.highlight
+            // TODO: here we are not using root.visualFocus due to not knowing how to set focus with correct focus reason.
+            // in GridViewContainer we have onCurrentItemChanged to update the focus when current item changed
+            // setting focus = true seems won't be treat as visualFocus.
+            visible: root.activeFocus
+        }
 
         Column {
             anchors.fill: parent
@@ -109,6 +124,7 @@ Control {
 
 
             Label {
+                id: iconItemLabel
                 text: display
                 textFormat: Text.PlainText
                 width: parent.width
@@ -144,5 +160,9 @@ Control {
 
     HoverHandler {
         id: stylus
+    }
+
+    Keys.onReturnPressed: {
+        root.itemClicked()
     }
 }

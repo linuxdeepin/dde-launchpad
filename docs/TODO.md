@@ -30,6 +30,7 @@ Status:
 
 - { } PageIndicator is not visible
 - { } Click fallthough Popup component
+- { } ListView missing keyboard focus navigation
 - {A} dtkwidget DHiDPIHelper usage (this API moved to dtkgui)
 
 ### dde-dock

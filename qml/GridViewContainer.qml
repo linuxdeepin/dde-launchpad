@@ -46,9 +46,14 @@ Control {
                 id: gridView
                 anchors.fill: parent
                 clip: true
+                highlightFollowsCurrentItem: true
 
                 cellHeight: item.cellSize
                 cellWidth: item.cellSize
+
+                onCurrentItemChanged: {
+                    currentItem.focus = true
+                }
             }
         }
 

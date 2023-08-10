@@ -14,14 +14,15 @@ import org.deepin.launchpad 1.0
 ApplicationWindow {
     id: root
 
+//    title: activeFocusItem + " " + (activeFocusItem ? activeFocusItem.Accessible.name : "")
     width: 780
     height: 600
     visible: LauncherController.visible
     flags: {
         if (LauncherController.currentFrame === "WindowedFrame") {
-            return (Qt.WindowStaysOnTopHint | Qt.X11BypassWindowManagerHint | Qt.Tool)
+            return (Qt.WindowStaysOnTopHint | Qt.FramelessWindowHint | Qt.Tool) // X11BypassWindowManagerHint
         } else {
-            return Qt.Tool
+            return (Qt.FramelessWindowHint | Qt.Tool)
         }
     }
     DWindow.enabled: true
