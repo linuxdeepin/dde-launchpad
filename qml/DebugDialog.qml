@@ -14,7 +14,7 @@ import org.kde.kitemmodels 1.0
 import org.deepin.launchpad 1.0
 
 Column {
-    spacing: 10
+    spacing: 15
 
     Switch {
         text: "Avoid launch application"
@@ -33,7 +33,7 @@ Column {
     }
 
     ToolButton {
-        text: "Quit launchpad application"
+        text: "Close launchpad application"
         onClicked: {
             Qt.quit()
         }

@@ -16,6 +16,7 @@ Control {
 
     property alias model: gridView.model
     property alias delegate: gridView.delegate
+    property alias placeholderIcon: placeholderIcon.name
     property alias placeholderText: placeholderLabel.text
     property alias interactive: gridView.interactive
     required property int columns
@@ -52,17 +53,30 @@ Control {
                 cellWidth: item.cellSize
 
                 onCurrentItemChanged: {
-                    currentItem.focus = true
+                    if (currentItem) {
+                        currentItem.focus = true
+                    }
                 }
             }
         }
 
-        Label {
-            id: placeholderLabel
-            visible: text !== "" && model.count <= 0
-            anchors.fill: parent
-            horizontalAlignment: Text.AlignHCenter
-            verticalAlignment: Text.AlignVCenter
+        ColumnLayout {
+            visible: placeholderLabel.text !== "" && model.count <= 0
+            anchors.centerIn: parent
+
+            DciIcon {
+                id: placeholderIcon
+                visible: name !== ""
+                sourceSize {
+                    width: 128
+                    height: 128
+                }
+            }
+
+            Label {
+                id: placeholderLabel
+                Layout.alignment: Qt.AlignCenter
+            }
         }
     }
 }

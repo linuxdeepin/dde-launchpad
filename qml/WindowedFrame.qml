@@ -208,10 +208,8 @@ Item {
                 text: qsTr("All Apps")
             }
 
-            GridViewContainer {
-                id: allAppsGridContainer
-                rows: 0
-                columns: 4
+            DelegateModel {
+                id: delegateAllAppsModel
                 model: SearchFilterProxyModel
                 delegate: IconItemDelegate {
                     iconSource: "image://app-icon/" + iconName
@@ -224,6 +222,15 @@ Item {
                         showContextMenu(this, model, false, false, false)
                     }
                 }
+            }
+
+            GridViewContainer {
+                id: allAppsGridContainer
+                rows: 0
+                columns: 4
+                placeholderIcon: "search_no_result"
+                placeholderText: qsTr("No search results")
+                model: delegateAllAppsModel
                 Layout.fillWidth: true
                 Layout.fillHeight: true
 

@@ -180,5 +180,11 @@
         <source>All Apps</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="../qml/FullscreenFrame.qml" line="167"/>
+        <location filename="../qml/WindowedFrame.qml" line="232"/>
+        <source>No search results</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 </TS>

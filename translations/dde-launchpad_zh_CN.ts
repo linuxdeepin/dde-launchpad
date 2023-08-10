@@ -180,5 +180,11 @@
         <source>All Apps</source>
         <translation>所有应用</translation>
     </message>
+    <message>
+        <location filename="../qml/FullscreenFrame.qml" line="167"/>
+        <location filename="../qml/WindowedFrame.qml" line="232"/>
+        <source>No search results</source>
+        <translation>无搜索结果</translation>
+    </message>
 </context>
 </TS>

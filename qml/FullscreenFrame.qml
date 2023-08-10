@@ -138,17 +138,9 @@ Control {
                 }
             }
 
-            GridViewContainer {
-                id: searchResultGridViewContainer
-
-                anchors.fill: parent
-                visible: searchEdit.text !== ""
-
-                rows: 4
-                columns: 7
+            DelegateModel {
+                id: delegateSearchResultModel
                 model: SearchFilterProxyModel
-                padding: 10
-                interactive: false
                 delegate: IconItemDelegate {
                     iconSource: "image://app-icon/" + iconName
                     width: searchResultGridViewContainer.cellSize
@@ -161,6 +153,21 @@ Control {
                         showContextMenu(this, model, false, false, true)
                     }
                 }
+            }
+
+            GridViewContainer {
+                id: searchResultGridViewContainer
+
+                anchors.fill: parent
+                visible: searchEdit.text !== ""
+
+                rows: 4
+                columns: 7
+                placeholderIcon: "search_no_result"
+                placeholderText: qsTranslate("WindowedFrame", "No search results")
+                model: delegateSearchResultModel
+                padding: 10
+                interactive: false
             }
         }
 

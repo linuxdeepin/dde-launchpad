@@ -101,7 +101,7 @@ ApplicationWindow {
 
     Connections {
         target: DesktopIntegration
-        function onDockPositionChanged() {
+        function onDockGeometryChanged() {
             updateWindowVisibilityAndPosition()
         }
     }

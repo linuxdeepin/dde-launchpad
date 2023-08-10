@@ -23,5 +23,6 @@
     <qresource prefix="/dsg/built-in-icons/">
         <file alias="exit_fullscreen.dci">images/exit_fullscreen.dci</file>
         <file alias="switch_to_fullscreen.dci">images/switch_to_fullscreen.dci</file>
+        <file alias="search_no_result.dci">images/search_no_result.dci</file>
     </qresource>
 </RCC>
