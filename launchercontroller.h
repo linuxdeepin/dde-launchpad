@@ -7,6 +7,11 @@
 #include <QCommandLineOption>
 #include <QObject>
 
+namespace Dtk {
+namespace Gui {
+class DRegionMonitor;
+}
+}
 class LauncherController : public QObject
 {
     Q_OBJECT
@@ -56,6 +61,7 @@ signals:
 private:
     explicit LauncherController(QObject *parent=nullptr);
 
+    Dtk::Gui::DRegionMonitor *m_regionMonitor;
     bool m_visible;
     QString m_currentFrame;
 };

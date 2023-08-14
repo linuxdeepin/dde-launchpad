@@ -53,10 +53,10 @@ void Appearance::updateCurrentWallpaperBlurhash()
     connect(watcher, &QDBusPendingCallWatcher::finished, this, [this](QDBusPendingCallWatcher* call){
         QDBusPendingReply<QString> reply = *call;
         if (reply.isError()) {
-            qDebug() << "bbbbbbbbb" << reply.error();
+            qDebug() << "Cannot get wallpaper from dbus:" << reply.error();
         } else {
             QUrl wallpaperUrl(reply.value());
-            qDebug() << "aaaaaaaaa" << wallpaperUrl;
+            qDebug() << "Got wallpaper URL from dbus:" << wallpaperUrl;
 
             QFuture<QString> blurhashFuture = QtConcurrent::run([wallpaperUrl](){
                 QImage image;

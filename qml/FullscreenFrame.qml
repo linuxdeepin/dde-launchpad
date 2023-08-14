@@ -63,7 +63,7 @@ Control {
 
                     placeholder: qsTr("Search")
                     onTextChanged: {
-                        console.log(text)
+//                        console.log(text)
                         SearchFilterProxyModel.setFilterRegularExpression(text)
                     }
                 }

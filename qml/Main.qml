@@ -33,6 +33,22 @@ ApplicationWindow {
         updateWindowVisibilityAndPosition()
     }
 
+    Timer {
+        id: delayHideTimer
+        interval: 500
+        onTriggered: {
+            if (!DebugHelper.avoidHideWindow) {
+                LauncherController.visible = false
+            }
+        }
+    }
+
+    onActiveChanged: {
+        if (!active) {
+            delayHideTimer.running = true
+        }
+    }
+
     function launchApp(desktopId) {
         if (DebugHelper.avoidLaunchApp) {
             DTK.sendSystemMessage("dde-launchpad (debug)",
@@ -71,7 +87,7 @@ ApplicationWindow {
 
             let dockGeometry = DesktopIntegration.dockGeometry
             if (dockGeometry.width > 0 && dockGeometry.height > 0) {
-                console.log(114514, dockGeometry)
+//                console.log(114514, dockGeometry)
                 switch (DesktopIntegration.dockPosition) {
                 case Qt.DownArrow:
                     x = dockGeometry.left
