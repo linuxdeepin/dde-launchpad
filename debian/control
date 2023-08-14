@@ -7,6 +7,8 @@ Build-Depends:
  cmake,
  pkg-config,
  libglib2.0-dev,
+# v-- to get systemduserunitdir from its pkg-config data
+ systemd,
  qtbase5-dev,
  libqt5svg5-dev,
  qtdeclarative5-dev,
@@ -37,6 +39,7 @@ Depends:
 # v-- actually should be depended by qqc2-styles-chameleon
  qml-module-qtgraphicaleffects,
  qml-module-org-kde-kitemmodels
+Conflicts: dde-launcher
 Replaces: dde-launcher
 Description: <insert up to 60 chars description>
  <insert long description, indented with spaces>

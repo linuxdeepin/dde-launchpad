@@ -27,6 +27,8 @@ set_package_properties(AppStreamQt PROPERTIES
 
 feature_summary(WHAT ALL FATAL_ON_MISSING_REQUIRED_PACKAGES)
 
+add_subdirectory(systemd)
+add_subdirectory(dbus)
 add_subdirectory(src/gioutils)
 add_subdirectory(src/utils)
 add_subdirectory(src/quick)
@@ -54,7 +56,7 @@ set(TRANSLATION_FILES
 
 qt_create_translation(TRANSLATED_FILES ${QML_FILES} ${SOURCE_FILES} src/models/appitem.cpp ${TRANSLATION_FILES})
 
-qt_add_dbus_adaptor(DBUS_ADAPTER_FILES org.deepin.dde.Launcher1.xml launchercontroller.h LauncherController)
+qt_add_dbus_adaptor(DBUS_ADAPTER_FILES dbus/org.deepin.dde.Launcher1.xml launchercontroller.h LauncherController)
 
 add_executable(${BIN_NAME}
     ${SOURCE_FILES}
