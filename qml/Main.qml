@@ -97,6 +97,8 @@ ApplicationWindow {
 //            root.visibility = Window.FullScreen
             root.setGeometry(Screen.virtualX, Screen.virtualY, Screen.width, Screen.height)
         }
+
+        root.requestActivate()
     }
 
     Connections {

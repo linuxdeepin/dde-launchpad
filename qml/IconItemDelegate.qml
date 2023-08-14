@@ -162,6 +162,10 @@ Control {
         id: stylus
     }
 
+    Keys.onSpacePressed: {
+        root.itemClicked()
+    }
+
     Keys.onReturnPressed: {
         root.itemClicked()
     }
