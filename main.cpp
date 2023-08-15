@@ -52,6 +52,13 @@ int main(int argc, char* argv[])
     DGuiApplicationHelper::loadTranslator(QStringLiteral("dde-launchpad"), translationDir(), { QLocale() });
     bool isOnlyInstance = DGuiApplicationHelper::setSingleInstance(QStringLiteral("dde-launchpad"));
 
+    QCommandLineParser parser;
+    parser.addOption(LauncherController::instance().optShow);
+    parser.addOption(LauncherController::instance().optToggle);
+    parser.addVersionOption();
+    parser.addHelpOption();
+    parser.process(app);
+
     if (!isOnlyInstance) {
         qDebug() << "Another instance already exists";
         return 0;
@@ -62,13 +69,6 @@ int main(int argc, char* argv[])
         !connection.registerObject(QStringLiteral("/org/deepin/dde/Launcher1"), &LauncherController::instance())) {
         qWarning() << "register dbus service failed";
     }
-
-    QCommandLineParser parser;
-    parser.addOption(LauncherController::instance().optShow);
-    parser.addOption(LauncherController::instance().optToggle);
-    parser.addVersionOption();
-    parser.addHelpOption();
-    parser.process(app);
 
     if (parser.isSet(LauncherController::instance().optShow) || parser.isSet(LauncherController::instance().optToggle)) {
         LauncherController::instance().setVisible(true);
