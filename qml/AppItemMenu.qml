@@ -18,8 +18,10 @@ Loader {
     signal closed()
 
     Component {
-        id: contextMenu
+        id: contextMenuComp
+
         Menu {
+            id: contextMenu
             MenuItem {
                 text: qsTr("Open")
                 onTriggered: {
@@ -46,12 +48,21 @@ Loader {
             }
             MenuSeparator {}
             MenuItem { text: true ? qsTr("Send to desktop") : qsTr("Remove from desktop") }
-            MenuItem { text: true ? qsTr("Send to dock") : qsTr("Remove from dock") }
+            MenuItem {
+                text: DesktopIntegration.isDockedApp(appItem.desktopId) ? qsTr("Remove from dock") : qsTr("Send to dock")
+                onTriggered: {
+                    if (DesktopIntegration.isDockedApp(appItem.desktopId)) {
+                        DesktopIntegration.removeFromDock(appItem.desktopId);
+                    } else {
+                        DesktopIntegration.sendToDock(appItem.desktopId);
+                    }
+                }
+            }
             MenuSeparator {}
             MenuItem { text: true ? qsTr("Add to startup") : qsTr("Remove from startup") }
             MenuItem { text: qsTr("Use a proxy") }
             MenuItem {
-                enabled: !AppsModel.appIsCompulsoryForDesktop(appItem.desktopId)
+                enabled: !DesktopIntegration.appIsCompulsoryForDesktop(appItem.desktopId)
                 text: qsTr("Uninstall")
             }
 
@@ -63,7 +74,7 @@ Loader {
     }
 
     asynchronous: true
-    sourceComponent: contextMenu
+    sourceComponent: contextMenuComp
 
     function popup() {
         active = true;

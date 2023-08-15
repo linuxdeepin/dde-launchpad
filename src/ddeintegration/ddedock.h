@@ -22,6 +22,10 @@ public:
     Qt::ArrowType direction() const;
     QRect geometry() const;
 
+    bool isDocked(const QString & desktop) const;
+    void sendToDock(const QString & desktop, int idx = -1);
+    void removeFromDock(const QString & desktop);
+
 signals:
     void directionChanged();
     void geometryChanged();

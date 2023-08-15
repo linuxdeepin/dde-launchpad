@@ -10,4 +10,5 @@ class AppInfo
 {
 public:
     static bool launchByDesktopId(const QString & desktopId);
+    static QString fullPathByDesktopId(const QString & desktopId);
 };

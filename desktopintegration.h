@@ -35,6 +35,10 @@ public:
     QRect dockGeometry() const;
     QString backgroundUrl() const;
 
+    Q_INVOKABLE bool isDockedApp(const QString & desktopId) const;
+    Q_INVOKABLE void sendToDock(const QString & desktopId);
+    Q_INVOKABLE void removeFromDock(const QString & desktopId);
+
 signals:
     void dockPositionChanged();
     void dockGeometryChanged();

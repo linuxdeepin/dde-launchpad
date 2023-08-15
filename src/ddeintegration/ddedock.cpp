@@ -39,6 +39,29 @@ QRect DdeDock::geometry() const
     return m_rect;
 }
 
+bool DdeDock::isDocked(const QString &desktop) const
+{
+    QDBusPendingReply<bool> reply(m_dbusDaemonDockIface->IsDocked(desktop));
+    reply.waitForFinished();
+
+    if (reply.isError()) {
+        qDebug() << reply.error();
+        return false;
+    }
+
+    return reply.value();
+}
+
+void DdeDock::sendToDock(const QString &desktop, int idx)
+{
+    m_dbusDaemonDockIface->RequestDock(desktop, idx);
+}
+
+void DdeDock::removeFromDock(const QString &desktop)
+{
+    m_dbusDaemonDockIface->RequestUndock(desktop);
+}
+
 void DdeDock::updateDockRectAndPositionFromDBus()
 {
     updateDockPositionFromDBus();

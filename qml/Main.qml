@@ -14,6 +14,8 @@ import org.deepin.launchpad 1.0
 ApplicationWindow {
     id: root
 
+    property bool isMenuShown: false
+
 //    title: activeFocusItem + " " + (activeFocusItem ? activeFocusItem.Accessible.name : "")
     width: 780
     height: 600
@@ -44,7 +46,7 @@ ApplicationWindow {
     }
 
     onActiveChanged: {
-        if (!active) {
+        if (!active && !isMenuShown) {
             delayHideTimer.running = true
         }
     }
@@ -71,8 +73,12 @@ ApplicationWindow {
             isFavoriteItem: isFavoriteItem,
             hideFavoriteMenu: hideFavoriteMenu
         });
-        // menu.closed.connect(function() { /**/ });
+        menu.closed.connect(function() {
+            root.isMenuShown = false
+            root.requestActivate()
+        });
         menu.popup();
+        root.isMenuShown = true
     }
 
     function updateWindowVisibilityAndPosition() {

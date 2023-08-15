@@ -74,6 +74,26 @@ QString DesktopIntegration::backgroundUrl() const
     return QString("image://blurhash/%1").arg(m_appearanceIntegration->wallpaperBlurhash());
 }
 
+bool DesktopIntegration::isDockedApp(const QString &desktopId) const
+{
+    // This is something we shouldn't do but anyway...
+    const QString & fullPath = AppInfo::fullPathByDesktopId(desktopId);
+    // Seems QML's list type doesn't have a contains() method...
+    return m_dockIntegration->isDocked(fullPath);
+}
+
+void DesktopIntegration::sendToDock(const QString &desktopId)
+{
+    const QString & fullPath = AppInfo::fullPathByDesktopId(desktopId);
+    return m_dockIntegration->sendToDock(fullPath);
+}
+
+void DesktopIntegration::removeFromDock(const QString &desktopId)
+{
+    const QString & fullPath = AppInfo::fullPathByDesktopId(desktopId);
+    return m_dockIntegration->removeFromDock(fullPath);
+}
+
 DesktopIntegration::DesktopIntegration(QObject *parent)
     : QObject(parent)
     , m_dockIntegration(new DdeDock(this))

@@ -19,3 +19,13 @@ bool AppInfo::launchByDesktopId(const QString &desktopId)
 
     return true;
 }
+
+QString AppInfo::fullPathByDesktopId(const QString &desktopId)
+{
+    GDesktopAppInfo * appInfo = g_desktop_app_info_new(desktopId.toStdString().c_str());
+    if (!appInfo) return QString();
+
+    const char * filePath = g_desktop_app_info_get_filename(appInfo);
+
+    return QString::fromUtf8(filePath);
+}
