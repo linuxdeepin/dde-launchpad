@@ -11,6 +11,7 @@
 #include "launchercontroller.h"
 #include "debughelper.h"
 
+#include <QDBusConnection>
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
@@ -21,7 +22,6 @@
 #include <DPathBuf>
 #include <launcherappiconprovider.h>
 #include <blurhashimageprovider.h>
-#include <launcher1adaptor.h>
 
 DCORE_USE_NAMESPACE
 DGUI_USE_NAMESPACE
@@ -57,7 +57,6 @@ int main(int argc, char* argv[])
         return 0;
     }
 
-    Launcher1Adaptor adaptor(&LauncherController::instance());
     QDBusConnection connection = QDBusConnection::sessionBus();
     if (!connection.registerService(QStringLiteral("org.deepin.dde.Launcher1")) ||
         !connection.registerObject(QStringLiteral("/org/deepin/dde/Launcher1"), &LauncherController::instance())) {
@@ -75,7 +74,7 @@ int main(int argc, char* argv[])
         LauncherController::instance().setVisible(true);
     }
 
-    qmlRegisterUncreatableType<AppItem>("org.deepin.launchpad", 1, 0, "AppItem", "aa");
+    qmlRegisterUncreatableType<AppItem>("org.deepin.launchpad", 1, 0, "AppItem", "AppItem should only be created from C++ side");
     qmlRegisterSingletonInstance("org.deepin.launchpad", 1, 0, "AppsModel", &AppsModel::instance());
     qmlRegisterSingletonInstance("org.deepin.launchpad", 1, 0, "FavoritedProxyModel", &FavoritedProxyModel::instance());
     qmlRegisterSingletonInstance("org.deepin.launchpad", 1, 0, "SearchFilterProxyModel", &SearchFilterProxyModel::instance());

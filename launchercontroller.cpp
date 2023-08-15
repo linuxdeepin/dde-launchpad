@@ -10,6 +10,7 @@
 #include <DGuiApplicationHelper>
 #include <QCommandLineParser>
 #include <DRegionMonitor>
+#include <launcher1adaptor.h>
 
 DGUI_USE_NAMESPACE
 
@@ -18,6 +19,7 @@ LauncherController::LauncherController(QObject *parent)
     , optShow(QStringList{"s", "show"}, tr("Show launcher (hidden by default)"))
     , optToggle(QStringList{"t", "toggle"}, tr("Toggle launcher visibility"))
     , m_regionMonitor(new DRegionMonitor(this))
+    , m_launcher1Adaptor(new Launcher1Adaptor(this))
     , m_visible(false)
 {
     // TODO: settings should be managed in somewhere else.
