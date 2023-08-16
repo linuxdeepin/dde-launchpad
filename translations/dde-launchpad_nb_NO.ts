@@ -6,7 +6,7 @@
     <message>
         <location filename="../qml/AppItemMenu.qml" line="24"/>
         <source>Open</source>
-        <translation type="unfinished"></translation>
+        <translation>Åpne</translation>
     </message>
     <message>
         <location filename="../qml/AppItemMenu.qml" line="33"/>
@@ -26,42 +26,42 @@
     <message>
         <location filename="../qml/AppItemMenu.qml" line="48"/>
         <source>Send to desktop</source>
-        <translation type="unfinished"></translation>
+        <translation>Send til skrivebord</translation>
     </message>
     <message>
         <location filename="../qml/AppItemMenu.qml" line="48"/>
         <source>Remove from desktop</source>
-        <translation type="unfinished"></translation>
+        <translation>Fjern fra skrivebordet</translation>
     </message>
     <message>
         <location filename="../qml/AppItemMenu.qml" line="49"/>
         <source>Send to dock</source>
-        <translation type="unfinished"></translation>
+        <translation>Send til dock</translation>
     </message>
     <message>
         <location filename="../qml/AppItemMenu.qml" line="49"/>
         <source>Remove from dock</source>
-        <translation type="unfinished"></translation>
+        <translation>Fjern fra dokk</translation>
     </message>
     <message>
         <location filename="../qml/AppItemMenu.qml" line="51"/>
         <source>Add to startup</source>
-        <translation type="unfinished"></translation>
+        <translation>Legg til oppstart</translation>
     </message>
     <message>
         <location filename="../qml/AppItemMenu.qml" line="51"/>
         <source>Remove from startup</source>
-        <translation type="unfinished"></translation>
+        <translation>Fjern fra oppstart</translation>
     </message>
     <message>
         <location filename="../qml/AppItemMenu.qml" line="52"/>
         <source>Use a proxy</source>
-        <translation type="unfinished"></translation>
+        <translation>Bruk en Proxy</translation>
     </message>
     <message>
         <location filename="../qml/AppItemMenu.qml" line="55"/>
         <source>Uninstall</source>
-        <translation type="unfinished"></translation>
+        <translation>Avinstaller</translation>
     </message>
 </context>
 <context>
@@ -69,27 +69,27 @@
     <message>
         <location filename="../qml/AppListView.qml" line="34"/>
         <source>Internet</source>
-        <translation type="unfinished"></translation>
+        <translation>Internett</translation>
     </message>
     <message>
         <location filename="../qml/AppListView.qml" line="36"/>
         <source>Chat</source>
-        <translation type="unfinished"></translation>
+        <translation>Chat</translation>
     </message>
     <message>
         <location filename="../qml/AppListView.qml" line="38"/>
         <source>Music</source>
-        <translation type="unfinished"></translation>
+        <translation>Musikk</translation>
     </message>
     <message>
         <location filename="../qml/AppListView.qml" line="40"/>
         <source>Video</source>
-        <translation type="unfinished"></translation>
+        <translation>Video</translation>
     </message>
     <message>
         <location filename="../qml/AppListView.qml" line="42"/>
         <source>Graphics</source>
-        <translation type="unfinished"></translation>
+        <translation>Grafikk</translation>
     </message>
     <message>
         <location filename="../qml/AppListView.qml" line="44"/>
@@ -99,22 +99,22 @@
     <message>
         <location filename="../qml/AppListView.qml" line="46"/>
         <source>Office</source>
-        <translation type="unfinished"></translation>
+        <translation>Kontor</translation>
     </message>
     <message>
         <location filename="../qml/AppListView.qml" line="48"/>
         <source>Reading</source>
-        <translation type="unfinished"></translation>
+        <translation>Lesing</translation>
     </message>
     <message>
         <location filename="../qml/AppListView.qml" line="50"/>
         <source>Development</source>
-        <translation type="unfinished"></translation>
+        <translation>Utvikling</translation>
     </message>
     <message>
         <location filename="../qml/AppListView.qml" line="52"/>
         <source>System</source>
-        <translation type="unfinished"></translation>
+        <translation>System</translation>
     </message>
     <message>
         <location filename="../qml/AppListView.qml" line="54"/>
@@ -153,22 +153,22 @@
     <message>
         <location filename="../qml/WindowedFrame.qml" line="112"/>
         <source>Power</source>
-        <translation type="unfinished"></translation>
+        <translation>Strøm</translation>
     </message>
     <message>
         <location filename="../qml/WindowedFrame.qml" line="125"/>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Instillinger</translation>
     </message>
     <message>
         <location filename="../qml/WindowedFrame.qml" line="149"/>
         <source>Search</source>
-        <translation type="unfinished"></translation>
+        <translation>Søk</translation>
     </message>
     <message>
         <location filename="../qml/WindowedFrame.qml" line="167"/>
         <source>My Favorites</source>
-        <translation type="unfinished"></translation>
+        <translation>Mine favoritter</translation>
     </message>
     <message>
         <location filename="../qml/WindowedFrame.qml" line="198"/>
@@ -178,13 +178,13 @@
     <message>
         <location filename="../qml/WindowedFrame.qml" line="208"/>
         <source>All Apps</source>
-        <translation type="unfinished"></translation>
+        <translation>Alle programmer</translation>
     </message>
     <message>
         <location filename="../qml/FullscreenFrame.qml" line="167"/>
         <location filename="../qml/WindowedFrame.qml" line="232"/>
         <source>No search results</source>
-        <translation type="unfinished"></translation>
+        <translation>Ingen søkeresultater</translation>
     </message>
 </context>
 </TS>
