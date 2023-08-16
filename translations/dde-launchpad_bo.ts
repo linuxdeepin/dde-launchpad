@@ -6,7 +6,7 @@
     <message>
         <location filename="../qml/AppItemMenu.qml" line="24"/>
         <source>Open</source>
-        <translation type="unfinished"></translation>
+        <translation>ཁ་ཕྱེ་བ།</translation>
     </message>
     <message>
         <location filename="../qml/AppItemMenu.qml" line="33"/>
@@ -26,42 +26,42 @@
     <message>
         <location filename="../qml/AppItemMenu.qml" line="48"/>
         <source>Send to desktop</source>
-        <translation type="unfinished"></translation>
+        <translation>ཅོག་ངོས་སུ་བསྐུར་བ།</translation>
     </message>
     <message>
         <location filename="../qml/AppItemMenu.qml" line="48"/>
         <source>Remove from desktop</source>
-        <translation type="unfinished"></translation>
+        <translation>ཅོག་ངོས་ནས་བསུབ་རྒྱུ།</translation>
     </message>
     <message>
         <location filename="../qml/AppItemMenu.qml" line="49"/>
         <source>Send to dock</source>
-        <translation type="unfinished"></translation>
+        <translation>ལས་འགན་ཚན་བྱང་དུ་བསྐུར་བ།</translation>
     </message>
     <message>
         <location filename="../qml/AppItemMenu.qml" line="49"/>
         <source>Remove from dock</source>
-        <translation type="unfinished"></translation>
+        <translation>ལས་འགན་ཚན་བྱང་ནས་བསུབ་རྒྱུ།</translation>
     </message>
     <message>
         <location filename="../qml/AppItemMenu.qml" line="51"/>
         <source>Add to startup</source>
-        <translation type="unfinished"></translation>
+        <translation>རང་འགུལ་གྱིས་ཕྱེ་བ།</translation>
     </message>
     <message>
         <location filename="../qml/AppItemMenu.qml" line="51"/>
         <source>Remove from startup</source>
-        <translation type="unfinished"></translation>
+        <translation>རང་འགུལ་གྱིས་ཕྱེ་བ་མེད་པར་བཟོ་བ།</translation>
     </message>
     <message>
         <location filename="../qml/AppItemMenu.qml" line="52"/>
         <source>Use a proxy</source>
-        <translation type="unfinished"></translation>
+        <translation>ལས་ཚབ་སྤྱོད་པ།</translation>
     </message>
     <message>
         <location filename="../qml/AppItemMenu.qml" line="55"/>
         <source>Uninstall</source>
-        <translation type="unfinished"></translation>
+        <translation>བཤིག་འདོན།</translation>
     </message>
 </context>
 <context>
@@ -69,27 +69,27 @@
     <message>
         <location filename="../qml/AppListView.qml" line="34"/>
         <source>Internet</source>
-        <translation type="unfinished"></translation>
+        <translation>དྲ་བ།</translation>
     </message>
     <message>
         <location filename="../qml/AppListView.qml" line="36"/>
         <source>Chat</source>
-        <translation type="unfinished"></translation>
+        <translation>གླེང་མོལ།</translation>
     </message>
     <message>
         <location filename="../qml/AppListView.qml" line="38"/>
         <source>Music</source>
-        <translation type="unfinished"></translation>
+        <translation>རོལ་མོ།</translation>
     </message>
     <message>
         <location filename="../qml/AppListView.qml" line="40"/>
         <source>Video</source>
-        <translation type="unfinished"></translation>
+        <translation>བརྙན་འཕྲིན།</translation>
     </message>
     <message>
         <location filename="../qml/AppListView.qml" line="42"/>
         <source>Graphics</source>
-        <translation type="unfinished"></translation>
+        <translation>རི་མོ།</translation>
     </message>
     <message>
         <location filename="../qml/AppListView.qml" line="44"/>
@@ -99,22 +99,22 @@
     <message>
         <location filename="../qml/AppListView.qml" line="46"/>
         <source>Office</source>
-        <translation type="unfinished"></translation>
+        <translation>གཞུང་ལས།</translation>
     </message>
     <message>
         <location filename="../qml/AppListView.qml" line="48"/>
         <source>Reading</source>
-        <translation type="unfinished"></translation>
+        <translation>ཀློག་འདོན།</translation>
     </message>
     <message>
         <location filename="../qml/AppListView.qml" line="50"/>
         <source>Development</source>
-        <translation type="unfinished"></translation>
+        <translation>གསར་སྤེལ།</translation>
     </message>
     <message>
         <location filename="../qml/AppListView.qml" line="52"/>
         <source>System</source>
-        <translation type="unfinished"></translation>
+        <translation>རྒྱུད་ཁོངས།</translation>
     </message>
     <message>
         <location filename="../qml/AppListView.qml" line="54"/>
@@ -153,17 +153,17 @@
     <message>
         <location filename="../qml/WindowedFrame.qml" line="112"/>
         <source>Power</source>
-        <translation type="unfinished"></translation>
+        <translation>གློག་ཁུངས།</translation>
     </message>
     <message>
         <location filename="../qml/WindowedFrame.qml" line="125"/>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>སྒྲིག་འགོད།</translation>
     </message>
     <message>
         <location filename="../qml/WindowedFrame.qml" line="149"/>
         <source>Search</source>
-        <translation type="unfinished"></translation>
+        <translation>བཤེར་འཚོལ།</translation>
     </message>
     <message>
         <location filename="../qml/WindowedFrame.qml" line="167"/>
