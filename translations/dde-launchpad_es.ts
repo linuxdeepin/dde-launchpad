@@ -4,62 +4,62 @@
 <context>
     <name>AppItemMenu</name>
     <message>
-        <location filename="../qml/AppItemMenu.qml" line="24"/>
+        <location filename="../qml/AppItemMenu.qml" line="26"/>
         <source>Open</source>
         <translation>Abrir</translation>
     </message>
     <message>
-        <location filename="../qml/AppItemMenu.qml" line="33"/>
+        <location filename="../qml/AppItemMenu.qml" line="35"/>
         <source>Pin to Top</source>
         <translation>Anclar arriba</translation>
     </message>
     <message>
-        <location filename="../qml/AppItemMenu.qml" line="38"/>
+        <location filename="../qml/AppItemMenu.qml" line="40"/>
         <source>Remove from favorites</source>
         <translation>Eliminar de Favoritos</translation>
     </message>
     <message>
-        <location filename="../qml/AppItemMenu.qml" line="38"/>
+        <location filename="../qml/AppItemMenu.qml" line="40"/>
         <source>Add to favorites</source>
         <translation>Añadir a Favoritos</translation>
     </message>
     <message>
-        <location filename="../qml/AppItemMenu.qml" line="48"/>
+        <location filename="../qml/AppItemMenu.qml" line="50"/>
         <source>Send to desktop</source>
         <translation>Enviar al escritorio</translation>
     </message>
     <message>
-        <location filename="../qml/AppItemMenu.qml" line="48"/>
+        <location filename="../qml/AppItemMenu.qml" line="50"/>
         <source>Remove from desktop</source>
         <translation>Quitar del escritorio</translation>
     </message>
     <message>
-        <location filename="../qml/AppItemMenu.qml" line="49"/>
+        <location filename="../qml/AppItemMenu.qml" line="52"/>
         <source>Send to dock</source>
         <translation>Anclar al muelle</translation>
     </message>
     <message>
-        <location filename="../qml/AppItemMenu.qml" line="49"/>
+        <location filename="../qml/AppItemMenu.qml" line="52"/>
         <source>Remove from dock</source>
         <translation>Desanclar del muelle</translation>
     </message>
     <message>
-        <location filename="../qml/AppItemMenu.qml" line="51"/>
+        <location filename="../qml/AppItemMenu.qml" line="62"/>
         <source>Add to startup</source>
         <translation>Añadir al arranque</translation>
     </message>
     <message>
-        <location filename="../qml/AppItemMenu.qml" line="51"/>
+        <location filename="../qml/AppItemMenu.qml" line="62"/>
         <source>Remove from startup</source>
         <translation>Quitar del arranque</translation>
     </message>
     <message>
-        <location filename="../qml/AppItemMenu.qml" line="52"/>
+        <location filename="../qml/AppItemMenu.qml" line="63"/>
         <source>Use a proxy</source>
         <translation>Usar un proxy</translation>
     </message>
     <message>
-        <location filename="../qml/AppItemMenu.qml" line="55"/>
+        <location filename="../qml/AppItemMenu.qml" line="66"/>
         <source>Uninstall</source>
         <translation>Desinstalar</translation>
     </message>
@@ -127,18 +127,18 @@
     <message>
         <location filename="../qml/FullscreenFrame.qml" line="64"/>
         <source>Search</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Buscar en Internet</translation>
     </message>
 </context>
 <context>
     <name>LauncherController</name>
     <message>
-        <location filename="../launchercontroller.cpp" line="17"/>
+        <location filename="../launchercontroller.cpp" line="19"/>
         <source>Show launcher (hidden by default)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../launchercontroller.cpp" line="18"/>
+        <location filename="../launchercontroller.cpp" line="20"/>
         <source>Toggle launcher visibility</source>
         <translation type="unfinished"></translation>
     </message>

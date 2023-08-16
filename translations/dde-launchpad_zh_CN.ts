@@ -4,62 +4,62 @@
 <context>
     <name>AppItemMenu</name>
     <message>
-        <location filename="../qml/AppItemMenu.qml" line="24"/>
+        <location filename="../qml/AppItemMenu.qml" line="26"/>
         <source>Open</source>
         <translation>打开</translation>
     </message>
     <message>
-        <location filename="../qml/AppItemMenu.qml" line="33"/>
+        <location filename="../qml/AppItemMenu.qml" line="35"/>
         <source>Pin to Top</source>
         <translation>移到顶部</translation>
     </message>
     <message>
-        <location filename="../qml/AppItemMenu.qml" line="38"/>
+        <location filename="../qml/AppItemMenu.qml" line="40"/>
         <source>Remove from favorites</source>
         <translation>从收藏中移除</translation>
     </message>
     <message>
-        <location filename="../qml/AppItemMenu.qml" line="38"/>
+        <location filename="../qml/AppItemMenu.qml" line="40"/>
         <source>Add to favorites</source>
         <translation>添加到收藏</translation>
     </message>
     <message>
-        <location filename="../qml/AppItemMenu.qml" line="48"/>
+        <location filename="../qml/AppItemMenu.qml" line="50"/>
         <source>Send to desktop</source>
         <translation>发送到桌面</translation>
     </message>
     <message>
-        <location filename="../qml/AppItemMenu.qml" line="48"/>
+        <location filename="../qml/AppItemMenu.qml" line="50"/>
         <source>Remove from desktop</source>
         <translation>从桌面上移除</translation>
     </message>
     <message>
-        <location filename="../qml/AppItemMenu.qml" line="49"/>
+        <location filename="../qml/AppItemMenu.qml" line="52"/>
         <source>Send to dock</source>
         <translation>发送到任务栏</translation>
     </message>
     <message>
-        <location filename="../qml/AppItemMenu.qml" line="49"/>
+        <location filename="../qml/AppItemMenu.qml" line="52"/>
         <source>Remove from dock</source>
         <translation>从任务栏上移除</translation>
     </message>
     <message>
-        <location filename="../qml/AppItemMenu.qml" line="51"/>
+        <location filename="../qml/AppItemMenu.qml" line="62"/>
         <source>Add to startup</source>
         <translation>开机自动启动</translation>
     </message>
     <message>
-        <location filename="../qml/AppItemMenu.qml" line="51"/>
+        <location filename="../qml/AppItemMenu.qml" line="62"/>
         <source>Remove from startup</source>
         <translation>取消开机自动启动</translation>
     </message>
     <message>
-        <location filename="../qml/AppItemMenu.qml" line="52"/>
+        <location filename="../qml/AppItemMenu.qml" line="63"/>
         <source>Use a proxy</source>
         <translation>使用代理</translation>
     </message>
     <message>
-        <location filename="../qml/AppItemMenu.qml" line="55"/>
+        <location filename="../qml/AppItemMenu.qml" line="66"/>
         <source>Uninstall</source>
         <translation>卸载</translation>
     </message>
@@ -133,12 +133,12 @@
 <context>
     <name>LauncherController</name>
     <message>
-        <location filename="../launchercontroller.cpp" line="17"/>
+        <location filename="../launchercontroller.cpp" line="19"/>
         <source>Show launcher (hidden by default)</source>
         <translation>显示启动器（默认为隐藏）</translation>
     </message>
     <message>
-        <location filename="../launchercontroller.cpp" line="18"/>
+        <location filename="../launchercontroller.cpp" line="20"/>
         <source>Toggle launcher visibility</source>
         <translation>切换启动器的可见性</translation>
     </message>

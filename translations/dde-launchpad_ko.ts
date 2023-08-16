@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1">
+<TS version="2.1" language="ko_KR">
 <context>
     <name>AppItemMenu</name>
     <message>
@@ -146,6 +146,12 @@
 <context>
     <name>WindowedFrame</name>
     <message>
+        <location filename="../qml/FullscreenFrame.qml" line="167"/>
+        <location filename="../qml/WindowedFrame.qml" line="232"/>
+        <source>No search results</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../qml/WindowedFrame.qml" line="38"/>
         <source>Categories</source>
         <translation type="unfinished"></translation>
@@ -178,12 +184,6 @@
     <message>
         <location filename="../qml/WindowedFrame.qml" line="208"/>
         <source>All Apps</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qml/FullscreenFrame.qml" line="167"/>
-        <location filename="../qml/WindowedFrame.qml" line="232"/>
-        <source>No search results</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

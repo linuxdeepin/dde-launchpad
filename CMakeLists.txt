@@ -51,7 +51,19 @@ set(QML_FILES
 
 set(TRANSLATION_FILES
     translations/dde-launchpad.ts
+    translations/dde-launchpad_az.ts
+    translations/dde-launchpad_bo.ts
+    translations/dde-launchpad_ca.ts
+    translations/dde-launchpad_es.ts
+    translations/dde-launchpad_fr.ts
+    translations/dde-launchpad_fi.ts
+    translations/dde-launchpad_ja.ts
+    translations/dde-launchpad_ko.ts
+    translations/dde-launchpad_nb_NO.ts
+    translations/dde-launchpad_ru.ts
     translations/dde-launchpad_zh_CN.ts
+    translations/dde-launchpad_zh_HK.ts
+    translations/dde-launchpad_zh_TW.ts
 )
 
 qt_create_translation(TRANSLATED_FILES ${QML_FILES} ${SOURCE_FILES} src/models/appitem.cpp ${TRANSLATION_FILES})

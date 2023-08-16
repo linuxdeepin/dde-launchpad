@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1">
+<TS version="2.1" language="zh_HK">
 <context>
     <name>AppItemMenu</name>
     <message>
@@ -69,27 +69,27 @@
     <message>
         <location filename="../qml/AppListView.qml" line="34"/>
         <source>Internet</source>
-        <translation type="unfinished"></translation>
+        <translation>網際網路</translation>
     </message>
     <message>
         <location filename="../qml/AppListView.qml" line="36"/>
         <source>Chat</source>
-        <translation type="unfinished"></translation>
+        <translation>社交溝通</translation>
     </message>
     <message>
         <location filename="../qml/AppListView.qml" line="38"/>
         <source>Music</source>
-        <translation type="unfinished"></translation>
+        <translation>音樂欣賞</translation>
     </message>
     <message>
         <location filename="../qml/AppListView.qml" line="40"/>
         <source>Video</source>
-        <translation type="unfinished"></translation>
+        <translation>影片播放</translation>
     </message>
     <message>
         <location filename="../qml/AppListView.qml" line="42"/>
         <source>Graphics</source>
-        <translation type="unfinished"></translation>
+        <translation>美工繪圖</translation>
     </message>
     <message>
         <location filename="../qml/AppListView.qml" line="44"/>
@@ -146,6 +146,12 @@
 <context>
     <name>WindowedFrame</name>
     <message>
+        <location filename="../qml/FullscreenFrame.qml" line="167"/>
+        <location filename="../qml/WindowedFrame.qml" line="232"/>
+        <source>No search results</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../qml/WindowedFrame.qml" line="38"/>
         <source>Categories</source>
         <translation type="unfinished"></translation>
@@ -178,12 +184,6 @@
     <message>
         <location filename="../qml/WindowedFrame.qml" line="208"/>
         <source>All Apps</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qml/FullscreenFrame.qml" line="167"/>
-        <location filename="../qml/WindowedFrame.qml" line="232"/>
-        <source>No search results</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

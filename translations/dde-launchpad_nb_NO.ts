@@ -4,62 +4,62 @@
 <context>
     <name>AppItemMenu</name>
     <message>
-        <location filename="../qml/AppItemMenu.qml" line="24"/>
+        <location filename="../qml/AppItemMenu.qml" line="26"/>
         <source>Open</source>
         <translation>Åpne</translation>
     </message>
     <message>
-        <location filename="../qml/AppItemMenu.qml" line="33"/>
+        <location filename="../qml/AppItemMenu.qml" line="35"/>
         <source>Pin to Top</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/AppItemMenu.qml" line="38"/>
+        <location filename="../qml/AppItemMenu.qml" line="40"/>
         <source>Remove from favorites</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/AppItemMenu.qml" line="38"/>
+        <location filename="../qml/AppItemMenu.qml" line="40"/>
         <source>Add to favorites</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/AppItemMenu.qml" line="48"/>
+        <location filename="../qml/AppItemMenu.qml" line="50"/>
         <source>Send to desktop</source>
         <translation>Send til skrivebord</translation>
     </message>
     <message>
-        <location filename="../qml/AppItemMenu.qml" line="48"/>
+        <location filename="../qml/AppItemMenu.qml" line="50"/>
         <source>Remove from desktop</source>
         <translation>Fjern fra skrivebordet</translation>
     </message>
     <message>
-        <location filename="../qml/AppItemMenu.qml" line="49"/>
+        <location filename="../qml/AppItemMenu.qml" line="52"/>
         <source>Send to dock</source>
         <translation>Send til dock</translation>
     </message>
     <message>
-        <location filename="../qml/AppItemMenu.qml" line="49"/>
+        <location filename="../qml/AppItemMenu.qml" line="52"/>
         <source>Remove from dock</source>
         <translation>Fjern fra dokk</translation>
     </message>
     <message>
-        <location filename="../qml/AppItemMenu.qml" line="51"/>
+        <location filename="../qml/AppItemMenu.qml" line="62"/>
         <source>Add to startup</source>
         <translation>Legg til oppstart</translation>
     </message>
     <message>
-        <location filename="../qml/AppItemMenu.qml" line="51"/>
+        <location filename="../qml/AppItemMenu.qml" line="62"/>
         <source>Remove from startup</source>
         <translation>Fjern fra oppstart</translation>
     </message>
     <message>
-        <location filename="../qml/AppItemMenu.qml" line="52"/>
+        <location filename="../qml/AppItemMenu.qml" line="63"/>
         <source>Use a proxy</source>
         <translation>Bruk en Proxy</translation>
     </message>
     <message>
-        <location filename="../qml/AppItemMenu.qml" line="55"/>
+        <location filename="../qml/AppItemMenu.qml" line="66"/>
         <source>Uninstall</source>
         <translation>Avinstaller</translation>
     </message>
@@ -127,18 +127,18 @@
     <message>
         <location filename="../qml/FullscreenFrame.qml" line="64"/>
         <source>Search</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Søk</translation>
     </message>
 </context>
 <context>
     <name>LauncherController</name>
     <message>
-        <location filename="../launchercontroller.cpp" line="17"/>
+        <location filename="../launchercontroller.cpp" line="19"/>
         <source>Show launcher (hidden by default)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../launchercontroller.cpp" line="18"/>
+        <location filename="../launchercontroller.cpp" line="20"/>
         <source>Toggle launcher visibility</source>
         <translation type="unfinished"></translation>
     </message>
