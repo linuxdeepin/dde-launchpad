@@ -29,6 +29,12 @@ $ sudo apt build-dep . # install build dependencies
 $ dpkg-buildpackage -uc -us -nc -b # build binary package(s)
 ```
 
+## Getting Involved
+
+- [Code contribution via GitHub](https://github.com/linuxdeepin/dde-launchpad/)
+- [Submit bug or suggestions to GitHub Issues or GitHub Discussions](https://github.com/linuxdeepin/developer-center/issues/new/choose)
+- [Translate this project into your language on Hosted Weblate](https://hosted.weblate.org/projects/deepin/dde-launchpad/)
+
 ## License
 
 **dde-launchpad** is licensed under [GPL-3.0-or-later](LICENSE).

@@ -29,6 +29,12 @@ $ sudo apt build-dep . # 安装构建依赖
 $ dpkg-buildpackage -uc -us -nc -b # 构建二进制软件包
 ```
 
+## 参与贡献
+
+- [通过 GitHub 发起代码贡献](https://github.com/linuxdeepin/dde-launchpad/)
+- [通过 GitHub Issues 与 GitHub Discussions 汇报缺陷与反馈建议](https://github.com/linuxdeepin/developer-center/issues/new/choose)
+- [在 Hosted Weblate 将此项目翻译到你所使用的语言中](https://hosted.weblate.org/projects/deepin/dde-launchpad/)
+
 ## 许可协议
 
 **dde-launchpad** 使用 [GPL-3.0-or-later](LICENSE) 许可协议进行发布。
