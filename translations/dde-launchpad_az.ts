@@ -6,7 +6,7 @@
     <message>
         <location filename="../qml/AppItemMenu.qml" line="24"/>
         <source>Open</source>
-        <translation type="unfinished"></translation>
+        <translation>Aç</translation>
     </message>
     <message>
         <location filename="../qml/AppItemMenu.qml" line="33"/>
@@ -26,42 +26,42 @@
     <message>
         <location filename="../qml/AppItemMenu.qml" line="48"/>
         <source>Send to desktop</source>
-        <translation type="unfinished"></translation>
+        <translation>İş Masasına göndərmək</translation>
     </message>
     <message>
         <location filename="../qml/AppItemMenu.qml" line="48"/>
         <source>Remove from desktop</source>
-        <translation type="unfinished"></translation>
+        <translation>İş Masasından silmək</translation>
     </message>
     <message>
         <location filename="../qml/AppItemMenu.qml" line="49"/>
         <source>Send to dock</source>
-        <translation type="unfinished"></translation>
+        <translation>Dok-a göndərmək</translation>
     </message>
     <message>
         <location filename="../qml/AppItemMenu.qml" line="49"/>
         <source>Remove from dock</source>
-        <translation type="unfinished"></translation>
+        <translation>Dok-dan silmək</translation>
     </message>
     <message>
         <location filename="../qml/AppItemMenu.qml" line="51"/>
         <source>Add to startup</source>
-        <translation type="unfinished"></translation>
+        <translation>Avtobaşlatmaya əlavə etmək</translation>
     </message>
     <message>
         <location filename="../qml/AppItemMenu.qml" line="51"/>
         <source>Remove from startup</source>
-        <translation type="unfinished"></translation>
+        <translation>Avtobaşlatmadan silmək</translation>
     </message>
     <message>
         <location filename="../qml/AppItemMenu.qml" line="52"/>
         <source>Use a proxy</source>
-        <translation type="unfinished"></translation>
+        <translation>Proksi istifadə etmək</translation>
     </message>
     <message>
         <location filename="../qml/AppItemMenu.qml" line="55"/>
         <source>Uninstall</source>
-        <translation type="unfinished"></translation>
+        <translation>Sil</translation>
     </message>
 </context>
 <context>
@@ -69,27 +69,27 @@
     <message>
         <location filename="../qml/AppListView.qml" line="34"/>
         <source>Internet</source>
-        <translation type="unfinished"></translation>
+        <translation>İnternet</translation>
     </message>
     <message>
         <location filename="../qml/AppListView.qml" line="36"/>
         <source>Chat</source>
-        <translation type="unfinished"></translation>
+        <translation>Çat</translation>
     </message>
     <message>
         <location filename="../qml/AppListView.qml" line="38"/>
         <source>Music</source>
-        <translation type="unfinished"></translation>
+        <translation>Musiqi</translation>
     </message>
     <message>
         <location filename="../qml/AppListView.qml" line="40"/>
         <source>Video</source>
-        <translation type="unfinished"></translation>
+        <translation>Video</translation>
     </message>
     <message>
         <location filename="../qml/AppListView.qml" line="42"/>
         <source>Graphics</source>
-        <translation type="unfinished"></translation>
+        <translation>Qrafikalar</translation>
     </message>
     <message>
         <location filename="../qml/AppListView.qml" line="44"/>
@@ -99,22 +99,22 @@
     <message>
         <location filename="../qml/AppListView.qml" line="46"/>
         <source>Office</source>
-        <translation type="unfinished"></translation>
+        <translation>Ofis</translation>
     </message>
     <message>
         <location filename="../qml/AppListView.qml" line="48"/>
         <source>Reading</source>
-        <translation type="unfinished"></translation>
+        <translation>Oxu</translation>
     </message>
     <message>
         <location filename="../qml/AppListView.qml" line="50"/>
         <source>Development</source>
-        <translation type="unfinished"></translation>
+        <translation>Tərtibat</translation>
     </message>
     <message>
         <location filename="../qml/AppListView.qml" line="52"/>
         <source>System</source>
-        <translation type="unfinished"></translation>
+        <translation>Sistem</translation>
     </message>
     <message>
         <location filename="../qml/AppListView.qml" line="54"/>
@@ -153,17 +153,17 @@
     <message>
         <location filename="../qml/WindowedFrame.qml" line="112"/>
         <source>Power</source>
-        <translation type="unfinished"></translation>
+        <translation>Elektrik qidalanması</translation>
     </message>
     <message>
         <location filename="../qml/WindowedFrame.qml" line="125"/>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Tənzimləmələr</translation>
     </message>
     <message>
         <location filename="../qml/WindowedFrame.qml" line="149"/>
         <source>Search</source>
-        <translation type="unfinished"></translation>
+        <translation>Axtar</translation>
     </message>
     <message>
         <location filename="../qml/WindowedFrame.qml" line="167"/>
