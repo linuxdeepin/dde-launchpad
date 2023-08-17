@@ -53,7 +53,16 @@ Loader {
                 visible: pinToTopMenu.visible && addOrRemoveFavMenu.visible
                 height: visible ? implicitHeight : 0 // FIXME: same as above
             }
-            MenuItem { text: true ? qsTr("Send to desktop") : qsTr("Remove from desktop") }
+            MenuItem {
+                text: DesktopIntegration.isOnDesktop(appItem.desktopId) ? qsTr("Remove from desktop") : qsTr("Send to desktop")
+                onTriggered: {
+                    if (DesktopIntegration.isOnDesktop(appItem.desktopId)) {
+                        DesktopIntegration.removeFromDesktop(appItem.desktopId);
+                    } else {
+                        DesktopIntegration.sendToDesktop(appItem.desktopId);
+                    }
+                }
+            }
             MenuItem {
                 text: DesktopIntegration.isDockedApp(appItem.desktopId) ? qsTr("Remove from dock") : qsTr("Send to dock")
                 onTriggered: {

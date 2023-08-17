@@ -5,6 +5,7 @@
 #include "desktopintegration.h"
 
 #include <DDBusSender>
+#include <DDesktopEntry>
 #include <QRect>
 #include <appinfo.h>
 
@@ -12,6 +13,8 @@
 
 #include "ddedock.h"
 #include "appearance.h"
+
+DCORE_USE_NAMESPACE
 
 QString DesktopIntegration::currentDE()
 {
@@ -92,6 +95,54 @@ void DesktopIntegration::removeFromDock(const QString &desktopId)
 {
     const QString & fullPath = AppInfo::fullPathByDesktopId(desktopId);
     return m_dockIntegration->removeFromDock(fullPath);
+}
+
+inline QString desktopItemFilePath(const QString &desktopId)
+{
+    QString desktopPath = QStandardPaths::writableLocation(QStandardPaths::DesktopLocation);
+    if (desktopPath.isEmpty()) return QString();
+
+    QDir desktopDir(desktopPath);
+    return desktopDir.filePath(desktopId);
+}
+
+bool DesktopIntegration::isOnDesktop(const QString &desktopId)
+{
+    QString desktopItemPath = desktopItemFilePath(desktopId);
+    if (desktopItemPath.isEmpty()) return false;
+    return QFileInfo::exists(desktopItemPath);
+}
+
+void DesktopIntegration::sendToDesktop(const QString &desktopId)
+{
+    QString desktopItemPath = desktopItemFilePath(desktopId);
+    if (desktopItemPath.isEmpty()) return;
+    if (QFile::exists(desktopItemPath)) return;
+
+    QString srcFilePath = AppInfo::fullPathByDesktopId(desktopId);
+    if (srcFilePath.isEmpty()) return;
+
+    bool copied = QFile::copy(srcFilePath, desktopItemPath);
+    if (!copied) return;
+    DDesktopEntry entry(desktopItemPath);
+    entry.setStringValue("DDE", "X-Deepin-CreatedBy"); // maybe better to add a "managed by"?
+    // There was originally also a "X-Deepin-AppID" which... doesn't seems to make any sense
+    if (entry.save()) {
+        // TODO: play sfx for this
+        // DDesktopServices::playSystemSoundEffect(DDesktopServices::SSE_SendFileComplete); // why is this in dtkwidget?
+    }
+}
+
+void DesktopIntegration::removeFromDesktop(const QString &desktopId)
+{
+    QString desktopItemPath = desktopItemFilePath(desktopId);
+    if (desktopItemPath.isEmpty()) return;
+
+    QFile desktopItemFile(desktopItemPath);
+
+    if (desktopItemFile.exists()) {
+        desktopItemFile.remove();
+    }
 }
 
 DesktopIntegration::DesktopIntegration(QObject *parent)
