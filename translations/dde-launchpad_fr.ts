@@ -6,7 +6,7 @@
     <message>
         <location filename="../qml/AppItemMenu.qml" line="26"/>
         <source>Open</source>
-        <translation type="unfinished"></translation>
+        <translation>Ouvrir</translation>
     </message>
     <message>
         <location filename="../qml/AppItemMenu.qml" line="35"/>
@@ -26,42 +26,42 @@
     <message>
         <location filename="../qml/AppItemMenu.qml" line="50"/>
         <source>Send to desktop</source>
-        <translation type="unfinished"></translation>
+        <translation>Envoyer sur le bureau</translation>
     </message>
     <message>
         <location filename="../qml/AppItemMenu.qml" line="50"/>
         <source>Remove from desktop</source>
-        <translation type="unfinished"></translation>
+        <translation>Supprimer du bureau</translation>
     </message>
     <message>
         <location filename="../qml/AppItemMenu.qml" line="52"/>
         <source>Remove from dock</source>
-        <translation type="unfinished"></translation>
+        <translation>Supprimer du dock</translation>
     </message>
     <message>
         <location filename="../qml/AppItemMenu.qml" line="52"/>
         <source>Send to dock</source>
-        <translation type="unfinished"></translation>
+        <translation>Épingler au lanceur</translation>
     </message>
     <message>
         <location filename="../qml/AppItemMenu.qml" line="62"/>
         <source>Add to startup</source>
-        <translation type="unfinished"></translation>
+        <translation>Ajouter au démarrage</translation>
     </message>
     <message>
         <location filename="../qml/AppItemMenu.qml" line="62"/>
         <source>Remove from startup</source>
-        <translation type="unfinished"></translation>
+        <translation>Supprimer du démarrage</translation>
     </message>
     <message>
         <location filename="../qml/AppItemMenu.qml" line="63"/>
         <source>Use a proxy</source>
-        <translation type="unfinished"></translation>
+        <translation>Utiliser un proxy</translation>
     </message>
     <message>
         <location filename="../qml/AppItemMenu.qml" line="66"/>
         <source>Uninstall</source>
-        <translation type="unfinished"></translation>
+        <translation>Désinstaller</translation>
     </message>
 </context>
 <context>
@@ -69,27 +69,27 @@
     <message>
         <location filename="../qml/AppListView.qml" line="34"/>
         <source>Internet</source>
-        <translation type="unfinished"></translation>
+        <translation>Internet</translation>
     </message>
     <message>
         <location filename="../qml/AppListView.qml" line="36"/>
         <source>Chat</source>
-        <translation type="unfinished"></translation>
+        <translation>Chat</translation>
     </message>
     <message>
         <location filename="../qml/AppListView.qml" line="38"/>
         <source>Music</source>
-        <translation type="unfinished"></translation>
+        <translation>Musique</translation>
     </message>
     <message>
         <location filename="../qml/AppListView.qml" line="40"/>
         <source>Video</source>
-        <translation type="unfinished"></translation>
+        <translation>Vidéo</translation>
     </message>
     <message>
         <location filename="../qml/AppListView.qml" line="42"/>
         <source>Graphics</source>
-        <translation type="unfinished"></translation>
+        <translation>Graphisme</translation>
     </message>
     <message>
         <location filename="../qml/AppListView.qml" line="44"/>
@@ -99,22 +99,22 @@
     <message>
         <location filename="../qml/AppListView.qml" line="46"/>
         <source>Office</source>
-        <translation type="unfinished"></translation>
+        <translation>Bureautique</translation>
     </message>
     <message>
         <location filename="../qml/AppListView.qml" line="48"/>
         <source>Reading</source>
-        <translation type="unfinished"></translation>
+        <translation>Lecture</translation>
     </message>
     <message>
         <location filename="../qml/AppListView.qml" line="50"/>
         <source>Development</source>
-        <translation type="unfinished"></translation>
+        <translation>Développement</translation>
     </message>
     <message>
         <location filename="../qml/AppListView.qml" line="52"/>
         <source>System</source>
-        <translation type="unfinished"></translation>
+        <translation>Système</translation>
     </message>
     <message>
         <location filename="../qml/AppListView.qml" line="54"/>
@@ -159,17 +159,17 @@
     <message>
         <location filename="../qml/WindowedFrame.qml" line="112"/>
         <source>Power</source>
-        <translation type="unfinished"></translation>
+        <translation>Alimentation</translation>
     </message>
     <message>
         <location filename="../qml/WindowedFrame.qml" line="125"/>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Paramètres</translation>
     </message>
     <message>
         <location filename="../qml/WindowedFrame.qml" line="149"/>
         <source>Search</source>
-        <translation type="unfinished"></translation>
+        <translation>Rechercher</translation>
     </message>
     <message>
         <location filename="../qml/WindowedFrame.qml" line="167"/>
