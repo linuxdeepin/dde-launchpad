@@ -45,6 +45,9 @@ QStringList translationDir() {
 // TODO: singleton window
 int main(int argc, char* argv[])
 {
+    // workaround for https://github.com/linuxdeepin/dtk/issues/115
+    qputenv("D_POPUP_MODE", "embed");
+
     QGuiApplication app(argc, argv);
     QCoreApplication::setOrganizationName("deepin");
     QCoreApplication::setApplicationName("dde-launchpad");

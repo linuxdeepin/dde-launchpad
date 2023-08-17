@@ -22,6 +22,7 @@ Loader {
 
         Menu {
             id: contextMenu
+
             MenuItem {
                 text: qsTr("Open")
                 onTriggered: {
@@ -30,11 +31,13 @@ Loader {
             }
             MenuSeparator {}
             MenuItem {
+                id: pinToTopMenu
                 visible: isFavoriteItem && !hideFavoriteMenu
                 height: visible ? implicitHeight : 0 // FIXME: seems this can cause some issue
                 text: qsTr("Pin to Top")
             }
             MenuItem {
+                id: addOrRemoveFavMenu
                 visible: !hideFavoriteMenu
                 height: visible ? implicitHeight : 0 // FIXME: same as above
                 text: FavoritedProxyModel.exists(appItem.desktopId) ? qsTr("Remove from favorites") : qsTr("Add to favorites")
@@ -46,7 +49,10 @@ Loader {
                     }
                 }
             }
-            MenuSeparator {}
+            MenuSeparator {
+                visible: pinToTopMenu.visible && addOrRemoveFavMenu.visible
+                height: visible ? implicitHeight : 0 // FIXME: same as above
+            }
             MenuItem { text: true ? qsTr("Send to desktop") : qsTr("Remove from desktop") }
             MenuItem {
                 text: DesktopIntegration.isDockedApp(appItem.desktopId) ? qsTr("Remove from dock") : qsTr("Send to dock")
