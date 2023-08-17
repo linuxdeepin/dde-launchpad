@@ -6,6 +6,7 @@
 
 #include <DDBusSender>
 #include <DDesktopEntry>
+#include <DStandardPaths>
 #include <QRect>
 #include <appinfo.h>
 
@@ -106,7 +107,7 @@ inline QString desktopItemFilePath(const QString &desktopId)
     return desktopDir.filePath(desktopId);
 }
 
-bool DesktopIntegration::isOnDesktop(const QString &desktopId)
+bool DesktopIntegration::isOnDesktop(const QString &desktopId) const
 {
     QString desktopItemPath = desktopItemFilePath(desktopId);
     if (desktopItemPath.isEmpty()) return false;
@@ -143,6 +144,53 @@ void DesktopIntegration::removeFromDesktop(const QString &desktopId)
     if (desktopItemFile.exists()) {
         desktopItemFile.remove();
     }
+}
+
+bool DesktopIntegration::isAutoStart(const QString &desktopId) const
+{
+    const QStringList xdgConfig = QStandardPaths::standardLocations(QStandardPaths::GenericConfigLocation);
+    const QString autoStartFileRelPath(QString("autostart/%1").arg(desktopId));
+    for (const QString & path : xdgConfig) {
+        const QString & autoStartPath(QDir(path).absoluteFilePath(autoStartFileRelPath));
+        if (QFile::exists(autoStartPath)) {
+            DDesktopEntry entry(autoStartPath);
+            if (entry.rawValue("Hidden", "Desktop Entry", "False") == QLatin1String("False")) {
+                return true;
+            }
+            return false;
+        }
+    }
+    return false;
+}
+
+// only affact the one in XDG_CONFIG_HOME, don't care about the system one (even if there is one).
+void DesktopIntegration::setAutoStart(const QString &desktopId, bool on)
+{
+    QString srcFilePath = AppInfo::fullPathByDesktopId(desktopId);
+    if (srcFilePath.isEmpty()) return;
+
+    const QString autoStartFileRelPath(QString("autostart/%1").arg(desktopId));
+    const QString autoStartPath(QDir(DStandardPaths::path(DStandardPaths::XDG::ConfigHome)).absoluteFilePath(autoStartFileRelPath));
+
+    // Ensure there is a autostart entry file under the $XDG_CONFIG_HOME/autostart/ folder
+    // Ee always create this file since the *system* might *have* one entry with hidden=True,
+    // which need us to override (even though it's very not likely to happen).
+    bool createdByUs = false;
+    if (!QFile::exists(autoStartPath)) {
+        QString srcFilePath = AppInfo::fullPathByDesktopId(desktopId);
+        bool succ = QFile::copy(srcFilePath, autoStartPath);
+        if (!succ) {
+            return;
+        }
+        createdByUs = true;
+    }
+
+    DDesktopEntry entry(autoStartPath);
+    entry.setRawValue(on ? "False" : "True", "Hidden");
+    if (createdByUs) {
+        entry.setStringValue("DDE", "X-Deepin-CreatedBy"); // maybe better to add a "managed by"?
+    }
+    entry.save();
 }
 
 DesktopIntegration::DesktopIntegration(QObject *parent)

@@ -74,7 +74,12 @@ Loader {
                 }
             }
             MenuSeparator {}
-            MenuItem { text: true ? qsTr("Add to startup") : qsTr("Remove from startup") }
+            MenuItem {
+                text: DesktopIntegration.isAutoStart(appItem.desktopId) ? qsTr("Remove from startup") : qsTr("Add to startup")
+                onTriggered: {
+                    DesktopIntegration.setAutoStart(appItem.desktopId, !DesktopIntegration.isAutoStart(appItem.desktopId))
+                }
+            }
             MenuItem { text: qsTr("Use a proxy") }
             MenuItem {
                 enabled: !DesktopIntegration.appIsCompulsoryForDesktop(appItem.desktopId)

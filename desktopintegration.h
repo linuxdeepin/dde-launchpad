@@ -38,9 +38,11 @@ public:
     Q_INVOKABLE bool isDockedApp(const QString & desktopId) const;
     Q_INVOKABLE void sendToDock(const QString & desktopId);
     Q_INVOKABLE void removeFromDock(const QString & desktopId);
-    Q_INVOKABLE bool isOnDesktop(const QString & desktopId);
+    Q_INVOKABLE bool isOnDesktop(const QString & desktopId) const;
     Q_INVOKABLE void sendToDesktop(const QString & desktopId);
     Q_INVOKABLE void removeFromDesktop(const QString & desktopId);
+    Q_INVOKABLE bool isAutoStart(const QString & desktopId) const;
+    Q_INVOKABLE void setAutoStart(const QString & desktopId, bool on = true);
 
 signals:
     void dockPositionChanged();
