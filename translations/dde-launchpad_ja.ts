@@ -6,7 +6,7 @@
     <message>
         <location filename="../qml/AppItemMenu.qml" line="26"/>
         <source>Open</source>
-        <translation type="unfinished"></translation>
+        <translation>開く</translation>
     </message>
     <message>
         <location filename="../qml/AppItemMenu.qml" line="35"/>
@@ -26,42 +26,42 @@
     <message>
         <location filename="../qml/AppItemMenu.qml" line="50"/>
         <source>Send to desktop</source>
-        <translation type="unfinished"></translation>
+        <translation>デスクトップへ送る</translation>
     </message>
     <message>
         <location filename="../qml/AppItemMenu.qml" line="50"/>
         <source>Remove from desktop</source>
-        <translation type="unfinished"></translation>
+        <translation>デスクトップから削除</translation>
     </message>
     <message>
         <location filename="../qml/AppItemMenu.qml" line="52"/>
         <source>Remove from dock</source>
-        <translation type="unfinished"></translation>
+        <translation>ドックから削除</translation>
     </message>
     <message>
         <location filename="../qml/AppItemMenu.qml" line="52"/>
         <source>Send to dock</source>
-        <translation type="unfinished"></translation>
+        <translation>ドックへ送る</translation>
     </message>
     <message>
         <location filename="../qml/AppItemMenu.qml" line="62"/>
         <source>Add to startup</source>
-        <translation type="unfinished"></translation>
+        <translation>スタートアップへ追加</translation>
     </message>
     <message>
         <location filename="../qml/AppItemMenu.qml" line="62"/>
         <source>Remove from startup</source>
-        <translation type="unfinished"></translation>
+        <translation>スタートアップから削除</translation>
     </message>
     <message>
         <location filename="../qml/AppItemMenu.qml" line="63"/>
         <source>Use a proxy</source>
-        <translation type="unfinished"></translation>
+        <translation>プロキシを使う</translation>
     </message>
     <message>
         <location filename="../qml/AppItemMenu.qml" line="66"/>
         <source>Uninstall</source>
-        <translation type="unfinished"></translation>
+        <translation>アンインストール</translation>
     </message>
 </context>
 <context>
@@ -69,27 +69,27 @@
     <message>
         <location filename="../qml/AppListView.qml" line="34"/>
         <source>Internet</source>
-        <translation type="unfinished"></translation>
+        <translation>インターネット</translation>
     </message>
     <message>
         <location filename="../qml/AppListView.qml" line="36"/>
         <source>Chat</source>
-        <translation type="unfinished"></translation>
+        <translation>チャット</translation>
     </message>
     <message>
         <location filename="../qml/AppListView.qml" line="38"/>
         <source>Music</source>
-        <translation type="unfinished"></translation>
+        <translation>ミュージック</translation>
     </message>
     <message>
         <location filename="../qml/AppListView.qml" line="40"/>
         <source>Video</source>
-        <translation type="unfinished"></translation>
+        <translation>ビデオ</translation>
     </message>
     <message>
         <location filename="../qml/AppListView.qml" line="42"/>
         <source>Graphics</source>
-        <translation type="unfinished"></translation>
+        <translation>グラフィックス</translation>
     </message>
     <message>
         <location filename="../qml/AppListView.qml" line="44"/>
@@ -99,22 +99,22 @@
     <message>
         <location filename="../qml/AppListView.qml" line="46"/>
         <source>Office</source>
-        <translation type="unfinished"></translation>
+        <translation>オフィス</translation>
     </message>
     <message>
         <location filename="../qml/AppListView.qml" line="48"/>
         <source>Reading</source>
-        <translation type="unfinished"></translation>
+        <translation>文書</translation>
     </message>
     <message>
         <location filename="../qml/AppListView.qml" line="50"/>
         <source>Development</source>
-        <translation type="unfinished"></translation>
+        <translation>開発</translation>
     </message>
     <message>
         <location filename="../qml/AppListView.qml" line="52"/>
         <source>System</source>
-        <translation type="unfinished"></translation>
+        <translation>システム</translation>
     </message>
     <message>
         <location filename="../qml/AppListView.qml" line="54"/>
@@ -159,17 +159,17 @@
     <message>
         <location filename="../qml/WindowedFrame.qml" line="112"/>
         <source>Power</source>
-        <translation type="unfinished"></translation>
+        <translation>電源</translation>
     </message>
     <message>
         <location filename="../qml/WindowedFrame.qml" line="125"/>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>設定</translation>
     </message>
     <message>
         <location filename="../qml/WindowedFrame.qml" line="149"/>
         <source>Search</source>
-        <translation type="unfinished"></translation>
+        <translation>検索</translation>
     </message>
     <message>
         <location filename="../qml/WindowedFrame.qml" line="167"/>
