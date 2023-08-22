@@ -94,7 +94,7 @@
     <message>
         <location filename="../qml/AppListView.qml" line="44"/>
         <source>Game</source>
-        <translation type="unfinished"></translation>
+        <translation>Juegos</translation>
     </message>
     <message>
         <location filename="../qml/AppListView.qml" line="46"/>
@@ -119,7 +119,7 @@
     <message>
         <location filename="../qml/AppListView.qml" line="54"/>
         <source>Others</source>
-        <translation type="unfinished"></translation>
+        <translation>Otros</translation>
     </message>
 </context>
 <context>
@@ -127,7 +127,7 @@
     <message>
         <location filename="../qml/FullscreenFrame.qml" line="64"/>
         <source>Search</source>
-        <translation type="unfinished">Buscar en Internet</translation>
+        <translation>Buscar</translation>
     </message>
 </context>
 <context>
@@ -135,12 +135,12 @@
     <message>
         <location filename="../launchercontroller.cpp" line="19"/>
         <source>Show launcher (hidden by default)</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostrar el lanzador (oculto por defecto)</translation>
     </message>
     <message>
         <location filename="../launchercontroller.cpp" line="20"/>
         <source>Toggle launcher visibility</source>
-        <translation type="unfinished"></translation>
+        <translation>Alternar la visibilidad del lanzador</translation>
     </message>
 </context>
 <context>
