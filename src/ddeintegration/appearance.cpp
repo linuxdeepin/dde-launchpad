@@ -22,7 +22,7 @@ Appearance::Appearance(QObject *parent)
     QTimer::singleShot(0, this, &Appearance::updateCurrentWallpaperBlurhash);
 
     connect(m_dbusAppearanceIface, &Appearance1::Changed, this, [this](const QString & key, const QString &) {
-        if (key == "background") updateCurrentWallpaperBlurhash();
+        if (key == "allwallpaperuris") updateCurrentWallpaperBlurhash();
     });
 
     connect(&m_blurhashWatcher, &QFutureWatcher<QString>::finished, this, [this](){
