@@ -5,5 +5,8 @@
 # Common build folder
 [Bb]uild/
 
+# Clangd cache folder
+.cache/
+
 # User project file
 CMakeLists.txt.user*
