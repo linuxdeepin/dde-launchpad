@@ -4,62 +4,62 @@
 <context>
     <name>AppItemMenu</name>
     <message>
-        <location filename="../qml/AppItemMenu.qml" line="26"/>
+        <location filename="../qml/AppItemMenu.qml" line="27"/>
         <source>Open</source>
         <translation>開く</translation>
     </message>
     <message>
-        <location filename="../qml/AppItemMenu.qml" line="35"/>
+        <location filename="../qml/AppItemMenu.qml" line="37"/>
         <source>Pin to Top</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/AppItemMenu.qml" line="40"/>
+        <location filename="../qml/AppItemMenu.qml" line="43"/>
         <source>Remove from favorites</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/AppItemMenu.qml" line="40"/>
+        <location filename="../qml/AppItemMenu.qml" line="43"/>
         <source>Add to favorites</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/AppItemMenu.qml" line="50"/>
+        <location filename="../qml/AppItemMenu.qml" line="57"/>
         <source>Send to desktop</source>
         <translation>デスクトップへ送る</translation>
     </message>
     <message>
-        <location filename="../qml/AppItemMenu.qml" line="50"/>
+        <location filename="../qml/AppItemMenu.qml" line="57"/>
         <source>Remove from desktop</source>
         <translation>デスクトップから削除</translation>
     </message>
     <message>
-        <location filename="../qml/AppItemMenu.qml" line="52"/>
+        <location filename="../qml/AppItemMenu.qml" line="67"/>
         <source>Remove from dock</source>
         <translation>ドックから削除</translation>
     </message>
     <message>
-        <location filename="../qml/AppItemMenu.qml" line="52"/>
+        <location filename="../qml/AppItemMenu.qml" line="67"/>
         <source>Send to dock</source>
         <translation>ドックへ送る</translation>
     </message>
     <message>
-        <location filename="../qml/AppItemMenu.qml" line="62"/>
+        <location filename="../qml/AppItemMenu.qml" line="78"/>
         <source>Add to startup</source>
         <translation>スタートアップへ追加</translation>
     </message>
     <message>
-        <location filename="../qml/AppItemMenu.qml" line="62"/>
+        <location filename="../qml/AppItemMenu.qml" line="78"/>
         <source>Remove from startup</source>
         <translation>スタートアップから削除</translation>
     </message>
     <message>
-        <location filename="../qml/AppItemMenu.qml" line="63"/>
+        <location filename="../qml/AppItemMenu.qml" line="83"/>
         <source>Use a proxy</source>
         <translation>プロキシを使う</translation>
     </message>
     <message>
-        <location filename="../qml/AppItemMenu.qml" line="66"/>
+        <location filename="../qml/AppItemMenu.qml" line="86"/>
         <source>Uninstall</source>
         <translation>アンインストール</translation>
     </message>
@@ -123,14 +123,6 @@
     </message>
 </context>
 <context>
-    <name>FullscreenFrame</name>
-    <message>
-        <location filename="../qml/FullscreenFrame.qml" line="64"/>
-        <source>Search</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>LauncherController</name>
     <message>
         <location filename="../launchercontroller.cpp" line="19"/>
@@ -167,6 +159,7 @@
         <translation>設定</translation>
     </message>
     <message>
+        <location filename="../qml/FullscreenFrame.qml" line="64"/>
         <location filename="../qml/WindowedFrame.qml" line="149"/>
         <source>Search</source>
         <translation>検索</translation>

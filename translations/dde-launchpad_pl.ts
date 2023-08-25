@@ -4,62 +4,62 @@
 <context>
     <name>AppItemMenu</name>
     <message>
-        <location filename="../qml/AppItemMenu.qml" line="24"/>
+        <location filename="../qml/AppItemMenu.qml" line="27"/>
         <source>Open</source>
         <translation>Otwórz</translation>
     </message>
     <message>
-        <location filename="../qml/AppItemMenu.qml" line="33"/>
+        <location filename="../qml/AppItemMenu.qml" line="37"/>
         <source>Pin to Top</source>
         <translation>Przypnij na górze</translation>
     </message>
     <message>
-        <location filename="../qml/AppItemMenu.qml" line="38"/>
+        <location filename="../qml/AppItemMenu.qml" line="43"/>
         <source>Remove from favorites</source>
         <translation>Usuń z ulubionych</translation>
     </message>
     <message>
-        <location filename="../qml/AppItemMenu.qml" line="38"/>
+        <location filename="../qml/AppItemMenu.qml" line="43"/>
         <source>Add to favorites</source>
         <translation>Dodaj do ulubionych</translation>
     </message>
     <message>
-        <location filename="../qml/AppItemMenu.qml" line="48"/>
+        <location filename="../qml/AppItemMenu.qml" line="57"/>
         <source>Send to desktop</source>
         <translation>Wyślij na pulpit</translation>
     </message>
     <message>
-        <location filename="../qml/AppItemMenu.qml" line="48"/>
+        <location filename="../qml/AppItemMenu.qml" line="57"/>
         <source>Remove from desktop</source>
         <translation>Usuń z pulpitu</translation>
     </message>
     <message>
-        <location filename="../qml/AppItemMenu.qml" line="49"/>
+        <location filename="../qml/AppItemMenu.qml" line="67"/>
         <source>Send to dock</source>
         <translation>Dodaj do doku</translation>
     </message>
     <message>
-        <location filename="../qml/AppItemMenu.qml" line="49"/>
+        <location filename="../qml/AppItemMenu.qml" line="67"/>
         <source>Remove from dock</source>
         <translation>Usuń z doku</translation>
     </message>
     <message>
-        <location filename="../qml/AppItemMenu.qml" line="51"/>
+        <location filename="../qml/AppItemMenu.qml" line="78"/>
         <source>Add to startup</source>
         <translation>Dodaj do uruchamiania</translation>
     </message>
     <message>
-        <location filename="../qml/AppItemMenu.qml" line="51"/>
+        <location filename="../qml/AppItemMenu.qml" line="78"/>
         <source>Remove from startup</source>
         <translation>Usuń z uruchamiania</translation>
     </message>
     <message>
-        <location filename="../qml/AppItemMenu.qml" line="52"/>
+        <location filename="../qml/AppItemMenu.qml" line="83"/>
         <source>Use a proxy</source>
         <translation>Użyj Proxy</translation>
     </message>
     <message>
-        <location filename="../qml/AppItemMenu.qml" line="55"/>
+        <location filename="../qml/AppItemMenu.qml" line="86"/>
         <source>Uninstall</source>
         <translation>Odinstaluj</translation>
     </message>
@@ -125,20 +125,19 @@
 <context>
     <name>FullscreenFrame</name>
     <message>
-        <location filename="../qml/FullscreenFrame.qml" line="64"/>
         <source>Search</source>
-        <translation>Wyszukaj</translation>
+        <translation type="vanished">Wyszukaj</translation>
     </message>
 </context>
 <context>
     <name>LauncherController</name>
     <message>
-        <location filename="../launchercontroller.cpp" line="17"/>
+        <location filename="../launchercontroller.cpp" line="19"/>
         <source>Show launcher (hidden by default)</source>
         <translation>Pokaż program uruchamiający (domyślnie ukryty)</translation>
     </message>
     <message>
-        <location filename="../launchercontroller.cpp" line="18"/>
+        <location filename="../launchercontroller.cpp" line="20"/>
         <source>Toggle launcher visibility</source>
         <translation>Przełącz widoczność programu uruchamiającego</translation>
     </message>
@@ -161,6 +160,7 @@
         <translation>Ustawienia</translation>
     </message>
     <message>
+        <location filename="../qml/FullscreenFrame.qml" line="64"/>
         <location filename="../qml/WindowedFrame.qml" line="149"/>
         <source>Search</source>
         <translation>Szukaj</translation>

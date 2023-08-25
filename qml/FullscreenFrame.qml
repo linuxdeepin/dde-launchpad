@@ -61,7 +61,7 @@ Control {
                     anchors.centerIn: parent
                     width: parent.width / 3
 
-                    placeholder: qsTr("Search")
+                    placeholder: qsTranslate("WindowedFrame", "Search")
                     onTextChanged: {
 //                        console.log(text)
                         SearchFilterProxyModel.setFilterRegularExpression(text)

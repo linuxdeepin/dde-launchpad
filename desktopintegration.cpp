@@ -146,6 +146,7 @@ void DesktopIntegration::removeFromDesktop(const QString &desktopId)
     }
 }
 
+// TODO: should also consider OnlyShownIn and NotShownIn
 bool DesktopIntegration::isAutoStart(const QString &desktopId) const
 {
     const QStringList xdgConfig = QStandardPaths::standardLocations(QStandardPaths::GenericConfigLocation);

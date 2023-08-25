@@ -1,4 +1,4 @@
-## Features are not Implemented
+## Features that are not Implemented
 
 ### Simply not implemented
 
@@ -8,9 +8,6 @@
 
 ### Related to legacy ApplicationManager daemon.Launcher1 DBus APIs
 
-- Send to desktop/remove from desktop
-- Send to dock/remove from dock
-- Auto-start/remove auto-start
 - Apply proxy settings to application
 - Uninstall application
 
@@ -26,9 +23,13 @@ Status:
 - {T} Fixed from upstream, but no new tag released after the fix
 - {A} Resolved and tag released from upstream, but Arch Linux have out-dated package that have the issue
 
+### dde-launchpad itself
+
+- { } Fullscreen frame can be tiled by touchpad guesture (and probably shortcut)
+
 ### DTK
 
-- { } PageIndicator is not visible
+- {T} PageIndicator is not visible
 - { } Click fallthough Popup component
 - { } ListView missing keyboard focus navigation
 - {A} dtkwidget DHiDPIHelper usage (this API moved to dtkgui)
@@ -40,6 +41,7 @@ Status:
 ### deepin-kwin
 
 - {A} Freeze when launching UI right after launch the program (Appearance1 DBus API caused deepin-kwin freezing, results UI blocking)
+- { } The window size might still be fullscreen while trying to toggle from fullscreen frame to windowed frame
 
 ## Other TODOs
 
