@@ -51,6 +51,11 @@ ApplicationWindow {
         }
     }
 
+    function descaledRect(rect) {
+        let ratio = Screen.devicePixelRatio
+        return Qt.rect(rect.left / ratio, rect.top / ratio, rect.width / ratio, rect.height / ratio)
+    }
+
     function launchApp(desktopId) {
         if (DebugHelper.avoidLaunchApp) {
             DTK.sendSystemMessage("dde-launchpad (debug)",
@@ -91,7 +96,7 @@ ApplicationWindow {
             let x = 0
             let y = 0
 
-            let dockGeometry = DesktopIntegration.dockGeometry
+            let dockGeometry = descaledRect(DesktopIntegration.dockGeometry)
             if (dockGeometry.width > 0 && dockGeometry.height > 0) {
 //                console.log(114514, dockGeometry)
                 switch (DesktopIntegration.dockPosition) {
