@@ -18,7 +18,10 @@ Item {
 
     RowLayout {
         anchors.fill: parent
-        anchors.margins: 10
+        anchors.topMargin: 20
+        anchors.leftMargin: anchors.topMargin
+        anchors.rightMargin: anchors.topMargin
+        anchors.bottomMargin: 0
 
         spacing: 10
 
@@ -95,6 +98,8 @@ Item {
             }
 
             RowLayout {
+                Layout.bottomMargin: 10
+
                 Layout.fillWidth: true
                 Layout.fillHeight: false
                 Layout.preferredHeight: 50

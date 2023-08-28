@@ -59,7 +59,7 @@ Control {
                     id: searchEdit
 
                     anchors.centerIn: parent
-                    width: parent.width / 3
+                    width: (parent.width / 3) > 400 ? 400 : (parent.width / 3)
 
                     placeholder: qsTranslate("WindowedFrame", "Search")
                     onTextChanged: {
