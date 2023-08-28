@@ -165,6 +165,7 @@ Control {
                 columns: 7
                 placeholderIcon: "search_no_result"
                 placeholderText: qsTranslate("WindowedFrame", "No search results")
+                placeholderIconSize: 256
                 model: delegateSearchResultModel
                 padding: 10
                 interactive: false

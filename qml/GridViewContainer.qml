@@ -17,6 +17,7 @@ Control {
     property alias model: gridView.model
     property alias delegate: gridView.delegate
     property alias placeholderIcon: placeholderIcon.name
+    property alias placeholderIconSize: placeholderIcon.sourceSize.width
     property alias placeholderText: placeholderLabel.text
     property alias interactive: gridView.interactive
     required property int columns
@@ -69,7 +70,7 @@ Control {
                 visible: name !== ""
                 sourceSize {
                     width: 128
-                    height: 128
+                    height: width
                 }
             }
 

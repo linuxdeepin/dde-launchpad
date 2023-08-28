@@ -10,19 +10,13 @@
         <file>qml/AppItemMenu.qml</file>
         <file>images/application-x-desktop.svg</file>
     </qresource>
-    <qresource prefix="/icons/deepin/builtin/">
-        <file alias="light/icons/setting_128px.svg">images/setting.svg</file>
-        <file alias="dark/icons/setting_128px.svg">images/setting_dark.svg</file>
-        <file alias="light/icons/shutdown_128px.svg">images/shutdown.svg</file>
-        <file alias="dark/icons/shutdown_128px.svg">images/shutdown_dark.svg</file>
-        <file alias="icons/letter-icon_128px.svg/normal.svg">images/letter-icon-normal.svg</file>
-        <file alias="icons/letter-icon_128px.svg/selected_on.svg">images/letter-icon-checked.svg</file>
-        <file alias="icons/title-icon_128px.svg/normal.svg">images/title-icon-normal.svg</file>
-        <file alias="icons/title-icon_128px.svg/selected_on.svg">images/title-icon-checked.svg</file>
-    </qresource>
     <qresource prefix="/dsg/built-in-icons/">
         <file alias="exit_fullscreen.dci">images/exit_fullscreen.dci</file>
         <file alias="switch_to_fullscreen.dci">images/switch_to_fullscreen.dci</file>
         <file alias="search_no_result.dci">images/search_no_result.dci</file>
+        <file alias="letter-icon.dci">images/launcher_classify_letter.dci</file>
+        <file alias="title-icon.dci">images/launcher_classify_type.dci</file>
+        <file alias="setting.dci">images/launcher_setting.dci</file>
+        <file alias="shutdown.dci">images/launcher_power.dci</file>
     </qresource>
 </RCC>
