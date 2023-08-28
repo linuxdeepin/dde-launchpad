@@ -27,6 +27,15 @@ Control {
 //    }
     background: Image {
         source: DesktopIntegration.backgroundUrl
+
+        MouseArea {
+            anchors.fill: parent
+            onPressed: {
+                if (!DebugHelper.avoidHideWindow) {
+                    LauncherController.visible = false
+                }
+            }
+        }
     }
 
     contentItem: ColumnLayout {
@@ -70,7 +79,7 @@ Control {
             }
         }
 
-        StackView {
+        Item {
             Layout.fillWidth: true
             Layout.fillHeight: true
 
@@ -131,6 +140,16 @@ Control {
                                     onMenuTriggered: {
                                         showContextMenu(this, model, folderIcons, false, true)
                                     }
+                                }
+                            }
+                        }
+
+                        // Since SwipeView will catch the mouse click event so we need to also do it here...
+                        MouseArea {
+                            anchors.fill: parent
+                            onPressed: {
+                                if (!DebugHelper.avoidHideWindow) {
+                                    LauncherController.visible = false
                                 }
                             }
                         }
