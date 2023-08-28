@@ -30,7 +30,7 @@ Control {
 
         MouseArea {
             anchors.fill: parent
-            onPressed: {
+            onClicked: {
                 if (!DebugHelper.avoidHideWindow) {
                     LauncherController.visible = false
                 }
@@ -147,7 +147,7 @@ Control {
                         // Since SwipeView will catch the mouse click event so we need to also do it here...
                         MouseArea {
                             anchors.fill: parent
-                            onPressed: {
+                            onClicked: {
                                 if (!DebugHelper.avoidHideWindow) {
                                     LauncherController.visible = false
                                 }
