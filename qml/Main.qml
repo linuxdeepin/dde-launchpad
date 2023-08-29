@@ -112,7 +112,7 @@ ApplicationWindow {
                     x = dockGeometry.width
                     y = (dockGeometry.top >= 0 ? dockGeometry.top : 0)
                     break
-                case Qt.TopArrow:
+                case Qt.UpArrow:
                     x = dockGeometry.left
                     y = dockGeometry.height
                     break
