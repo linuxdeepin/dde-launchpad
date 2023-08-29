@@ -32,6 +32,10 @@ ApplicationWindow {
     DWindow.enableSystemMove: false
 
     onVisibleChanged: {
+        // reset the timer right after visible state changed
+        if (delayHideTimer.running) {
+            delayHideTimer.stop()
+        }
         updateWindowVisibilityAndPosition()
     }
 
@@ -119,9 +123,13 @@ ApplicationWindow {
                 }
             }
 
+            // Window mode: follow system theme
+            ApplicationHelper.setPaletteType(ApplicationHelper.UnknownType)
             root.setGeometry(x, y, width, height)
         } else {
 //            root.visibility = Window.FullScreen
+            // Fullscreen mode: always assume dark theme
+            ApplicationHelper.setPaletteType(ApplicationHelper.DarkType)
             root.setGeometry(Screen.virtualX, Screen.virtualY, Screen.width, Screen.height)
         }
 
