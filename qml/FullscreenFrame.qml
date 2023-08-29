@@ -17,22 +17,24 @@ Control {
     visible: true
     anchors.fill: parent
 
-    leftPadding: DesktopIntegration.dockPosition === Qt.LeftArrow ? DesktopIntegration.dockGeometry.width : 0
-    rightPadding: DesktopIntegration.dockPosition === Qt.RightArrow ? DesktopIntegration.dockGeometry.width : 0
-    topPadding: DesktopIntegration.dockPosition === Qt.UpArrow ? DesktopIntegration.dockGeometry.height : 0
-    bottomPadding: DesktopIntegration.dockPosition === Qt.DownArrow ? DesktopIntegration.dockGeometry.height : 0
+    leftPadding: (DesktopIntegration.dockPosition === Qt.LeftArrow ? DesktopIntegration.dockGeometry.width : 0) + 20
+    rightPadding: (DesktopIntegration.dockPosition === Qt.RightArrow ? DesktopIntegration.dockGeometry.width : 0) + 20
+    topPadding: (DesktopIntegration.dockPosition === Qt.UpArrow ? DesktopIntegration.dockGeometry.height : 0) + 20
+    bottomPadding: (DesktopIntegration.dockPosition === Qt.DownArrow ? DesktopIntegration.dockGeometry.height : 0) + 20
 
-//    background: Rectangle {
-////        color: Qt.rgba(40 / 255.0, 42 / 255.0, 54 / 255.0, 1)
-//    }
     background: Image {
         source: DesktopIntegration.backgroundUrl
 
-        MouseArea {
+        Rectangle {
             anchors.fill: parent
-            onClicked: {
-                if (!DebugHelper.avoidHideWindow) {
-                    LauncherController.visible = false
+            color: Qt.rgba(0, 0, 0, 0.25)
+
+            MouseArea {
+                anchors.fill: parent
+                onClicked: {
+                    if (!DebugHelper.avoidHideWindow) {
+                        LauncherController.visible = false
+                    }
                 }
             }
         }
@@ -43,8 +45,6 @@ Control {
         Control {
             Layout.fillWidth: true
             Layout.fillHeight: false
-
-            padding: 10
 
             contentItem: Rectangle {
                 id: fullscreenHeader

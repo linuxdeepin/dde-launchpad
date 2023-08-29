@@ -31,7 +31,7 @@ Control {
     contentItem: Rectangle {
 //        anchors.fill: parent
         color: (stylus.hovered/* || parent.focus */) ? Qt.rgba(0, 0, 0, 0.3) : "transparent"
-        radius: 5
+        radius: 18
 
         Behavior on color { PropertyAnimation {} }
 
