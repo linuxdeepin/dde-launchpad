@@ -147,17 +147,17 @@
     <message>
         <location filename="../qml/Main.qml" line="202"/>
         <source>Are you sure you want to uninstall %1?</source>
-        <translation type="unfinished"></translation>
+        <translation>¿Estás seguro de que quieres desinstalar %1?</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="210"/>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>Cancelar</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="218"/>
         <source>Confirm</source>
-        <translation type="unfinished"></translation>
+        <translation>Confirmar</translation>
     </message>
 </context>
 <context>
