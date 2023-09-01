@@ -84,6 +84,12 @@ Loader {
             MenuItem {
                 enabled: !DesktopIntegration.appIsCompulsoryForDesktop(appItem.desktopId)
                 text: qsTr("Uninstall")
+                onTriggered: {
+                    LauncherController.visible = false
+                    confirmUninstallDlg.appName = appItem.display
+                    confirmUninstallDlg.appId = appItem.desktopId
+                    confirmUninstallDlg.show()
+                }
             }
 
             onClosed: {

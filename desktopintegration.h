@@ -7,6 +7,7 @@
 #include <QObject>
 #include <QRect>
 
+class AppWiz;
 class DdeDock;
 class Appearance;
 class DesktopIntegration : public QObject
@@ -43,6 +44,7 @@ public:
     Q_INVOKABLE void removeFromDesktop(const QString & desktopId);
     Q_INVOKABLE bool isAutoStart(const QString & desktopId) const;
     Q_INVOKABLE void setAutoStart(const QString & desktopId, bool on = true);
+    Q_INVOKABLE void uninstallApp(const QString & desktopId);
 
 signals:
     void dockPositionChanged();
@@ -52,6 +54,7 @@ signals:
 private:
     explicit DesktopIntegration(QObject * parent = nullptr);
 
+    AppWiz * m_appWizIntegration;
     DdeDock * m_dockIntegration;
     Appearance * m_appearanceIntegration;
 };

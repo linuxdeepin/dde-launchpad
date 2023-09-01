@@ -12,6 +12,7 @@
 
 #include <AppStreamQt/pool.h>
 
+#include "appwiz.h"
 #include "ddedock.h"
 #include "appearance.h"
 
@@ -194,8 +195,15 @@ void DesktopIntegration::setAutoStart(const QString &desktopId, bool on)
     entry.save();
 }
 
+void DesktopIntegration::uninstallApp(const QString &desktopId)
+{
+    const QString & fullPath = AppInfo::fullPathByDesktopId(desktopId);
+    m_appWizIntegration->legacyRequestUninstall(fullPath);
+}
+
 DesktopIntegration::DesktopIntegration(QObject *parent)
     : QObject(parent)
+    , m_appWizIntegration(new AppWiz(this))
     , m_dockIntegration(new DdeDock(this))
     , m_appearanceIntegration(new Appearance(this))
 {

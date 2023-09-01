@@ -185,4 +185,45 @@ ApplicationWindow {
             source: 'DebugDialog.qml'
         }
     }
+
+    DialogWindow {
+        id: confirmUninstallDlg
+
+        property string appId: ""
+        property string appName: ""
+
+        width: 400
+
+        ColumnLayout {
+            width: parent.width
+            Label {
+                Layout.alignment: Qt.AlignHCenter
+                font: DTK.fontManager.t5
+                text: qsTr("Are you sure you want to uninstall %1?").arg(confirmUninstallDlg.appName)
+            }
+            RowLayout {
+                Layout.alignment: Qt.AlignBottom | Qt.AlignHCenter
+                Layout.bottomMargin: 10
+                Layout.topMargin: 10
+                Layout.fillWidth: true
+                Button {
+                    text: qsTr("Cancel")
+                    Layout.preferredWidth: 175
+                    onClicked: {
+                        confirmUninstallDlg.close()
+                    }
+                }
+                Item {Layout.fillWidth: true}
+                WarningButton {
+                    text: qsTr("Confirm")
+                    Layout.preferredWidth: 175
+                    Layout.alignment: Qt.AlignRight
+                    onClicked: {
+                        DesktopIntegration.uninstallApp(confirmUninstallDlg.appId)
+                        confirmUninstallDlg.close()
+                    }
+                }
+            }
+        }
+    }
 }

@@ -64,6 +64,13 @@ PROPERTIES
 )
 
 set_source_files_properties(
+    ${CMAKE_CURRENT_LIST_DIR}/xml/org.deepin.dde.daemon.Launcher1.xml
+PROPERTIES
+    CLASSNAME DaemonLauncher1
+    NO_NAMESPACE ON
+)
+
+set_source_files_properties(
     ${CMAKE_CURRENT_LIST_DIR}/xml/org.deepin.dde.Appearance1.xml
 PROPERTIES
     CLASSNAME Appearance1
@@ -75,6 +82,7 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(DBusCPP_SRC "")
 
 dtk_add_dbus_interface(DBusCPP_SRC ${CMAKE_CURRENT_LIST_DIR}/xml/org.deepin.dde.daemon.Dock1.xml DaemonDock1)
+dtk_add_dbus_interface(DBusCPP_SRC ${CMAKE_CURRENT_LIST_DIR}/xml/org.deepin.dde.daemon.Launcher1.xml DaemonLauncher1)
 dtk_add_dbus_interface(DBusCPP_SRC ${CMAKE_CURRENT_LIST_DIR}/xml/org.deepin.dde.Appearance1.xml Appearance1)
 
 message(INFO ${DBusCPP_SRC})
@@ -83,6 +91,7 @@ add_library(dde-integration-dbus OBJECT
     ${DBusCPP_SRC}
     types/qrect.h
 
+    appwiz.cpp
     ddedock.cpp
     appearance.cpp
 )
@@ -90,6 +99,7 @@ add_library(dde-integration-dbus OBJECT
 target_sources(dde-integration-dbus PUBLIC
 FILE_SET HEADERS
 FILES
+    appwiz.h
     ddedock.h
     appearance.h
 )
