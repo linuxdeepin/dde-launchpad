@@ -136,46 +136,64 @@
     </message>
 </context>
 <context>
+    <name>Main</name>
+    <message>
+        <location filename="../qml/Main.qml" line="202"/>
+        <source>Are you sure you want to uninstall %1?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/Main.qml" line="210"/>
+        <source>Cancel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/Main.qml" line="218"/>
+        <source>Confirm</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>WindowedFrame</name>
     <message>
-        <location filename="../qml/FullscreenFrame.qml" line="167"/>
-        <location filename="../qml/WindowedFrame.qml" line="232"/>
+        <location filename="../qml/FullscreenFrame.qml" line="186"/>
+        <location filename="../qml/WindowedFrame.qml" line="237"/>
         <source>No search results</source>
         <translation>無搜索結果</translation>
     </message>
     <message>
-        <location filename="../qml/WindowedFrame.qml" line="38"/>
+        <location filename="../qml/WindowedFrame.qml" line="41"/>
         <source>Categories</source>
         <translation>應用分類</translation>
     </message>
     <message>
-        <location filename="../qml/WindowedFrame.qml" line="112"/>
+        <location filename="../qml/WindowedFrame.qml" line="117"/>
         <source>Power</source>
         <translation>電源</translation>
     </message>
     <message>
-        <location filename="../qml/WindowedFrame.qml" line="125"/>
+        <location filename="../qml/WindowedFrame.qml" line="130"/>
         <source>Settings</source>
         <translation>設置</translation>
     </message>
     <message>
-        <location filename="../qml/FullscreenFrame.qml" line="64"/>
-        <location filename="../qml/WindowedFrame.qml" line="149"/>
+        <location filename="../qml/FullscreenFrame.qml" line="73"/>
+        <location filename="../qml/WindowedFrame.qml" line="154"/>
         <source>Search</source>
         <translation>搜尋</translation>
     </message>
     <message>
-        <location filename="../qml/WindowedFrame.qml" line="167"/>
+        <location filename="../qml/WindowedFrame.qml" line="172"/>
         <source>My Favorites</source>
         <translation>收藏應用</translation>
     </message>
     <message>
-        <location filename="../qml/WindowedFrame.qml" line="198"/>
+        <location filename="../qml/WindowedFrame.qml" line="203"/>
         <source>Add your favorite apps here</source>
         <translation>添加應用到收藏</translation>
     </message>
     <message>
-        <location filename="../qml/WindowedFrame.qml" line="208"/>
+        <location filename="../qml/WindowedFrame.qml" line="213"/>
         <source>All Apps</source>
         <translation>所有應用</translation>
     </message>

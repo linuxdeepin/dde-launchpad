@@ -43,6 +43,7 @@ set(SOURCE_FILES
 )
 
 set(QML_FILES
+    qml/Main.qml
     qml/WindowedFrame.qml
     qml/FullscreenFrame.qml
     qml/AppItemMenu.qml
