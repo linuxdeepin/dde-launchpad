@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component>
+  <id>org.deepin.dde.launchpad</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-3.0+</project_license>
+  <name>DDE Launchpad</name>
+  <name xml:lang="zh-CN">DDE 启动器</name>
+  <summary>The "launcher" or "start menu" component for DDE</summary>
+  <summary xml:lang="zh-CN">DDE 的“启动器”或称“开始菜单”组件</summary>
+  <project_group>DDE</project_group>
+  <provides>
+    <binary>dde-launchpad</binary>
+  </provides>
+  <compulsory_for_desktop>DDE</compulsory_for_desktop>
+</component>
