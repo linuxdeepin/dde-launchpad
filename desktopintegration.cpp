@@ -188,7 +188,7 @@ void DesktopIntegration::setAutoStart(const QString &desktopId, bool on)
     }
 
     DDesktopEntry entry(autoStartPath);
-    entry.setRawValue(on ? "False" : "True", "Hidden");
+    entry.setRawValue(on ? "false" : "true", "Hidden");
     if (createdByUs) {
         entry.setStringValue("DDE", "X-Deepin-CreatedBy"); // maybe better to add a "managed by"?
     }
