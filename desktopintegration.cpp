@@ -156,7 +156,7 @@ bool DesktopIntegration::isAutoStart(const QString &desktopId) const
         const QString & autoStartPath(QDir(path).absoluteFilePath(autoStartFileRelPath));
         if (QFile::exists(autoStartPath)) {
             DDesktopEntry entry(autoStartPath);
-            if (entry.rawValue("Hidden", "Desktop Entry", "False") == QLatin1String("False")) {
+            if (entry.rawValue("Hidden", "Desktop Entry", "false") == QLatin1String("false")) {
                 return true;
             }
             return false;
@@ -175,7 +175,7 @@ void DesktopIntegration::setAutoStart(const QString &desktopId, bool on)
     const QString autoStartPath(QDir(DStandardPaths::path(DStandardPaths::XDG::ConfigHome)).absoluteFilePath(autoStartFileRelPath));
 
     // Ensure there is a autostart entry file under the $XDG_CONFIG_HOME/autostart/ folder
-    // Ee always create this file since the *system* might *have* one entry with hidden=True,
+    // Ee always create this file since the *system* might *have* one entry with Hidden=true,
     // which need us to override (even though it's very not likely to happen).
     bool createdByUs = false;
     if (!QFile::exists(autoStartPath)) {
