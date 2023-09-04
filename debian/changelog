@@ -1,3 +1,10 @@
+dde-launchpad (0.0.1) unstable; urgency=medium
+
+  * Initial tag release
+  * Implement basic features that required by the launcher component
+
+ -- Gary Wang <wangzichong@deepin.org>  Mon, 04 Sep 2023 14:03:00 +0800
+
 dde-launchpad (0.0.0) UNRELEASED; urgency=medium
 
   * Initial release
