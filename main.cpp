@@ -51,7 +51,7 @@ int main(int argc, char* argv[])
     QGuiApplication app(argc, argv);
     QCoreApplication::setOrganizationName("deepin");
     QCoreApplication::setApplicationName("dde-launchpad");
-    QCoreApplication::setApplicationVersion("0.0.0" + QStringLiteral("-technical-preview"));
+    QCoreApplication::setApplicationVersion("0.0.1" + QStringLiteral("-technical-preview"));
     DGuiApplicationHelper::loadTranslator(QStringLiteral("dde-launchpad"), translationDir(), { QLocale() });
     bool isOnlyInstance = DGuiApplicationHelper::setSingleInstance(QStringLiteral("dde-launchpad"));
 
