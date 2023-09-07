@@ -9,6 +9,7 @@
 #include <DStandardPaths>
 #include <QRect>
 #include <appinfo.h>
+#include <appmgr.h>
 
 #include <AppStreamQt/pool.h>
 
@@ -45,7 +46,9 @@ void DesktopIntegration::openSystemSettings()
 
 void DesktopIntegration::launchByDesktopId(const QString &desktopId)
 {
-    AppInfo::launchByDesktopId(desktopId);
+    if (!AppMgr::launchApp(desktopId)) {
+        AppInfo::launchByDesktopId(desktopId);
+    }
 }
 
 bool DesktopIntegration::appIsCompulsoryForDesktop(const QString &desktopId)

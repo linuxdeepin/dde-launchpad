@@ -34,6 +34,6 @@ Copyright: UnionTech Software Technology Co., Ltd.
 License: GPL-3.0-or-later
 
 # dbus api xml files
-Files: *.deepin.dde.*.xml
+Files: *.deepin.dde.*.xml */org.desktopspec.*.xml
 Copyright: UnionTech Software Technology Co., Ltd.
 License: GPL-3.0-or-later

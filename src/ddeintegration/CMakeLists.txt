@@ -77,6 +77,13 @@ PROPERTIES
     NO_NAMESPACE ON
 )
 
+set_source_files_properties(
+    ${CMAKE_CURRENT_LIST_DIR}/xml/org.desktopspec.ApplicationManager1.Application.xml
+PROPERTIES
+    CLASSNAME AppManager1Application
+    NO_NAMESPACE ON
+)
+
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 set(DBusCPP_SRC "")
@@ -84,6 +91,7 @@ set(DBusCPP_SRC "")
 dtk_add_dbus_interface(DBusCPP_SRC ${CMAKE_CURRENT_LIST_DIR}/xml/org.deepin.dde.daemon.Dock1.xml DaemonDock1)
 dtk_add_dbus_interface(DBusCPP_SRC ${CMAKE_CURRENT_LIST_DIR}/xml/org.deepin.dde.daemon.Launcher1.xml DaemonLauncher1)
 dtk_add_dbus_interface(DBusCPP_SRC ${CMAKE_CURRENT_LIST_DIR}/xml/org.deepin.dde.Appearance1.xml Appearance1)
+dtk_add_dbus_interface(DBusCPP_SRC ${CMAKE_CURRENT_LIST_DIR}/xml/org.desktopspec.ApplicationManager1.Application.xml AppManager1Application)
 
 message(INFO ${DBusCPP_SRC})
 
@@ -94,6 +102,7 @@ add_library(dde-integration-dbus OBJECT
     appwiz.cpp
     ddedock.cpp
     appearance.cpp
+    appmgr.cpp
 )
 
 target_sources(dde-integration-dbus PUBLIC
@@ -102,6 +111,7 @@ FILES
     appwiz.h
     ddedock.h
     appearance.h
+    appmgr.h
 )
 
 target_include_directories(dde-integration-dbus
