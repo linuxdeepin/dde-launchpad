@@ -22,6 +22,12 @@ Control {
     topPadding: (DesktopIntegration.dockPosition === Qt.UpArrow ? DesktopIntegration.dockGeometry.height : 0) + 20
     bottomPadding: (DesktopIntegration.dockPosition === Qt.DownArrow ? DesktopIntegration.dockGeometry.height : 0) + 20
 
+    Timer {
+        id: flipPageDelay
+        interval: 400
+        repeat: false
+    }
+
     background: Image {
         source: DesktopIntegration.backgroundUrl
 
@@ -31,9 +37,28 @@ Control {
 
             MouseArea {
                 anchors.fill: parent
+                scrollGestureEnabled: false
                 onClicked: {
                     if (!DebugHelper.avoidHideWindow) {
                         LauncherController.visible = false
+                    }
+                }
+                // TODO: this might not be the correct way to handle wheel
+                onWheel: {
+                    if (flipPageDelay.running) return
+                    let xDelta = wheel.angleDelta.x / 8
+                    let yDelta = wheel.angleDelta.y / 8
+                    let toPage = 0; // -1 prev, +1 next, 0 don't change
+                    if (yDelta !== 0) {
+                        toPage = (yDelta > 0) ? -1 : 1
+                    } else if (xDelta !== 0) {
+                        toPage = (xDelta > 0) ? 1 : -1
+                    }
+                    let curPage = indicator.currentIndex + toPage
+                    if (curPage >= 0 && curPage < indicator.count) {
+                        console.log(indicator.state)
+                        flipPageDelay.start()
+                        indicator.currentIndex = curPage
                     }
                 }
             }
