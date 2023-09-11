@@ -29,6 +29,7 @@ ApplicationWindow {
     }
     DWindow.enabled: true
     DWindow.enableBlurWindow: true
+    DWindow.enableSystemResize: false
     DWindow.enableSystemMove: false
 
     onVisibleChanged: {
