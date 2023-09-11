@@ -16,7 +16,7 @@ set(BIN_NAME dde-launchpad)
 include(FeatureSummary)
 include(GNUInstallDirs)
 
-find_package(Qt5 REQUIRED COMPONENTS Core Gui Concurrent Qml Svg Quick QuickControls2 LinguistTools)
+find_package(Qt5 REQUIRED COMPONENTS Core Gui Concurrent Qml Svg Quick QuickCompiler QuickControls2 LinguistTools)
 find_package(Dtk REQUIRED COMPONENTS Core Gui)
 find_package(AppStreamQt REQUIRED)
 
@@ -76,10 +76,12 @@ qt_create_translation(TRANSLATED_FILES ${QML_FILES} ${SOURCE_FILES} src/models/a
 
 qt_add_dbus_adaptor(DBUS_ADAPTER_FILES dbus/org.deepin.dde.Launcher1.xml launchercontroller.h LauncherController)
 
+qtquick_compiler_add_resources(RESOURCES qml.qrc)
+
 add_executable(${BIN_NAME}
     ${SOURCE_FILES}
     ${DBUS_ADAPTER_FILES}
-    qml.qrc
+    ${RESOURCES}
     ${TRANSLATED_FILES}
 )
 
