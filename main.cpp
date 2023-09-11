@@ -42,7 +42,6 @@ QStringList translationDir() {
     return translateDirs;
 }
 
-// TODO: singleton window
 int main(int argc, char* argv[])
 {
     // workaround for https://github.com/linuxdeepin/dtk/issues/115

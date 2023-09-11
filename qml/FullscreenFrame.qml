@@ -56,7 +56,6 @@ Control {
                     }
                     let curPage = indicator.currentIndex + toPage
                     if (curPage >= 0 && curPage < indicator.count) {
-                        console.log(indicator.state)
                         flipPageDelay.start()
                         indicator.currentIndex = curPage
                     }
