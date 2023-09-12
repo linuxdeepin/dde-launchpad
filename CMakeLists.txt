@@ -4,7 +4,11 @@
 
 cmake_minimum_required(VERSION 3.7)
 
-project(dde-launchpad)
+if(NOT DEFINED VERSION)
+    set(VERSION 0.0.2)
+endif()
+
+project(dde-launchpad VERSION ${VERSION})
 
 set(CMAKE_CXX_STANDARD 17) # blurhash requires 17, otherwish we can still use 14
 set(CMAKE_AUTOMOC ON)
@@ -83,6 +87,11 @@ add_executable(${BIN_NAME}
     ${DBUS_ADAPTER_FILES}
     ${RESOURCES}
     ${TRANSLATED_FILES}
+)
+
+target_compile_definitions(${BIN_NAME}
+PRIVATE
+    DDE_LAUNCHPAD_VERSION=${CMAKE_PROJECT_VERSION}
 )
 
 target_link_libraries(${BIN_NAME} PRIVATE
