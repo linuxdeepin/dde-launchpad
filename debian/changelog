@@ -1,3 +1,12 @@
+dde-launchpad (0.0.2) unstable; urgency=medium
+
+  * Use the new application-manager to launch app when possible
+  * Disable window resizing for window mode launcher
+  * Support scroll between pages via mouse wheel in fullscreen mode launcher
+  * Use Qt5's Quick Compiler to pre-compile QML files to C++
+
+ -- Gary Wang <wangzichong@deepin.org>  Tue, 12 Sep 2023 10:32:00 +0800
+
 dde-launchpad (0.0.1) unstable; urgency=medium
 
   * Initial tag release
