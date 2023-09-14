@@ -94,7 +94,7 @@
     <message>
         <location filename="../qml/AppListView.qml" line="44"/>
         <source>Game</source>
-        <translation type="unfinished"></translation>
+        <translation>Játékok</translation>
     </message>
     <message>
         <location filename="../qml/AppListView.qml" line="46"/>
@@ -119,7 +119,7 @@
     <message>
         <location filename="../qml/AppListView.qml" line="54"/>
         <source>Others</source>
-        <translation type="unfinished"></translation>
+        <translation>Egyéb</translation>
     </message>
 </context>
 <context>
@@ -134,12 +134,12 @@
     <message>
         <location filename="../launchercontroller.cpp" line="19"/>
         <source>Show launcher (hidden by default)</source>
-        <translation type="unfinished"></translation>
+        <translation>Indító megjelenítése (alapértelmezés szerint rejtve)</translation>
     </message>
     <message>
         <location filename="../launchercontroller.cpp" line="20"/>
         <source>Toggle launcher visibility</source>
-        <translation type="unfinished"></translation>
+        <translation>Az indító láthatóságának váltása</translation>
     </message>
 </context>
 <context>
@@ -147,17 +147,17 @@
     <message>
         <location filename="../qml/Main.qml" line="202"/>
         <source>Are you sure you want to uninstall %1?</source>
-        <translation type="unfinished"></translation>
+        <translation>Biztosan el szeretné távolítani a következőt: %1?</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="210"/>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>Mégsem</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="218"/>
         <source>Confirm</source>
-        <translation type="unfinished"></translation>
+        <translation>Megerősítés</translation>
     </message>
 </context>
 <context>
