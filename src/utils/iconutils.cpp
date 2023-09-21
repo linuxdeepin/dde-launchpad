@@ -9,12 +9,12 @@
 #include <QStandardPaths>
 #include <QGuiApplication>
 #include <QFile>
-#include <DHiDPIHelper>
+#include <DIcon>
 #include <QFileInfo>
 #include <QSvgRenderer>
 #include <QPainter>
 
-DWIDGET_USE_NAMESPACE
+DGUI_USE_NAMESPACE
 
 bool IconUtils::getThemeIcon(QPixmap &pixmap, const QString &iconName, const int size)
 {
@@ -55,7 +55,7 @@ bool IconUtils::getThemeIcon(QPixmap &pixmap, const QString &iconName, const int
             if (actualIconName.endsWith(".svg"))
                 pixmap = loadSvg(iconName, qRound(iconSize * ratio));
             else
-                pixmap = DHiDPIHelper::loadNxPixmap(actualIconName);
+                pixmap = DIcon::loadNxPixmap(actualIconName);
 
             if (!pixmap.isNull())
                 break;

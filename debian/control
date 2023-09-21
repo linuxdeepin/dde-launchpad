@@ -20,7 +20,6 @@ Build-Depends:
 # v-- provides qdbusxml2cpp-fix binary
  libdtkcore5-bin,
 # v-- provides DHiDPIHelper
- libdtkwidget-dev,
  libdtkgui-dev,
  libdtkdeclarative-dev,
  libappstreamqt-dev
