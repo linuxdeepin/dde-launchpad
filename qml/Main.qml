@@ -33,26 +33,12 @@ ApplicationWindow {
     DWindow.enableSystemMove: false
 
     onVisibleChanged: {
-        // reset the timer right after visible state changed
-        if (delayHideTimer.running) {
-            delayHideTimer.stop()
-        }
         updateWindowVisibilityAndPosition()
-    }
-
-    Timer {
-        id: delayHideTimer
-        interval: 500
-        onTriggered: {
-            if (!DebugHelper.avoidHideWindow) {
-                LauncherController.visible = false
-            }
-        }
     }
 
     onActiveChanged: {
         if (!active && !isMenuShown) {
-            delayHideTimer.running = true
+            LauncherController.hideWithTimer()
         }
     }
 

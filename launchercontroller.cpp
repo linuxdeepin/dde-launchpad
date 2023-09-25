@@ -5,6 +5,7 @@
 #include "launchercontroller.h"
 
 #include <QDir>
+#include <QTimer>
 #include <QSettings>
 #include <QStandardPaths>
 #include <DGuiApplicationHelper>
@@ -18,6 +19,7 @@ LauncherController::LauncherController(QObject *parent)
     : QObject(parent)
     , optShow(QStringList{"s", "show"}, tr("Show launcher (hidden by default)"))
     , optToggle(QStringList{"t", "toggle"}, tr("Toggle launcher visibility"))
+    , m_timer(new QTimer(this))
     , m_regionMonitor(new DRegionMonitor(this))
     , m_launcher1Adaptor(new Launcher1Adaptor(this))
     , m_visible(false)
@@ -28,6 +30,9 @@ LauncherController::LauncherController(QObject *parent)
     QSettings settings(settingPath, QSettings::NativeFormat);
 
     m_currentFrame = settings.value("current_frame", "WindowedFrame").toString();
+
+    m_timer->setInterval(500);
+    m_timer->setSingleShot(true);
 
     connect(DGuiApplicationHelper::instance(), &DGuiApplicationHelper::newProcessInstance,
             this, [this](qint64 pid, const QStringList & args) {
@@ -90,6 +95,11 @@ void LauncherController::ShowByMode(qlonglong in0)
 
 void LauncherController::Toggle()
 {
+    if (m_timer->isActive()) {
+        qDebug() << "hit";
+        m_timer->stop();
+        return;
+    }
     setVisible(!visible());
 }
 
@@ -129,4 +139,16 @@ void LauncherController::setCurrentFrame(const QString &frame)
 
     m_currentFrame = frame;
     emit currentFrameChanged();
+}
+
+// We need to hide the launcher when it lost focus, but clicking the launcher icon on the taskbar/dock will also trigger
+// `Toggle()`, which will show the launcher even if it just get hid caused by losting focus. Thus, we added a timer to
+// mark it as we just hide it, and check if the timer is running while calling `Toggle()`. This function will do nothing
+// if it's already hidden (`Toggle()` get triggered before `hideWithTimer()` get called).
+void LauncherController::hideWithTimer()
+{
+    if (visible()) {
+        m_timer->start();
+        setVisible(false);
+    }
 }

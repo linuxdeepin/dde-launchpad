@@ -13,6 +13,7 @@ class DRegionMonitor;
 }
 }
 
+class QTimer;
 class Launcher1Adaptor;
 class LauncherController : public QObject
 {
@@ -39,6 +40,8 @@ public:
     QString currentFrame() const;
     void setCurrentFrame(const QString & frame);
 
+    Q_INVOKABLE void hideWithTimer();
+
 signals:
     void currentFrameChanged();
     void visibleChanged(bool visible);
@@ -63,6 +66,7 @@ signals:
 private:
     explicit LauncherController(QObject *parent=nullptr);
 
+    QTimer *m_timer;
     Dtk::Gui::DRegionMonitor *m_regionMonitor;
     Launcher1Adaptor * m_launcher1Adaptor;
     bool m_visible;
