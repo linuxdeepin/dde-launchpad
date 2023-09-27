@@ -10,8 +10,9 @@
 #include <QGuiApplication>
 #include <QFile>
 #include <DIcon>
+#include <DIconTheme>
+#include <DSvgRenderer>
 #include <QFileInfo>
-#include <QSvgRenderer>
 #include <QPainter>
 
 DGUI_USE_NAMESPACE
@@ -61,7 +62,7 @@ bool IconUtils::getThemeIcon(QPixmap &pixmap, const QString &iconName, const int
                 break;
         }
 
-        icon = QIcon::fromTheme(actualIconName);
+        icon = DIconTheme::findQIcon(actualIconName);
 
         if (icon.isNull()) {
             icon = QIcon(":/images/application-x-desktop.svg");
@@ -226,7 +227,7 @@ const QPixmap IconUtils::loadSvg(const QString &fileName, const QSize &size)
         return QPixmap();
 
     QPixmap pixmap(size);
-    QSvgRenderer renderer(fileName);
+    DSvgRenderer renderer(fileName);
     pixmap.fill(Qt::transparent);
 
     QPainter painter;
