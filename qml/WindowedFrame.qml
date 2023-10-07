@@ -176,10 +176,9 @@ Item {
                 text: qsTr("My Favorites")
             }
 
-            Rectangle {
+            Item {
                 id: favoriteGridView
                 visible: searchEdit.text === ""
-                color: "transparent"
 
                 property int rowCount: Math.min(Math.ceil(delegateFavorateModel.count / 4), 2)
 

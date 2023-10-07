@@ -9,7 +9,7 @@ import QtQuick.Controls 2.15
 import QtQuick.Window 2.15
 import org.deepin.dtk 1.0
 
-Control {
+Item {
     id: root
     visible: true
 
@@ -20,6 +20,7 @@ Control {
     property alias placeholderText: placeholderLabel.text
     property alias interactive: gridView.interactive
     property alias activeGridViewFocusOnTab: gridView.activeFocusOnTab
+    property alias padding: item.anchors.margins
     required property int columns
     required property int rows
     property alias cellSize: item.cellSize
@@ -32,9 +33,10 @@ Control {
         return gridView.indexAt(x, y)
     }
 
-    contentItem: Item {
+    Item {
         id: item
         visible: true
+        anchors.fill: parent
 
         property int cellSize: root.rows == 0 ? (width / root.columns) : Math.min(width / root.columns, height / root.rows)
 
@@ -55,15 +57,15 @@ Control {
                 cellHeight: item.cellSize
                 cellWidth: item.cellSize
 
-                highlight: Rectangle {
-                    color: "transparent"
+                highlight: Item {
+                    SystemPalette { id: highlightPalette }
                     FocusBoxBorder {
                         anchors {
                             fill: parent
                             margins: 5
                         }
                         radius: 8
-                        color: root.palette.highlight
+                        color: highlightPalette.highlight
                         visible: gridView.activeFocus
                     }
                 }

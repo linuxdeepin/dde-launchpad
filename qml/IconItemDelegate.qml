@@ -36,9 +36,8 @@ Control {
         Column {
             anchors.fill: parent
 
-            Rectangle {
+            Item {
                 // actually just a top padding
-                color: "transparent"
                 width: root.width
                 height: root.height / 9
             }

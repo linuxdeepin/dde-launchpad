@@ -9,7 +9,7 @@ import org.deepin.dtk 1.0
 
 import org.deepin.launchpad 1.0
 
-QQC2.Control {
+Item {
     id: root
 
     property alias model: listView.model
@@ -60,9 +60,10 @@ QQC2.Control {
         }
     }
 
-    contentItem: ListView {
+    ListView {
         id: listView
 
+        anchors.fill: parent
         activeFocusOnTab: true
         highlightFollowsCurrentItem: true
         // displayMarginBeginning: -45
@@ -76,15 +77,15 @@ QQC2.Control {
 
         model: visualModel
 
-        highlight: Rectangle {
-            color: "transparent"
+        highlight: Item {
+            SystemPalette { id: highlightPalette }
             FocusBoxBorder {
                 anchors {
                     fill: parent
                     margins: 5
                 }
                 radius: 8
-                color: root.palette.highlight // TODO: if `SystemPalette` works, we can change the root item back from Control to Item
+                color: highlightPalette.highlight
                 visible: listView.activeFocus
             }
         }
