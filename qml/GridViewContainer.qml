@@ -8,7 +8,6 @@ import QtQuick.Layouts 1.15
 import QtQuick.Controls 2.15
 import QtQuick.Window 2.15
 import org.deepin.dtk 1.0
-import org.kde.kitemmodels 1.0
 
 Control {
     id: root
@@ -20,6 +19,7 @@ Control {
     property alias placeholderIconSize: placeholderIcon.sourceSize.width
     property alias placeholderText: placeholderLabel.text
     property alias interactive: gridView.interactive
+    property alias activeGridViewFocusOnTab: gridView.activeFocusOnTab
     required property int columns
     required property int rows
     property alias cellSize: item.cellSize
@@ -49,13 +49,22 @@ Control {
                 anchors.fill: parent
                 clip: true
                 highlightFollowsCurrentItem: true
+                keyNavigationEnabled: true
+                activeFocusOnTab: true
 
                 cellHeight: item.cellSize
                 cellWidth: item.cellSize
 
-                onCurrentItemChanged: {
-                    if (currentItem) {
-                        currentItem.focus = true
+                highlight: Rectangle {
+                    color: "transparent"
+                    FocusBoxBorder {
+                        anchors {
+                            fill: parent
+                            margins: 5
+                        }
+                        radius: 8
+                        color: root.palette.highlight
+                        visible: gridView.activeFocus
                     }
                 }
             }

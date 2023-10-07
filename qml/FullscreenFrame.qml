@@ -143,13 +143,13 @@ Control {
                                 model: proxyModel
                                 padding: 10
                                 interactive: false
+                                activeGridViewFocusOnTab: gridViewLoader.SwipeView.isCurrentItem
                                 delegate: IconItemDelegate {
                                     iconSource: "image://app-icon/" + iconName
                                     width: gridViewContainer.cellSize
                                     height: gridViewContainer.cellSize
                                     icons: folderIcons
                                     padding: 5
-                                    activeFocusOnTab: gridViewLoader.SwipeView.isCurrentItem
                                     onItemClicked: {
                                         launchApp(desktopId)
                                     }
