@@ -87,6 +87,10 @@ Item {
                             launchApp(desktopId)
                         }
                     }
+
+                    Keys.onReturnPressed: {
+                        launchApp(desktopId)
+                    }
                 }
             }
 
