@@ -26,7 +26,7 @@ inline QString escapeToObjectPath(const QString &str)
     }
 
     auto ret = str;
-    QRegularExpression re{R"([^a-zA-Z0-9])"};
+    static QRegularExpression re{R"([^a-zA-Z0-9])"};
     auto matcher = re.globalMatch(ret);
     while (matcher.hasNext()) {
         auto replaceList = matcher.next().capturedTexts();
