@@ -231,6 +231,7 @@ Control {
     Popup {
         id: folderGridViewPopup
 
+        focus: true
 //        visible: true
 
         property int cs: searchResultGridViewContainer.cellSize // * 5 / 4
@@ -285,6 +286,7 @@ Control {
 
                             Loader {
                                 active: SwipeView.isCurrentItem || SwipeView.isNextItem || SwipeView.isPreviousItem
+                                id: folderGridViewLoader
 
                                 sourceComponent: Rectangle {
                                     anchors.fill: parent
@@ -308,6 +310,7 @@ Control {
                                         model: folderProxyModel
                                         padding: 10
                                         interactive: false
+                                        activeGridViewFocusOnTab: folderGridViewLoader.SwipeView.isCurrentItem
                                         delegate: IconItemDelegate {
                                             iconSource: "image://app-icon/" + iconName
                                             width: folderGridViewContainer.cellSize
