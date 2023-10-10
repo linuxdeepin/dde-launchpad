@@ -151,6 +151,10 @@ Control {
     }
 
     Keys.onReturnPressed: {
-        root.itemClicked()
+        if (root.icons !== undefined) {
+            root.folderClicked()
+        } else {
+            root.itemClicked()
+        }
     }
 }
