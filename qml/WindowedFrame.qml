@@ -271,4 +271,10 @@ Item {
             searchEdit.text = event.text
         }
     }
+
+    Keys.onEscapePressed: {
+        if (!DebugHelper.avoidHideWindow) {
+            LauncherController.visible = false;
+        }
+    }
 }
