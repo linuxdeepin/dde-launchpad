@@ -15,6 +15,7 @@ Item {
     width: 780
     height: 600
     visible: true
+    focus: true
 
     RowLayout {
         anchors.fill: parent
@@ -206,6 +207,7 @@ Item {
                     placeholderText: qsTr("Add your favorite apps here")
                     model: delegateFavorateModel
                     interactive: favoriteGridView.rowCount > 1
+                    activeFocusOnTab: visible && gridViewFocus
                 }
 
                 Layout.preferredHeight: rowCount === 0 ? 50 : rowCount * favoriteGridViewContainer.cellSize
@@ -241,6 +243,7 @@ Item {
                 model: delegateAllAppsModel
                 Layout.fillWidth: true
                 Layout.fillHeight: true
+                activeFocusOnTab: gridViewFocus
 
                 MouseArea {
                     enabled: favoriteGridView.visible && (currentIndex !== -1)

@@ -16,6 +16,7 @@ import org.deepin.launchpad 1.0
 Control {
     visible: true
     anchors.fill: parent
+    focus: true
 
     leftPadding: (DesktopIntegration.dockPosition === Qt.LeftArrow ? DesktopIntegration.dockGeometry.width : 0) + 20
     rightPadding: (DesktopIntegration.dockPosition === Qt.RightArrow ? DesktopIntegration.dockGeometry.width : 0) + 20

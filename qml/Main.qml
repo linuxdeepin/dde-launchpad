@@ -133,6 +133,7 @@ ApplicationWindow {
     Loader {
         id: frameLoader
         anchors.fill: parent
+        focus: true
         source: LauncherController.currentFrame + ".qml"
         onSourceChanged: {
             updateWindowVisibilityAndPosition();
