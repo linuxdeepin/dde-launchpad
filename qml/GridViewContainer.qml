@@ -9,7 +9,7 @@ import QtQuick.Controls 2.15
 import QtQuick.Window 2.15
 import org.deepin.dtk 1.0
 
-Item {
+FocusScope {
     id: root
     visible: true
 
@@ -19,8 +19,9 @@ Item {
     property alias placeholderIconSize: placeholderIcon.sourceSize.width
     property alias placeholderText: placeholderLabel.text
     property alias interactive: gridView.interactive
-    property alias activeGridViewFocusOnTab: gridView.activeFocusOnTab
     property alias padding: item.anchors.margins
+    property alias gridViewFocus: gridView.focus
+    property bool activeGridViewFocusOnTab: false
     required property int columns
     required property int rows
     property alias cellSize: item.cellSize
@@ -52,7 +53,8 @@ Item {
                 clip: true
                 highlightFollowsCurrentItem: true
                 keyNavigationEnabled: true
-                activeFocusOnTab: true
+                activeFocusOnTab: focus ? root.activeGridViewFocusOnTab : false
+                focus: count > 0
 
                 cellHeight: item.cellSize
                 cellWidth: item.cellSize

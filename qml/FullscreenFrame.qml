@@ -78,6 +78,8 @@ Control {
                 IconButton {
                     id: exitFullscreenBtn
 
+                    Accessible.name: "Exit fullscreen"
+
                     anchors.right: fullscreenHeader.right
 
                     ColorSelector.family: Palette.CrystalColor
@@ -121,6 +123,7 @@ Control {
                     Loader {
                         active: SwipeView.isCurrentItem || SwipeView.isNextItem || SwipeView.isPreviousItem
                         id: gridViewLoader
+                        objectName: "Main GridView Loader"
 
                         sourceComponent: Rectangle {
                             color: "transparent"
@@ -143,6 +146,7 @@ Control {
                                 model: proxyModel
                                 padding: 10
                                 interactive: false
+                                focus: true
                                 activeGridViewFocusOnTab: gridViewLoader.SwipeView.isCurrentItem
                                 delegate: IconItemDelegate {
                                     iconSource: "image://app-icon/" + iconName
@@ -203,6 +207,8 @@ Control {
 
                 anchors.fill: parent
                 visible: searchEdit.text !== ""
+                activeFocusOnTab: visible && gridViewFocus
+                focus: true
 
                 rows: 4
                 columns: 7
@@ -287,6 +293,7 @@ Control {
                             Loader {
                                 active: SwipeView.isCurrentItem || SwipeView.isNextItem || SwipeView.isPreviousItem
                                 id: folderGridViewLoader
+                                objectName: "Folder GridView Loader"
 
                                 sourceComponent: Rectangle {
                                     anchors.fill: parent
@@ -310,6 +317,7 @@ Control {
                                         model: folderProxyModel
                                         padding: 10
                                         interactive: false
+                                        focus: true
                                         activeGridViewFocusOnTab: folderGridViewLoader.SwipeView.isCurrentItem
                                         delegate: IconItemDelegate {
                                             iconSource: "image://app-icon/" + iconName
