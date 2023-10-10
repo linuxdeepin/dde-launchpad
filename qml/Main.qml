@@ -37,7 +37,7 @@ ApplicationWindow {
     }
 
     onActiveChanged: {
-        if (!active && !isMenuShown) {
+        if (!active && !isMenuShown && !DebugHelper.avoidHideWindow) {
             LauncherController.hideWithTimer()
         }
     }
