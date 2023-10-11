@@ -1,3 +1,13 @@
+dde-launchpad (0.1.0) unstable; urgency=medium
+
+  * Hide launcher window right after it lost focus
+  * Allow using arrow key to change selected app item (https://github.com/linuxdeepin/developer-center/issues/5462)
+  * Reworked keyboard/Tab-key navigation
+  * Support ESC key to hide launcher window
+  * Support using Jianpin to search application (https://github.com/linuxdeepin/developer-center/issues/5461)
+
+ -- Gary Wang <wangzichong@deepin.org>  Wed, 11 Oct 2023 10:42:00 +0800
+
 dde-launchpad (0.0.2) unstable; urgency=medium
 
   * Use the new application-manager to launch app when possible
