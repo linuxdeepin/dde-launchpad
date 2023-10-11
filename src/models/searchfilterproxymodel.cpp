@@ -6,6 +6,7 @@
 #include "searchfilterproxymodel.h"
 
 #include <QDebug>
+#include <DPinyin>
 
 SearchFilterProxyModel::SearchFilterProxyModel(QObject *parent)
     : QSortFilterProxyModel(parent)
@@ -22,6 +23,7 @@ bool SearchFilterProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex &
 
     const QString & displayName = modelIndex.data(Qt::DisplayRole).toString();
     const QString & transliterated = modelIndex.data(AppsModel::TransliteratedRole).toString();
+    const QStringList & jianpin = Dtk::Core::firstLetters(displayName);
 
-    return displayName.contains(searchPattern) || transliterated.contains(searchPattern);
+    return displayName.contains(searchPattern) || transliterated.contains(searchPattern) || jianpin.contains(searchPattern.pattern());
 }
