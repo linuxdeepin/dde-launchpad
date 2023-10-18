@@ -7,12 +7,6 @@
 #include <QCommandLineOption>
 #include <QObject>
 
-namespace Dtk {
-namespace Gui {
-class DRegionMonitor;
-}
-}
-
 class QTimer;
 class Launcher1Adaptor;
 class LauncherController : public QObject
@@ -67,7 +61,6 @@ private:
     explicit LauncherController(QObject *parent=nullptr);
 
     QTimer *m_timer;
-    Dtk::Gui::DRegionMonitor *m_regionMonitor;
     Launcher1Adaptor * m_launcher1Adaptor;
     bool m_visible;
     QString m_currentFrame;

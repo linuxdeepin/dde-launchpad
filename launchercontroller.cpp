@@ -10,7 +10,6 @@
 #include <QStandardPaths>
 #include <DGuiApplicationHelper>
 #include <QCommandLineParser>
-#include <DRegionMonitor>
 #include <launcher1adaptor.h>
 
 DGUI_USE_NAMESPACE
@@ -20,7 +19,6 @@ LauncherController::LauncherController(QObject *parent)
     , optShow(QStringList{"s", "show"}, tr("Show launcher (hidden by default)"))
     , optToggle(QStringList{"t", "toggle"}, tr("Toggle launcher visibility"))
     , m_timer(new QTimer(this))
-    , m_regionMonitor(new DRegionMonitor(this))
     , m_launcher1Adaptor(new Launcher1Adaptor(this))
     , m_visible(false)
 {
@@ -51,23 +49,14 @@ LauncherController::LauncherController(QObject *parent)
         }
     });
 
-    // for dbus adapter signals, AND for m_regionMonitor.
+    // for dbus adapter signals.
     connect(this, &LauncherController::visibleChanged, this, [this](bool isVisible){
         if (isVisible) {
-            m_regionMonitor->registerRegion();
             emit Shown();
         } else {
-            m_regionMonitor->unregisterRegion();
             emit Closed();
         }
         emit VisibleChanged(isVisible);
-    });
-
-    // since the launcher window is tend to be x11bypassed
-    m_regionMonitor->setCoordinateType(Dtk::Gui::DRegionMonitor::Original);
-
-    connect(m_regionMonitor, &DRegionMonitor::buttonPress, this, [](const QPoint &p, const int flag){
-        qDebug() << p << flag << "do we really need x11bypass just for hidding launcher window?";
     });
 }
 
