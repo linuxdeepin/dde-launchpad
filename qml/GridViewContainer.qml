@@ -27,11 +27,13 @@ FocusScope {
     property alias cellSize: item.cellSize
 
     function itemAt(x, y) {
-        return gridView.itemAt(x, y)
+        let point = mapToItem(gridView, x, y)
+        return gridView.itemAt(point.x, point.y)
     }
 
     function indexAt(x, y) {
-        return gridView.indexAt(x, y)
+        let point = mapToItem(gridView, x, y)
+        return gridView.indexAt(point.x, point.y)
     }
 
     Item {
