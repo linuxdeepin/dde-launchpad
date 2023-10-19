@@ -44,3 +44,7 @@ Copyright: 2010, Marco Martin <mart@kde.org>
            2019, David Edmundson <davidedmundson@kde.org>
 License: LGPL-2.0-or-later
 
+# package metadata
+Files: */metadata.json
+Copyright: None
+License: CC0-1.0

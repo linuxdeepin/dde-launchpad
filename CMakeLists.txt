@@ -40,7 +40,6 @@ add_subdirectory(src/ddeintegration)
 add_subdirectory(src/models)
 
 set(SOURCE_FILES
-    main.cpp
     desktopintegration.cpp desktopintegration.h
     launchercontroller.cpp launchercontroller.h
     debughelper.cpp debughelper.h
@@ -83,6 +82,7 @@ qt_add_dbus_adaptor(DBUS_ADAPTER_FILES dbus/org.deepin.dde.Launcher1.xml launche
 qtquick_compiler_add_resources(RESOURCES qml.qrc)
 
 add_executable(${BIN_NAME}
+    main.cpp
     ${SOURCE_FILES}
     ${DBUS_ADAPTER_FILES}
     ${RESOURCES}
@@ -114,3 +114,5 @@ install(
     FILES dist/org.deepin.dde.launchpad.appdata.xml
     DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/metainfo"
 )
+
+include(dde-shell-wrapper/src.cmake)
