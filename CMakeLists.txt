@@ -22,12 +22,12 @@ include(GNUInstallDirs)
 
 find_package(Qt5 REQUIRED COMPONENTS Core Gui Concurrent Qml Svg Quick QuickCompiler QuickControls2 LinguistTools)
 find_package(Dtk REQUIRED COMPONENTS Core Gui)
-find_package(AppStreamQt REQUIRED)
+find_package(AppStreamQt)
 
 set_package_properties(AppStreamQt PROPERTIES
     DESCRIPTION "Library that lists Appstream resources"
     URL "https://www.freedesktop.org"
-    TYPE REQUIRED)
+    TYPE RECOMMENDED)
 
 feature_summary(WHAT ALL FATAL_ON_MISSING_REQUIRED_PACKAGES)
 

@@ -11,7 +11,9 @@
 #include <appinfo.h>
 #include <appmgr.h>
 
+#ifndef NO_APPSTREAM_QT
 #include <AppStreamQt/pool.h>
+#endif
 
 #include "appwiz.h"
 #include "ddedock.h"
@@ -53,6 +55,9 @@ void DesktopIntegration::launchByDesktopId(const QString &desktopId)
 
 bool DesktopIntegration::appIsCompulsoryForDesktop(const QString &desktopId)
 {
+#ifdef NO_APPSTREAM_QT
+    Q_UNUSED(desktopId)
+#else
     const QString currentDE(DesktopIntegration::currentDE());
 
     AppStream::Pool pool;
@@ -63,6 +68,8 @@ bool DesktopIntegration::appIsCompulsoryForDesktop(const QString &desktopId)
     for (const AppStream::Component & component : components) {
         return component.compulsoryForDesktops().contains(currentDE);
     }
+#endif
+
     return false;
 }
 

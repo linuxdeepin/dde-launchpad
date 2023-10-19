@@ -123,3 +123,13 @@ PUBLIC
     Qt5::Concurrent
 PRIVATE
     Qt5::Core Qt5::Gui Dtk::Core AppStreamQt launcher-utils)
+
+if (AppStreamQt_FOUND)
+    target_link_libraries(dde-integration-dbus
+    PRIVATE
+        AppStreamQt)
+else()
+    target_compile_definitions(dde-integration-dbus
+    PUBLIC NO_APPSTREAM_QT
+    )
+endif()
