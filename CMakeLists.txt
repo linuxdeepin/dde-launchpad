@@ -16,6 +16,7 @@ set(CMAKE_CXX_STANDARD 17) # blurhash requires 17, otherwish we can still use 14
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_INCLUDE_CURRENT_DIR ON) # ensure adapter class can include launchercontroller.h
+set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
 set(BIN_NAME dde-launchpad)
 
@@ -167,3 +168,5 @@ install(
     FILES dist/org.deepin.dde.launchpad.appdata.xml
     DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/metainfo"
 )
+
+include(dde-shell-wrapper/src.cmake)

@@ -8,6 +8,7 @@ import QtQuick.Layouts 1.15
 import QtQuick.Controls 2.15
 import QtQuick.Window 2.15
 import org.deepin.dtk 1.0
+import org.deepin.ds 1.0
 import org.deepin.dtk.style 1.0 as DS
 
 import org.deepin.launchpad 1.0
@@ -91,45 +92,8 @@ QtObject {
         if (!LauncherController.visible) return;
 
         if (LauncherController.currentFrame === "WindowedFrame") {
-//            root.visibility = Window.Windowed
-
-            let width = windowedFrameSize.width
-            let height = windowedFrameSize.height
-            let x = 0
-            let y = 0
-
-            let dockGeometry = descaledRect(DesktopIntegration.dockGeometry)
-            if (dockGeometry.width > 0 && dockGeometry.height > 0) {
-                let dockSpacing = DesktopIntegration.dockSpacing
-                switch (DesktopIntegration.dockPosition) {
-                case Qt.DownArrow:
-                    x = dockGeometry.left + dockSpacing
-                    y = (dockGeometry.top >= 0 ? dockGeometry.top : (Screen.height - dockGeometry.height)) - height - dockSpacing
-                    break
-                case Qt.LeftArrow:
-                    x = dockGeometry.right + dockSpacing
-                    y = (dockGeometry.top >= 0 ? dockGeometry.top : 0) + dockSpacing
-                    break
-                case Qt.UpArrow:
-                    x = dockGeometry.left + dockSpacing
-                    y = dockGeometry.bottom + dockSpacing
-                    break
-                case Qt.RightArrow:
-                    x = (dockGeometry.left >= 0 ? dockGeometry.left : (Screen.width - dockGeometry.width)) - width - dockSpacing
-                    y = dockGeometry.top + dockSpacing
-                    break
-                }
-            }
-
-            windowedFrame.setGeometry(x, y, width, height)
             windowedFrame.requestActivate()
         } else {
-//            root.visibility = Window.FullScreen
-            if (DesktopIntegration.environmentVariable("DDE_CURRENT_COMPOSITOR") !== "TreeLand") {
-                fullscreenFrame.setGeometry(Screen.virtualX, Screen.virtualY, Screen.width, Screen.height)
-            } else {
-                fullscreenFrame.showFullScreen()
-            }
             fullscreenFrame.requestActivate()
         }
     }
@@ -147,17 +111,23 @@ QtObject {
 
     readonly property size windowedFrameSize: Qt.size(610, 465)
 
+    // update by caller.
+    property point windowedPos: Qt.point(0, 0)
     property var windowedFrame: ApplicationWindow {
         id: windowedFrameWindow
         objectName: "WindowedFrameApplicationWindow"
         title: "Windowed Launchpad"
         visible: LauncherController.visible && (LauncherController.currentFrame === "WindowedFrame")
 
+        DLayerShellWindow.anchors: DLayerShellWindow.AnchorBottom | DLayerShellWindow.AnchorLeft
+        DLayerShellWindow.leftMargin: windowedPos.x
+        DLayerShellWindow.bottomMargin: DesktopIntegration.dockSpacing
+
         width: windowedFrameSize.width
         height: windowedFrameSize.height
         flags: {
             if (DebugHelper.useRegularWindow) return Qt.Window
-            return (Qt.WindowStaysOnTopHint | Qt.FramelessWindowHint | Qt.Tool)
+            return ( Qt.FramelessWindowHint | Qt.Tool)
         }
         StyledBehindWindowBlur {
             control: parent
@@ -235,8 +205,9 @@ QtObject {
         title: "Fullscreen Launchpad"
         visible: LauncherController.visible && (LauncherController.currentFrame !== "WindowedFrame")
 
-        width: Screen.width
-        height: Screen.height
+        DLayerShellWindow.anchors: DLayerShellWindow.AnchorBottom | DLayerShellWindow.AnchorTop | DLayerShellWindow.AnchorLeft | DLayerShellWindow.AnchorRight
+        DLayerShellWindow.layer: DLayerShellWindow.LayerTop
+
         // visibility: Window.FullScreen
         flags: {
             if (DebugHelper.useRegularWindow) return Qt.Window
