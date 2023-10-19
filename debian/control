@@ -21,6 +21,7 @@ Build-Depends:
 # v-- provides DHiDPIHelper
  libdtk6gui-dev,
  libdtk6declarative-dev,
+ libdde-shell-dev,
  libappstreamqt-dev
 Standards-Version: 4.6.0
 Rules-Requires-Root: no
