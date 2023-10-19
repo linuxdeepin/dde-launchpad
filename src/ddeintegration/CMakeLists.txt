@@ -2,7 +2,7 @@
 #
 # SPDX-License-Identifier: CC0-1.0
 
-find_package(Dtk REQUIRED COMPONENTS Tools) # for ${DTK_XML2CPP} which provides the path of `qdbusxml2cpp-fix` binary
+find_package(${DTK_NS} REQUIRED COMPONENTS Tools) # for ${DTK_XML2CPP} which provides the path of `qdbusxml2cpp-fix` binary
 
 function(dtk_add_dbus_interface _sources _interface _relativename)
     get_filename_component(_infile ${_interface} ABSOLUTE)
@@ -10,10 +10,19 @@ function(dtk_add_dbus_interface _sources _interface _relativename)
     get_filename_component(_basename ${_relativename} NAME)
     set(_header "${CMAKE_CURRENT_BINARY_DIR}/${_relativename}.h")
     set(_impl   "${CMAKE_CURRENT_BINARY_DIR}/${_relativename}.cpp")
-    if(_basepath)
-        set(_moc "${CMAKE_CURRENT_BINARY_DIR}/${_basepath}/${_basename}.moc")
+
+    if(${QT_VERSION_MAJOR} EQUAL "5")
+        if(_basepath)
+           set(_moc "${CMAKE_CURRENT_BINARY_DIR}/${_basepath}/${_basename}.moc")
+        else()
+           set(_moc "${CMAKE_CURRENT_BINARY_DIR}/${_basename}.moc")
+        endif()
     else()
-        set(_moc "${CMAKE_CURRENT_BINARY_DIR}/${_basename}.moc")
+        if(_basepath)
+            set(_moc "${CMAKE_CURRENT_BINARY_DIR}/${_basepath}/moc_${_basename}.cpp")
+        else()
+            set(_moc "${CMAKE_CURRENT_BINARY_DIR}/moc_${_basename}.cpp")
+        endif()
     endif()
 
     get_source_file_property(_nonamespace ${_interface} NO_NAMESPACE)
@@ -120,9 +129,9 @@ PRIVATE
 )
 target_link_libraries(dde-integration-dbus
 PUBLIC
-    Qt5::Concurrent
+    Qt::Concurrent
 PRIVATE
-    Qt5::Core Qt5::Gui Dtk::Core AppStreamQt launcher-utils)
+    Qt::Core Qt::Gui ${DTK_NS}::Core launcher-utils)
 
 if (AppStreamQt_FOUND)
     target_link_libraries(dde-integration-dbus

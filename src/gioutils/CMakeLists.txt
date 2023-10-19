@@ -21,7 +21,7 @@ PRIVATE
 
 target_include_directories(gio-utils PUBLIC ${CMAKE_CURRENT_LIST_DIR})
 target_link_libraries(gio-utils PUBLIC
-    Qt5::Core
+    Qt::Core
     PkgConfig::GIO
 )
 

@@ -28,7 +28,7 @@ PRIVATE
 target_link_libraries(launcher-models PRIVATE
     Qt::Core
     Qt::Gui
-    Dtk::Core
+    ${DTK_NS}::Core
 
     gio-utils
     launcher-utils
