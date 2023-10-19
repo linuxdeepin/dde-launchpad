@@ -8,10 +8,17 @@ add_library(launcher-qml-utils OBJECT)
 
 target_sources(launcher-qml-utils
 PRIVATE
-    launcherappiconprovider.h
     launcherappiconprovider.cpp
-    blurhashimageprovider.h
     blurhashimageprovider.cpp
+    ksortfilterproxymodel.cpp
+)
+
+target_sources(launcher-qml-utils PUBLIC
+FILE_SET HEADERS
+FILES
+    launcherappiconprovider.h
+    blurhashimageprovider.h
+    ksortfilterproxymodel.h
 )
 
 target_include_directories(launcher-qml-utils PUBLIC ${CMAKE_CURRENT_LIST_DIR})

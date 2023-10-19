@@ -22,6 +22,7 @@
 #include <DPathBuf>
 #include <launcherappiconprovider.h>
 #include <blurhashimageprovider.h>
+#include <ksortfilterproxymodel.h>
 
 DCORE_USE_NAMESPACE
 DGUI_USE_NAMESPACE
@@ -76,6 +77,7 @@ int main(int argc, char* argv[])
         LauncherController::instance().setVisible(true);
     }
 
+    qmlRegisterType<KSortFilterProxyModel>("org.deepin.vendored", 1, 0, "KSortFilterProxyModel");
     qmlRegisterUncreatableType<AppItem>("org.deepin.launchpad", 1, 0, "AppItem", "AppItem should only be created from C++ side");
     qmlRegisterSingletonInstance("org.deepin.launchpad", 1, 0, "AppsModel", &AppsModel::instance());
     qmlRegisterSingletonInstance("org.deepin.launchpad", 1, 0, "FavoritedProxyModel", &FavoritedProxyModel::instance());
