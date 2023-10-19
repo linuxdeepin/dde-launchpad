@@ -57,7 +57,6 @@ add_subdirectory(src/ddeintegration)
 add_subdirectory(src/models)
 
 set(SOURCE_FILES
-    main.cpp
     desktopintegration.cpp desktopintegration.h
     launchercontroller.cpp launchercontroller.h
     debughelper.cpp debughelper.h
@@ -104,6 +103,7 @@ else()
 endif()
 
 add_executable(${BIN_NAME}
+    main.cpp
     ${SOURCE_FILES}
     ${DBUS_ADAPTER_FILES}
     ${RESOURCES}
@@ -135,3 +135,5 @@ install(
     FILES dist/org.deepin.dde.launchpad.appdata.xml
     DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/metainfo"
 )
+
+include(dde-shell-wrapper/src.cmake)
