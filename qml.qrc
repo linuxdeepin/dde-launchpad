@@ -2,7 +2,9 @@
     <qresource prefix="/">
         <file>qml/Main.qml</file>
         <file>qml/DebugDialog.qml</file>
+        <file>qml/FullscreenFrameV23.qml</file>
         <file>qml/FullscreenFrame.qml</file>
+        <file>qml/WindowedFrameV23.qml</file>
         <file>qml/WindowedFrame.qml</file>
         <file>qml/AppListView.qml</file>
         <file>qml/IconItemDelegate.qml</file>
@@ -14,9 +16,12 @@
         <file alias="exit_fullscreen.dci">images/exit_fullscreen.dci</file>
         <file alias="switch_to_fullscreen.dci">images/switch_to_fullscreen.dci</file>
         <file alias="search_no_result.dci">images/search_no_result.dci</file>
+        <file alias="launcher_fullscreen.dci">images/launcher_fullscreen.dci</file>
+        <file alias="launcher_exit_fullscreen.dci">images/launcher_exit_fullscreen.dci</file>
         <file alias="letter-icon.dci">images/launcher_classify_letter.dci</file>
         <file alias="title-icon.dci">images/launcher_classify_type.dci</file>
         <file alias="setting.dci">images/launcher_setting.dci</file>
+        <file alias="launcher_power_v23.dci">images/launcher_power_v23.dci</file>
         <file alias="shutdown.dci">images/launcher_power.dci</file>
     </qresource>
 </RCC>

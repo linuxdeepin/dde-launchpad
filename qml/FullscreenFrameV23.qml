@@ -76,7 +76,7 @@ Control {
                 implicitHeight: exitFullscreenBtn.height
                 color: "transparent"
 
-                ToolButton {
+                IconButton {
                     id: exitFullscreenBtn
 
                     Accessible.name: "Exit fullscreen"
@@ -85,20 +85,23 @@ Control {
 
                     ColorSelector.family: Palette.CrystalColor
 
-                    icon.name: "launcher_exit_fullscreen"
+                    icon.name: "exit_fullscreen"
                     onClicked: {
                         LauncherController.currentFrame = "WindowedFrame"
                     }
                 }
 
-                PageIndicator {
-                    id: indicator
+                SearchEdit {
+                    id: searchEdit
 
                     anchors.centerIn: parent
-        //            visible: pages.visible
-                    count: searchResultGridViewContainer.visible ? 1 : pages.count
-                    currentIndex: searchResultGridViewContainer.visible ? 1 : pages.currentIndex
-                    interactive: true
+                    width: (parent.width / 3) > 400 ? 400 : (parent.width / 3)
+
+                    placeholder: qsTranslate("WindowedFrame", "Search")
+                    onTextChanged: {
+//                        console.log(text)
+                        SearchFilterProxyModel.setFilterRegularExpression(text)
+                    }
                 }
             }
         }
@@ -220,17 +223,15 @@ Control {
         }
 
 
-        SearchEdit {
-            id: searchEdit
-
+        PageIndicator {
             Layout.alignment: Qt.AlignHCenter
-            width: (parent.width / 2) > 400 ? 400 : (parent.width / 2)
 
-            placeholder: qsTranslate("WindowedFrame", "Search")
-            onTextChanged: {
-//            console.log(text)
-                SearchFilterProxyModel.setFilterRegularExpression(text)
-            }
+            id: indicator
+
+//            visible: pages.visible
+            count: searchResultGridViewContainer.visible ? 1 : pages.count
+            currentIndex: searchResultGridViewContainer.visible ? 1 : pages.currentIndex
+            interactive: true
         }
     }
 

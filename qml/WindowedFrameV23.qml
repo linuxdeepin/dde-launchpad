@@ -22,7 +22,7 @@ Item {
         anchors.topMargin: 20
         anchors.leftMargin: anchors.topMargin
         anchors.rightMargin: anchors.topMargin
-        anchors.bottomMargin: 10
+        anchors.bottomMargin: 0
 
         spacing: 10
 
@@ -30,6 +30,38 @@ Item {
             Layout.fillWidth: false
             Layout.preferredWidth: 300
             Layout.fillHeight: true
+
+            RowLayout {
+                Layout.fillWidth: true
+                Layout.fillHeight: false
+
+                Label {
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true
+                    font: DTK.fontManager.t5
+                    text: qsTr("Categories")
+                    verticalAlignment: Text.AlignVCenter
+                }
+
+                ButtonBox {
+                    ColorSelector.family: Palette.CrystalColor
+
+                    ToolButton {
+                        icon.name: "title-icon"
+                        checked: CategorizedSortProxyModel.categoryType === CategorizedSortProxyModel.DDECategory
+                        onClicked: {
+                            CategorizedSortProxyModel.categoryType = CategorizedSortProxyModel.DDECategory
+                        }
+                    }
+                    ToolButton {
+                        icon.name: "letter-icon"
+                        checked: CategorizedSortProxyModel.categoryType === CategorizedSortProxyModel.Alphabetary
+                        onClicked: {
+                            CategorizedSortProxyModel.categoryType = CategorizedSortProxyModel.Alphabetary
+                        }
+                    }
+                }
+            }
 
             DelegateModel {
                 id: delegateCategorizedModel
@@ -72,48 +104,44 @@ Item {
             }
 
             RowLayout {
+                Layout.bottomMargin: 10
+
                 Layout.fillWidth: true
                 Layout.fillHeight: false
                 Layout.preferredHeight: 50
-                spacing: 16
 
-                ToolButton {
-                    icon.name: "shutdown"
-                    ToolTip.visible: hovered
-                    ToolTip.delay: 1000
-                    ToolTip.text: qsTr("Power")
+//                Rectangle {
+//                    color: 'teal'
+//                    Layout.fillWidth: true
+//                    Layout.fillHeight: true
+//                    Text {
+//                        anchors.centerIn: parent
+//                        text: parent.width + 'x' + parent.height
+//                    }
+//                }
+                Button {
+                    text: qsTr("Power")
+                    flat: true
+                    icon {
+                        name: "launcher_power_v23"
+                        width: 16
+                        height: 16
+                    }
                     onClicked: {
                         DesktopIntegration.openShutdownScreen();
                     }
                 }
 
-                ToolButton {
-                    icon.name: "setting"
-                    Accessible.name: qsTr("Settings")
+                Button {
+                    text: qsTr("Settings")
+                    flat: true
+                    icon {
+                        name: "setting"
+                        width: 16
+                        height: 16
+                    }
                     onClicked: {
                         DesktopIntegration.openSystemSettings();
-                    }
-                }
-
-                Item {
-                    Layout.fillWidth: true
-                }
-
-                ButtonBox {
-                    ColorSelector.family: Palette.CrystalColor
-                    ToolButton {
-                        icon.name: "title-icon"
-                        checked: CategorizedSortProxyModel.categoryType === CategorizedSortProxyModel.DDECategory
-                        onClicked: {
-                            CategorizedSortProxyModel.categoryType = CategorizedSortProxyModel.DDECategory
-                        }
-                    }
-                    ToolButton {
-                        icon.name: "letter-icon"
-                        checked: CategorizedSortProxyModel.categoryType === CategorizedSortProxyModel.Alphabetary
-                        onClicked: {
-                            CategorizedSortProxyModel.categoryType = CategorizedSortProxyModel.Alphabetary
-                        }
                     }
                 }
             }
@@ -122,6 +150,28 @@ Item {
         ColumnLayout {
             Layout.fillWidth: true
             Layout.fillHeight: true
+
+            RowLayout {
+                Layout.fillHeight: false
+
+                SearchEdit {
+                    id: searchEdit
+                    Layout.fillWidth: true
+                    placeholder: qsTr("Search")
+                    onTextChanged: {
+                        console.log(text)
+                        SearchFilterProxyModel.setFilterRegularExpression(text)
+                    }
+                }
+
+                IconButton {
+                    icon.name: "switch_to_fullscreen"
+                    ColorSelector.family: Palette.CrystalColor
+                    onClicked: {
+                        LauncherController.currentFrame = "FullscreenFrame"
+                    }
+                }
+            }
 
             Label {
                 visible: favoriteGridView.visible
@@ -209,37 +259,6 @@ Item {
                         }
                     }
                     onReleased: currentIndex = -1
-                }
-            }
-
-            // Workaround: cannot use RowLayout directly due to unknown layout bug from Qt, so we wrapped with a Control here.
-            Control {
-                Layout.fillWidth: true
-
-                contentItem: RowLayout {
-                    Layout.fillHeight: false
-
-                    SearchEdit {
-                        id: searchEdit
-
-                        Layout.leftMargin: width / 5
-                        Layout.rightMargin: width / 5
-
-                        Layout.fillWidth: true
-                        placeholder: qsTr("Search")
-                        onTextChanged: {
-                            console.log(text)
-                            SearchFilterProxyModel.setFilterRegularExpression(text)
-                        }
-                    }
-
-                    ToolButton {
-                        icon.name: "launcher_fullscreen"
-                        Accessible.name: "Fullscreen"
-                        onClicked: {
-                            LauncherController.currentFrame = "FullscreenFrame"
-                        }
-                    }
                 }
             }
         }
