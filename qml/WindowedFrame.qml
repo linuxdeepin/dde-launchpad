@@ -11,233 +11,243 @@ import org.deepin.dtk 1.0
 
 import org.deepin.launchpad 1.0
 
-Item {
+StackView {
+    id: stackView
     width: 780
     height: 600
     visible: true
     focus: true
 
-    RowLayout {
-        anchors.fill: parent
-        anchors.topMargin: 20
-        anchors.leftMargin: anchors.topMargin
-        anchors.rightMargin: anchors.topMargin
-        anchors.bottomMargin: 10
+    initialItem: Item {
+        RowLayout {
+            anchors.fill: parent
+            anchors.topMargin: 20
+            anchors.leftMargin: anchors.topMargin
+            anchors.rightMargin: anchors.topMargin
+            anchors.bottomMargin: 10
 
-        spacing: 10
+            spacing: 10
 
-        ColumnLayout {
-            Layout.fillWidth: false
-            Layout.preferredWidth: 300
-            Layout.fillHeight: true
+            ColumnLayout {
+                Layout.fillWidth: false
+                Layout.preferredWidth: 300
+                Layout.fillHeight: true
 
-            DelegateModel {
-                id: delegateCategorizedModel
-                model: CategorizedSortProxyModel
+                DelegateModel {
+                    id: delegateCategorizedModel
+                    model: CategorizedSortProxyModel
 
-                delegate: ItemDelegate {
-                    id: itemDelegate
-                    text: model.display
-                    checkable: false
-                    icon.name: iconName
-        //            icon.source: "image://app-icon/" + iconName;
-                    backgroundVisible: false
+                    delegate: ItemDelegate {
+                        id: itemDelegate
+                        text: model.display
+                        checkable: false
+                        icon.name: iconName
+            //            icon.source: "image://app-icon/" + iconName;
+                        backgroundVisible: false
 
-                    TapHandler {
-                        acceptedButtons: Qt.RightButton
-                        onTapped: {
-                            showContextMenu(itemDelegate, model, false, false, false)
+                        TapHandler {
+                            acceptedButtons: Qt.RightButton
+                            onTapped: {
+                                showContextMenu(itemDelegate, model, false, false, false)
+                            }
                         }
-                    }
 
-                    MouseArea {
-                        anchors.fill: parent
-                        acceptedButtons: Qt.LeftButton
-                        onClicked: {
+                        MouseArea {
+                            anchors.fill: parent
+                            acceptedButtons: Qt.LeftButton
+                            onClicked: {
+                                launchApp(desktopId)
+                            }
+                        }
+
+                        Keys.onReturnPressed: {
                             launchApp(desktopId)
                         }
                     }
+                }
 
-                    Keys.onReturnPressed: {
-                        launchApp(desktopId)
+                AppListView {
+                    id: appListView
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true
+
+                    model: delegateCategorizedModel
+
+                    onSectionHeaderClicked: {
+                        if (categoryType === CategorizedSortProxyModel.Alphabetary) {
+                            stackView.push(catalogy.createObject())
+                        }
+                    }
+                }
+
+                RowLayout {
+                    Layout.fillWidth: true
+                    Layout.fillHeight: false
+                    Layout.preferredHeight: 50
+                    spacing: 16
+
+                    ToolButton {
+                        icon.name: "shutdown"
+                        ToolTip.visible: hovered
+                        ToolTip.delay: 1000
+                        ToolTip.text: qsTr("Power")
+                        onClicked: {
+                            DesktopIntegration.openShutdownScreen();
+                        }
+                    }
+
+                    ToolButton {
+                        icon.name: "setting"
+                        Accessible.name: qsTr("Settings")
+                        onClicked: {
+                            DesktopIntegration.openSystemSettings();
+                        }
+                    }
+
+                    Item {
+                        Layout.fillWidth: true
+                    }
+
+                    ButtonBox {
+                        ColorSelector.family: Palette.CrystalColor
+                        ToolButton {
+                            icon.name: "title-icon"
+                            checked: CategorizedSortProxyModel.categoryType === CategorizedSortProxyModel.DDECategory
+                            onClicked: {
+                                CategorizedSortProxyModel.categoryType = CategorizedSortProxyModel.DDECategory
+                            }
+                        }
+                        ToolButton {
+                            icon.name: "letter-icon"
+                            checked: CategorizedSortProxyModel.categoryType === CategorizedSortProxyModel.Alphabetary
+                            onClicked: {
+                                CategorizedSortProxyModel.categoryType = CategorizedSortProxyModel.Alphabetary
+                            }
+                        }
                     }
                 }
             }
 
-            AppListView {
+            ColumnLayout {
                 Layout.fillWidth: true
                 Layout.fillHeight: true
 
-                model: delegateCategorizedModel
-            }
-
-            RowLayout {
-                Layout.fillWidth: true
-                Layout.fillHeight: false
-                Layout.preferredHeight: 50
-                spacing: 16
-
-                ToolButton {
-                    icon.name: "shutdown"
-                    ToolTip.visible: hovered
-                    ToolTip.delay: 1000
-                    ToolTip.text: qsTr("Power")
-                    onClicked: {
-                        DesktopIntegration.openShutdownScreen();
-                    }
-                }
-
-                ToolButton {
-                    icon.name: "setting"
-                    Accessible.name: qsTr("Settings")
-                    onClicked: {
-                        DesktopIntegration.openSystemSettings();
-                    }
+                Label {
+                    visible: favoriteGridView.visible
+                    text: qsTr("My Favorites")
                 }
 
                 Item {
+                    id: favoriteGridView
+                    visible: searchEdit.text === ""
+
+                    property int rowCount: Math.min(Math.ceil(delegateFavorateModel.count / 4), 2)
+
+                    DelegateModel {
+                        id: delegateFavorateModel
+                        model: FavoritedProxyModel
+                        delegate: IconItemDelegate {
+                            iconSource: "image://app-icon/" + iconName
+                            width: favoriteGridViewContainer.cellSize
+                            height: favoriteGridViewContainer.cellSize
+                            onItemClicked: {
+                                launchApp(desktopId)
+                            }
+                            onMenuTriggered: {
+                                showContextMenu(this, model, false, true, false)
+                            }
+                        }
+                    }
+
+                    GridViewContainer {
+                        anchors.fill: parent
+                        id: favoriteGridViewContainer
+                        rows: 0
+                        columns: 4
+                        placeholderText: qsTr("Add your favorite apps here")
+                        model: delegateFavorateModel
+                        interactive: favoriteGridView.rowCount > 1
+                        activeFocusOnTab: visible && gridViewFocus
+                    }
+
+                    Layout.preferredHeight: rowCount === 0 ? 50 : rowCount * favoriteGridViewContainer.cellSize
                     Layout.fillWidth: true
                 }
 
-                ButtonBox {
-                    ColorSelector.family: Palette.CrystalColor
-                    ToolButton {
-                        icon.name: "title-icon"
-                        checked: CategorizedSortProxyModel.categoryType === CategorizedSortProxyModel.DDECategory
-                        onClicked: {
-                            CategorizedSortProxyModel.categoryType = CategorizedSortProxyModel.DDECategory
-                        }
-                    }
-                    ToolButton {
-                        icon.name: "letter-icon"
-                        checked: CategorizedSortProxyModel.categoryType === CategorizedSortProxyModel.Alphabetary
-                        onClicked: {
-                            CategorizedSortProxyModel.categoryType = CategorizedSortProxyModel.Alphabetary
-                        }
-                    }
+                Label {
+                    text: qsTr("All Apps")
                 }
-            }
-        }
-
-        ColumnLayout {
-            Layout.fillWidth: true
-            Layout.fillHeight: true
-
-            Label {
-                visible: favoriteGridView.visible
-                text: qsTr("My Favorites")
-            }
-
-            Item {
-                id: favoriteGridView
-                visible: searchEdit.text === ""
-
-                property int rowCount: Math.min(Math.ceil(delegateFavorateModel.count / 4), 2)
 
                 DelegateModel {
-                    id: delegateFavorateModel
-                    model: FavoritedProxyModel
+                    id: delegateAllAppsModel
+                    model: SearchFilterProxyModel
                     delegate: IconItemDelegate {
                         iconSource: "image://app-icon/" + iconName
-                        width: favoriteGridViewContainer.cellSize
-                        height: favoriteGridViewContainer.cellSize
+                        width: allAppsGridContainer.cellSize
+                        height: allAppsGridContainer.cellSize
                         onItemClicked: {
                             launchApp(desktopId)
                         }
                         onMenuTriggered: {
-                            showContextMenu(this, model, false, true, false)
+                            showContextMenu(this, model, false, false, false)
                         }
                     }
                 }
 
                 GridViewContainer {
-                    anchors.fill: parent
-                    id: favoriteGridViewContainer
+                    id: allAppsGridContainer
                     rows: 0
                     columns: 4
-                    placeholderText: qsTr("Add your favorite apps here")
-                    model: delegateFavorateModel
-                    interactive: favoriteGridView.rowCount > 1
-                    activeFocusOnTab: visible && gridViewFocus
-                }
+                    placeholderIcon: "search_no_result"
+                    placeholderText: qsTr("No search results")
+                    model: delegateAllAppsModel
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true
+                    activeFocusOnTab: gridViewFocus
 
-                Layout.preferredHeight: rowCount === 0 ? 50 : rowCount * favoriteGridViewContainer.cellSize
-                Layout.fillWidth: true
-            }
+                    MouseArea {
+                        enabled: favoriteGridView.visible && (currentIndex !== -1)
 
-            Label {
-                text: qsTr("All Apps")
-            }
+                        property int currentIndex: -1
+                        property int modelType: -1 // 1: fav, 2: all
 
-            DelegateModel {
-                id: delegateAllAppsModel
-                model: SearchFilterProxyModel
-                delegate: IconItemDelegate {
-                    iconSource: "image://app-icon/" + iconName
-                    width: allAppsGridContainer.cellSize
-                    height: allAppsGridContainer.cellSize
-                    onItemClicked: {
-                        launchApp(desktopId)
-                    }
-                    onMenuTriggered: {
-                        showContextMenu(this, model, false, false, false)
-                    }
-                }
-            }
-
-            GridViewContainer {
-                id: allAppsGridContainer
-                rows: 0
-                columns: 4
-                placeholderIcon: "search_no_result"
-                placeholderText: qsTr("No search results")
-                model: delegateAllAppsModel
-                Layout.fillWidth: true
-                Layout.fillHeight: true
-                activeFocusOnTab: gridViewFocus
-
-                MouseArea {
-                    enabled: favoriteGridView.visible && (currentIndex !== -1)
-
-                    property int currentIndex: -1
-                    property int modelType: -1 // 1: fav, 2: all
-
-                    anchors.fill: parent
-                    onPressAndHold: {
-                        if (index !== -1) {
-                            currentIndex = index
+                        anchors.fill: parent
+                        onPressAndHold: {
+                            if (index !== -1) {
+                                currentIndex = index
+                            }
                         }
+                        onReleased: currentIndex = -1
                     }
-                    onReleased: currentIndex = -1
                 }
-            }
 
-            // Workaround: cannot use RowLayout directly due to unknown layout bug from Qt, so we wrapped with a Control here.
-            Control {
-                Layout.fillWidth: true
+                // Workaround: cannot use RowLayout directly due to unknown layout bug from Qt, so we wrapped with a Control here.
+                Control {
+                    Layout.fillWidth: true
 
-                contentItem: RowLayout {
-                    Layout.fillHeight: false
+                    contentItem: RowLayout {
+                        Layout.fillHeight: false
 
-                    SearchEdit {
-                        id: searchEdit
+                        SearchEdit {
+                            id: searchEdit
 
-                        Layout.leftMargin: width / 5
-                        Layout.rightMargin: width / 5
+                            Layout.leftMargin: width / 5
+                            Layout.rightMargin: width / 5
 
-                        Layout.fillWidth: true
-                        placeholder: qsTr("Search")
-                        onTextChanged: {
-                            console.log(text)
-                            SearchFilterProxyModel.setFilterRegularExpression(text)
+                            Layout.fillWidth: true
+                            placeholder: qsTr("Search")
+                            onTextChanged: {
+                                console.log(text)
+                                SearchFilterProxyModel.setFilterRegularExpression(text)
+                            }
                         }
-                    }
 
-                    ToolButton {
-                        icon.name: "launcher_fullscreen"
-                        Accessible.name: "Fullscreen"
-                        onClicked: {
-                            LauncherController.currentFrame = "FullscreenFrame"
+                        ToolButton {
+                            icon.name: "launcher_fullscreen"
+                            Accessible.name: "Fullscreen"
+                            onClicked: {
+                                LauncherController.currentFrame = "FullscreenFrame"
+                            }
                         }
                     }
                 }
@@ -245,6 +255,27 @@ Item {
         }
     }
 
+    Component {
+        id: catalogy
+        Item {
+            AlphabetCategory {
+                anchors.fill: parent
+                anchors.topMargin: 10
+                anchors.leftMargin: 20
+                anchors.rightMargin: 20
+                anchors.bottomMargin: 10
+
+                onBackClicked: {
+                    stackView.pop()
+                }
+
+                onCategoryClicked: {
+                    appListView.scrollToAlphabetCategory(character)
+                    stackView.pop()
+                }
+            }
+        }
+    }
     Keys.onPressed: {
         if (searchEdit.focus === false && !searchEdit.text
                 && event.modifiers === Qt.NoModifier
