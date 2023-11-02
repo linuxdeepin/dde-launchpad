@@ -51,30 +51,12 @@ ColumnLayout {
                 'U', 'V', 'W', 'X',
                 'Y', 'Z', '&', '#',
             ]
-            delegate: Rectangle {
+            delegate: ToolButton {
                 width: alphabetCategoryContainer.cellSize
                 height: alphabetCategoryContainer.cellSize
-                color: (stylus.hovered/* || parent.focus */) ? Qt.rgba(0, 0, 0, 0.3) : "transparent"
-                radius: 10
-                enabled: modelData !== 'F'
-
-                Label {
-                    anchors.fill: parent
-                    text: modelData
-                    textFormat: Text.PlainText
-                    horizontalAlignment: Text.AlignHCenter
-                    verticalAlignment: Text.AlignVCenter
-                }
-
-                HoverHandler {
-                    id: stylus
-                }
-
-                MouseArea {
-                    anchors.fill: parent
-                    onClicked: {
-                        categoryClicked(modelData)
-                    }
+                text: modelData
+                onClicked: {
+                    categoryClicked(modelData)
                 }
             }
         }

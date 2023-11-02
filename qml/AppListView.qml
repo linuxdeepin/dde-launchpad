@@ -33,53 +33,57 @@ Item {
 
     Component {
         id: sectionHeading
-        Rectangle {
-            width: parent.width
-            height: childrenRect.height
-            color: "transparent"
-
+        ToolButton {
             required property string section
 
-            QQC2.Label {
-                text: {
-                    if (CategorizedSortProxyModel.categoryType === CategorizedSortProxyModel.Alphabetary) {
-                        return parent.section.toUpperCase();
-                    } else {
-                        switch (Number(parent.section)) {
-                        case AppItem.Internet:
-                            return qsTr("Internet");
-                        case AppItem.Chat:
-                            return qsTr("Chat");
-                        case AppItem.Music:
-                            return qsTr("Music");
-                        case AppItem.Video:
-                            return qsTr("Video");
-                        case AppItem.Graphics:
-                            return qsTr("Graphics");
-                        case AppItem.Game:
-                            return qsTr("Game");
-                        case AppItem.Office:
-                            return qsTr("Office");
-                        case AppItem.Reading:
-                            return qsTr("Reading");
-                        case AppItem.Development:
-                            return qsTr("Development");
-                        case AppItem.System:
-                            return qsTr("System");
-                        default:
-                            return qsTr("Others");
-                        }
+            enabled: CategorizedSortProxyModel.categoryType === CategorizedSortProxyModel.Alphabetary
+
+            id: headingBtn
+            width: parent.width
+            text: {
+                if (CategorizedSortProxyModel.categoryType === CategorizedSortProxyModel.Alphabetary) {
+                    return section.toUpperCase();
+                } else {
+                    switch (Number(section)) {
+                    case AppItem.Internet:
+                        return qsTr("Internet");
+                    case AppItem.Chat:
+                        return qsTr("Chat");
+                    case AppItem.Music:
+                        return qsTr("Music");
+                    case AppItem.Video:
+                        return qsTr("Video");
+                    case AppItem.Graphics:
+                        return qsTr("Graphics");
+                    case AppItem.Game:
+                        return qsTr("Game");
+                    case AppItem.Office:
+                        return qsTr("Office");
+                    case AppItem.Reading:
+                        return qsTr("Reading");
+                    case AppItem.Development:
+                        return qsTr("Development");
+                    case AppItem.System:
+                        return qsTr("System");
+                    default:
+                        return qsTr("Others");
                     }
                 }
-                font.bold: true
-                font.pixelSize: 15
             }
 
-            MouseArea {
-                anchors.fill: parent
-                onClicked: {
-                    sectionHeaderClicked(CategorizedSortProxyModel.categoryType)
+            contentItem: Item {
+                Row {
+                    anchors.fill: parent
+                    spacing: 3
+                    QQC2.Label {
+                        anchors.verticalCenter: parent.verticalCenter
+                        text: headingBtn.text
+                    }
                 }
+            }
+
+            onClicked: {
+                sectionHeaderClicked(CategorizedSortProxyModel.categoryType)
             }
         }
     }
@@ -97,7 +101,7 @@ Item {
         section.property: CategorizedSortProxyModel.sortRoleName // "transliterated" // "category"
         section.criteria: section.property === "transliterated" ? ViewSection.FirstCharacter : ViewSection.FullString
         section.delegate: sectionHeading
-        section.labelPositioning: ViewSection.InlineLabels | ViewSection.CurrentLabelAtStart
+        section.labelPositioning: ViewSection.InlineLabels // | ViewSection.CurrentLabelAtStart
 
         model: visualModel
 
