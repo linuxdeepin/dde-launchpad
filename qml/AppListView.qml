@@ -17,7 +17,7 @@ Item {
     signal sectionHeaderClicked(var categoryType)
 
     function scrollToAlphabetCategory(character) {
-        for (let i = 0; i <= model.count; i++) {
+        for (let i = 0; i < model.count; i++) {
             let transliterated1st = model.model.data(model.modelIndex(i), 4096)[0].toUpperCase() // 4096 is AppsModel::TransliteratedRole
             if (character === transliterated1st) {
                 // we use the highlight move to scroll to item
