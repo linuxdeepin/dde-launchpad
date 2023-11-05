@@ -23,6 +23,8 @@ Item {
                 // we use the highlight move to scroll to item
                 listView.highlightMoveDuration = 0
                 listView.highlightRangeMode = GridView.ApplyRange
+                listView.preferredHighlightBegin = 32 // the height of a section heading
+                listView.preferredHighlightEnd = 32
                 listView.currentIndex = i
                 listView.highlightMoveDuration = 150
                 listView.highlightRangeMode = GridView.NoHighlightRange
