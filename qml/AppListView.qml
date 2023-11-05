@@ -136,7 +136,7 @@ Item {
 
         Keys.onPressed: {
             if (CategorizedSortProxyModel.categoryType === CategorizedSortProxyModel.Alphabetary
-                    && event.key >= Qt.Key_A && event.key <= Qt.Key_Z) {
+                    && ((event.key >= Qt.Key_A && event.key <= Qt.Key_Z) || event.text === '#' || event.text === '&')) {
                 scrollToAlphabetCategory(event.text.toUpperCase())
                 event.accepted = true
             }

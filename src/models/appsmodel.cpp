@@ -104,10 +104,16 @@ const QList<AppItem *> AppsModel::updateItems(const QList<AppItem *> &items)
 QVariant AppsModel::data(const QModelIndex &index, int role) const
 {
     switch (role) {
-    case AppsModel::TransliteratedRole:
+    case AppsModel::TransliteratedRole: {
         // TODO: 1. use icu::Transliterator for other locales
         //       2. support polyphonic characters (e.g. Music: YinYue or YinLe)
-        return Dtk::Core::pinyin(index.data(Qt::DisplayRole).toString(), Dtk::Core::TS_NoneTone).constFirst();
+        const QString transliterated = Dtk::Core::pinyin(index.data(Qt::DisplayRole).toString(), Dtk::Core::TS_NoneTone).constFirst();
+        if (transliterated.isEmpty()) return transliterated;
+        const QChar & firstChar = transliterated.constData()[0];
+        if (firstChar.isDigit()) return QString("#%1").arg(transliterated);
+        else if (!firstChar.isLetter()) return QString("&%1").arg(transliterated);
+        return transliterated;
+    }
     default:
         break;
     }
