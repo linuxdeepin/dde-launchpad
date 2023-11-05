@@ -16,6 +16,18 @@ Item {
 
     signal sectionHeaderClicked(var categoryType)
 
+    Timer {
+        id: postScrollDeferTimer
+        interval: 150 // same as the defaul value of ListView's highlightMoveDuration
+        onTriggered: {
+            // if we set back the highlightRangeMode right after we set currentIndex,
+            // the scroll might stopped before the highlight item scroll to the expected place.
+            // Thus we use a timer to set back these values with a delay.
+            listView.highlightMoveDuration = 150
+            listView.highlightRangeMode = GridView.NoHighlightRange
+        }
+    }
+
     function scrollToAlphabetCategory(character) {
         for (let i = 0; i < model.count; i++) {
             let transliterated1st = model.model.data(model.modelIndex(i), 4096)[0].toUpperCase() // 4096 is AppsModel::TransliteratedRole
@@ -23,11 +35,8 @@ Item {
                 // we use the highlight move to scroll to item
                 listView.highlightMoveDuration = 0
                 listView.highlightRangeMode = GridView.ApplyRange
-                listView.preferredHighlightBegin = 32 // the height of a section heading
-                listView.preferredHighlightEnd = 32
                 listView.currentIndex = i
-                listView.highlightMoveDuration = 150
-                listView.highlightRangeMode = GridView.NoHighlightRange
+                postScrollDeferTimer.restart()
                 break
             }
         }
@@ -41,6 +50,7 @@ Item {
             enabled: CategorizedSortProxyModel.categoryType === CategorizedSortProxyModel.Alphabetary
 
             id: headingBtn
+            focusPolicy: Qt.NoFocus
             width: parent.width
             text: {
                 if (CategorizedSortProxyModel.categoryType === CategorizedSortProxyModel.Alphabetary) {
@@ -104,6 +114,8 @@ Item {
         section.criteria: section.property === "transliterated" ? ViewSection.FirstCharacter : ViewSection.FullString
         section.delegate: sectionHeading
         section.labelPositioning: ViewSection.InlineLabels // | ViewSection.CurrentLabelAtStart
+        preferredHighlightBegin: 35 // the height of a section heading
+        preferredHighlightEnd: 35
 
         model: visualModel
 
@@ -121,5 +133,13 @@ Item {
         }
 
         ScrollBar.vertical: ScrollBar { }
+
+        Keys.onPressed: {
+            if (CategorizedSortProxyModel.categoryType === CategorizedSortProxyModel.Alphabetary
+                    && event.key >= Qt.Key_A && event.key <= Qt.Key_Z) {
+                scrollToAlphabetCategory(event.text.toUpperCase())
+                event.accepted = true
+            }
+        }
     }
 }

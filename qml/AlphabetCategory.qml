@@ -55,6 +55,7 @@ ColumnLayout {
                 width: alphabetCategoryContainer.cellSize
                 height: alphabetCategoryContainer.cellSize
                 text: modelData
+                focusPolicy: Qt.NoFocus
                 onClicked: {
                     categoryClicked(modelData)
                 }
