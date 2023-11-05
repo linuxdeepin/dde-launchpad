@@ -2,7 +2,7 @@
 #
 # SPDX-License-Identifier: CC0-1.0
 
-find_package(Qt5 REQUIRED Quick)
+find_package(${QT_NS} REQUIRED Quick)
 
 add_library(launcher-qml-utils OBJECT)
 
