@@ -16,6 +16,14 @@ Column {
     spacing: 15
 
     Switch {
+        text: "Use regular window (need restart)"
+        checked: DebugHelper.useRegularWindow
+        onCheckedChanged: {
+            DebugHelper.useRegularWindow = checked
+        }
+    }
+
+    Switch {
         text: "Avoid launch application"
         checked: DebugHelper.avoidLaunchApp
         onCheckedChanged: {

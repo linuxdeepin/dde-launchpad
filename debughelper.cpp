@@ -15,8 +15,13 @@ DebugHelper::DebugHelper(QObject *parent)
     const QString debugSettingPath(QDir(debugSettingBasePath).absoluteFilePath("debug.ini"));
 
     m_debugSettings = new QSettings(debugSettingPath, QSettings::NativeFormat, this);
+    m_useRegularWindow = m_debugSettings->value("useRegularWindow", false).toBool();
     m_avoidLaunchApp = m_debugSettings->value("avoidLaunchApp", false).toBool();
     m_avoidHideWindow = m_debugSettings->value("avoidHideWindow", false).toBool();
+
+    connect(this, &DebugHelper::onUseRegularWindowChanged, this, [=](bool val){
+        m_debugSettings->setValue("useRegularWindow", val);
+    });
 
     connect(this, &DebugHelper::onAvoidLaunchAppChanged, this, [=](bool val){
         m_debugSettings->setValue("avoidLaunchApp", val);

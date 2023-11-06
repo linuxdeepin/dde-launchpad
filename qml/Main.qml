@@ -21,13 +21,16 @@ ApplicationWindow {
     height: 600
     visible: LauncherController.visible
     flags: {
+        if (DebugHelper.useRegularWindow) {
+            return Qt.Window
+        }
         if (LauncherController.currentFrame === "WindowedFrame") {
             return (Qt.WindowStaysOnTopHint | Qt.FramelessWindowHint | Qt.Tool) // X11BypassWindowManagerHint
         } else {
             return (Qt.FramelessWindowHint | Qt.Tool)
         }
     }
-    DWindow.enabled: true
+    DWindow.enabled: !DebugHelper.useRegularWindow
     DWindow.enableBlurWindow: true
     DWindow.enableSystemResize: false
     DWindow.enableSystemMove: false
