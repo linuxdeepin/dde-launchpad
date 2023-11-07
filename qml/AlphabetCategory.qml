@@ -45,13 +45,13 @@ ColumnLayout {
         DelegateModel {
             id: delegateAlphabetCategoryModel
             model: [
-                'A', 'B', 'C', 'D',
-                'E', 'F', 'G', 'H',
-                'I', 'J', 'K', 'L',
-                'M', 'N', 'O', 'P',
-                'Q', 'R', 'S', 'T',
-                'U', 'V', 'W', 'X',
-                'Y', 'Z', '&', '#',
+                '&', '#', 'A', 'B',
+                'C', 'D', 'E', 'F',
+                'G', 'H', 'I', 'J',
+                'K', 'L', 'M', 'N',
+                'O', 'P', 'Q', 'R',
+                'S', 'T', 'U', 'V',
+                'W', 'X', 'Y', 'Z',
             ]
             delegate: ToolButton {
                 width: alphabetCategoryContainer.cellSize
