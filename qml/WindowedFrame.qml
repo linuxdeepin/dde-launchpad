@@ -19,6 +19,9 @@ StackView {
     focus: true
 
     initialItem: Item {
+        id: baseLayer
+        objectName: "WindowedFrame-BaseLayer"
+
         RowLayout {
             anchors.fill: parent
             anchors.topMargin: 20
@@ -298,6 +301,22 @@ StackView {
     Keys.onEscapePressed: {
         if (!DebugHelper.avoidHideWindow) {
             LauncherController.visible = false;
+        }
+    }
+
+    Connections {
+        target: LauncherController
+        function onVisibleChanged() {
+            // only do these clean-up steps on launcher get hide
+            if (LauncherController.visible) return
+            // exit from AlphabetCatalogy screen when
+            if (stackView.currentItem !== stackView.initialItem) {
+                stackView.pop()
+            }
+            // clear searchEdit text
+            searchEdit.text = ""
+            // reset(remove) keyboard focus
+            baseLayer.focus = true
         }
     }
 }
