@@ -31,6 +31,8 @@ public:
 
     QString sortRoleName() const;
 
+    Q_INVOKABLE QList<QString> alphabetarySections() const;
+
 signals:
     void categoryTypeChanged();
 

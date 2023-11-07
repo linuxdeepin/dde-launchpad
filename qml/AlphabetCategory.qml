@@ -17,6 +17,8 @@ ColumnLayout {
     signal backClicked()
     signal categoryClicked(string character)
 
+    property var existingSections: []
+
     RowLayout {
         Layout.fillWidth: true
         Layout.fillHeight: false
@@ -56,6 +58,7 @@ ColumnLayout {
                 height: alphabetCategoryContainer.cellSize
                 text: modelData
                 focusPolicy: Qt.NoFocus
+                enabled: root.existingSections.includes(modelData)
                 onClicked: {
                     categoryClicked(modelData)
                 }

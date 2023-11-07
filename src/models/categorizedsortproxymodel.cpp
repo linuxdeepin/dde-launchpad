@@ -5,6 +5,8 @@
 #include "appsmodel.h"
 #include "categorizedsortproxymodel.h"
 
+#include <QSet>
+
 void CategorizedSortProxyModel::setCategoryType(CategoryType categoryType)
 {
     const int oldSortRole = sortRole();
@@ -36,6 +38,19 @@ CategorizedSortProxyModel::CategoryType CategorizedSortProxyModel::categoryType(
 QString CategorizedSortProxyModel::sortRoleName() const
 {
     return QString(AppsModel::instance().roleNames().value(sortRole()));
+}
+
+QList<QString> CategorizedSortProxyModel::alphabetarySections() const
+{
+    QSet<QString> charset;
+    for (int i = 0; i < rowCount(); i++) {
+        QString transliterated = data(index(i, 0), AppsModel::TransliteratedRole).toString();
+        if (!transliterated.isEmpty()) {
+            charset.insert(transliterated.constData()[0].toUpper());
+        }
+    }
+
+    return charset.values();
 }
 
 CategorizedSortProxyModel::CategorizedSortProxyModel(QObject *parent)

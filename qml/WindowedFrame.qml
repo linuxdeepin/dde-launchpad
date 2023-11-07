@@ -75,7 +75,9 @@ StackView {
 
                     onSectionHeaderClicked: {
                         if (categoryType === CategorizedSortProxyModel.Alphabetary) {
-                            stackView.push(catalogy.createObject())
+                            stackView.push(catalogy.createObject(null, {
+                                'existingSections': CategorizedSortProxyModel.alphabetarySections()
+                            }))
                         }
                     }
                 }
@@ -257,8 +259,16 @@ StackView {
 
     Component {
         id: catalogy
+
         Item {
+            id: catalogyItem
+
+            property var existingSections: []
+
             AlphabetCategory {
+                id: alphabetCatalogy
+                existingSections: catalogyItem.existingSections
+
                 anchors.fill: parent
                 anchors.topMargin: 10
                 anchors.leftMargin: 20
