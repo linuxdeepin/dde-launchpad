@@ -35,6 +35,10 @@ public:
     Q_ENUM(DDECategories)
 
 public:
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+    // FIXME: why do we need this one?
+    explicit AppItem() { Q_ASSERT_X(false, "AppItem()", "qmlRegisterUncreatableType require this for unknown reason in Qt6, another ctor should be used"); }
+#endif // QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
     explicit AppItem(const QString &freedesktopId);
     ~AppItem();
 
