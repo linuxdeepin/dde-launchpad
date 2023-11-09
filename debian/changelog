@@ -1,3 +1,13 @@
+dde-launchpad (0.2.0) unstable; urgency=medium
+
+  * Initial implementation of the redesigned UI
+  * Add a new alphabet category screen
+  * For windowed launcher, always reset searching/focus state when hidding launcher frame
+  * initial support to build with Qt 6
+  * remove DRegionMonitor to avoid massive log
+
+ -- Gary Wang <wangzichong@deepin.org>  Thu, 09 Nov 2023 15:21:00 +0800
+
 dde-launchpad (0.1.0) unstable; urgency=medium
 
   * Hide launcher window right after it lost focus
