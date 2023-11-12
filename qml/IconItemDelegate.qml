@@ -26,14 +26,9 @@ Control {
     signal itemClicked()
     signal menuTriggered()
 
-    contentItem: Rectangle {
-//        anchors.fill: parent
-        color: (stylus.hovered/* || parent.focus */) ? Qt.rgba(0, 0, 0, 0.3) : "transparent"
-        radius: 18
-
-        Behavior on color { PropertyAnimation {} }
-
-        Column {
+    contentItem: ToolButton {
+        focusPolicy: Qt.NoFocus
+        contentItem: Column {
             anchors.fill: parent
 
             Item {
