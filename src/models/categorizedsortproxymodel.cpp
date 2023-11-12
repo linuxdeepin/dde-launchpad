@@ -73,8 +73,8 @@ bool CategorizedSortProxyModel::lessThan(const QModelIndex &source_left, const Q
                 return l_transliterated < r_transliterated;
             } else {
                 // one of them are ascii letter and another of them is non-ascii letter.
-                // the non-ascii one should be display on the front
-                return l_start != ld_start;
+                // the ascii one should be display on the front
+                return l_start == ld_start;
             }
         }
     }
