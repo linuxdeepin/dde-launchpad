@@ -14,9 +14,11 @@ import org.deepin.vendored 1.0
 import org.deepin.launchpad 1.0
 
 Control {
+    id: baseLayer
     visible: true
     anchors.fill: parent
     focus: true
+    objectName: "FullscreenFrame-BaseLayer"
 
     leftPadding: (DesktopIntegration.dockPosition === Qt.LeftArrow ? DesktopIntegration.dockGeometry.width : 0) + 20
     rightPadding: (DesktopIntegration.dockPosition === Qt.RightArrow ? DesktopIntegration.dockGeometry.width : 0) + 20
@@ -363,6 +365,18 @@ Control {
     Keys.onEscapePressed: {
         if (!DebugHelper.avoidHideWindow) {
             LauncherController.visible = false;
+        }
+    }
+
+    Connections {
+        target: LauncherController
+        function onVisibleChanged() {
+            // only do these clean-up steps on launcher get hide
+            if (LauncherController.visible) return
+            // clear searchEdit text
+            searchEdit.text = ""
+            // reset(remove) keyboard focus
+            baseLayer.focus = true
         }
     }
 }
