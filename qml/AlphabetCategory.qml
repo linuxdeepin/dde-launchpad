@@ -62,6 +62,9 @@ ColumnLayout {
                 onClicked: {
                     categoryClicked(modelData)
                 }
+                Keys.onReturnPressed: {
+                    onClicked()
+                }
             }
         }
 
