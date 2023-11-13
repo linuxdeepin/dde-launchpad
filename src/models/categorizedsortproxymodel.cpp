@@ -70,6 +70,10 @@ bool CategorizedSortProxyModel::lessThan(const QModelIndex &source_left, const Q
             if ((l_start == ld_start && ld_start == rd_start) || (l_start != ld_start && l_start != rd_start)) {
                 // display name both start with ascii letter, or both NOT start with ascii letter
                 // use their transliterated form for sorting
+                if (!l_start.isNull() && l_transliterated.constData()[0] != r_transliterated.constData()[0]) {
+                    // Since in ascii table, `A` is lower than `a`, we specially check to ensure `a` is lower here.
+                    return l_transliterated.constData()[0].isLower();
+                }
                 return l_transliterated < r_transliterated;
             } else {
                 // one of them are ascii letter and another of them is non-ascii letter.
