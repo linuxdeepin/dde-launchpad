@@ -1,3 +1,13 @@
+dde-launchpad (0.2.1) unstable; urgency=medium
+
+  * Adjust icon hover effect (https://github.com/linuxdeepin/developer-center/issues/6140)
+  * Ascii item should appears first (https://github.com/linuxdeepin/developer-center/issues/6152)
+  * Lower-case word should appears first (https://github.com/linuxdeepin/developer-center/issues/6159)
+  * Reset focus and search state when hide fullscreen frame (https://github.com/linuxdeepin/developer-center/issues/6162)
+  * Support Enter key to select category in alphabet category view (https://github.com/linuxdeepin/developer-center/issues/6154)
+
+ -- Gary Wang <wangzichong@deepin.org>  Tue, 14 Nov 2023 13:03:00 +0800
+
 dde-launchpad (0.2.0) unstable; urgency=medium
 
   * Initial implementation of the redesigned UI
