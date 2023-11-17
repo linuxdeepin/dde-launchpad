@@ -45,6 +45,33 @@ ApplicationWindow {
         }
     }
 
+    function getCategoryName(section) {
+        switch (Number(section)) {
+        case AppItem.Internet:
+            return qsTr("Internet");
+        case AppItem.Chat:
+            return qsTr("Chat");
+        case AppItem.Music:
+            return qsTr("Music");
+        case AppItem.Video:
+            return qsTr("Video");
+        case AppItem.Graphics:
+            return qsTr("Graphics");
+        case AppItem.Game:
+            return qsTr("Game");
+        case AppItem.Office:
+            return qsTr("Office");
+        case AppItem.Reading:
+            return qsTr("Reading");
+        case AppItem.Development:
+            return qsTr("Development");
+        case AppItem.System:
+            return qsTr("System");
+        default:
+            return qsTr("Others");
+        }
+    }
+
     function descaledRect(rect) {
         let ratio = Screen.devicePixelRatio
         return Qt.rect(rect.left / ratio, rect.top / ratio, rect.width / ratio, rect.height / ratio)

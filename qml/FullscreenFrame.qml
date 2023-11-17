@@ -128,14 +128,13 @@ Control {
                         sourceComponent: Rectangle {
                             color: "transparent"
 
-                            KSortFilterProxyModel {
+                            property var grids: gridViewContainer
+
+                            MultipageSortFilterProxyModel {
                                 id: proxyModel
                                 sourceModel: MultipageProxyModel
-                                filterRowCallback: (source_row, source_parent) => {
-                                    var index = sourceModel.index(source_row, 0, source_parent);
-                                    return sourceModel.data(index, MultipageProxyModel.PageRole) === modelData &&
-                                           sourceModel.data(index, MultipageProxyModel.FolderIdNumberRole) === 0;
-                                }
+                                pageId: modelData
+                                folderId: 0
                             }
 
                             GridViewContainer {
@@ -149,6 +148,12 @@ Control {
                                 focus: true
                                 activeGridViewFocusOnTab: gridViewLoader.SwipeView.isCurrentItem
                                 delegate: IconItemDelegate {
+                                    dndEnabled: false
+                                    Drag.mimeData: {
+                                        "application/x-dde-launcher-dnd-fullscreen": ("0," + modelData + "," + index), // "folder,page,index"
+                                        "application/x-dde-launcher-dnd-desktopId": model.desktopId
+                                    }
+                                    visible: model.desktopId !== dropArea.currentDraggedDesktopId
                                     iconSource: "image://app-icon/" + iconName
                                     width: gridViewContainer.cellSize
                                     height: gridViewContainer.cellSize
@@ -162,7 +167,7 @@ Control {
                                         let idNum = Number(idStr.replace("internal/folders/", ""))
                                         folderLoader.currentFolderId = idNum
                                         folderGridViewPopup.open()
-                                        folderLoader.folderName = model.display
+                                        folderLoader.folderName = model.display.startsWith("internal/category/") ? getCategoryName(model.display.substring(18)) : model.display
                                         console.log("open folder id:" + idNum)
                                     }
                                     onMenuTriggered: {
@@ -236,6 +241,47 @@ Control {
         }
     }
 
+    DropArea {
+        id: dropArea
+        anchors.fill: parent
+
+        property string currentDraggedDesktopId: ""
+
+        onPositionChanged: {
+            currentDraggedDesktopId = drag.getDataAsString("application/x-dde-launcher-dnd-desktopId")
+            dndDebug.text = drag.x + "," + drag.y + "." + drag.getDataAsString("application/x-dde-launcher-dnd-desktopId")
+        }
+
+        onDropped: {
+            let curGridView = pages.currentItem.item.grids
+            let curPoint = curGridView.mapFromItem(dropArea, drag.x, drag.y)
+            let curItem = curGridView.itemAt(curPoint.x, curPoint.y)
+            if (curItem) {
+                // drop on the left, center or right?
+                let itemX = curGridView.mapFromItem(curItem.parent, curItem.x, curItem.y).x
+                let itemWidth = curItem.width
+                let sideOpPadding = itemWidth / 4
+                let op = 0
+                if (curPoint.x < (itemX + sideOpPadding)) {
+                    op = -1
+                } else if (curPoint.x > (itemX + curItem.width - sideOpPadding)) {
+                    op = 1
+                }
+
+                let targetItemInfo = curItem.Drag.mimeData["application/x-dde-launcher-dnd-desktopId"]
+                dndDebug.text = "drag " + currentDraggedDesktopId + " onto " + targetItemInfo + " with " + op
+                MultipageProxyModel.commitDndOperation(currentDraggedDesktopId, targetItemInfo, op)
+            }
+            currentDraggedDesktopId = ""
+        }
+
+        Label {
+            id: dndDebug
+            visible: DebugHelper.qtDebugEnabled
+            text: "DnD DEBUG"
+        }
+    }
+
     Popup {
         id: folderGridViewPopup
 
@@ -301,14 +347,11 @@ Control {
                                     anchors.fill: parent
                                     color: "transparent"
 
-                                    KSortFilterProxyModel {
+                                    MultipageSortFilterProxyModel {
                                         id: folderProxyModel
                                         sourceModel: MultipageProxyModel
-                                        filterRowCallback: (source_row, source_parent) => {
-                                            var index = sourceModel.index(source_row, 0, source_parent);
-                                            return sourceModel.data(index, MultipageProxyModel.PageRole) === modelData &&
-                                                   sourceModel.data(index, MultipageProxyModel.FolderIdNumberRole) === folderLoader.currentFolderId;
-                                        }
+                                        pageId: modelData
+                                        folderId: folderLoader.currentFolderId
                                     }
 
                                     GridViewContainer {

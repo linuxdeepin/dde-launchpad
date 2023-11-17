@@ -56,30 +56,7 @@ Item {
                 if (CategorizedSortProxyModel.categoryType === CategorizedSortProxyModel.Alphabetary) {
                     return section.toUpperCase();
                 } else {
-                    switch (Number(section)) {
-                    case AppItem.Internet:
-                        return qsTr("Internet");
-                    case AppItem.Chat:
-                        return qsTr("Chat");
-                    case AppItem.Music:
-                        return qsTr("Music");
-                    case AppItem.Video:
-                        return qsTr("Video");
-                    case AppItem.Graphics:
-                        return qsTr("Graphics");
-                    case AppItem.Game:
-                        return qsTr("Game");
-                    case AppItem.Office:
-                        return qsTr("Office");
-                    case AppItem.Reading:
-                        return qsTr("Reading");
-                    case AppItem.Development:
-                        return qsTr("Development");
-                    case AppItem.System:
-                        return qsTr("System");
-                    default:
-                        return qsTr("Others");
-                    }
+                    return getCategoryName(section)
                 }
             }
 

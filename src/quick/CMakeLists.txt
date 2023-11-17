@@ -9,6 +9,7 @@ add_library(launcher-qml-utils OBJECT)
 target_sources(launcher-qml-utils
 PRIVATE
     launcherappiconprovider.cpp
+    launcherfoldericonprovider.cpp
     blurhashimageprovider.cpp
     ksortfilterproxymodel.cpp
 )
@@ -17,6 +18,7 @@ target_sources(launcher-qml-utils PUBLIC
 FILE_SET HEADERS
 FILES
     launcherappiconprovider.h
+    launcherfoldericonprovider.h
     blurhashimageprovider.h
     ksortfilterproxymodel.h
 )

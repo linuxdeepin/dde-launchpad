@@ -21,6 +21,13 @@ public:
     };
     Q_ENUM(Roles)
 
+    enum DndOperation {
+        DndPrepend = -1,
+        DndJoin = 0,
+        DndAppend = 1
+    };
+    Q_ENUM(DndOperation)
+
     static MultipageProxyModel &instance()
     {
         static MultipageProxyModel _instance;
@@ -30,6 +37,7 @@ public:
     ~MultipageProxyModel();
 
     Q_INVOKABLE int pageCount(int folderId = 0) const;
+    Q_INVOKABLE void commitDndOperation(const QString & dragId, const QString & dropId, const DndOperation op);
 
     // QAbstractItemModel interface
 public:
@@ -52,6 +60,7 @@ private:
     void onSourceModelChanged();
 
     ItemsPage * createFolder(const QString & idNumber);
+    ItemsPage * folderById(int id);
 
     // <folder-id, items-arrangement-data> folder-id: internal/folder/<id number>
     ItemsPage * m_topLevel;

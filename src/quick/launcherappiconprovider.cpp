@@ -21,13 +21,17 @@ QPixmap LauncherAppIconProvider::requestPixmap(const QString &id, QSize *size, c
 {
     Q_UNUSED(size)
 
-    QPixmap result(requestedSize);
+    QSize preferredSize = requestedSize.isValid()
+                              ? requestedSize
+                              : ((size && size->isValid()) ? *size : QSize(64, 64));
+
+    QPixmap result(preferredSize);
     result.fill(Qt::transparent);
 
     // uri: image://provider/icon-name
     // id: icon-name
 
-    IconUtils::getThemeIcon(result, id, requestedSize.width());
+    IconUtils::getThemeIcon(result, id, preferredSize.width());
 
     return result;
 }

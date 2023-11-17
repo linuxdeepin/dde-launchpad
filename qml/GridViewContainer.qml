@@ -73,6 +73,12 @@ FocusScope {
                         visible: gridView.activeFocus
                     }
                 }
+
+                // working (on drag into folder):
+                displaced: Transition { NumberAnimation { properties: "x,y"; duration: 250 } }
+                // not wroking
+                move: Transition { NumberAnimation { properties: "x,y"; duration: 250 } }
+                moveDisplaced: Transition { NumberAnimation { properties: "x,y"; duration: 250 } }
             }
         }
 

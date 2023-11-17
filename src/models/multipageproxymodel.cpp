@@ -5,6 +5,7 @@
 #include "multipageproxymodel.h"
 
 #include "appsmodel.h"
+#include "categoryutils.h"
 
 #include <QDebug>
 #include <QDir>
@@ -25,6 +26,48 @@ int MultipageProxyModel::pageCount(int folderId) const
     Q_ASSERT(m_folders.contains(fullId));
 
     return m_folders.value(fullId)->pageCount();
+}
+
+void MultipageProxyModel::commitDndOperation(const QString &dragId, const QString &dropId, const DndOperation op)
+{
+    if (dragId == dropId) return;
+
+    std::tuple<int, int, int> dragOrigPos = findItem(dragId);
+    std::tuple<int, int, int> dropOrigPos = findItem(dropId);
+
+    if (op != DndOperation::DndJoin) {
+        // move to dropId's front or back
+        // DnD can only happen in the same folder
+        Q_ASSERT(std::get<0>(dragOrigPos) == std::get<0>(dropOrigPos));
+        ItemsPage * folder = folderById(std::get<0>(dropOrigPos));
+        const int dragOrigPage = std::get<1>(dragOrigPos);
+        const int dropOrigPage = std::get<1>(dropOrigPos);
+        // FIXME: drop position not correct
+        folder->moveItem(dragOrigPage, std::get<2>(dragOrigPos), dropOrigPage, std::get<2>(dropOrigPos));
+    } else {
+        if (dragId.startsWith("internal/folders/")) return; // cannot drag folder onto something
+        if (dropId.startsWith("internal/folders/")) {
+            // drop into existing folder
+            m_topLevel->removeItem(dragId);
+            m_folders.value(dropId)->appendItem(dragId);
+        } else {
+            // make a new folder, move two items into the folder
+            int folderCount = m_folders.count();
+            QString folderNumStr(QString::number(folderCount + 1));
+            ItemsPage * folder = createFolder(folderNumStr);
+            folder->appendPage({dragId, dropId});
+            AppItem * dropItem = AppsModel::instance().itemFromDesktopId(dropId);
+            AppItem::DDECategories dropCategories = AppItem::DDECategories(CategoryUtils::parseBestMatchedCategory(dropItem->categories()));
+            folder->setName("internal/category/" + QString::number(dropCategories));
+            m_topLevel->removeItem(dragId);
+            m_topLevel->removeItem(dropId);
+            m_topLevel->insertItem("internal/folders/" + folderNumStr, std::get<1>(dropOrigPos), std::get<2>(dropOrigPos));
+        }
+    }
+
+    saveItemArrangementToUserData();
+    // Lazy solution, just notify the view that all rows and its roles are changed so they need to be updated.
+    emit dataChanged(index(0, 0, QModelIndex()), index(rowCount(QModelIndex()), 0, QModelIndex()));
 }
 
 QModelIndex MultipageProxyModel::index(int row, int column, const QModelIndex &parent) const
@@ -224,7 +267,7 @@ void MultipageProxyModel::onSourceModelChanged()
 
     // add all existing ones if they are not already in
     int appsCount = sourceModel()->rowCount();
-    for (int i = 1; i <= appsCount; i++) {
+    for (int i = 0; i < appsCount; i++) {
         QString desktopId(sourceModel()->data(sourceModel()->index(i, 0), AppItem::DesktopIdRole).toString());
         int folder, page, idx;
         std::tie(folder, std::ignore, std::ignore) = findItem(desktopId);
@@ -248,9 +291,18 @@ ItemsPage *MultipageProxyModel::createFolder(const QString &idNumber)
 
 //    int insertTo = rowCount(QModelIndex());
 //    beginInsertRows(QModelIndex(), insertTo, insertTo);
-
+    beginInsertRows(QModelIndex(), rowCount(QModelIndex()), rowCount(QModelIndex()));
     ItemsPage * page = new ItemsPage(4 * 3, this);
     m_folders.insert(fullId, page);
+    endInsertRows();
 
     return page;
+}
+
+// get folder by id. 0 is top level, >=1 is folder
+ItemsPage *MultipageProxyModel::folderById(int id)
+{
+    if (id == 0) return m_topLevel;
+    const QString folderId("internal/folders/" + QString::number(id));
+    return m_folders.value(folderId);
 }

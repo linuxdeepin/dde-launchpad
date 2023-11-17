@@ -12,6 +12,7 @@ FILES
     categorizedsortproxymodel.h
     favoritedproxymodel.h
     multipageproxymodel.h
+    multipagesortfilterproxymodel.h
 )
 
 target_sources(launcher-models
@@ -23,6 +24,7 @@ PRIVATE
     favoritedproxymodel.cpp
     itemspage.cpp itemspage.h
     multipageproxymodel.cpp
+    multipagesortfilterproxymodel.cpp
 )
 
 target_link_libraries(launcher-models PRIVATE

@@ -19,12 +19,28 @@ Control {
     property int preferredIconSize: 48
 
     property string iconSource
+    property bool dndEnabled: false
 
     Accessible.name: iconItemLabel.text
 
     signal folderClicked()
     signal itemClicked()
     signal menuTriggered()
+
+    Drag.dragType: Drag.Automatic
+    Drag.active: dragHandler.active
+
+    states: State {
+        name: "dragged";
+        when: dragHandler.active
+        // FIXME: When dragging finished, the position of the item is changed for unknown reason,
+        //        so we use the state to reset the x and y here.
+        PropertyChanges {
+            target: root
+            x: x
+            y: y
+        }
+    }
 
     contentItem: ToolButton {
         focusPolicy: Qt.NoFocus
@@ -48,14 +64,13 @@ Control {
                 radius: width / 2
             }
 
-            Rectangle {
+            Item {
                 width: root.width / 2
                 height: root.height / 2
                 anchors.horizontalCenter: parent.horizontalCenter
-                radius: 8
-                color: root.icons ? Qt.rgba(0, 0, 0, 0.5) : "transparent"
 
                 Loader {
+                    id: iconLoader
                     anchors.fill: parent
                     sourceComponent: root.icons !== undefined ? folderComponent : imageComponent
                 }
@@ -63,29 +78,11 @@ Control {
                 Component {
                     id: folderComponent
 
-                    Grid {
-                        id: folderGrid
+                    Image {
+                        id: iconImage
                         anchors.fill: parent
-                        rows: 2
-                        columns: 2
-                        spacing: 5
-                        padding: 5
-
-                        Repeater {
-                            model: icons
-                            delegate: Rectangle {
-                                visible: true
-                                color: "transparent"
-                                width: (folderGrid.width - (folderGrid.columns - 1) * folderGrid.spacing - folderGrid.padding * 2) / folderGrid.columns
-                                height: (folderGrid.height - (folderGrid.rows - 1) * folderGrid.spacing - folderGrid.padding * 2) / folderGrid.rows
-
-                                Image {
-                                    anchors.fill: parent
-                                    source: "image://app-icon/" + modelData
-                                    sourceSize: Qt.size(parent.width, parent.height)
-                                }
-                            }
-                        }
+                        source: "image://folder-icon/" + icons.join(':')
+                        sourceSize: Qt.size(parent.width, parent.height)
                     }
                 }
 
@@ -104,7 +101,7 @@ Control {
 
             Label {
                 id: iconItemLabel
-                text: display
+                text: display.startsWith("internal/category/") ? getCategoryName(display.substring(18)) : display
                 textFormat: Text.PlainText
                 width: parent.width
                 horizontalAlignment: Text.AlignHCenter
@@ -139,6 +136,21 @@ Control {
 
     HoverHandler {
         id: stylus
+    }
+
+    DragHandler {
+        id: dragHandler
+        enabled: root.dndEnabled
+
+        onActiveChanged: {
+            if (active) {
+                // TODO: 1. this way we couldn't give it an image size hint,
+                //       2. also not able to set offset to drag image, so the cursor is always
+                //          at the top-left of the image
+                //       3. we should also handle folder icon
+                parent.Drag.imageSource = icons ? ("image://folder-icon/" + icons.join(':')) : parent.iconSource
+            }
+        }
     }
 
     Keys.onSpacePressed: {

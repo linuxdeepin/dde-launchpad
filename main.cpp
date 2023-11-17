@@ -21,8 +21,10 @@
 #include <DStandardPaths>
 #include <DPathBuf>
 #include <launcherappiconprovider.h>
+#include <launcherfoldericonprovider.h>
 #include <blurhashimageprovider.h>
 #include <ksortfilterproxymodel.h>
+#include <multipagesortfilterproxymodel.h>
 
 DCORE_USE_NAMESPACE
 DGUI_USE_NAMESPACE
@@ -78,6 +80,7 @@ int main(int argc, char* argv[])
     }
 
     qmlRegisterType<KSortFilterProxyModel>("org.deepin.vendored", 1, 0, "KSortFilterProxyModel");
+    qmlRegisterType<MultipageSortFilterProxyModel>("org.deepin.launchpad", 1, 0, "MultipageSortFilterProxyModel");
     qmlRegisterUncreatableType<AppItem>("org.deepin.launchpad", 1, 0, "AppItem", "AppItem should only be created from C++ side");
     qmlRegisterSingletonInstance("org.deepin.launchpad", 1, 0, "AppsModel", &AppsModel::instance());
     qmlRegisterSingletonInstance("org.deepin.launchpad", 1, 0, "FavoritedProxyModel", &FavoritedProxyModel::instance());
@@ -95,6 +98,7 @@ int main(int argc, char* argv[])
     QQuickStyle::setStyle("Chameleon");
 
     engine.addImageProvider(QLatin1String("app-icon"), new LauncherAppIconProvider);
+    engine.addImageProvider(QLatin1String("folder-icon"), new LauncherFolderIconProvider);
     engine.addImageProvider(QLatin1String("blurhash"), new BlurhashImageProvider);
 
     QQmlContext * ctx = engine.rootContext();
