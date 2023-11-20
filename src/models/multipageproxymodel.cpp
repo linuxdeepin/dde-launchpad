@@ -46,6 +46,7 @@ void MultipageProxyModel::commitDndOperation(const QString &dragId, const QStrin
         folder->moveItem(dragOrigPage, std::get<2>(dragOrigPos), dropOrigPage, std::get<2>(dropOrigPos));
     } else {
         if (dragId.startsWith("internal/folders/")) return; // cannot drag folder onto something
+        if (std::get<0>(dropOrigPos) != 0) return; // folder inside folder is not allowed
         if (dropId.startsWith("internal/folders/")) {
             // drop into existing folder
             m_topLevel->removeItem(dragId);
