@@ -138,7 +138,7 @@ void ItemsPage::moveItem(int from_page, int from_index, int to_page, int to_inde
     }
 }
 
-void ItemsPage::removeItem(const QString id, bool removePageIfPageIsEmpty)
+bool ItemsPage::removeItem(const QString id, bool removePageIfPageIsEmpty)
 {
     int page, idx;
     std::tie(page, idx) = findItem(id);
@@ -150,7 +150,11 @@ void ItemsPage::removeItem(const QString id, bool removePageIfPageIsEmpty)
             m_pages.removeAt(page);
             emit pageCountChanged();
         }
+
+        return true;
     }
+
+    return false;
 }
 
 // <page, index>

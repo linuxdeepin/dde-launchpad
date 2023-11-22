@@ -37,32 +37,47 @@ void MultipageProxyModel::commitDndOperation(const QString &dragId, const QStrin
 
     if (op != DndOperation::DndJoin) {
         // move to dropId's front or back
-        // DnD can only happen in the same folder
-        Q_ASSERT(std::get<0>(dragOrigPos) == std::get<0>(dropOrigPos));
-        ItemsPage * folder = folderById(std::get<0>(dropOrigPos));
-        const int dragOrigPage = std::get<1>(dragOrigPos);
-        const int dropOrigPage = std::get<1>(dropOrigPos);
-        // FIXME: drop position not correct
-        folder->moveItem(dragOrigPage, std::get<2>(dragOrigPos), dropOrigPage, std::get<2>(dropOrigPos));
+        if (std::get<0>(dragOrigPos) == std::get<0>(dropOrigPos)) {
+            // same folder item re-arrangement
+            ItemsPage * folder = folderById(std::get<0>(dropOrigPos));
+            const int dragOrigPage = std::get<1>(dragOrigPos);
+            const int dropOrigPage = std::get<1>(dropOrigPos);
+            // FIXME: drop position not correct
+            folder->moveItem(dragOrigPage, std::get<2>(dragOrigPos), dropOrigPage, std::get<2>(dropOrigPos));
+        } else {
+            // different folder item arrangement
+            ItemsPage * srcFolder = folderById(std::get<0>(dragOrigPos));
+            ItemsPage * dstFolder = folderById(std::get<0>(dropOrigPos));
+            srcFolder->removeItem(dragId);
+            if (srcFolder->pageCount() == 0) {
+                // FIXME: crash
+                removeFolder(QString::number(std::get<0>(dragOrigPos)));
+            }
+            dstFolder->insertItem(dragId, std::get<1>(dropOrigPos), std::get<2>(dropOrigPos));
+        }
     } else {
         if (dragId.startsWith("internal/folders/")) return; // cannot drag folder onto something
         if (std::get<0>(dropOrigPos) != 0) return; // folder inside folder is not allowed
         if (dropId.startsWith("internal/folders/")) {
             // drop into existing folder
-            m_topLevel->removeItem(dragId);
+            ItemsPage * srcFolder = folderById(std::get<0>(dragOrigPos));
+            srcFolder->removeItem(dragId);
+            if (srcFolder->pageCount() == 0) {
+                // FIXME: crash
+                removeFolder(QString::number(std::get<0>(dragOrigPos)));
+            }
             m_folders.value(dropId)->appendItem(dragId);
         } else {
             // make a new folder, move two items into the folder
-            int folderCount = m_folders.count();
-            QString folderNumStr(QString::number(folderCount + 1));
-            ItemsPage * folder = createFolder(folderNumStr);
+            QString folderId = findAvailableFolderId();
+            ItemsPage * folder = createFolder(folderId);
             folder->appendPage({dragId, dropId});
             AppItem * dropItem = AppsModel::instance().itemFromDesktopId(dropId);
             AppItem::DDECategories dropCategories = AppItem::DDECategories(CategoryUtils::parseBestMatchedCategory(dropItem->categories()));
             folder->setName("internal/category/" + QString::number(dropCategories));
             m_topLevel->removeItem(dragId);
             m_topLevel->removeItem(dropId);
-            m_topLevel->insertItem("internal/folders/" + folderNumStr, std::get<1>(dropOrigPos), std::get<2>(dropOrigPos));
+            m_topLevel->insertItem(folderId, std::get<1>(dropOrigPos), std::get<2>(dropOrigPos));
         }
     }
 
@@ -112,7 +127,7 @@ QVariant MultipageProxyModel::data(const QModelIndex &index, int role) const
         }
     } else {
         // a folder
-        QString id("internal/folders/" + QString::number(idx + 1));
+        QString id = m_folderIndexes[idx];
         int folder, page, idx;
         if (role >= AppsModel::ProxyModelExtendedRole && role != IconsNameRole) {
             std::tie(folder, page, idx) = findItem(id, true);
@@ -231,14 +246,15 @@ void MultipageProxyModel::saveItemArrangementToUserData()
     }
     itemArrangementSettings.endGroup();
 
-    for (int i = 1; i <= m_folders.count(); i++) {
-        itemArrangementSettings.beginGroup("fullscreen/" + QString::number(i));
-        ItemsPage * page = m_folders.value("internal/folders/" + QString::number(i));
+    for (int i = 0; i < m_folderIndexes.count(); i++) {
+        QString id = m_folderIndexes[i];
+        itemArrangementSettings.beginGroup("fullscreen/" + id.mid(17));
+        ItemsPage * page = m_folders.value(m_folderIndexes[i]);
         int pageCount = page->pageCount();
         itemArrangementSettings.setValue("name", page->name());
         itemArrangementSettings.setValue("pageCount", pageCount);
-        for (int i = 0; i < pageCount; i++) {
-            itemArrangementSettings.setValue(QString::asprintf("pageItems/%d", i), page->items(i));
+        for (int j = 0; j < pageCount; j++) {
+            itemArrangementSettings.setValue(QString::asprintf("pageItems/%d", j), page->items(j));
         }
         itemArrangementSettings.endGroup();
     }
@@ -254,9 +270,12 @@ std::tuple<int, int, int> MultipageProxyModel::findItem(const QString &id, bool 
     if (page != -1) return std::make_tuple(0, page, idx);
 
     if (!searchTopLevelOnly) {
-        for (int i = 1; i <= m_folders.count(); i++) {
-            std::tie(page, idx) = m_folders["internal/folders/" + QString::number(i)]->findItem(id);
-            if (page != -1) return std::make_tuple(i, page, idx);
+        for (const QString & folderId : qAsConst(m_folderIndexes)) {
+            std::tie(page, idx) = m_folders[folderId]->findItem(id);
+            if (page != -1) {
+                int i = m_folderIndexes.indexOf(folderId) + 1;
+                return std::make_tuple(i, page, idx);
+            }
         }
     }
 
@@ -276,6 +295,7 @@ void MultipageProxyModel::onSourceModelChanged()
         std::tie(folder, std::ignore, std::ignore) = findItem(desktopId);
         if (folder == -1) {
 //            qDebug() << desktopId;
+            findItem(desktopId);
             m_topLevel->appendItem(desktopId);
         }
     }
@@ -284,22 +304,61 @@ void MultipageProxyModel::onSourceModelChanged()
 
     saveItemArrangementToUserData();
 
-//    endResetModel();
+    //    endResetModel();
 }
 
-ItemsPage *MultipageProxyModel::createFolder(const QString &idNumber)
+int MultipageProxyModel::indexById(const QString &id)
 {
-    QString fullId("internal/folders/" + idNumber);
-    Q_ASSERT(!m_folders.contains(fullId));
+    if (id.startsWith("internal/folders/")) {
+        int idx = m_folderIndexes.indexOf(id) + 1;
+        return (sourceModel() ? sourceModel()->rowCount() : 0) + idx;
+    } else {
+        QModelIndexList results = sourceModel()->match(sourceModel()->index(0, 0), AppItem::DesktopIdRole, id);
+        if (results.count() > 0) {
+            return results.constFirst().row();
+        }
+        return -1;
+    }
+}
 
-//    int insertTo = rowCount(QModelIndex());
-//    beginInsertRows(QModelIndex(), insertTo, insertTo);
+QString MultipageProxyModel::findAvailableFolderId()
+{
+    int idNumber = 0;
+    QString fullId;
+    do {
+        idNumber++;
+        fullId = QStringLiteral("internal/folders/%1").arg(idNumber);
+    } while (m_folders.contains(fullId));
+
+    Q_ASSERT(idNumber != 0); // 0 is reserved for top level.
+    return fullId;
+}
+
+ItemsPage *MultipageProxyModel::createFolder(const QString &id)
+{
+    Q_ASSERT(!id.isEmpty());
+    QString fullId(id.startsWith("internal/folders/") ? id : QStringLiteral("internal/folders/%1").arg(id));
+    Q_ASSERT(!m_folderIndexes.contains(fullId));
+
     beginInsertRows(QModelIndex(), rowCount(QModelIndex()), rowCount(QModelIndex()));
     ItemsPage * page = new ItemsPage(4 * 3, this);
     m_folders.insert(fullId, page);
+    m_folderIndexes.append(fullId);
     endInsertRows();
 
     return page;
+}
+
+void MultipageProxyModel::removeFolder(const QString &idNumber)
+{
+    QString fullId("internal/folders/" + idNumber);
+    Q_ASSERT(m_folders.contains(fullId));
+
+    int idx = indexById(fullId);
+    beginRemoveRows(QModelIndex(), idx, idx);
+    m_folders.remove(fullId);
+    m_folderIndexes.removeOne(fullId);
+    endRemoveRows();
 }
 
 // get folder by id. 0 is top level, >=1 is folder

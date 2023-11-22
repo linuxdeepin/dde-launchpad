@@ -59,11 +59,14 @@ private:
     std::tuple<int, int, int> findItem(const QString & id, bool searchTopLevelOnly = false) const;
     void onSourceModelChanged();
 
-    ItemsPage * createFolder(const QString & idNumber);
+    int indexById(const QString & id);
+    QString findAvailableFolderId();
+    ItemsPage * createFolder(const QString & id);
+    void removeFolder(const QString & idNumber);
     ItemsPage * folderById(int id);
 
     // <folder-id, items-arrangement-data> folder-id: internal/folder/<id number>
     ItemsPage * m_topLevel;
     QHash<QString, ItemsPage *> m_folders;
-
+    QStringList m_folderIndexes;
 };
