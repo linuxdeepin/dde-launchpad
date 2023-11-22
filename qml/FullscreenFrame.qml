@@ -24,6 +24,19 @@ Control {
     topPadding: (DesktopIntegration.dockPosition === Qt.UpArrow ? DesktopIntegration.dockGeometry.height : 0) + 20
     bottomPadding: (DesktopIntegration.dockPosition === Qt.DownArrow ? DesktopIntegration.dockGeometry.height : 0) + 20
 
+    // ----------- Drag and Drop related functions START -----------
+    Label {
+        id: dndDebug
+        visible: DebugHelper.qtDebugEnabled
+        text: "DnD DEBUG"
+    }
+
+    function dropOnItem(dragId, dropId, op) {
+        dndDebug.text = "drag " + dragId + " onto " + dropId + " with " + op
+        MultipageProxyModel.commitDndOperation(dragId, dropId, op)
+    }
+    // ----------- Drag and Drop related functions  END  -----------
+
     Timer {
         id: flipPageDelay
         interval: 400
@@ -149,10 +162,9 @@ Control {
                                 delegate: IconItemDelegate {
                                     dndEnabled: false
                                     Drag.mimeData: {
-                                        "application/x-dde-launcher-dnd-fullscreen": ("0," + modelData + "," + index), // "folder,page,index"
                                         "application/x-dde-launcher-dnd-desktopId": model.desktopId
                                     }
-                                    visible: model.desktopId !== dropArea.currentDraggedDesktopId
+                                    visible: !Drag.active
                                     iconSource: "image://app-icon/" + iconName
                                     width: gridViewContainer.cellSize
                                     height: gridViewContainer.cellSize
@@ -171,6 +183,20 @@ Control {
                                     }
                                     onMenuTriggered: {
                                         showContextMenu(this, model, folderIcons, false, true)
+                                    }
+                                    DropArea {
+                                        anchors.fill: parent
+                                        onDropped: {
+                                            let dragId = drop.getDataAsString("application/x-dde-launcher-dnd-desktopId")
+                                            let op = 0
+                                            let sideOpPadding = width / 4
+                                            if (drop.x < sideOpPadding) {
+                                                op = -1
+                                            } else if (drop.x > (width - sideOpPadding)) {
+                                                op = 1
+                                            }
+                                            dropOnItem(dragId, model.desktopId, op)
+                                        }
                                     }
                                 }
                             }
@@ -237,47 +263,6 @@ Control {
 //            console.log(text)
                 SearchFilterProxyModel.setFilterRegularExpression(text)
             }
-        }
-    }
-
-    DropArea {
-        id: dropArea
-        anchors.fill: parent
-
-        property string currentDraggedDesktopId: ""
-
-        onPositionChanged: {
-            currentDraggedDesktopId = drag.getDataAsString("application/x-dde-launcher-dnd-desktopId")
-            dndDebug.text = drag.x + "," + drag.y + "." + drag.getDataAsString("application/x-dde-launcher-dnd-desktopId")
-        }
-
-        onDropped: {
-            let curGridView = pages.currentItem.item.grids
-            let curPoint = curGridView.mapFromItem(dropArea, drag.x, drag.y)
-            let curItem = curGridView.itemAt(curPoint.x, curPoint.y)
-            if (curItem) {
-                // drop on the left, center or right?
-                let itemX = curGridView.mapFromItem(curItem.parent, curItem.x, curItem.y).x
-                let itemWidth = curItem.width
-                let sideOpPadding = itemWidth / 4
-                let op = 0
-                if (curPoint.x < (itemX + sideOpPadding)) {
-                    op = -1
-                } else if (curPoint.x > (itemX + curItem.width - sideOpPadding)) {
-                    op = 1
-                }
-
-                let targetItemInfo = curItem.Drag.mimeData["application/x-dde-launcher-dnd-desktopId"]
-                dndDebug.text = "drag " + currentDraggedDesktopId + " onto " + targetItemInfo + " with " + op
-                MultipageProxyModel.commitDndOperation(currentDraggedDesktopId, targetItemInfo, op)
-            }
-            currentDraggedDesktopId = ""
-        }
-
-        Label {
-            id: dndDebug
-            visible: DebugHelper.qtDebugEnabled
-            text: "DnD DEBUG"
         }
     }
 
@@ -365,6 +350,10 @@ Control {
                                         activeGridViewFocusOnTab: folderGridViewLoader.SwipeView.isCurrentItem
                                         delegate: IconItemDelegate {
                                             dndEnabled: false
+                                            Drag.mimeData: {
+                                                "application/x-dde-launcher-dnd-desktopId": model.desktopId
+                                            }
+                                            visible: !Drag.active
                                             iconSource: "image://app-icon/" + iconName
                                             width: folderGridViewContainer.cellSize
                                             height: folderGridViewContainer.cellSize
@@ -374,6 +363,20 @@ Control {
                                             }
                                             onMenuTriggered: {
                                                 showContextMenu(this, model, false, false, true)
+                                            }
+                                            DropArea {
+                                                anchors.fill: parent
+                                                onDropped: {
+                                                    let dragId = drop.getDataAsString("application/x-dde-launcher-dnd-desktopId")
+                                                    let op = 0
+                                                    let sideOpPadding = width / 4
+                                                    if (drop.x < sideOpPadding) {
+                                                        op = -1
+                                                    } else if (drop.x > (width - sideOpPadding)) {
+                                                        op = 1
+                                                    }
+                                                    dropOnItem(dragId, model.desktopId, op)
+                                                }
                                             }
                                         }
                                     }

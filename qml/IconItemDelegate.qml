@@ -134,10 +134,6 @@ Control {
         }
     }
 
-    HoverHandler {
-        id: stylus
-    }
-
     DragHandler {
         id: dragHandler
         enabled: root.dndEnabled
