@@ -36,8 +36,7 @@ Depends:
  qml-module-qtquick-controls2,
  qml-module-qtquick-controls2-styles-chameleon,
 # v-- actually should be depended by qqc2-styles-chameleon
- qml-module-qtgraphicaleffects,
- qml-module-org-kde-kitemmodels
+ qml-module-qtgraphicaleffects
 Conflicts: dde-launcher
 Replaces: dde-launcher
 Description: <insert up to 60 chars description>

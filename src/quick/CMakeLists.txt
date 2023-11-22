@@ -11,7 +11,6 @@ PRIVATE
     launcherappiconprovider.cpp
     launcherfoldericonprovider.cpp
     blurhashimageprovider.cpp
-    ksortfilterproxymodel.cpp
 )
 
 target_sources(launcher-qml-utils PUBLIC
@@ -20,7 +19,6 @@ FILES
     launcherappiconprovider.h
     launcherfoldericonprovider.h
     blurhashimageprovider.h
-    ksortfilterproxymodel.h
 )
 
 target_include_directories(launcher-qml-utils PUBLIC ${CMAKE_CURRENT_LIST_DIR})

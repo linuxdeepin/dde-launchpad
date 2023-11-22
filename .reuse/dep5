@@ -38,9 +38,3 @@ Files: *.deepin.dde.*.xml */org.desktopspec.*.xml
 Copyright: UnionTech Software Technology Co., Ltd.
 License: GPL-3.0-or-later
 
-# vendored from KItemModels
-Files: src/quick/ksortfilterproxymodel.cpp src/quick/ksortfilterproxymodel.h
-Copyright: 2010, Marco Martin <mart@kde.org>
-           2019, David Edmundson <davidedmundson@kde.org>
-License: LGPL-2.0-or-later
-

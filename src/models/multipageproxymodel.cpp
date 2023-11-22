@@ -68,7 +68,9 @@ void MultipageProxyModel::commitDndOperation(const QString &dragId, const QStrin
 
     saveItemArrangementToUserData();
     // Lazy solution, just notify the view that all rows and its roles are changed so they need to be updated.
-    emit dataChanged(index(0, 0, QModelIndex()), index(rowCount(QModelIndex()), 0, QModelIndex()));
+    emit dataChanged(index(0, 0, QModelIndex()), index(rowCount(QModelIndex()), 0, QModelIndex()), {
+        PageRole, IndexInPageRole, FolderIdNumberRole, IconsNameRole
+    });
 }
 
 QModelIndex MultipageProxyModel::index(int row, int column, const QModelIndex &parent) const

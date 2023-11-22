@@ -23,7 +23,6 @@
 #include <launcherappiconprovider.h>
 #include <launcherfoldericonprovider.h>
 #include <blurhashimageprovider.h>
-#include <ksortfilterproxymodel.h>
 #include <multipagesortfilterproxymodel.h>
 
 DCORE_USE_NAMESPACE
@@ -82,7 +81,6 @@ int main(int argc, char* argv[])
         LauncherController::instance().setVisible(true);
     }
 
-    qmlRegisterType<KSortFilterProxyModel>("org.deepin.vendored", 1, 0, "KSortFilterProxyModel");
     qmlRegisterType<MultipageSortFilterProxyModel>("org.deepin.launchpad", 1, 0, "MultipageSortFilterProxyModel");
     qmlRegisterUncreatableType<AppItem>("org.deepin.launchpad", 1, 0, "AppItem", "AppItem should only be created from C++ side");
     qmlRegisterSingletonInstance("org.deepin.launchpad", 1, 0, "AppsModel", &AppsModel::instance());

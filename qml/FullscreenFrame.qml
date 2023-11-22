@@ -9,7 +9,6 @@ import QtQuick.Layouts 1.15
 import QtQuick.Controls 2.15
 import QtQuick.Window 2.15
 import org.deepin.dtk 1.0
-import org.deepin.vendored 1.0
 
 import org.deepin.launchpad 1.0
 
@@ -148,7 +147,7 @@ Control {
                                 focus: true
                                 activeGridViewFocusOnTab: gridViewLoader.SwipeView.isCurrentItem
                                 delegate: IconItemDelegate {
-                                    dndEnabled: false
+                                    dndEnabled: true
                                     Drag.mimeData: {
                                         "application/x-dde-launcher-dnd-fullscreen": ("0," + modelData + "," + index), // "folder,page,index"
                                         "application/x-dde-launcher-dnd-desktopId": model.desktopId
@@ -365,6 +364,7 @@ Control {
                                         focus: true
                                         activeGridViewFocusOnTab: folderGridViewLoader.SwipeView.isCurrentItem
                                         delegate: IconItemDelegate {
+                                            dndEnabled: true
                                             iconSource: "image://app-icon/" + iconName
                                             width: folderGridViewContainer.cellSize
                                             height: folderGridViewContainer.cellSize
