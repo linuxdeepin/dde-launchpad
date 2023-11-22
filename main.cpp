@@ -51,6 +51,9 @@ int main(int argc, char* argv[])
     qputenv("D_POPUP_MODE", "embed");
 
     QGuiApplication app(argc, argv);
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
+    app.setAttribute(Qt::AA_UseHighDpiPixmaps);
+#endif // (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
     QCoreApplication::setOrganizationName("deepin");
     QCoreApplication::setApplicationName("dde-launchpad");
     QCoreApplication::setApplicationVersion(QT_STRINGIFY(DDE_LAUNCHPAD_VERSION) + QStringLiteral("-technical-preview"));
