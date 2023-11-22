@@ -147,7 +147,7 @@ Control {
                                 focus: true
                                 activeGridViewFocusOnTab: gridViewLoader.SwipeView.isCurrentItem
                                 delegate: IconItemDelegate {
-                                    dndEnabled: true
+                                    dndEnabled: false
                                     Drag.mimeData: {
                                         "application/x-dde-launcher-dnd-fullscreen": ("0," + modelData + "," + index), // "folder,page,index"
                                         "application/x-dde-launcher-dnd-desktopId": model.desktopId
@@ -364,7 +364,7 @@ Control {
                                         focus: true
                                         activeGridViewFocusOnTab: folderGridViewLoader.SwipeView.isCurrentItem
                                         delegate: IconItemDelegate {
-                                            dndEnabled: true
+                                            dndEnabled: false
                                             iconSource: "image://app-icon/" + iconName
                                             width: folderGridViewContainer.cellSize
                                             height: folderGridViewContainer.cellSize
