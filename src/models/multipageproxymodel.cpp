@@ -28,6 +28,19 @@ int MultipageProxyModel::pageCount(int folderId) const
     return m_folders.value(fullId)->pageCount();
 }
 
+void MultipageProxyModel::updateFolderName(int folderId, const QString &name)
+{
+    QString fullId("internal/folders/" + QString::number(folderId));
+    int idx = indexById(fullId);
+    Q_ASSERT(idx != -1);
+    ItemsPage * folder = folderById(folderId);
+    folder->setName(name);
+
+    saveItemArrangementToUserData();
+    // FIXME: only notify the changed one
+    emit dataChanged(index(0, 0), index(rowCount(), 0), {Qt::DisplayRole});
+}
+
 void MultipageProxyModel::commitDndOperation(const QString &dragId, const QString &dropId, const DndOperation op)
 {
     if (dragId == dropId) return;
@@ -83,7 +96,7 @@ void MultipageProxyModel::commitDndOperation(const QString &dragId, const QStrin
 
     saveItemArrangementToUserData();
     // Lazy solution, just notify the view that all rows and its roles are changed so they need to be updated.
-    emit dataChanged(index(0, 0, QModelIndex()), index(rowCount(QModelIndex()), 0, QModelIndex()), {
+    emit dataChanged(index(0, 0), index(rowCount(), 0), {
         PageRole, IndexInPageRole, FolderIdNumberRole, IconsNameRole
     });
 }

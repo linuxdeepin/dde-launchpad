@@ -37,12 +37,13 @@ public:
     ~MultipageProxyModel();
 
     Q_INVOKABLE int pageCount(int folderId = 0) const;
+    Q_INVOKABLE void updateFolderName(int folderId, const QString & name);
     Q_INVOKABLE void commitDndOperation(const QString & dragId, const QString & dropId, const DndOperation op);
 
     // QAbstractItemModel interface
 public:
-    QModelIndex index(int row, int column, const QModelIndex &parent) const override;
-    int rowCount(const QModelIndex &parent) const override;
+    QModelIndex index(int row, int column, const QModelIndex &parent = QModelIndex()) const override;
+    int rowCount(const QModelIndex &parent = QModelIndex()) const override;
     QVariant data(const QModelIndex &index, int role) const override;
     QHash<int, QByteArray> roleNames() const override;
 

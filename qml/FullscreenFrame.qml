@@ -299,12 +299,17 @@ Control {
                     Layout.preferredHeight: 5
                 }
 
-                Label {
+                SystemPalette { id: folderTextPalette }
+                TextInput {
                     Layout.fillWidth: true
 
                     font: DTK.fontManager.t3
                     horizontalAlignment: Text.AlignHCenter
                     text: folderLoader.folderName
+                    color: folderTextPalette.text
+                    onEditingFinished: {
+                        MultipageProxyModel.updateFolderName(folderLoader.currentFolderId, text);
+                    }
                 }
 
                 Rectangle {
