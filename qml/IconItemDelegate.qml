@@ -98,7 +98,6 @@ Control {
                 }
             }
 
-
             Label {
                 id: iconItemLabel
                 text: display.startsWith("internal/category/") ? getCategoryName(display.substring(18)) : display
@@ -108,6 +107,14 @@ Control {
                 wrapMode: Text.WordWrap
                 elide: Text.ElideRight
                 maximumLineCount: 2
+            }    
+        }
+
+        onClicked: {
+            if (root.icons) {
+                root.folderClicked()
+            } else {
+                root.itemClicked()
             }
         }
     }
@@ -116,21 +123,6 @@ Control {
         acceptedButtons: Qt.RightButton
         onTapped: {
             root.menuTriggered()
-        }
-    }
-
-    MouseArea {
-        anchors.fill: parent
-        acceptedButtons: Qt.LeftButton
-        onClicked: {
-            if (root.icons) {
-                root.folderClicked()
-            } else {
-                root.itemClicked()
-            }
-        }
-        onPressAndHold: {
-
         }
     }
 
@@ -150,7 +142,11 @@ Control {
     }
 
     Keys.onSpacePressed: {
-        root.itemClicked()
+        if (root.icons !== undefined) {
+            root.folderClicked()
+        } else {
+            root.itemClicked()
+        }
     }
 
     Keys.onReturnPressed: {
