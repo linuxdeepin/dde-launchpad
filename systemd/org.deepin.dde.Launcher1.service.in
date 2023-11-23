@@ -5,9 +5,14 @@
 [Unit]
 Description=DDE launchpad background service
 
+Requisite=dde-session-pre.target
+After=dde-session-pre.target
+
+Requisite=dde-session-initialized.target
+PartOf=dde-session-initialized.target
+Before=dde-session-initialized.target
+
 [Service]
 ExecStart=@CMAKE_INSTALL_FULL_BINDIR@/dde-launchpad
 Type=dbus
 BusName=org.deepin.dde.Launcher1
-Restart=on-failure
-RestartSec=1s
