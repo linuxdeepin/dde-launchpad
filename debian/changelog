@@ -1,3 +1,11 @@
+dde-launchpad (0.2.2) unstable; urgency=medium
+
+  * add hover state for AppListView items
+    (https://github.com/linuxdeepin/developer-center/issues/6205)
+  * fix incorrect icon size when using HiDPI (https://github.com/linuxdeepin/developer-center/issues/6137)
+
+ -- Gary Wang <wangzichong@deepin.org>  Thu, 23 Nov 2023 19:41:00 +0800
+
 dde-launchpad (0.2.1) unstable; urgency=medium
 
   * Adjust icon hover effect (https://github.com/linuxdeepin/developer-center/issues/6140)
