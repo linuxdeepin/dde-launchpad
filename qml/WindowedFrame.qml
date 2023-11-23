@@ -8,6 +8,7 @@ import QtQuick.Layouts 1.15
 import QtQuick.Controls 2.15
 import QtQuick.Window 2.15
 import org.deepin.dtk 1.0
+import org.deepin.dtk.private 1.0 as P
 
 import org.deepin.launchpad 1.0
 
@@ -45,8 +46,9 @@ StackView {
                         text: model.display
                         checkable: false
                         icon.name: iconName
+                        width: appListView.width
             //            icon.source: "image://app-icon/" + iconName;
-                        backgroundVisible: false
+                        ColorSelector.family: Palette.CrystalColor
 
                         TapHandler {
                             acceptedButtons: Qt.RightButton
@@ -55,16 +57,17 @@ StackView {
                             }
                         }
 
-                        MouseArea {
-                            anchors.fill: parent
-                            acceptedButtons: Qt.LeftButton
-                            onClicked: {
-                                launchApp(desktopId)
-                            }
+                        onClicked: {
+                            launchApp(desktopId)
                         }
 
                         Keys.onReturnPressed: {
                             launchApp(desktopId)
+                        }
+
+                        background: P.ButtonPanel {
+                            button: parent
+                            visible: ColorSelector.controlState === DTK.HoveredState
                         }
                     }
                 }
