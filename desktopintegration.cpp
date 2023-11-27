@@ -175,7 +175,7 @@ bool DesktopIntegration::isAutoStart(const QString &desktopId) const
     return false;
 }
 
-// only affact the one in XDG_CONFIG_HOME, don't care about the system one (even if there is one).
+// only affect the one in XDG_CONFIG_HOME, don't care about the system one (even if there is one).
 void DesktopIntegration::setAutoStart(const QString &desktopId, bool on)
 {
     QString srcFilePath = AppInfo::fullPathByDesktopId(desktopId);
@@ -184,7 +184,7 @@ void DesktopIntegration::setAutoStart(const QString &desktopId, bool on)
     const QString autoStartFileRelPath(QString("autostart/%1").arg(desktopId));
     const QString autoStartPath(QDir(DStandardPaths::path(DStandardPaths::XDG::ConfigHome)).absoluteFilePath(autoStartFileRelPath));
 
-    // Ensure there is a autostart entry file under the $XDG_CONFIG_HOME/autostart/ folder
+    // Ensure there is an autostart entry file under the $XDG_CONFIG_HOME/autostart/ folder
     // Ee always create this file since the *system* might *have* one entry with Hidden=true,
     // which need us to override (even though it's very not likely to happen).
     bool createdByUs = false;
