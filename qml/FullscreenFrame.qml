@@ -26,13 +26,23 @@ Control {
 
     // ----------- Drag and Drop related functions START -----------
     Label {
-        id: dndDebug
+        property string currentlyDraggedId
+
+        id: dndItem
         visible: DebugHelper.qtDebugEnabled
         text: "DnD DEBUG"
+
+        Drag.onActiveChanged: {
+            if (Drag.active) {
+                text = "Dragging " + currentlyDraggedId
+            } else {
+                currentlyDraggedId = ""
+            }
+        }
     }
 
     function dropOnItem(dragId, dropId, op) {
-        dndDebug.text = "drag " + dragId + " onto " + dropId + " with " + op
+        dndItem.text = "drag " + dragId + " onto " + dropId + " with " + op
         MultipageProxyModel.commitDndOperation(dragId, dropId, op)
     }
     // ----------- Drag and Drop related functions  END  -----------
@@ -164,7 +174,7 @@ Control {
                                     Drag.mimeData: {
                                         "application/x-dde-launcher-dnd-desktopId": model.desktopId
                                     }
-                                    visible: !Drag.active
+                                    visible: dndItem.currentlyDraggedId !== model.desktopId
                                     iconSource: "image://app-icon/" + iconName
                                     width: gridViewContainer.cellSize
                                     height: gridViewContainer.cellSize
@@ -280,7 +290,21 @@ Control {
         x: (parent.width - width) / 2
         y: (parent.height - height) / 2
 
+        // Ensure drop won't fallthough the Popup.
+        // TODO: maybe also handle item re-arrangement when not dropped onto an item
+        DropArea {
+            anchors.fill: parent
+            onExited: {
+                folderGridViewPopup.close()
+            }
+        }
+
         modal: true
+
+        onAboutToHide: {
+            // reset folder view
+            folderLoader.currentFolderId = 0
+        }
 
         Loader {
             id: folderLoader

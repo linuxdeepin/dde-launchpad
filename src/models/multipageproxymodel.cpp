@@ -19,7 +19,6 @@ MultipageProxyModel::~MultipageProxyModel()
 
 int MultipageProxyModel::pageCount(int folderId) const
 {
-    qDebug() << m_topLevel->pageCount() << folderId << "xxxxxxxx";
     if (folderId == 0) return m_topLevel->pageCount();
 
     QString fullId("internal/folders/" + QString::number(folderId));
@@ -38,7 +37,7 @@ void MultipageProxyModel::updateFolderName(int folderId, const QString &name)
 
     saveItemArrangementToUserData();
     // FIXME: only notify the changed one
-    emit dataChanged(index(0, 0), index(rowCount(), 0), {Qt::DisplayRole});
+    emit dataChanged(index(0, 0), index(rowCount() - 1, 0), {Qt::DisplayRole});
 }
 
 void MultipageProxyModel::commitDndOperation(const QString &dragId, const QString &dropId, const DndOperation op)
@@ -96,7 +95,7 @@ void MultipageProxyModel::commitDndOperation(const QString &dragId, const QStrin
 
     saveItemArrangementToUserData();
     // Lazy solution, just notify the view that all rows and its roles are changed so they need to be updated.
-    emit dataChanged(index(0, 0), index(rowCount(), 0), {
+    emit dataChanged(index(0, 0), index(rowCount() - 1, 0), {
         PageRole, IndexInPageRole, FolderIdNumberRole, IconsNameRole
     });
 }
@@ -140,10 +139,10 @@ QVariant MultipageProxyModel::data(const QModelIndex &index, int role) const
         }
     } else {
         // a folder
-        QString id = m_folderIndexes[idx];
-        int folder, page, idx;
+        QString id = m_folderIndexes.at(idx);
+        int folder, page, pos;
         if (role >= AppsModel::ProxyModelExtendedRole && role != IconsNameRole) {
-            std::tie(folder, page, idx) = findItem(id, true);
+            std::tie(folder, page, pos) = findItem(id, true);
         }
 
         switch (role) {
@@ -154,7 +153,7 @@ QVariant MultipageProxyModel::data(const QModelIndex &index, int role) const
         case PageRole:
             return page;
         case IndexInPageRole:
-            return idx;
+            return pos;
         case FolderIdNumberRole:
             return folder;
         case IconsNameRole: {
@@ -297,9 +296,6 @@ std::tuple<int, int, int> MultipageProxyModel::findItem(const QString &id, bool 
 
 void MultipageProxyModel::onSourceModelChanged()
 {
-//    qDebug() << "aaaaaaaaaaaaaa";
-//    beginResetModel();
-
     // add all existing ones if they are not already in
     int appsCount = sourceModel()->rowCount();
     for (int i = 0; i < appsCount; i++) {
@@ -316,8 +312,6 @@ void MultipageProxyModel::onSourceModelChanged()
     // TODO: remove the ones that no longer valid out of m_folders
 
     saveItemArrangementToUserData();
-
-    //    endResetModel();
 }
 
 int MultipageProxyModel::indexById(const QString &id)
@@ -353,7 +347,7 @@ ItemsPage *MultipageProxyModel::createFolder(const QString &id)
     QString fullId(id.startsWith("internal/folders/") ? id : QStringLiteral("internal/folders/%1").arg(id));
     Q_ASSERT(!m_folderIndexes.contains(fullId));
 
-    beginInsertRows(QModelIndex(), rowCount(QModelIndex()), rowCount(QModelIndex()));
+    beginInsertRows(QModelIndex(), rowCount(), rowCount());
     ItemsPage * page = new ItemsPage(4 * 3, this);
     m_folders.insert(fullId, page);
     m_folderIndexes.append(fullId);

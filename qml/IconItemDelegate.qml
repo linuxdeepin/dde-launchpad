@@ -17,6 +17,7 @@ Control {
 
     property var icons: undefined
     property int preferredIconSize: 48
+    property string text: display.startsWith("internal/category/") ? getCategoryName(display.substring(18)) : display
 
     property string iconSource
     property bool dndEnabled: false
@@ -28,7 +29,7 @@ Control {
     signal menuTriggered()
 
     Drag.dragType: Drag.Automatic
-    Drag.active: dragHandler.active
+    // Drag.active: dragHandler.active
 
     states: State {
         name: "dragged";
@@ -100,7 +101,7 @@ Control {
 
             Label {
                 id: iconItemLabel
-                text: display.startsWith("internal/category/") ? getCategoryName(display.substring(18)) : display
+                text: root.text
                 textFormat: Text.PlainText
                 width: parent.width
                 horizontalAlignment: Text.AlignHCenter
@@ -132,11 +133,21 @@ Control {
 
         onActiveChanged: {
             if (active) {
-                // TODO: 1. this way we couldn't give it an image size hint,
-                //       2. also not able to set offset to drag image, so the cursor is always
-                //          at the top-left of the image
-                //       3. we should also handle folder icon
-                parent.Drag.imageSource = icons ? ("image://folder-icon/" + icons.join(':')) : parent.iconSource
+                // We switch to use the `dndItem` to handle Drag event since that one will always exists.
+                // If we use the current item, then if the item that provides the drag attached property
+                // get destoryed (e.g. switch page or folder close caused destory), dropping at that moment
+                // will cause a crash.
+
+                // Item will be hidden by checking the dndItem.currentlyDraggedId property. We assign the value
+                // to that property here
+                dndItem.currentlyDraggedId = parent.Drag.mimeData["application/x-dde-launcher-dnd-desktopId"]
+                // TODO: This way we couldn't give it an image size hint,
+                dndItem.Drag.imageSource = icons ? ("image://folder-icon/" + icons.join(':')) : parent.iconSource
+                Qt.callLater(function() {
+                    dndItem.Drag.mimeData = parent.Drag.mimeData
+                    dndItem.Drag.active = true
+                    dndItem.Drag.startDrag()
+                })
             }
         }
     }
