@@ -22,9 +22,12 @@ FocusScope {
     property alias padding: item.anchors.margins
     property alias gridViewFocus: gridView.focus
     property bool activeGridViewFocusOnTab: false
+    property Transition itemMove
     required property int columns
     required property int rows
     property alias cellSize: item.cellSize
+
+    readonly property alias gridViewWidth: gridView.width
 
     function itemAt(x, y) {
         let point = mapToItem(gridView, x, y)
@@ -75,10 +78,10 @@ FocusScope {
                 }
 
                 // working (on drag into folder):
-                displaced: Transition { NumberAnimation { properties: "x,y"; duration: 250 } }
+                displaced: root.itemMove
                 // not wroking
-                move: Transition { NumberAnimation { properties: "x,y"; duration: 250 } }
-                moveDisplaced: Transition { NumberAnimation { properties: "x,y"; duration: 250 } }
+                move: root.itemMove
+                moveDisplaced: root.itemMove
             }
         }
 

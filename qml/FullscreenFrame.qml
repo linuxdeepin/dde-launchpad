@@ -45,6 +45,11 @@ Control {
         dndItem.text = "drag " + dragId + " onto " + dropId + " with " + op
         MultipageProxyModel.commitDndOperation(dragId, dropId, op)
     }
+
+    function dropOnPage(dragId, dropFolderId, pageNumber) {
+        dndItem.text = "drag " + dragId + " into " + dropFolderId + " at page " + pageNumber
+        MultipageProxyModel.commitDndOperation(dragId, dropFolderId, MultipageProxyModel.DndJoin, pageNumber)
+    }
     // ----------- Drag and Drop related functions  END  -----------
 
     Timer {
@@ -79,10 +84,12 @@ Control {
                     } else if (xDelta !== 0) {
                         toPage = (xDelta > 0) ? 1 : -1
                     }
-                    let curPage = indicator.currentIndex + toPage
-                    if (curPage >= 0 && curPage < indicator.count) {
+                    if (toPage < 0) {
                         flipPageDelay.start()
-                        indicator.currentIndex = curPage
+                        pages.decrementCurrentIndex()
+                    } else if (toPage > 0) {
+                        flipPageDelay.start()
+                        pages.incrementCurrentIndex()
                     }
                 }
             }
@@ -131,6 +138,50 @@ Control {
             Layout.fillWidth: true
             Layout.fillHeight: true
 
+            DropArea {
+                property int pageIntent: 0
+                property int horizontalPadding: (width - searchResultGridViewContainer.gridViewWidth) / 2
+                anchors.fill: parent
+                onPositionChanged: {
+                    if (drag.x < horizontalPadding) {
+                        pageIntent = -1
+                    } else if (drag.x > (searchResultGridViewContainer.gridViewWidth + horizontalPadding)) {
+                        pageIntent = 1
+                    }
+                }
+                onDropped: {
+                    if (pageIntent === 0) {
+                        // drop into current page
+                        let dragId = drop.getDataAsString("application/x-dde-launcher-dnd-desktopId")
+                        dropOnPage(dragId, "internal/folders/0", pages.currentIndex)
+                    }
+                    pageIntent = 0
+                }
+                onExited: {
+                    pageIntent = 0
+                }
+                onPageIntentChanged: {
+                    if (pageIntent != 0) {
+                        dndMovePageTimer.restart()
+                    } else {
+                        dndMovePageTimer.stop()
+                    }
+                }
+
+                Timer {
+                    id: dndMovePageTimer
+                    interval: 1000
+                    onTriggered: {
+                        // FIXME: why this isn't working?
+                        // if (parent.pageIntent > 0) {
+                        //     pages.incrementCurrentIndex()
+                        // } else if (parent.pageIntent < 0) {
+                        //     pages.decrementCurrentIndex()
+                        // }
+                    }
+                }
+            }
+
             SwipeView {
                 id: pages
 
@@ -169,43 +220,50 @@ Control {
                                 interactive: false
                                 focus: true
                                 activeGridViewFocusOnTab: gridViewLoader.SwipeView.isCurrentItem
-                                delegate: IconItemDelegate {
-                                    dndEnabled: false
-                                    Drag.mimeData: {
-                                        "application/x-dde-launcher-dnd-desktopId": model.desktopId
-                                    }
-                                    visible: dndItem.currentlyDraggedId !== model.desktopId
-                                    iconSource: "image://app-icon/" + iconName
+                                itemMove: Transition { NumberAnimation { properties: "x,y"; duration: 250 } }
+                                delegate: DropArea {
                                     width: gridViewContainer.cellSize
                                     height: gridViewContainer.cellSize
-                                    icons: folderIcons
-                                    padding: 5
-                                    onItemClicked: {
-                                        launchApp(desktopId)
+                                    onEntered: {
+                                        if (folderGridViewPopup.opened) {
+                                            folderGridViewPopup.close()
+                                        }
                                     }
-                                    onFolderClicked: {
-                                        let idStr = model.desktopId
-                                        let idNum = Number(idStr.replace("internal/folders/", ""))
-                                        folderLoader.currentFolderId = idNum
-                                        folderGridViewPopup.open()
-                                        folderLoader.folderName = model.display.startsWith("internal/category/") ? getCategoryName(model.display.substring(18)) : model.display
-                                        console.log("open folder id:" + idNum)
+                                    onDropped: {
+                                        let dragId = drop.getDataAsString("application/x-dde-launcher-dnd-desktopId")
+                                        let op = 0
+                                        let sideOpPadding = width / 4
+                                        if (drop.x < sideOpPadding) {
+                                            op = -1
+                                        } else if (drop.x > (width - sideOpPadding)) {
+                                            op = 1
+                                        }
+                                        dropOnItem(dragId, model.desktopId, op)
                                     }
-                                    onMenuTriggered: {
-                                        showContextMenu(this, model, folderIcons, false, true)
-                                    }
-                                    DropArea {
+
+                                    IconItemDelegate {
                                         anchors.fill: parent
-                                        onDropped: {
-                                            let dragId = drop.getDataAsString("application/x-dde-launcher-dnd-desktopId")
-                                            let op = 0
-                                            let sideOpPadding = width / 4
-                                            if (drop.x < sideOpPadding) {
-                                                op = -1
-                                            } else if (drop.x > (width - sideOpPadding)) {
-                                                op = 1
-                                            }
-                                            dropOnItem(dragId, model.desktopId, op)
+                                        dndEnabled: true
+                                        Drag.mimeData: {
+                                            "application/x-dde-launcher-dnd-desktopId": model.desktopId
+                                        }
+                                        visible: dndItem.currentlyDraggedId !== model.desktopId
+                                        iconSource: "image://app-icon/" + iconName
+                                        icons: folderIcons
+                                        padding: 5
+                                        onItemClicked: {
+                                            launchApp(desktopId)
+                                        }
+                                        onFolderClicked: {
+                                            let idStr = model.desktopId
+                                            let idNum = Number(idStr.replace("internal/folders/", ""))
+                                            folderLoader.currentFolderId = idNum
+                                            folderGridViewPopup.open()
+                                            folderLoader.folderName = model.display.startsWith("internal/category/") ? getCategoryName(model.display.substring(18)) : model.display
+                                            console.log("open folder id:" + idNum)
+                                        }
+                                        onMenuTriggered: {
+                                            showContextMenu(this, model, folderIcons, false, true)
                                         }
                                     }
                                 }
@@ -290,15 +348,6 @@ Control {
         x: (parent.width - width) / 2
         y: (parent.height - height) / 2
 
-        // Ensure drop won't fallthough the Popup.
-        // TODO: maybe also handle item re-arrangement when not dropped onto an item
-        DropArea {
-            anchors.fill: parent
-            onExited: {
-                folderGridViewPopup.close()
-            }
-        }
-
         modal: true
 
         onAboutToHide: {
@@ -315,86 +364,82 @@ Control {
             active: currentFolderId !== 0
             anchors.fill: parent
 
-            sourceComponent: ColumnLayout {
-                spacing: 5
-                anchors.fill: parent
-
-                Item {
-                    Layout.preferredHeight: 5
-                }
-
-                SystemPalette { id: folderTextPalette }
-                TextInput {
-                    Layout.fillWidth: true
-
-                    font: DTK.fontManager.t3
-                    horizontalAlignment: Text.AlignHCenter
-                    text: folderLoader.folderName
-                    color: folderTextPalette.text
-                    onEditingFinished: {
-                        MultipageProxyModel.updateFolderName(folderLoader.currentFolderId, text);
+            sourceComponent: Control {
+                // Ensure drop won't fallthough the Popup.
+                background: DropArea {
+                    anchors.fill: parent
+                    onDropped: {
+                        let dragId = drop.getDataAsString("application/x-dde-launcher-dnd-desktopId")
+                        dropOnPage(dragId, "internal/folders/" + folderLoader.currentFolderId, folderPagesView.currentIndex)
                     }
                 }
 
-                Rectangle {
-                    Layout.fillWidth: true
-                    Layout.fillHeight: true
-                    color: "transparent"
+                contentItem: ColumnLayout {
+                    spacing: 5
+                    anchors.fill: parent
 
-                    SwipeView {
-                        id: folderPagesView
+                    Item {
+                        Layout.preferredHeight: 5
+                    }
 
-                        anchors.fill: parent
+                    SystemPalette { id: folderTextPalette }
+                    TextInput {
+                        Layout.fillWidth: true
 
-                        currentIndex: folderPageIndicator.currentIndex
+                        font: DTK.fontManager.t3
+                        horizontalAlignment: Text.AlignHCenter
+                        text: folderLoader.folderName
+                        color: folderTextPalette.text
+                        onEditingFinished: {
+                            MultipageProxyModel.updateFolderName(folderLoader.currentFolderId, text);
+                        }
+                    }
 
-                        Repeater {
-                            model: MultipageProxyModel.pageCount(folderLoader.currentFolderId) // FIXME: should be a property?
+                    Rectangle {
+                        Layout.fillWidth: true
+                        Layout.fillHeight: true
+                        color: "transparent"
 
-                            Loader {
-                                active: SwipeView.isCurrentItem || SwipeView.isNextItem || SwipeView.isPreviousItem
-                                id: folderGridViewLoader
-                                objectName: "Folder GridView Loader"
+                        SwipeView {
+                            id: folderPagesView
 
-                                sourceComponent: Rectangle {
-                                    anchors.fill: parent
-                                    color: "transparent"
+                            anchors.fill: parent
 
-                                    MultipageSortFilterProxyModel {
-                                        id: folderProxyModel
-                                        sourceModel: MultipageProxyModel
-                                        pageId: modelData
-                                        folderId: folderLoader.currentFolderId
-                                    }
+                            currentIndex: folderPageIndicator.currentIndex
 
-                                    GridViewContainer {
-                                        id: folderGridViewContainer
+                            Repeater {
+                                model: MultipageProxyModel.pageCount(folderLoader.currentFolderId) // FIXME: should be a property?
+
+                                Loader {
+                                    active: SwipeView.isCurrentItem || SwipeView.isNextItem || SwipeView.isPreviousItem
+                                    id: folderGridViewLoader
+                                    objectName: "Folder GridView Loader"
+
+                                    sourceComponent: Rectangle {
                                         anchors.fill: parent
-                                        rows: 3
-                                        columns: 4
-                                        model: folderProxyModel
-                                        padding: 10
-                                        interactive: false
-                                        focus: true
-                                        activeGridViewFocusOnTab: folderGridViewLoader.SwipeView.isCurrentItem
-                                        delegate: IconItemDelegate {
-                                            dndEnabled: false
-                                            Drag.mimeData: {
-                                                "application/x-dde-launcher-dnd-desktopId": model.desktopId
-                                            }
-                                            visible: !Drag.active
-                                            iconSource: "image://app-icon/" + iconName
-                                            width: folderGridViewContainer.cellSize
-                                            height: folderGridViewContainer.cellSize
-                                            padding: 5
-                                            onItemClicked: {
-                                                launchApp(desktopId)
-                                            }
-                                            onMenuTriggered: {
-                                                showContextMenu(this, model, false, false, true)
-                                            }
-                                            DropArea {
-                                                anchors.fill: parent
+                                        color: "transparent"
+
+                                        MultipageSortFilterProxyModel {
+                                            id: folderProxyModel
+                                            sourceModel: MultipageProxyModel
+                                            pageId: modelData
+                                            folderId: folderLoader.currentFolderId
+                                        }
+
+                                        GridViewContainer {
+                                            id: folderGridViewContainer
+                                            anchors.fill: parent
+                                            rows: 3
+                                            columns: 4
+                                            model: folderProxyModel
+                                            padding: 10
+                                            interactive: false
+                                            focus: true
+                                            activeGridViewFocusOnTab: folderGridViewLoader.SwipeView.isCurrentItem
+                                            itemMove: Transition { NumberAnimation { properties: "x,y"; duration: 250 } }
+                                            delegate: DropArea {
+                                                width: folderGridViewContainer.cellSize
+                                                height: folderGridViewContainer.cellSize
                                                 onDropped: {
                                                     let dragId = drop.getDataAsString("application/x-dde-launcher-dnd-desktopId")
                                                     let op = 0
@@ -406,6 +451,24 @@ Control {
                                                     }
                                                     dropOnItem(dragId, model.desktopId, op)
                                                 }
+
+                                                IconItemDelegate {
+                                                    anchors.fill: parent
+                                                    dndEnabled: true
+                                                    Drag.mimeData: {
+                                                        "application/x-dde-launcher-dnd-desktopId": model.desktopId
+                                                    }
+                                                    visible: dndItem.currentlyDraggedId !== model.desktopId
+                                                    iconSource: "image://app-icon/" + iconName
+
+                                                    padding: 5
+                                                    onItemClicked: {
+                                                        launchApp(desktopId)
+                                                    }
+                                                    onMenuTriggered: {
+                                                        showContextMenu(this, model, false, false, true)
+                                                    }
+                                                }
                                             }
                                         }
                                     }
@@ -413,16 +476,16 @@ Control {
                             }
                         }
                     }
-                }
 
-                PageIndicator {
-                    Layout.alignment: Qt.AlignHCenter
+                    PageIndicator {
+                        Layout.alignment: Qt.AlignHCenter
 
-                    id: folderPageIndicator
+                        id: folderPageIndicator
 
-                    count: folderPagesView.count
-                    currentIndex: folderPagesView.currentIndex
-                    interactive: true
+                        count: folderPagesView.count
+                        currentIndex: folderPagesView.currentIndex
+                        interactive: true
+                    }
                 }
             }
         }

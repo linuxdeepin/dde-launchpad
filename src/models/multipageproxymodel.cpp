@@ -40,7 +40,7 @@ void MultipageProxyModel::updateFolderName(int folderId, const QString &name)
     emit dataChanged(index(0, 0), index(rowCount() - 1, 0), {Qt::DisplayRole});
 }
 
-void MultipageProxyModel::commitDndOperation(const QString &dragId, const QString &dropId, const DndOperation op)
+void MultipageProxyModel::commitDndOperation(const QString &dragId, const QString &dropId, const DndOperation op, int pageHint)
 {
     if (dragId == dropId) return;
 
@@ -68,17 +68,19 @@ void MultipageProxyModel::commitDndOperation(const QString &dragId, const QStrin
             dstFolder->insertItem(dragId, std::get<1>(dropOrigPos), std::get<2>(dropOrigPos));
         }
     } else {
-        if (dragId.startsWith("internal/folders/")) return; // cannot drag folder onto something
-        if (std::get<0>(dropOrigPos) != 0) return; // folder inside folder is not allowed
+        if (dragId.startsWith("internal/folders/") && dropId != "internal/folders/0") return; // cannot drag folder onto something
+        if (std::get<0>(dropOrigPos) != 0 && dropId != "internal/folders/0") return; // folder inside folder is not allowed
         if (dropId.startsWith("internal/folders/")) {
             // drop into existing folder
+            const int dropOrigFolder = dropId.mid(17).toInt();
             ItemsPage * srcFolder = folderById(std::get<0>(dragOrigPos));
+            ItemsPage * dstFolder = folderById(dropOrigFolder);
             srcFolder->removeItem(dragId);
             if (srcFolder->pageCount() == 0) {
                 // FIXME: crash
                 removeFolder(QString::number(std::get<0>(dragOrigPos)));
             }
-            m_folders.value(dropId)->appendItem(dragId);
+            dstFolder->appendItem(dragId, pageHint);
         } else {
             // make a new folder, move two items into the folder
             QString folderId = findAvailableFolderId();

@@ -38,7 +38,7 @@ public:
 
     Q_INVOKABLE int pageCount(int folderId = 0) const;
     Q_INVOKABLE void updateFolderName(int folderId, const QString & name);
-    Q_INVOKABLE void commitDndOperation(const QString & dragId, const QString & dropId, const DndOperation op);
+    Q_INVOKABLE void commitDndOperation(const QString & dragId, const QString & dropId, const DndOperation op, int pageHint = -1);
 
     // QAbstractItemModel interface
 public:
