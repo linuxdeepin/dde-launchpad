@@ -142,6 +142,11 @@ Control {
                 property int pageIntent: 0
                 property int horizontalPadding: (width - searchResultGridViewContainer.gridViewWidth) / 2
                 anchors.fill: parent
+                onEntered: {
+                    if (folderGridViewPopup.opened) {
+                        folderGridViewPopup.close()
+                    }
+                }
                 onPositionChanged: {
                     if (drag.x < horizontalPadding) {
                         pageIntent = -1
@@ -352,16 +357,16 @@ Control {
 
         onAboutToHide: {
             // reset folder view
-            folderLoader.currentFolderId = 0
+            folderLoader.currentFolderId = -1
         }
 
         Loader {
             id: folderLoader
 
             property string folderName: "Sample Text"
-            property int currentFolderId: 0
+            property int currentFolderId: -1
 
-            active: currentFolderId !== 0
+            active: currentFolderId !== -1
             anchors.fill: parent
 
             sourceComponent: Control {

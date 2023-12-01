@@ -7,9 +7,9 @@
 #include "itemspage.h"
 #include "appsmodel.h"
 
-#include <QIdentityProxyModel>
+#include <QConcatenateTablesProxyModel>
 
-class MultipageProxyModel : public QIdentityProxyModel
+class MultipageProxyModel : public QConcatenateTablesProxyModel
 {
     Q_OBJECT
 public:
@@ -42,15 +42,8 @@ public:
 
     // QAbstractItemModel interface
 public:
-    QModelIndex index(int row, int column, const QModelIndex &parent = QModelIndex()) const override;
-    int rowCount(const QModelIndex &parent = QModelIndex()) const override;
     QVariant data(const QModelIndex &index, int role) const override;
     QHash<int, QByteArray> roleNames() const override;
-
-    // QAbstractProxyModel interface
-public:
-    QModelIndex mapToSource(const QModelIndex &proxyIndex) const override;
-    QModelIndex mapFromSource(const QModelIndex &sourceIndex) const override;
 
 private:
     explicit MultipageProxyModel(QObject *parent = nullptr);
@@ -59,8 +52,8 @@ private:
     void saveItemArrangementToUserData();
     std::tuple<int, int, int> findItem(const QString & id, bool searchTopLevelOnly = false) const;
     void onSourceModelChanged();
+    void onFolderModelChanged();
 
-    int indexById(const QString & id);
     QString findAvailableFolderId();
     ItemsPage * createFolder(const QString & id);
     void removeFolder(const QString & idNumber);
@@ -69,5 +62,5 @@ private:
     // <folder-id, items-arrangement-data> folder-id: internal/folder/<id number>
     ItemsPage * m_topLevel;
     QHash<QString, ItemsPage *> m_folders;
-    QStringList m_folderIndexes;
+    QStandardItemModel m_folderModel;
 };

@@ -29,15 +29,14 @@ int MultipageProxyModel::pageCount(int folderId) const
 
 void MultipageProxyModel::updateFolderName(int folderId, const QString &name)
 {
-    QString fullId("internal/folders/" + QString::number(folderId));
-    int idx = indexById(fullId);
-    Q_ASSERT(idx != -1);
     ItemsPage * folder = folderById(folderId);
     folder->setName(name);
 
+    QModelIndexList matched = match(mapFromSource(m_folderModel.index(0, 0)), AppItem::DesktopIdRole, QString("internal/folders/%1").arg(folderId));
+    Q_ASSERT(!matched.isEmpty());
+    emit dataChanged(matched.constFirst(), matched.constFirst(), { Qt::DisplayRole });
+
     saveItemArrangementToUserData();
-    // FIXME: only notify the changed one
-    emit dataChanged(index(0, 0), index(rowCount() - 1, 0), {Qt::DisplayRole});
 }
 
 void MultipageProxyModel::commitDndOperation(const QString &dragId, const QString &dropId, const DndOperation op, int pageHint)
@@ -61,8 +60,7 @@ void MultipageProxyModel::commitDndOperation(const QString &dragId, const QStrin
             ItemsPage * srcFolder = folderById(std::get<0>(dragOrigPos));
             ItemsPage * dstFolder = folderById(std::get<0>(dropOrigPos));
             srcFolder->removeItem(dragId);
-            if (srcFolder->pageCount() == 0) {
-                // FIXME: crash
+            if (srcFolder->pageCount() == 0 && srcFolder != dstFolder) {
                 removeFolder(QString::number(std::get<0>(dragOrigPos)));
             }
             dstFolder->insertItem(dragId, std::get<1>(dropOrigPos), std::get<2>(dropOrigPos));
@@ -72,12 +70,11 @@ void MultipageProxyModel::commitDndOperation(const QString &dragId, const QStrin
         if (std::get<0>(dropOrigPos) != 0 && dropId != "internal/folders/0") return; // folder inside folder is not allowed
         if (dropId.startsWith("internal/folders/")) {
             // drop into existing folder
-            const int dropOrigFolder = dropId.mid(17).toInt();
+            const int dropOrigFolder = dropId.midRef(17).toInt();
             ItemsPage * srcFolder = folderById(std::get<0>(dragOrigPos));
             ItemsPage * dstFolder = folderById(dropOrigFolder);
             srcFolder->removeItem(dragId);
-            if (srcFolder->pageCount() == 0) {
-                // FIXME: crash
+            if (srcFolder->pageCount() == 0 && srcFolder != dstFolder) {
                 removeFolder(QString::number(std::get<0>(dragOrigPos)));
             }
             dstFolder->appendItem(dragId, pageHint);
@@ -102,29 +99,16 @@ void MultipageProxyModel::commitDndOperation(const QString &dragId, const QStrin
     });
 }
 
-QModelIndex MultipageProxyModel::index(int row, int column, const QModelIndex &parent) const
-{
-    if (row >= sourceModel()->rowCount()) {
-        return createIndex(row, column, -1);
-    }
-    return QIdentityProxyModel::index(row, column, parent);
-}
-
-int MultipageProxyModel::rowCount(const QModelIndex &parent) const
-{
-    return (sourceModel() ? sourceModel()->rowCount(parent) : 0) + m_folders.count();
-}
-
 QVariant MultipageProxyModel::data(const QModelIndex &index, int role) const
 {
-    int idx = index.row() - sourceModel()->rowCount();
-    if (idx < 0 && role < AppsModel::ProxyModelExtendedRole) return QIdentityProxyModel::data(index, role);
+    int idx = index.row() - AppsModel::instance().rowCount();
+    if (idx < 0 && role < AppsModel::ProxyModelExtendedRole) return QConcatenateTablesProxyModel::data(index, role);
 
     if (idx < 0) {
         // regular applications, not a folder
         QString id(data(index, AppItem::DesktopIdRole).toString());
         if (id.isEmpty() || id.contains("internal")) {
-            qDebug() << index << index.row() << sourceModel()->rowCount();
+            qDebug() << id << index << index.row() << AppsModel::instance().rowCount() << role;
         }
         int folder, page, idx;
         std::tie(folder, page, idx) = findItem(id);
@@ -141,7 +125,8 @@ QVariant MultipageProxyModel::data(const QModelIndex &index, int role) const
         }
     } else {
         // a folder
-        QString id = m_folderIndexes.at(idx);
+        QModelIndex srcIdx = mapToSource(index);
+        QString id = m_folderModel.itemFromIndex(srcIdx)->data(AppItem::DesktopIdRole).toString();
         int folder, page, pos;
         if (role >= AppsModel::ProxyModelExtendedRole && role != IconsNameRole) {
             std::tie(folder, page, pos) = findItem(id, true);
@@ -172,34 +157,18 @@ QVariant MultipageProxyModel::data(const QModelIndex &index, int role) const
         }
     }
 
-    return QIdentityProxyModel::data(index, role);
+    return QConcatenateTablesProxyModel::data(index, role);
 }
 
 QHash<int, QByteArray> MultipageProxyModel::roleNames() const
 {
-    auto existingRoleNames = QIdentityProxyModel::roleNames();
+    auto existingRoleNames = AppsModel::instance().roleNames();
     existingRoleNames.insert(IconsNameRole, QByteArrayLiteral("folderIcons"));
     return existingRoleNames;
 }
 
-QModelIndex MultipageProxyModel::mapToSource(const QModelIndex &proxyIndex) const
-{
-//    qDebug() << "toSource" << proxyIndex;
-
-    // any rows beyond the source model is a virtual "folder" item
-    if (proxyIndex.row() >= sourceModel()->rowCount()) return QModelIndex();
-
-    return QIdentityProxyModel::mapToSource(proxyIndex);
-}
-
-QModelIndex MultipageProxyModel::mapFromSource(const QModelIndex &sourceIndex) const
-{
-//    qDebug() << "fromSource";
-    return QIdentityProxyModel::mapFromSource(sourceIndex);
-}
-
 MultipageProxyModel::MultipageProxyModel(QObject *parent)
-    : QIdentityProxyModel(parent)
+    : QConcatenateTablesProxyModel(parent)
     , m_topLevel(new ItemsPage(7 * 4, this))
 {
 //    ItemsPage ip(3);
@@ -211,10 +180,19 @@ MultipageProxyModel::MultipageProxyModel(QObject *parent)
 //    qDebug() << ip.items(0);
 //    qDebug() << ip.items(1);
 
-    connect(this, &QAbstractProxyModel::sourceModelChanged, this, &MultipageProxyModel::onSourceModelChanged);
+    m_folderModel.setItemRoleNames(AppsModel::instance().roleNames());
 
     loadItemArrangementFromUserData();
-    setSourceModel(&AppsModel::instance());
+    addSourceModel(&AppsModel::instance());
+
+    onSourceModelChanged();
+    onFolderModelChanged();
+
+    connect(&AppsModel::instance(), &AppsModel::rowsInserted, this, &MultipageProxyModel::onSourceModelChanged);
+    connect(&AppsModel::instance(), &AppsModel::rowsRemoved, this, &MultipageProxyModel::onSourceModelChanged);
+
+    connect(&m_folderModel, &QStandardItemModel::rowsInserted, this, &MultipageProxyModel::onFolderModelChanged);
+    connect(&m_folderModel, &QStandardItemModel::rowsRemoved, this, &MultipageProxyModel::onFolderModelChanged);
 }
 
 void MultipageProxyModel::loadItemArrangementFromUserData()
@@ -232,7 +210,7 @@ void MultipageProxyModel::loadItemArrangementFromUserData()
         int pageCount = itemArrangementSettings.value("pageCount", 0).toInt();
         bool isTopLevel = groupName == "toplevel";
 
-        qDebug() << folderName << pageCount;
+        qDebug() << groupName << folderName << pageCount;
 
         ItemsPage * page = isTopLevel ? m_topLevel : createFolder(groupName);
         page->setName(folderName);
@@ -251,6 +229,7 @@ void MultipageProxyModel::saveItemArrangementToUserData()
     const QString arrangementSettingBasePath(QStandardPaths::writableLocation(QStandardPaths::AppConfigLocation));
     const QString arrangementSettingPath(QDir(arrangementSettingBasePath).absoluteFilePath("item-arrangement.ini"));
     QSettings itemArrangementSettings(arrangementSettingPath, QSettings::NativeFormat);
+    itemArrangementSettings.clear();
 
     itemArrangementSettings.beginGroup("fullscreen/toplevel");
     int pageCount = m_topLevel->pageCount();
@@ -260,10 +239,10 @@ void MultipageProxyModel::saveItemArrangementToUserData()
     }
     itemArrangementSettings.endGroup();
 
-    for (int i = 0; i < m_folderIndexes.count(); i++) {
-        QString id = m_folderIndexes[i];
-        itemArrangementSettings.beginGroup("fullscreen/" + id.mid(17));
-        ItemsPage * page = m_folders.value(m_folderIndexes[i]);
+    for (int i = 0; i < m_folderModel.rowCount(); i++) {
+        const QString & id = m_folderModel.index(i, 0).data(AppItem::DesktopIdRole).toString();
+        itemArrangementSettings.beginGroup("fullscreen/" + id.midRef(17));
+        ItemsPage * page = m_folders.value(id);
         int pageCount = page->pageCount();
         itemArrangementSettings.setValue("name", page->name());
         itemArrangementSettings.setValue("pageCount", pageCount);
@@ -284,11 +263,11 @@ std::tuple<int, int, int> MultipageProxyModel::findItem(const QString &id, bool 
     if (page != -1) return std::make_tuple(0, page, idx);
 
     if (!searchTopLevelOnly) {
-        for (const QString & folderId : qAsConst(m_folderIndexes)) {
+        for (int i = 0; i < m_folderModel.rowCount(); i++) {
+            const QString & folderId = m_folderModel.index(i, 0).data(AppItem::DesktopIdRole).toString();
             std::tie(page, idx) = m_folders[folderId]->findItem(id);
             if (page != -1) {
-                int i = m_folderIndexes.indexOf(folderId) + 1;
-                return std::make_tuple(i, page, idx);
+                return std::make_tuple(folderId.midRef(17).toInt(), page, idx);
             }
         }
     }
@@ -299,9 +278,9 @@ std::tuple<int, int, int> MultipageProxyModel::findItem(const QString &id, bool 
 void MultipageProxyModel::onSourceModelChanged()
 {
     // add all existing ones if they are not already in
-    int appsCount = sourceModel()->rowCount();
+    int appsCount = AppsModel::instance().rowCount();
     for (int i = 0; i < appsCount; i++) {
-        QString desktopId(sourceModel()->data(sourceModel()->index(i, 0), AppItem::DesktopIdRole).toString());
+        QString desktopId(AppsModel::instance().data(AppsModel::instance().index(i, 0), AppItem::DesktopIdRole).toString());
         int folder, page, idx;
         std::tie(folder, std::ignore, std::ignore) = findItem(desktopId);
         if (folder == -1) {
@@ -312,21 +291,22 @@ void MultipageProxyModel::onSourceModelChanged()
     }
 
     // TODO: remove the ones that no longer valid out of m_folders
+    emit dataChanged(index(0, 0), index(rowCount() - 1, 0), {
+        PageRole, IndexInPageRole, FolderIdNumberRole, IconsNameRole
+    });
 
     saveItemArrangementToUserData();
 }
 
-int MultipageProxyModel::indexById(const QString &id)
+void MultipageProxyModel::onFolderModelChanged()
 {
-    if (id.startsWith("internal/folders/")) {
-        int idx = m_folderIndexes.indexOf(id) + 1;
-        return (sourceModel() ? sourceModel()->rowCount() : 0) + idx;
-    } else {
-        QModelIndexList results = sourceModel()->match(sourceModel()->index(0, 0), AppItem::DesktopIdRole, id);
-        if (results.count() > 0) {
-            return results.constFirst().row();
-        }
-        return -1;
+    // if the QStandardItemModel is empty, adding the empty model to QConcatenateTablesProxyModel will result
+    // the complete model is ill-formed (why?). Thus we only add them to the QConcatenateTablesProxyModel when
+    // m_folderModel is not empty.
+    // If m_folerModel is back to empty, we don't need to remove it from the model, and if we do that, it will
+    // also result a crash (why?).
+    if (m_folderModel.rowCount() != 0 && !sourceModels().contains(&m_folderModel)) {
+        addSourceModel(&m_folderModel);
     }
 }
 
@@ -347,13 +327,13 @@ ItemsPage *MultipageProxyModel::createFolder(const QString &id)
 {
     Q_ASSERT(!id.isEmpty());
     QString fullId(id.startsWith("internal/folders/") ? id : QStringLiteral("internal/folders/%1").arg(id));
-    Q_ASSERT(!m_folderIndexes.contains(fullId));
+    Q_ASSERT(m_folderModel.findItems(fullId).isEmpty());
 
-    beginInsertRows(QModelIndex(), rowCount(), rowCount());
     ItemsPage * page = new ItemsPage(4 * 3, this);
     m_folders.insert(fullId, page);
-    m_folderIndexes.append(fullId);
-    endInsertRows();
+    QStandardItem * folder = new QStandardItem(fullId);
+    folder->setData(fullId, AppItem::DesktopIdRole);
+    m_folderModel.appendRow(folder);
 
     return page;
 }
@@ -363,11 +343,10 @@ void MultipageProxyModel::removeFolder(const QString &idNumber)
     QString fullId("internal/folders/" + idNumber);
     Q_ASSERT(m_folders.contains(fullId));
 
-    int idx = indexById(fullId);
-    beginRemoveRows(QModelIndex(), idx, idx);
     m_folders.remove(fullId);
-    m_folderIndexes.removeOne(fullId);
-    endRemoveRows();
+    m_topLevel->removeItem(fullId);
+    QList<QStandardItem*> result = m_folderModel.findItems(fullId);
+    m_folderModel.removeRows(result.first()->row(), 1);
 }
 
 // get folder by id. 0 is top level, >=1 is folder
