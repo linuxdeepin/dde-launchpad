@@ -2,14 +2,12 @@
 
 ### Simply not implemented
 
-- Fullscreen frame: DnD
 - Windowed frame: DnD
 - Favorited: Pin to top
 
 ### Related to legacy ApplicationManager daemon.Launcher1 DBus APIs
 
 - Apply proxy settings to application
-- Uninstall application
 
 ### Related to plugin APIs
 
@@ -29,18 +27,10 @@ Status:
 
 ### DTK
 
-- {T} PageIndicator is not visible
-- { } Click fallthough Popup component
-- { } ListView missing keyboard focus navigation
-- {A} dtkwidget DHiDPIHelper usage (this API moved to dtkgui)
-
-### dde-dock
-
-- {T} Missing dock position change signal
+- { } Qt6's DDE QPA need to load its plugin before Qt's
 
 ### deepin-kwin
 
-- {A} Freeze when launching UI right after launch the program (Appearance1 DBus API caused deepin-kwin freezing, results UI blocking)
 - { } The window size might still be fullscreen while trying to toggle from fullscreen frame to windowed frame
 
 ## Other TODOs

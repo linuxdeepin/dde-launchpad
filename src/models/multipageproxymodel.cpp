@@ -284,13 +284,14 @@ void MultipageProxyModel::onSourceModelChanged()
         int folder, page, idx;
         std::tie(folder, std::ignore, std::ignore) = findItem(desktopId);
         if (folder == -1) {
-//            qDebug() << desktopId;
             findItem(desktopId);
             m_topLevel->appendItem(desktopId);
         }
     }
 
     // TODO: remove the ones that no longer valid out of m_folders
+
+
     emit dataChanged(index(0, 0), index(rowCount() - 1, 0), {
         PageRole, IndexInPageRole, FolderIdNumberRole, IconsNameRole
     });
