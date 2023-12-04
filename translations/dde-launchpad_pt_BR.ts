@@ -67,59 +67,40 @@
 <context>
     <name>AppListView</name>
     <message>
-        <location filename="../qml/AppListView.qml" line="34"/>
         <source>Internet</source>
-        <translation>Internet</translation>
+        <translation type="vanished">Internet</translation>
     </message>
     <message>
-        <location filename="../qml/AppListView.qml" line="36"/>
         <source>Chat</source>
-        <translation>Bate-Papo</translation>
+        <translation type="vanished">Bate-Papo</translation>
     </message>
     <message>
-        <location filename="../qml/AppListView.qml" line="38"/>
         <source>Music</source>
-        <translation>Player de Música</translation>
+        <translation type="vanished">Player de Música</translation>
     </message>
     <message>
-        <location filename="../qml/AppListView.qml" line="40"/>
         <source>Video</source>
-        <translation>Player de Vídeo</translation>
+        <translation type="vanished">Player de Vídeo</translation>
     </message>
     <message>
-        <location filename="../qml/AppListView.qml" line="42"/>
         <source>Graphics</source>
-        <translation>Imagem</translation>
+        <translation type="vanished">Imagem</translation>
     </message>
     <message>
-        <location filename="../qml/AppListView.qml" line="44"/>
-        <source>Game</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qml/AppListView.qml" line="46"/>
         <source>Office</source>
-        <translation>Escritório</translation>
+        <translation type="vanished">Escritório</translation>
     </message>
     <message>
-        <location filename="../qml/AppListView.qml" line="48"/>
         <source>Reading</source>
-        <translation>Leitura</translation>
+        <translation type="vanished">Leitura</translation>
     </message>
     <message>
-        <location filename="../qml/AppListView.qml" line="50"/>
         <source>Development</source>
-        <translation>Desenvolvimento</translation>
+        <translation type="vanished">Desenvolvimento</translation>
     </message>
     <message>
-        <location filename="../qml/AppListView.qml" line="52"/>
         <source>System</source>
-        <translation>Sistema</translation>
-    </message>
-    <message>
-        <location filename="../qml/AppListView.qml" line="54"/>
-        <source>Others</source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">Sistema</translation>
     </message>
 </context>
 <context>
@@ -145,17 +126,72 @@
 <context>
     <name>Main</name>
     <message>
-        <location filename="../qml/Main.qml" line="202"/>
+        <location filename="../qml/Main.qml" line="51"/>
+        <source>Internet</source>
+        <translation type="unfinished">Internet</translation>
+    </message>
+    <message>
+        <location filename="../qml/Main.qml" line="53"/>
+        <source>Chat</source>
+        <translation type="unfinished">Bate-Papo</translation>
+    </message>
+    <message>
+        <location filename="../qml/Main.qml" line="55"/>
+        <source>Music</source>
+        <translation type="unfinished">Player de Música</translation>
+    </message>
+    <message>
+        <location filename="../qml/Main.qml" line="57"/>
+        <source>Video</source>
+        <translation type="unfinished">Player de Vídeo</translation>
+    </message>
+    <message>
+        <location filename="../qml/Main.qml" line="59"/>
+        <source>Graphics</source>
+        <translation type="unfinished">Imagem</translation>
+    </message>
+    <message>
+        <location filename="../qml/Main.qml" line="61"/>
+        <source>Game</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/Main.qml" line="63"/>
+        <source>Office</source>
+        <translation type="unfinished">Escritório</translation>
+    </message>
+    <message>
+        <location filename="../qml/Main.qml" line="65"/>
+        <source>Reading</source>
+        <translation type="unfinished">Leitura</translation>
+    </message>
+    <message>
+        <location filename="../qml/Main.qml" line="67"/>
+        <source>Development</source>
+        <translation type="unfinished">Desenvolvimento</translation>
+    </message>
+    <message>
+        <location filename="../qml/Main.qml" line="69"/>
+        <source>System</source>
+        <translation type="unfinished">Sistema</translation>
+    </message>
+    <message>
+        <location filename="../qml/Main.qml" line="71"/>
+        <source>Others</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/Main.qml" line="220"/>
         <source>Are you sure you want to uninstall %1?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/Main.qml" line="210"/>
+        <location filename="../qml/Main.qml" line="228"/>
         <source>Cancel</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/Main.qml" line="218"/>
+        <location filename="../qml/Main.qml" line="236"/>
         <source>Confirm</source>
         <translation type="unfinished"></translation>
     </message>
@@ -163,44 +199,43 @@
 <context>
     <name>WindowedFrame</name>
     <message>
-        <location filename="../qml/WindowedFrame.qml" line="41"/>
         <source>Categories</source>
-        <translation>Categorias</translation>
+        <translation type="vanished">Categorias</translation>
     </message>
     <message>
-        <location filename="../qml/WindowedFrame.qml" line="117"/>
+        <location filename="../qml/WindowedFrame.qml" line="101"/>
         <source>Power</source>
         <translation>Energia</translation>
     </message>
     <message>
-        <location filename="../qml/WindowedFrame.qml" line="130"/>
+        <location filename="../qml/WindowedFrame.qml" line="109"/>
         <source>Settings</source>
         <translation>Configurações</translation>
     </message>
     <message>
-        <location filename="../qml/FullscreenFrame.qml" line="73"/>
-        <location filename="../qml/WindowedFrame.qml" line="154"/>
+        <location filename="../qml/FullscreenFrame.qml" line="334"/>
+        <location filename="../qml/WindowedFrame.qml" line="246"/>
         <source>Search</source>
         <translation>Pesquisar</translation>
     </message>
     <message>
-        <location filename="../qml/WindowedFrame.qml" line="172"/>
+        <location filename="../qml/WindowedFrame.qml" line="145"/>
         <source>My Favorites</source>
         <translation>Favoritos</translation>
     </message>
     <message>
-        <location filename="../qml/WindowedFrame.qml" line="203"/>
+        <location filename="../qml/WindowedFrame.qml" line="175"/>
         <source>Add your favorite apps here</source>
         <translation>Adicione seus aplicativos favoritos aqui</translation>
     </message>
     <message>
-        <location filename="../qml/WindowedFrame.qml" line="213"/>
+        <location filename="../qml/WindowedFrame.qml" line="186"/>
         <source>All Apps</source>
         <translation>Todos os Aplicativos</translation>
     </message>
     <message>
-        <location filename="../qml/FullscreenFrame.qml" line="186"/>
-        <location filename="../qml/WindowedFrame.qml" line="237"/>
+        <location filename="../qml/FullscreenFrame.qml" line="319"/>
+        <location filename="../qml/WindowedFrame.qml" line="210"/>
         <source>No search results</source>
         <translation>Nenhum resultado</translation>
     </message>

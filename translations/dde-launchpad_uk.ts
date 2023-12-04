@@ -67,59 +67,40 @@
 <context>
     <name>AppListView</name>
     <message>
-        <location filename="../qml/AppListView.qml" line="34"/>
         <source>Internet</source>
-        <translation>Інтернет</translation>
+        <translation type="vanished">Інтернет</translation>
     </message>
     <message>
-        <location filename="../qml/AppListView.qml" line="36"/>
         <source>Chat</source>
-        <translation>Спілкування</translation>
+        <translation type="vanished">Спілкування</translation>
     </message>
     <message>
-        <location filename="../qml/AppListView.qml" line="38"/>
         <source>Music</source>
-        <translation>Музика</translation>
+        <translation type="vanished">Музика</translation>
     </message>
     <message>
-        <location filename="../qml/AppListView.qml" line="40"/>
         <source>Video</source>
-        <translation>Відео</translation>
+        <translation type="vanished">Відео</translation>
     </message>
     <message>
-        <location filename="../qml/AppListView.qml" line="42"/>
         <source>Graphics</source>
-        <translation>Графіка</translation>
+        <translation type="vanished">Графіка</translation>
     </message>
     <message>
-        <location filename="../qml/AppListView.qml" line="44"/>
-        <source>Game</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qml/AppListView.qml" line="46"/>
         <source>Office</source>
-        <translation>Офіс</translation>
+        <translation type="vanished">Офіс</translation>
     </message>
     <message>
-        <location filename="../qml/AppListView.qml" line="48"/>
         <source>Reading</source>
-        <translation>Читання</translation>
+        <translation type="vanished">Читання</translation>
     </message>
     <message>
-        <location filename="../qml/AppListView.qml" line="50"/>
         <source>Development</source>
-        <translation>Розробка</translation>
+        <translation type="vanished">Розробка</translation>
     </message>
     <message>
-        <location filename="../qml/AppListView.qml" line="52"/>
         <source>System</source>
-        <translation>Система</translation>
-    </message>
-    <message>
-        <location filename="../qml/AppListView.qml" line="54"/>
-        <source>Others</source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">Система</translation>
     </message>
 </context>
 <context>
@@ -145,17 +126,72 @@
 <context>
     <name>Main</name>
     <message>
-        <location filename="../qml/Main.qml" line="202"/>
+        <location filename="../qml/Main.qml" line="51"/>
+        <source>Internet</source>
+        <translation type="unfinished">Інтернет</translation>
+    </message>
+    <message>
+        <location filename="../qml/Main.qml" line="53"/>
+        <source>Chat</source>
+        <translation type="unfinished">Спілкування</translation>
+    </message>
+    <message>
+        <location filename="../qml/Main.qml" line="55"/>
+        <source>Music</source>
+        <translation type="unfinished">Музика</translation>
+    </message>
+    <message>
+        <location filename="../qml/Main.qml" line="57"/>
+        <source>Video</source>
+        <translation type="unfinished">Відео</translation>
+    </message>
+    <message>
+        <location filename="../qml/Main.qml" line="59"/>
+        <source>Graphics</source>
+        <translation type="unfinished">Графіка</translation>
+    </message>
+    <message>
+        <location filename="../qml/Main.qml" line="61"/>
+        <source>Game</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/Main.qml" line="63"/>
+        <source>Office</source>
+        <translation type="unfinished">Офіс</translation>
+    </message>
+    <message>
+        <location filename="../qml/Main.qml" line="65"/>
+        <source>Reading</source>
+        <translation type="unfinished">Читання</translation>
+    </message>
+    <message>
+        <location filename="../qml/Main.qml" line="67"/>
+        <source>Development</source>
+        <translation type="unfinished">Розробка</translation>
+    </message>
+    <message>
+        <location filename="../qml/Main.qml" line="69"/>
+        <source>System</source>
+        <translation type="unfinished">Система</translation>
+    </message>
+    <message>
+        <location filename="../qml/Main.qml" line="71"/>
+        <source>Others</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/Main.qml" line="220"/>
         <source>Are you sure you want to uninstall %1?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/Main.qml" line="210"/>
+        <location filename="../qml/Main.qml" line="228"/>
         <source>Cancel</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/Main.qml" line="218"/>
+        <location filename="../qml/Main.qml" line="236"/>
         <source>Confirm</source>
         <translation type="unfinished"></translation>
     </message>
@@ -163,44 +199,43 @@
 <context>
     <name>WindowedFrame</name>
     <message>
-        <location filename="../qml/WindowedFrame.qml" line="41"/>
         <source>Categories</source>
-        <translation>Категорії</translation>
+        <translation type="vanished">Категорії</translation>
     </message>
     <message>
-        <location filename="../qml/WindowedFrame.qml" line="117"/>
+        <location filename="../qml/WindowedFrame.qml" line="101"/>
         <source>Power</source>
         <translation>Живлення</translation>
     </message>
     <message>
-        <location filename="../qml/WindowedFrame.qml" line="130"/>
+        <location filename="../qml/WindowedFrame.qml" line="109"/>
         <source>Settings</source>
         <translation>Налаштування</translation>
     </message>
     <message>
-        <location filename="../qml/FullscreenFrame.qml" line="73"/>
-        <location filename="../qml/WindowedFrame.qml" line="154"/>
+        <location filename="../qml/FullscreenFrame.qml" line="334"/>
+        <location filename="../qml/WindowedFrame.qml" line="246"/>
         <source>Search</source>
         <translation>Пошук</translation>
     </message>
     <message>
-        <location filename="../qml/WindowedFrame.qml" line="172"/>
+        <location filename="../qml/WindowedFrame.qml" line="145"/>
         <source>My Favorites</source>
         <translation>Мої улюблені</translation>
     </message>
     <message>
-        <location filename="../qml/WindowedFrame.qml" line="203"/>
+        <location filename="../qml/WindowedFrame.qml" line="175"/>
         <source>Add your favorite apps here</source>
         <translation>Сюди ви можете додати вибрані програми</translation>
     </message>
     <message>
-        <location filename="../qml/WindowedFrame.qml" line="213"/>
+        <location filename="../qml/WindowedFrame.qml" line="186"/>
         <source>All Apps</source>
         <translation>Усі програми</translation>
     </message>
     <message>
-        <location filename="../qml/FullscreenFrame.qml" line="186"/>
-        <location filename="../qml/WindowedFrame.qml" line="237"/>
+        <location filename="../qml/FullscreenFrame.qml" line="319"/>
+        <location filename="../qml/WindowedFrame.qml" line="210"/>
         <source>No search results</source>
         <translation>Нічого не знайдено</translation>
     </message>
