@@ -227,6 +227,8 @@ Control {
                                 activeGridViewFocusOnTab: gridViewLoader.SwipeView.isCurrentItem
                                 itemMove: Transition { NumberAnimation { properties: "x,y"; duration: 250 } }
                                 delegate: DropArea {
+                                    Keys.forwardTo: [iconItemDelegate]
+
                                     width: gridViewContainer.cellSize
                                     height: gridViewContainer.cellSize
                                     onEntered: {
@@ -247,6 +249,7 @@ Control {
                                     }
 
                                     IconItemDelegate {
+                                        id: iconItemDelegate
                                         anchors.fill: parent
                                         dndEnabled: true
                                         Drag.mimeData: {

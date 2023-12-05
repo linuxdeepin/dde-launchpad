@@ -61,10 +61,6 @@ StackView {
                             launchApp(desktopId)
                         }
 
-                        Keys.onReturnPressed: {
-                            launchApp(desktopId)
-                        }
-
                         background: P.ButtonPanel {
                             button: parent
                             visible: ColorSelector.controlState === DTK.HoveredState
