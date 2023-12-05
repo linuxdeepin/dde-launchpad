@@ -58,6 +58,7 @@ FocusScope {
                 clip: true
                 highlightFollowsCurrentItem: true
                 keyNavigationEnabled: true
+                highlightMoveDuration: 0
                 activeFocusOnTab: focus ? root.activeGridViewFocusOnTab : false
                 focus: count > 0
 
