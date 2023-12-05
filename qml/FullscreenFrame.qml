@@ -521,6 +521,8 @@ Control {
             if (LauncherController.visible) return
             // clear searchEdit text
             searchEdit.text = ""
+            // close folder popup
+            if (folderGridViewPopup.visible) folderGridViewPopup.close()
             // reset(remove) keyboard focus
             baseLayer.focus = true
         }
