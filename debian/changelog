@@ -1,3 +1,14 @@
+dde-launchpad (0.3.0) unstable; urgency=medium
+
+  * Support drag and drop in fullscreen launcher
+  * Fix fullscreen to launch app (https://github.com/linuxdeepin/developer-center/issues/6364)
+  * Remove highlight animation (https://github.com/linuxdeepin/developer-center/issues/6368)
+  * Reset folder popup state when hidding launchpad (https://github.com/linuxdeepin/developer-center/issues/6369)
+  * Reset keyboard focus when using mouse wheel (https://github.com/linuxdeepin/developer-center/issues/6361)
+  * Add tooltip for Control Center button (https://github.com/linuxdeepin/developer-center/issues/6365)
+
+ -- Gary Wang <wangzichong@deepin.org>  Wed, 06 Dec 2023 18:06:00 +0800
+
 dde-launchpad (0.2.2) unstable; urgency=medium
 
   * add hover state for AppListView items

@@ -5,7 +5,7 @@
 cmake_minimum_required(VERSION 3.7)
 
 if(NOT DEFINED VERSION)
-    set(VERSION 0.2.2)
+    set(VERSION 0.3.0)
 endif()
 
 project(dde-launchpad VERSION ${VERSION})
