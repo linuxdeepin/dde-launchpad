@@ -86,9 +86,11 @@ Control {
                     }
                     if (toPage < 0) {
                         flipPageDelay.start()
+                        baseLayer.focus = true // reset keyboard focus when using mouse to flip page
                         pages.decrementCurrentIndex()
                     } else if (toPage > 0) {
                         flipPageDelay.start()
+                        baseLayer.focus = true // reset keyboard focus when using mouse to flip page
                         pages.incrementCurrentIndex()
                     }
                 }
