@@ -7,6 +7,7 @@
 #include <DDBusSender>
 #include <DDesktopEntry>
 #include <DStandardPaths>
+#include <DDesktopServices>
 #include <QRect>
 #include <appinfo.h>
 #include <appmgr.h>
@@ -140,8 +141,7 @@ void DesktopIntegration::sendToDesktop(const QString &desktopId)
     entry.setStringValue("DDE", "X-Deepin-CreatedBy"); // maybe better to add a "managed by"?
     // There was originally also a "X-Deepin-AppID" which... doesn't seems to make any sense
     if (entry.save()) {
-        // TODO: play sfx for this
-        // DDesktopServices::playSystemSoundEffect(DDesktopServices::SSE_SendFileComplete); // why is this in dtkwidget?
+        Dtk::Gui::DDesktopServices::playSystemSoundEffect(Dtk::Gui::DDesktopServices::SSE_SendFileComplete);
     }
 }
 
