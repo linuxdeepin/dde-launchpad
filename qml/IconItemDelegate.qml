@@ -140,7 +140,7 @@ Control {
 
                 // Item will be hidden by checking the dndItem.currentlyDraggedId property. We assign the value
                 // to that property here
-                dndItem.currentlyDraggedId = parent.Drag.mimeData["application/x-dde-launcher-dnd-desktopId"]
+                dndItem.currentlyDraggedId = parent.Drag.mimeData["text/x-dde-launcher-dnd-desktopId"]
                 // TODO: This way we couldn't give it an image size hint,
                 dndItem.Drag.imageSource = icons ? ("image://folder-icon/" + icons.join(':')) : parent.iconSource
                 Qt.callLater(function() {

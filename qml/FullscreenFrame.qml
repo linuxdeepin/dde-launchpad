@@ -159,7 +159,7 @@ Control {
                 onDropped: {
                     if (pageIntent === 0) {
                         // drop into current page
-                        let dragId = drop.getDataAsString("application/x-dde-launcher-dnd-desktopId")
+                        let dragId = drop.getDataAsString("text/x-dde-launcher-dnd-desktopId")
                         dropOnPage(dragId, "internal/folders/0", pages.currentIndex)
                     }
                     pageIntent = 0
@@ -239,7 +239,7 @@ Control {
                                         }
                                     }
                                     onDropped: {
-                                        let dragId = drop.getDataAsString("application/x-dde-launcher-dnd-desktopId")
+                                        let dragId = drop.getDataAsString("text/x-dde-launcher-dnd-desktopId")
                                         let op = 0
                                         let sideOpPadding = width / 4
                                         if (drop.x < sideOpPadding) {
@@ -255,7 +255,7 @@ Control {
                                         anchors.fill: parent
                                         dndEnabled: true
                                         Drag.mimeData: {
-                                            "application/x-dde-launcher-dnd-desktopId": model.desktopId
+                                            "text/x-dde-launcher-dnd-desktopId": model.desktopId
                                         }
                                         visible: dndItem.currentlyDraggedId !== model.desktopId
                                         iconSource: "image://app-icon/" + iconName
@@ -379,7 +379,7 @@ Control {
                 background: DropArea {
                     anchors.fill: parent
                     onDropped: {
-                        let dragId = drop.getDataAsString("application/x-dde-launcher-dnd-desktopId")
+                        let dragId = drop.getDataAsString("text/x-dde-launcher-dnd-desktopId")
                         dropOnPage(dragId, "internal/folders/" + folderLoader.currentFolderId, folderPagesView.currentIndex)
                     }
                 }
@@ -451,7 +451,7 @@ Control {
                                                 width: folderGridViewContainer.cellSize
                                                 height: folderGridViewContainer.cellSize
                                                 onDropped: {
-                                                    let dragId = drop.getDataAsString("application/x-dde-launcher-dnd-desktopId")
+                                                    let dragId = drop.getDataAsString("text/x-dde-launcher-dnd-desktopId")
                                                     let op = 0
                                                     let sideOpPadding = width / 4
                                                     if (drop.x < sideOpPadding) {
@@ -466,7 +466,7 @@ Control {
                                                     anchors.fill: parent
                                                     dndEnabled: true
                                                     Drag.mimeData: {
-                                                        "application/x-dde-launcher-dnd-desktopId": model.desktopId
+                                                        "text/x-dde-launcher-dnd-desktopId": model.desktopId
                                                     }
                                                     visible: dndItem.currentlyDraggedId !== model.desktopId
                                                     iconSource: "image://app-icon/" + iconName
