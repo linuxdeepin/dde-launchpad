@@ -104,7 +104,7 @@ StackView {
                         icon.name: "setting"
                         ToolTip.visible: hovered
                         ToolTip.delay: 1000
-                        ToolTip.text: qsTr("Settings")
+                        ToolTip.text: qsTr("Control Center")
                         onClicked: {
                             DesktopIntegration.openSystemSettings();
                         }

@@ -211,39 +211,43 @@
         <translation type="vanished">Categorías</translation>
     </message>
     <message>
-        <location filename="../qml/WindowedFrame.qml" line="101"/>
+        <location filename="../qml/WindowedFrame.qml" line="97"/>
         <source>Power</source>
         <translation>Apagar</translation>
     </message>
     <message>
-        <location filename="../qml/WindowedFrame.qml" line="109"/>
         <source>Settings</source>
-        <translation>Ajustes</translation>
+        <translation type="vanished">Ajustes</translation>
     </message>
     <message>
-        <location filename="../qml/FullscreenFrame.qml" line="334"/>
-        <location filename="../qml/WindowedFrame.qml" line="246"/>
+        <location filename="../qml/FullscreenFrame.qml" line="339"/>
+        <location filename="../qml/WindowedFrame.qml" line="244"/>
         <source>Search</source>
         <translation>Buscar en Internet</translation>
     </message>
     <message>
-        <location filename="../qml/WindowedFrame.qml" line="145"/>
+        <location filename="../qml/WindowedFrame.qml" line="107"/>
+        <source>Control Center</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/WindowedFrame.qml" line="143"/>
         <source>My Favorites</source>
         <translation>Mis favoritos</translation>
     </message>
     <message>
-        <location filename="../qml/WindowedFrame.qml" line="175"/>
+        <location filename="../qml/WindowedFrame.qml" line="173"/>
         <source>Add your favorite apps here</source>
         <translation>Añadir tus aplicaciones favoritas aquí</translation>
     </message>
     <message>
-        <location filename="../qml/WindowedFrame.qml" line="186"/>
+        <location filename="../qml/WindowedFrame.qml" line="184"/>
         <source>All Apps</source>
         <translation>Todas las Aplicaciones</translation>
     </message>
     <message>
-        <location filename="../qml/FullscreenFrame.qml" line="319"/>
-        <location filename="../qml/WindowedFrame.qml" line="210"/>
+        <location filename="../qml/FullscreenFrame.qml" line="324"/>
+        <location filename="../qml/WindowedFrame.qml" line="208"/>
         <source>No search results</source>
         <translation>Sin resultados de búsqueda</translation>
     </message>

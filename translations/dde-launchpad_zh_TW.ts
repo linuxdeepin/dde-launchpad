@@ -192,8 +192,8 @@
 <context>
     <name>WindowedFrame</name>
     <message>
-        <location filename="../qml/FullscreenFrame.qml" line="319"/>
-        <location filename="../qml/WindowedFrame.qml" line="210"/>
+        <location filename="../qml/FullscreenFrame.qml" line="324"/>
+        <location filename="../qml/WindowedFrame.qml" line="208"/>
         <source>No search results</source>
         <translation>無搜尋結果</translation>
     </message>
@@ -202,33 +202,37 @@
         <translation type="vanished">應用分類</translation>
     </message>
     <message>
-        <location filename="../qml/WindowedFrame.qml" line="101"/>
+        <location filename="../qml/WindowedFrame.qml" line="97"/>
         <source>Power</source>
         <translation>電源</translation>
     </message>
     <message>
-        <location filename="../qml/WindowedFrame.qml" line="109"/>
         <source>Settings</source>
-        <translation>設定</translation>
+        <translation type="vanished">設定</translation>
     </message>
     <message>
-        <location filename="../qml/FullscreenFrame.qml" line="334"/>
-        <location filename="../qml/WindowedFrame.qml" line="246"/>
+        <location filename="../qml/FullscreenFrame.qml" line="339"/>
+        <location filename="../qml/WindowedFrame.qml" line="244"/>
         <source>Search</source>
         <translation>搜尋</translation>
     </message>
     <message>
-        <location filename="../qml/WindowedFrame.qml" line="145"/>
+        <location filename="../qml/WindowedFrame.qml" line="107"/>
+        <source>Control Center</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/WindowedFrame.qml" line="143"/>
         <source>My Favorites</source>
         <translation>收藏應用</translation>
     </message>
     <message>
-        <location filename="../qml/WindowedFrame.qml" line="175"/>
+        <location filename="../qml/WindowedFrame.qml" line="173"/>
         <source>Add your favorite apps here</source>
         <translation>添加應用到收藏</translation>
     </message>
     <message>
-        <location filename="../qml/WindowedFrame.qml" line="186"/>
+        <location filename="../qml/WindowedFrame.qml" line="184"/>
         <source>All Apps</source>
         <translation>所有應用</translation>
     </message>

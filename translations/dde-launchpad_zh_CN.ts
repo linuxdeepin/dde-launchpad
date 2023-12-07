@@ -211,39 +211,43 @@
         <translation type="vanished">应用分类</translation>
     </message>
     <message>
-        <location filename="../qml/WindowedFrame.qml" line="101"/>
+        <location filename="../qml/WindowedFrame.qml" line="97"/>
         <source>Power</source>
         <translation>电源</translation>
     </message>
     <message>
-        <location filename="../qml/WindowedFrame.qml" line="109"/>
         <source>Settings</source>
-        <translation>设置</translation>
+        <translation type="vanished">设置</translation>
     </message>
     <message>
-        <location filename="../qml/FullscreenFrame.qml" line="334"/>
-        <location filename="../qml/WindowedFrame.qml" line="246"/>
+        <location filename="../qml/FullscreenFrame.qml" line="339"/>
+        <location filename="../qml/WindowedFrame.qml" line="244"/>
         <source>Search</source>
         <translation>搜索</translation>
     </message>
     <message>
-        <location filename="../qml/WindowedFrame.qml" line="145"/>
+        <location filename="../qml/WindowedFrame.qml" line="107"/>
+        <source>Control Center</source>
+        <translation>控制中心</translation>
+    </message>
+    <message>
+        <location filename="../qml/WindowedFrame.qml" line="143"/>
         <source>My Favorites</source>
         <translation>收藏应用</translation>
     </message>
     <message>
-        <location filename="../qml/WindowedFrame.qml" line="175"/>
+        <location filename="../qml/WindowedFrame.qml" line="173"/>
         <source>Add your favorite apps here</source>
         <translation>添加应用到收藏</translation>
     </message>
     <message>
-        <location filename="../qml/WindowedFrame.qml" line="186"/>
+        <location filename="../qml/WindowedFrame.qml" line="184"/>
         <source>All Apps</source>
         <translation>所有应用</translation>
     </message>
     <message>
-        <location filename="../qml/FullscreenFrame.qml" line="319"/>
-        <location filename="../qml/WindowedFrame.qml" line="210"/>
+        <location filename="../qml/FullscreenFrame.qml" line="324"/>
+        <location filename="../qml/WindowedFrame.qml" line="208"/>
         <source>No search results</source>
         <translation>无搜索结果</translation>
     </message>

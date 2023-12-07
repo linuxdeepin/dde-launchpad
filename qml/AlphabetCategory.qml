@@ -101,7 +101,9 @@ ColumnLayout {
 
         ToolButton {
             icon.name: "setting"
-            Accessible.name: qsTr("Settings")
+            ToolTip.visible: hovered
+            ToolTip.delay: 1000
+            ToolTip.text: qsTr("Control Center")
             onClicked: {
                 DesktopIntegration.openSystemSettings();
             }
