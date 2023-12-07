@@ -57,6 +57,10 @@ StackView {
                             }
                         }
 
+                        Keys.onReturnPressed: {
+                            launchApp(desktopId)
+                        }
+
                         onClicked: {
                             launchApp(desktopId)
                         }
