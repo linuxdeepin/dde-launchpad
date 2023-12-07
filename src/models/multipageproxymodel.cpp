@@ -70,7 +70,7 @@ void MultipageProxyModel::commitDndOperation(const QString &dragId, const QStrin
         if (std::get<0>(dropOrigPos) != 0 && dropId != "internal/folders/0") return; // folder inside folder is not allowed
         if (dropId.startsWith("internal/folders/")) {
             // drop into existing folder
-            const int dropOrigFolder = dropId.midRef(17).toInt();
+            const int dropOrigFolder = QStringView{dropId}.mid(17).toInt();
             ItemsPage * srcFolder = folderById(std::get<0>(dragOrigPos));
             ItemsPage * dstFolder = folderById(dropOrigFolder);
             srcFolder->removeItem(dragId);
@@ -241,7 +241,7 @@ void MultipageProxyModel::saveItemArrangementToUserData()
 
     for (int i = 0; i < m_folderModel.rowCount(); i++) {
         const QString & id = m_folderModel.index(i, 0).data(AppItem::DesktopIdRole).toString();
-        itemArrangementSettings.beginGroup("fullscreen/" + id.midRef(17));
+        itemArrangementSettings.beginGroup("fullscreen/" + id.mid(17));
         ItemsPage * page = m_folders.value(id);
         int pageCount = page->pageCount();
         itemArrangementSettings.setValue("name", page->name());
@@ -267,7 +267,7 @@ std::tuple<int, int, int> MultipageProxyModel::findItem(const QString &id, bool 
             const QString & folderId = m_folderModel.index(i, 0).data(AppItem::DesktopIdRole).toString();
             std::tie(page, idx) = m_folders[folderId]->findItem(id);
             if (page != -1) {
-                return std::make_tuple(folderId.midRef(17).toInt(), page, idx);
+                return std::make_tuple(QStringView{folderId}.mid(17).toInt(), page, idx);
             }
         }
     }
