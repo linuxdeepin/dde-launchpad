@@ -65,7 +65,7 @@ bool DesktopIntegration::appIsCompulsoryForDesktop(const QString &desktopId)
     // qDebug() << pool.flags() << currentDE;
     pool.load();
 
-    const QList<AppStream::Component> components = pool.componentsByLaunchable(AppStream::Launchable::KindDesktopId, desktopId);
+    const AppStream::ComponentBox components = pool.componentsByLaunchable(AppStream::Launchable::KindDesktopId, desktopId);
     for (const AppStream::Component & component : components) {
         return component.compulsoryForDesktops().contains(currentDE);
     }

@@ -133,10 +133,10 @@ PUBLIC
 PRIVATE
     Qt::Core Qt::Gui ${DTK_NS}::Core launcher-utils)
 
-if (AppStreamQt_FOUND)
+if (${ASQT_NS}_FOUND)
     target_link_libraries(dde-integration-dbus
     PRIVATE
-        AppStreamQt)
+        ${ASQT_NS})
 else()
     target_compile_definitions(dde-integration-dbus
     PUBLIC NO_APPSTREAM_QT

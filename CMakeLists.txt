@@ -25,18 +25,20 @@ option(PREFER_QT_5 "Prefer to use Qt 5 even if we have Qt 6" ON)
 if(PREFER_QT_5)
     set(QT_NS Qt5)
     set(DTK_NS Dtk)
+    set(ASQT_NS AppStreamQt5)
 else()
     set(QT_NS Qt6)
     set(DTK_NS Dtk6)
+    set(ASQT_NS AppStreamQt)
 endif()
 
 find_package(QT NAMES ${QT_NS} REQUIRED COMPONENTS Core)
 find_package(${QT_NS} REQUIRED COMPONENTS Core Gui Concurrent Qml Svg Quick QuickControls2 LinguistTools)
 find_package(${DTK_NS} REQUIRED COMPONENTS Core Gui)
+find_package(${ASQT_NS} 1.0)
 
 if(${QT_VERSION_MAJOR} EQUAL "5")
     find_package(${QT_NS} REQUIRED COMPONENTS QuickCompiler)
-    find_package(AppStreamQt) # AppStreamQt only support Qt 5 at this moment
 endif()
 
 set_package_properties(AppStreamQt PROPERTIES
