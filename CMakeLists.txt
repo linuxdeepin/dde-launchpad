@@ -41,7 +41,7 @@ if(${QT_VERSION_MAJOR} EQUAL "5")
     find_package(${QT_NS} REQUIRED COMPONENTS QuickCompiler)
 endif()
 
-set_package_properties(AppStreamQt PROPERTIES
+set_package_properties(${ASQT_NS} PROPERTIES
     DESCRIPTION "Library that lists Appstream resources"
     URL "https://www.freedesktop.org"
     TYPE RECOMMENDED)
