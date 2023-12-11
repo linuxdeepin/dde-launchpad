@@ -179,12 +179,11 @@ Control {
                     id: dndMovePageTimer
                     interval: 1000
                     onTriggered: {
-                        // FIXME: why this isn't working?
-                        // if (parent.pageIntent > 0) {
-                        //     pages.incrementCurrentIndex()
-                        // } else if (parent.pageIntent < 0) {
-                        //     pages.decrementCurrentIndex()
-                        // }
+                        if (parent.pageIntent > 0) {
+                            pages.incrementCurrentIndex()
+                        } else if (parent.pageIntent < 0) {
+                            pages.decrementCurrentIndex()
+                        }
                     }
                 }
             }
