@@ -68,27 +68,33 @@ void MultipageProxyModel::commitDndOperation(const QString &dragId, const QStrin
     } else {
         if (dragId.startsWith("internal/folders/") && dropId != "internal/folders/0") return; // cannot drag folder onto something
         if (std::get<0>(dropOrigPos) != 0 && dropId != "internal/folders/0") return; // folder inside folder is not allowed
+
+        // the source item will be inside a new folder anyway.
+        const int srcFolderId = std::get<0>(dragOrigPos);
+        ItemsPage * srcFolder = folderById(srcFolderId);
+        srcFolder->removeItem(dragId);
+
         if (dropId.startsWith("internal/folders/")) {
             // drop into existing folder
             const int dropOrigFolder = QStringView{dropId}.mid(17).toInt();
-            ItemsPage * srcFolder = folderById(std::get<0>(dragOrigPos));
             ItemsPage * dstFolder = folderById(dropOrigFolder);
-            srcFolder->removeItem(dragId);
             if (srcFolder->pageCount() == 0 && srcFolder != dstFolder) {
-                removeFolder(QString::number(std::get<0>(dragOrigPos)));
+                removeFolder(QString::number(srcFolderId));
             }
             dstFolder->appendItem(dragId, pageHint);
         } else {
             // make a new folder, move two items into the folder
-            QString folderId = findAvailableFolderId();
-            ItemsPage * folder = createFolder(folderId);
-            folder->appendPage({dragId, dropId});
+            QString dstFolderId = findAvailableFolderId();
+            ItemsPage * dstFolder = createFolder(dstFolderId);
+            dstFolder->appendPage({dragId, dropId});
             AppItem * dropItem = AppsModel::instance().itemFromDesktopId(dropId);
             AppItem::DDECategories dropCategories = AppItem::DDECategories(CategoryUtils::parseBestMatchedCategory(dropItem->categories()));
-            folder->setName("internal/category/" + QString::number(dropCategories));
-            m_topLevel->removeItem(dragId);
+            dstFolder->setName("internal/category/" + QString::number(dropCategories));
+            if (srcFolder->pageCount() == 0 && srcFolder != m_topLevel) {
+                removeFolder(QString::number(srcFolderId));
+            }
             m_topLevel->removeItem(dropId);
-            m_topLevel->insertItem(folderId, std::get<1>(dropOrigPos), std::get<2>(dropOrigPos));
+            m_topLevel->insertItem(dstFolderId, std::get<1>(dropOrigPos), std::get<2>(dropOrigPos));
         }
     }
 
