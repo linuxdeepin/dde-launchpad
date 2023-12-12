@@ -91,11 +91,13 @@ StackView {
                 RowLayout {
                     Layout.fillWidth: true
                     Layout.fillHeight: false
-                    Layout.preferredHeight: 50
+                    Layout.preferredHeight: 36
                     spacing: 16
 
                     ToolButton {
                         icon.name: "shutdown"
+                        icon.width: 18
+                        icon.height: 18
                         ToolTip.visible: hovered
                         ToolTip.delay: 1000
                         ToolTip.text: qsTr("Power")
@@ -106,6 +108,8 @@ StackView {
 
                     ToolButton {
                         icon.name: "setting"
+                        icon.width: 18
+                        icon.height: 18
                         ToolTip.visible: hovered
                         ToolTip.delay: 1000
                         ToolTip.text: qsTr("Control Center")
@@ -119,9 +123,13 @@ StackView {
                     }
 
                     ButtonBox {
+                        Layout.preferredHeight: 36
+                        padding: 0
                         ColorSelector.family: Palette.CrystalColor
                         ToolButton {
                             icon.name: "title-icon"
+                            icon.width: 18
+                            icon.height: 18
                             checked: CategorizedSortProxyModel.categoryType === CategorizedSortProxyModel.DDECategory
                             onClicked: {
                                 CategorizedSortProxyModel.categoryType = CategorizedSortProxyModel.DDECategory
@@ -129,6 +137,8 @@ StackView {
                         }
                         ToolButton {
                             icon.name: "letter-icon"
+                            icon.width: 18
+                            icon.height: 18
                             checked: CategorizedSortProxyModel.categoryType === CategorizedSortProxyModel.Alphabetary
                             onClicked: {
                                 CategorizedSortProxyModel.categoryType = CategorizedSortProxyModel.Alphabetary
@@ -254,6 +264,8 @@ StackView {
 
                         ToolButton {
                             icon.name: "launcher_fullscreen"
+                            icon.width: 18
+                            icon.height: 18
                             Accessible.name: "Fullscreen"
                             onClicked: {
                                 LauncherController.currentFrame = "FullscreenFrame"
