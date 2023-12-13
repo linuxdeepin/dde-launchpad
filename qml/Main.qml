@@ -20,14 +20,15 @@ ApplicationWindow {
     width: 780
     height: 600
     visible: LauncherController.visible
+    modality: Qt.WindowModal
     flags: {
         if (DebugHelper.useRegularWindow) {
             return Qt.Window
         }
         if (LauncherController.currentFrame === "WindowedFrame") {
-            return (Qt.WindowStaysOnTopHint | Qt.FramelessWindowHint | Qt.Tool) // X11BypassWindowManagerHint
+            return (Qt.WindowStaysOnTopHint | Qt.FramelessWindowHint | Qt.Widget | Qt.Dialog) // X11BypassWindowManagerHint
         } else {
-            return (Qt.FramelessWindowHint | Qt.Tool)
+            return (Qt.FramelessWindowHint | Qt.Widget | Qt.Dialog)
         }
     }
     DWindow.enabled: !DebugHelper.useRegularWindow
