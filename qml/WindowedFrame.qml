@@ -61,8 +61,10 @@ StackView {
                             launchApp(desktopId)
                         }
 
-                        onClicked: {
-                            launchApp(desktopId)
+                        TapHandler {
+                            onTapped: {
+                                launchApp(desktopId)
+                            }
                         }
 
                         background: P.ButtonPanel {
