@@ -45,6 +45,18 @@ void FavoritedProxyModel::removeFavorite(const QString &desktopId)
     invalidate();
 }
 
+void FavoritedProxyModel::pinToTop(const QString &desktopId)
+{
+    int idx = m_favoritedAppIds.indexOf(desktopId);
+
+    if (idx != -1) {
+        m_favoritedAppIds.move(idx, 0);
+
+        save();
+        invalidate();
+    }
+}
+
 bool FavoritedProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const
 {
     QModelIndex modelIndex = this->sourceModel()->index(sourceRow, 0, sourceParent);

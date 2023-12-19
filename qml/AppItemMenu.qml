@@ -35,6 +35,9 @@ Loader {
                 visible: isFavoriteItem && !hideFavoriteMenu
                 height: visible ? implicitHeight : 0 // FIXME: seems this can cause some issue
                 text: qsTr("Pin to Top")
+                onTriggered: {
+                    FavoritedProxyModel.pinToTop(appItem.desktopId)
+                }
             }
             MenuItem {
                 id: addOrRemoveFavMenu

@@ -19,6 +19,7 @@ public:
     Q_INVOKABLE bool exists(const QString & desktopId);
     Q_INVOKABLE void addFavorite(const QString & desktopId);
     Q_INVOKABLE void removeFavorite(const QString & desktopId);
+    Q_INVOKABLE void pinToTop(const QString & desktopId);
 
     // QSortFilterProxyModel interface
 protected:
