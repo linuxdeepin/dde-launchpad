@@ -228,7 +228,7 @@
     <message>
         <location filename="../qml/WindowedFrame.qml" line="107"/>
         <source>Control Center</source>
-        <translation type="unfinished"></translation>
+        <translation>Vezérlőpult</translation>
     </message>
     <message>
         <location filename="../qml/WindowedFrame.qml" line="143"/>
