@@ -22,6 +22,7 @@ DdeDock::DdeDock(QObject *parent)
     // Due to current dde-dock bug, we need to do both since position changed signal might not got emit in some case.
     connect(m_dbusDaemonDockIface, &Dock1::PositionChanged, this, &DdeDock::updateDockRectAndPositionFromDBus);
     connect(m_dbusDaemonDockIface, &Dock1::FrontendWindowRectChanged, this, &DdeDock::updateDockRectAndPositionFromDBus);
+    connect(m_dbusDaemonDockIface, &Dock1::DisplayModeChanged, this, &DdeDock::updateDockRectAndPositionFromDBus);
 }
 
 DdeDock::~DdeDock()
@@ -37,6 +38,11 @@ Qt::ArrowType DdeDock::direction() const
 QRect DdeDock::geometry() const
 {
     return m_rect;
+}
+
+int DdeDock::displayMode() const
+{
+    return m_display_mode;
 }
 
 bool DdeDock::isDocked(const QString &desktop) const
@@ -66,6 +72,7 @@ void DdeDock::updateDockRectAndPositionFromDBus()
 {
     updateDockPositionFromDBus();
     updateDockRectFromDBus();
+    updateDockDisplayModeFromDBus();
 }
 
 void DdeDock::updateDockPositionFromDBus()
@@ -103,4 +110,10 @@ void DdeDock::updateDockRectFromDBus()
 {
     m_rect = m_dbusDaemonDockIface->frontendWindowRect();
     emit geometryChanged();
+}
+
+void DdeDock::updateDockDisplayModeFromDBus()
+{
+    m_display_mode = m_dbusDaemonDockIface->displayMode();
+    emit displayModeChanged();
 }

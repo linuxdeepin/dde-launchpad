@@ -85,6 +85,11 @@ QRect DesktopIntegration::dockGeometry() const
     return m_dockIntegration->geometry();
 }
 
+int DesktopIntegration::displayMode() const
+{
+    return m_dockIntegration->displayMode();
+}
+
 QString DesktopIntegration::backgroundUrl() const
 {
     return QString("image://blurhash/%1").arg(m_appearanceIntegration->wallpaperBlurhash());
@@ -219,5 +224,6 @@ DesktopIntegration::DesktopIntegration(QObject *parent)
 {
     connect(m_dockIntegration, &DdeDock::directionChanged, this, &DesktopIntegration::dockPositionChanged);
     connect(m_dockIntegration, &DdeDock::geometryChanged, this, &DesktopIntegration::dockGeometryChanged);
+    connect(m_dockIntegration, &DdeDock::displayModeChanged, this, &DesktopIntegration::dockDisplayModeChanged);
     connect(m_appearanceIntegration, &Appearance::wallpaperBlurhashChanged, this, &DesktopIntegration::backgroundUrlChanged);
 }

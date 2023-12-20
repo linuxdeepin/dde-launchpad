@@ -16,6 +16,7 @@ class DesktopIntegration : public QObject
 
     Q_PROPERTY(Qt::ArrowType dockPosition READ dockPosition NOTIFY dockPositionChanged)
     Q_PROPERTY(QRect dockGeometry READ dockGeometry NOTIFY dockGeometryChanged)
+    Q_PROPERTY(int displayMode READ displayMode NOTIFY dockDisplayModeChanged)
     Q_PROPERTY(QString backgroundUrl READ backgroundUrl NOTIFY backgroundUrlChanged)
 
 public:
@@ -34,6 +35,7 @@ public:
 
     Qt::ArrowType dockPosition() const;
     QRect dockGeometry() const;
+    int displayMode() const;
     QString backgroundUrl() const;
 
     Q_INVOKABLE bool isDockedApp(const QString & desktopId) const;
@@ -49,6 +51,7 @@ public:
 signals:
     void dockPositionChanged();
     void dockGeometryChanged();
+    void dockDisplayModeChanged();
     void backgroundUrlChanged();
 
 private:

@@ -145,9 +145,33 @@ ApplicationWindow {
             root.setGeometry(x, y, width, height)
         } else {
 //            root.visibility = Window.FullScreen
+
+            let width = Screen.width
+            let height = Screen.height
+
+            let dockGeometry = descaledRect(DesktopIntegration.dockGeometry)
+            if (dockGeometry.width > 0 && dockGeometry.height > 0) {
+                switch (DesktopIntegration.dockPosition) {
+                case Qt.UpArrow:
+                case Qt.DownArrow:
+                    height = Screen.height - dockGeometry.height
+                    if (DesktopIntegration.displayMode == 0) {
+                        height = height - 20;
+                    }
+                    break
+                case Qt.LeftArrow:
+                case Qt.RightArrow:
+                    width = Screen.width - dockGeometry.width
+                    if (DesktopIntegration.displayMode == 0) {
+                        width = width - 20;
+                    }
+                    break
+                }
+            }
+
             // Fullscreen mode: always assume dark theme
             ApplicationHelper.setPaletteType(ApplicationHelper.DarkType)
-            root.setGeometry(Screen.virtualX, Screen.virtualY, Screen.width, Screen.height)
+            root.setGeometry(Screen.virtualX, Screen.virtualY, width, height)
         }
 
         root.requestActivate()
