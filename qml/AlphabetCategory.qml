@@ -93,7 +93,7 @@ ColumnLayout {
             icon.name: "shutdown"
             ToolTip.visible: hovered
             ToolTip.delay: 1000
-            ToolTip.text: qsTr("Power")
+            ToolTip.text: qsTranslate("WindowedFrame", "Power")
             onClicked: {
                 DesktopIntegration.openShutdownScreen();
             }
@@ -103,7 +103,7 @@ ColumnLayout {
             icon.name: "setting"
             ToolTip.visible: hovered
             ToolTip.delay: 1000
-            ToolTip.text: qsTr("Control Center")
+            ToolTip.text: qsTranslate("WindowedFrame", "Control Center")
             onClicked: {
                 DesktopIntegration.openSystemSettings();
             }
