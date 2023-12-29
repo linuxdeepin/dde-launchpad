@@ -30,6 +30,7 @@ Architecture: any
 Depends:
  ${shlibs:Depends},
  ${misc:Depends},
+ dde-application-wizard-daemon-compat,
  qml6-module-qtquick-layouts,
  qml6-module-qtquick-window,
  qml6-module-qtquick-controls,
@@ -38,5 +39,5 @@ Depends:
  qml6-module-qt5compat-graphicaleffects
 Conflicts: dde-launcher
 Replaces: dde-launcher
-Description: <insert up to 60 chars description>
- <insert long description, indented with spaces>
+Description: The "launcher" or "start menu" component for DDE
+ Display all installed applications and allow user to launch applications, which is convenient for users to operate quickly
