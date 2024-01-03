@@ -31,6 +31,7 @@ AppsModel::AppsModel(QObject *parent)
     connect(m_appInfoMonitor, &AppInfoMonitor::changed, this, [this](){
         qDebug() << "changed";
         QList<AppItem *> items(allAppInfosShouldBeShown());
+        cleanUpInvalidApps(items);
         QList<AppItem *> duplicatedItems = updateItems(items);
         for (AppItem * item : qAsConst(duplicatedItems)) {
             delete item;
@@ -135,4 +136,19 @@ QList<AppItem *> AppsModel::allAppInfosShouldBeShown() const
         items.append(item);
     }
     return items;
+}
+
+// remove apps that are not in the \l knownExistedApps list
+void AppsModel::cleanUpInvalidApps(const QList<AppItem *> knownExistedApps)
+{
+    QSet<QString> existedApps;
+    for (const AppItem * app : knownExistedApps) {
+        existedApps.insert(app->freedesktopId());
+    }
+    for (int i = rowCount() - 1; i >= 0; i--) {
+        const QString & appId(data(index(i, 0), AppItem::DesktopIdRole).toString());
+        if (!existedApps.contains(appId)) {
+            removeRow(i);
+        }
+    }
 }

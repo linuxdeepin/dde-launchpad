@@ -40,6 +40,7 @@ private:
     explicit AppsModel(QObject *parent = nullptr);
 
     QList<AppItem *> allAppInfosShouldBeShown() const;
+    void cleanUpInvalidApps(const QList<AppItem *> knownExistedApps);
 
     AppInfoMonitor * m_appInfoMonitor;
 
