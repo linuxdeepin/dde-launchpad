@@ -28,22 +28,6 @@
 DCORE_USE_NAMESPACE
 DGUI_USE_NAMESPACE
 
-// we should wait for dtkgui to have a "proper" loadTranslation() to use.
-QStringList translationDir() {
-    QList<QString> translateDirs;
-    auto appName = QCoreApplication::applicationName();
-    //("/home/user/.local/share", "/usr/local/share", "/usr/share")
-    const QStringList dataDirs(DStandardPaths::standardLocations(QStandardPaths::GenericDataLocation));
-    for (const auto &path : dataDirs) {
-        DPathBuf DPathBuf(path);
-        translateDirs << (DPathBuf / appName / "translations").toString();
-    }
-#ifdef QT_DEBUG
-    translateDirs.prepend(QCoreApplication::applicationDirPath());
-#endif
-    return translateDirs;
-}
-
 int main(int argc, char* argv[])
 {
     // workaround for https://github.com/linuxdeepin/dtk/issues/115
@@ -56,7 +40,7 @@ int main(int argc, char* argv[])
     QCoreApplication::setOrganizationName("deepin");
     QCoreApplication::setApplicationName("dde-launchpad");
     QCoreApplication::setApplicationVersion(QT_STRINGIFY(DDE_LAUNCHPAD_VERSION) + QStringLiteral("-technical-preview"));
-    DGuiApplicationHelper::loadTranslator(QStringLiteral("dde-launchpad"), translationDir(), { QLocale() });
+    DGuiApplicationHelper::loadTranslator();
     bool isOnlyInstance = DGuiApplicationHelper::setSingleInstance(QStringLiteral("dde-launchpad"));
 
     QCommandLineParser parser;
