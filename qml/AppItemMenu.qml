@@ -97,7 +97,16 @@ Loader {
 
             onClosed: {
                 root.closed()
-                destroy()
+                root.destroy()
+            }
+        }
+    }
+
+    Connections {
+        target: LauncherController
+        onVisibleChanged: {
+            if (!LauncherController.launcherVisible) {
+                item.close()
             }
         }
     }
