@@ -1,0 +1,17 @@
+{
+  "magic": "dsg.config.meta",
+  "version": "1.0",
+  "contents": {
+    "excludeAppIdList": {
+      "value": [],
+      "serial": 0,
+      "flags": [],
+      "name": "Exclude Application ID List",
+      "name[zh_CN]": "应用排除 ID 列表",
+      "description": "List of application's desktop IDs that should be exclude/hidden from the launchpad.",
+      "description[zh_CN]": "需要使 launchpad 排除（避免显示）的应用程序的 desktop ID 列表。",
+      "permissions": "readonly",
+      "visibility": "private"
+    }
+  }
+}

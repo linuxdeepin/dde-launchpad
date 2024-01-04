@@ -28,6 +28,11 @@ Files: *.qrc
 Copyright: None
 License: CC0-1.0
 
+# dconfig base template files
+Files: */org.deepin.dde.launchpad.*.json
+Copyright: None
+License: CC0-1.0
+
 # translations
 Files: translations/*.ts
 Copyright: UnionTech Software Technology Co., Ltd.

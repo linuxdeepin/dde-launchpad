@@ -8,6 +8,10 @@
 
 #include <QStandardItemModel>
 
+namespace Dtk::Core {
+class DConfig;
+}
+
 // List of applications and nothing else.
 // Always in a single column so it's a one dimension model.
 class AppInfoMonitor;
@@ -43,5 +47,6 @@ private:
     void cleanUpInvalidApps(const QList<AppItem *> knownExistedApps);
 
     AppInfoMonitor * m_appInfoMonitor;
-
+    Dtk::Core::DConfig * m_dconfig;
+    QStringList m_excludedAppIdList;
 };

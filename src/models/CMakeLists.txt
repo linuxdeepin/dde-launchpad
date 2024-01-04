@@ -35,3 +35,8 @@ target_link_libraries(launcher-models PRIVATE
     gio-utils
     launcher-utils
 )
+
+dtk_add_config_meta_files(
+  APPID ${PROJECT_NAME}
+  FILES org.deepin.dde.launchpad.appsmodel.json
+)

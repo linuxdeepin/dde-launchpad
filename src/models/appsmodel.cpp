@@ -6,14 +6,21 @@
 #include "categoryutils.h"
 
 #include <QDebug>
+#include <DConfig>
 #include <DPinyin>
 #include <appinfo.h>
 #include <appinfomonitor.h>
 
+DCORE_USE_NAMESPACE
+
 AppsModel::AppsModel(QObject *parent)
     : QStandardItemModel(parent)
     , m_appInfoMonitor(new AppInfoMonitor(this))
+    , m_dconfig(new DConfig("org.deepin.dde.launchpad.appsmodel"))
 {
+    Q_ASSERT_X(m_dconfig->isValid(), "DConfig", "DConfig file is missing or invalid");
+    m_excludedAppIdList = m_dconfig->value("excludeAppIdList", QStringList{}).toStringList();
+
     QHash<int, QByteArray> defaultRoleNames = roleNames();
     defaultRoleNames.insert({
         {AppItem::DesktopIdRole, QByteArrayLiteral("desktopId")},
@@ -128,6 +135,9 @@ QList<AppItem *> AppsModel::allAppInfosShouldBeShown() const
     const auto list = m_appInfoMonitor->allAppInfosShouldBeShown();
     QList<AppItem *> items;
     for (const QHash<QString, QString> & hashmap : list) {
+        if (m_excludedAppIdList.contains(hashmap["id"])) {
+            continue;
+        }
         auto item = new AppItem(hashmap["id"]);
         item->setDisplayName(hashmap["name"]);
         item->setIconName(hashmap["icon"]);
