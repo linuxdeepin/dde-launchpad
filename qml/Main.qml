@@ -180,6 +180,12 @@ QtObject {
         DWindow.enableSystemResize: false
         DWindow.enableSystemMove: false
 
+        onVisibleChanged: {
+            if (visible) {
+                requestActivate()
+            }
+        }
+
         Loader {
             anchors.fill: parent
             focus: true
