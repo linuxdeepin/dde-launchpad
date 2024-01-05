@@ -1,3 +1,24 @@
+dde-launchpad (0.4.0) unstable; urgency=medium
+
+  * Rename "Settings" to "Control Center"
+  * Play sfx when send to desktop
+  * Support use Enter to launch app in Windowed mode (https://github.com/linuxdeepin/developer-center/issues/6395)
+  * Support AppStreamQt 1.0
+  * Change DnD mimetype to text/x-dde-launcher-dnd-desktopId
+  * Enable cross-page item drag in FullscreenFrame
+  * Avoid right click launch app in window mode (https://github.com/linuxdeepin/developer-center/issues/6290)
+  * Support "Pin to top" for favorited items (https://github.com/linuxdeepin/developer-center/issues/6399)
+  * Fix missing translation in alphabet category view (https://github.com/linuxdeepin/developer-center/issues/6520)
+  * Use two window for different mode to avoid lagging when switching between modes
+  * Add dde-application-wizard as dependency
+  * Clean up invalid apps after app list changed (https://github.com/linuxdeepin/developer-center/issues/6116)
+  * Hide menu when launcher is hidden (https://github.com/linuxdeepin/developer-center/issues/6716)
+  * Launchpad cannot get foucus when get shown in second time (https://github.com/linuxdeepin/developer-center/issues/6517)
+  * Support OEM config to hide app form be shown in launchpad
+  * Fix highlight not visible when focus in (https://github.com/linuxdeepin/developer-center/issues/6397)
+
+ -- Gary Wang <wangzichong@deepin.org>  Fri, 05 Jan 2024 10:38:00 +0800
+
 dde-launchpad (0.3.0) unstable; urgency=medium
 
   * Support drag and drop in fullscreen launcher
