@@ -10,6 +10,7 @@ Build-Depends:
 # v-- to get systemduserunitdir from its pkg-config data
  systemd,
  qt6-base-dev,
+ qt6-base-private-dev,
  qt6-svg-dev,
  qt6-declarative-dev,
  qt6-tools-dev,
