@@ -24,7 +24,7 @@ Item {
             // the scroll might stopped before the highlight item scroll to the expected place.
             // Thus we use a timer to set back these values with a delay.
             listView.highlightMoveDuration = 150
-            listView.highlightRangeMode = GridView.NoHighlightRange
+            listView.highlightRangeMode = ListView.NoHighlightRange
         }
     }
 
@@ -34,12 +34,18 @@ Item {
             if (character === transliterated1st) {
                 // we use the highlight move to scroll to item
                 listView.highlightMoveDuration = 0
-                listView.highlightRangeMode = GridView.ApplyRange
+                listView.highlightRangeMode = ListView.StrictlyEnforceRange
                 listView.currentIndex = i
                 postScrollDeferTimer.restart()
                 break
             }
         }
+    }
+
+    function scrollToHighlight() {
+        listView.highlightMoveDuration = 0
+        listView.highlightRangeMode = ListView.StrictlyEnforceRange
+        postScrollDeferTimer.restart()
     }
 
     Component {
@@ -86,6 +92,12 @@ Item {
         // displayMarginBeginning: -45
         clip: true
         focus: true
+        onFocusChanged: {
+            if (focus) {
+                // When focus in, we always scroll to the highlight
+                scrollToHighlight()
+            }
+        }
 
         section.property: CategorizedSortProxyModel.sortRoleName // "transliterated" // "category"
         section.criteria: section.property === "transliterated" ? ViewSection.FirstCharacter : ViewSection.FullString
