@@ -52,16 +52,31 @@ FocusScope {
             height: rows == 0 ? parent.height : (item.cellSize * root.rows)
             color: "transparent"
 
+            Timer {
+                id: postScrollDeferTimer
+                interval: 150
+                onTriggered: {
+                    gridView.highlightMoveDuration = 150
+                    gridView.highlightRangeMode = GridView.NoHighlightRange
+                }
+            }
+
             GridView {
                 id: gridView
                 anchors.fill: parent
                 clip: true
                 highlightFollowsCurrentItem: true
                 keyNavigationEnabled: true
-                highlightMoveDuration: 0
+                highlightMoveDuration: 150
                 activeFocusOnTab: focus ? root.activeGridViewFocusOnTab : false
                 focus: count > 0
-
+                onActiveFocusChanged: {
+                    if (activeFocus) {
+                        gridView.highlightMoveDuration = 0
+                        gridView.highlightRangeMode = GridView.StrictlyEnforceRange
+                        postScrollDeferTimer.restart()
+                    }
+                }
                 cellHeight: item.cellSize
                 cellWidth: item.cellSize
 
