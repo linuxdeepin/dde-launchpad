@@ -42,12 +42,6 @@ Item {
         }
     }
 
-    function scrollToHighlight() {
-        listView.highlightMoveDuration = 0
-        listView.highlightRangeMode = ListView.StrictlyEnforceRange
-        postScrollDeferTimer.restart()
-    }
-
     Component {
         id: sectionHeading
         ToolButton {
@@ -92,10 +86,12 @@ Item {
         // displayMarginBeginning: -45
         clip: true
         focus: true
-        onFocusChanged: {
-            if (focus) {
+        onActiveFocusChanged: {
+            if (activeFocus) {
                 // When focus in, we always scroll to the highlight
-                scrollToHighlight()
+                listView.highlightMoveDuration = 0
+                listView.highlightRangeMode = ListView.StrictlyEnforceRange
+                postScrollDeferTimer.restart()
             }
         }
 
