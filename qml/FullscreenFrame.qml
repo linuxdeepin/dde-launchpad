@@ -86,11 +86,15 @@ Control {
                     }
                     if (toPage < 0) {
                         flipPageDelay.start()
-                        baseLayer.focus = true // reset keyboard focus when using mouse to flip page
+                        if (!searchEdit.focus) { // reset keyboard focus when using mouse to flip page, but keep searchEdit focus
+                            baseLayer.focus = true
+                        }
                         pages.decrementCurrentIndex()
                     } else if (toPage > 0) {
                         flipPageDelay.start()
-                        baseLayer.focus = true // reset keyboard focus when using mouse to flip page
+                        if (!searchEdit.focus) { // reset keyboard focus when using mouse to flip page, but keep searchEdit focus
+                            baseLayer.focus = true
+                        }
                         pages.incrementCurrentIndex()
                     }
                 }
