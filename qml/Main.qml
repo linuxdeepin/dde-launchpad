@@ -241,7 +241,8 @@ QtObject {
         property string appName: ""
 
         width: 400
-
+        minimumWidth: 400
+        minimumHeight: 140
         ColumnLayout {
             width: parent.width
             Label {
