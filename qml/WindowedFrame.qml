@@ -8,7 +8,6 @@ import QtQuick.Layouts 1.15
 import QtQuick.Controls 2.15
 import QtQuick.Window 2.15
 import org.deepin.dtk 1.0
-import org.deepin.dtk.private 1.0 as P
 
 import org.deepin.launchpad 1.0
 
@@ -67,8 +66,7 @@ StackView {
                             }
                         }
 
-                        background: P.ButtonPanel {
-                            button: parent
+                        background: BoxPanel {
                             visible: ColorSelector.controlState === DTK.HoveredState
                         }
                     }
