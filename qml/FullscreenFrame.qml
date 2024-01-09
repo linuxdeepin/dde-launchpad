@@ -526,6 +526,8 @@ Control {
             if (folderGridViewPopup.visible) folderGridViewPopup.close()
             // reset(remove) keyboard focus
             baseLayer.focus = true
+            // reset page to the first page
+            pages.setCurrentIndex(0)
         }
     }
 }

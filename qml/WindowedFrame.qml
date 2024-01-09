@@ -336,6 +336,10 @@ StackView {
             searchEdit.text = ""
             // reset(remove) keyboard focus
             baseLayer.focus = true
+            // reset scroll area position
+            appListView.positionViewAtBeginning()
+            favoriteGridViewContainer.positionViewAtBeginning()
+            allAppsGridContainer.positionViewAtBeginning()
         }
     }
 }

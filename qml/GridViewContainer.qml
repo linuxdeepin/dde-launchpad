@@ -29,6 +29,10 @@ FocusScope {
 
     readonly property alias gridViewWidth: gridView.width
 
+    function positionViewAtBeginning() {
+        gridView.positionViewAtBeginning()
+    }
+
     function itemAt(x, y) {
         let point = mapToItem(gridView, x, y)
         return gridView.itemAt(point.x, point.y)
