@@ -109,9 +109,9 @@ Item {
             FocusBoxBorder {
                 anchors {
                     fill: parent
-                    margins: 5
+                    margins: 4
                 }
-                radius: 8
+                radius: 4
                 color: highlightPalette.highlight
                 visible: listView.activeFocus
             }
