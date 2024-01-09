@@ -34,7 +34,7 @@ Item {
             if (character === transliterated1st) {
                 // we use the highlight move to scroll to item
                 listView.highlightMoveDuration = 0
-                listView.highlightRangeMode = ListView.StrictlyEnforceRange
+                listView.highlightRangeMode = ListView.ApplyRange
                 listView.currentIndex = i
                 postScrollDeferTimer.restart()
                 break
@@ -90,8 +90,11 @@ Item {
             if (activeFocus) {
                 // When focus in, we always scroll to the highlight
                 listView.highlightMoveDuration = 0
+                listView.currentIndex = 0
                 listView.highlightRangeMode = ListView.StrictlyEnforceRange
                 postScrollDeferTimer.restart()
+            } else {
+                listView.currentIndex = -1
             }
         }
 

@@ -73,8 +73,11 @@ FocusScope {
                 onActiveFocusChanged: {
                     if (activeFocus) {
                         gridView.highlightMoveDuration = 0
+                        gridView.currentIndex = 0
                         gridView.highlightRangeMode = GridView.StrictlyEnforceRange
                         postScrollDeferTimer.restart()
+                    } else {
+                        gridView.currentIndex = -1
                     }
                 }
                 cellHeight: item.cellSize
