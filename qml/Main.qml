@@ -108,8 +108,6 @@ QtObject {
             windowedFrame.requestActivate()
         } else {
 //            root.visibility = Window.FullScreen
-            // Fullscreen mode: always assume dark theme
-            ApplicationHelper.setPaletteType(ApplicationHelper.DarkType)
             fullscreenFrame.setGeometry(Screen.virtualX, Screen.virtualY, Screen.width, Screen.height)
             fullscreenFrame.requestActivate()
         }
