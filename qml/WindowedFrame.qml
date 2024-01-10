@@ -155,6 +155,10 @@ StackView {
                 Label {
                     visible: favoriteGridView.visible
                     text: qsTr("My Favorites")
+                    font {
+                        pixelSize: DTK.fontManager.fontPixelSize(FontManager.T5)
+                        bold: true
+                    }
                 }
 
                 Item {
@@ -196,6 +200,10 @@ StackView {
 
                 Label {
                     text: qsTr("All Apps")
+                    font {
+                        pixelSize: DTK.fontManager.fontPixelSize(FontManager.T5)
+                        bold: true
+                    }
                 }
 
                 DelegateModel {
