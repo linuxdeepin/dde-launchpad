@@ -19,8 +19,8 @@ Control {
     focus: true
     objectName: "FullscreenFrame-BaseLayer"
 
-    leftPadding: (DesktopIntegration.dockPosition === Qt.LeftArrow ? DesktopIntegration.dockGeometry.width : 0) + 20
-    rightPadding: (DesktopIntegration.dockPosition === Qt.RightArrow ? DesktopIntegration.dockGeometry.width : 0) + 20
+    leftPadding: (DesktopIntegration.dockPosition === Qt.LeftArrow ? DesktopIntegration.dockGeometry.width : 0)
+    rightPadding: (DesktopIntegration.dockPosition === Qt.RightArrow ? DesktopIntegration.dockGeometry.width : 0)
     topPadding: (DesktopIntegration.dockPosition === Qt.UpArrow ? DesktopIntegration.dockGeometry.height : 0) + 20
     bottomPadding: (DesktopIntegration.dockPosition === Qt.DownArrow ? DesktopIntegration.dockGeometry.height : 0) + 20
 
@@ -107,6 +107,9 @@ Control {
         Control {
             Layout.fillWidth: true
             Layout.fillHeight: false
+
+            leftPadding: 20
+            rightPadding: 20
 
             contentItem: Rectangle {
                 id: fullscreenHeader
