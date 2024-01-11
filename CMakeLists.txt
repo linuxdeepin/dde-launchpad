@@ -118,7 +118,6 @@ PRIVATE
 target_link_libraries(${BIN_NAME} PRIVATE
     ${DTK_NS}::Core
     ${DTK_NS}::Gui
-    Qt::GuiPrivate
     Qt::Qml
     Qt::Quick
     Qt::QuickControls2
