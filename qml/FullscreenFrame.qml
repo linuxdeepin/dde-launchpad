@@ -203,8 +203,22 @@ Control {
 
                 currentIndex: indicator.currentIndex
 
+                // To ensure toplevelRepeater's model (page count) updated correctly
+                // Caution! Don't put it directly under a Repeater{}, that will prevent Connections from working
+                Connections {
+                    target: MultipageProxyModel
+                    function onRowsInserted() {
+                        toplevelRepeater.pageCount = MultipageProxyModel.pageCount(0)
+                    }
+                    function onRowsRemoved() {
+                        toplevelRepeater.pageCount = MultipageProxyModel.pageCount(0)
+                    }
+                }
+
                 Repeater {
-                    model: MultipageProxyModel.pageCount(0) // FIXME: should be a property?
+                    id: toplevelRepeater
+                    property int pageCount: MultipageProxyModel.pageCount(0)
+                    model: pageCount
 
                     Loader {
                         active: SwipeView.isCurrentItem || SwipeView.isNextItem || SwipeView.isPreviousItem
