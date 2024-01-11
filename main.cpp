@@ -24,29 +24,14 @@
 #include <launcherfoldericonprovider.h>
 #include <blurhashimageprovider.h>
 #include <multipagesortfilterproxymodel.h>
-#include <qpa/qplatformintegrationfactory_p.h>
 
 DCORE_USE_NAMESPACE
 DGUI_USE_NAMESPACE
-
-void tryUpdatePlatformPluginToDXcb()
-{
-    if (qEnvironmentVariableIsSet("WAYLAND_DISPLAY"))
-        return;
-
-    const QByteArray dxcb = QByteArrayLiteral("dxcb");
-    if (QPlatformIntegrationFactory::keys().contains(dxcb) &&
-            qEnvironmentVariableIsEmpty("QT_QPA_PLATFORM")) {
-        qputenv("QT_QPA_PLATFORM", dxcb);
-    }
-}
 
 int main(int argc, char* argv[])
 {
     // workaround for https://github.com/linuxdeepin/dtk/issues/115
     qputenv("D_POPUP_MODE", "embed");
-    // TODO qxcb maybe found firstly in qt6.4 later.
-    tryUpdatePlatformPluginToDXcb();
 
     QGuiApplication app(argc, argv);
 #if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
