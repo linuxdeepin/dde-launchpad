@@ -105,7 +105,7 @@ Loader {
     Connections {
         target: LauncherController
         onVisibleChanged: {
-            if (!LauncherController.launcherVisible) {
+            if (!LauncherController.visible) {
                 item.close()
             }
         }
