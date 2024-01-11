@@ -91,6 +91,7 @@ Loader {
                     LauncherController.visible = false
                     confirmUninstallDlg.appName = appItem.display
                     confirmUninstallDlg.appId = appItem.desktopId
+                    confirmUninstallDlg.icon = appItem.iconName
                     confirmUninstallDlg.show()
                 }
             }
