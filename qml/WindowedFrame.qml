@@ -316,7 +316,7 @@ StackView {
     }
     Keys.onPressed: {
         if (searchEdit.focus === false && !searchEdit.text
-                && event.modifiers === Qt.NoModifier
+                && (event.modifiers === Qt.NoModifier || event.modifiers === Qt.ShiftModifier)
                 && event.key >= Qt.Key_A && event.key <= Qt.Key_Z) {
             searchEdit.focus = true
             searchEdit.text = event.text
