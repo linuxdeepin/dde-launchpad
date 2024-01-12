@@ -1,3 +1,14 @@
+dde-launchpad (0.4.2) unstable; urgency=medium
+
+  * Adjust section title font size in WindowedFrame (https://github.com/linuxdeepin/developer-center/issues/6208)
+  * Fix context menu did not get hide (https://github.com/linuxdeepin/developer-center/issues/6716)
+  * Make icon DnD in FullscreenFrame easier (https://github.com/linuxdeepin/developer-center/issues/6286)
+  * Allow Shift+Alphabetic key to quick search (https://github.com/linuxdeepin/developer-center/issues/6859)
+  * Fix missing icon for uninstall (https://github.com/linuxdeepin/developer-center/issues/6686)
+  * Update page indicator when page count changed (https://github.com/linuxdeepin/developer-center/issues/6861)
+
+ -- Gary Wang <wangzichong@deepin.org>  Fri, 12 Jan 2024 13:43:00 +0800
+
 dde-launchpad (0.4.1) unstable; urgency=medium
 
   * Ensure dxcb plugin can be loaded properly (https://github.com/linuxdeepin/developer-center/issues/6686)
