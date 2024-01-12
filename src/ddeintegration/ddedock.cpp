@@ -16,12 +16,15 @@ DdeDock::DdeDock(QObject *parent)
                                       QDBusConnection::sessionBus(), this))
     , m_direction(Qt::DownArrow)
     , m_rect(QRect(-1, -1, 0, 0))
+    , m_windowMargin(0)
 {
     QTimer::singleShot(0, this, &DdeDock::updateDockRectAndPositionFromDBus);
+    QMetaObject::invokeMethod(this, &DdeDock::updateDockWindowMarginFromDBus, Qt::QueuedConnection);
 
     // Due to current dde-dock bug, we need to do both since position changed signal might not got emit in some case.
     connect(m_dbusDaemonDockIface, &Dock1::PositionChanged, this, &DdeDock::updateDockRectAndPositionFromDBus);
     connect(m_dbusDaemonDockIface, &Dock1::FrontendWindowRectChanged, this, &DdeDock::updateDockRectAndPositionFromDBus);
+    connect(m_dbusDaemonDockIface, &Dock1::WindowMarginChanged, this, &DdeDock::updateDockWindowMarginFromDBus);
 }
 
 DdeDock::~DdeDock()
@@ -37,6 +40,11 @@ Qt::ArrowType DdeDock::direction() const
 QRect DdeDock::geometry() const
 {
     return m_rect;
+}
+
+uint DdeDock::windowMargin() const
+{
+    return m_windowMargin;
 }
 
 bool DdeDock::isDocked(const QString &desktop) const
@@ -97,6 +105,12 @@ void DdeDock::updateDockPositionFromDBus()
         m_direction = newDirection;
         emit directionChanged();
     }
+}
+
+void DdeDock::updateDockWindowMarginFromDBus()
+{
+    m_windowMargin = m_dbusDaemonDockIface->windowMargin();
+    emit windowMarginChanged();
 }
 
 void DdeDock::updateDockRectFromDBus()
