@@ -64,8 +64,10 @@ bool IconUtils::getThemeIcon(QPixmap &pixmap, const QString &iconName, const int
 
         icon = DIconTheme::findQIcon(actualIconName);
 
-        if (icon.isNull()) {
+        // TODO why icon is not null, but it's name is empty.
+        if (icon.isNull() || icon.name().isEmpty()) {
             icon = QIcon(":/images/application-x-desktop.svg");
+            qWarning() << "It fallbacks to default icon for [" << actualIconName << "].";
             findIcon = false;
         }
 
