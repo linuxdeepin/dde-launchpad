@@ -85,18 +85,18 @@ QtObject {
                 switch (DesktopIntegration.dockPosition) {
                 case Qt.DownArrow:
                     x = dockGeometry.left
-                    y = (dockGeometry.top >= 0 ? dockGeometry.top : (Screen.height - dockGeometry.height)) - height
+                    y = (dockGeometry.top >= 0 ? dockGeometry.top : (Screen.height - dockGeometry.height)) - height - DesktopIntegration.dockSpacing
                     break
                 case Qt.LeftArrow:
-                    x = dockGeometry.width
+                    x = dockGeometry.right + DesktopIntegration.dockSpacing
                     y = (dockGeometry.top >= 0 ? dockGeometry.top : 0)
                     break
                 case Qt.UpArrow:
                     x = dockGeometry.left
-                    y = dockGeometry.height
+                    y = dockGeometry.bottom + DesktopIntegration.dockSpacing
                     break
                 case Qt.RightArrow:
-                    x = (dockGeometry.left >= 0 ? dockGeometry.left : (Screen.width - dockGeometry.width)) - width
+                    x = (dockGeometry.left >= 0 ? dockGeometry.left : (Screen.width - dockGeometry.width)) - width - DesktopIntegration.dockSpacing
                     y = dockGeometry.top
                     break
                 }
