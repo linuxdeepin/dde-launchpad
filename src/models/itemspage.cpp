@@ -4,6 +4,8 @@
 
 #include "itemspage.h"
 
+#include <QSet>
+
 ItemsPage::ItemsPage(const QString &name, int maxItemCountPerPage, QObject *parent)
     : QObject(parent)
     , m_maxItemCountPerPage(maxItemCountPerPage)
@@ -155,6 +157,24 @@ bool ItemsPage::removeItem(const QString id, bool removePageIfPageIsEmpty)
     }
 
     return false;
+}
+
+void ItemsPage::removeItemsNotIn(const QSet<QString> &itemSet)
+{
+    for (int i = 0; i < m_pages.count(); i++) {
+        for (int j = m_pages.at(i).count() - 1; j >= 0; j--) {
+            const QString & item(m_pages.at(i).at(j));
+            if (itemSet.contains(item)) continue;
+            if (item.startsWith(QLatin1String("internal/"))) continue;
+            m_pages[i].removeAt(j);
+        }
+    }
+    removeEmptyPages();
+}
+
+void ItemsPage::removeEmptyPages()
+{
+    m_pages.removeAll({});
 }
 
 // <page, index>

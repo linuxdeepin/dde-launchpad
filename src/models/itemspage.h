@@ -34,6 +34,8 @@ public:
     void insertItem(const QString id, int page, int pos = 0);
     void moveItem(int from_page, int from_index, int to_page, int to_index);
     bool removeItem(const QString id, bool removePageIfPageIsEmpty = true);
+    void removeItemsNotIn(const QSet<QString> & itemSet);
+    void removeEmptyPages();
 
     std::tuple<int, int> findItem(const QString & id) const;
     bool contains(const QString & id) const;

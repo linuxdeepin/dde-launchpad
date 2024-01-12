@@ -283,20 +283,25 @@ std::tuple<int, int, int> MultipageProxyModel::findItem(const QString &id, bool 
 
 void MultipageProxyModel::onSourceModelChanged()
 {
-    // add all existing ones if they are not already in
+    QSet<QString> appDesktopIdSet;
     int appsCount = AppsModel::instance().rowCount();
     for (int i = 0; i < appsCount; i++) {
         QString desktopId(AppsModel::instance().data(AppsModel::instance().index(i, 0), AppItem::DesktopIdRole).toString());
+        appDesktopIdSet.insert(desktopId);
         int folder, page, idx;
         std::tie(folder, std::ignore, std::ignore) = findItem(desktopId);
+        // add all existing ones if they are not already in
         if (folder == -1) {
             findItem(desktopId);
             m_topLevel->appendItem(desktopId);
         }
     }
 
-    // TODO: remove the ones that no longer valid out of m_folders
-
+    m_topLevel->removeItemsNotIn(appDesktopIdSet);
+    for (int i = 0; i < m_folderModel.rowCount(); i++) {
+        const QString & folderId = m_folderModel.index(i, 0).data(AppItem::DesktopIdRole).toString();
+        m_folders.value(folderId)->removeItemsNotIn(appDesktopIdSet);
+    }
 
     emit dataChanged(index(0, 0), index(rowCount() - 1, 0), {
         PageRole, IndexInPageRole, FolderIdNumberRole, IconsNameRole
