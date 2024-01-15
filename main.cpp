@@ -24,6 +24,7 @@
 #include <launcherfoldericonprovider.h>
 #include <blurhashimageprovider.h>
 #include <multipagesortfilterproxymodel.h>
+#include <DLog>
 
 DCORE_USE_NAMESPACE
 DGUI_USE_NAMESPACE
@@ -34,6 +35,9 @@ int main(int argc, char* argv[])
     qputenv("D_POPUP_MODE", "embed");
 
     QGuiApplication app(argc, argv);
+    Dtk::Core::DLogManager::registerConsoleAppender();
+    Dtk::Core::DLogManager::registerFileAppender();
+    Dtk::Core::DLogManager::registerJournalAppender();
 #if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
     app.setAttribute(Qt::AA_UseHighDpiPixmaps);
 #endif // (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
