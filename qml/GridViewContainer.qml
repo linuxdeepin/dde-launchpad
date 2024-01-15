@@ -56,15 +56,6 @@ FocusScope {
             height: rows == 0 ? parent.height : (item.cellSize * root.rows)
             color: "transparent"
 
-            Timer {
-                id: postScrollDeferTimer
-                interval: 150
-                onTriggered: {
-                    gridView.highlightMoveDuration = 150
-                    gridView.highlightRangeMode = GridView.NoHighlightRange
-                }
-            }
-
             GridView {
                 id: gridView
                 anchors.fill: parent
@@ -76,12 +67,13 @@ FocusScope {
                 focus: count > 0
                 onActiveFocusChanged: {
                     if (activeFocus) {
-                        gridView.highlightMoveDuration = 0
-                        gridView.currentIndex = 0
-                        gridView.highlightRangeMode = GridView.StrictlyEnforceRange
-                        postScrollDeferTimer.restart()
-                    } else {
-                        gridView.currentIndex = -1
+                        let snapMode = gridView.snapMode
+                        let preferredHighlightBegin = gridView.preferredHighlightBegin
+                        gridView.snapMode = GridView.SnapToRow
+                        gridView.preferredHighlightBegin = 0
+                        gridView.positionViewAtIndex(gridView.currentIndex, GridView.SnapPosition)
+                        gridView.snapMode = snapMode
+                        gridView.preferredHighlightBegin = preferredHighlightBegin
                     }
                 }
                 cellHeight: item.cellSize

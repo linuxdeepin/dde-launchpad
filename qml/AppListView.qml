@@ -16,18 +16,6 @@ Item {
 
     signal sectionHeaderClicked(var categoryType)
 
-    Timer {
-        id: postScrollDeferTimer
-        interval: 150 // same as the defaul value of ListView's highlightMoveDuration
-        onTriggered: {
-            // if we set back the highlightRangeMode right after we set currentIndex,
-            // the scroll might stopped before the highlight item scroll to the expected place.
-            // Thus we use a timer to set back these values with a delay.
-            listView.highlightMoveDuration = 150
-            listView.highlightRangeMode = ListView.NoHighlightRange
-        }
-    }
-
     function positionViewAtBeginning() {
         listView.positionViewAtBeginning()
     }
@@ -36,14 +24,21 @@ Item {
         for (let i = 0; i < model.count; i++) {
             let transliterated1st = model.model.data(model.modelIndex(i), 4096)[0].toUpperCase() // 4096 is AppsModel::TransliteratedRole
             if (character === transliterated1st) {
-                // we use the highlight move to scroll to item
-                listView.highlightMoveDuration = 0
-                listView.highlightRangeMode = ListView.ApplyRange
                 listView.currentIndex = i
-                postScrollDeferTimer.restart()
+                scrollToIndex(listView.currentIndex, 35) // the height of a section heading
                 break
             }
         }
+    }
+
+    function scrollToIndex(index, expectedHighlightBegin) {
+        let snapMode = listView.snapMode
+        let preferredHighlightBegin = listView.preferredHighlightBegin
+        listView.preferredHighlightBegin = expectedHighlightBegin
+        listView.snapMode = ListView.SnapToItem
+        listView.positionViewAtIndex(index, ListView.SnapPosition)
+        listView.snapMode = snapMode
+        listView.preferredHighlightBegin = preferredHighlightBegin
     }
 
     Component {
@@ -93,12 +88,7 @@ Item {
         onActiveFocusChanged: {
             if (activeFocus) {
                 // When focus in, we always scroll to the highlight
-                listView.highlightMoveDuration = 0
-                listView.currentIndex = 0
-                listView.highlightRangeMode = ListView.StrictlyEnforceRange
-                postScrollDeferTimer.restart()
-            } else {
-                listView.currentIndex = -1
+                scrollToIndex(listView.currentIndex, 0)
             }
         }
 
@@ -106,8 +96,6 @@ Item {
         section.criteria: section.property === "transliterated" ? ViewSection.FirstCharacter : ViewSection.FullString
         section.delegate: sectionHeading
         section.labelPositioning: ViewSection.InlineLabels // | ViewSection.CurrentLabelAtStart
-        preferredHighlightBegin: 35 // the height of a section heading
-        preferredHighlightEnd: 35
 
         model: visualModel
 
