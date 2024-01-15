@@ -4,6 +4,7 @@
 
 #include "desktopintegration.h"
 
+#include <DConfig>
 #include <DDBusSender>
 #include <DDesktopEntry>
 #include <DStandardPaths>
@@ -56,6 +57,8 @@ void DesktopIntegration::launchByDesktopId(const QString &desktopId)
 
 bool DesktopIntegration::appIsCompulsoryForDesktop(const QString &desktopId)
 {
+    if (m_compulsoryAppIdList.contains(desktopId)) return true;
+
 #ifdef NO_APPSTREAM_QT
     Q_UNUSED(desktopId)
 #else
@@ -222,6 +225,22 @@ DesktopIntegration::DesktopIntegration(QObject *parent)
     , m_dockIntegration(new DdeDock(this))
     , m_appearanceIntegration(new Appearance(this))
 {
+    DConfig dconfig("org.deepin.dde.launchpad.appsmodel");
+    Q_ASSERT_X(dconfig.isValid(), "DConfig", "DConfig file is missing or invalid");
+    // TODO:
+    //   1. ensure dde-launchpad is build with AppStream support
+    //   2. ensure dde-control-center, deepin-calendar, dde-file-manager ship their AppStream MetaInfo file
+    //   3. remove the hard-coded list below
+    static const QStringList defaultCompulsoryAppIdList{
+        "dde-control-center.desktop",
+        "dde-computer.desktop",
+        "dde-trash.desktop",
+        "dde-file-manager.desktop",
+        "deepin-appstore.desktop",
+        "deepin-calendar.desktop"
+    };
+    m_compulsoryAppIdList = dconfig.value("compulsoryAppIdList", defaultCompulsoryAppIdList).toStringList();
+
     connect(m_dockIntegration, &DdeDock::directionChanged, this, &DesktopIntegration::dockPositionChanged);
     connect(m_dockIntegration, &DdeDock::geometryChanged, this, &DesktopIntegration::dockGeometryChanged);
     connect(m_dockIntegration, &DdeDock::windowMarginChanged, this, &DesktopIntegration::dockSpacingChanged);

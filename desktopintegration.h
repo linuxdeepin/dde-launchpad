@@ -30,7 +30,7 @@ public:
     Q_INVOKABLE static void openShutdownScreen();
     Q_INVOKABLE static void openSystemSettings();
     Q_INVOKABLE static void launchByDesktopId(const QString & desktopId);
-    Q_INVOKABLE static bool appIsCompulsoryForDesktop(const QString & desktopId);
+    Q_INVOKABLE bool appIsCompulsoryForDesktop(const QString & desktopId);
     // TODO: async get wallpaper?
 
     Qt::ArrowType dockPosition() const;
@@ -57,6 +57,7 @@ signals:
 private:
     explicit DesktopIntegration(QObject * parent = nullptr);
 
+    QStringList m_compulsoryAppIdList;
     AppWiz * m_appWizIntegration;
     DdeDock * m_dockIntegration;
     Appearance * m_appearanceIntegration;

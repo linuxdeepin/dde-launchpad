@@ -45,3 +45,10 @@ The application id list that shouldn't be displayed in dde-launchpad. The applic
 
 > [!IMPORTANT]
 > Think twice before actually using this field. If you are application developer or distro package maintainer, please consider use the [`OnlyShowIn`, `NotShowIn` or `Hidden` field](https://specifications.freedesktop.org/desktop-entry-spec/latest/ar01s06.html) inside the application's desktop file.
+
+#### `compulsoryAppIdList`
+
+The application id list that is considered as compulsory for the current desktop environment. The "Uninstall" menu entry will be disabled for these applications. The application id is its freedeskop.org [`desktop-entry-spec` desktop file id](https://specifications.freedesktop.org/desktop-entry-spec/latest/ar01s02.html#desktop-file-id).
+
+> [!IMPORTANT]
+> Think twice before actually using this field. If you are application developer or distro package maintainer, please consider ship an AppStream metadata file to mark your application as a compulsory component. See: [`<compulsory_for_desktop/>`](https://www.freedesktop.org/software/appstream/docs/chap-Metadata.html#tag-compulsory_for_desktop).
