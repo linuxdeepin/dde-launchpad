@@ -8,6 +8,7 @@
 
 namespace IconUtils {
 bool getThemeIcon(QPixmap &pixmap, const QString & iconName, const int size);
+void tryUpdateIconCache();
 int perfectIconSize(const int size);
 bool createCalendarIcon(const QString &fileName);
 const QPixmap loadSvg(const QString &fileName, int size);

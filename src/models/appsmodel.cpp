@@ -4,6 +4,7 @@
 
 #include "appsmodel.h"
 #include "categoryutils.h"
+#include "iconutils.h"
 
 #include <QDebug>
 #include <DConfig>
@@ -37,6 +38,8 @@ AppsModel::AppsModel(QObject *parent)
 
     connect(m_appInfoMonitor, &AppInfoMonitor::changed, this, [this](){
         qDebug() << "changed";
+        // TODO release icon's cache when gtk's icon-theme.cache is updated.
+        IconUtils::tryUpdateIconCache();
         QList<AppItem *> items(allAppInfosShouldBeShown());
         cleanUpInvalidApps(items);
         QList<AppItem *> duplicatedItems = updateItems(items);
