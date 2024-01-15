@@ -432,6 +432,7 @@ Control {
 
                         SwipeView {
                             id: folderPagesView
+                            clip: true
 
                             anchors.fill: parent
 
