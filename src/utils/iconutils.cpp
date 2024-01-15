@@ -4,6 +4,8 @@
 
 #include "iconutils.h"
 
+#include <private/qiconloader_p.h>
+
 #include <QDate>
 #include <QDebug>
 #include <QIcon>
@@ -240,4 +242,12 @@ const QPixmap IconUtils::loadSvg(const QString &fileName, const QSize &size)
     painter.end();
 
     return pixmap;
+}
+
+void IconUtils::tryUpdateIconCache()
+{
+    qInfo() << "Update theme cache manually.";
+    // TODO release icon's cache.
+    const auto paths = QIconLoader::instance()->themeSearchPaths();
+    QIconLoader::instance()->setThemeSearchPath(paths);
 }
