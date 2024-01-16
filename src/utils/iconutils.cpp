@@ -5,6 +5,7 @@
 #include "iconutils.h"
 
 #include <QDate>
+#include <QDebug>
 #include <QIcon>
 #include <QStandardPaths>
 #include <QGuiApplication>
