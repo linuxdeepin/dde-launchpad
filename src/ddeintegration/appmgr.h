@@ -14,4 +14,8 @@ public:
     ~AppMgr();
 
     static bool launchApp(const QString & desktopId);
+    static bool autoStart(const QString & desktopId);
+    static void setAutoStart(const QString & desktopId, bool autoStart);
+    static double scaleFactor(const QString & desktopId);
+    static void setScaleFactor(const QString & desktopId, double scaleFactor);
 };

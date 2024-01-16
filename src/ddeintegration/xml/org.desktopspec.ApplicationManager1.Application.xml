@@ -39,6 +39,21 @@
             />
         </property>
 
+        <property name="Terminal" type="b" access="read">
+            <annotation
+                name="org.freedesktop.DBus.Description"
+                value="Indicate this application should launch by terminal or not."
+            />
+        </property>
+
+        <property name="ScaleFactor" type="d" access="readwrite">
+            <annotation
+                name="org.freedesktop.DBus.Description"
+                value="Indicate the scale factor of application's instance.
+                       Note: Set `0` to use global scaleFactor"
+            />
+        </property>
+
         <method name="Launch">
             <arg type="s" name="action" direction="in" />
             <arg type="as" name="fields" direction="in" />

@@ -39,9 +39,7 @@ inline QString escapeToObjectPath(const QString &str)
     return ret;
 }
 
-// if return false, it means the launch is not even started.
-// if return true, it means we attempted to launch it via AM, but not sure if it's succeed.
-bool AppMgr::launchApp(const QString &desktopId)
+AppManager1Application * createAM1AppIface(const QString &desktopId)
 {
     // the new dde-application-manager use systemd-style Application ID, which is
     // basicly the freedesktop desktop-id sins the ".desktop" suffix.
@@ -54,10 +52,53 @@ bool AppMgr::launchApp(const QString &desktopId)
                                                                     QDBusConnection::sessionBus());
     if (!amAppIface->isValid()) {
         qDebug() << "D-Bus interface not exist or failed to connect to" << dbusPath;
-        return false;
+        return nullptr;
     }
+
+    return amAppIface;
+}
+
+// if return false, it means the launch is not even started.
+// if return true, it means we attempted to launch it via AM, but not sure if it's succeed.
+bool AppMgr::launchApp(const QString &desktopId)
+{
+    AppManager1Application * amAppIface = createAM1AppIface(desktopId);
+    if (!amAppIface) return false;
 
     amAppIface->Launch(QString(), QStringList{}, QVariantMap());
 
     return true;
+}
+
+bool AppMgr::autoStart(const QString &desktopId)
+{
+    AppManager1Application * amAppIface = createAM1AppIface(desktopId);
+    if (!amAppIface) return false;
+
+    return amAppIface->autoStart();
+}
+
+void AppMgr::setAutoStart(const QString &desktopId, bool autoStart)
+{
+    AppManager1Application * amAppIface = createAM1AppIface(desktopId);
+    if (!amAppIface) return;
+
+    amAppIface->setAutoStart(autoStart);
+}
+
+// 0: global scaleFactor
+double AppMgr::scaleFactor(const QString &desktopId)
+{
+    AppManager1Application * amAppIface = createAM1AppIface(desktopId);
+    if (!amAppIface) return 0;
+
+    return amAppIface->scaleFactor();
+}
+
+void AppMgr::setScaleFactor(const QString &desktopId, double scaleFactor)
+{
+    AppManager1Application * amAppIface = createAM1AppIface(desktopId);
+    if (!amAppIface) return;
+
+    amAppIface->setScaleFactor(scaleFactor);
 }
