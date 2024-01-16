@@ -127,6 +127,7 @@ void LauncherController::setCurrentFrame(const QString &frame)
     settings.setValue("current_frame", frame);
 
     m_currentFrame = frame;
+    m_timer->start();
     emit currentFrameChanged();
 }
 
@@ -140,4 +141,9 @@ void LauncherController::hideWithTimer()
         m_timer->start();
         setVisible(false);
     }
+}
+
+bool LauncherController::shouldAvoidHideOrActive()
+{
+    return m_timer->isActive();
 }

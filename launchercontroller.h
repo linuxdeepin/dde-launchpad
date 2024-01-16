@@ -35,6 +35,7 @@ public:
     void setCurrentFrame(const QString & frame);
 
     Q_INVOKABLE void hideWithTimer();
+    Q_INVOKABLE bool shouldAvoidHideOrActive();
 
 signals:
     void currentFrameChanged();
