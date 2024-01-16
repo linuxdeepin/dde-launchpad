@@ -110,7 +110,11 @@ QtObject {
 //            root.visibility = Window.FullScreen
             // Fullscreen mode: always assume dark theme
             ApplicationHelper.setPaletteType(ApplicationHelper.DarkType)
-            fullscreenFrame.setGeometry(Screen.virtualX, Screen.virtualY, Screen.width, Screen.height)
+            if (DesktopIntegration.environmentVariable("DDE_CURRENT_COMPOSITOR") !== "TreeLand") {
+                fullscreenFrame.setGeometry(Screen.virtualX, Screen.virtualY, Screen.width, Screen.height)
+            } else {
+                fullscreenFrame.showFullScreen()
+            }
             fullscreenFrame.requestActivate()
         }
     }

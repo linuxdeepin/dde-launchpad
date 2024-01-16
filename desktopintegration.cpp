@@ -55,6 +55,11 @@ void DesktopIntegration::launchByDesktopId(const QString &desktopId)
     }
 }
 
+QString DesktopIntegration::environmentVariable(const QString &env)
+{
+    return qEnvironmentVariable(env.toStdString().c_str());
+}
+
 bool DesktopIntegration::appIsCompulsoryForDesktop(const QString &desktopId)
 {
     if (m_compulsoryAppIdList.contains(desktopId)) return true;

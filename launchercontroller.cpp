@@ -28,6 +28,9 @@ LauncherController::LauncherController(QObject *parent)
     QSettings settings(settingPath, QSettings::NativeFormat);
 
     m_currentFrame = settings.value("current_frame", "WindowedFrame").toString();
+    if (qgetenv("DDE_CURRENT_COMPOSITOR") == "TreeLand") {
+        m_currentFrame = QStringLiteral("FullscreenFrame");
+    }
 
     m_timer->setInterval(500);
     m_timer->setSingleShot(true);
