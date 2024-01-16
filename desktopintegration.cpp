@@ -236,8 +236,13 @@ DesktopIntegration::DesktopIntegration(QObject *parent)
         "dde-computer.desktop",
         "dde-trash.desktop",
         "dde-file-manager.desktop",
-        "deepin-appstore.desktop",
-        "deepin-calendar.desktop"
+        "deepin-terminal.desktop",
+        "deepin-manual.desktop",
+        "deepin-system-monitor.desktop",
+        "deepin-devicemanager.desktop",
+        "dde-printer.desktop",
+        "deepin-app-store.desktop",
+        "dde-calendar.desktop"
     };
     m_compulsoryAppIdList = dconfig.value("compulsoryAppIdList", defaultCompulsoryAppIdList).toStringList();
 
