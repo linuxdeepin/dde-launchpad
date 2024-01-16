@@ -1,3 +1,16 @@
+dde-launchpad (0.4.3) unstable; urgency=medium
+
+  * Fix window mode position jitter (linuxdeepin/developer-center#6733)
+  * Fix icon missing (linuxdeepin/developer-center#6860)
+  * Provide a built-in compulsory-for-DDE app list
+    (linuxdeepin/developer-center#6883)
+  * Enable clipping for app folder page view
+  * Fix scroll failed in some case (linuxdeepin/developer-center#6897)
+  * Avoid window mode hide caused by activeChanged
+    (linuxdeepin/developer-center#6818)
+
+ -- Gary Wang <wangzichong@deepin.org>  Tue, 16 Jan 2024 16:45:00 +0800
+
 dde-launchpad (0.4.2) unstable; urgency=medium
 
   * Adjust section title font size in WindowedFrame (https://github.com/linuxdeepin/developer-center/issues/6208)
