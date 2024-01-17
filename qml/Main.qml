@@ -8,6 +8,7 @@ import QtQuick.Layouts 1.15
 import QtQuick.Controls 2.15
 import QtQuick.Window 2.15
 import org.deepin.dtk 1.0
+import org.deepin.dtk.style 1.0 as DS
 
 import org.deepin.launchpad 1.0
 
@@ -256,37 +257,52 @@ QtObject {
         property string appId: ""
         property string appName: ""
 
-        width: 400
-        minimumWidth: 400
-        minimumHeight: 140
+        minimumWidth: layout.implicitWidth + 2 * DS.Style.dialogWindow.contentHMargin
+        minimumHeight: layout.implicitHeight + DS.Style.dialogWindow.titleBarHeight
+        maximumWidth: minimumWidth
+        maximumHeight: minimumHeight
         ColumnLayout {
-            width: parent.width
+            id: layout
+            spacing: 0
             Label {
-                Layout.alignment: Qt.AlignHCenter
                 font: DTK.fontManager.t5
                 text: qsTr("Are you sure you want to uninstall %1?").arg(confirmUninstallDlg.appName)
+                wrapMode: Text.Wrap
+                horizontalAlignment: Text.AlignHCenter
+                Layout.preferredWidth: 400
+                Layout.alignment: Qt.AlignCenter
+                Layout.margins: 10
             }
             RowLayout {
-                Layout.alignment: Qt.AlignBottom | Qt.AlignHCenter
-                Layout.bottomMargin: 10
-                Layout.topMargin: 10
-                Layout.fillWidth: true
-                Button {
-                    text: qsTr("Cancel")
-                    Layout.preferredWidth: 175
-                    onClicked: {
-                        confirmUninstallDlg.close()
+                spacing: 0
+                Item {
+                    Button {
+                        id: cancelButton
+                        text: qsTr("Cancel")
+                        onClicked: {
+                            confirmUninstallDlg.close()
+                        }
+                        anchors.centerIn: parent
                     }
+                    Layout.fillWidth: true
+                    Layout.preferredHeight: cancelButton.implicitHeight
+                    Layout.topMargin: 20
+                    Layout.bottomMargin: 20
                 }
-                Item {Layout.fillWidth: true}
-                WarningButton {
-                    text: qsTr("Confirm")
-                    Layout.preferredWidth: 175
-                    Layout.alignment: Qt.AlignRight
-                    onClicked: {
-                        DesktopIntegration.uninstallApp(confirmUninstallDlg.appId)
-                        confirmUninstallDlg.close()
+                Item {
+                    WarningButton {
+                        id: confirmButton
+                        text: qsTr("Confirm")
+                        onClicked: {
+                            DesktopIntegration.uninstallApp(confirmUninstallDlg.appId)
+                            confirmUninstallDlg.close()
+                        }
+                        anchors.centerIn: parent
                     }
+                    Layout.fillWidth: true
+                    Layout.preferredHeight: confirmButton.implicitHeight
+                    Layout.topMargin: 20
+                    Layout.bottomMargin: 20
                 }
             }
         }
