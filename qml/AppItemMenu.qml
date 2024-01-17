@@ -11,7 +11,9 @@ import org.deepin.launchpad 1.0
 Loader {
     id: root
 
-    property var appItem
+    property string display
+    property string desktopId
+    property string iconName
     property bool isFavoriteItem
     property bool hideFavoriteMenu
 
@@ -26,7 +28,7 @@ Loader {
             MenuItem {
                 text: qsTr("Open")
                 onTriggered: {
-                    launchApp(appItem.desktopId)
+                    launchApp(root.desktopId)
                 }
             }
             MenuSeparator {}
@@ -36,19 +38,19 @@ Loader {
                 height: visible ? implicitHeight : 0 // FIXME: seems this can cause some issue
                 text: qsTr("Pin to Top")
                 onTriggered: {
-                    FavoritedProxyModel.pinToTop(appItem.desktopId)
+                    FavoritedProxyModel.pinToTop(root.desktopId)
                 }
             }
             MenuItem {
                 id: addOrRemoveFavMenu
                 visible: !hideFavoriteMenu
                 height: visible ? implicitHeight : 0 // FIXME: same as above
-                text: FavoritedProxyModel.exists(appItem.desktopId) ? qsTr("Remove from favorites") : qsTr("Add to favorites")
+                text: FavoritedProxyModel.exists(root.desktopId) ? qsTr("Remove from favorites") : qsTr("Add to favorites")
                 onTriggered: {
-                    if (FavoritedProxyModel.exists(appItem.desktopId)) {
-                        FavoritedProxyModel.removeFavorite(appItem.desktopId);
+                    if (FavoritedProxyModel.exists(root.desktopId)) {
+                        FavoritedProxyModel.removeFavorite(root.desktopId);
                     } else {
-                        FavoritedProxyModel.addFavorite(appItem.desktopId);
+                        FavoritedProxyModel.addFavorite(root.desktopId);
                     }
                 }
             }
@@ -57,41 +59,41 @@ Loader {
                 height: visible ? implicitHeight : 0 // FIXME: same as above
             }
             MenuItem {
-                text: DesktopIntegration.isOnDesktop(appItem.desktopId) ? qsTr("Remove from desktop") : qsTr("Send to desktop")
+                text: DesktopIntegration.isOnDesktop(root.desktopId) ? qsTr("Remove from desktop") : qsTr("Send to desktop")
                 onTriggered: {
-                    if (DesktopIntegration.isOnDesktop(appItem.desktopId)) {
-                        DesktopIntegration.removeFromDesktop(appItem.desktopId);
+                    if (DesktopIntegration.isOnDesktop(root.desktopId)) {
+                        DesktopIntegration.removeFromDesktop(root.desktopId);
                     } else {
-                        DesktopIntegration.sendToDesktop(appItem.desktopId);
+                        DesktopIntegration.sendToDesktop(root.desktopId);
                     }
                 }
             }
             MenuItem {
-                text: DesktopIntegration.isDockedApp(appItem.desktopId) ? qsTr("Remove from dock") : qsTr("Send to dock")
+                text: DesktopIntegration.isDockedApp(root.desktopId) ? qsTr("Remove from dock") : qsTr("Send to dock")
                 onTriggered: {
-                    if (DesktopIntegration.isDockedApp(appItem.desktopId)) {
-                        DesktopIntegration.removeFromDock(appItem.desktopId);
+                    if (DesktopIntegration.isDockedApp(root.desktopId)) {
+                        DesktopIntegration.removeFromDock(root.desktopId);
                     } else {
-                        DesktopIntegration.sendToDock(appItem.desktopId);
+                        DesktopIntegration.sendToDock(root.desktopId);
                     }
                 }
             }
             MenuSeparator {}
             MenuItem {
-                text: DesktopIntegration.isAutoStart(appItem.desktopId) ? qsTr("Remove from startup") : qsTr("Add to startup")
+                text: DesktopIntegration.isAutoStart(root.desktopId) ? qsTr("Remove from startup") : qsTr("Add to startup")
                 onTriggered: {
-                    DesktopIntegration.setAutoStart(appItem.desktopId, !DesktopIntegration.isAutoStart(appItem.desktopId))
+                    DesktopIntegration.setAutoStart(root.desktopId, !DesktopIntegration.isAutoStart(root.desktopId))
                 }
             }
             MenuItem { text: qsTr("Use a proxy") }
             MenuItem {
-                enabled: !DesktopIntegration.appIsCompulsoryForDesktop(appItem.desktopId)
+                enabled: !DesktopIntegration.appIsCompulsoryForDesktop(root.desktopId)
                 text: qsTr("Uninstall")
                 onTriggered: {
                     LauncherController.visible = false
-                    confirmUninstallDlg.appName = appItem.display
-                    confirmUninstallDlg.appId = appItem.desktopId
-                    confirmUninstallDlg.icon = appItem.iconName
+                    confirmUninstallDlg.appName = root.display
+                    confirmUninstallDlg.appId = root.desktopId
+                    confirmUninstallDlg.icon = root.iconName
                     confirmUninstallDlg.show()
                 }
             }
