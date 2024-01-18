@@ -1,3 +1,13 @@
+dde-launchpad (0.4.4) unstable; urgency=medium
+
+  * Ensure uninstall dialog can be shown (linuxdeepin/developer-center#6945)
+    (linuxdeepin/developer-center#6961)
+  * Adjust systemd service
+  * Some special care for TreeLand
+  * Tweak uninstall dialog layout
+
+ -- Gary Wang <wangzichong@deepin.org>  Thu, 18 Jan 2024 11:17:00 +0800
+
 dde-launchpad (0.4.3) unstable; urgency=medium
 
   * Fix window mode position jitter (linuxdeepin/developer-center#6733)
