@@ -16,6 +16,7 @@ Loader {
     property string iconName
     property bool isFavoriteItem
     property bool hideFavoriteMenu
+    property bool hideDisplayScalingMenu
 
     signal closed()
 
@@ -87,6 +88,11 @@ Loader {
             }
             MenuItem { text: qsTr("Use a proxy") }
             MenuItem {
+                visible: !hideDisplayScalingMenu
+                height: visible ? implicitHeight : 0 // FIXME: same as above
+                text: qsTr("Disable display scaling")
+            }
+            MenuItem {
                 enabled: !DesktopIntegration.appIsCompulsoryForDesktop(root.desktopId)
                 text: qsTr("Uninstall")
                 onTriggered: {
@@ -107,7 +113,7 @@ Loader {
 
     Connections {
         target: LauncherController
-        onVisibleChanged: {
+        onVisibleChanged: function () {
             if (!LauncherController.visible) {
                 item.close()
             }
