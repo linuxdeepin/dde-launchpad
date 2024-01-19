@@ -60,6 +60,16 @@ QString DesktopIntegration::environmentVariable(const QString &env)
     return qEnvironmentVariable(env.toStdString().c_str());
 }
 
+double DesktopIntegration::scaleFactor(const QString &desktopId)
+{
+    return AppMgr::scaleFactor(desktopId);
+}
+
+void DesktopIntegration::setScaleFactor(const QString &desktopId, double scaleFactor)
+{
+    return AppMgr::setScaleFactor(desktopId, scaleFactor);
+}
+
 bool DesktopIntegration::appIsCompulsoryForDesktop(const QString &desktopId)
 {
     if (m_compulsoryAppIdList.contains(desktopId)) return true;

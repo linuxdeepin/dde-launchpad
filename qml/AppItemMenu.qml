@@ -90,7 +90,12 @@ Loader {
             MenuItem {
                 visible: !hideDisplayScalingMenu
                 height: visible ? implicitHeight : 0 // FIXME: same as above
+                checkable: true
+                checked: Math.abs(DesktopIntegration.scaleFactor(root.desktopId) - 1.0) < 0.0001
                 text: qsTr("Disable display scaling")
+                onTriggered: {
+                    DesktopIntegration.setScaleFactor(root.desktopId, checked ? 1 : 0)
+                }
             }
             MenuItem {
                 enabled: !DesktopIntegration.appIsCompulsoryForDesktop(root.desktopId)

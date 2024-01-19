@@ -31,6 +31,8 @@ public:
     Q_INVOKABLE static void openSystemSettings();
     Q_INVOKABLE static void launchByDesktopId(const QString & desktopId);
     Q_INVOKABLE static QString environmentVariable(const QString & env);
+    Q_INVOKABLE static double scaleFactor(const QString & desktopId);
+    Q_INVOKABLE static void setScaleFactor(const QString & desktopId, double scaleFactor);
     Q_INVOKABLE bool appIsCompulsoryForDesktop(const QString & desktopId);
     // TODO: async get wallpaper?
 
