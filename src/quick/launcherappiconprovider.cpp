@@ -28,10 +28,14 @@ QPixmap LauncherAppIconProvider::requestPixmap(const QString &id, QSize *size, c
     QPixmap result(preferredSize);
     result.fill(Qt::transparent);
 
-    // uri: image://provider/icon-name
+    // uri: image://provider/icon-theme-name/icon-name
     // id: icon-name
+    QString iconName = id;
+    const int iconThemeIndex = id.indexOf("/");
+    if (iconThemeIndex >= 0)
+        iconName = id.mid(iconThemeIndex + 1);
 
-    IconUtils::getThemeIcon(result, id, preferredSize.width());
+    IconUtils::getThemeIcon(result, iconName, preferredSize.width());
 
     return result;
 }
