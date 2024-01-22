@@ -280,7 +280,7 @@ Control {
                                             "text/x-dde-launcher-dnd-desktopId": model.desktopId
                                         }
                                         visible: dndItem.currentlyDraggedId !== model.desktopId
-                                        iconSource: "image://app-icon/" + iconName
+                                        iconSource: "image://app-icon/" + DTK.platformTheme.iconThemeName + "/" + iconName
                                         icons: folderIcons
                                         padding: 5
                                         onItemClicked: {
@@ -319,7 +319,7 @@ Control {
                 id: delegateSearchResultModel
                 model: SearchFilterProxyModel
                 delegate: IconItemDelegate {
-                    iconSource: "image://app-icon/" + iconName
+                    iconSource: "image://app-icon/" + DTK.platformTheme.iconThemeName + "/" + iconName
                     width: searchResultGridViewContainer.cellSize
                     height: searchResultGridViewContainer.cellSize
                     padding: 5
@@ -492,7 +492,7 @@ Control {
                                                         "text/x-dde-launcher-dnd-desktopId": model.desktopId
                                                     }
                                                     visible: dndItem.currentlyDraggedId !== model.desktopId
-                                                    iconSource: "image://app-icon/" + iconName
+                                                    iconSource: "image://app-icon/" + DTK.platformTheme.iconThemeName + "/" + iconName
 
                                                     padding: 5
                                                     onItemClicked: {

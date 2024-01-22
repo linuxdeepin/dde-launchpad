@@ -171,7 +171,7 @@ StackView {
                         id: delegateFavorateModel
                         model: FavoritedProxyModel
                         delegate: IconItemDelegate {
-                            iconSource: "image://app-icon/" + iconName
+                            iconSource: "image://app-icon/" + DTK.platformTheme.iconThemeName + "/" + iconName
                             width: favoriteGridViewContainer.cellSize
                             height: favoriteGridViewContainer.cellSize
                             onItemClicked: {
@@ -210,7 +210,7 @@ StackView {
                     id: delegateAllAppsModel
                     model: SearchFilterProxyModel
                     delegate: IconItemDelegate {
-                        iconSource: "image://app-icon/" + iconName
+                        iconSource: "image://app-icon/" + DTK.platformTheme.iconThemeName + "/" + iconName
                         width: allAppsGridContainer.cellSize
                         height: allAppsGridContainer.cellSize
                         onItemClicked: {
