@@ -61,7 +61,7 @@
     <message>
         <location filename="../qml/AppItemMenu.qml" line="95"/>
         <source>Disable display scaling</source>
-        <translation type="unfinished"></translation>
+        <translation>Képernyő méretezés letiltása</translation>
     </message>
     <message>
         <location filename="../qml/AppItemMenu.qml" line="102"/>
