@@ -92,10 +92,10 @@ Control {
                 Component {
                     id: imageComponent
 
-                    Image {
-                        id: iconImage
+                    DciIcon {
+                        objectName: "appIcon"
                         anchors.fill: parent
-                        source: iconSource
+                        name: iconSource
                         sourceSize: Qt.size(parent.width, parent.height)
                     }
                 }
@@ -158,7 +158,7 @@ Control {
                 // to that property here
                 dndItem.currentlyDraggedId = parent.Drag.mimeData["text/x-dde-launcher-dnd-desktopId"]
                 // TODO: This way we couldn't give it an image size hint,
-                dndItem.Drag.imageSource = icons ? ("image://folder-icon/" + icons.join(':')) : parent.iconSource
+                dndItem.Drag.imageSource = icons ? ("image://folder-icon/" + icons.join(':')) : ("image://app-icon/" + DTK.platformTheme.iconThemeName + "/" + parent.iconSource)
                 Qt.callLater(function() {
                     dndItem.Drag.mimeData = parent.Drag.mimeData
                     dndItem.Drag.active = true
