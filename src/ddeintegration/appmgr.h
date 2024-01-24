@@ -18,4 +18,7 @@ public:
     static void setAutoStart(const QString & desktopId, bool autoStart);
     static double scaleFactor(const QString & desktopId);
     static void setScaleFactor(const QString & desktopId, double scaleFactor);
+    static bool isOnDesktop(const QString & desktopId);
+    static void sendToDesktop(const QString & desktopId);
+    static void removeFromDesktop(const QString & desktopId);
 };

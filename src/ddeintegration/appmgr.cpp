@@ -102,3 +102,27 @@ void AppMgr::setScaleFactor(const QString &desktopId, double scaleFactor)
 
     amAppIface->setScaleFactor(scaleFactor);
 }
+
+bool AppMgr::isOnDesktop(const QString &desktopId)
+{
+    AppManager1Application * amAppIface = createAM1AppIface(desktopId);
+    if (!amAppIface) return false;
+
+    return amAppIface->isOnDesktop();
+}
+
+void AppMgr::sendToDesktop(const QString &desktopId)
+{
+    AppManager1Application * amAppIface = createAM1AppIface(desktopId);
+    if (!amAppIface) return;
+
+    amAppIface->SendToDesktop();
+}
+
+void AppMgr::removeFromDesktop(const QString &desktopId)
+{
+    AppManager1Application * amAppIface = createAM1AppIface(desktopId);
+    if (!amAppIface) return;
+
+    amAppIface->RemoveFromDesktop();
+}
