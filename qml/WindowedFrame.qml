@@ -192,6 +192,7 @@ StackView {
                         model: delegateFavorateModel
                         interactive: favoriteGridView.rowCount > 1
                         activeFocusOnTab: visible && gridViewFocus
+                        vScrollBar: ScrollBar {}
                     }
 
                     Layout.preferredHeight: rowCount === 0 ? 50 : rowCount * favoriteGridViewContainer.cellSize
@@ -232,6 +233,7 @@ StackView {
                     Layout.fillWidth: true
                     Layout.fillHeight: true
                     activeFocusOnTab: gridViewFocus
+                    vScrollBar: ScrollBar {}
 
                     MouseArea {
                         enabled: favoriteGridView.visible && (currentIndex !== -1)
