@@ -126,6 +126,7 @@ QtObject {
     }
 
     property var windowedFrame: ApplicationWindow {
+        id: windowedFrameWindow
         objectName: "WindowedFrameApplicationWindow"
         visible: LauncherController.visible && (LauncherController.currentFrame === "WindowedFrame")
 
@@ -135,9 +136,20 @@ QtObject {
             if (DebugHelper.useRegularWindow) return Qt.Window
             return (Qt.WindowStaysOnTopHint | Qt.FramelessWindowHint | Qt.Tool)
         }
+        StyledBehindWindowBlur {
+            control: parent
+            anchors.fill: parent
+        }
+        InsideBoxBorder {
+            anchors.fill: parent
+            radius: windowedFrameWindow.DWindow.windowRadius
+        }
+
+        color: "transparent"
 
         DWindow.enabled: !DebugHelper.useRegularWindow
-        DWindow.enableBlurWindow: true
+        DWindow.borderColor: Qt.rgba(0, 0, 0, 0.10)
+        DWindow.borderWidth: 1
         DWindow.enableSystemResize: false
         DWindow.enableSystemMove: false
 

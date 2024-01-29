@@ -99,6 +99,12 @@ Control {
                 }
             }
 
+            // as topMargin
+            Item {
+                width: 1
+                height: 8
+            }
+
             Label {
                 id: iconItemLabel
                 text: root.text
@@ -108,6 +114,7 @@ Control {
                 wrapMode: Text.WordWrap
                 elide: Text.ElideRight
                 maximumLineCount: 2
+                font: DTK.fontManager.t9
             }    
         }
 

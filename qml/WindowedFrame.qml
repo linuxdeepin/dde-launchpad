@@ -65,6 +65,7 @@ StackView {
 
                         background: BoxPanel {
                             visible: ColorSelector.controlState === DTK.HoveredState
+                            outsideBorderColor: null
                         }
                     }
                 }
@@ -88,14 +89,12 @@ StackView {
                 RowLayout {
                     Layout.fillWidth: true
                     Layout.fillHeight: false
-                    Layout.preferredHeight: 36
+                    Layout.preferredHeight: 30
                     Layout.topMargin: 5
                     spacing: 10
 
                     ToolButton {
                         icon.name: "shutdown"
-                        icon.width: 18
-                        icon.height: 18
                         ToolTip.visible: hovered
                         ToolTip.delay: 1000
                         ToolTip.text: qsTr("Power")
@@ -106,8 +105,6 @@ StackView {
 
                     ToolButton {
                         icon.name: "setting"
-                        icon.width: 18
-                        icon.height: 18
                         ToolTip.visible: hovered
                         ToolTip.delay: 1000
                         ToolTip.text: qsTr("Control Center")
@@ -121,13 +118,11 @@ StackView {
                     }
 
                     ButtonBox {
-                        Layout.preferredHeight: 36
+                        Layout.preferredHeight: 30
                         padding: 0
                         ColorSelector.family: Palette.CrystalColor
                         ToolButton {
                             icon.name: "title-icon"
-                            icon.width: 18
-                            icon.height: 18
                             checked: CategorizedSortProxyModel.categoryType === CategorizedSortProxyModel.DDECategory
                             onClicked: {
                                 CategorizedSortProxyModel.categoryType = CategorizedSortProxyModel.DDECategory
@@ -135,8 +130,6 @@ StackView {
                         }
                         ToolButton {
                             icon.name: "letter-icon"
-                            icon.width: 18
-                            icon.height: 18
                             checked: CategorizedSortProxyModel.categoryType === CategorizedSortProxyModel.Alphabetary
                             onClicked: {
                                 CategorizedSortProxyModel.categoryType = CategorizedSortProxyModel.Alphabetary
@@ -154,7 +147,7 @@ StackView {
                     visible: favoriteGridView.visible
                     text: qsTr("My Favorites")
                     font {
-                        pixelSize: DTK.fontManager.fontPixelSize(FontManager.T5)
+                        pixelSize: DTK.fontManager.fontPixelSize(FontManager.T6)
                         bold: true
                     }
                 }
@@ -200,7 +193,7 @@ StackView {
                 Label {
                     text: qsTr("All Apps")
                     font {
-                        pixelSize: DTK.fontManager.fontPixelSize(FontManager.T5)
+                        pixelSize: DTK.fontManager.fontPixelSize(FontManager.T6)
                         bold: true
                     }
                 }
@@ -273,8 +266,6 @@ StackView {
 
                         ToolButton {
                             icon.name: "launcher_fullscreen"
-                            icon.width: 18
-                            icon.height: 18
                             Accessible.name: "Fullscreen"
                             onClicked: {
                                 LauncherController.currentFrame = "FullscreenFrame"
