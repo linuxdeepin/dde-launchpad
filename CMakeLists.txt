@@ -20,26 +20,14 @@ set(BIN_NAME dde-launchpad)
 include(FeatureSummary)
 include(GNUInstallDirs)
 
-option(PREFER_QT_5 "Prefer to use Qt 5 even if we have Qt 6" ON)
-
-if(PREFER_QT_5)
-    set(QT_NS Qt5)
-    set(DTK_NS Dtk)
-    set(ASQT_NS AppStreamQt5)
-else()
-    set(QT_NS Qt6)
-    set(DTK_NS Dtk6)
-    set(ASQT_NS AppStreamQt)
-endif()
+set(QT_NS Qt6)
+set(DTK_NS Dtk6)
+set(ASQT_NS AppStreamQt)
 
 find_package(QT NAMES ${QT_NS} REQUIRED COMPONENTS Core)
 find_package(${QT_NS} REQUIRED COMPONENTS Core Gui Concurrent Qml Svg Quick QuickControls2 LinguistTools)
 find_package(${DTK_NS} REQUIRED COMPONENTS Core Gui)
 find_package(${ASQT_NS} 1.0)
-
-if(${QT_VERSION_MAJOR} EQUAL "5")
-    find_package(${QT_NS} REQUIRED COMPONENTS QuickCompiler)
-endif()
 
 set_package_properties(${ASQT_NS} PROPERTIES
     DESCRIPTION "Library that lists Appstream resources"
@@ -93,8 +81,6 @@ set(TRANSLATION_FILES
     translations/dde-launchpad_zh_TW.ts
 )
 
-qt_create_translation(TRANSLATED_FILES ${QML_FILES} ${SOURCE_FILES} src/models/appitem.cpp ${TRANSLATION_FILES})
-
 qt_add_dbus_adaptor(DBUS_ADAPTER_FILES dbus/org.deepin.dde.Launcher1.xml launchercontroller.h LauncherController)
 
 if(${QT_VERSION_MAJOR} EQUAL "5")
@@ -108,6 +94,12 @@ add_executable(${BIN_NAME}
     ${DBUS_ADAPTER_FILES}
     ${RESOURCES}
     ${TRANSLATED_FILES}
+)
+
+qt_add_translations(${BIN_NAME}
+    TS_FILES ${TRANSLATION_FILES}
+    SOURCES ${QML_FILES} ${SOURCE_FILES} src/models/appitem.cpp
+    QM_FILES_OUTPUT_VARIABLE TRANSLATED_FILES
 )
 
 target_compile_definitions(${BIN_NAME}

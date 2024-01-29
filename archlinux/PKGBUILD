@@ -1,6 +1,6 @@
 # Maintainer: justforlxz <justforlxz@gmail.com>
 pkgname=deepin-launchpad-git
-pkgver=0.0.0
+pkgver=0.5.0
 pkgrel=1
 sourcename=dde-launchpad
 sourcetars=("$sourcename"_"$pkgver".tar.xz)
@@ -9,10 +9,10 @@ pkgdesc='Deepin desktop-environment - Launchpad module'
 arch=('x86_64' 'aarch64')
 url="https://github.com/linuxdeepin/dde-launchpad"
 license=('GPL3')
-depends=('qt5-svg' 'qt5-quickcontrols' 'appstream-qt'
-         'dtkdeclarative-git' 'dtkgui-git' 'dtkwidget-git' 'dtkcore-git'
-         'qt5-base' 'qt5-x11extras' 'qt5-svg')
-makedepends=('git' 'cmake' 'ninja' 'qt5-tools' 'dtkcommon' )
+depends=('qt6-svg' 'qt6-declarative' 'appstream-qt'
+         'dtk6declarative-git' 'dtk6gui-git' 'dtk6widget-git' 'dtk6core-git'
+         'qt6-base' 'qt6-svg')
+makedepends=('git' 'cmake' 'ninja' 'qt6-tools' 'dtkcommon' )
 conflicts=('deepin-launcher')
 provides=('deepin-launchpad')
 groups=('deepin-git')
