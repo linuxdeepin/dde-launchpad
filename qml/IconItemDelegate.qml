@@ -104,6 +104,8 @@ Control {
                 text: root.text
                 textFormat: Text.PlainText
                 width: parent.width
+                leftPadding: 2
+                rightPadding: 2
                 horizontalAlignment: Text.AlignHCenter
                 wrapMode: Text.WordWrap
                 elide: Text.ElideRight
