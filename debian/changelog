@@ -1,3 +1,15 @@
+dde-launchpad (0.4.5) unstable; urgency=medium
+
+  * Ensure icon change when theme change
+  * Show scrollbar for window mode app gridview (linuxdeepin/developer-center#6202)
+  * Ensure numkey to trigger quick search (linuxdeepin/developer-center#6373)
+  * Add horizontal spacing for windowed mode grid view (linuxdeepin/developer-center#6372)
+  * Ensure return to main view when press key on alphabet view (linuxdeepin/developer-center#6156)
+  * Add window blur for windowed mode (linuxdeepin/developer-center#7125)
+  * Adapt UI changes according to designer
+
+ -- Gary Wang <wangzichong@deepin.org>  Tue, 30 Jan 2024 22:03:00 +0800
+
 dde-launchpad (0.4.4) unstable; urgency=medium
 
   * Ensure uninstall dialog can be shown (linuxdeepin/developer-center#6945)
