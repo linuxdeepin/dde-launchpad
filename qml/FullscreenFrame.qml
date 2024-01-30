@@ -526,9 +526,7 @@ Control {
     }
 
     Keys.onPressed: {
-        if (searchEdit.focus === false && !searchEdit.text
-                && (event.modifiers === Qt.NoModifier || event.modifiers === Qt.ShiftModifier)
-                && event.key >= Qt.Key_A && event.key <= Qt.Key_Z) {
+        if (searchEdit.focus === false && !searchEdit.text && event.text) {
             searchEdit.focus = true
             searchEdit.text = event.text
         }
