@@ -91,6 +91,8 @@ ColumnLayout {
 
         ToolButton {
             icon.name: "shutdown"
+            icon.width: 18
+            icon.height: 18
             ToolTip.visible: hovered
             ToolTip.delay: 1000
             ToolTip.text: qsTranslate("WindowedFrame", "Power")
@@ -101,6 +103,8 @@ ColumnLayout {
 
         ToolButton {
             icon.name: "setting"
+            icon.width: 18
+            icon.height: 18
             ToolTip.visible: hovered
             ToolTip.delay: 1000
             ToolTip.text: qsTranslate("WindowedFrame", "Control Center")
