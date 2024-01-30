@@ -313,6 +313,9 @@ StackView {
         }
     }
     Keys.onPressed: {
+        if (stackView.index !== 0 ) {
+            stackView.pop()
+        }
         if (searchEdit.focus === false && !searchEdit.text && event.text) {
             searchEdit.focus = true
             searchEdit.text = event.text
