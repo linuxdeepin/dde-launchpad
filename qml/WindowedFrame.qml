@@ -24,16 +24,13 @@ StackView {
 
         RowLayout {
             anchors.fill: parent
-            anchors.topMargin: 20
-            anchors.leftMargin: anchors.topMargin
-            anchors.rightMargin: anchors.topMargin
-            anchors.bottomMargin: 10
+            anchors.margins: 10
 
             spacing: 10
 
             ColumnLayout {
                 Layout.fillWidth: false
-                Layout.preferredWidth: 300
+                Layout.preferredWidth: 220
                 Layout.fillHeight: true
 
                 DelegateModel {
@@ -92,7 +89,8 @@ StackView {
                     Layout.fillWidth: true
                     Layout.fillHeight: false
                     Layout.preferredHeight: 36
-                    spacing: 16
+                    Layout.topMargin: 5
+                    spacing: 10
 
                     ToolButton {
                         icon.name: "shutdown"
@@ -254,6 +252,7 @@ StackView {
                 // Workaround: cannot use RowLayout directly due to unknown layout bug from Qt, so we wrapped with a Control here.
                 Control {
                     Layout.fillWidth: true
+                    Layout.topMargin: 5
 
                     contentItem: RowLayout {
                         Layout.fillHeight: false
