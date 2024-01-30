@@ -356,7 +356,7 @@ Control {
             id: searchEdit
 
             Layout.alignment: Qt.AlignHCenter
-            width: (parent.width / 2) > 400 ? 400 : (parent.width / 2)
+            implicitWidth: (parent.width / 2) > 280 ? 280 : (parent.width / 2)
 
             placeholder: qsTranslate("WindowedFrame", "Search")
             onTextChanged: {
