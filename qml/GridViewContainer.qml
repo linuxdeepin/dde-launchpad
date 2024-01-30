@@ -26,6 +26,7 @@ FocusScope {
     property Transition itemMove
     required property int columns
     required property int rows
+    property int paddingColumns: 0
     property alias cellSize: item.cellSize
 
     readonly property alias gridViewWidth: gridView.width
@@ -49,7 +50,7 @@ FocusScope {
         visible: true
         anchors.fill: parent
 
-        property int cellSize: root.rows == 0 ? (width / root.columns) : Math.min(width / root.columns, height / root.rows)
+        property int cellSize: root.rows == 0 ? (width / (root.columns + root.paddingColumns * 2)) : Math.min(width / (root.columns + root.paddingColumns * 2), height / root.rows)
 
         Rectangle {
             anchors.centerIn: parent

@@ -87,7 +87,7 @@ ColumnLayout {
         Layout.fillWidth: true
         Layout.fillHeight: false
         Layout.preferredHeight: 50
-        spacing: 16
+        spacing: 10
 
         ToolButton {
             icon.name: "shutdown"

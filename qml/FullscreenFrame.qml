@@ -244,6 +244,7 @@ Control {
                                 anchors.fill: parent
                                 rows: 4
                                 columns: 7
+                                paddingColumns: 1
                                 model: proxyModel
                                 padding: 10
                                 interactive: false

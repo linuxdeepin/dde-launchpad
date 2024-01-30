@@ -299,10 +299,7 @@ StackView {
                 existingSections: catalogyItem.existingSections
 
                 anchors.fill: parent
-                anchors.topMargin: 10
-                anchors.leftMargin: 20
-                anchors.rightMargin: 20
-                anchors.bottomMargin: 10
+                anchors.margins: 10
 
                 onBackClicked: {
                     stackView.pop()
