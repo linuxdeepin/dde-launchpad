@@ -304,7 +304,7 @@ StackView {
         }
     }
     Keys.onPressed: {
-        if (stackView.index !== 0 ) {
+        if ((event.text && !"\t ".includes(event.text)) && (stackView.currentItem !== stackView.initialItem)) {
             stackView.pop()
         }
         if (searchEdit.focus === false && !searchEdit.text && event.text) {
