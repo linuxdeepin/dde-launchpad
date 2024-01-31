@@ -13,10 +13,11 @@ import org.deepin.launchpad 1.0
 
 StackView {
     id: stackView
-    width: 780
-    height: 600
     visible: true
     focus: true
+
+    property Palette textColor: appTextColor
+    palette.windowText: ColorSelector.textColor
 
     initialItem: Item {
         id: baseLayer
@@ -43,6 +44,7 @@ StackView {
                         checkable: false
                         icon.name: iconName
                         width: appListView.width
+                        font: DTK.fontManager.t8
             //            icon.source: "image://app-icon/" + iconName;
                         ColorSelector.family: Palette.CrystalColor
 

@@ -9,6 +9,7 @@ import QtQuick.Layouts 1.15
 import QtQuick.Controls 2.15
 import QtQuick.Window 2.15
 import org.deepin.dtk 1.0
+import org.deepin.dtk.style 1.0 as DS
 
 import org.deepin.launchpad 1.0
 
@@ -19,10 +20,14 @@ Control {
     focus: true
     objectName: "FullscreenFrame-BaseLayer"
 
-    leftPadding: (DesktopIntegration.dockPosition === Qt.LeftArrow ? DesktopIntegration.dockGeometry.width : 0)
-    rightPadding: (DesktopIntegration.dockPosition === Qt.RightArrow ? DesktopIntegration.dockGeometry.width : 0)
-    topPadding: (DesktopIntegration.dockPosition === Qt.UpArrow ? DesktopIntegration.dockGeometry.height : 0) + 20
-    bottomPadding: (DesktopIntegration.dockPosition === Qt.DownArrow ? DesktopIntegration.dockGeometry.height : 0) + 20
+    // leftPadding: (DesktopIntegration.dockPosition === Qt.LeftArrow ? DesktopIntegration.dockGeometry.width : 0)
+    // rightPadding: (DesktopIntegration.dockPosition === Qt.RightArrow ? DesktopIntegration.dockGeometry.width : 0)
+    // topPadding: (DesktopIntegration.dockPosition === Qt.UpArrow ? DesktopIntegration.dockGeometry.height : 0) + 20
+    // bottomPadding: (DesktopIntegration.dockPosition === Qt.UpArrow ? DesktopIntegration.dockGeometry.height : 0) + 20
+    bottomPadding: 20
+
+    property Palette textColor: appTextColor
+    palette.windowText: ColorSelector.textColor
 
     // ----------- Drag and Drop related functions START -----------
     Label {
@@ -63,7 +68,7 @@ Control {
 
         Rectangle {
             anchors.fill: parent
-            color: Qt.rgba(0, 0, 0, 0.25)
+            color: Qt.rgba(0, 0, 0, 0.5)
 
             MouseArea {
                 anchors.fill: parent
@@ -110,6 +115,7 @@ Control {
 
             leftPadding: 20
             rightPadding: 20
+            topPadding: 10
 
             contentItem: Rectangle {
                 id: fullscreenHeader
@@ -136,11 +142,26 @@ Control {
                 PageIndicator {
                     id: indicator
 
-                    anchors.centerIn: parent
+                    anchors.horizontalCenter: parent.horizontalCenter
         //            visible: pages.visible
                     count: searchResultGridViewContainer.visible ? 1 : pages.count
                     currentIndex: searchResultGridViewContainer.visible ? 1 : pages.currentIndex
                     interactive: true
+                    delegate: Rectangle {
+                        width: DS.Style.pageIndicator.width
+                        height: width
+
+                        radius: width / 2
+                        color: indicator.enabled ? "white" : "gray"
+
+                        opacity: index === indicator.currentIndex ? 1 : pressed ? 0.7 : 0.40
+
+                        OutsideBoxBorder {
+                            anchors.fill: parent
+                            radius: parent.radius
+                            color: Qt.rgba(0, 0, 0, 0.2)
+                        }
+                    }
                 }
             }
         }
