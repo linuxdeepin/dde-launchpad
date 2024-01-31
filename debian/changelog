@@ -1,3 +1,11 @@
+dde-launchpad (0.4.6) unstable; urgency=medium
+
+  * Adapt UI changes according to designer
+  * Fix tab and space and trigger quick search
+  * Add pre-defined apps to launchpad favorited app list
+
+ -- Gary Wang <wangzichong@deepin.org>  Wed, 31 Jan 2024 18:53:00 +0800
+
 dde-launchpad (0.4.5) unstable; urgency=medium
 
   * Ensure icon change when theme change
