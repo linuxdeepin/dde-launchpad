@@ -78,7 +78,10 @@ void FavoritedProxyModel::load()
     const QString favoriteSettingPath(QDir(favoriteSettingBasePath).absoluteFilePath("favorited.ini"));
     QSettings favoritedAppsSettings(favoriteSettingPath, QSettings::NativeFormat);
 
-    m_favoritedAppIds = favoritedAppsSettings.value("favorited").toStringList();
+    QStringList predefinedFavoritedApps {
+        "deepin-editor.desktop", "deepin-calculator.desktop", "deepin-screen-recorder.desktop", "eepin-terminal.desktop"
+    };
+    m_favoritedAppIds = favoritedAppsSettings.value("favorited", predefinedFavoritedApps).toStringList();
 }
 
 void FavoritedProxyModel::save()
