@@ -80,8 +80,9 @@ QtObject {
 
         if (LauncherController.currentFrame === "WindowedFrame") {
 //            root.visibility = Window.Windowed
-            let width = 780
-            let height = 600
+
+            let width = windowedFrameSize.width
+            let height = windowedFrameSize.height
             let x = 0
             let y = 0
 
@@ -125,13 +126,26 @@ QtObject {
         }
     }
 
+    property Palette appTextColor: Palette {
+        normal {
+            common: Qt.rgba(0, 0, 0, 1)
+            crystal: Qt.rgba(0, 0, 0, 1)
+        }
+        normalDark {
+            common: Qt.rgba(1, 1, 1, 0.7)
+            crystal: Qt.rgba(1, 1, 1, 0.7)
+        }
+    }
+
+    readonly property size windowedFrameSize: Qt.size(680, 540)
+
     property var windowedFrame: ApplicationWindow {
         id: windowedFrameWindow
         objectName: "WindowedFrameApplicationWindow"
         visible: LauncherController.visible && (LauncherController.currentFrame === "WindowedFrame")
 
-        width: 780
-        height: 600
+        width: windowedFrameSize.width
+        height: windowedFrameSize.height
         flags: {
             if (DebugHelper.useRegularWindow) return Qt.Window
             return (Qt.WindowStaysOnTopHint | Qt.FramelessWindowHint | Qt.Tool)
@@ -148,8 +162,6 @@ QtObject {
         color: "transparent"
 
         DWindow.enabled: !DebugHelper.useRegularWindow
-        DWindow.borderColor: Qt.rgba(0, 0, 0, 0.10)
-        DWindow.borderWidth: 1
         DWindow.enableSystemResize: false
         DWindow.enableSystemMove: false
 

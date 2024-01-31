@@ -23,7 +23,7 @@ QPixmap LauncherAppIconProvider::requestPixmap(const QString &id, QSize *size, c
 
     QSize preferredSize = requestedSize.isValid()
                               ? requestedSize
-                              : ((size && size->isValid()) ? *size : QSize(64, 64));
+                              : ((size && size->isValid()) ? *size : QSize(48, 48));
 
     QPixmap result(preferredSize);
     result.fill(Qt::transparent);

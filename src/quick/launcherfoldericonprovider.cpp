@@ -24,12 +24,14 @@ QPixmap LauncherFolderIconProvider::requestPixmap(const QString &id, QSize *size
     Q_UNUSED(size)
 
     constexpr int iconPerRow = 2;
-    constexpr int iconSpacing = 5;
-    constexpr int padding = 5;
 
     QSize preferredSize = requestedSize.isValid()
                               ? requestedSize
                               : ((size && size->isValid()) ? *size : QSize(64, 64));
+
+    int iconSpacing =  preferredSize.width() * 0.08;
+    int padding = preferredSize.width() * 0.08;
+
     const int iconSize = (preferredSize.width() - padding * 2 - (iconPerRow - 1) * iconSpacing) / iconPerRow;
 
     QPixmap result(preferredSize);
@@ -39,9 +41,10 @@ QPixmap LauncherFolderIconProvider::requestPixmap(const QString &id, QSize *size
     painter.begin(&result);
 
     // folder background
-    painter.setBrush(QBrush(QColor(0, 0, 0, 128)));
+    painter.setBrush(QBrush(QColor(255, 255, 255, 255 * 0.15)));
     painter.setPen(Qt::NoPen);
-    painter.drawRoundedRect(result.rect(), 8.0, 8.0);
+    painter.setRenderHint(QPainter::Antialiasing);
+    painter.drawRoundedRect(result.rect(), 12.0, 12.0);
 
     // icons
     // uri: image://provider/icon-name:icon-name:icon-name

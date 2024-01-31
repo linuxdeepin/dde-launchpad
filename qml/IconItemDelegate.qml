@@ -6,6 +6,7 @@ import QtQuick 2.15
 import QtQml.Models 2.15
 import QtQuick.Controls 2.15
 import org.deepin.dtk 1.0
+import org.deepin.dtk.private 1.0
 
 import org.deepin.launchpad 1.0
 
@@ -21,6 +22,7 @@ Control {
 
     property string iconSource
     property bool dndEnabled: false
+    readonly property bool isWindowedMode: LauncherController.currentFrame === "WindowedFrame"
 
     Accessible.name: iconItemLabel.text
 
@@ -66,8 +68,8 @@ Control {
             }
 
             Item {
-                width: root.width / 2
-                height: root.height / 2
+                width: isWindowedMode ? 48 : parent.width / 2
+                height: width
                 anchors.horizontalCenter: parent.horizontalCenter
 
                 Loader {
@@ -102,7 +104,7 @@ Control {
             // as topMargin
             Item {
                 width: 1
-                height: 8
+                height: isWindowedMode ? 8 : 20
             }
 
             Label {
@@ -114,10 +116,15 @@ Control {
                 rightPadding: 2
                 horizontalAlignment: Text.AlignHCenter
                 wrapMode: Text.WordWrap
-                elide: Text.ElideRight
+                elide: Text.ElideMiddle
                 maximumLineCount: 2
-                font: DTK.fontManager.t9
+                font: DTK.fontManager.t8
             }    
+        }
+        background: ButtonPanel {
+            button: parent
+            outsideBorderColor: null
+            radius: isWindowedMode ? 8 : 18
         }
 
         onClicked: {

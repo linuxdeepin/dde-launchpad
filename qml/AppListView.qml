@@ -47,6 +47,7 @@ Item {
             required property string section
 
             enabled: CategorizedSortProxyModel.categoryType === CategorizedSortProxyModel.Alphabetary
+            ColorSelector.disabled: false
 
             id: headingBtn
             focusPolicy: Qt.NoFocus
@@ -66,6 +67,10 @@ Item {
                     QQC2.Label {
                         anchors.verticalCenter: parent.verticalCenter
                         text: headingBtn.text
+                        font {
+                            pixelSize: DTK.fontManager.fontPixelSize(FontManager.T6)
+                            bold: true
+                        }
                     }
                 }
             }
