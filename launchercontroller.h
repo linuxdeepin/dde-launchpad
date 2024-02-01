@@ -5,6 +5,7 @@
 #pragma once
 
 #include <QCommandLineOption>
+#include <QFont>
 #include <QObject>
 
 class QTimer;
@@ -36,6 +37,7 @@ public:
 
     Q_INVOKABLE void hideWithTimer();
     Q_INVOKABLE bool shouldAvoidHideOrActive();
+    Q_INVOKABLE QFont boldFont(const QFont& f);
 
 signals:
     void currentFrameChanged();

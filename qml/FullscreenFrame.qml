@@ -68,7 +68,7 @@ Control {
 
         Rectangle {
             anchors.fill: parent
-            color: Qt.rgba(0, 0, 0, 0.5)
+            color: folderGridViewPopup.visible ? Qt.rgba(0, 0, 0, 0.6) : Qt.rgba(0, 0, 0, 0.5)
 
             MouseArea {
                 anchors.fill: parent
@@ -270,6 +270,7 @@ Control {
                                 padding: 10
                                 interactive: false
                                 focus: true
+                                opacity: folderGridViewPopup.visible ? 0.4 : 1
                                 activeGridViewFocusOnTab: gridViewLoader.SwipeView.isCurrentItem
                                 itemMove: Transition { NumberAnimation { properties: "x,y"; duration: 250 } }
                                 delegate: DropArea {
@@ -361,6 +362,7 @@ Control {
                 visible: searchEdit.text !== ""
                 activeFocusOnTab: visible && gridViewFocus
                 focus: true
+                opacity: 0.4
 
                 rows: 4
                 columns: 7
@@ -542,6 +544,26 @@ Control {
                         interactive: true
                     }
                 }
+            }
+        }
+        background: InWindowBlur {
+            id: blur
+            implicitWidth: DS.Style.popup.width
+            implicitHeight: DS.Style.popup.height
+            radius: DS.Style.popup.radius
+            offscreen: true
+            ItemViewport {
+                anchors.fill: parent
+                fixed: true
+                sourceItem: blur.content
+                radius: DS.Style.popup.radius
+                hideSource: false
+            }
+
+            Rectangle {
+                anchors.fill: parent
+                radius: DS.Style.popup.radius
+                color: Qt.rgba(255.0, 255.0, 255.0, 0.15)
             }
         }
     }
