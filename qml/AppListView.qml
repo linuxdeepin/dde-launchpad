@@ -67,10 +67,7 @@ Item {
                     QQC2.Label {
                         anchors.verticalCenter: parent.verticalCenter
                         text: headingBtn.text
-                        font {
-                            pixelSize: DTK.fontManager.fontPixelSize(FontManager.T6)
-                            bold: true
-                        }
+                        font: LauncherController.boldFont(DTK.fontManager.t6)
                     }
                 }
             }
