@@ -28,12 +28,8 @@ QPixmap LauncherFolderIconProvider::requestPixmap(const QString &id, QSize *size
     QSize preferredSize = requestedSize.isValid()
                               ? requestedSize
                               : ((size && size->isValid()) ? *size : QSize(64, 64));
-
-    int iconSpacing =  preferredSize.width() * 0.08;
-    int padding = preferredSize.width() * 0.08;
-
-    const int iconSize = (preferredSize.width() - padding * 2 - (iconPerRow - 1) * iconSpacing) / iconPerRow;
-
+    const auto [iconSize, padding] = IconUtils::getFolderPerfectIconCell(preferredSize.width(), iconPerRow);
+    int iconSpacing = padding;
     QPixmap result(preferredSize);
     result.fill(Qt::transparent);
 

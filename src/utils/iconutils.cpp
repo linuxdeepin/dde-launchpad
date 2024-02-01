@@ -86,16 +86,21 @@ bool IconUtils::getThemeIcon(QPixmap &pixmap, const QString &iconName, const int
     return findIcon;
 }
 
+static const QVector<int> sizes { 16, 18, 24, 32, 64, 96, 128, 256 };
 int IconUtils::perfectIconSize(const int size)
 {
-    const int s = 8;
-    const int l[s] = { 16, 18, 24, 32, 64, 96, 128, 256 };
+    auto iter = std::lower_bound(sizes.begin(), sizes.end(), size);
+    if (iter != sizes.end())
+        return *iter;
+    return sizes[0];
+}
 
-    for (int i(0); i != s; ++i)
-        if (size <= l[i])
-            return l[i];
-
-    return 256;
+int IconUtils::perfectIconSizeReverse(const int size)
+{
+    auto iter = std::lower_bound(sizes.rbegin(), sizes.rend(), size, std::greater<int>());
+    if (iter != sizes.rend())
+        return *iter;
+    return sizes[0];
 }
 
 bool IconUtils::createCalendarIcon(const QString &fileName)
@@ -250,4 +255,24 @@ void IconUtils::tryUpdateIconCache()
     // TODO release icon's cache.
     const auto paths = QIconLoader::instance()->themeSearchPaths();
     QIconLoader::instance()->setThemeSearchPath(paths);
+}
+
+// std::pair<iconSize, paddingSize>
+std::pair<int, int> IconUtils::getFolderPerfectIconCell(const int size, const int iconPerRow)
+{
+    // (iconPerRow + 1) * paddingSize + iconPerRow * iconSize <= size
+    // iconSize = perfectIconSize;
+    std::pair<int, int> res;
+    int maxSize = 0;
+    for (float paddingPercent = 0.05; paddingPercent <= 0.08; paddingPercent += 0.01) {
+        int padding = size * paddingPercent;
+        int icon = (size - (iconPerRow + 1) * padding) / iconPerRow;
+        int perSize = perfectIconSizeReverse(icon);
+        if (perSize > maxSize) {
+            res.first = perSize;
+            res.second = (size - iconPerRow * perSize) / (iconPerRow + 1);
+            maxSize = perSize;
+        }
+    }
+    return res;
 }
