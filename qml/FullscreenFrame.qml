@@ -362,7 +362,6 @@ Control {
                 visible: searchEdit.text !== ""
                 activeFocusOnTab: visible && gridViewFocus
                 focus: true
-                opacity: 0.4
 
                 rows: 4
                 columns: 7
