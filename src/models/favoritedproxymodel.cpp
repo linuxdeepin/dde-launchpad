@@ -79,7 +79,7 @@ void FavoritedProxyModel::load()
     QSettings favoritedAppsSettings(favoriteSettingPath, QSettings::NativeFormat);
 
     QStringList predefinedFavoritedApps {
-        "deepin-editor.desktop", "deepin-calculator.desktop", "deepin-screen-recorder.desktop", "eepin-terminal.desktop"
+        "deepin-editor.desktop", "deepin-calculator.desktop", "deepin-screen-recorder.desktop", "deepin-terminal.desktop"
     };
     m_favoritedAppIds = favoritedAppsSettings.value("favorited", predefinedFavoritedApps).toStringList();
 }
