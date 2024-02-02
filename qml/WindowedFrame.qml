@@ -303,7 +303,7 @@ StackView {
         if ((event.text && !"\t ".includes(event.text)) && (stackView.currentItem !== stackView.initialItem)) {
             stackView.pop()
         }
-        if (searchEdit.focus === false && !searchEdit.text && event.text) {
+        if (searchEdit.focus === false && !searchEdit.text && (event.text && !"\t ".includes(event.text))) {
             searchEdit.focus = true
             searchEdit.text = event.text
         }
