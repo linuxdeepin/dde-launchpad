@@ -151,81 +151,25 @@ bool DesktopIntegration::isOnDesktop(const QString &desktopId) const
 
 void DesktopIntegration::sendToDesktop(const QString &desktopId)
 {
-    QString desktopItemPath = desktopItemFilePath(desktopId);
-    if (desktopItemPath.isEmpty()) return;
-    if (QFile::exists(desktopItemPath)) return;
-
-    QString srcFilePath = AppInfo::fullPathByDesktopId(desktopId);
-    if (srcFilePath.isEmpty()) return;
-
-    bool copied = QFile::copy(srcFilePath, desktopItemPath);
-    if (!copied) return;
-    DDesktopEntry entry(desktopItemPath);
-    entry.setStringValue("DDE", "X-Deepin-CreatedBy"); // maybe better to add a "managed by"?
-    // There was originally also a "X-Deepin-AppID" which... doesn't seems to make any sense
-    if (entry.save()) {
+    if (AppMgr::sendToDesktop(desktopId)) {
         Dtk::Gui::DDesktopServices::playSystemSoundEffect(Dtk::Gui::DDesktopServices::SSE_SendFileComplete);
     }
 }
 
 void DesktopIntegration::removeFromDesktop(const QString &desktopId)
 {
-    QString desktopItemPath = desktopItemFilePath(desktopId);
-    if (desktopItemPath.isEmpty()) return;
-
-    QFile desktopItemFile(desktopItemPath);
-
-    if (desktopItemFile.exists()) {
-        desktopItemFile.remove();
-    }
+    AppMgr::removeFromDesktop(desktopId);
 }
 
-// TODO: should also consider OnlyShownIn and NotShownIn
 bool DesktopIntegration::isAutoStart(const QString &desktopId) const
 {
-    const QStringList xdgConfig = QStandardPaths::standardLocations(QStandardPaths::GenericConfigLocation);
-    const QString autoStartFileRelPath(QString("autostart/%1").arg(desktopId));
-    for (const QString & path : xdgConfig) {
-        const QString & autoStartPath(QDir(path).absoluteFilePath(autoStartFileRelPath));
-        if (QFile::exists(autoStartPath)) {
-            DDesktopEntry entry(autoStartPath);
-            if (entry.rawValue("Hidden", "Desktop Entry", "false") == QLatin1String("false")) {
-                return true;
-            }
-            return false;
-        }
-    }
-    return false;
+    return AppMgr::autoStart(desktopId);
 }
 
 // only affect the one in XDG_CONFIG_HOME, don't care about the system one (even if there is one).
 void DesktopIntegration::setAutoStart(const QString &desktopId, bool on)
 {
-    QString srcFilePath = AppInfo::fullPathByDesktopId(desktopId);
-    if (srcFilePath.isEmpty()) return;
-
-    const QString autoStartFileRelPath(QString("autostart/%1").arg(desktopId));
-    const QString autoStartPath(QDir(DStandardPaths::path(DStandardPaths::XDG::ConfigHome)).absoluteFilePath(autoStartFileRelPath));
-
-    // Ensure there is an autostart entry file under the $XDG_CONFIG_HOME/autostart/ folder
-    // We always create this file since the *system* might *have* one entry with Hidden=true,
-    // which need us to override (even though it's very not likely to happen).
-    bool createdByUs = false;
-    if (!QFile::exists(autoStartPath)) {
-        QString srcFilePath = AppInfo::fullPathByDesktopId(desktopId);
-        bool succ = QFile::copy(srcFilePath, autoStartPath);
-        if (!succ) {
-            return;
-        }
-        createdByUs = true;
-    }
-
-    DDesktopEntry entry(autoStartPath);
-    entry.setRawValue(on ? "false" : "true", "Hidden");
-    if (createdByUs) {
-        entry.setStringValue("DDE", "X-Deepin-CreatedBy"); // maybe better to add a "managed by"?
-    }
-    entry.save();
+    return AppMgr::setAutoStart(desktopId, on);
 }
 
 void DesktopIntegration::uninstallApp(const QString &desktopId)

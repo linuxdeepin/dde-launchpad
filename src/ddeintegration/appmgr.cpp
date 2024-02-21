@@ -111,18 +111,34 @@ bool AppMgr::isOnDesktop(const QString &desktopId)
     return amAppIface->isOnDesktop();
 }
 
-void AppMgr::sendToDesktop(const QString &desktopId)
+bool AppMgr::sendToDesktop(const QString &desktopId)
 {
     AppManager1Application * amAppIface = createAM1AppIface(desktopId);
-    if (!amAppIface) return;
+    if (!amAppIface) return false;
 
-    amAppIface->SendToDesktop();
+    QDBusPendingReply<bool> reply = amAppIface->SendToDesktop();
+    reply.waitForFinished();
+
+    if (reply.isError()) {
+        qDebug() << reply.error();
+        return false;
+    }
+
+    return reply.value();
 }
 
-void AppMgr::removeFromDesktop(const QString &desktopId)
+bool AppMgr::removeFromDesktop(const QString &desktopId)
 {
     AppManager1Application * amAppIface = createAM1AppIface(desktopId);
-    if (!amAppIface) return;
+    if (!amAppIface) return false;
 
-    amAppIface->RemoveFromDesktop();
+    QDBusPendingReply<bool> reply = amAppIface->RemoveFromDesktop();
+    reply.waitForFinished();
+
+    if (reply.isError()) {
+        qDebug() << reply.error();
+        return false;
+    }
+
+    return reply.value();
 }
