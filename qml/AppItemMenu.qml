@@ -86,7 +86,11 @@ Loader {
                     DesktopIntegration.setAutoStart(root.desktopId, !DesktopIntegration.isAutoStart(root.desktopId))
                 }
             }
-            MenuItem { text: qsTr("Use a proxy") }
+            MenuItem {
+                visible: false
+                text: qsTr("Use a proxy")
+                height: visible ? implicitHeight : 0 // FIXME: same as above
+            }
             MenuItem {
                 visible: !hideDisplayScalingMenu
                 height: visible ? implicitHeight : 0 // FIXME: same as above
