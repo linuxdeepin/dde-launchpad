@@ -9,7 +9,14 @@
         <property name="Categories" type="as" access="read"/>
         <property name="X_linglong" type="b" access="read"/>
         <property name="X_Flatpak" type="b" access="read"/>
+        <property name="X_Deepin_Vendor" type="s" access="read">
+            <annotation name="org.freedesktop.DBus.Description" value="Whem this property is 'deepin', display name of the application
+                              should use GenericName." 
+            />
+        </property>
         <property name="installedTime" type="t" access="read"/>
+        <property name="NoDisplay" type="b" access="read"/>
+        <property name="MimeTypes" type="as" access="readwrite"/>
 
         <property name="Actions" type="as" access="read">
            <annotation
@@ -40,18 +47,50 @@
         </property>
 
         <property name="Terminal" type="b" access="read">
-            <annotation
+            <annotation 
                 name="org.freedesktop.DBus.Description"
                 value="Indicate this application should launch by terminal or not."
             />
         </property>
 
         <property name="ScaleFactor" type="d" access="readwrite">
+            <annotation 
+                name="org.freedesktop.DBus.Description" 
+                value="Indicate the scale factor of application's instance.
+                       Note: Set `0` to use global scaleFactor" 
+            />
+        </property>
+
+        <property name="ActionName" type="a{sa{ss}}" access="read">
             <annotation
                 name="org.freedesktop.DBus.Description"
-                value="Indicate the scale factor of application's instance.
-                       Note: Set `0` to use global scaleFactor"
+                value="The type of ActionName is a Map, first key represents action, second key represents locale and the value is the corresponding content."
             />
+            <annotation name="org.qtproject.QtDBus.QtTypeName" value="PropMap"/>
+        </property>
+
+        <property name="Icons" type="a{ss}" access="read">
+            <annotation
+                name="org.freedesktop.DBus.Description"
+                value="The type of IconName is a Map, where the key represents the action and the value is the corresponding content."
+            />
+            <annotation name="org.qtproject.QtDBus.QtTypeName" value="QStringMap"/>
+        </property>
+
+        <property name="Name" type="a{ss}" access="read">
+            <annotation
+                name="org.freedesktop.DBus.Description"
+                value="The meaning of this property's type is same as which in ActionName."
+            />
+            <annotation name="org.qtproject.QtDBus.QtTypeName" value="QStringMap"/>
+        </property>
+
+        <property name="GenericName" type="a{ss}" access="read">
+            <annotation
+                name="org.freedesktop.DBus.Description"
+                value="The meaning of this property's type is same as which in ActionName."
+            />
+            <annotation name="org.qtproject.QtDBus.QtTypeName" value="QStringMap"/>
         </property>
 
         <method name="Launch">
@@ -78,6 +117,9 @@
                        2. `env` (type s):
                           passing some specific environment variables to Launch
                           this application, eg. 'LANG=en_US;PATH=xxx:yyy;'
+                       3. `path` (type s):
+                          set this application's working directory, please pass
+                          absoult directory path.
                        NOTE:
                        When application launched with `uid` option,
                        `env` option will not take effect at all."
