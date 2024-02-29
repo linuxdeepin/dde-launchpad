@@ -20,6 +20,7 @@ public:
     {
         QPointer<__AppManager1Application> handler;
         QString id;
+        QString name;
         QString displayName;
         QString iconName;
         QStringList categories;

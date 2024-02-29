@@ -18,6 +18,7 @@ public:
         Categories,
         DDECategoryRole,
         IconNameRole,
+        NameRole,
         InstalledTimeRole,
         LastLaunchedTimeRole,
         LaunchedTimesRole,
@@ -50,6 +51,8 @@ public:
     ~AppItem();
 
     const QString freedesktopId() const;
+    const QString name() const;
+    void setName(const QString & name);
     const QString displayName() const;
     void setDisplayName(const QString & name);
     const QString iconName() const;

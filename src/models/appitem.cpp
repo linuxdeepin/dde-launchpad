@@ -20,6 +20,16 @@ const QString AppItem::freedesktopId() const
     return data(AppItem::DesktopIdRole).toString();
 }
 
+const QString AppItem::name() const
+{
+    return data(AppItem::NameRole).toString();
+}
+
+void AppItem::setName(const QString &name)
+{
+    setData(name, AppItem::NameRole);
+}
+
 const QString AppItem::displayName() const
 {
     return text();
@@ -96,12 +106,14 @@ void AppItem::setLaunchedTimes(qint64 times)
 void AppItem::updateData(const AppItem *appItem)
 {
     if (this == appItem) return;
+
     setData(appItem->data(Qt::DisplayRole), Qt::DisplayRole);
     setData(appItem->data(AppItem::IconNameRole), AppItem::IconNameRole);
     setData(appItem->data(AppItem::Categories), AppItem::Categories);
     setData(appItem->data(AppItem::DDECategoryRole), AppItem::DDECategoryRole);
-    setInstalledTime(appItem->installedTime());
-    setLastLaunchedTime(appItem->lastLaunchedTime());
-    setLaunchedTimes(appItem->launchedTimes());
+    setData(appItem->data(AppItem::NameRole), AppItem::NameRole);
+    setData(appItem->data(AppItem::InstalledTimeRole), AppItem::InstalledTimeRole);
+    setData(appItem->data(AppItem::LastLaunchedTimeRole), AppItem::LastLaunchedTimeRole);
+    setData(appItem->data(AppItem::LaunchedTimesRole), AppItem::LaunchedTimesRole);
 }
 

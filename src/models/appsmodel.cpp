@@ -24,6 +24,7 @@ static void updateAppItemFromAM(AppItem *appItem)
     }
 
     qDebug() << "update AppItem property for the desktopId" << id;
+    appItem->setName(item->name);
     appItem->setDisplayName(item->displayName);
     appItem->setIconName(item->iconName);
     appItem->setCategories(item->categories);
@@ -198,6 +199,7 @@ QList<AppItem *> AppsModel::allAppInfosShouldBeShown() const
             continue;
         }
         auto item = new AppItem(appItem->id);
+        item->setName(appItem->name);
         item->setDisplayName(appItem->displayName);
         item->setIconName(appItem->iconName);
         item->setCategories(appItem->categories);
