@@ -20,6 +20,11 @@ static QString parseDisplayName(const QStringMap &source)
     return source.value(key, source.value(u8"default"));
 }
 
+static QString parseName(const QStringMap &source)
+{
+    return source.value(u8"default");
+}
+
 static QString parseIcon(const QStringMap &source)
 {
     return source.value(u8"Desktop Entry");
@@ -69,6 +74,10 @@ static AppMgr::AppItem *parseDBus2AppItem(const ObjectInterfaceMap &source)
         if (auto value = parseDBusField<QStringMap>(appInfo, u8"Name")) {
             item->displayName = parseDisplayName(value.value());
         }
+    }
+
+    if (auto value = parseDBusField<QStringMap>(appInfo, u8"Name")) {
+        item->name = parseName(value.value());
     }
 
     if (auto value = parseDBusField<QStringMap>(appInfo, u8"Icons")) {
@@ -257,6 +266,7 @@ void AppMgr::watchingAppItemPropertyChanged(const QString &key, AppMgr::AppItem 
     });
     connect(amAppIface, &AppManager1Application::NameChanged, this, [this, appItem](const QStringMap & value) {
         qDebug() << "NameChanged by AM, desktopId" << appItem->id;
+        appItem->name = parseName(value);
         appItem->displayName = parseDisplayName(value);
         Q_EMIT itemDataChanged(appItem->id);
     });

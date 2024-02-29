@@ -23,6 +23,7 @@ class AppsModel : public QStandardItemModel
 public:
     enum Roles {
         TransliteratedRole = AppItem::ModelExtendedRole,
+        NameRole = AppItem::NameRole,
         ProxyModelExtendedRole = 0x10000
     };
     Q_ENUM(Roles)

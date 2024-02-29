@@ -60,7 +60,8 @@ QList<QHash<QString, QString> > AppInfoMonitor::allAppInfosShouldBeShown()
                 QStringList keywordsList(fromGStrV(keywords));
 
                 result->append({
-                    {"name", displayName},
+                    {"displayname", displayName},
+                    {"name", QString(g_desktop_app_info_get_string((GDesktopAppInfo *)app_info, "Name"))},
                     {"id", QString(g_app_info_get_id(app_info))},
                     {"filepath", QString(g_desktop_app_info_get_filename((GDesktopAppInfo*)app_info))},
                     {"categories", QString(g_desktop_app_info_get_categories((GDesktopAppInfo*)app_info))},
