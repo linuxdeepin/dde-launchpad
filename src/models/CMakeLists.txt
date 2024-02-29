@@ -33,6 +33,7 @@ target_link_libraries(launcher-models PRIVATE
     ${DTK_NS}::Core
 
     gio-utils
+    dde-integration-dbus
     launcher-utils
 )
 

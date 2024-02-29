@@ -90,6 +90,15 @@ set_source_files_properties(
     ${CMAKE_CURRENT_LIST_DIR}/xml/org.desktopspec.ApplicationManager1.Application.xml
 PROPERTIES
     CLASSNAME AppManager1Application
+    INCLUDE types/amglobaltypes.h
+    NO_NAMESPACE ON
+)
+
+set_source_files_properties(
+    ${CMAKE_CURRENT_LIST_DIR}/xml/org.desktopspec.ObjectManager1.xml
+PROPERTIES
+    CLASSNAME AppManager1ApplicationObjectManager
+    INCLUDE types/amglobaltypes.h
     NO_NAMESPACE ON
 )
 
@@ -101,12 +110,15 @@ dtk_add_dbus_interface(DBusCPP_SRC ${CMAKE_CURRENT_LIST_DIR}/xml/org.deepin.dde.
 dtk_add_dbus_interface(DBusCPP_SRC ${CMAKE_CURRENT_LIST_DIR}/xml/org.deepin.dde.daemon.Launcher1.xml DaemonLauncher1)
 dtk_add_dbus_interface(DBusCPP_SRC ${CMAKE_CURRENT_LIST_DIR}/xml/org.deepin.dde.Appearance1.xml Appearance1)
 dtk_add_dbus_interface(DBusCPP_SRC ${CMAKE_CURRENT_LIST_DIR}/xml/org.desktopspec.ApplicationManager1.Application.xml AppManager1Application)
+dtk_add_dbus_interface(DBusCPP_SRC ${CMAKE_CURRENT_LIST_DIR}/xml/org.desktopspec.ObjectManager1.xml AppManager1ApplicationObjectManager)
 
 message(INFO ${DBusCPP_SRC})
 
 add_library(dde-integration-dbus OBJECT
     ${DBusCPP_SRC}
     types/qrect.h
+    types/objectmap.h
+    types/amglobaltypes.h
 
     appwiz.cpp
     ddedock.cpp
@@ -124,8 +136,9 @@ FILES
 )
 
 target_include_directories(dde-integration-dbus
-PRIVATE
+PUBLIC
     ${CMAKE_CURRENT_LIST_DIR}
+    ${CMAKE_SOURCE_DIR}/src
 )
 target_link_libraries(dde-integration-dbus
 PUBLIC

@@ -10,13 +10,12 @@
 #include <DConfig>
 #include <DPinyin>
 #include <appinfo.h>
-#include <appinfomonitor.h>
+#include "appmgr.h"
 
 DCORE_USE_NAMESPACE
 
 AppsModel::AppsModel(QObject *parent)
     : QStandardItemModel(parent)
-    , m_appInfoMonitor(new AppInfoMonitor(this))
     , m_dconfig(new DConfig("org.deepin.dde.launchpad.appsmodel"))
 {
     Q_ASSERT_X(m_dconfig->isValid(), "DConfig", "DConfig file is missing or invalid");
@@ -36,17 +35,9 @@ AppsModel::AppsModel(QObject *parent)
     Q_ASSERT(duplicatedItems.isEmpty());
     qDebug() << rowCount();
 
-    connect(m_appInfoMonitor, &AppInfoMonitor::changed, this, [this](){
-        qDebug() << "changed";
-        // TODO release icon's cache when gtk's icon-theme.cache is updated.
-        IconUtils::tryUpdateIconCache();
-        QList<AppItem *> items(allAppInfosShouldBeShown());
-        cleanUpInvalidApps(items);
-        QList<AppItem *> duplicatedItems = updateItems(items);
-        for (AppItem * item : qAsConst(duplicatedItems)) {
-            delete item;
-        }
-    });
+    if (AppMgr::instance()->isValid()) {
+        connect(AppMgr::instance(), &AppMgr::changed, this, &AppsModel::updateModelData);
+    }
 }
 
 void AppsModel::appendRows(const QList<AppItem *> items)
@@ -118,7 +109,9 @@ QVariant AppsModel::data(const QModelIndex &index, int role) const
     case AppsModel::TransliteratedRole: {
         // TODO: 1. use icu::Transliterator for other locales
         //       2. support polyphonic characters (e.g. Music: YinYue or YinLe)
-        const QString transliterated = Dtk::Core::pinyin(index.data(Qt::DisplayRole).toString(), Dtk::Core::TS_NoneTone).constFirst();
+        const auto decodedDisplay = Dtk::Core::pinyin(index.data(Qt::DisplayRole).toString(), Dtk::Core::TS_NoneTone);
+        if (decodedDisplay.isEmpty()) return QString();
+        const QString transliterated = decodedDisplay.constFirst();
         if (transliterated.isEmpty()) return transliterated;
         const QChar & firstChar = transliterated.constData()[0];
         if (firstChar.isDigit()) return QString("#%1").arg(transliterated);
@@ -132,20 +125,33 @@ QVariant AppsModel::data(const QModelIndex &index, int role) const
     return QStandardItemModel::data(index, role);
 }
 
+void AppsModel::updateModelData()
+{
+    qDebug() << "changed";
+    // TODO release icon's cache when gtk's icon-theme.cache is updated.
+    IconUtils::tryUpdateIconCache();
+    QList<AppItem *> items(allAppInfosShouldBeShown());
+    cleanUpInvalidApps(items);
+    QList<AppItem *> duplicatedItems = updateItems(items);
+    for (AppItem * item : std::as_const(duplicatedItems)) {
+        delete item;
+    }
+}
+
 // the caller manage the return values' ownership (i.e. might need to free them)
 QList<AppItem *> AppsModel::allAppInfosShouldBeShown() const
 {
-    const auto list = m_appInfoMonitor->allAppInfosShouldBeShown();
     QList<AppItem *> items;
-    for (const QHash<QString, QString> & hashmap : list) {
-        if (m_excludedAppIdList.contains(hashmap["id"])) {
+    const auto list = AppMgr::instance()->allAppInfosShouldBeShown();
+    for (auto appItem : list) {
+        if (m_excludedAppIdList.contains(appItem->id)) {
             continue;
         }
-        auto item = new AppItem(hashmap["id"]);
-        item->setDisplayName(hashmap["name"]);
-        item->setIconName(hashmap["icon"]);
-        item->setCategories(hashmap["categories"].split(';'));
-        item->setDDECategory(AppItem::DDECategories(CategoryUtils::parseBestMatchedCategory(hashmap["categories"].split(';'))));
+        auto item = new AppItem(appItem->id);
+        item->setDisplayName(appItem->displayName);
+        item->setIconName(appItem->iconName);
+        item->setCategories(appItem->categories);
+        item->setDDECategory(AppItem::DDECategories(CategoryUtils::parseBestMatchedCategory(appItem->categories)));
         items.append(item);
     }
     return items;

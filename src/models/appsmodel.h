@@ -14,7 +14,6 @@ class DConfig;
 
 // List of applications and nothing else.
 // Always in a single column so it's a one dimension model.
-class AppInfoMonitor;
 class AppsModel : public QStandardItemModel
 {
     Q_OBJECT
@@ -40,13 +39,15 @@ public:
     // QAbstractItemModel interface
     QVariant data(const QModelIndex &index, int role) const override;
 
+private slots:
+    void updateModelData();
+
 private:
     explicit AppsModel(QObject *parent = nullptr);
 
     QList<AppItem *> allAppInfosShouldBeShown() const;
     void cleanUpInvalidApps(const QList<AppItem *> knownExistedApps);
 
-    AppInfoMonitor * m_appInfoMonitor;
     Dtk::Core::DConfig * m_dconfig;
     QStringList m_excludedAppIdList;
 };
