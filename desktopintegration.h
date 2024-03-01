@@ -6,6 +6,7 @@
 
 #include <QObject>
 #include <QRect>
+#include <QStandardPaths>
 
 class AppWiz;
 class DdeDock;
@@ -33,6 +34,7 @@ public:
     Q_INVOKABLE static QString environmentVariable(const QString & env);
     Q_INVOKABLE static double scaleFactor(const QString & desktopId);
     Q_INVOKABLE static void setScaleFactor(const QString & desktopId, double scaleFactor);
+    Q_INVOKABLE static void showFolder(enum QStandardPaths::StandardLocation location);
     Q_INVOKABLE bool appIsCompulsoryForDesktop(const QString & desktopId);
     // TODO: async get wallpaper?
 

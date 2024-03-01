@@ -70,6 +70,14 @@ void DesktopIntegration::setScaleFactor(const QString &desktopId, double scaleFa
     return AppMgr::setScaleFactor(desktopId, scaleFactor);
 }
 
+void DesktopIntegration::showFolder(QStandardPaths::StandardLocation location)
+{
+    QStringList paths(QStandardPaths::standardLocations(location));
+    if (!paths.isEmpty()) {
+        Dtk::Gui::DDesktopServices::showFolder(paths.constFirst());
+    }
+}
+
 bool DesktopIntegration::appIsCompulsoryForDesktop(const QString &desktopId)
 {
     if (m_compulsoryAppIdList.contains(desktopId)) return true;
