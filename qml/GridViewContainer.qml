@@ -31,6 +31,10 @@ FocusScope {
 
     readonly property alias gridViewWidth: gridView.width
 
+    function setCurrentIndex(index) {
+        gridView.currentIndex = index
+    }
+
     function positionViewAtBeginning() {
         gridView.positionViewAtBeginning()
     }

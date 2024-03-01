@@ -340,6 +340,12 @@ StackView {
         }
     }
 
+    Component.onCompleted: {
+        appListView.positionViewAtBeginning()
+        appListView.viewIndex = -1
+        appListView.viewFocus = true
+    }
+
     Connections {
         target: LauncherController
         function onVisibleChanged() {
@@ -352,9 +358,11 @@ StackView {
             // clear searchEdit text
             searchEdit.text = ""
             // reset(remove) keyboard focus
-            baseLayer.focus = true
+            // baseLayer.focus = true
             // reset scroll area position
             appListView.positionViewAtBeginning()
+            appListView.viewIndex = -1
+            appListView.viewFocus = true
             favoriteGridViewContainer.positionViewAtBeginning()
             allAppsGridContainer.positionViewAtBeginning()
         }

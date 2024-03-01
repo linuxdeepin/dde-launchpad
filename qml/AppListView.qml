@@ -13,6 +13,8 @@ Item {
     id: root
 
     property alias model: listView.model
+    property alias viewFocus: listView.focus
+    property alias viewIndex: listView.currentIndex
 
     signal sectionHeaderClicked(var categoryType)
 

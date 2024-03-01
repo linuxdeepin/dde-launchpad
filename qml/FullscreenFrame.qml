@@ -325,6 +325,14 @@ Control {
                                             showContextMenu(this, model, folderIcons, false, true)
                                         }
                                     }
+
+                                    Connections {
+                                        target: LauncherController
+                                        function onVisibleChanged() {
+                                            // Auto switch to the first application once show again
+                                            gridViewContainer.setCurrentIndex(0)
+                                        }
+                                    }
                                 }
                             }
                         }
@@ -572,6 +580,14 @@ Control {
     }
 
     Keys.onPressed: {
+        // When the focus is not on the application, if the direction key is pressed, we will switch to it.
+        if (event.key === Qt.Key_Up || event.key === Qt.Key_Down || event.key === Qt.Key_Left || event.key === Qt.Key_Right) {
+            if (!pages.focus) {
+                pages.focus = true
+                pages.setCurrentIndex(0)
+            }
+        }
+
         if (searchEdit.focus === false && !searchEdit.text && (event.text && !"\t ".includes(event.text))) {
             searchEdit.focus = true
             searchEdit.text = event.text
