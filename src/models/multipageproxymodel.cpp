@@ -199,6 +199,8 @@ MultipageProxyModel::MultipageProxyModel(QObject *parent)
 
     connect(&m_folderModel, &QStandardItemModel::rowsInserted, this, &MultipageProxyModel::onFolderModelChanged);
     connect(&m_folderModel, &QStandardItemModel::rowsRemoved, this, &MultipageProxyModel::onFolderModelChanged);
+
+    connect(m_topLevel, &ItemsPage::pageCountChanged, this, &MultipageProxyModel::topLevelPageCountChanged);
 }
 
 void MultipageProxyModel::loadItemArrangementFromUserData()
