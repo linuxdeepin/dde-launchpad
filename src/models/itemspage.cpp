@@ -174,7 +174,11 @@ void ItemsPage::removeItemsNotIn(const QSet<QString> &itemSet)
 
 void ItemsPage::removeEmptyPages()
 {
+    int count = m_pages.size();
     m_pages.removeAll({});
+    if (count != m_pages.size()) {
+        emit pageCountChanged();
+    }
 }
 
 // <page, index>

@@ -236,6 +236,10 @@ Control {
                     function onRowsRemoved() {
                         toplevelRepeater.pageCount = MultipageProxyModel.pageCount(0)
                     }
+
+                    function onTopLevelPageCountChanged() {
+                        toplevelRepeater.pageCount = MultipageProxyModel.pageCount(0)
+                    }
                 }
 
                 Repeater {
