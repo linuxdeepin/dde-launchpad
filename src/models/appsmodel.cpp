@@ -49,7 +49,7 @@ AppsModel::AppsModel(QObject *parent)
     });
 }
 
-void AppsModel::appendRows(const QList<AppItem *> items)
+void AppsModel::appendRows(const QList<AppItem *> &items)
 {
     // TODO: preformance improvement?
     for (AppItem * item : items) {
@@ -57,7 +57,15 @@ void AppsModel::appendRows(const QList<AppItem *> items)
     }
 }
 
-AppItem *AppsModel::itemFromDesktopId(const QString freedesktopId)
+void AppsModel::insertRows(const QList<AppItem *> &items)
+{
+    // TODO: preformance improvement?
+    for (AppItem * item : items) {
+        insertRow(0, item);
+    }
+}
+
+AppItem *AppsModel::itemFromDesktopId(const QString &freedesktopId)
 {
     QModelIndexList indexes = match(index(0, 0, QModelIndex()),
                                     AppItem::DesktopIdRole, freedesktopId, 1, Qt::MatchExactly);
@@ -93,7 +101,7 @@ const QList<AppItem *> AppsModel::addItems(const QList<AppItem *> &items)
 // return the ones were not added to the model.
 const QList<AppItem *> AppsModel::updateItems(const QList<AppItem *> &items)
 {
-    QList<AppItem *> append;
+    QList<AppItem *> inserts;
     QList<AppItem *> duplicated;
 
     for (AppItem * item : items) {
@@ -104,11 +112,11 @@ const QList<AppItem *> AppsModel::updateItems(const QList<AppItem *> &items)
                 duplicated.append(item);
             }
         } else {
-            append.append(item);
+            inserts.insert(0, item);
         }
     }
 
-    appendRows(append);
+    insertRows(inserts);
     return duplicated;
 }
 

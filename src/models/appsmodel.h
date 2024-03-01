@@ -31,9 +31,10 @@ public:
     }
 
 
-    void appendRows(const QList<AppItem *> items);
+    void appendRows(const QList<AppItem *> &items);
+    void insertRows(const QList<AppItem *> &items);
 
-    AppItem * itemFromDesktopId(const QString freedesktopId);
+    AppItem * itemFromDesktopId(const QString &freedesktopId);
     [[nodiscard("might need to free them")]] const QList<AppItem *> addItems(const QList<AppItem *> &items);
     [[nodiscard("might need to free them")]] const QList<AppItem *> updateItems(const QList<AppItem *> &items);
 
