@@ -2,7 +2,6 @@
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-import QtCore
 import QtQuick 2.15
 import QtQml.Models 2.15
 import QtQuick.Layouts 1.15
@@ -12,322 +11,281 @@ import org.deepin.dtk 1.0
 
 import org.deepin.launchpad 1.0
 
-StackView {
-    id: stackView
+Item {
+    id: baseLayer
+    objectName: "WindowedFrame-BaseLayer"
+
     visible: true
     focus: true
 
-    property Palette textColor: appTextColor
-    palette.windowText: ColorSelector.textColor
+    ColumnLayout {
+        anchors.fill: parent
 
-    initialItem: Item {
-        id: baseLayer
-        objectName: "WindowedFrame-BaseLayer"
+        RowLayout {
+            Layout.fillWidth: true
+            Layout.fillHeight: true
 
-        ColumnLayout {
-            anchors.fill: parent
-
-            RowLayout {
-                Layout.fillWidth: true
+            ColumnLayout {
+                Layout.fillWidth: false
                 Layout.fillHeight: true
 
-                ColumnLayout {
-                    Layout.fillWidth: false
-                    Layout.fillHeight: true
-
-                    ToolButton {
-                        icon.name: "title-icon"
-                        checked: CategorizedSortProxyModel.categoryType === CategorizedSortProxyModel.DDECategory
-                        onClicked: {
-                            CategorizedSortProxyModel.categoryType = CategorizedSortProxyModel.DDECategory
-                        }
-                    }
-
-                    ToolButton {
-                        icon.name: "letter-icon"
-                        checked: CategorizedSortProxyModel.categoryType === CategorizedSortProxyModel.Alphabetary
-                        onClicked: {
-                            CategorizedSortProxyModel.categoryType = CategorizedSortProxyModel.Alphabetary
-                        }
-                    }
-
-                    Item {
-                        Layout.fillHeight: true
-                    }
-
-                    ToolButton {
-                        icon.name: "folder-images-symbolic"
-                        ToolTip.visible: hovered
-                        ToolTip.delay: 1000
-                        ToolTip.text: qsTr("Pictures")
-                        onClicked: {
-                            DesktopIntegration.showFolder(StandardPaths.PicturesLocation)
-                        }
-                    }
-
-                    ToolButton {
-                        icon.name: "folder-documents-symbolic"
-                        ToolTip.visible: hovered
-                        ToolTip.delay: 1000
-                        ToolTip.text: qsTr("Documents")
-                        onClicked: {
-                            DesktopIntegration.showFolder(StandardPaths.DocumentsLocation)
-                        }
-                    }
-
-                    ToolButton {
-                        icon.name: "folder-desktop-symbolic"
-                        ToolTip.visible: hovered
-                        ToolTip.delay: 1000
-                        ToolTip.text: qsTr("Desktop")
-                        onClicked: {
-                            DesktopIntegration.showFolder(StandardPaths.DesktopLocation)
-                        }
-                    }
-
-                    ToolButton {
-                        icon.name: "setting"
-                        ToolTip.visible: hovered
-                        ToolTip.delay: 1000
-                        ToolTip.text: qsTr("Control Center")
-                        onClicked: {
-                            DesktopIntegration.openSystemSettings();
-                        }
-                    }
-
-                    Item {
-                        Layout.fillHeight: true
+                ToolButton {
+                    icon.name: "title-icon"
+                    checked: CategorizedSortProxyModel.categoryType === CategorizedSortProxyModel.DDECategory
+                    onClicked: {
+                        CategorizedSortProxyModel.categoryType = CategorizedSortProxyModel.DDECategory
                     }
                 }
 
-                ColumnLayout {
-                    Layout.fillWidth: false
-                    Layout.preferredWidth: 220
+                ToolButton {
+                    icon.name: "letter-icon"
+                    checked: CategorizedSortProxyModel.categoryType === CategorizedSortProxyModel.Alphabetary
+                    onClicked: {
+                        CategorizedSortProxyModel.categoryType = CategorizedSortProxyModel.Alphabetary
+                    }
+                }
+
+                Item {
                     Layout.fillHeight: true
+                }
 
-                    DelegateModel {
-                        id: delegateCategorizedModel
-                        model: CategorizedSortProxyModel
+                ToolButton {
+                    icon.name: "folder-images-symbolic"
+                    ToolTip.visible: hovered
+                    ToolTip.delay: 1000
+                    ToolTip.text: qsTr("Pictures")
+                    onClicked: {
+                        DesktopIntegration.showFolder(StandardPaths.PicturesLocation)
+                    }
+                }
 
-                        delegate: ItemDelegate {
-                            id: itemDelegate
-                            text: model.display
-                            checkable: false
-                            icon.name: iconName
-                            width: appListView.width
-                            font: DTK.fontManager.t8
-                //            icon.source: "image://app-icon/" + iconName;
-                            ColorSelector.family: Palette.CrystalColor
+                ToolButton {
+                    icon.name: "folder-documents-symbolic"
+                    ToolTip.visible: hovered
+                    ToolTip.delay: 1000
+                    ToolTip.text: qsTr("Documents")
+                    onClicked: {
+                        DesktopIntegration.showFolder(StandardPaths.DocumentsLocation)
+                    }
+                }
 
-                            TapHandler {
-                                acceptedButtons: Qt.RightButton
-                                onTapped: {
-                                    showContextMenu(itemDelegate, model, false, false, false)
-                                }
+                ToolButton {
+                    icon.name: "folder-desktop-symbolic"
+                    ToolTip.visible: hovered
+                    ToolTip.delay: 1000
+                    ToolTip.text: qsTr("Desktop")
+                    onClicked: {
+                        DesktopIntegration.showFolder(StandardPaths.DesktopLocation)
+                    }
+                }
+
+                ToolButton {
+                    icon.name: "setting"
+                    ToolTip.visible: hovered
+                    ToolTip.delay: 1000
+                    ToolTip.text: qsTr("Control Center")
+                    onClicked: {
+                        DesktopIntegration.openSystemSettings();
+                    }
+                }
+
+                Item {
+                    Layout.fillHeight: true
+                }
+            }
+
+            ColumnLayout {
+                Layout.fillWidth: false
+                Layout.preferredWidth: 220
+                Layout.fillHeight: true
+
+                DelegateModel {
+                    id: delegateCategorizedModel
+                    model: CategorizedSortProxyModel
+
+                    delegate: ItemDelegate {
+                        id: itemDelegate
+                        text: model.display
+                        checkable: false
+                        icon.name: iconName
+                        width: appListView.width
+                        font: DTK.fontManager.t8
+                        // icon.source: "image://app-icon/" + iconName;
+                        ColorSelector.family: Palette.CrystalColor
+
+                        TapHandler {
+                            acceptedButtons: Qt.RightButton
+                            onTapped: {
+                                showContextMenu(itemDelegate, model, false, false, false)
                             }
+                        }
 
-                            Keys.onReturnPressed: {
+                        Keys.onReturnPressed: {
+                            launchApp(desktopId)
+                        }
+
+                        TapHandler {
+                            onTapped: {
                                 launchApp(desktopId)
                             }
-
-                            TapHandler {
-                                onTapped: {
-                                    launchApp(desktopId)
-                                }
-                            }
-
-                            background: BoxPanel {
-                                visible: ColorSelector.controlState === DTK.HoveredState
-                                outsideBorderColor: null
-                            }
                         }
-                    }
 
-                    AppListView {
-                        id: appListView
-                        Layout.fillWidth: true
-                        Layout.fillHeight: true
-
-                        model: delegateCategorizedModel
-
-                        onSectionHeaderClicked: {
-                            if (categoryType === CategorizedSortProxyModel.Alphabetary) {
-                                stackView.push(catalogy.createObject(null, {
-                                    'existingSections': CategorizedSortProxyModel.alphabetarySections()
-                                }))
-                            }
+                        background: BoxPanel {
+                            visible: ColorSelector.controlState === DTK.HoveredState
+                            outsideBorderColor: null
                         }
                     }
                 }
 
-                ColumnLayout {
+                AppListView {
+                    id: appListView
                     Layout.fillWidth: true
                     Layout.fillHeight: true
 
-                    Label {
-                        visible: favoriteGridView.visible
-                        text: qsTr("My Favorites")
-                        font: LauncherController.boldFont(DTK.fontManager.t6)
-                    }
+                    model: delegateCategorizedModel
+                }
+            }
 
-                    Item {
-                        id: favoriteGridView
-                        visible: searchEdit.text === ""
+            ColumnLayout {
+                Layout.fillWidth: true
+                Layout.fillHeight: true
 
-                        property int rowCount: Math.min(Math.ceil(delegateFavorateModel.count / 4), 2)
+                Label {
+                    visible: favoriteGridView.visible
+                    text: qsTr("My Favorites")
+                    font: LauncherController.boldFont(DTK.fontManager.t6)
+                }
 
-                        DelegateModel {
-                            id: delegateFavorateModel
-                            model: FavoritedProxyModel
-                            delegate: IconItemDelegate {
-                                iconSource: iconName
-                                width: favoriteGridViewContainer.cellSize
-                                height: favoriteGridViewContainer.cellSize
-                                onItemClicked: {
-                                    launchApp(desktopId)
-                                }
-                                onMenuTriggered: {
-                                    showContextMenu(this, model, false, true, false)
-                                }
-                            }
-                        }
+                Item {
+                    id: favoriteGridView
+                    visible: searchEdit.text === ""
 
-                        GridViewContainer {
-                            anchors.fill: parent
-                            id: favoriteGridViewContainer
-                            rows: 0
-                            columns: 4
-                            placeholderText: qsTr("Add your favorite apps here")
-                            model: delegateFavorateModel
-                            interactive: favoriteGridView.rowCount > 1
-                            activeFocusOnTab: visible && gridViewFocus
-                            vScrollBar: ScrollBar {}
-                        }
-
-                        Layout.preferredHeight: rowCount === 0 ? 50 : rowCount * favoriteGridViewContainer.cellSize
-                        Layout.fillWidth: true
-                    }
-
-                    Label {
-                        text: qsTr("All Apps")
-                        font: LauncherController.boldFont(DTK.fontManager.t6)
-                    }
+                    property int rowCount: Math.min(Math.ceil(delegateFavorateModel.count / 4), 2)
 
                     DelegateModel {
-                        id: delegateAllAppsModel
-                        model: SearchFilterProxyModel
+                        id: delegateFavorateModel
+                        model: FavoritedProxyModel
                         delegate: IconItemDelegate {
                             iconSource: iconName
-                            width: allAppsGridContainer.cellSize
-                            height: allAppsGridContainer.cellSize
+                            width: favoriteGridViewContainer.cellSize
+                            height: favoriteGridViewContainer.cellSize
                             onItemClicked: {
                                 launchApp(desktopId)
                             }
                             onMenuTriggered: {
-                                showContextMenu(this, model, false, false, false)
+                                showContextMenu(this, model, false, true, false)
                             }
                         }
                     }
 
                     GridViewContainer {
-                        id: allAppsGridContainer
+                        anchors.fill: parent
+                        id: favoriteGridViewContainer
                         rows: 0
                         columns: 4
-                        placeholderIcon: "search_no_result"
-                        placeholderText: qsTr("No search results")
-                        model: delegateAllAppsModel
-                        Layout.fillWidth: true
-                        Layout.fillHeight: true
-                        activeFocusOnTab: gridViewFocus
-                        vScrollBar: ScrollBar {}
+                        placeholderText: qsTr("Add your favorite apps here")
+                        model: delegateFavorateModel
+                        interactive: favoriteGridView.rowCount > 1
+                        activeFocusOnTab: visible && gridViewFocus
+                        vScrollBar: ScrollBar {
+                        }
+                    }
 
-                        MouseArea {
-                            enabled: favoriteGridView.visible && (currentIndex !== -1)
+                    Layout.preferredHeight: rowCount === 0 ? 50 : rowCount * favoriteGridViewContainer.cellSize
+                    Layout.fillWidth: true
+                }
 
-                            property int currentIndex: -1
-                            property int modelType: -1 // 1: fav, 2: all
+                Label {
+                    text: qsTr("All Apps")
+                    font: LauncherController.boldFont(DTK.fontManager.t6)
+                }
 
-                            anchors.fill: parent
-                            onPressAndHold: {
-                                if (index !== -1) {
-                                    currentIndex = index
-                                }
-                            }
-                            onReleased: currentIndex = -1
+                DelegateModel {
+                    id: delegateAllAppsModel
+                    model: SearchFilterProxyModel
+                    delegate: IconItemDelegate {
+                        iconSource: iconName
+                        width: allAppsGridContainer.cellSize
+                        height: allAppsGridContainer.cellSize
+                        onItemClicked: {
+                            launchApp(desktopId)
+                        }
+                        onMenuTriggered: {
+                            showContextMenu(this, model, false, false, false)
                         }
                     }
                 }
-            }
 
-            RowLayout {
-                // Layout.preferredHeight: 20
-                Layout.fillWidth: true
-
-                ToolButton {
-                    icon.name: "shutdown"
-                    ToolTip.visible: hovered
-                    ToolTip.delay: 1000
-                    ToolTip.text: qsTr("Power")
-                    onClicked: {
-                        DesktopIntegration.openShutdownScreen();
-                    }
-                }
-
-                SearchEdit {
-                    id: searchEdit
-
-                    Layout.leftMargin: parent.width / 4
-                    Layout.rightMargin: parent.width / 4
-
+                GridViewContainer {
+                    id: allAppsGridContainer
+                    rows: 0
+                    columns: 4
+                    placeholderIcon: "search_no_result"
+                    placeholderText: qsTr("No search results")
+                    model: delegateAllAppsModel
                     Layout.fillWidth: true
-                    placeholder: qsTr("Search")
-                    onTextChanged: {
-                        console.log(text)
-                        SearchFilterProxyModel.setFilterRegularExpression(text)
+                    Layout.fillHeight: true
+                    activeFocusOnTab: gridViewFocus
+                    vScrollBar: ScrollBar {
+                    }
+
+                    MouseArea {
+                        enabled: favoriteGridView.visible && (currentIndex !== -1)
+
+                        property int currentIndex: -1
+                        property int modelType: -1 // 1: fav, 2: all
+
+                        anchors.fill: parent
+                        onPressAndHold: {
+                            if (index !== -1) {
+                                currentIndex = index
+                            }
+                        }
+                        onReleased: currentIndex = -1
                     }
                 }
+            }
+        }
 
-                ToolButton {
-                    icon.name: "launcher_fullscreen"
-                    Accessible.name: "Fullscreen"
-                    onClicked: {
-                        LauncherController.currentFrame = "FullscreenFrame"
-                    }
+        RowLayout {
+            // Layout.preferredHeight: 20
+            Layout.fillWidth: true
+
+            ToolButton {
+                icon.name: "shutdown"
+                ToolTip.visible: hovered
+                ToolTip.delay: 1000
+                ToolTip.text: qsTr("Power")
+                onClicked: {
+                    DesktopIntegration.openShutdownScreen();
+                }
+            }
+
+            SearchEdit {
+                id: searchEdit
+
+                Layout.leftMargin: parent.width / 4
+                Layout.rightMargin: parent.width / 4
+
+                Layout.fillWidth: true
+                placeholder: qsTr("Search")
+                onTextChanged: {
+                    console.log(text)
+                    SearchFilterProxyModel.setFilterRegularExpression(text)
+                }
+            }
+
+            ToolButton {
+                icon.name: "launcher_fullscreen"
+                Accessible.name: "Fullscreen"
+                onClicked: {
+                    LauncherController.currentFrame = "FullscreenFrame"
                 }
             }
         }
     }
 
-    Component {
-        id: catalogy
-
-        Item {
-            id: catalogyItem
-
-            property var existingSections: []
-
-            AlphabetCategory {
-                id: alphabetCatalogy
-                existingSections: catalogyItem.existingSections
-
-                anchors.fill: parent
-                anchors.margins: 10
-
-                onBackClicked: {
-                    stackView.pop()
-                }
-
-                onCategoryClicked: {
-                    appListView.scrollToAlphabetCategory(character)
-                    stackView.pop()
-                }
-            }
-        }
-    }
     Keys.onPressed: {
-        if ((event.text && !"\t ".includes(event.text)) && (stackView.currentItem !== stackView.initialItem)) {
-            stackView.pop()
-        }
         if (searchEdit.focus === false && !searchEdit.text && (event.text && !"\t ".includes(event.text))) {
             searchEdit.focus = true
             searchEdit.text = event.text
@@ -345,10 +303,7 @@ StackView {
         function onVisibleChanged() {
             // only do these clean-up steps on launcher get hide
             if (LauncherController.visible) return
-            // exit from AlphabetCatalogy screen when
-            if (stackView.currentItem !== stackView.initialItem) {
-                stackView.pop()
-            }
+
             // clear searchEdit text
             searchEdit.text = ""
             // reset(remove) keyboard focus
