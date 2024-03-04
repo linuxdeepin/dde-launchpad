@@ -14,8 +14,6 @@ Item {
 
     property alias model: listView.model
 
-    signal sectionHeaderClicked(var categoryType)
-
     function positionViewAtBeginning() {
         listView.positionViewAtBeginning()
     }
@@ -72,8 +70,20 @@ Item {
                 }
             }
 
-            onClicked: {
-                sectionHeaderClicked(CategorizedSortProxyModel.categoryType)
+            MouseArea {
+                anchors.fill: parent
+                acceptedButtons: Qt.LeftButton
+
+                onClicked: {
+                    if (CategorizedSortProxyModel.categoryType === CategorizedSortProxyModel.Alphabetary) {
+                        alphabetCategoryPopup.existingSections = CategorizedSortProxyModel.alphabetarySections();
+                        var mousePos = mapToItem(listView, mouseX, mouseY)
+                        var y = (mousePos.y + alphabetCategoryPopup.height) < listView.height ? mousePos.y : listView.height - alphabetCategoryPopup.height
+                        alphabetCategoryPopup.y = y
+                        listView.opacity = 0.1
+                        alphabetCategoryPopup.open()
+                    }
+                }
             }
         }
     }
@@ -87,6 +97,7 @@ Item {
         // displayMarginBeginning: -45
         clip: true
         focus: true
+
         onActiveFocusChanged: {
             if (activeFocus) {
                 // When focus in, we always scroll to the highlight
@@ -121,6 +132,21 @@ Item {
                     && ((event.key >= Qt.Key_A && event.key <= Qt.Key_Z) || event.text === '#' || event.text === '&')) {
                 scrollToAlphabetCategory(event.text.toUpperCase())
                 event.accepted = true
+            }
+        }
+
+        AlphabetCategoryPopup {
+            id: alphabetCategoryPopup
+
+            onCategoryClicked: {
+                scrollToAlphabetCategory(character)
+                close()
+            }
+
+            onVisibleChanged: {
+                if (!visible) {
+                    listView.opacity = 1
+                }
             }
         }
     }

@@ -4,7 +4,7 @@
         <file>qml/DebugDialog.qml</file>
         <file>qml/FullscreenFrame.qml</file>
         <file>qml/WindowedFrame.qml</file>
-        <file>qml/AlphabetCategory.qml</file>
+        <file>qml/AlphabetCategoryPopup.qml</file>
         <file>qml/AppListView.qml</file>
         <file>qml/IconItemDelegate.qml</file>
         <file>qml/GridViewContainer.qml</file>
