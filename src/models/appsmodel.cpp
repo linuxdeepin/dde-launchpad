@@ -29,6 +29,7 @@ static void updateAppItemFromAM(AppItem *appItem)
     appItem->setCategories(item->categories);
     appItem->setInstalledTime(item->installedTime);
     appItem->setLastLaunchedTime(item->lastLaunchedTime);
+    appItem->setLaunchedTimes(item->launchedTimes);
 }
 
 AppsModel::AppsModel(QObject *parent)
@@ -45,6 +46,7 @@ AppsModel::AppsModel(QObject *parent)
         {AppItem::IconNameRole, QByteArrayLiteral("iconName")},
         {AppItem::InstalledTimeRole, QByteArrayLiteral("installedTime")},
         {AppItem::LastLaunchedTimeRole, QByteArrayLiteral("lastLaunchedTime")},
+        {AppItem::LaunchedTimesRole, QByteArrayLiteral("launchedTimes")},
         {AppsModel::TransliteratedRole, QByteArrayLiteral("transliterated")}
     });
     setItemRoleNames(defaultRoleNames);
@@ -202,6 +204,7 @@ QList<AppItem *> AppsModel::allAppInfosShouldBeShown() const
         item->setDDECategory(AppItem::DDECategories(CategoryUtils::parseBestMatchedCategory(appItem->categories)));
         item->setInstalledTime(appItem->installedTime);
         item->setLastLaunchedTime(appItem->lastLaunchedTime);
+        item->setLaunchedTimes(appItem->launchedTimes);
         items.append(item);
     }
     return items;

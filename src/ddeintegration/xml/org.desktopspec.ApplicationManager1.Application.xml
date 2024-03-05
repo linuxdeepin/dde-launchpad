@@ -14,7 +14,7 @@
                               should use GenericName." 
             />
         </property>
-        <property name="installedTime" type="t" access="read"/>
+        <property name="InstalledTime" type="x" access="read"/>
         <property name="NoDisplay" type="b" access="read"/>
         <property name="MimeTypes" type="as" access="readwrite"/>
 
@@ -28,7 +28,8 @@
         </property>
 
         <property name="AutoStart" type="b" access="readwrite"/>
-        <property name="LastLaunchedTime" type="t" access="read"/>
+        <property name="LastLaunchedTime" type="x" access="read"/>
+        <property name="LaunchedTimes" type="x" access="read"/>
 
         <property name="Instances" type="ao" access="read">
             <annotation

@@ -17,6 +17,7 @@ public:
         IconNameRole,
         InstalledTimeRole,
         LastLaunchedTimeRole,
+        LaunchedTimesRole,
         ModelExtendedRole = 0x1000
     };
     Q_ENUM(Roles)
@@ -54,10 +55,12 @@ public:
     void setCategories(const QStringList & categories);
     DDECategories ddeCategory() const;
     void setDDECategory(DDECategories category);
-    qulonglong installedTime() const;
-    void setInstalledTime(qulonglong time);
-    qulonglong lastLaunchedTime() const;
-    void setLastLaunchedTime(qulonglong time);
+    qint64 installedTime() const;
+    void setInstalledTime(qint64 time);
+    qint64 lastLaunchedTime() const;
+    void setLastLaunchedTime(qint64 time);
+    qint64 launchedTimes() const;
+    void setLaunchedTimes(qint64 times);
     void updateData(const AppItem * appItem);
 };
 
