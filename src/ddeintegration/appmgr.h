@@ -39,9 +39,11 @@ public:
 
     bool isValid() const;
     QList<AppMgr::AppItem *> allAppInfosShouldBeShown() const;
+    AppMgr::AppItem * appItem(const QString &id) const;
 
 Q_SIGNALS:
     void changed();
+    void itemDataChanged(const QString &id);
 
 private:
     void initObjectManager();
