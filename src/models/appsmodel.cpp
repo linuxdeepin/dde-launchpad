@@ -14,6 +14,23 @@
 
 DCORE_USE_NAMESPACE
 
+static void updateAppItemFromAM(AppItem *appItem)
+{
+    const QString id(appItem->freedesktopId());
+    auto item = AppMgr::instance()->appItem(id);
+    if (!item) {
+        qWarning() << "Not existing item in AppMgr for the desktopId" << id;
+        return;
+    }
+
+    qDebug() << "update AppItem property for the desktopId" << id;
+    appItem->setDisplayName(item->displayName);
+    appItem->setIconName(item->iconName);
+    appItem->setCategories(item->categories);
+    appItem->setInstalledTime(item->installedTime);
+    appItem->setLastLaunchedTime(item->lastLaunchedTime);
+}
+
 AppsModel::AppsModel(QObject *parent)
     : QStandardItemModel(parent)
     , m_dconfig(DConfig::create("dde-launchpad", "org.deepin.dde.launchpad.appsmodel"))
@@ -39,7 +56,36 @@ AppsModel::AppsModel(QObject *parent)
 
     if (AppMgr::instance()->isValid()) {
         connect(AppMgr::instance(), &AppMgr::changed, this, &AppsModel::updateModelData);
+        connect(AppMgr::instance(), &AppMgr::itemDataChanged, this, [this](const QString &id) {
+            const auto appItem = this->appItem(id);
+            if (!appItem) {
+                qWarning() << "Not existing item in AppsModel for the desktopId" << id;
+                return;
+            }
+            updateAppItemFromAM(appItem);
+        });
     }
+}
+
+QList<AppItem *> AppsModel::appItems() const
+{
+    QList<AppItem *> items;
+    for (int i = 0; i < rowCount(); i++) {
+        if (auto appItem = dynamic_cast<AppItem*>(item(i))) {
+            items.append(appItem);
+        }
+    }
+
+    return items;
+}
+
+AppItem *AppsModel::appItem(const QString &desktopId) const
+{
+    const auto items = appItems();
+    auto iter = std::find_if(items.begin(), items.end(), [desktopId](AppItem *item) {
+        return item->freedesktopId() == desktopId;
+    });
+    return iter != items.end() ? *iter : nullptr;
 }
 
 void AppsModel::appendRows(const QList<AppItem *> items)

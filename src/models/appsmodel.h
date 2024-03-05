@@ -40,6 +40,7 @@ public:
     // QAbstractItemModel interface
     QVariant data(const QModelIndex &index, int role) const override;
 
+    AppItem *appItem(const QString &desktopId) const;
 private slots:
     void updateModelData();
 
@@ -48,6 +49,7 @@ private:
 
     QList<AppItem *> allAppInfosShouldBeShown() const;
     void cleanUpInvalidApps(const QList<AppItem *> knownExistedApps);
+    QList<AppItem *> appItems() const;
 
     Dtk::Core::DConfig * m_dconfig;
     QStringList m_excludedAppIdList;
