@@ -23,11 +23,11 @@ bool RecentlyInstalledProxyModel::filterAcceptsRow(int sourceRow, const QModelIn
     QModelIndex modelIndex = this->sourceModel()->index(sourceRow, 0, sourceParent);
     if (!modelIndex.isValid())
         return false;
-    const auto lastLaunchedTime = modelIndex.data(AppItem::LastLaunchedTimeRole).toULongLong();
-    if (lastLaunchedTime <= 0)
+    const auto lastLaunchedTime = modelIndex.data(AppItem::LastLaunchedTimeRole).toLongLong();
+    if (lastLaunchedTime > 0)
         return false;
 
-    const auto installedTime = modelIndex.data(AppItem::InstalledTimeRole).toULongLong();
+    const auto installedTime = modelIndex.data(AppItem::InstalledTimeRole).toLongLong();
     const auto currentTime = QDateTime::currentDateTime();
     const auto lastTime = currentTime.addDays(-IntervalDays).toMSecsSinceEpoch();
 
@@ -39,8 +39,8 @@ bool RecentlyInstalledProxyModel::lessThan(const QModelIndex &source_left, const
     if (!source_left.isValid() || !source_right.isValid())
         return false;
 
-    int leftTime = source_left.data(AppItem::InstalledTimeRole).toULongLong();
-    int rightTime = source_right.data(AppItem::InstalledTimeRole).toULongLong();
+    int leftTime = source_left.data(AppItem::InstalledTimeRole).toLongLong();
+    int rightTime = source_right.data(AppItem::InstalledTimeRole).toLongLong();
 
     return leftTime < rightTime;
 }

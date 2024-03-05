@@ -14,6 +14,7 @@ SearchFilterProxyModel::SearchFilterProxyModel(QObject *parent)
     setFilterCaseSensitivity(Qt::CaseInsensitive);
 
     setSourceModel(&AppsModel::instance());
+    sort(0, Qt::DescendingOrder);
 }
 
 bool SearchFilterProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const
@@ -26,4 +27,12 @@ bool SearchFilterProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex &
     const QString & jianpin = Dtk::Core::firstLetters(displayName).join(',');
 
     return displayName.contains(searchPattern) || transliterated.contains(searchPattern) || jianpin.contains(searchPattern);
+}
+
+bool SearchFilterProxyModel::lessThan(const QModelIndex &sourceLeft, const QModelIndex &sourceRight) const
+{
+    const int leftLaunchedTimes = sourceLeft.data(AppItem::LaunchedTimesRole).toInt();
+    const int rightLaunchedTimes = sourceRight.data(AppItem::LaunchedTimesRole).toInt();
+
+    return leftLaunchedTimes < rightLaunchedTimes;
 }

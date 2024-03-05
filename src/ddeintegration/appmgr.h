@@ -22,8 +22,9 @@ public:
         QString displayName;
         QString iconName;
         QStringList categories;
-        qulonglong installedTime = 0;
-        qulonglong lastLaunchedTime = 0;
+        qint64 installedTime = 0;
+        qint64 lastLaunchedTime = 0;
+        qint64 launchedTimes = 0;
     };
 
     static AppMgr *instance();

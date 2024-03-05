@@ -13,7 +13,6 @@ DCORE_USE_NAMESPACE
 using AppManager1Application = __AppManager1Application;
 using AppManager1ApplicationObjectManager = __AppManager1ApplicationObjectManager;
 Q_CONSTRUCTOR_FUNCTION(registerComplexDbusType);
-static const qulonglong InvalidTime = std::numeric_limits<qint64>().max();
 
 static QString parseDisplayName(const QStringMap &source)
 {
@@ -59,7 +58,9 @@ static AppMgr::AppItem *parseDBus2AppItem(const ObjectInterfaceMap &source)
         item->categories = value.value();
     }
 
-    if (auto value = parseDBusField<QStringMap>(appInfo, u8"Name")) {
+    const auto deepinVendor = parseDBusField<QString>(appInfo, u8"X_Deepin_Vendor");
+    const auto displayNameKey = deepinVendor && !deepinVendor.value().isEmpty() ? u8"GenericName" : u8"Name";
+    if (auto value = parseDBusField<QStringMap>(appInfo, displayNameKey)) {
         item->displayName = parseDisplayName(value.value());
     }
 
@@ -67,20 +68,16 @@ static AppMgr::AppItem *parseDBus2AppItem(const ObjectInterfaceMap &source)
         item->iconName = parseIcon(value.value());
     }
 
-    if (auto value = parseDBusField<qulonglong>(appInfo, u8"installedTime")) {
+    if (auto value = parseDBusField<qint64>(appInfo, u8"InstalledTime")) {
         item->installedTime = value.value();
-        if (item->installedTime >= InvalidTime) {
-            qWarning() << "Invalid installedTime for the desktopId" << item->id;
-            item->installedTime = 0;
-        }
     }
 
-    if (auto value = parseDBusField<qulonglong>(appInfo, u8"LastLaunchedTime")) {
+    if (auto value = parseDBusField<qint64>(appInfo, u8"LastLaunchedTime")) {
         item->lastLaunchedTime = value.value();
-        if (item->lastLaunchedTime >= InvalidTime) {
-            qWarning() << "Invalid LastLaunchedTime for the desktopId" << item->id;
-            item->lastLaunchedTime = 0;
-        }
+    }
+
+    if (auto value = parseDBusField<qint64>(appInfo, u8"LaunchedTimes")) {
+        item->launchedTimes = value.value();
     }
 
     return item;
@@ -276,14 +273,19 @@ void AppMgr::watchingAppItemPropertyChanged(const QString &key, AppMgr::AppItem 
         appItem->displayName = parseDisplayName(value);
         Q_EMIT itemDataChanged(appItem->id);
     });
-    connect(amAppIface, &AppManager1Application::InstalledTimeChanged, this, [this, appItem](const qulonglong & value) {
+    connect(amAppIface, &AppManager1Application::InstalledTimeChanged, this, [this, appItem](const qint64 & value) {
         qDebug() << "InstalledTimeChanged by AM, desktopId" << appItem->id;
         appItem->installedTime = value;
         Q_EMIT itemDataChanged(appItem->id);
     });
-    connect(amAppIface, &AppManager1Application::LastLaunchedTimeChanged, this, [this, appItem](const qulonglong & value) {
+    connect(amAppIface, &AppManager1Application::LastLaunchedTimeChanged, this, [this, appItem](const qint64 & value) {
         qDebug() << "LastLaunchedTimeChanged by AM, desktopId" << appItem->id;
         appItem->lastLaunchedTime = value;
+        Q_EMIT itemDataChanged(appItem->id);
+    });
+    connect(amAppIface, &AppManager1Application::LaunchedTimesChanged, this, [this, appItem](const qint64 & value) {
+        qDebug() << "LaunchedTimesChanged by AM, desktopId" << appItem->id;
+        appItem->launchedTimes = value;
         Q_EMIT itemDataChanged(appItem->id);
     });
 }

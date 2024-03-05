@@ -60,24 +60,34 @@ void AppItem::setDDECategory(DDECategories category)
     setData(category, AppItem::DDECategoryRole);
 }
 
-qulonglong AppItem::installedTime() const
+qint64 AppItem::installedTime() const
 {
-    return data(AppItem::InstalledTimeRole).toULongLong();
+    return data(AppItem::InstalledTimeRole).toLongLong();
 }
 
-void AppItem::setInstalledTime(qulonglong time)
+void AppItem::setInstalledTime(qint64 time)
 {
     setData(time, AppItem::InstalledTimeRole);
 }
 
-qulonglong AppItem::lastLaunchedTime() const
+qint64 AppItem::lastLaunchedTime() const
 {
-    return data(AppItem::LastLaunchedTimeRole).toULongLong();
+    return data(AppItem::LastLaunchedTimeRole).toLongLong();
 }
 
-void AppItem::setLastLaunchedTime(qulonglong time)
+void AppItem::setLastLaunchedTime(qint64 time)
 {
     setData(time, AppItem::LastLaunchedTimeRole);
+}
+
+qint64 AppItem::launchedTimes() const
+{
+    return data(AppItem::LaunchedTimesRole).toLongLong();
+}
+
+void AppItem::setLaunchedTimes(qint64 times)
+{
+    setData(times, AppItem::LaunchedTimesRole);
 }
 
 // assign/update data from another AppItem object
@@ -92,5 +102,6 @@ void AppItem::updateData(const AppItem *appItem)
     setData(appItem->data(AppItem::DDECategoryRole), AppItem::DDECategoryRole);
     setInstalledTime(appItem->installedTime());
     setLastLaunchedTime(appItem->lastLaunchedTime());
+    setLaunchedTimes(appItem->launchedTimes());
 }
 
