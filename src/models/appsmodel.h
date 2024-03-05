@@ -22,6 +22,7 @@ public:
         TransliteratedRole = AppItem::ModelExtendedRole,
         ProxyModelExtendedRole = 0x10000
     };
+    Q_ENUM(Roles)
 
     static AppsModel &instance()
     {

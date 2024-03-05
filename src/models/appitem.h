@@ -17,6 +17,7 @@ public:
         IconNameRole,
         ModelExtendedRole = 0x1000
     };
+    Q_ENUM(Roles)
 
     // This is different from the menu-spec Main Categories list.
     enum DDECategories {

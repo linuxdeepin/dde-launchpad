@@ -20,8 +20,19 @@ Item {
 
     function scrollToAlphabetCategory(character) {
         for (let i = 0; i < model.count; i++) {
-            let transliterated1st = model.model.data(model.modelIndex(i), 4096)[0].toUpperCase() // 4096 is AppsModel::TransliteratedRole
+            let transliterated1st = model.model.data(model.modelIndex(i), AppsModel.TransliteratedRole)[0].toUpperCase()
             if (character === transliterated1st) {
+                listView.currentIndex = i
+                scrollToIndex(listView.currentIndex, 35) // the height of a section heading
+                break
+            }
+        }
+    }
+
+    function scrollToDDECategory(category) {
+        for (let i = 0; i < model.count; i++) {
+            let value = model.model.data(model.modelIndex(i), AppItem.DDECategoryRole)
+            if (category === value) {
                 listView.currentIndex = i
                 scrollToIndex(listView.currentIndex, 35) // the height of a section heading
                 break
@@ -44,7 +55,7 @@ Item {
         ToolButton {
             required property string section
 
-            enabled: CategorizedSortProxyModel.categoryType === CategorizedSortProxyModel.Alphabetary
+            enabled: true
             ColorSelector.disabled: false
 
             id: headingBtn
@@ -76,12 +87,45 @@ Item {
 
                 onClicked: {
                     if (CategorizedSortProxyModel.categoryType === CategorizedSortProxyModel.Alphabetary) {
-                        alphabetCategoryPopup.existingSections = CategorizedSortProxyModel.alphabetarySections();
+                        alphabetCategoryPopup.existingSections = CategorizedSortProxyModel.alphabetarySections()
                         var mousePos = mapToItem(listView, mouseX, mouseY)
                         var y = (mousePos.y + alphabetCategoryPopup.height) < listView.height ? mousePos.y : listView.height - alphabetCategoryPopup.height
                         alphabetCategoryPopup.y = y
                         listView.opacity = 0.1
                         alphabetCategoryPopup.open()
+                    } else if (CategorizedSortProxyModel.categoryType === CategorizedSortProxyModel.DDECategory) {
+                        ddeCategoryMenu.existingSections = CategorizedSortProxyModel.DDECategorySections()
+                        listView.opacity = 0.1
+                        ddeCategoryMenu.open()
+                    }
+                }
+
+                Menu {
+                    id: ddeCategoryMenu
+                    width: 150
+                    modal: true
+                    closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutsideParent
+
+                    property var existingSections: []
+                    Repeater {
+                        model: ddeCategoryMenu.existingSections
+                        delegate: MenuItem {
+                            id: menuItem
+                            text: getCategoryName(modelData)
+                            onTriggered: {
+                                scrollToDDECategory(modelData)
+                            }
+                            contentItem: IconLabel {
+                                alignment: Qt.AlignCenter
+                                text: menuItem.text
+                            }
+                        }
+                    }
+
+                    onVisibleChanged: {
+                        if (!visible) {
+                            listView.opacity = 1
+                        }
                     }
                 }
             }
