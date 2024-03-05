@@ -60,6 +60,26 @@ void AppItem::setDDECategory(DDECategories category)
     setData(category, AppItem::DDECategoryRole);
 }
 
+qulonglong AppItem::installedTime() const
+{
+    return data(AppItem::InstalledTimeRole).toULongLong();
+}
+
+void AppItem::setInstalledTime(qulonglong time)
+{
+    setData(time, AppItem::InstalledTimeRole);
+}
+
+qulonglong AppItem::lastLaunchedTime() const
+{
+    return data(AppItem::LastLaunchedTimeRole).toULongLong();
+}
+
+void AppItem::setLastLaunchedTime(qulonglong time)
+{
+    setData(time, AppItem::LastLaunchedTimeRole);
+}
+
 // assign/update data from another AppItem object
 // assume the desktopId is the same, will update other data.
 // doesn't take the ownership of the passed appItem.
@@ -70,5 +90,7 @@ void AppItem::updateData(const AppItem *appItem)
     setData(appItem->data(AppItem::IconNameRole), AppItem::IconNameRole);
     setData(appItem->data(AppItem::Categories), AppItem::Categories);
     setData(appItem->data(AppItem::DDECategoryRole), AppItem::DDECategoryRole);
+    setInstalledTime(appItem->installedTime());
+    setLastLaunchedTime(appItem->lastLaunchedTime());
 }
 

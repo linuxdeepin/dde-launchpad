@@ -13,6 +13,7 @@ DCORE_USE_NAMESPACE
 using AppManager1Application = __AppManager1Application;
 using AppManager1ApplicationObjectManager = __AppManager1ApplicationObjectManager;
 Q_CONSTRUCTOR_FUNCTION(registerComplexDbusType);
+static const qulonglong InvalidTime = std::numeric_limits<qint64>().max();
 
 static QString parseDisplayName(const QStringMap &source)
 {
@@ -64,6 +65,22 @@ static AppMgr::AppItem *parseDBus2AppItem(const ObjectInterfaceMap &source)
 
     if (auto value = parseDBusField<QStringMap>(appInfo, u8"Icons")) {
         item->iconName = parseIcon(value.value());
+    }
+
+    if (auto value = parseDBusField<qulonglong>(appInfo, u8"installedTime")) {
+        item->installedTime = value.value();
+        if (item->installedTime >= InvalidTime) {
+            qWarning() << "Invalid installedTime for the desktopId" << item->id;
+            item->installedTime = 0;
+        }
+    }
+
+    if (auto value = parseDBusField<qulonglong>(appInfo, u8"LastLaunchedTime")) {
+        item->lastLaunchedTime = value.value();
+        if (item->lastLaunchedTime >= InvalidTime) {
+            qWarning() << "Invalid LastLaunchedTime for the desktopId" << item->id;
+            item->lastLaunchedTime = 0;
+        }
     }
 
     return item;
@@ -248,6 +265,16 @@ void AppMgr::watchingAppItemPropertyChanged(const QString &key, AppMgr::AppItem 
     connect(amAppIface, &AppManager1Application::NameChanged, this, [this, appItem](const QStringMap & value) {
         qDebug() << "NameChanged by AM, desktopId" << appItem->id;
         appItem->displayName = parseDisplayName(value);
+        Q_EMIT changed();
+    });
+    connect(amAppIface, &AppManager1Application::InstalledTimeChanged, this, [this, appItem](const qulonglong & value) {
+        qDebug() << "InstalledTimeChanged by AM, desktopId" << appItem->id;
+        appItem->installedTime = value;
+        Q_EMIT changed();
+    });
+    connect(amAppIface, &AppManager1Application::LastLaunchedTimeChanged, this, [this, appItem](const qulonglong & value) {
+        qDebug() << "LastLaunchedTimeChanged by AM, desktopId" << appItem->id;
+        appItem->lastLaunchedTime = value;
         Q_EMIT changed();
     });
 }
