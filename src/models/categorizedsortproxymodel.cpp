@@ -53,6 +53,24 @@ QList<QString> CategorizedSortProxyModel::alphabetarySections() const
     return charset.values();
 }
 
+QList<int> CategorizedSortProxyModel::DDECategorySections() const
+{
+    QSet<int> ddeCategorySet;
+
+    for (int i = 0; i < rowCount(); i++) {
+        auto value = data(index(i, 0), AppItem::DDECategoryRole);
+        if (value.isValid()) {
+            ddeCategorySet.insert(value.toInt());
+        }
+    }
+
+    // 排序，以便和显示顺序一致
+    QList<int> values = ddeCategorySet.values();
+    std::sort(values.begin(), values.end());
+
+    return values;
+}
+
 bool CategorizedSortProxyModel::lessThan(const QModelIndex &source_left, const QModelIndex &source_right) const
 {
     if (sortRole() == AppsModel::TransliteratedRole) {

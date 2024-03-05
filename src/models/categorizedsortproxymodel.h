@@ -32,6 +32,7 @@ public:
     QString sortRoleName() const;
 
     Q_INVOKABLE QList<QString> alphabetarySections() const;
+    Q_INVOKABLE QList<int> DDECategorySections() const;
 
 signals:
     void categoryTypeChanged();
