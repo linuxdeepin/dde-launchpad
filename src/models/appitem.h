@@ -15,6 +15,8 @@ public:
         Categories,
         DDECategoryRole,
         IconNameRole,
+        InstalledTimeRole,
+        LastLaunchedTimeRole,
         ModelExtendedRole = 0x1000
     };
 
@@ -51,6 +53,10 @@ public:
     void setCategories(const QStringList & categories);
     DDECategories ddeCategory() const;
     void setDDECategory(DDECategories category);
+    qulonglong installedTime() const;
+    void setInstalledTime(qulonglong time);
+    qulonglong lastLaunchedTime() const;
+    void setLastLaunchedTime(qulonglong time);
     void updateData(const AppItem * appItem);
 };
 

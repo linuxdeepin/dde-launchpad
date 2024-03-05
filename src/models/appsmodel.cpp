@@ -26,6 +26,8 @@ AppsModel::AppsModel(QObject *parent)
         {AppItem::DesktopIdRole, QByteArrayLiteral("desktopId")},
         {AppItem::DDECategoryRole, QByteArrayLiteral("category")},
         {AppItem::IconNameRole, QByteArrayLiteral("iconName")},
+        {AppItem::InstalledTimeRole, QByteArrayLiteral("installedTime")},
+        {AppItem::LastLaunchedTimeRole, QByteArrayLiteral("lastLaunchedTime")},
         {AppsModel::TransliteratedRole, QByteArrayLiteral("transliterated")}
     });
     setItemRoleNames(defaultRoleNames);
@@ -152,6 +154,8 @@ QList<AppItem *> AppsModel::allAppInfosShouldBeShown() const
         item->setIconName(appItem->iconName);
         item->setCategories(appItem->categories);
         item->setDDECategory(AppItem::DDECategories(CategoryUtils::parseBestMatchedCategory(appItem->categories)));
+        item->setInstalledTime(appItem->installedTime);
+        item->setLastLaunchedTime(appItem->lastLaunchedTime);
         items.append(item);
     }
     return items;

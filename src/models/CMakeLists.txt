@@ -13,6 +13,8 @@ FILES
     favoritedproxymodel.h
     multipageproxymodel.h
     multipagesortfilterproxymodel.h
+    recentlyinstalledproxymodel.h
+    countlimitproxymodel.h
 )
 
 target_sources(launcher-models
@@ -25,6 +27,8 @@ PRIVATE
     itemspage.cpp itemspage.h
     multipageproxymodel.cpp
     multipagesortfilterproxymodel.cpp
+    recentlyinstalledproxymodel.cpp
+    countlimitproxymodel.cpp
 )
 
 target_link_libraries(launcher-models PRIVATE
