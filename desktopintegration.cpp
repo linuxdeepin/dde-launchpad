@@ -192,8 +192,8 @@ DesktopIntegration::DesktopIntegration(QObject *parent)
     , m_dockIntegration(new DdeDock(this))
     , m_appearanceIntegration(new Appearance(this))
 {
-    DConfig dconfig("org.deepin.dde.launchpad.appsmodel");
-    Q_ASSERT_X(dconfig.isValid(), "DConfig", "DConfig file is missing or invalid");
+    QScopedPointer<DConfig> dconfig(DConfig::create("dde-launchpad", "org.deepin.dde.launchpad.appsmodel"));
+    Q_ASSERT_X(dconfig->isValid(), "DConfig", "DConfig file is missing or invalid");
     // TODO:
     //   1. ensure dde-launchpad is build with AppStream support
     //   2. ensure dde-control-center, deepin-calendar, dde-file-manager ship their AppStream MetaInfo file
@@ -211,7 +211,7 @@ DesktopIntegration::DesktopIntegration(QObject *parent)
         "deepin-app-store.desktop",
         "dde-calendar.desktop"
     };
-    m_compulsoryAppIdList = dconfig.value("compulsoryAppIdList", defaultCompulsoryAppIdList).toStringList();
+    m_compulsoryAppIdList = dconfig->value("compulsoryAppIdList", defaultCompulsoryAppIdList).toStringList();
 
     connect(m_dockIntegration, &DdeDock::directionChanged, this, &DesktopIntegration::dockPositionChanged);
     connect(m_dockIntegration, &DdeDock::geometryChanged, this, &DesktopIntegration::dockGeometryChanged);

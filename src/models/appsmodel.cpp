@@ -16,7 +16,7 @@ DCORE_USE_NAMESPACE
 
 AppsModel::AppsModel(QObject *parent)
     : QStandardItemModel(parent)
-    , m_dconfig(new DConfig("org.deepin.dde.launchpad.appsmodel"))
+    , m_dconfig(DConfig::create("dde-launchpad", "org.deepin.dde.launchpad.appsmodel"))
 {
     Q_ASSERT_X(m_dconfig->isValid(), "DConfig", "DConfig file is missing or invalid");
     m_excludedAppIdList = m_dconfig->value("excludeAppIdList", QStringList{}).toStringList();
