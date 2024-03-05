@@ -1,11 +1,13 @@
 <RCC>
     <qresource prefix="/">
         <file>qml/Main.qml</file>
+        <file>qml/windowed/SideBar.qml</file>
+        <file>qml/windowed/AppList.qml</file>
+        <file>qml/windowed/AppListView.qml</file>
+        <file>qml/windowed/AlphabetCategoryPopup.qml</file>
         <file>qml/DebugDialog.qml</file>
         <file>qml/FullscreenFrame.qml</file>
         <file>qml/WindowedFrame.qml</file>
-        <file>qml/AlphabetCategoryPopup.qml</file>
-        <file>qml/AppListView.qml</file>
         <file>qml/IconItemDelegate.qml</file>
         <file>qml/GridViewContainer.qml</file>
         <file>qml/AppItemMenu.qml</file>

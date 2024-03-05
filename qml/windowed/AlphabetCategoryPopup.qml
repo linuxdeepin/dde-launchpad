@@ -11,6 +11,8 @@ import org.deepin.dtk 1.0
 
 import org.deepin.launchpad 1.0
 
+import ".."
+
 Popup {
     id: gridPopup
     width: 180
