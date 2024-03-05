@@ -35,6 +35,7 @@ Depends:
  qml6-module-qtquick-window,
  qml6-module-qtquick-controls,
  qml6-module-qtquick-controls2-styles-chameleon,
+ qml6-module-qt-labs-platform,
 # v-- actually should be depended by qqc2-styles-chameleon
  qml6-module-qt5compat-graphicaleffects
 Conflicts: dde-launcher
