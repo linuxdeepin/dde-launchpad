@@ -37,6 +37,16 @@ ColumnLayout {
     }
 
     ToolButton {
+        icon.name: "computer-symbolic"
+        ToolTip.visible: hovered
+        ToolTip.delay: 1000
+        ToolTip.text: qsTr("Pictures")
+        onClicked: {
+            DesktopIntegration.showUrl("computer:///")
+        }
+    }
+
+    ToolButton {
         icon.name: "folder-images-symbolic"
         ToolTip.visible: hovered
         ToolTip.delay: 1000

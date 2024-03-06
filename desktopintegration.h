@@ -35,6 +35,7 @@ public:
     Q_INVOKABLE static double scaleFactor(const QString & desktopId);
     Q_INVOKABLE static void setScaleFactor(const QString & desktopId, double scaleFactor);
     Q_INVOKABLE static void showFolder(enum QStandardPaths::StandardLocation location);
+    Q_INVOKABLE static void showUrl(const QString & url);
     Q_INVOKABLE bool appIsCompulsoryForDesktop(const QString & desktopId);
     // TODO: async get wallpaper?
 

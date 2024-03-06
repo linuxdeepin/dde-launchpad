@@ -78,6 +78,11 @@ void DesktopIntegration::showFolder(QStandardPaths::StandardLocation location)
     }
 }
 
+void DesktopIntegration::showUrl(const QString &url)
+{
+    Dtk::Gui::DDesktopServices::showFolder(QUrl(url));
+}
+
 bool DesktopIntegration::appIsCompulsoryForDesktop(const QString &desktopId)
 {
     if (m_compulsoryAppIdList.contains(desktopId)) return true;
