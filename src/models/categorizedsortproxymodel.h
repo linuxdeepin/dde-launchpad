@@ -4,6 +4,7 @@
 
 #pragma once
 
+#include <QtQml/qqml.h>
 #include <QSortFilterProxyModel>
 
 class CategorizedSortProxyModel : public QSortFilterProxyModel
@@ -13,11 +14,21 @@ class CategorizedSortProxyModel : public QSortFilterProxyModel
     Q_PROPERTY(CategoryType categoryType READ categoryType WRITE setCategoryType NOTIFY categoryTypeChanged)
     Q_PROPERTY(QString sortRoleName READ sortRoleName NOTIFY categoryTypeChanged)
 
+    QML_NAMED_ELEMENT(CategorizedSortProxyModel)
+    QML_SINGLETON
 public:
     static CategorizedSortProxyModel &instance()
     {
         static CategorizedSortProxyModel _instance;
         return _instance;
+    }
+
+    static CategorizedSortProxyModel *create(QQmlEngine *qmlEngine, QJSEngine *jsEngine)
+    {
+        Q_UNUSED(qmlEngine)
+        Q_UNUSED(jsEngine)
+
+        return &instance();
     }
 
     enum CategoryType {

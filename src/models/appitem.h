@@ -4,11 +4,14 @@
 
 #pragma once
 
+#include <QtQml/qqml.h>
 #include <QStandardItem>
 
 class AppItem : public QStandardItem
 {
     Q_GADGET
+    QML_NAMED_ELEMENT(AppItem)
+    QML_UNCREATABLE("AppItem should only be created from C++ side")
 public:
     enum Roles {
         DesktopIdRole = Qt::UserRole,

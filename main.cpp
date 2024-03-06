@@ -2,14 +2,8 @@
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-#include "appsmodel.h"
-#include "desktopintegration.h"
-#include "favoritedproxymodel.h"
-#include "searchfilterproxymodel.h"
 #include "categorizedsortproxymodel.h"
-#include "multipageproxymodel.h"
 #include "launchercontroller.h"
-#include "debughelper.h"
 
 #include <QDBusConnection>
 #include <QGuiApplication>
@@ -23,9 +17,6 @@
 #include <launcherappiconprovider.h>
 #include <launcherfoldericonprovider.h>
 #include <blurhashimageprovider.h>
-#include <multipagesortfilterproxymodel.h>
-#include <recentlyinstalledproxymodel.h>
-#include <countlimitproxymodel.h>
 #include <DLog>
 
 DCORE_USE_NAMESPACE
@@ -70,19 +61,6 @@ int main(int argc, char* argv[])
     if (parser.isSet(LauncherController::instance().optShow) || parser.isSet(LauncherController::instance().optToggle)) {
         LauncherController::instance().setVisible(true);
     }
-
-    qmlRegisterType<MultipageSortFilterProxyModel>("org.deepin.launchpad", 1, 0, "MultipageSortFilterProxyModel");
-    qmlRegisterType<CountLimitProxyModel>("org.deepin.launchpad", 1, 0, "CountLimitProxyModel");
-    qmlRegisterUncreatableType<AppItem>("org.deepin.launchpad", 1, 0, "AppItem", "AppItem should only be created from C++ side");
-    qmlRegisterSingletonInstance("org.deepin.launchpad", 1, 0, "AppsModel", &AppsModel::instance());
-    qmlRegisterSingletonInstance("org.deepin.launchpad", 1, 0, "FavoritedProxyModel", &FavoritedProxyModel::instance());
-    qmlRegisterSingletonInstance("org.deepin.launchpad", 1, 0, "SearchFilterProxyModel", &SearchFilterProxyModel::instance());
-    qmlRegisterSingletonInstance("org.deepin.launchpad", 1, 0, "CategorizedSortProxyModel", &CategorizedSortProxyModel::instance());
-    qmlRegisterSingletonInstance("org.deepin.launchpad", 1, 0, "MultipageProxyModel", &MultipageProxyModel::instance());
-    qmlRegisterSingletonInstance("org.deepin.launchpad", 1, 0, "RecentlyInstalledProxyModel", &RecentlyInstalledProxyModel::instance());
-    qmlRegisterSingletonInstance("org.deepin.launchpad", 1, 0, "DesktopIntegration", &DesktopIntegration::instance());
-    qmlRegisterSingletonInstance("org.deepin.launchpad", 1, 0, "LauncherController", &LauncherController::instance());
-    qmlRegisterSingletonInstance("org.deepin.launchpad", 1, 0, "DebugHelper", &DebugHelper::instance());
 
     CategorizedSortProxyModel::instance().setCategoryType(CategorizedSortProxyModel::Alphabetary);
 

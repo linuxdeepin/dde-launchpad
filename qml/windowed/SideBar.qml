@@ -11,6 +11,7 @@ import Qt.labs.platform 1.0
 import org.deepin.dtk 1.0
 
 import org.deepin.launchpad 1.0
+import org.deepin.launchpad.models 1.0
 
 ColumnLayout {
     Layout.fillWidth: false

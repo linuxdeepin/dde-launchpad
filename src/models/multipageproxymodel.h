@@ -4,6 +4,8 @@
 
 #pragma once
 
+#include <QtQml/qqml.h>
+
 #include "itemspage.h"
 #include "appsmodel.h"
 
@@ -12,6 +14,8 @@
 class MultipageProxyModel : public QConcatenateTablesProxyModel
 {
     Q_OBJECT
+    QML_NAMED_ELEMENT(MultipageProxyModel)
+    QML_SINGLETON
 public:
     enum Roles {
         PageRole = AppsModel::ProxyModelExtendedRole,
@@ -32,6 +36,13 @@ public:
     {
         static MultipageProxyModel _instance;
         return _instance;
+    }
+
+    static MultipageProxyModel *create(QQmlEngine *qmlEngine, QJSEngine *jsEngine)
+    {
+        Q_UNUSED(qmlEngine)
+        Q_UNUSED(jsEngine)
+        return &instance();
     }
 
     ~MultipageProxyModel();
