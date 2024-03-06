@@ -58,10 +58,17 @@ static AppMgr::AppItem *parseDBus2AppItem(const ObjectInterfaceMap &source)
         item->categories = value.value();
     }
 
+    // fallback to Name if GenericName is empty for X_Deepin_Vendor.
     const auto deepinVendor = parseDBusField<QString>(appInfo, u8"X_Deepin_Vendor");
-    const auto displayNameKey = deepinVendor && !deepinVendor.value().isEmpty() ? u8"GenericName" : u8"Name";
-    if (auto value = parseDBusField<QStringMap>(appInfo, displayNameKey)) {
-        item->displayName = parseDisplayName(value.value());
+    if (deepinVendor && !deepinVendor.value().isEmpty()) {
+        if (auto value = parseDBusField<QStringMap>(appInfo, u8"GenericName")) {
+            item->displayName = parseDisplayName(value.value());
+        }
+    }
+    if (item->displayName.isEmpty()) {
+        if (auto value = parseDBusField<QStringMap>(appInfo, u8"Name")) {
+            item->displayName = parseDisplayName(value.value());
+        }
     }
 
     if (auto value = parseDBusField<QStringMap>(appInfo, u8"Icons")) {
@@ -102,26 +109,6 @@ AppMgr::~AppMgr()
     qDeleteAll(m_appItems);
 }
 
-inline QString escapeToObjectPath(const QString &str)
-{
-    if (str.isEmpty()) {
-        return "_";
-    }
-
-    auto ret = str;
-    static QRegularExpression re{R"([^a-zA-Z0-9])"};
-    auto matcher = re.globalMatch(ret);
-    while (matcher.hasNext()) {
-        auto replaceList = matcher.next().capturedTexts();
-        replaceList.removeDuplicates();
-        for (const auto &c : replaceList) {
-            auto hexStr = QString::number(static_cast<uint>(c.front().toLatin1()), 16);
-            ret.replace(c, QString{R"(_%1)"}.arg(hexStr));
-        }
-    }
-    return ret;
-}
-
 AppManager1Application * createAM1AppIfaceByPath(const QString &dbusPath)
 {
     AppManager1Application * amAppIface = new AppManager1Application(QLatin1String("org.desktopspec.ApplicationManager1"),
@@ -137,13 +124,13 @@ AppManager1Application * createAM1AppIfaceByPath(const QString &dbusPath)
 
 AppManager1Application * createAM1AppIface(const QString &desktopId)
 {
-    // the new dde-application-manager use systemd-style Application ID, which is
-    // basicly the freedesktop desktop-id sins the ".desktop" suffix.
-    constexpr int suffixLen = std::char_traits<char>::length(".desktop");
-    QString systemdAppId(desktopId.chopped(suffixLen));
-    QString dbusPath = QString("/org/desktopspec/ApplicationManager1/%1").arg(escapeToObjectPath(systemdAppId));
-
-    return createAM1AppIfaceByPath(dbusPath);
+    auto appItem = AppMgr::instance()->appItem(desktopId);
+    if (!appItem) {
+        qWarning() << "Can't find appItem for the desktopId" << desktopId;
+        return nullptr;
+    }
+    qDebug() << "Get app interface for the desktopId" << desktopId;
+    return appItem->handler;
 }
 
 // if return false, it means the launch is not even started.

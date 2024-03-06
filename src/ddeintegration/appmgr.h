@@ -6,6 +6,7 @@
 
 #include <QMap>
 #include <QObject>
+#include <QPointer>
 
 class __AppManager1Application;
 class __AppManager1ApplicationObjectManager;
@@ -17,7 +18,7 @@ public:
     ~AppMgr();
     struct AppItem
     {
-        __AppManager1Application *handler = nullptr;
+        QPointer<__AppManager1Application> handler;
         QString id;
         QString displayName;
         QString iconName;
