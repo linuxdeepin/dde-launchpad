@@ -13,7 +13,7 @@
         <file>qml/AppItemMenu.qml</file>
         <file>images/application-x-desktop.svg</file>
     </qresource>
-    <qresource prefix="/dsg/built-in-icons/">
+    <qresource prefix="/dsg/built-in-icons">
         <file alias="exit_fullscreen.dci">images/exit_fullscreen.dci</file>
         <file alias="switch_to_fullscreen.dci">images/switch_to_fullscreen.dci</file>
         <file alias="search_no_result.dci">images/search_no_result.dci</file>
@@ -24,10 +24,11 @@
         <file alias="computer-symbolic.dci">images/pc.dci</file>
         <file alias="launcher_fullscreen.dci">images/launcher_fullscreen.dci</file>
         <file alias="launcher_exit_fullscreen.dci">images/launcher_exit_fullscreen.dci</file>
-        <file alias="letter-icon.dci">images/launcher_classify_letter.dci</file>
-        <file alias="title-icon.dci">images/launcher_classify_type.dci</file>
         <file alias="setting.dci">images/launcher_setting.dci</file>
         <file alias="launcher_power_v23.dci">images/launcher_power_v23.dci</file>
         <file alias="shutdown.dci">images/launcher_power.dci</file>
+        <file alias="arrange.dci">images/arrange.dci</file>
+        <file alias="classify.dci">images/classify.dci</file>
+        <file alias="name.dci">images/name.dci</file>
     </qresource>
 </RCC>
