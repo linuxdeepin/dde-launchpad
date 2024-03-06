@@ -4,16 +4,26 @@
 
 #pragma once
 
+#include <QtQml/qqml.h>
 #include <QSortFilterProxyModel>
 
 class SearchFilterProxyModel : public QSortFilterProxyModel
 {
     Q_OBJECT
+    QML_NAMED_ELEMENT(SearchFilterProxyModel)
+    QML_SINGLETON
 public:
     static SearchFilterProxyModel &instance()
     {
         static SearchFilterProxyModel _instance;
         return _instance;
+    }
+
+    static SearchFilterProxyModel *create(QQmlEngine *qmlEngine, QJSEngine *jsEngine)
+    {
+        Q_UNUSED(qmlEngine)
+        Q_UNUSED(jsEngine)
+        return &instance();
     }
 
     // QSortFilterProxyModel interface

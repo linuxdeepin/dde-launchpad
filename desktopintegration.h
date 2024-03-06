@@ -7,6 +7,7 @@
 #include <QObject>
 #include <QRect>
 #include <QStandardPaths>
+#include <QtQml/qqml.h>
 
 class AppWiz;
 class DdeDock;
@@ -20,11 +21,20 @@ class DesktopIntegration : public QObject
     Q_PROPERTY(uint dockSpacing READ dockSpacing NOTIFY dockSpacingChanged)
     Q_PROPERTY(QString backgroundUrl READ backgroundUrl NOTIFY backgroundUrlChanged)
 
+    QML_NAMED_ELEMENT(DesktopIntegration)
+    QML_SINGLETON
 public:
     static DesktopIntegration &instance()
     {
         static DesktopIntegration _instance;
         return _instance;
+    }
+
+    static DesktopIntegration *create(QQmlEngine *qmlEngine, QJSEngine *jsEngine)
+    {
+        Q_UNUSED(qmlEngine)
+        Q_UNUSED(jsEngine)
+        return &instance();
     }
 
     Q_INVOKABLE static QString currentDE();

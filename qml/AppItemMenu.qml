@@ -7,6 +7,7 @@ import QtQuick.Controls 2.15
 import org.deepin.dtk 1.0
 
 import org.deepin.launchpad 1.0
+import org.deepin.launchpad.models 1.0
 
 Loader {
     id: root

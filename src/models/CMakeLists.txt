@@ -2,7 +2,13 @@
 #
 # SPDX-License-Identifier: CC0-1.0
 
-add_library(launcher-models)
+qt_add_qml_module(
+    launcher-models
+    URI org.deepin.launchpad.models
+    VERSION 1.0
+    STATIC
+    PLUGIN_TARGET launcher-models
+)
 
 target_sources(launcher-models PUBLIC
 FILE_SET HEADERS

@@ -4,16 +4,26 @@
 
 #pragma once
 
+#include <QtQml/qqml.h>
 #include <QSortFilterProxyModel>
 
 class RecentlyInstalledProxyModel : public QSortFilterProxyModel
 {
     Q_OBJECT
+    QML_NAMED_ELEMENT(RecentlyInstalledProxyModel)
+    QML_SINGLETON
 public:
     static RecentlyInstalledProxyModel &instance()
     {
         static RecentlyInstalledProxyModel _instance;
         return _instance;
+    }
+
+    static RecentlyInstalledProxyModel *create(QQmlEngine *qmlEngine, QJSEngine *jsEngine)
+    {
+        Q_UNUSED(qmlEngine)
+        Q_UNUSED(jsEngine)
+        return &instance();
     }
 
     // QSortFilterProxyModel interface

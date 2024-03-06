@@ -3,6 +3,7 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 #include <QObject>
+#include <QtQml/qqml.h>
 
 class QSettings;
 class DebugHelper : public QObject
@@ -13,11 +14,20 @@ class DebugHelper : public QObject
     Q_PROPERTY(bool useRegularWindow MEMBER m_useRegularWindow NOTIFY onUseRegularWindowChanged)
     Q_PROPERTY(bool avoidLaunchApp MEMBER m_avoidLaunchApp NOTIFY onAvoidLaunchAppChanged)
     Q_PROPERTY(bool avoidHideWindow MEMBER m_avoidHideWindow NOTIFY onAvoidHideWindowChanged)
+    QML_NAMED_ELEMENT(DebugHelper)
+    QML_SINGLETON
 public:
     static DebugHelper &instance()
     {
         static DebugHelper _instance;
         return _instance;
+    }
+
+    static DebugHelper *create(QQmlEngine *qmlEngine, QJSEngine *jsEngine)
+    {
+        Q_UNUSED(qmlEngine)
+        Q_UNUSED(jsEngine)
+        return &instance();
     }
 
     ~DebugHelper();

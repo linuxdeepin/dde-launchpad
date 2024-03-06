@@ -4,6 +4,7 @@
 
 #pragma once
 
+#include <QtQml/qqml.h>
 #include <QCommandLineOption>
 #include <QFont>
 #include <QObject>
@@ -17,6 +18,8 @@ class LauncherController : public QObject
     Q_PROPERTY(bool visible READ visible WRITE setVisible NOTIFY visibleChanged)
     Q_PROPERTY(QString currentFrame READ currentFrame WRITE setCurrentFrame NOTIFY currentFrameChanged)
 
+    QML_NAMED_ELEMENT(LauncherController)
+    QML_SINGLETON
     // I really don't want to expose those dbus API as public function...
     friend class Launcher1Adaptor;
 
@@ -26,6 +29,13 @@ public:
     {
         static LauncherController _instance;
         return _instance;
+    }
+
+    static LauncherController *create(QQmlEngine *qmlEngine, QJSEngine *jsEngine)
+    {
+        Q_UNUSED(qmlEngine)
+        Q_UNUSED(jsEngine)
+        return &instance();
     }
 
     ~LauncherController();

@@ -4,16 +4,25 @@
 
 #pragma once
 
+#include <QtQml/qqml.h>
 #include <QSortFilterProxyModel>
 
 class FavoritedProxyModel : public QSortFilterProxyModel
 {
     Q_OBJECT
+    QML_NAMED_ELEMENT(FavoritedProxyModel)
+    QML_SINGLETON
 public:
     static FavoritedProxyModel &instance()
     {
         static FavoritedProxyModel _instance;
         return _instance;
+    }
+    static FavoritedProxyModel *create(QQmlEngine *qmlEngine, QJSEngine *jsEngine)
+    {
+        Q_UNUSED(qmlEngine)
+        Q_UNUSED(jsEngine)
+        return &instance();
     }
 
     Q_INVOKABLE bool exists(const QString & desktopId);

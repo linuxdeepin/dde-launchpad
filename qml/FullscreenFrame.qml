@@ -12,6 +12,7 @@ import org.deepin.dtk 1.0
 import org.deepin.dtk.style 1.0 as DS
 
 import org.deepin.launchpad 1.0
+import org.deepin.launchpad.models 1.0
 
 Control {
     id: baseLayer

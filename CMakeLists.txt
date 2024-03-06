@@ -36,6 +36,8 @@ set_package_properties(${ASQT_NS} PROPERTIES
 
 feature_summary(WHAT ALL FATAL_ON_MISSING_REQUIRED_PACKAGES)
 
+set(QML_IMPORT_PATH ${QML_IMPORT_PATH} ${CMAKE_CURRENT_BINARY_DIR}/ CACHE STRING "" FORCE)
+
 add_subdirectory(systemd)
 add_subdirectory(dbus)
 add_subdirectory(src/gioutils)
@@ -83,17 +85,17 @@ set(TRANSLATION_FILES
 
 qt_add_dbus_adaptor(DBUS_ADAPTER_FILES dbus/org.deepin.dde.Launcher1.xml launchercontroller.h LauncherController)
 
-if(${QT_VERSION_MAJOR} EQUAL "5")
-    qtquick_compiler_add_resources(RESOURCES qml.qrc)
-else()
-    qt_add_resources(RESOURCES qml.qrc) # TODO: should use qt_add_qml_module instead
-endif()
-
-add_executable(${BIN_NAME}
+qt_add_executable(${BIN_NAME}
     ${SOURCE_FILES}
     ${DBUS_ADAPTER_FILES}
     ${RESOURCES}
     ${TRANSLATED_FILES}
+)
+
+qt_add_qml_module(${BIN_NAME}
+    URI org.deepin.launchpad
+    VERSION 1.0
+    RESOURCES qml.qrc
 )
 
 qt_add_translations(${BIN_NAME}

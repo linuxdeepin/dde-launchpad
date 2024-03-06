@@ -6,6 +6,7 @@
 
 #include "appitem.h"
 
+#include <QtQml/qqml.h>
 #include <QStandardItemModel>
 
 namespace Dtk::Core {
@@ -17,6 +18,8 @@ class DConfig;
 class AppsModel : public QStandardItemModel
 {
     Q_OBJECT
+    QML_NAMED_ELEMENT(AppsModel)
+    QML_SINGLETON
 public:
     enum Roles {
         TransliteratedRole = AppItem::ModelExtendedRole,
@@ -30,6 +33,12 @@ public:
         return _instance;
     }
 
+    static AppsModel *create(QQmlEngine *qmlEngine, QJSEngine *jsEngine)
+    {
+        Q_UNUSED(qmlEngine)
+        Q_UNUSED(jsEngine)
+        return &instance();
+    }
 
     void appendRows(const QList<AppItem *> items);
 

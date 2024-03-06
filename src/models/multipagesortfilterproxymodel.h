@@ -4,6 +4,7 @@
 
 #pragma once
 
+#include <QtQml/qqml.h>
 #include <QSortFilterProxyModel>
 
 class MultipageSortFilterProxyModel : public QSortFilterProxyModel
@@ -13,6 +14,7 @@ class MultipageSortFilterProxyModel : public QSortFilterProxyModel
     Q_PROPERTY(QAbstractItemModel *sourceModel READ sourceModel WRITE setModel NOTIFY sourceModelChanged)
     Q_PROPERTY(int folderId MEMBER m_folderId NOTIFY onFolderIdChanged)
     Q_PROPERTY(int pageId MEMBER m_pageId NOTIFY onPageIdChanged)
+    QML_NAMED_ELEMENT(MultipageSortFilterProxyModel)
 
 public:
     explicit MultipageSortFilterProxyModel(QObject *parent = nullptr);
