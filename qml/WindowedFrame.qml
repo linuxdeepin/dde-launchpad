@@ -22,13 +22,20 @@ Item {
     focus: true
 
     ColumnLayout {
+        spacing: 0
         anchors.fill: parent
 
         RowLayout {
+            spacing: 0
             Layout.fillWidth: true
             Layout.fillHeight: true
 
             SideBar {}
+
+            Rectangle {
+                Layout.preferredWidth: 1
+                Layout.fillHeight: true
+            }
 
             AppList {}
 
@@ -131,6 +138,11 @@ Item {
                     }
                 }
             }
+        }
+
+        Rectangle {
+            Layout.preferredHeight: 1
+            Layout.fillWidth: true
         }
 
         RowLayout {
