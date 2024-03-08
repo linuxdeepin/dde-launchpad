@@ -52,8 +52,8 @@ Item {
                         model: FavoritedProxyModel
                         delegate: IconItemDelegate {
                             iconSource: iconName
-                            width: favoriteGridViewContainer.cellSize
-                            height: favoriteGridViewContainer.cellSize
+                            width: favoriteGridViewContainer.cellWidth
+                            height: favoriteGridViewContainer.cellHeight
                             onItemClicked: {
                                 launchApp(desktopId)
                             }
@@ -76,7 +76,7 @@ Item {
                         }
                     }
 
-                    Layout.preferredHeight: rowCount === 0 ? 50 : rowCount * favoriteGridViewContainer.cellSize
+                    Layout.preferredHeight: rowCount === 0 ? 50 : rowCount * favoriteGridViewContainer.cellHeight
                     Layout.fillWidth: true
                 }
 
@@ -90,8 +90,8 @@ Item {
                     model: SearchFilterProxyModel
                     delegate: IconItemDelegate {
                         iconSource: iconName
-                        width: allAppsGridContainer.cellSize
-                        height: allAppsGridContainer.cellSize
+                        width: allAppsGridContainer.cellWidth
+                        height: allAppsGridContainer.cellHeight
                         onItemClicked: {
                             launchApp(desktopId)
                         }

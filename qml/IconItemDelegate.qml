@@ -68,7 +68,7 @@ Control {
             }
 
             Item {
-                width: isWindowedMode ? 48 : parent.width / 2
+                width: isWindowedMode ? 48 : parent.height / 2
                 height: width
                 anchors.horizontalCenter: parent.horizontalCenter
 

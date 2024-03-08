@@ -172,7 +172,7 @@ Control {
 
             DropArea {
                 property int pageIntent: 0
-                property int horizontalPadding: (width - searchResultGridViewContainer.gridViewWidth) / 2
+                property int horizontalPadding: searchResultGridViewContainer.cellWidth
                 anchors.fill: parent
                 onEntered: {
                     if (folderGridViewPopup.opened) {
@@ -182,7 +182,7 @@ Control {
                 onPositionChanged: {
                     if (drag.x < horizontalPadding) {
                         pageIntent = -1
-                    } else if (drag.x > (searchResultGridViewContainer.gridViewWidth + horizontalPadding)) {
+                    } else if (drag.x > (width - searchResultGridViewContainer.cellWidth)) {
                         pageIntent = 1
                     }
                 }
@@ -280,8 +280,8 @@ Control {
                                 delegate: DropArea {
                                     Keys.forwardTo: [iconItemDelegate]
 
-                                    width: gridViewContainer.cellSize
-                                    height: gridViewContainer.cellSize
+                                    width: gridViewContainer.cellWidth
+                                    height: gridViewContainer.cellHeight
                                     onEntered: {
                                         if (folderGridViewPopup.opened) {
                                             folderGridViewPopup.close()
@@ -347,8 +347,8 @@ Control {
                 model: SearchFilterProxyModel
                 delegate: IconItemDelegate {
                     iconSource: iconName
-                    width: searchResultGridViewContainer.cellSize
-                    height: searchResultGridViewContainer.cellSize
+                    width: searchResultGridViewContainer.cellWidth
+                    height: searchResultGridViewContainer.cellHeight
                     padding: 5
                     onItemClicked: {
                         launchApp(desktopId)
@@ -369,6 +369,7 @@ Control {
 
                 rows: 4
                 columns: 7
+                paddingColumns: 1
                 placeholderIcon: "search_no_result"
                 placeholderText: qsTranslate("WindowedFrame", "No search results")
                 placeholderIconSize: 256
@@ -399,7 +400,7 @@ Control {
         focus: true
 //        visible: true
 
-        property int cs: searchResultGridViewContainer.cellSize // * 5 / 4
+        property int cs: searchResultGridViewContainer.cellHeight
 //        anchors.centerIn: parent // seems dtkdeclarative's Popup doesn't have anchors.centerIn
 
         width: cs * 4 + 20 /* padding */
@@ -498,8 +499,8 @@ Control {
                                             activeGridViewFocusOnTab: folderGridViewLoader.SwipeView.isCurrentItem
                                             itemMove: Transition { NumberAnimation { properties: "x,y"; duration: 250 } }
                                             delegate: DropArea {
-                                                width: folderGridViewContainer.cellSize
-                                                height: folderGridViewContainer.cellSize
+                                                width: folderGridViewContainer.cellWidth
+                                                height: folderGridViewContainer.cellHeight
                                                 onDropped: {
                                                     let dragId = drop.getDataAsString("text/x-dde-launcher-dnd-desktopId")
                                                     let op = 0

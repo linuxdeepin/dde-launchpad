@@ -36,8 +36,8 @@ Popup {
             'W', 'X', 'Y', 'Z',
         ]
         delegate: ToolButton {
-            width: alphabetCategoryContainer.cellSize
-            height: alphabetCategoryContainer.cellSize
+            width: alphabetCategoryContainer.cellWidth
+            height: alphabetCategoryContainer.cellHeight
             text: modelData
             focusPolicy: Qt.NoFocus
             enabled: gridPopup.existingSections.includes(modelData)
