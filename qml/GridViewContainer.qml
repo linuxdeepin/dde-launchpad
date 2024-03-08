@@ -27,7 +27,8 @@ FocusScope {
     required property int columns
     required property int rows
     property int paddingColumns: 0
-    property alias cellSize: item.cellSize
+    property alias cellHeight: item.cellHeight
+    property alias cellWidth: item.cellWidth
 
     readonly property alias gridViewWidth: gridView.width
 
@@ -50,12 +51,12 @@ FocusScope {
         visible: true
         anchors.fill: parent
 
-        property int cellSize: root.rows == 0 ? (width / (root.columns + root.paddingColumns * 2)) : Math.min(width / (root.columns + root.paddingColumns * 2), height / root.rows)
-
+        property int cellHeight: height / root.rows
+        property int cellWidth: width / (root.columns + root.paddingColumns * 2)
         Rectangle {
             anchors.centerIn: parent
-            width: item.cellSize * root.columns
-            height: rows == 0 ? parent.height : (item.cellSize * root.rows)
+            width: item.cellWidth * root.columns
+            height: rows == 0 ? parent.height : (item.cellHeight * root.rows)
             color: "transparent"
 
             GridView {
@@ -81,8 +82,8 @@ FocusScope {
                         gridView.preferredHighlightBegin = preferredHighlightBegin
                     }
                 }
-                cellHeight: item.cellSize
-                cellWidth: item.cellSize
+                cellHeight: item.cellHeight
+                cellWidth: item.cellWidth
 
                 highlight: Item {
                     SystemPalette { id: highlightPalette }
