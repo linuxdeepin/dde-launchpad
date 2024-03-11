@@ -17,8 +17,8 @@ import org.deepin.launchpad.models 1.0
 ColumnLayout {
     Layout.fillWidth: false
     Layout.fillHeight: true
-
-    Layout.preferredWidth: 50
+    Layout.margins: 10
+    spacing: 10
 
     function categorizedIcon(categoryType) {
         switch (categoryType) {

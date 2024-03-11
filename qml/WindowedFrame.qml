@@ -33,8 +33,9 @@ Item {
             SideBar {}
 
             Rectangle {
-                Layout.preferredWidth: 1
+                Layout.preferredWidth: 2
                 Layout.fillHeight: true
+                color: this.palette.shadow
             }
 
             AppList {}
@@ -141,13 +142,15 @@ Item {
         }
 
         Rectangle {
-            Layout.preferredHeight: 1
+            Layout.preferredHeight: 2
             Layout.fillWidth: true
+            color: this.palette.shadow
         }
 
         RowLayout {
             // Layout.preferredHeight: 20
             Layout.fillWidth: true
+            Layout.margins: 10
 
             ToolButton {
                 icon.name: "shutdown"
