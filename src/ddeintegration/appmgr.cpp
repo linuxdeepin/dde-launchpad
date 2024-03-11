@@ -39,6 +39,17 @@ static DExpected<T> parseDBusField(const QVariantMap &map, const QString &key)
     return DExpected<T>{qdbus_cast<T>(value)};
 }
 
+static QString getDisplayName(const bool isDeepin, const QStringMap &name, const QStringMap &genericName)
+{
+    if (isDeepin) {
+        const auto tmp = parseDisplayName(genericName);
+        if (!tmp.isEmpty())
+            return tmp;
+    }
+
+    return parseDisplayName(name);
+}
+
 static AppMgr::AppItem *parseDBus2AppItem(const ObjectInterfaceMap &source)
 {
     const QVariantMap appInfo = source.value("org.desktopspec.ApplicationManager1.Application");
@@ -65,16 +76,9 @@ static AppMgr::AppItem *parseDBus2AppItem(const ObjectInterfaceMap &source)
 
     // fallback to Name if GenericName is empty for X_Deepin_Vendor.
     const auto deepinVendor = parseDBusField<QString>(appInfo, u8"X_Deepin_Vendor");
-    if (deepinVendor && !deepinVendor.value().isEmpty()) {
-        if (auto value = parseDBusField<QStringMap>(appInfo, u8"GenericName")) {
-            item->displayName = parseDisplayName(value.value());
-        }
-    }
-    if (item->displayName.isEmpty()) {
-        if (auto value = parseDBusField<QStringMap>(appInfo, u8"Name")) {
-            item->displayName = parseDisplayName(value.value());
-        }
-    }
+    item->displayName = getDisplayName(deepinVendor && !deepinVendor.value().isEmpty(),
+                                       parseDBusField<QStringMap>(appInfo, u8"Name").value(),
+                                       parseDBusField<QStringMap>(appInfo, u8"GenericName").value());
 
     if (auto value = parseDBusField<QStringMap>(appInfo, u8"Name")) {
         item->name = parseName(value.value());
@@ -264,10 +268,20 @@ void AppMgr::watchingAppItemPropertyChanged(const QString &key, AppMgr::AppItem 
         appItem->iconName = parseIcon(value);
         Q_EMIT itemDataChanged(appItem->id);
     });
-    connect(amAppIface, &AppManager1Application::NameChanged, this, [this, appItem](const QStringMap & value) {
+    connect(amAppIface, &AppManager1Application::X_Deepin_VendorChanged, this, [this, appItem, amAppIface](const QString & value) {
+        qDebug() << "X_Deepin_VendorChanged by AM, desktopId" << appItem->id;
+        appItem->displayName = getDisplayName(!value.isEmpty(), amAppIface->name(), amAppIface->genericName());
+        Q_EMIT itemDataChanged(appItem->id);
+    });
+    connect(amAppIface, &AppManager1Application::GenericNameChanged, this, [this, appItem, amAppIface](const QStringMap & value) {
+        qDebug() << "GenericNameChanged by AM, desktopId" << appItem->id;
+        appItem->displayName = getDisplayName(!amAppIface->x_Deepin_Vendor().isEmpty(), amAppIface->name(), value);
+        Q_EMIT itemDataChanged(appItem->id);
+    });
+    connect(amAppIface, &AppManager1Application::NameChanged, this, [this, appItem, amAppIface](const QStringMap & value) {
         qDebug() << "NameChanged by AM, desktopId" << appItem->id;
         appItem->name = parseName(value);
-        appItem->displayName = parseDisplayName(value);
+        appItem->displayName = getDisplayName(!amAppIface->x_Deepin_Vendor().isEmpty(), value, amAppIface->genericName());
         Q_EMIT itemDataChanged(appItem->id);
     });
     connect(amAppIface, &AppManager1Application::InstalledTimeChanged, this, [this, appItem](const qint64 & value) {
