@@ -51,8 +51,8 @@ FocusScope {
         visible: true
         anchors.fill: parent
 
-        property int cellHeight: height / root.rows
-        property int cellWidth: width / (root.columns + root.paddingColumns * 2)
+        property int cellHeight: root.rows == 0 ? (width / (root.columns + root.paddingColumns * 2)) : Math.min(width / (root.columns + root.paddingColumns * 2), height / root.rows)
+        property int cellWidth: cellHeight
         Rectangle {
             anchors.centerIn: parent
             width: item.cellWidth * root.columns
