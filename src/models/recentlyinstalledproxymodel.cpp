@@ -6,10 +6,8 @@
 #include "appitem.h"
 #include "appsmodel.h"
 
-#include <QDateTime>
 #include <QDebug>
 
-static int IntervalDays = 7;
 RecentlyInstalledProxyModel::RecentlyInstalledProxyModel(QObject *parent)
     : QSortFilterProxyModel(parent)
 {
@@ -27,11 +25,7 @@ bool RecentlyInstalledProxyModel::filterAcceptsRow(int sourceRow, const QModelIn
     if (lastLaunchedTime > 0)
         return false;
 
-    const auto installedTime = modelIndex.data(AppItem::InstalledTimeRole).toLongLong();
-    const auto currentTime = QDateTime::currentDateTime();
-    const auto lastTime = currentTime.addDays(-IntervalDays).toMSecsSinceEpoch();
-
-    return installedTime > lastTime;
+    return true;
 }
 
 bool RecentlyInstalledProxyModel::lessThan(const QModelIndex &source_left, const QModelIndex &source_right) const
