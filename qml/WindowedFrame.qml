@@ -195,7 +195,7 @@ Item {
                 Palette {
                     id: nomalPalette
                     normal {
-                        common: ("#transparent")
+                        common: ("transparent")
                         crystal: Qt.rgba(0, 0, 0, 0.1)
                     }
                     normalDark {
