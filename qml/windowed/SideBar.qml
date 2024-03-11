@@ -65,8 +65,12 @@ ColumnLayout {
     }
 
     D.ToolButton {
+        id: title
+
         implicitHeight: DS.Style.control.implicitHeight(this) * 1.5
         Layout.alignment: Qt.AlignCenter
+        KeyNavigation.down: computer
+        KeyNavigation.up: setting
 
         contentItem: Item {
             ColumnLayout {
@@ -94,7 +98,7 @@ ColumnLayout {
 
         onClicked: {
             const menu = categorizedCom.createObject(this);
-            menu.popup();
+            menu.popup(this, Qt.point(title.x, title.y));
         }
     }
 
@@ -103,55 +107,75 @@ ColumnLayout {
     }
 
     D.ToolButton {
+        id: computer
         icon.name: "computer-symbolic"
         ToolTip.visible: hovered
         ToolTip.delay: 1000
         ToolTip.text: qsTr("Pictures")
         Layout.alignment: Qt.AlignCenter
+        focusPolicy: Qt.NoFocus
+        KeyNavigation.down: images
+        KeyNavigation.up: title
         onClicked: {
             DesktopIntegration.showUrl("computer:///")
         }
     }
 
     D.ToolButton {
+        id: images
         icon.name: "folder-images-symbolic"
         ToolTip.visible: hovered
         ToolTip.delay: 1000
         ToolTip.text: qsTr("Pictures")
         Layout.alignment: Qt.AlignCenter
+        focusPolicy: Qt.NoFocus
+        KeyNavigation.down: documents
+        KeyNavigation.up: computer
         onClicked: {
             DesktopIntegration.showFolder(StandardPaths.PicturesLocation)
         }
     }
 
     D.ToolButton {
+        id: documents
         icon.name: "folder-documents-symbolic"
         ToolTip.visible: hovered
         ToolTip.delay: 1000
         ToolTip.text: qsTr("Documents")
         Layout.alignment: Qt.AlignCenter
+        focusPolicy: Qt.NoFocus
+        KeyNavigation.down: desktop
+        KeyNavigation.up: images
         onClicked: {
             DesktopIntegration.showFolder(StandardPaths.DocumentsLocation)
         }
     }
 
     D.ToolButton {
+        id: desktop
         icon.name: "folder-desktop-symbolic"
         ToolTip.visible: hovered
         ToolTip.delay: 1000
         ToolTip.text: qsTr("Desktop")
         Layout.alignment: Qt.AlignCenter
+        focusPolicy: Qt.NoFocus
+        KeyNavigation.down: setting
+        KeyNavigation.up: documents
         onClicked: {
             DesktopIntegration.showFolder(StandardPaths.DesktopLocation)
         }
     }
 
     D.ToolButton {
+        id: setting
         icon.name: "setting"
         ToolTip.visible: hovered
         ToolTip.delay: 1000
         ToolTip.text: qsTr("Control Center")
         Layout.alignment: Qt.AlignCenter
+        focusPolicy: Qt.NoFocus
+        KeyNavigation.down: title
+        KeyNavigation.up: desktop
         onClicked: {
             DesktopIntegration.openSystemSettings();
         }
