@@ -16,9 +16,10 @@ public:
 
     int maxRowCount() const;
     void setMaxRowCount(int newMaxRowCount);
-    // QAbstractItemModel interface
-public:
-    int rowCount(const QModelIndex &parent) const;
+
+    // QSortFilterProxyModel interface
+protected:
+    bool filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const;
 signals:
     void maxRowCountChanged();
 private:
