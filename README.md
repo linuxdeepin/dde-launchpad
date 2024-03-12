@@ -29,6 +29,16 @@ $ sudo apt build-dep . # install build dependencies
 $ dpkg-buildpackage -uc -us -nc -b # build binary package(s)
 ```
 
+### Update Translations
+
+Once CMake configuration phase is done, use the `update_translations` target to update the `.ts` files:
+
+```shell
+$ cmake --build . --target update_translations
+$ # *OR* you can do it manually. Assume you are using GNU Make:
+$ make update_translations
+```
+
 ## Getting Involved
 
 - [Code contribution via GitHub](https://github.com/linuxdeepin/dde-launchpad/)

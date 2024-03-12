@@ -4,67 +4,67 @@
 <context>
     <name>AppItemMenu</name>
     <message>
-        <location filename="../qml/AppItemMenu.qml" line="30"/>
+        <location filename="../qml/AppItemMenu.qml" line="31"/>
         <source>Open</source>
         <translation>Avaa</translation>
     </message>
     <message>
-        <location filename="../qml/AppItemMenu.qml" line="40"/>
+        <location filename="../qml/AppItemMenu.qml" line="41"/>
         <source>Pin to Top</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/AppItemMenu.qml" line="49"/>
+        <location filename="../qml/AppItemMenu.qml" line="50"/>
         <source>Remove from favorites</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/AppItemMenu.qml" line="49"/>
+        <location filename="../qml/AppItemMenu.qml" line="50"/>
         <source>Add to favorites</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/AppItemMenu.qml" line="63"/>
+        <location filename="../qml/AppItemMenu.qml" line="64"/>
         <source>Send to desktop</source>
         <translation>Kiinnitä työpöydälle</translation>
     </message>
     <message>
-        <location filename="../qml/AppItemMenu.qml" line="63"/>
+        <location filename="../qml/AppItemMenu.qml" line="64"/>
         <source>Remove from desktop</source>
         <translation>Poista työpöydältä</translation>
     </message>
     <message>
-        <location filename="../qml/AppItemMenu.qml" line="73"/>
+        <location filename="../qml/AppItemMenu.qml" line="74"/>
         <source>Send to dock</source>
         <translation>Kiinnitä telakkaan</translation>
     </message>
     <message>
-        <location filename="../qml/AppItemMenu.qml" line="73"/>
+        <location filename="../qml/AppItemMenu.qml" line="74"/>
         <source>Remove from dock</source>
         <translation>Poista telakasta</translation>
     </message>
     <message>
-        <location filename="../qml/AppItemMenu.qml" line="84"/>
+        <location filename="../qml/AppItemMenu.qml" line="85"/>
         <source>Add to startup</source>
         <translation>Lisää käynnistykseen</translation>
     </message>
     <message>
-        <location filename="../qml/AppItemMenu.qml" line="84"/>
+        <location filename="../qml/AppItemMenu.qml" line="85"/>
         <source>Remove from startup</source>
         <translation>Poista käynnistyksestä</translation>
     </message>
     <message>
-        <location filename="../qml/AppItemMenu.qml" line="89"/>
+        <location filename="../qml/AppItemMenu.qml" line="92"/>
         <source>Use a proxy</source>
         <translation>Käytä välityspalvelinta</translation>
     </message>
     <message>
-        <location filename="../qml/AppItemMenu.qml" line="95"/>
+        <location filename="../qml/AppItemMenu.qml" line="100"/>
         <source>Disable display scaling</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/AppItemMenu.qml" line="102"/>
+        <location filename="../qml/AppItemMenu.qml" line="107"/>
         <source>Uninstall</source>
         <translation>Poista</translation>
     </message>
@@ -131,80 +131,123 @@
 <context>
     <name>Main</name>
     <message>
-        <location filename="../qml/Main.qml" line="19"/>
+        <location filename="../qml/Main.qml" line="20"/>
         <source>Internet</source>
         <translation type="unfinished">Internet</translation>
     </message>
     <message>
-        <location filename="../qml/Main.qml" line="21"/>
+        <location filename="../qml/Main.qml" line="22"/>
         <source>Chat</source>
         <translation type="unfinished">Chatti</translation>
     </message>
     <message>
-        <location filename="../qml/Main.qml" line="23"/>
+        <location filename="../qml/Main.qml" line="24"/>
         <source>Music</source>
         <translation type="unfinished">Musiikki</translation>
     </message>
     <message>
-        <location filename="../qml/Main.qml" line="25"/>
+        <location filename="../qml/Main.qml" line="26"/>
         <source>Video</source>
         <translation type="unfinished">Video</translation>
     </message>
     <message>
-        <location filename="../qml/Main.qml" line="27"/>
+        <location filename="../qml/Main.qml" line="28"/>
         <source>Graphics</source>
         <translation type="unfinished">Grafiikka</translation>
     </message>
     <message>
-        <location filename="../qml/Main.qml" line="29"/>
+        <location filename="../qml/Main.qml" line="30"/>
         <source>Game</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/Main.qml" line="31"/>
+        <location filename="../qml/Main.qml" line="32"/>
         <source>Office</source>
         <translation type="unfinished">Toimisto</translation>
     </message>
     <message>
-        <location filename="../qml/Main.qml" line="33"/>
+        <location filename="../qml/Main.qml" line="34"/>
         <source>Reading</source>
         <translation type="unfinished">Lukeminen</translation>
     </message>
     <message>
-        <location filename="../qml/Main.qml" line="35"/>
+        <location filename="../qml/Main.qml" line="36"/>
         <source>Development</source>
         <translation type="unfinished">Ohjelmointi</translation>
     </message>
     <message>
-        <location filename="../qml/Main.qml" line="37"/>
+        <location filename="../qml/Main.qml" line="38"/>
         <source>System</source>
         <translation type="unfinished">Järjestelmä</translation>
     </message>
     <message>
-        <location filename="../qml/Main.qml" line="39"/>
+        <location filename="../qml/Main.qml" line="40"/>
         <source>Others</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/Main.qml" line="270"/>
+        <location filename="../qml/Main.qml" line="295"/>
         <source>Are you sure you want to uninstall %1?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/Main.qml" line="282"/>
+        <location filename="../qml/Main.qml" line="307"/>
         <source>Cancel</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/Main.qml" line="296"/>
+        <location filename="../qml/Main.qml" line="321"/>
         <source>Confirm</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>SideBar</name>
+    <message>
+        <location filename="../qml/windowed/SideBar.qml" line="38"/>
+        <source>Free sorting</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/windowed/SideBar.qml" line="46"/>
+        <source>Sort by category</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/windowed/SideBar.qml" line="56"/>
+        <source>Sort by name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/windowed/SideBar.qml" line="114"/>
+        <source>Computer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/windowed/SideBar.qml" line="129"/>
+        <source>Pictures</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/windowed/SideBar.qml" line="144"/>
+        <source>Documents</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/windowed/SideBar.qml" line="159"/>
+        <source>Desktop</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/windowed/SideBar.qml" line="174"/>
+        <source>Control Center</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>WindowedFrame</name>
     <message>
-        <location filename="../qml/WindowedFrame.qml" line="103"/>
+        <location filename="../qml/WindowedFrame.qml" line="159"/>
         <source>Power</source>
         <translation>Virta</translation>
     </message>
@@ -213,34 +256,29 @@
         <translation type="vanished">Asetukset</translation>
     </message>
     <message>
-        <location filename="../qml/FullscreenFrame.qml" line="361"/>
-        <location filename="../qml/WindowedFrame.qml" line="266"/>
+        <location filename="../qml/WindowedFrame.qml" line="172"/>
+        <location filename="../qml/FullscreenFrame.qml" line="390"/>
         <source>Search</source>
         <translation>Etsi</translation>
     </message>
     <message>
-        <location filename="../qml/WindowedFrame.qml" line="115"/>
-        <source>Control Center</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qml/WindowedFrame.qml" line="157"/>
+        <location filename="../qml/WindowedFrame.qml" line="49"/>
         <source>My Favorites</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/WindowedFrame.qml" line="191"/>
+        <location filename="../qml/WindowedFrame.qml" line="80"/>
         <source>Add your favorite apps here</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/WindowedFrame.qml" line="202"/>
+        <location filename="../qml/WindowedFrame.qml" line="93"/>
         <source>All Apps</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/FullscreenFrame.qml" line="346"/>
-        <location filename="../qml/WindowedFrame.qml" line="230"/>
+        <location filename="../qml/WindowedFrame.qml" line="118"/>
+        <location filename="../qml/FullscreenFrame.qml" line="375"/>
         <source>No search results</source>
         <translation type="unfinished"></translation>
     </message>

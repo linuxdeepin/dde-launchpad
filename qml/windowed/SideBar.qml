@@ -111,7 +111,7 @@ ColumnLayout {
         icon.name: "computer-symbolic"
         ToolTip.visible: hovered
         ToolTip.delay: 1000
-        ToolTip.text: qsTr("Pictures")
+        ToolTip.text: qsTr("Computer")
         Layout.alignment: Qt.AlignCenter
         focusPolicy: Qt.NoFocus
         KeyNavigation.down: images

@@ -56,9 +56,11 @@ set(SOURCE_FILES
 set(QML_FILES
     qml/Main.qml
     qml/WindowedFrame.qml
+    qml/windowed/SideBar.qml
+    qml/windowed/AlphabetCategoryPopup.qml
+    qml/windowed/AppListView.qml
     qml/FullscreenFrame.qml
     qml/AppItemMenu.qml
-    qml/AppListView.qml
 )
 
 set(TRANSLATION_FILES

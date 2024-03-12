@@ -28,6 +28,15 @@ $ cmake --build . --target install # 当你知道这条命令的作用时再执�
 $ sudo apt build-dep . # 安装构建依赖
 $ dpkg-buildpackage -uc -us -nc -b # 构建二进制软件包
 ```
+### 更新翻译
+
+当 CMake 的配置阶段完成后，你就可以通过使用名为 `update_translations` 的目标来更新 `.ts` 文件了：
+
+```shell
+$ cmake --build . --target update_translations
+$ # *或者* 你也可以手动进行更新。假设你使用 GNU Make：
+$ make update_translations
+```
 
 ## 参与贡献
 
