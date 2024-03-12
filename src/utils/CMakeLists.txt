@@ -18,4 +18,4 @@ PRIVATE
 )
 
 target_include_directories(launcher-utils PUBLIC ${CMAKE_CURRENT_LIST_DIR})
-target_link_libraries(launcher-utils PRIVATE Qt::Core Qt::Gui Qt::GuiPrivate Qt::Svg ${DTK_NS}::Gui)
+target_link_libraries(launcher-utils PRIVATE Qt::Core Qt::Gui Qt::Svg ${DTK_NS}::Gui)

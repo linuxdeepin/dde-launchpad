@@ -4,8 +4,6 @@
 
 #include "iconutils.h"
 
-#include <private/qiconloader_p.h>
-
 #include <QDate>
 #include <QDebug>
 #include <QIcon>
@@ -253,8 +251,7 @@ void IconUtils::tryUpdateIconCache()
 {
     qInfo() << "Update theme cache manually.";
     // TODO release icon's cache.
-    const auto paths = QIconLoader::instance()->themeSearchPaths();
-    QIconLoader::instance()->setThemeSearchPath(paths);
+    QIcon::setThemeSearchPaths(QIcon::themeSearchPaths());
 }
 
 // std::pair<iconSize, paddingSize>
