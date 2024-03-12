@@ -46,63 +46,27 @@ Item {
                 Layout.fillWidth: true
                 Layout.fillHeight: true
 
+                // Binding SearchFilterProxyModel with RecentlyInstalledProxyModel
+                Binding {
+                    target: SearchFilterProxyModel; property: "recentlyInstalledModel"
+                    value: delegateRecentlyInstalledModel.model
+                }
+
                 Label {
-                    visible: favoriteGridView.visible
                     text: qsTr("My Favorites")
                     font: LauncherController.boldFont(DTK.fontManager.t6)
                 }
 
-                Item {
-                    id: favoriteGridView
-                    visible: searchEdit.text === ""
-
-                    property int rowCount: Math.min(Math.ceil(delegateFavorateModel.count / 4), 2)
-
-                    DelegateModel {
-                        id: delegateFavorateModel
-                        model: FavoritedProxyModel
-                        delegate: IconItemDelegate {
-                            iconSource: iconName
-                            width: favoriteGridViewContainer.cellWidth
-                            height: favoriteGridViewContainer.cellHeight
-                            onItemClicked: {
-                                launchApp(desktopId)
-                            }
-                            onMenuTriggered: {
-                                showContextMenu(this, model, false, true, false)
-                            }
-                        }
-                    }
-
-                    GridViewContainer {
-                        anchors.fill: parent
-                        id: favoriteGridViewContainer
-                        rows: 0
-                        columns: 4
-                        placeholderText: qsTr("Add your favorite apps here")
-                        model: delegateFavorateModel
-                        interactive: favoriteGridView.rowCount > 1
-                        activeFocusOnTab: visible && gridViewFocus
-                        vScrollBar: ScrollBar {
-                        }
-                    }
-
-                    Layout.preferredHeight: rowCount === 0 ? 50 : rowCount * favoriteGridViewContainer.cellHeight
-                    Layout.fillWidth: true
-                }
-
-                Label {
-                    text: qsTr("All Apps")
-                    font: LauncherController.boldFont(DTK.fontManager.t6)
-                }
-
                 DelegateModel {
-                    id: delegateAllAppsModel
-                    model: SearchFilterProxyModel
+                    id: delegateFavorateModel
+                    model: CountLimitProxyModel {
+                        sourceModel: SearchFilterProxyModel
+                        maxRowCount: recentlyInstalledView.visible ? 12 : 16
+                    }
                     delegate: IconItemDelegate {
                         iconSource: iconName
-                        width: allAppsGridContainer.cellWidth
-                        height: allAppsGridContainer.cellHeight
+                        width: favoriteViewContainer.cellWidth
+                        height: favoriteViewContainer.cellHeight
                         onItemClicked: {
                             launchApp(desktopId)
                         }
@@ -113,20 +77,19 @@ Item {
                 }
 
                 GridViewContainer {
-                    id: allAppsGridContainer
+                    id: favoriteViewContainer
                     rows: 0
                     columns: 4
                     placeholderIcon: "search_no_result"
                     placeholderText: qsTr("No search results")
-                    model: delegateAllAppsModel
+                    model: delegateFavorateModel
                     Layout.fillWidth: true
                     Layout.fillHeight: true
                     activeFocusOnTab: gridViewFocus
-                    vScrollBar: ScrollBar {
-                    }
+                    interactive: false
 
                     MouseArea {
-                        enabled: favoriteGridView.visible && (currentIndex !== -1)
+                        enabled: recentlyInstalledView.visible && (currentIndex !== -1)
 
                         property int currentIndex: -1
                         property int modelType: -1 // 1: fav, 2: all
@@ -139,6 +102,50 @@ Item {
                         }
                         onReleased: currentIndex = -1
                     }
+                }
+
+                Label {
+                    visible: recentlyInstalledView.visible
+                    text: qsTr("Recently Installed")
+                    font: LauncherController.boldFont(DTK.fontManager.t6)
+                }
+
+                Item {
+                    id: recentlyInstalledView
+                    visible: searchEdit.text === "" && delegateRecentlyInstalledModel.count > 0
+
+                    DelegateModel {
+                        id: delegateRecentlyInstalledModel
+                        model: CountLimitProxyModel {
+                            sourceModel: RecentlyInstalledProxyModel
+                            maxRowCount: 4
+                        }
+
+                        delegate: IconItemDelegate {
+                            iconSource: iconName
+                            width: recentlyInstalledViewContainer.cellWidth
+                            height: recentlyInstalledViewContainer.cellHeight
+                            onItemClicked: {
+                                launchApp(desktopId)
+                            }
+                            onMenuTriggered: {
+                                showContextMenu(this, model, false, true, false)
+                            }
+                        }
+                    }
+
+                    GridViewContainer {
+                        anchors.fill: parent
+                        id: recentlyInstalledViewContainer
+                        rows: 0
+                        columns: 4
+                        model: delegateRecentlyInstalledModel
+                        interactive: false
+                        activeFocusOnTab: visible && gridViewFocus
+                    }
+
+                    Layout.preferredHeight: recentlyInstalledViewContainer.cellHeight
+                    Layout.fillWidth: true
                 }
             }
         }
@@ -175,6 +182,7 @@ Item {
                 onTextChanged: {
                     console.log(text)
                     SearchFilterProxyModel.setFilterRegularExpression(text)
+                    SearchFilterProxyModel.invalidate()
                 }
 
                 Palette {
@@ -256,7 +264,7 @@ Item {
             // reset scroll area position
             appList.positionViewAtBeginning()
             favoriteGridViewContainer.positionViewAtBeginning()
-            allAppsGridContainer.positionViewAtBeginning()
+            recentlyInstalledViewContainer.positionViewAtBeginning()
         }
     }
 }

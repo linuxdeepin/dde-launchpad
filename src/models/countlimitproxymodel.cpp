@@ -18,10 +18,14 @@ void CountLimitProxyModel::setMaxRowCount(int newMaxRowCount)
     invalidate();
 }
 
-int CountLimitProxyModel::rowCount(const QModelIndex &parent) const
+bool CountLimitProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const
 {
-    if (m_maxRowCount <= 0)
-        return QSortFilterProxyModel::rowCount(parent);
+    if (m_maxRowCount < 0)
+        return true;
 
-    return qMin(QSortFilterProxyModel::rowCount(parent), m_maxRowCount);
+    QModelIndex modelIndex = this->sourceModel()->index(sourceRow, 0, sourceParent);
+    if (!modelIndex.isValid())
+        return false;
+
+    return modelIndex.row() < m_maxRowCount;
 }
