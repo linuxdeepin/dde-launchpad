@@ -38,7 +38,9 @@ Item {
                 color: this.palette.shadow
             }
 
-            AppList {}
+            AppList {
+                id: appList
+            }
 
             ColumnLayout {
                 Layout.fillWidth: true
@@ -252,7 +254,7 @@ Item {
             // reset(remove) keyboard focus
             baseLayer.focus = true
             // reset scroll area position
-            appListView.positionViewAtBeginning()
+            appList.positionViewAtBeginning()
             favoriteGridViewContainer.positionViewAtBeginning()
             allAppsGridContainer.positionViewAtBeginning()
         }

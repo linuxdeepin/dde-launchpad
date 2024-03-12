@@ -19,6 +19,10 @@ ColumnLayout {
     Layout.preferredWidth: 220
     Layout.fillHeight: true
 
+    function positionViewAtBeginning() {
+        appListView.positionViewAtBeginning();
+    }
+
     DelegateModel {
         id: delegateCategorizedModel
         model: CategorizedSortProxyModel
