@@ -12,4 +12,5 @@ qt_add_qml_module(launcher-qml-windowed
         AppListView.qml
         IconItemDelegate.qml
         WindowedFrame.qml
+        FreeSortListView.qml
 )

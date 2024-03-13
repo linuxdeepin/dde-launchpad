@@ -63,6 +63,7 @@ set(QML_FILES
     qml/DrawerFolder.qml
     qml/IconItemDelegate.qml
     qml/DebugDialog.qml
+    qml/FolderGridViewPopup.qml
 )
 
 set_source_files_properties(qml/Helper.qml

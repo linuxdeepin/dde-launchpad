@@ -11,10 +11,10 @@
 
 #include <QConcatenateTablesProxyModel>
 
-class MultipageProxyModel : public QConcatenateTablesProxyModel
+class ItemArrangementProxyModel : public QConcatenateTablesProxyModel
 {
     Q_OBJECT
-    QML_NAMED_ELEMENT(MultipageProxyModel)
+    QML_NAMED_ELEMENT(ItemArrangementProxyModel)
     QML_SINGLETON
 public:
     enum Roles {
@@ -32,20 +32,20 @@ public:
     };
     Q_ENUM(DndOperation)
 
-    static MultipageProxyModel &instance()
+    static ItemArrangementProxyModel &instance()
     {
-        static MultipageProxyModel _instance;
+        static ItemArrangementProxyModel _instance;
         return _instance;
     }
 
-    static MultipageProxyModel *create(QQmlEngine *qmlEngine, QJSEngine *jsEngine)
+    static ItemArrangementProxyModel *create(QQmlEngine *qmlEngine, QJSEngine *jsEngine)
     {
         Q_UNUSED(qmlEngine)
         Q_UNUSED(jsEngine)
         return &instance();
     }
 
-    ~MultipageProxyModel();
+    ~ItemArrangementProxyModel();
 
     Q_INVOKABLE int pageCount(int folderId = 0) const;
     Q_INVOKABLE void updateFolderName(int folderId, const QString & name);
@@ -60,7 +60,7 @@ signals:
     void topLevelPageCountChanged();
 
 private:
-    explicit MultipageProxyModel(QObject *parent = nullptr);
+    explicit ItemArrangementProxyModel(QObject *parent = nullptr);
 
     void loadItemArrangementFromUserData();
     void saveItemArrangementToUserData();
@@ -72,6 +72,7 @@ private:
     ItemsPage * createFolder(const QString & id);
     void removeFolder(const QString & idNumber);
     ItemsPage * folderById(int id);
+    QStringList allArrangedItems() const;
 
     // <folder-id, items-arrangement-data> folder-id: internal/folder/<id number>
     ItemsPage * m_topLevel;

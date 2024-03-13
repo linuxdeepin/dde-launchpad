@@ -54,12 +54,12 @@ Item {
     Component {
         id: sectionHeading
         ToolButton {
+            id: headingBtn
             required property string section
 
             enabled: true
             ColorSelector.disabled: false
 
-            id: headingBtn
             focusPolicy: Qt.NoFocus
             width: parent.width
             text: {
@@ -133,6 +133,44 @@ Item {
         }
     }
 
+    DelegateModel {
+        id: delegateCategorizedModel
+        model: CategorizedSortProxyModel
+
+        delegate: ItemDelegate {
+            id: itemDelegate
+            text: model.display
+            checkable: false
+            icon.name: iconName
+            width: listView.width
+            font: DTK.fontManager.t8
+            // icon.source: "image://app-icon/" + iconName;
+            ColorSelector.family: Palette.CrystalColor
+
+            TapHandler {
+                acceptedButtons: Qt.RightButton
+                onTapped: {
+                    showContextMenu(itemDelegate, model, false, false, false)
+                }
+            }
+
+            Keys.onReturnPressed: {
+                launchApp(desktopId)
+            }
+
+            TapHandler {
+                onTapped: {
+                    launchApp(desktopId)
+                }
+            }
+
+            background: BoxPanel {
+                visible: ColorSelector.controlState === DTK.HoveredState
+                outsideBorderColor: null
+            }
+        }
+    }
+
     ListView {
         id: listView
 
@@ -155,8 +193,6 @@ Item {
         section.delegate: sectionHeading
         section.labelPositioning: ViewSection.InlineLabels // | ViewSection.CurrentLabelAtStart
 
-        model: visualModel
-
         highlight: Item {
             SystemPalette { id: highlightPalette }
             FocusBoxBorder {
@@ -169,6 +205,8 @@ Item {
                 visible: listView.activeFocus
             }
         }
+
+        model: delegateCategorizedModel
 
         ScrollBar.vertical: ScrollBar { }
 

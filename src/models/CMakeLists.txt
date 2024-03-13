@@ -17,10 +17,11 @@ FILES
     searchfilterproxymodel.h
     categorizedsortproxymodel.h
     favoritedproxymodel.h
-    multipageproxymodel.h
+    itemarrangementproxymodel.h
     multipagesortfilterproxymodel.h
     recentlyinstalledproxymodel.h
     countlimitproxymodel.h
+    freesortproxymodel.h
 )
 
 target_sources(launcher-models
@@ -31,10 +32,11 @@ PRIVATE
     categorizedsortproxymodel.cpp
     favoritedproxymodel.cpp
     itemspage.cpp itemspage.h
-    multipageproxymodel.cpp
+    itemarrangementproxymodel.cpp
     multipagesortfilterproxymodel.cpp
     recentlyinstalledproxymodel.cpp
     countlimitproxymodel.cpp
+    freesortproxymodel.cpp
 )
 
 target_link_libraries(launcher-models PRIVATE

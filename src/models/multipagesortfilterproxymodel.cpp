@@ -6,12 +6,12 @@
 
 #include <QDebug>
 
-#include "multipageproxymodel.h"
+#include "itemarrangementproxymodel.h"
 
 MultipageSortFilterProxyModel::MultipageSortFilterProxyModel(QObject *parent)
     : QSortFilterProxyModel(parent)
 {
-    setSortRole(MultipageProxyModel::FolderIdNumberRole);
+    setSortRole(ItemArrangementProxyModel::FolderIdNumberRole);
     setDynamicSortFilter(true);
 
     connect(this, &MultipageSortFilterProxyModel::onFolderIdChanged, this, [this](){
@@ -39,17 +39,17 @@ void MultipageSortFilterProxyModel::setModel(QAbstractItemModel *model)
 
 bool MultipageSortFilterProxyModel::filterAcceptsRow(int source_row, const QModelIndex &source_parent) const
 {
-    return sourceModel()->data(sourceModel()->index(source_row, 0, source_parent), MultipageProxyModel::FolderIdNumberRole).toInt() == m_folderId &&
-           sourceModel()->data(sourceModel()->index(source_row, 0, source_parent), MultipageProxyModel::PageRole).toInt() == m_pageId;
+    return sourceModel()->data(sourceModel()->index(source_row, 0, source_parent), ItemArrangementProxyModel::FolderIdNumberRole).toInt() == m_folderId &&
+           sourceModel()->data(sourceModel()->index(source_row, 0, source_parent), ItemArrangementProxyModel::PageRole).toInt() == m_pageId;
 }
 
 bool MultipageSortFilterProxyModel::lessThan(const QModelIndex &source_left, const QModelIndex &source_right) const
 {
-    if (source_left.data(MultipageProxyModel::FolderIdNumberRole).toInt() < source_right.data(MultipageProxyModel::FolderIdNumberRole).toInt()) {
+    if (source_left.data(ItemArrangementProxyModel::FolderIdNumberRole).toInt() < source_right.data(ItemArrangementProxyModel::FolderIdNumberRole).toInt()) {
         return true;
-    } else if (source_left.data(MultipageProxyModel::PageRole).toInt() < source_right.data(MultipageProxyModel::PageRole).toInt()) {
+    } else if (source_left.data(ItemArrangementProxyModel::PageRole).toInt() < source_right.data(ItemArrangementProxyModel::PageRole).toInt()) {
         return true;
-    } else if (source_left.data(MultipageProxyModel::IndexInPageRole).toInt() < source_right.data(MultipageProxyModel::IndexInPageRole).toInt()) {
+    } else if (source_left.data(ItemArrangementProxyModel::IndexInPageRole).toInt() < source_right.data(ItemArrangementProxyModel::IndexInPageRole).toInt()) {
         return true;
     } else {
         return false;

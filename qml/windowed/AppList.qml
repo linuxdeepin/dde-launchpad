@@ -19,53 +19,42 @@ ColumnLayout {
     Layout.preferredWidth: 220
     Layout.fillHeight: true
 
+    signal freeSortViewFolderClicked(string folderId, string folderName)
+
     function positionViewAtBeginning() {
-        appListView.positionViewAtBeginning();
+        loader.item.positionViewAtBeginning()
     }
 
-    DelegateModel {
-        id: delegateCategorizedModel
-        model: CategorizedSortProxyModel
-
-        delegate: ItemDelegate {
-            id: itemDelegate
-            text: model.display
-            checkable: false
-            icon.name: iconName
-            width: appListView.width
-            font: DTK.fontManager.t8
-            // icon.source: "image://app-icon/" + iconName;
-            ColorSelector.family: Palette.CrystalColor
-
-            TapHandler {
-                acceptedButtons: Qt.RightButton
-                onTapped: {
-                    showContextMenu(itemDelegate, model, false, false, false)
-                }
-            }
-
-            Keys.onReturnPressed: {
-                launchApp(desktopId)
-            }
-
-            TapHandler {
-                onTapped: {
-                    launchApp(desktopId)
-                }
-            }
-
-            background: BoxPanel {
-                visible: ColorSelector.controlState === DTK.HoveredState
-                outsideBorderColor: null
-            }
+    function switchToFreeSort(freeSort) {
+        if (freeSort) {
+            loader.sourceComponent = freeSortListView
+        } else {
+            loader.sourceComponent = categoryListView
         }
     }
 
-    AppListView {
-        id: appListView
+    Loader {
+        id: loader
+        sourceComponent: freeSortListView
         Layout.fillWidth: true
         Layout.fillHeight: true
+    }
 
-        model: delegateCategorizedModel
+    Component {
+        id: categoryListView
+        AppListView {
+            id: appCategoryListView
+        }
+    }
+
+    Component {
+        id: freeSortListView
+        FreeSortListView {
+            id: appFreeSortListView
+
+            onFolderClicked: {
+                freeSortViewFolderClicked(folderId, folderName)
+            }
+        }
     }
 }

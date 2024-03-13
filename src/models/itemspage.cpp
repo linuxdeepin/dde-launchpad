@@ -55,7 +55,7 @@ QStringList ItemsPage::firstNItems(int count)
 {
     QStringList result;
 
-    for (const QStringList & pageItems : qAsConst(m_pages)) {
+    for (const QStringList & pageItems : std::as_const(m_pages)) {
         for (const QString & item : pageItems) {
             result.append(item);
             if (result.count() >= count) {
@@ -199,4 +199,14 @@ bool ItemsPage::contains(const QString &id) const
     int i, j;
     std::tie(i, j) = findItem(id);
     return i != -1;
+}
+
+QStringList ItemsPage::allArrangedItems() const
+{
+    QStringList result;
+    for (const QStringList &pageItems : std::as_const(m_pages)) {
+        result.append(pageItems);
+    }
+
+    return result;
 }

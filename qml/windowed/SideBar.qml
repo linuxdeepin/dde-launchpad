@@ -20,6 +20,10 @@ ColumnLayout {
     Layout.margins: 10
     spacing: 10
 
+    property var isFreeSort: true
+
+    signal switchToFreeSort(bool freeSort)
+
     function categorizedIcon(categoryType) {
         switch (categoryType) {
         case CategorizedSortProxyModel.DDECategory: return "classify";
@@ -36,18 +40,25 @@ ColumnLayout {
 
             D.MenuItem {
                 text: qsTr("Free sorting")
-                icon.name: categorizedIcon("todo")
+                icon.name: categorizedIcon("freeSort")
                 display: D.IconLabel.IconBesideText
-                enabled: false
-                onTriggered: { }
+                checked: isFreeSort
+                onTriggered: {
+                    if (!isFreeSort) {
+                        isFreeSort = true
+                        switchToFreeSort(true)
+                    }
+                }
             }
 
             D.MenuItem {
                 text: qsTr("Sort by category")
                 icon.name: categorizedIcon(CategorizedSortProxyModel.DDECategory)
                 display: D.IconLabel.IconBesideText
-                checked: CategorizedSortProxyModel.categoryType === CategorizedSortProxyModel.DDECategory
+                checked: !isFreeSort ? CategorizedSortProxyModel.categoryType === CategorizedSortProxyModel.DDECategory : false
                 onTriggered: {
+                    isFreeSort = false
+                    switchToFreeSort(false)
                     CategorizedSortProxyModel.categoryType = CategorizedSortProxyModel.DDECategory
                 }
             }
@@ -56,8 +67,10 @@ ColumnLayout {
                 text: qsTr("Sort by name")
                 icon.name: categorizedIcon(CategorizedSortProxyModel.Alphabetary)
                 display: D.IconLabel.IconBesideText
-                checked: CategorizedSortProxyModel.categoryType === CategorizedSortProxyModel.Alphabetary
+                checked: !isFreeSort ? CategorizedSortProxyModel.categoryType === CategorizedSortProxyModel.Alphabetary : false
                 onTriggered: {
+                    isFreeSort = false
+                    switchToFreeSort(false)
                     CategorizedSortProxyModel.categoryType = CategorizedSortProxyModel.Alphabetary
                 }
             }
@@ -80,7 +93,7 @@ ColumnLayout {
                 D.DciIcon {
                     width: parent.width
                     height: parent.height / 3 * 2
-                    name: categorizedIcon(CategorizedSortProxyModel.categoryType)
+                    name: isFreeSort ? categorizedIcon("freeSort") : categorizedIcon(CategorizedSortProxyModel.categoryType)
                 }
 
                 Item {

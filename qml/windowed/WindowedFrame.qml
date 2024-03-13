@@ -19,6 +19,34 @@ Item {
     visible: true
     focus: true
 
+    // ----------- Drag and Drop related functions START -----------
+    Label {
+        property string currentlyDraggedId
+
+        id: dndItem
+        visible: DebugHelper.qtDebugEnabled
+        text: "DnD DEBUG"
+
+        Drag.onActiveChanged: {
+            if (Drag.active) {
+                text = "Dragging " + currentlyDraggedId
+            } else {
+                currentlyDraggedId = ""
+            }
+        }
+    }
+
+    function dropOnItem(dragId, dropId, op) {
+        dndItem.text = "drag " + dragId + " onto " + dropId + " with " + op
+        ItemArrangementProxyModel.commitDndOperation(dragId, dropId, op)
+    }
+
+    function dropOnPage(dragId, dropFolderId, pageNumber) {
+        dndItem.text = "drag " + dragId + " into " + dropFolderId + " at page " + pageNumber
+        ItemArrangementProxyModel.commitDndOperation(dragId, dropFolderId, ItemArrangementProxyModel.DndJoin, pageNumber)
+    }
+    // ----------- Drag and Drop related functions  END  -----------
+
     ColumnLayout {
         spacing: 0
         anchors.fill: parent
@@ -29,7 +57,9 @@ Item {
             Layout.fillHeight: true
             Layout.topMargin: Helper.windowed.topMargin
 
-            SideBar {}
+            SideBar {
+                id: sideBar
+            }
 
             Rectangle {
                 Layout.preferredWidth: 2
@@ -239,6 +269,17 @@ Item {
         }
     }
 
+    FolderGridViewPopup {
+        id: folderGridViewPopup
+        backgroundAlph: 0.8
+
+        onVisibleChanged: {
+            if (!visible) {
+                baseLayer.opacity = 1
+            }
+        }
+    }
+
     Keys.onPressed: {
         if (searchEdit.focus === false && !searchEdit.text && (event.text && !"\t ".includes(event.text))) {
             searchEdit.focus = true
@@ -266,6 +307,24 @@ Item {
             appList.positionViewAtBeginning()
             frequentlyUsedViewContainer.positionViewAtBeginning()
             recentlyInstalledViewContainer.positionViewAtBeginning()
+        }
+    }
+
+    Connections {
+        target: sideBar
+        function onSwitchToFreeSort(isFreeSort) {
+            appList.switchToFreeSort(isFreeSort)
+        }
+    }
+
+    Connections {
+        target: appList
+        function onFreeSortViewFolderClicked(folderId, folderName) {
+            folderGridViewPopup.currentFolderId = folderId
+            folderGridViewPopup.folderName = folderName
+            folderGridViewPopup.open()
+
+            baseLayer.opacity = 0.1
         }
     }
 }

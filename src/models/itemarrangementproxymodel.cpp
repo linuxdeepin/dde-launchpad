@@ -2,7 +2,7 @@
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-#include "multipageproxymodel.h"
+#include "itemarrangementproxymodel.h"
 
 #include "appsmodel.h"
 #include "categoryutils.h"
@@ -12,12 +12,12 @@
 #include <QSettings>
 #include <QStandardPaths>
 
-MultipageProxyModel::~MultipageProxyModel()
+ItemArrangementProxyModel::~ItemArrangementProxyModel()
 {
 
 }
 
-int MultipageProxyModel::pageCount(int folderId) const
+int ItemArrangementProxyModel::pageCount(int folderId) const
 {
     if (folderId == 0) return m_topLevel->pageCount();
 
@@ -27,7 +27,7 @@ int MultipageProxyModel::pageCount(int folderId) const
     return m_folders.value(fullId)->pageCount();
 }
 
-void MultipageProxyModel::updateFolderName(int folderId, const QString &name)
+void ItemArrangementProxyModel::updateFolderName(int folderId, const QString &name)
 {
     ItemsPage * folder = folderById(folderId);
     folder->setName(name);
@@ -39,7 +39,7 @@ void MultipageProxyModel::updateFolderName(int folderId, const QString &name)
     saveItemArrangementToUserData();
 }
 
-void MultipageProxyModel::commitDndOperation(const QString &dragId, const QString &dropId, const DndOperation op, int pageHint)
+void ItemArrangementProxyModel::commitDndOperation(const QString &dragId, const QString &dropId, const DndOperation op, int pageHint)
 {
     if (dragId == dropId) return;
 
@@ -99,13 +99,14 @@ void MultipageProxyModel::commitDndOperation(const QString &dragId, const QStrin
     }
 
     saveItemArrangementToUserData();
+
     // Lazy solution, just notify the view that all rows and its roles are changed so they need to be updated.
     emit dataChanged(index(0, 0), index(rowCount() - 1, 0), {
         PageRole, IndexInPageRole, FolderIdNumberRole, IconsNameRole
     });
 }
 
-QVariant MultipageProxyModel::data(const QModelIndex &index, int role) const
+QVariant ItemArrangementProxyModel::data(const QModelIndex &index, int role) const
 {
     int idx = index.row() - AppsModel::instance().rowCount();
     if (idx < 0 && role < AppsModel::ProxyModelExtendedRole) return QConcatenateTablesProxyModel::data(index, role);
@@ -120,14 +121,14 @@ QVariant MultipageProxyModel::data(const QModelIndex &index, int role) const
         std::tie(folder, page, idx) = findItem(id);
 
         switch (role) {
-        case PageRole:
-            return page;
-        case IndexInPageRole:
-            return idx;
-        case FolderIdNumberRole:
-            return folder;
-        case IconsNameRole:
-            return QVariant();
+            case PageRole:
+                return page;
+            case IndexInPageRole:
+                return idx;
+            case FolderIdNumberRole:
+                return folder;
+            case IconsNameRole:
+                return QVariant();
         }
     } else {
         // a folder
@@ -139,53 +140,44 @@ QVariant MultipageProxyModel::data(const QModelIndex &index, int role) const
         }
 
         switch (role) {
-        case Qt::DisplayRole:
-            return m_folders.value(id)->name();
-        case AppItem::DesktopIdRole:
-            return id;
-        case PageRole:
-            return page;
-        case IndexInPageRole:
-            return pos;
-        case FolderIdNumberRole:
-            return folder;
-        case IconsNameRole: {
-            const QStringList desktopIds = m_folders.value(id)->firstNItems(4);
-            QStringList icons;
-            for (const QString & id : desktopIds) {
-                AppItem * item = AppsModel::instance().itemFromDesktopId(id);
-                if (item) {
-                    icons.append(item->iconName());
+            case Qt::DisplayRole:
+                return m_folders.value(id)->name();
+            case AppItem::DesktopIdRole:
+                return id;
+            case PageRole:
+                return page;
+            case IndexInPageRole:
+                return pos;
+            case FolderIdNumberRole:
+                return folder;
+            case IconsNameRole: {
+                const QStringList desktopIds = m_folders.value(id)->firstNItems(4);
+                QStringList icons;
+                for (const QString & id : desktopIds) {
+                    AppItem * item = AppsModel::instance().itemFromDesktopId(id);
+                    if (item) {
+                        icons.append(item->iconName());
+                    }
                 }
+                return icons;//QStringList({"deepin-music"});
             }
-            return icons;//QStringList({"deepin-music"});
-        }
         }
     }
 
     return QConcatenateTablesProxyModel::data(index, role);
 }
 
-QHash<int, QByteArray> MultipageProxyModel::roleNames() const
+QHash<int, QByteArray> ItemArrangementProxyModel::roleNames() const
 {
     auto existingRoleNames = AppsModel::instance().roleNames();
     existingRoleNames.insert(IconsNameRole, QByteArrayLiteral("folderIcons"));
     return existingRoleNames;
 }
 
-MultipageProxyModel::MultipageProxyModel(QObject *parent)
+ItemArrangementProxyModel::ItemArrangementProxyModel(QObject *parent)
     : QConcatenateTablesProxyModel(parent)
     , m_topLevel(new ItemsPage(7 * 4, this))
 {
-//    ItemsPage ip(3);
-//    ip.appendPage({"a", "b", "c"});
-//    ip.appendPage({"e"});
-//    ip.insertItem("d", 1);
-//    ip.insertItem("^", 0, 1);
-//    ip.removeItem("d");
-//    qDebug() << ip.items(0);
-//    qDebug() << ip.items(1);
-
     m_folderModel.setItemRoleNames(AppsModel::instance().roleNames());
 
     loadItemArrangementFromUserData();
@@ -194,16 +186,16 @@ MultipageProxyModel::MultipageProxyModel(QObject *parent)
     onSourceModelChanged();
     onFolderModelChanged();
 
-    connect(&AppsModel::instance(), &AppsModel::rowsInserted, this, &MultipageProxyModel::onSourceModelChanged);
-    connect(&AppsModel::instance(), &AppsModel::rowsRemoved, this, &MultipageProxyModel::onSourceModelChanged);
+    connect(&AppsModel::instance(), &AppsModel::rowsInserted, this, &ItemArrangementProxyModel::onSourceModelChanged);
+    connect(&AppsModel::instance(), &AppsModel::rowsRemoved, this, &ItemArrangementProxyModel::onSourceModelChanged);
 
-    connect(&m_folderModel, &QStandardItemModel::rowsInserted, this, &MultipageProxyModel::onFolderModelChanged);
-    connect(&m_folderModel, &QStandardItemModel::rowsRemoved, this, &MultipageProxyModel::onFolderModelChanged);
+    connect(&m_folderModel, &QStandardItemModel::rowsInserted, this, &ItemArrangementProxyModel::onFolderModelChanged);
+    connect(&m_folderModel, &QStandardItemModel::rowsRemoved, this, &ItemArrangementProxyModel::onFolderModelChanged);
 
-    connect(m_topLevel, &ItemsPage::pageCountChanged, this, &MultipageProxyModel::topLevelPageCountChanged);
+    connect(m_topLevel, &ItemsPage::pageCountChanged, this, &ItemArrangementProxyModel::topLevelPageCountChanged);
 }
 
-void MultipageProxyModel::loadItemArrangementFromUserData()
+void ItemArrangementProxyModel::loadItemArrangementFromUserData()
 {
     const QString arrangementSettingBasePath(QStandardPaths::writableLocation(QStandardPaths::AppConfigLocation));
     const QString arrangementSettingPath(QDir(arrangementSettingBasePath).absoluteFilePath("item-arrangement.ini"));
@@ -232,7 +224,7 @@ void MultipageProxyModel::loadItemArrangementFromUserData()
     }
 }
 
-void MultipageProxyModel::saveItemArrangementToUserData()
+void ItemArrangementProxyModel::saveItemArrangementToUserData()
 {
     const QString arrangementSettingBasePath(QStandardPaths::writableLocation(QStandardPaths::AppConfigLocation));
     const QString arrangementSettingPath(QDir(arrangementSettingBasePath).absoluteFilePath("item-arrangement.ini"));
@@ -263,7 +255,7 @@ void MultipageProxyModel::saveItemArrangementToUserData()
     itemArrangementSettings.sync();
 }
 
-std::tuple<int, int, int> MultipageProxyModel::findItem(const QString &id, bool searchTopLevelOnly) const
+std::tuple<int, int, int> ItemArrangementProxyModel::findItem(const QString &id, bool searchTopLevelOnly) const
 {
     int page, idx;
 
@@ -283,7 +275,7 @@ std::tuple<int, int, int> MultipageProxyModel::findItem(const QString &id, bool 
     return std::make_tuple(-1, -1, -1);
 }
 
-void MultipageProxyModel::onSourceModelChanged()
+void ItemArrangementProxyModel::onSourceModelChanged()
 {
     QSet<QString> appDesktopIdSet;
     int appsCount = AppsModel::instance().rowCount();
@@ -312,7 +304,7 @@ void MultipageProxyModel::onSourceModelChanged()
     saveItemArrangementToUserData();
 }
 
-void MultipageProxyModel::onFolderModelChanged()
+void ItemArrangementProxyModel::onFolderModelChanged()
 {
     // if the QStandardItemModel is empty, adding the empty model to QConcatenateTablesProxyModel will result
     // the complete model is ill-formed (why?). Thus we only add them to the QConcatenateTablesProxyModel when
@@ -324,7 +316,7 @@ void MultipageProxyModel::onFolderModelChanged()
     }
 }
 
-QString MultipageProxyModel::findAvailableFolderId()
+QString ItemArrangementProxyModel::findAvailableFolderId()
 {
     int idNumber = 0;
     QString fullId;
@@ -337,7 +329,7 @@ QString MultipageProxyModel::findAvailableFolderId()
     return fullId;
 }
 
-ItemsPage *MultipageProxyModel::createFolder(const QString &id)
+ItemsPage *ItemArrangementProxyModel::createFolder(const QString &id)
 {
     Q_ASSERT(!id.isEmpty());
     QString fullId(id.startsWith("internal/folders/") ? id : QStringLiteral("internal/folders/%1").arg(id));
@@ -352,7 +344,7 @@ ItemsPage *MultipageProxyModel::createFolder(const QString &id)
     return page;
 }
 
-void MultipageProxyModel::removeFolder(const QString &idNumber)
+void ItemArrangementProxyModel::removeFolder(const QString &idNumber)
 {
     QString fullId("internal/folders/" + idNumber);
     Q_ASSERT(m_folders.contains(fullId));
@@ -364,9 +356,14 @@ void MultipageProxyModel::removeFolder(const QString &idNumber)
 }
 
 // get folder by id. 0 is top level, >=1 is folder
-ItemsPage *MultipageProxyModel::folderById(int id)
+ItemsPage *ItemArrangementProxyModel::folderById(int id)
 {
     if (id == 0) return m_topLevel;
     const QString folderId("internal/folders/" + QString::number(id));
     return m_folders.value(folderId);
+}
+
+QStringList ItemArrangementProxyModel::allArrangedItems() const
+{
+    return m_topLevel->allArrangedItems();
 }

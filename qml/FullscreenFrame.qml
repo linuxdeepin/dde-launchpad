@@ -49,12 +49,12 @@ Control {
 
     function dropOnItem(dragId, dropId, op) {
         dndItem.text = "drag " + dragId + " onto " + dropId + " with " + op
-        MultipageProxyModel.commitDndOperation(dragId, dropId, op)
+        ItemArrangementProxyModel.commitDndOperation(dragId, dropId, op)
     }
 
     function dropOnPage(dragId, dropFolderId, pageNumber) {
         dndItem.text = "drag " + dragId + " into " + dropFolderId + " at page " + pageNumber
-        MultipageProxyModel.commitDndOperation(dragId, dropFolderId, MultipageProxyModel.DndJoin, pageNumber)
+        ItemArrangementProxyModel.commitDndOperation(dragId, dropFolderId, ItemArrangementProxyModel.DndJoin, pageNumber)
     }
     // ----------- Drag and Drop related functions  END  -----------
 
@@ -230,22 +230,22 @@ Control {
                 // To ensure toplevelRepeater's model (page count) updated correctly
                 // Caution! Don't put it directly under a Repeater{}, that will prevent Connections from working
                 Connections {
-                    target: MultipageProxyModel
+                    target: ItemArrangementProxyModel
                     function onRowsInserted() {
-                        toplevelRepeater.pageCount = MultipageProxyModel.pageCount(0)
+                        toplevelRepeater.pageCount = ItemArrangementProxyModel.pageCount(0)
                     }
                     function onRowsRemoved() {
-                        toplevelRepeater.pageCount = MultipageProxyModel.pageCount(0)
+                        toplevelRepeater.pageCount = ItemArrangementProxyModel.pageCount(0)
                     }
 
                     function onTopLevelPageCountChanged() {
-                        toplevelRepeater.pageCount = MultipageProxyModel.pageCount(0)
+                        toplevelRepeater.pageCount = ItemArrangementProxyModel.pageCount(0)
                     }
                 }
 
                 Repeater {
                     id: toplevelRepeater
-                    property int pageCount: MultipageProxyModel.pageCount(0)
+                    property int pageCount: ItemArrangementProxyModel.pageCount(0)
                     model: pageCount
 
                     Loader {
@@ -260,7 +260,7 @@ Control {
 
                             MultipageSortFilterProxyModel {
                                 id: proxyModel
-                                sourceModel: MultipageProxyModel
+                                sourceModel: ItemArrangementProxyModel
                                 pageId: modelData
                                 folderId: 0
                             }
@@ -317,9 +317,9 @@ Control {
                                         onFolderClicked: {
                                             let idStr = model.desktopId
                                             let idNum = Number(idStr.replace("internal/folders/", ""))
-                                            folderLoader.currentFolderId = idNum
+                                            folderGridViewPopup.currentFolderId = idNum
                                             folderGridViewPopup.open()
-                                            folderLoader.folderName = model.display.startsWith("internal/category/") ? getCategoryName(model.display.substring(18)) : model.display
+                                            folderGridViewPopup.folderName = model.display.startsWith("internal/category/") ? getCategoryName(model.display.substring(18)) : model.display
                                             console.log("open folder id:" + idNum)
                                         }
                                         onMenuTriggered: {
@@ -395,182 +395,9 @@ Control {
         }
     }
 
-    Popup {
+    FolderGridViewPopup {
         id: folderGridViewPopup
-
-        focus: true
-//        visible: true
-
-        property int cs: searchResultGridViewContainer.cellHeight
-//        anchors.centerIn: parent // seems dtkdeclarative's Popup doesn't have anchors.centerIn
-
-        width: cs * 4 + 20 /* padding */
-        height: cs * 3 + 130 /* title height*/
-        x: (parent.width - width) / 2
-        y: (parent.height - height) / 2
-
-        modal: true
-
-        onAboutToHide: {
-            // reset folder view
-            folderLoader.currentFolderId = -1
-        }
-
-        Loader {
-            id: folderLoader
-
-            property string folderName: "Sample Text"
-            property int currentFolderId: -1
-
-            active: currentFolderId !== -1
-            anchors.fill: parent
-
-            sourceComponent: Control {
-                // Ensure drop won't fallthough the Popup.
-                background: DropArea {
-                    anchors.fill: parent
-                    onDropped: {
-                        let dragId = drop.getDataAsString("text/x-dde-launcher-dnd-desktopId")
-                        dropOnPage(dragId, "internal/folders/" + folderLoader.currentFolderId, folderPagesView.currentIndex)
-                    }
-                }
-
-                contentItem: ColumnLayout {
-                    spacing: 5
-                    anchors.fill: parent
-
-                    Item {
-                        Layout.preferredHeight: 5
-                    }
-
-                    SystemPalette { id: folderTextPalette }
-                    TextInput {
-                        Layout.fillWidth: true
-
-                        font: DTK.fontManager.t3
-                        horizontalAlignment: Text.AlignHCenter
-                        text: folderLoader.folderName
-                        color: folderTextPalette.text
-                        onEditingFinished: {
-                            MultipageProxyModel.updateFolderName(folderLoader.currentFolderId, text);
-                        }
-                    }
-
-                    Rectangle {
-                        Layout.fillWidth: true
-                        Layout.fillHeight: true
-                        color: "transparent"
-
-                        SwipeView {
-                            id: folderPagesView
-                            clip: true
-
-                            anchors.fill: parent
-
-                            currentIndex: folderPageIndicator.currentIndex
-
-                            Repeater {
-                                model: MultipageProxyModel.pageCount(folderLoader.currentFolderId) // FIXME: should be a property?
-
-                                Loader {
-                                    active: SwipeView.isCurrentItem || SwipeView.isNextItem || SwipeView.isPreviousItem
-                                    id: folderGridViewLoader
-                                    objectName: "Folder GridView Loader"
-
-                                    sourceComponent: Rectangle {
-                                        anchors.fill: parent
-                                        color: "transparent"
-
-                                        MultipageSortFilterProxyModel {
-                                            id: folderProxyModel
-                                            sourceModel: MultipageProxyModel
-                                            pageId: modelData
-                                            folderId: folderLoader.currentFolderId
-                                        }
-
-                                        GridViewContainer {
-                                            id: folderGridViewContainer
-                                            anchors.fill: parent
-                                            rows: 3
-                                            columns: 4
-                                            model: folderProxyModel
-                                            padding: 10
-                                            interactive: false
-                                            focus: true
-                                            activeGridViewFocusOnTab: folderGridViewLoader.SwipeView.isCurrentItem
-                                            itemMove: Transition { NumberAnimation { properties: "x,y"; duration: 250 } }
-                                            delegate: DropArea {
-                                                width: folderGridViewContainer.cellWidth
-                                                height: folderGridViewContainer.cellHeight
-                                                onDropped: {
-                                                    let dragId = drop.getDataAsString("text/x-dde-launcher-dnd-desktopId")
-                                                    let op = 0
-                                                    let sideOpPadding = width / 4
-                                                    if (drop.x < sideOpPadding) {
-                                                        op = -1
-                                                    } else if (drop.x > (width - sideOpPadding)) {
-                                                        op = 1
-                                                    }
-                                                    dropOnItem(dragId, model.desktopId, op)
-                                                }
-
-                                                IconItemDelegate {
-                                                    anchors.fill: parent
-                                                    dndEnabled: true
-                                                    Drag.mimeData: {
-                                                        "text/x-dde-launcher-dnd-desktopId": model.desktopId
-                                                    }
-                                                    visible: dndItem.currentlyDraggedId !== model.desktopId
-                                                    iconSource: iconName
-
-                                                    padding: 5
-                                                    onItemClicked: {
-                                                        launchApp(desktopId)
-                                                    }
-                                                    onMenuTriggered: {
-                                                        showContextMenu(this, model, false, false, true)
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-
-                    PageIndicator {
-                        Layout.alignment: Qt.AlignHCenter
-
-                        id: folderPageIndicator
-
-                        count: folderPagesView.count
-                        currentIndex: folderPagesView.currentIndex
-                        interactive: true
-                    }
-                }
-            }
-        }
-        background: InWindowBlur {
-            id: blur
-            implicitWidth: DS.Style.popup.width
-            implicitHeight: DS.Style.popup.height
-            radius: DS.Style.popup.radius
-            offscreen: true
-            ItemViewport {
-                anchors.fill: parent
-                fixed: true
-                sourceItem: blur.content
-                radius: DS.Style.popup.radius
-                hideSource: false
-            }
-
-            Rectangle {
-                anchors.fill: parent
-                radius: DS.Style.popup.radius
-                color: Qt.rgba(255.0, 255.0, 255.0, 0.15)
-            }
-        }
+        cs: searchResultGridViewContainer.cellHeight
     }
 
     Keys.onPressed: {
