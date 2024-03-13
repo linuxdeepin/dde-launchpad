@@ -54,6 +54,7 @@ set(SOURCE_FILES
 )
 
 set(QML_FILES
+    qml/Helper.qml
     qml/Main.qml
     qml/WindowedFrame.qml
     qml/windowed/SideBar.qml
@@ -61,6 +62,11 @@ set(QML_FILES
     qml/windowed/AppListView.qml
     qml/FullscreenFrame.qml
     qml/AppItemMenu.qml
+)
+
+set_source_files_properties(qml/Helper.qml
+    PROPERTIES
+        QT_QML_SINGLETON_TYPE TRUE
 )
 
 set(TRANSLATION_FILES
@@ -98,6 +104,8 @@ qt_add_qml_module(${BIN_NAME}
     URI org.deepin.launchpad
     VERSION 1.0
     RESOURCES qml.qrc
+    QML_FILES
+        qml/Helper.qml
 )
 
 qt_add_translations(${BIN_NAME}

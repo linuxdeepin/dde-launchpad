@@ -7,10 +7,18 @@
 
 #include <QDebug>
 #include <DPinyin>
+#include <DConfig>
+DCORE_USE_NAMESPACE
 
 SearchFilterProxyModel::SearchFilterProxyModel(QObject *parent)
     : QSortFilterProxyModel(parent)
 {
+    QScopedPointer<DConfig> dconfig(DConfig::create("dde-launchpad", "org.deepin.dde.launchpad.appsmodel"));
+    // lower priority is higher.
+    m_frequentlyUsedAppIdList = dconfig->value("frequentlyUsedAppIdList").toStringList();
+    qDebug() << "Fetched frequentlyUsed app list by DConfig" << m_frequentlyUsedAppIdList;
+    std::reverse(m_frequentlyUsedAppIdList.begin(), m_frequentlyUsedAppIdList.end());
+
     setFilterCaseSensitivity(Qt::CaseInsensitive);
 
     setSourceModel(&AppsModel::instance());
@@ -44,7 +52,15 @@ bool SearchFilterProxyModel::lessThan(const QModelIndex &sourceLeft, const QMode
     const int leftLaunchedTimes = sourceLeft.data(AppItem::LaunchedTimesRole).toInt();
     const int rightLaunchedTimes = sourceRight.data(AppItem::LaunchedTimesRole).toInt();
 
-    return leftLaunchedTimes < rightLaunchedTimes;
+    if (leftLaunchedTimes != rightLaunchedTimes)
+        return leftLaunchedTimes < rightLaunchedTimes;
+
+    const auto leftLastLaunchedTime = sourceLeft.data(AppItem::LastLaunchedTimeRole).toLongLong();
+    const auto rightLastLaunchedTimes = sourceRight.data(AppItem::LastLaunchedTimeRole).toLongLong();
+    if (leftLastLaunchedTime != rightLastLaunchedTimes)
+        return leftLastLaunchedTime < rightLastLaunchedTimes;
+
+    return lessThenByFrequentlyUsed(sourceLeft, sourceRight);
 }
 
 QAbstractItemModel *SearchFilterProxyModel::recentlyInstalledModel() const
@@ -76,7 +92,6 @@ void SearchFilterProxyModel::setRecentlyInstalledModel(QAbstractItemModel *newRe
     if (m_recentlyInstalledModel) {
         for (const auto &c : connectionTable) {
             connect(m_recentlyInstalledModel, c.signalName, this, c.slotName);
-
         }
     }
     invalidate();
@@ -98,4 +113,13 @@ bool SearchFilterProxyModel::inRecentlyInstalledModel(const QModelIndex &index) 
             return true;
     }
     return false;
+}
+
+bool SearchFilterProxyModel::lessThenByFrequentlyUsed(const QModelIndex &sourceLeft, const QModelIndex &sourceRight) const
+{
+    const auto leftId = sourceLeft.data(AppItem::DesktopIdRole).toString();
+    const auto rightId = sourceRight.data(AppItem::DesktopIdRole).toString();
+    const auto leftInFrequentlyUsed = m_frequentlyUsedAppIdList.indexOf(leftId);
+    const auto rightInFrequentlyUsed = m_frequentlyUsedAppIdList.indexOf(rightId);
+    return leftInFrequentlyUsed < rightInFrequentlyUsed;
 }

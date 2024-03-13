@@ -17,9 +17,10 @@ public:
     int maxRowCount() const;
     void setMaxRowCount(int newMaxRowCount);
 
+    void setSourceModel(QAbstractItemModel *sourceModel) override;
     // QSortFilterProxyModel interface
 protected:
-    bool filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const;
+    bool filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const override;
 signals:
     void maxRowCountChanged();
 private:

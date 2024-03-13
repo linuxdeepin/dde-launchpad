@@ -12,6 +12,34 @@
       "description[zh_CN]": "需要使 launchpad 排除（避免显示）的应用程序的 desktop ID 列表。",
       "permissions": "readonly",
       "visibility": "private"
+    },
+    "frequentlyUsedAppIdList": {
+      "value": [
+          "org.deepin.browser.desktop",
+          "deepin-app-store.desktop",
+          "dde-file-manager.desktop",
+          "deepin-mail.desktop",
+          "deepin-home.desktop",
+          "deepin-screen-recorder.desktop",
+          "deepin-calculator.desktop",
+          "deepin-terminal.desktop",
+          "dde-calendar.desktop",
+          "deepin-image-viewer.desktop",
+          "deepin-movie.desktop",
+          "deepin-album.desktop",
+          "deepin-system-monitor.desktop",
+          "libreoffice-base.desktop",
+          "libreoffice-writer.desktop",
+          "libreoffice-calc.desktop"
+      ],
+      "serial": 0,
+      "flags": [],
+      "name": "frequentlyUsed Application ID List",
+      "name[zh_CN]": "常用应用 ID 列表",
+      "description": "The default desktop ID list for my frequentlyUsed used applications.",
+      "description[zh_CN]": "我的常用中默认显示的应用程序的 desktop ID 列表。",
+      "permissions": "readonly",
+      "visibility": "private"
     }
   }
 }
