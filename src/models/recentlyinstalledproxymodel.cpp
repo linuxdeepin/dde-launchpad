@@ -25,7 +25,9 @@ bool RecentlyInstalledProxyModel::filterAcceptsRow(int sourceRow, const QModelIn
     if (lastLaunchedTime > 0)
         return false;
 
-    return true;
+    // filter pre installed applications.
+    int installedTime = modelIndex.data(AppItem::InstalledTimeRole).toLongLong();
+    return installedTime > 0;
 }
 
 bool RecentlyInstalledProxyModel::lessThan(const QModelIndex &source_left, const QModelIndex &source_right) const

@@ -41,7 +41,9 @@ protected:
 private:
     explicit SearchFilterProxyModel(QObject *parent = nullptr);
     bool inRecentlyInstalledModel(const QModelIndex &index) const;
+    bool lessThenByFrequentlyUsed(const QModelIndex &sourceLeft, const QModelIndex &sourceRight) const;
 
 private:
     QPointer<QAbstractItemModel> m_recentlyInstalledModel;
+    QStringList m_frequentlyUsedAppIdList;
 };

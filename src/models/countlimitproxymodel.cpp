@@ -18,6 +18,33 @@ void CountLimitProxyModel::setMaxRowCount(int newMaxRowCount)
     invalidate();
 }
 
+void CountLimitProxyModel::setSourceModel(QAbstractItemModel *sourceModel)
+{
+    if (sourceModel == this->sourceModel())
+        return;
+
+    static const struct {
+        const char *signalName;
+        const char *slotName;
+    } connectionTable[] = {
+                           { SIGNAL(rowsInserted(QModelIndex,int,int)), SLOT(invalidate()) },
+                           { SIGNAL(rowsRemoved(QModelIndex,int,int)), SLOT(invalidate()) },
+                           };
+
+    if (this->sourceModel()) {
+        for (const auto &c : connectionTable)
+            disconnect(this->sourceModel(), c.signalName, this, c.slotName);
+    }
+
+    QSortFilterProxyModel::setSourceModel(sourceModel);
+
+    if (sourceModel) {
+        for (const auto &c : connectionTable) {
+            connect(sourceModel, c.signalName, this, c.slotName);
+        }
+    }
+}
+
 bool CountLimitProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const
 {
     if (m_maxRowCount < 0)

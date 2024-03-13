@@ -29,6 +29,7 @@ Item {
             spacing: 0
             Layout.fillWidth: true
             Layout.fillHeight: true
+            Layout.topMargin: Helper.windowed.topMargin
 
             SideBar {}
 
@@ -45,6 +46,8 @@ Item {
             ColumnLayout {
                 Layout.fillWidth: true
                 Layout.fillHeight: true
+                Layout.rightMargin: Helper.frequentlyUsed.rightMargin
+                Layout.margins: 0
 
                 // Binding SearchFilterProxyModel with RecentlyInstalledProxyModel
                 Binding {
@@ -53,7 +56,7 @@ Item {
                 }
 
                 Label {
-                    text: qsTr("My Favorites")
+                    text: qsTr("My FrequentlyUseds")
                     font: LauncherController.boldFont(DTK.fontManager.t6)
                 }
 
@@ -65,8 +68,8 @@ Item {
                     }
                     delegate: IconItemDelegate {
                         iconSource: iconName
-                        width: favoriteViewContainer.cellWidth
-                        height: favoriteViewContainer.cellHeight
+                        width: frequentlyUsedViewContainer.cellWidth
+                        height: frequentlyUsedViewContainer.cellHeight
                         onItemClicked: {
                             launchApp(desktopId)
                         }
@@ -77,7 +80,7 @@ Item {
                 }
 
                 GridViewContainer {
-                    id: favoriteViewContainer
+                    id: frequentlyUsedViewContainer
                     rows: 0
                     columns: 4
                     placeholderIcon: "search_no_result"
@@ -263,7 +266,7 @@ Item {
             baseLayer.focus = true
             // reset scroll area position
             appList.positionViewAtBeginning()
-            favoriteGridViewContainer.positionViewAtBeginning()
+            frequentlyUsedViewContainer.positionViewAtBeginning()
             recentlyInstalledViewContainer.positionViewAtBeginning()
         }
     }
