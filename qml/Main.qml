@@ -12,6 +12,7 @@ import org.deepin.dtk.style 1.0 as DS
 
 import org.deepin.launchpad 1.0
 import org.deepin.launchpad.models 1.0
+import org.deepin.launchpad.windowed 1.0
 
 QtObject {
     function getCategoryName(section) {
@@ -185,7 +186,7 @@ QtObject {
         Loader {
             anchors.fill: parent
             focus: true
-            source: "WindowedFrame.qml"
+            sourceComponent: WindowedFrame { }
 
             Label {
                 visible: DebugHelper.qtDebugEnabled

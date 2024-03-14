@@ -74,7 +74,7 @@ int main(int argc, char* argv[])
 
     QQmlContext * ctx = engine.rootContext();
 
-    engine.load(QUrl("qrc:/qml/Main.qml"));
+    engine.loadFromModule("org.deepin.launchpad", "Main");
     if (engine.rootObjects().isEmpty())
         return -1;
 

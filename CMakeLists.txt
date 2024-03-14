@@ -45,6 +45,7 @@ add_subdirectory(src/utils)
 add_subdirectory(src/quick)
 add_subdirectory(src/ddeintegration)
 add_subdirectory(src/models)
+add_subdirectory(qml/windowed)
 
 set(SOURCE_FILES
     main.cpp
@@ -56,12 +57,12 @@ set(SOURCE_FILES
 set(QML_FILES
     qml/Helper.qml
     qml/Main.qml
-    qml/WindowedFrame.qml
-    qml/windowed/SideBar.qml
-    qml/windowed/AlphabetCategoryPopup.qml
-    qml/windowed/AppListView.qml
     qml/FullscreenFrame.qml
     qml/AppItemMenu.qml
+    qml/GridViewContainer.qml
+    qml/DrawerFolder.qml
+    qml/IconItemDelegate.qml
+    qml/DebugDialog.qml
 )
 
 set_source_files_properties(qml/Helper.qml
@@ -104,8 +105,10 @@ qt_add_qml_module(${BIN_NAME}
     URI org.deepin.launchpad
     VERSION 1.0
     RESOURCES qml.qrc
+    RESOURCE_PREFIX
+        /qt/qml
     QML_FILES
-        qml/Helper.qml
+        ${QML_FILES}
 )
 
 qt_add_translations(${BIN_NAME}
@@ -126,6 +129,7 @@ target_link_libraries(${BIN_NAME} PRIVATE
     Qt::Quick
     Qt::QuickControls2
 
+    launcher-qml-windowed
     gio-utils
     launcher-utils
     launcher-qml-utils
