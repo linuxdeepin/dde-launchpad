@@ -145,7 +145,7 @@ Control {
 
                     anchors.horizontalCenter: parent.horizontalCenter
         //            visible: pages.visible
-                    count: searchResultGridViewContainer.visible ? 1 : pages.count
+                    count: searchResultGridViewContainer.visible ? 1 : pages.model.count
                     currentIndex: searchResultGridViewContainer.visible ? 1 : pages.currentIndex
                     interactive: true
                     delegate: Rectangle {
@@ -219,13 +219,120 @@ Control {
                 }
             }
 
-            SwipeView {
+            DelegateModel {
+                id: topLevelDelegateModel
+
+                property int pageCount: ItemArrangementProxyModel.pageCount(0)
+                Binding on pageCount {
+                    when: ItemArrangementProxyModel.onTopLevelPageCountChanged
+                    value: ItemArrangementProxyModel.pageCount(0)
+                }
+
+                model: pageCount
+
+                delegate: Loader {
+                    width: parent.width
+                    height: parent.height
+
+                    objectName: "WrapViewDelegateModel GridViewLoader"
+
+                    sourceComponent: Rectangle {
+                        color: "grey"
+                        id: gvcHolder
+
+                        property int curPageNo: index
+
+                        Text {
+                            anchors.centerIn: parent
+                            font.pointSize: 26
+                            text: gvcHolder.curPageNo
+                        }
+
+                        GridViewContainer {
+                            id: gridViewContainer
+                            anchors.fill: parent
+                            rows: 4
+                            columns: 7
+                            paddingColumns: 1
+                            model: MultipageSortFilterProxyModel {
+                                sourceModel: ItemArrangementProxyModel
+                                pageId: gvcHolder.curPageNo // FIXME: why can't we use `index - 1` directly here?
+                                folderId: 0
+                            }
+                            padding: 10
+                            interactive: false
+                            focus: true
+                            opacity: folderGridViewPopup.visible ? 0.4 : 1
+                            // activeGridViewFocusOnTab: gridViewLoader.SwipeView.isCurrentItem
+                            itemMove: Transition { NumberAnimation { properties: "x,y"; duration: 250 } }
+                            delegate: DropArea {
+                                width: gridViewContainer.cellWidth
+                                height: gridViewContainer.cellHeight
+                                onEntered: {
+                                    if (folderGridViewPopup.opened) {
+                                        folderGridViewPopup.close()
+                                    }
+                                }
+                                onDropped: {
+                                    let dragId = drop.getDataAsString("text/x-dde-launcher-dnd-desktopId")
+                                    let op = 0
+                                    let sideOpPadding = width / 4
+                                    if (drop.x < sideOpPadding) {
+                                        op = -1
+                                    } else if (drop.x > (width - sideOpPadding)) {
+                                        op = 1
+                                    }
+                                    dropOnItem(dragId, model.desktopId, op)
+                                }
+
+                                IconItemDelegate {
+                                    id: iconItemDelegate
+                                    anchors.fill: parent
+                                    dndEnabled: true
+                                    Drag.mimeData: {
+                                        "text/x-dde-launcher-dnd-desktopId": model.desktopId
+                                    }
+                                    visible: dndItem.currentlyDraggedId !== model.desktopId
+                                    iconSource: iconName
+                                    icons: folderIcons
+                                    padding: 5
+                                    onItemClicked: {
+                                        launchApp(desktopId)
+                                    }
+                                    onFolderClicked: {
+                                        let idStr = model.desktopId
+                                        let idNum = Number(idStr.replace("internal/folders/", ""))
+                                        folderLoader.currentFolderId = idNum
+                                        folderGridViewPopup.open()
+                                        folderLoader.folderName = model.display.startsWith("internal/category/") ? getCategoryName(model.display.substring(18)) : model.display
+                                        console.log("open folder id:" + idNum)
+                                    }
+                                    onMenuTriggered: {
+                                        showContextMenu(this, model, folderIcons, false, true)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            WrapView {
                 id: pages
 
                 anchors.fill: parent
-                visible: searchEdit.text === ""
 
+                model: topLevelDelegateModel
                 currentIndex: indicator.currentIndex
+            }
+
+            SwipeView {
+                // id: pages
+
+                anchors.fill: parent
+                visible: false//searchEdit.text === ""
+
+                // currentIndex: indicator.currentIndex
 
                 // To ensure toplevelRepeater's model (page count) updated correctly
                 // Caution! Don't put it directly under a Repeater{}, that will prevent Connections from working
