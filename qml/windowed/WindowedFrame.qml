@@ -11,6 +11,7 @@ import org.deepin.dtk 1.0
 
 import org.deepin.launchpad 1.0
 import org.deepin.launchpad.models 1.0
+import "."
 
 Item {
     id: baseLayer
@@ -50,6 +51,7 @@ Item {
     ColumnLayout {
         spacing: 0
         anchors.fill: parent
+        Layout.margins: 0
 
         RowLayout {
             spacing: 0
@@ -69,18 +71,20 @@ Item {
 
             AppList {
                 id: appList
+                Layout.fillWidth: true
             }
 
             ColumnLayout {
-                Layout.fillWidth: true
-                Layout.fillHeight: true
-                Layout.rightMargin: Helper.frequentlyUsed.rightMargin
+                spacing: 0
+                Layout.preferredWidth: 362
+                Layout.alignment: Qt.AlignRight
+                Layout.rightMargin: Helper.frequentlyUsed.rightMargin - 10
                 Layout.margins: 0
 
                 // Binding SearchFilterProxyModel with RecentlyInstalledProxyModel
                 Binding {
                     target: SearchFilterProxyModel; property: "recentlyInstalledModel"
-                    value: delegateRecentlyInstalledModel.model
+                    value: recentlyInstalledViewContainer.model
                 }
 
                 Label {
@@ -88,54 +92,55 @@ Item {
                     font: LauncherController.boldFont(DTK.fontManager.t6)
                 }
 
-                DelegateModel {
-                    id: delegateFavorateModel
-                    model: CountLimitProxyModel {
-                        sourceModel: SearchFilterProxyModel
-                        maxRowCount: recentlyInstalledView.visible ? 12 : 16
-                    }
-                    delegate: IconItemDelegate {
-                        iconSource: iconName
-                        width: frequentlyUsedViewContainer.cellWidth
-                        height: frequentlyUsedViewContainer.cellHeight
-                        onItemClicked: {
-                            launchApp(desktopId)
+                Item {
+                    Layout.alignment: Qt.AlignRight
+                    Layout.topMargin: 10
+                    Layout.preferredHeight: frequentlyUsedViewContainer.height
+                    Layout.preferredWidth: frequentlyUsedViewContainer.width
+
+                    GridViewContainer {
+                        id: frequentlyUsedViewContainer
+
+                        placeholderIcon: "search_no_result"
+                        placeholderText: qsTr("No search results")
+                        model: CountLimitProxyModel {
+                            sourceModel: SearchFilterProxyModel
+                            maxRowCount: recentlyInstalledView.visible ? 12 : 16
                         }
-                        onMenuTriggered: {
-                            showContextMenu(this, model, false, false, false)
-                        }
-                    }
-                }
-
-                GridViewContainer {
-                    id: frequentlyUsedViewContainer
-                    rows: 0
-                    columns: 4
-                    placeholderIcon: "search_no_result"
-                    placeholderText: qsTr("No search results")
-                    model: delegateFavorateModel
-                    Layout.fillWidth: true
-                    Layout.fillHeight: true
-                    activeFocusOnTab: gridViewFocus
-                    interactive: false
-
-                    MouseArea {
-                        enabled: recentlyInstalledView.visible && (currentIndex !== -1)
-
-                        property int currentIndex: -1
-                        property int modelType: -1 // 1: fav, 2: all
-
-                        anchors.fill: parent
-                        onPressAndHold: {
-                            if (index !== -1) {
-                                currentIndex = index
+                        delegate: IconItemDelegate {
+                            width: frequentlyUsedViewContainer.cellWidth
+                            height: frequentlyUsedViewContainer.cellHeight
+                            iconSource: iconName
+                            onItemClicked: {
+                                launchApp(desktopId)
+                            }
+                            onMenuTriggered: {
+                                showContextMenu(this, model, false, false, false)
                             }
                         }
-                        onReleased: currentIndex = -1
+
+                        activeFocusOnTab: gridViewFocus
+
+                        MouseArea {
+                            enabled: recentlyInstalledView.visible && (currentIndex !== -1)
+
+                            property int currentIndex: -1
+                            property int modelType: -1 // 1: fav, 2: all
+
+                            anchors.fill: parent
+                            onPressAndHold: {
+                                if (index !== -1) {
+                                    currentIndex = index
+                                }
+                            }
+                            onReleased: currentIndex = -1
+                        }
                     }
                 }
 
+
                 Label {
+                    Layout.topMargin: 10 - 10
                     visible: recentlyInstalledView.visible
                     text: qsTr("Recently Installed")
                     font: LauncherController.boldFont(DTK.fontManager.t6)
@@ -143,15 +148,18 @@ Item {
 
                 Item {
                     id: recentlyInstalledView
-                    visible: searchEdit.text === "" && delegateRecentlyInstalledModel.count > 0
+                    Layout.alignment: Qt.AlignRight
+                    Layout.preferredHeight: recentlyInstalledViewContainer.height
+                    Layout.preferredWidth: recentlyInstalledViewContainer.width
+                    Layout.topMargin: 6
+                    visible: searchEdit.text === "" && recentlyInstalledViewContainer.count > 0
 
-                    DelegateModel {
-                        id: delegateRecentlyInstalledModel
+                    GridViewContainer {
+                        id: recentlyInstalledViewContainer
                         model: CountLimitProxyModel {
                             sourceModel: RecentlyInstalledProxyModel
                             maxRowCount: 4
                         }
-
                         delegate: IconItemDelegate {
                             iconSource: iconName
                             width: recentlyInstalledViewContainer.cellWidth
@@ -163,20 +171,12 @@ Item {
                                 showContextMenu(this, model, false, true, false)
                             }
                         }
-                    }
-
-                    GridViewContainer {
-                        anchors.fill: parent
-                        id: recentlyInstalledViewContainer
-                        rows: 0
-                        columns: 4
-                        model: delegateRecentlyInstalledModel
-                        interactive: false
                         activeFocusOnTab: visible && gridViewFocus
                     }
-
-                    Layout.preferredHeight: recentlyInstalledViewContainer.cellHeight
-                    Layout.fillWidth: true
+                }
+                Item {
+                    Layout.preferredWidth: 1
+                    Layout.fillHeight: true
                 }
             }
         }

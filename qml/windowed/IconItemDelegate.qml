@@ -13,11 +13,6 @@ import org.deepin.launchpad 1.0
 Control {
     id: root
 
-    width: 96
-    height: 96
-
-    property var icons: undefined
-    property int preferredIconSize: 48
     property string text: display.startsWith("internal/category/") ? getCategoryName(display.substring(18)) : display
 
     property string iconSource
@@ -25,8 +20,8 @@ Control {
 
     Accessible.name: iconItemLabel.text
 
-    signal folderClicked()
     signal itemClicked()
+    signal menuTriggered()
 
     contentItem: ToolButton {
         focusPolicy: Qt.NoFocus
@@ -35,53 +30,15 @@ Control {
 
             Item {
                 // actually just a top padding
-                width: root.width
-                height: root.height / 9
+                width: 1
+                height: 3
             }
 
-            Rectangle {
-                visible: false
-                anchors.right: parent.right
-
-                color: "blue"
-
-                width: 6
-                height: 6
-                radius: width / 2
-            }
-
-            Item {
-                width: 48
-                height: width
+            DciIcon {
+                objectName: "appIcon"
                 anchors.horizontalCenter: parent.horizontalCenter
-
-                Loader {
-                    id: iconLoader
-                    anchors.fill: parent
-                    sourceComponent: root.icons !== undefined ? folderComponent : imageComponent
-                }
-
-                Component {
-                    id: folderComponent
-
-                    Image {
-                        id: iconImage
-                        anchors.fill: parent
-                        source: "image://folder-icon/" + icons.join(':')
-                        sourceSize: Qt.size(parent.width, parent.height)
-                    }
-                }
-
-                Component {
-                    id: imageComponent
-
-                    DciIcon {
-                        objectName: "appIcon"
-                        anchors.fill: parent
-                        name: iconSource
-                        sourceSize: Qt.size(parent.width, parent.height)
-                    }
-                }
+                name: iconSource
+                sourceSize: Qt.size(36, 36)
             }
 
             // as topMargin
@@ -111,11 +68,14 @@ Control {
         }
 
         onClicked: {
-            if (root.icons) {
-                root.folderClicked()
-            } else {
-                root.itemClicked()
-            }
+            root.itemClicked()
+        }
+    }
+
+    TapHandler {
+        acceptedButtons: Qt.RightButton
+        onTapped: {
+            root.menuTriggered()
         }
     }
 }
