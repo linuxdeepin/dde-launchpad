@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2024 UnionTech Software Technology Co., Ltd.
+#
+# SPDX-License-Identifier: CC0-1.0
+
 qt_add_qml_module(launcher-qml-windowed
     URI org.deepin.launchpad.windowed
     STATIC
@@ -13,4 +17,5 @@ qt_add_qml_module(launcher-qml-windowed
         IconItemDelegate.qml
         WindowedFrame.qml
         FreeSortListView.qml
+        GridViewContainer.qml
 )
