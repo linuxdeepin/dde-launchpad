@@ -10,12 +10,16 @@ qt_add_qml_module(launcher-qml-windowed
     RESOURCE_PREFIX
         /qt/qml
     QML_FILES
+        WindowedFrame.qml
         SideBar.qml
+        BottomBar.qml
         AlphabetCategoryPopup.qml
         AppList.qml
         AppListView.qml
         IconItemDelegate.qml
-        WindowedFrame.qml
         FreeSortListView.qml
         GridViewContainer.qml
+        AnalysisView.qml
+        RecentlyInstalledView.qml
+        FrequentlyUsedView.qml
 )

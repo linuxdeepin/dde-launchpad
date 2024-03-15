@@ -18,9 +18,6 @@ FocusScope {
     property alias count: gridView.count
     property alias model: gridView.model
     property alias delegate: gridView.delegate
-    property alias placeholderIcon: placeholderIcon.name
-    property alias placeholderIconSize: placeholderIcon.sourceSize.width
-    property alias placeholderText: placeholderLabel.text
     property alias gridViewFocus: gridView.focus
     property bool activeGridViewFocusOnTab: false
     property int columns: 4
@@ -59,6 +56,7 @@ FocusScope {
             anchors.centerIn: parent
 
             clip: true
+            interactive: false
             highlightFollowsCurrentItem: true
             keyNavigationEnabled: true
             activeFocusOnTab: focus ? root.activeGridViewFocusOnTab : false
@@ -88,25 +86,6 @@ FocusScope {
                     color: highlightPalette.highlight
                     visible: gridView.activeFocus
                 }
-            }
-        }
-
-        ColumnLayout {
-            visible: placeholderLabel.text !== "" && count <= 0
-            anchors.centerIn: parent
-
-            DciIcon {
-                id: placeholderIcon
-                visible: name !== ""
-                sourceSize {
-                    width: 128
-                    height: width
-                }
-            }
-
-            Label {
-                id: placeholderLabel
-                Layout.alignment: Qt.AlignCenter
             }
         }
     }

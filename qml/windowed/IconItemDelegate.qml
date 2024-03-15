@@ -58,7 +58,7 @@ Control {
                 wrapMode: Text.WordWrap
                 elide: Text.ElideMiddle
                 maximumLineCount: 2
-                font: DTK.fontManager.t8
+                font: DTK.fontManager.t9
             }    
         }
         background: ButtonPanel {
