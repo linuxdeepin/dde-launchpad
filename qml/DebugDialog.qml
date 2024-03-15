@@ -40,6 +40,14 @@ Column {
         }
     }
 
+    Switch {
+        text: "Display item's bounding rectangle"
+        checked: DebugHelper.itemBoundingEnabled
+        onCheckedChanged: {
+            DebugHelper.itemBoundingEnabled = checked
+        }
+    }
+
     ToolButton {
         text: "Close launchpad application"
         onClicked: {

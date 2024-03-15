@@ -36,6 +36,7 @@ Control {
             Layout.rightMargin: parent.width / 4
 
             Layout.fillWidth: true
+            Layout.preferredHeight: 30
             placeholder: qsTr("Search")
             onTextChanged: {
                 console.log(text)
@@ -43,47 +44,25 @@ Control {
                 SearchFilterProxyModel.invalidate()
             }
 
-            Palette {
-                id: actionPalette
+            property Palette edittingPalette: Palette {
                 normal {
-                    common: ("#f7f7f7")
-                    crystal: Qt.rgba(0, 0, 0, 0.1)
+                    common: Qt.rgba(0, 0, 0, 0.1)
                 }
                 normalDark {
                     common: Qt.rgba(1, 1, 1, 0.1)
-                    crystal: Qt.rgba(1, 1, 1, 0.1)
-                }
-                hovered {
-                    common: ("#e1e1e1")
-                    crystal:  Qt.rgba(16.0 / 255, 16.0 / 255, 16.0 / 255, 0.2)
-                }
-                pressed {
-                    common: ("#bcc4d0")
-                    crystal: Qt.rgba(16.0 / 255, 16.0 / 255, 16.0 / 255, 0.15)
                 }
             }
 
-            Palette {
-                id: nomalPalette
+            property Palette nomalPalette: Palette {
                 normal {
                     common: ("transparent")
-                    crystal: Qt.rgba(0, 0, 0, 0.1)
                 }
                 normalDark {
                     common: ("transparent")
-                    crystal: Qt.rgba(1, 1, 1, 0.1)
-                }
-                hovered {
-                    common: ("#e1e1e1")
-                    crystal:  Qt.rgba(16.0 / 255, 16.0 / 255, 16.0 / 255, 0.2)
-                }
-                pressed {
-                    common: ("#bcc4d0")
-                    crystal: Qt.rgba(16.0 / 255, 16.0 / 255, 16.0 / 255, 0.15)
                 }
             }
 
-            backgroundColor: searchEdit.editting ? actionPalette : nomalPalette
+            backgroundColor: searchEdit.editting ? edittingPalette : nomalPalette
         }
 
         ToolButton {

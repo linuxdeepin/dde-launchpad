@@ -9,6 +9,8 @@ import QtQuick.Controls 2.15
 import QtQuick.Window 2.15
 import org.deepin.dtk 1.0
 
+import org.deepin.launchpad 1.0
+
 FocusScope {
     id: root
     visible: true
@@ -22,8 +24,8 @@ FocusScope {
     property bool activeGridViewFocusOnTab: false
     property int columns: 4
     property int rows: Math.ceil(count * 1.0 / columns)
-    property int paddingColumns: 14
-    property int paddingRows: 20
+    property int paddingColumns: Helper.frequentlyUsed.cellPaddingColumns
+    property int paddingRows: Helper.frequentlyUsed.cellPaddingRows
     property real cellHeight: 74
     property real cellWidth: 80
 

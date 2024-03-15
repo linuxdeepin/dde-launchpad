@@ -18,6 +18,7 @@ DebugHelper::DebugHelper(QObject *parent)
     m_useRegularWindow = m_debugSettings->value("useRegularWindow", false).toBool();
     m_avoidLaunchApp = m_debugSettings->value("avoidLaunchApp", false).toBool();
     m_avoidHideWindow = m_debugSettings->value("avoidHideWindow", false).toBool();
+    m_itemBoundingEnabled = m_debugSettings->value("enabledItemBounding", false).toBool();
 
     connect(this, &DebugHelper::onUseRegularWindowChanged, this, [=](bool val){
         m_debugSettings->setValue("useRegularWindow", val);
@@ -29,6 +30,10 @@ DebugHelper::DebugHelper(QObject *parent)
 
     connect(this, &DebugHelper::onAvoidHideWindowChanged, this, [=](bool val){
         m_debugSettings->setValue("avoidHideWindow", val);
+    });
+
+    connect(this, &DebugHelper::onItemBoundingEnabledChanged, this, [=](bool val){
+        m_debugSettings->setValue("enabledItemBounding", val);
     });
 }
 
@@ -45,4 +50,33 @@ bool DebugHelper::qtDebugEnabled() const
 #else
     return false;
 #endif
+}
+
+DebugQuickItem::DebugQuickItem(QObject *parent)
+    : QObject(parent)
+{
+    static int gOffset = 0;
+    gOffset += 25;
+    QColor gray(Qt::gray);
+    gray.setGreen((gray.green() + gOffset) % 255);
+    gray.setBlue((gray.blue() + gOffset) % 255);
+    setColor(gray);
+}
+
+DebugQuickItem *DebugQuickItem::qmlAttachedProperties(QObject *object)
+{
+    return new DebugQuickItem(object);
+}
+
+QColor DebugQuickItem::color() const
+{
+    return m_color;
+}
+
+void DebugQuickItem::setColor(const QColor &newColor)
+{
+    if (m_color == newColor)
+        return;
+    m_color = newColor;
+    emit colorChanged();
 }

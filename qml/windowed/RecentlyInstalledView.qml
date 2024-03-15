@@ -22,6 +22,7 @@ Control {
     }
 
     contentItem: ColumnLayout {
+        spacing: 0
         Label {
             text: qsTr("Recently Installed")
             font: LauncherController.boldFont(DTK.fontManager.t6)

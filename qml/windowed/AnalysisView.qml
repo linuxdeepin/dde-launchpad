@@ -32,13 +32,14 @@ Control {
 
         FrequentlyUsedView {
             id: frequentlyUsedView
+            visible: count > 0
             maxCount: recentlyInstalledView.visible ? 12 : 16
         }
 
         RecentlyInstalledView {
             id: recentlyInstalledView
             visible: searchingText === "" && count > 0
-            Layout.topMargin: 10 - 10
+            Layout.topMargin: -(Helper.frequentlyUsed.cellPaddingRows / 2)
         }
 
         Item {

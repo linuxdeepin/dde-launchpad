@@ -15,9 +15,6 @@ import org.deepin.launchpad.models 1.0
 import "."
 
 ColumnLayout {
-    Layout.fillWidth: false
-    Layout.preferredWidth: 220
-    Layout.fillHeight: true
 
     signal freeSortViewFolderClicked(string folderId, string folderName)
 
