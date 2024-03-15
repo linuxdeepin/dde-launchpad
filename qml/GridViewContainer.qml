@@ -21,7 +21,7 @@ FocusScope {
     property alias interactive: gridView.interactive
     property alias padding: item.anchors.margins
     property alias gridViewFocus: gridView.focus
-    property ScrollBar vScrollBar: undefined
+    property ScrollBar vScrollBar
     property bool activeGridViewFocusOnTab: false
     property Transition itemMove
     required property int columns
