@@ -139,7 +139,7 @@ QtObject {
         }
     }
 
-    readonly property size windowedFrameSize: Qt.size(680, 540)
+    readonly property size windowedFrameSize: Qt.size(610, 465)
 
     property var windowedFrame: ApplicationWindow {
         id: windowedFrameWindow

@@ -15,9 +15,6 @@ import org.deepin.launchpad 1.0
 import org.deepin.launchpad.models 1.0
 
 ColumnLayout {
-    Layout.fillWidth: false
-    Layout.fillHeight: true
-    Layout.margins: 10
     spacing: 10
 
     property var isFreeSort: true

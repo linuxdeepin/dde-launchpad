@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2023 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2024 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -8,10 +8,13 @@ import org.deepin.dtk 1.0
 
 import org.deepin.launchpad 1.0
 
-Rectangle {
-    visible: DebugHelper.useRegularWindow
+Loader {
+    id: control
     anchors.fill: parent
-
-    color: "transparent"
-    border.color: "gray"
+    asynchronous: true
+    active: DebugHelper.itemBoundingEnabled
+    sourceComponent: Rectangle {
+        color: "transparent"
+        border.color: control.DebugItem.color
+    }
 }

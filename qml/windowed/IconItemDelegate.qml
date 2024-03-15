@@ -71,6 +71,7 @@ Control {
             root.itemClicked()
         }
     }
+    background: DebugBounding { }
 
     TapHandler {
         acceptedButtons: Qt.RightButton

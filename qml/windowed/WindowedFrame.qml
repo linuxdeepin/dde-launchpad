@@ -61,10 +61,13 @@ Item {
 
             SideBar {
                 id: sideBar
+                Layout.fillWidth: false
+                Layout.fillHeight: true
+                Layout.margins: 10
             }
 
             Rectangle {
-                Layout.preferredWidth: 2
+                Layout.preferredWidth: Helper.windowed.splitLineWidth
                 Layout.fillHeight: true
                 color: this.palette.shadow
             }
@@ -72,6 +75,8 @@ Item {
             AppList {
                 id: appList
                 Layout.fillWidth: true
+                Layout.preferredWidth: 220
+                Layout.fillHeight: true
             }
 
             AnalysisView {
@@ -86,16 +91,17 @@ Item {
         }
 
         Rectangle {
-            Layout.preferredHeight: 2
+            Layout.preferredHeight: Helper.windowed.splitLineWidth
             Layout.fillWidth: true
             color: this.palette.shadow
         }
 
         BottomBar {
             id: bottomBar
-            // Layout.preferredHeight: 20
+            Layout.alignment: Qt.AlignBottom
+            Layout.preferredHeight: 30
             Layout.fillWidth: true
-            Layout.margins: 10
+            Layout.margins: Helper.windowed.bottomBarMargins
         }
     }
 
