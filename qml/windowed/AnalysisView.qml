@@ -59,7 +59,7 @@ Control {
             name: "search_no_result"
         }
 
-        PlaceholderText {
+        Label {
             Layout.alignment: Qt.AlignCenter
             text: qsTr("No search results")
         }
