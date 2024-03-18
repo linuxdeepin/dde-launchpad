@@ -11,6 +11,9 @@
 RecentlyInstalledProxyModel::RecentlyInstalledProxyModel(QObject *parent)
     : QSortFilterProxyModel(parent)
 {
+    setSourceModel(&AppsModel::instance());
+
+    sort(0, Qt::DescendingOrder);
 }
 
 bool RecentlyInstalledProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const
@@ -36,11 +39,4 @@ bool RecentlyInstalledProxyModel::lessThan(const QModelIndex &source_left, const
     int rightTime = source_right.data(AppItem::InstalledTimeRole).toLongLong();
 
     return leftTime < rightTime;
-}
-
-void RecentlyInstalledProxyModel::componentComplete()
-{
-    setSourceModel(&AppsModel::instance());
-
-    sort(0, Qt::DescendingOrder);
 }
