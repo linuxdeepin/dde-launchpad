@@ -20,10 +20,11 @@ FocusScope {
     property alias count: gridView.count
     property alias model: gridView.model
     property alias delegate: gridView.delegate
+    property alias interactive: gridView.interactive
     property alias gridViewFocus: gridView.focus
     property bool activeGridViewFocusOnTab: false
     property int columns: 4
-    property int rows: Math.ceil(count * 1.0 / columns)
+    property int rows: Math.min(Math.ceil(count * 1.0 / columns), Helper.windowed.maxViewRows)
     property int paddingColumns: Helper.frequentlyUsed.cellPaddingColumns
     property int paddingRows: Helper.frequentlyUsed.cellPaddingRows
     property real cellHeight: 74
@@ -57,6 +58,7 @@ FocusScope {
 
             anchors.centerIn: parent
 
+            ScrollBar.vertical: ScrollBar { }
             clip: true
             interactive: false
             highlightFollowsCurrentItem: true

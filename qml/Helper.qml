@@ -10,6 +10,7 @@ QtObject {
         property int topMargin: 11
         property int splitLineWidth: 1
         property int bottomBarMargins: 10
+        property int maxViewRows: 4
     }
     property QtObject frequentlyUsed :QtObject {
         property int rightMargin: 10

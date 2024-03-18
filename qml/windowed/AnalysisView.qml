@@ -14,7 +14,7 @@ import "."
 Control {
     id: control
 
-    property string searchingText
+    property bool searchingMode
 
     function positionViewAtBeginning() {
         frequentlyUsedView.positionViewAtBeginning()
@@ -33,12 +33,13 @@ Control {
         FrequentlyUsedView {
             id: frequentlyUsedView
             visible: count > 0
-            maxCount: recentlyInstalledView.visible ? 12 : 16
+            maxCount: recentlyInstalledView.visible ? 12 : !searchingMode ? 16 : -1
+            searchingMode: control.searchingMode
         }
 
         RecentlyInstalledView {
             id: recentlyInstalledView
-            visible: searchingText === "" && count > 0
+            visible: !searchingMode && count > 0
             Layout.topMargin: -(Helper.frequentlyUsed.cellPaddingRows / 2)
         }
 
@@ -50,7 +51,7 @@ Control {
 
     ColumnLayout {
         anchors.centerIn: parent
-        visible: searchingText && frequentlyUsedView.count <= 0
+        visible: searchingMode && frequentlyUsedView.count <= 0
         DciIcon {
             Layout.alignment: Qt.AlignCenter
             sourceSize {

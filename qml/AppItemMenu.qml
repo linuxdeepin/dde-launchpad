@@ -123,7 +123,7 @@ Loader {
 
     Connections {
         target: LauncherController
-        onVisibleChanged: function () {
+        function onVisibleChanged(visible) {
             if (!LauncherController.visible) {
                 item.close()
             }
