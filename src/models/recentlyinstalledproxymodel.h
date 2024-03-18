@@ -6,12 +6,10 @@
 
 #include <QtQml/qqml.h>
 #include <QSortFilterProxyModel>
-#include <QQmlParserStatus>
 
-class RecentlyInstalledProxyModel : public QSortFilterProxyModel, public QQmlParserStatus
+class RecentlyInstalledProxyModel : public QSortFilterProxyModel
 {
     Q_OBJECT
-    Q_INTERFACES(QQmlParserStatus)
     QML_NAMED_ELEMENT(RecentlyInstalledProxyModel)
     QML_SINGLETON
 public:
@@ -35,9 +33,4 @@ protected:
 
 private:
     explicit RecentlyInstalledProxyModel(QObject *parent = nullptr);
-
-    // QQmlParserStatus interface
-public:
-    void classBegin() override {}
-    void componentComplete() override;
 };

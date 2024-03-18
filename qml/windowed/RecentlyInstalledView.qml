@@ -37,7 +37,9 @@ Control {
             Layout.topMargin: 6
 
             model: CountLimitProxyModel {
-                sourceModel: RecentlyInstalledProxyModel
+                // TODO removing sourceModel's binding
+                property var holder: RecentlyInstalledProxyModel
+                sourceModel: holder
                 maxRowCount: 4
             }
 
