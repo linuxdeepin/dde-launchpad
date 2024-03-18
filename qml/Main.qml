@@ -144,6 +144,7 @@ QtObject {
     property var windowedFrame: ApplicationWindow {
         id: windowedFrameWindow
         objectName: "WindowedFrameApplicationWindow"
+        title: "Windowed Launchpad"
         visible: LauncherController.visible && (LauncherController.currentFrame === "WindowedFrame")
 
         width: windowedFrameSize.width
@@ -210,6 +211,7 @@ QtObject {
 
     property var fullscreenFrame: ApplicationWindow {
         objectName: "FullscreenFrameApplicationWindow"
+        title: "Fullscreen Launchpad"
         visible: LauncherController.visible && (LauncherController.currentFrame !== "WindowedFrame")
 
         width: Screen.width
