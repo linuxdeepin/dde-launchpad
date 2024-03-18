@@ -25,7 +25,7 @@ Control {
         spacing: 0
 
         Label {
-            text: qsTr("My FrequentlyUseds")
+            text: qsTr("Frequently Used")
             font: LauncherController.boldFont(DTK.fontManager.t6)
         }
 

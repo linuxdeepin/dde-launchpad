@@ -67,6 +67,18 @@ set(QML_FILES
     qml/FolderGridViewPopup.qml
 )
 
+# TODO: switch to the new qt_add_translations usage introduced in Qt 6.7
+#       see also: https://www.qt.io/blog/revisited-i18n-with-cmake
+set(QML_FILES_NEED_TRANSLATION
+    qml/AppItemMenu.qml
+    qml/Main.qml
+    qml/windowed/AnalysisView.qml
+    qml/windowed/BottomBar.qml
+    qml/windowed/FrequentlyUsedView.qml
+    qml/windowed/RecentlyInstalledView.qml
+    qml/windowed/SideBar.qml
+)
+
 set_source_files_properties(qml/Helper.qml
     PROPERTIES
         QT_QML_SINGLETON_TYPE TRUE
@@ -115,7 +127,7 @@ qt_add_qml_module(${BIN_NAME}
 
 qt_add_translations(${BIN_NAME}
     TS_FILES ${TRANSLATION_FILES}
-    SOURCES ${QML_FILES} ${SOURCE_FILES} src/models/appitem.cpp
+    SOURCES ${QML_FILES_NEED_TRANSLATION} ${SOURCE_FILES} src/models/appitem.cpp
     QM_FILES_OUTPUT_VARIABLE TRANSLATED_FILES
 )
 
