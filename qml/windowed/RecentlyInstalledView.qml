@@ -51,7 +51,7 @@ Control {
                     launchApp(desktopId)
                 }
                 onMenuTriggered: {
-                    showContextMenu(this, model, false, true, false)
+                    showContextMenu(this, model, false, false, true)
                 }
             }
             activeFocusOnTab: visible && gridViewFocus

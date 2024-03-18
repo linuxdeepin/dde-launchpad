@@ -66,7 +66,7 @@ QtObject {
             iconName: model.iconName,
             isFavoriteItem: isFavoriteItem,
             hideFavoriteMenu: hideFavoriteMenu,
-            hideDisplayScalingMenu: (Math.abs(Screen.devicePixelRatio - 1.0) < 0.0001)
+            hideDisplayScalingMenu: false
         });
         menu.closed.connect(menu.destroy)
         menu.popup();

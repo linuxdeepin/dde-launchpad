@@ -79,4 +79,12 @@ Control {
             root.menuTriggered()
         }
     }
+
+    Keys.onSpacePressed: {
+        root.itemClicked()
+    }
+
+    Keys.onReturnPressed: {
+        root.itemClicked()
+    }
 }

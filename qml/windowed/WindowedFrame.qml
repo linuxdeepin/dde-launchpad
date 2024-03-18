@@ -86,7 +86,7 @@ Item {
                 Layout.preferredWidth: 362
                 Layout.alignment: Qt.AlignRight | Qt.AlignTop
                 Layout.rightMargin: Helper.frequentlyUsed.rightMargin
-                searchingText: bottomBar.searchEdit.text
+                searchingMode: bottomBar.searchEdit.text !== ""
             }
         }
 
@@ -109,21 +109,21 @@ Item {
         id: folderGridViewPopup
         backgroundAlph: 0.8
 
-        onVisibleChanged: {
+        onVisibleChanged: function (visible) {
             if (!visible) {
                 baseLayer.opacity = 1
             }
         }
     }
 
-    Keys.onPressed: {
+    Keys.onPressed: function (event) {
         if (bottomBar.searchEdit.focus === false && !bottomBar.searchEdit.text && (event.text && !"\t ".includes(event.text))) {
             bottomBar.searchEdit.focus = true
             bottomBar.searchEdit.text = event.text
         }
     }
 
-    Keys.onEscapePressed: {
+    Keys.onEscapePressed: function (event) {
         if (!DebugHelper.avoidHideWindow) {
             LauncherController.visible = false;
         }

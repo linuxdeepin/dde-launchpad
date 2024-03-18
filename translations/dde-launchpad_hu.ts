@@ -4,7 +4,7 @@
 <context>
     <name>AnalysisView</name>
     <message>
-        <location filename="../qml/windowed/AnalysisView.qml" line="65"/>
+        <location filename="../qml/windowed/AnalysisView.qml" line="66"/>
         <source>No search results</source>
         <translation type="unfinished">Nincs keresési eredmény</translation>
     </message>
@@ -140,9 +140,14 @@
 <context>
     <name>FrequentlyUsedView</name>
     <message>
-        <location filename="../qml/windowed/FrequentlyUsedView.qml" line="28"/>
+        <location filename="../qml/windowed/FrequentlyUsedView.qml" line="29"/>
         <source>Frequently Used</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/windowed/FrequentlyUsedView.qml" line="29"/>
+        <source>All Apps</source>
+        <translation type="unfinished">Minden alkalmazás</translation>
     </message>
 </context>
 <context>
