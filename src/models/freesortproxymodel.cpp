@@ -29,6 +29,15 @@ bool FreeSortProxyModel::filterAcceptsRow(int source_row, const QModelIndex &sou
 
 bool FreeSortProxyModel::lessThan(const QModelIndex &source_left, const QModelIndex &source_right) const
 {
-    return source_left.data(ItemArrangementProxyModel::PageRole).toInt() <= source_right.data(ItemArrangementProxyModel::PageRole).toInt()
-    && source_left.data(ItemArrangementProxyModel::IndexInPageRole).toInt() < source_right.data(ItemArrangementProxyModel::IndexInPageRole).toInt();
+    int leftPage = source_left.data(ItemArrangementProxyModel::PageRole).toInt();
+    int rightPage = source_right.data(ItemArrangementProxyModel::PageRole).toInt();
+
+    int leftIndexInPage = source_left.data(ItemArrangementProxyModel::IndexInPageRole).toInt();
+    int rightIndexInPage = source_right.data(ItemArrangementProxyModel::IndexInPageRole).toInt();
+
+    if (leftPage == rightPage) {
+        return leftIndexInPage < rightIndexInPage;
+    } else {
+        return leftPage < rightPage;
+    }
 }
