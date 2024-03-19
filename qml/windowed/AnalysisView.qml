@@ -14,8 +14,6 @@ import "."
 Control {
     id: control
 
-    property bool searchingMode
-
     function positionViewAtBeginning() {
         frequentlyUsedView.positionViewAtBeginning()
         recentlyInstalledView.positionViewAtBeginning()
@@ -23,7 +21,7 @@ Control {
 
     // Binding SearchFilterProxyModel with RecentlyInstalledProxyModel
     Binding {
-        target: SearchFilterProxyModel; property: "recentlyInstalledModel"
+        target: FrequentlyUsedProxyModel; property: "recentlyInstalledModel"
         value: recentlyInstalledView.model
     }
 
@@ -33,37 +31,18 @@ Control {
         FrequentlyUsedView {
             id: frequentlyUsedView
             visible: count > 0
-            maxCount: recentlyInstalledView.visible ? 12 : !searchingMode ? 16 : -1
-            searchingMode: control.searchingMode
+            maxCount: recentlyInstalledView.visible ? 12 : 16
         }
 
         RecentlyInstalledView {
             id: recentlyInstalledView
-            visible: !searchingMode && count > 0
+            visible: count > 0
             Layout.topMargin: -(Helper.frequentlyUsed.cellPaddingRows / 2)
         }
 
         Item {
             Layout.preferredWidth: 1
             Layout.fillHeight: true
-        }
-    }
-
-    ColumnLayout {
-        anchors.centerIn: parent
-        visible: searchingMode && frequentlyUsedView.count <= 0
-        DciIcon {
-            Layout.alignment: Qt.AlignCenter
-            sourceSize {
-                width: 128
-                height: width
-            }
-            name: "search_no_result"
-        }
-
-        Label {
-            Layout.alignment: Qt.AlignCenter
-            text: qsTr("No search results")
         }
     }
 

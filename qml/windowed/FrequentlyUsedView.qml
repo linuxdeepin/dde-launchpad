@@ -16,7 +16,6 @@ Control {
 
     property int count: frequentlyUsedViewContainer.count
     property int maxCount: 16
-    property bool searchingMode
 
     function positionViewAtBeginning() {
         frequentlyUsedViewContainer.positionViewAtBeginning()
@@ -26,7 +25,7 @@ Control {
         spacing: 0
 
         Label {
-            text: searchingMode ? qsTr("All Apps") : qsTr("Frequently Used")
+            text: qsTr("Frequently Used")
             font: LauncherController.boldFont(DTK.fontManager.t6)
         }
 
@@ -37,10 +36,10 @@ Control {
             Layout.topMargin: 10
             Layout.preferredHeight: frequentlyUsedViewContainer.height
             Layout.preferredWidth: frequentlyUsedViewContainer.width
-            interactive: searchingMode
+            interactive: false
 
             model: CountLimitProxyModel {
-                sourceModel: SearchFilterProxyModel
+                sourceModel: FrequentlyUsedProxyModel
                 maxRowCount: maxCount
             }
 

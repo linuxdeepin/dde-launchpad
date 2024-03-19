@@ -22,6 +22,7 @@ FILES
     recentlyinstalledproxymodel.h
     countlimitproxymodel.h
     freesortproxymodel.h
+    frequentlyusedproxymodel.h
 )
 
 target_sources(launcher-models
@@ -37,6 +38,7 @@ PRIVATE
     recentlyinstalledproxymodel.cpp
     countlimitproxymodel.cpp
     freesortproxymodel.cpp
+    frequentlyusedproxymodel.cpp
 )
 
 target_link_libraries(launcher-models PRIVATE

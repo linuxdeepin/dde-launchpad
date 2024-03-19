@@ -4,9 +4,8 @@
 <context>
     <name>AnalysisView</name>
     <message>
-        <location filename="../qml/windowed/AnalysisView.qml" line="66"/>
         <source>No search results</source>
-        <translation>无搜索结果</translation>
+        <translation type="vanished">无搜索结果</translation>
     </message>
 </context>
 <context>
@@ -147,7 +146,7 @@
     <message>
         <location filename="../qml/windowed/FrequentlyUsedView.qml" line="29"/>
         <source>All Apps</source>
-        <translation>所有应用</translation>
+        <translation type="unfinished">所有应用</translation>
     </message>
 </context>
 <context>
@@ -228,17 +227,17 @@
         <translation>其他应用</translation>
     </message>
     <message>
-        <location filename="../qml/Main.qml" line="298"/>
+        <location filename="../qml/Main.qml" line="313"/>
         <source>Are you sure you want to uninstall %1?</source>
         <translation>您确定要卸载 %1 吗？</translation>
     </message>
     <message>
-        <location filename="../qml/Main.qml" line="310"/>
+        <location filename="../qml/Main.qml" line="325"/>
         <source>Cancel</source>
         <translation>取 消</translation>
     </message>
     <message>
-        <location filename="../qml/Main.qml" line="324"/>
+        <location filename="../qml/Main.qml" line="339"/>
         <source>Confirm</source>
         <translation>确 定</translation>
     </message>
@@ -249,6 +248,19 @@
         <location filename="../qml/windowed/RecentlyInstalledView.qml" line="27"/>
         <source>Recently Installed</source>
         <translation>最近安装</translation>
+    </message>
+</context>
+<context>
+    <name>SearchResultView</name>
+    <message>
+        <location filename="../qml/windowed/SearchResultView.qml" line="26"/>
+        <source>All Apps</source>
+        <translation type="unfinished">所有应用</translation>
+    </message>
+    <message>
+        <location filename="../qml/windowed/SearchResultView.qml" line="76"/>
+        <source>No search results</source>
+        <translation type="unfinished">无搜索结果</translation>
     </message>
 </context>
 <context>

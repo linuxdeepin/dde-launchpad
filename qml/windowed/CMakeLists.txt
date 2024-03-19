@@ -22,4 +22,5 @@ qt_add_qml_module(launcher-qml-windowed
         AnalysisView.qml
         RecentlyInstalledView.qml
         FrequentlyUsedView.qml
+        SearchResultView.qml
 )
