@@ -5,7 +5,7 @@
     <name>AnalysisView</name>
     <message>
         <source>No search results</source>
-        <translation type="obsolete">Sin resultados de búsqueda</translation>
+        <translation type="obsolete">No hay resultados</translation>
     </message>
 </context>
 <context>
@@ -128,12 +128,12 @@
     <message>
         <location filename="../qml/windowed/BottomBar.qml" line="26"/>
         <source>Power</source>
-        <translation type="unfinished">Apagar</translation>
+        <translation>Encender</translation>
     </message>
     <message>
         <location filename="../qml/windowed/BottomBar.qml" line="40"/>
         <source>Search</source>
-        <translation type="unfinished"></translation>
+        <translation>Buscar</translation>
     </message>
 </context>
 <context>
@@ -141,12 +141,12 @@
     <message>
         <location filename="../qml/windowed/FrequentlyUsedView.qml" line="29"/>
         <source>Frequently Used</source>
-        <translation type="unfinished"></translation>
+        <translation>Uso frecuente</translation>
     </message>
     <message>
         <location filename="../qml/windowed/FrequentlyUsedView.qml" line="29"/>
         <source>All Apps</source>
-        <translation type="unfinished">Todas las Aplicaciones</translation>
+        <translation>Todas las aplicaciones</translation>
     </message>
 </context>
 <context>
@@ -247,7 +247,7 @@
     <message>
         <location filename="../qml/windowed/RecentlyInstalledView.qml" line="27"/>
         <source>Recently Installed</source>
-        <translation type="unfinished"></translation>
+        <translation>Instalado recientemente</translation>
     </message>
 </context>
 <context>
