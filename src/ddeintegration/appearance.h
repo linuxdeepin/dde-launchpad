@@ -13,6 +13,7 @@ class Appearance : public QObject
     Q_OBJECT
 
     Q_PROPERTY(QString wallpaperBlurhash READ wallpaperBlurhash NOTIFY wallpaperBlurhashChanged)
+    Q_PROPERTY(qreal opacity READ opacity NOTIFY opacityChanged FINAL)
 
 public:
     explicit Appearance(QObject *parent = nullptr);
@@ -20,8 +21,13 @@ public:
 
     QString wallpaperBlurhash() const;
 
+    qreal opacity() const;
+    void setOpacity(qreal newOpacity);
+
 signals:
     void wallpaperBlurhashChanged();
+
+    void opacityChanged();
 
 private:
     void updateCurrentWallpaperBlurhash();
@@ -30,4 +36,5 @@ private:
 
     QString m_wallpaperBlurhash;
     QFutureWatcher<QString> m_blurhashWatcher;
+    qreal m_opacity = -1;
 };

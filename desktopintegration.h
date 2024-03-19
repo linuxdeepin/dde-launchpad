@@ -20,6 +20,7 @@ class DesktopIntegration : public QObject
     Q_PROPERTY(QRect dockGeometry READ dockGeometry NOTIFY dockGeometryChanged)
     Q_PROPERTY(uint dockSpacing READ dockSpacing NOTIFY dockSpacingChanged)
     Q_PROPERTY(QString backgroundUrl READ backgroundUrl NOTIFY backgroundUrlChanged)
+    Q_PROPERTY(qreal opacity READ opacity NOTIFY opacityChanged FINAL)
 
     QML_NAMED_ELEMENT(DesktopIntegration)
     QML_SINGLETON
@@ -63,12 +64,14 @@ public:
     Q_INVOKABLE bool isAutoStart(const QString & desktopId) const;
     Q_INVOKABLE void setAutoStart(const QString & desktopId, bool on = true);
     Q_INVOKABLE void uninstallApp(const QString & desktopId);
+    qreal opacity() const;
 
 signals:
     void dockPositionChanged();
     void dockGeometryChanged();
     void dockSpacingChanged();
     void backgroundUrlChanged();
+    void opacityChanged();
 
 private:
     explicit DesktopIntegration(QObject * parent = nullptr);
