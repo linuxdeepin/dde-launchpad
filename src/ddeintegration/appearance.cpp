@@ -24,6 +24,12 @@ Appearance::Appearance(QObject *parent)
     connect(m_dbusAppearanceIface, &Appearance1::Changed, this, [this](const QString & key, const QString &) {
         if (key == "allwallpaperuris") updateCurrentWallpaperBlurhash();
     });
+    if (m_dbusAppearanceIface->isValid()) {
+        connect(m_dbusAppearanceIface, &Appearance1::OpacityChanged, this, [this](double value) {
+            setOpacity(value);
+        });
+        setOpacity(m_dbusAppearanceIface->opacity());
+    }
 
     connect(&m_blurhashWatcher, &QFutureWatcher<QString>::finished, this, [this](){
         QString result(m_blurhashWatcher.result());
@@ -72,4 +78,17 @@ void Appearance::updateCurrentWallpaperBlurhash()
             m_blurhashWatcher.setFuture(blurhashFuture);
         }
     });
+}
+
+qreal Appearance::opacity() const
+{
+    return m_opacity;
+}
+
+void Appearance::setOpacity(qreal newOpacity)
+{
+    if (qFuzzyCompare(m_opacity, newOpacity))
+        return;
+    m_opacity = newOpacity;
+    emit opacityChanged();
 }

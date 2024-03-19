@@ -156,6 +156,21 @@ QtObject {
         StyledBehindWindowBlur {
             control: parent
             anchors.fill: parent
+            function blendColorAlpha(fallback) {
+                if (DesktopIntegration.opacity < 0)
+                    return fallback
+                return DesktopIntegration.opacity
+            }
+            blendColor: {
+                if (valid) {
+                    return DS.Style.control.selectColor(undefined,
+                                                Qt.rgba(235 / 255.0, 235 / 255.0, 235 / 255.0, blendColorAlpha(0.6)),
+                                                Qt.rgba(0, 0, 0, blendColorAlpha(85 / 255)))
+                }
+                return DS.Style.control.selectColor(undefined,
+                                            DS.Style.behindWindowBlur.lightNoBlurColor,
+                                            DS.Style.behindWindowBlur.darkNoBlurColor)
+            }
         }
         InsideBoxBorder {
             anchors.fill: parent

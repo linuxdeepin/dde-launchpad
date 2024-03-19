@@ -222,4 +222,10 @@ DesktopIntegration::DesktopIntegration(QObject *parent)
     connect(m_dockIntegration, &DdeDock::geometryChanged, this, &DesktopIntegration::dockGeometryChanged);
     connect(m_dockIntegration, &DdeDock::windowMarginChanged, this, &DesktopIntegration::dockSpacingChanged);
     connect(m_appearanceIntegration, &Appearance::wallpaperBlurhashChanged, this, &DesktopIntegration::backgroundUrlChanged);
+    connect(m_appearanceIntegration, &Appearance::opacityChanged, this, &DesktopIntegration::opacityChanged);
+}
+
+qreal DesktopIntegration::opacity() const
+{
+    return m_appearanceIntegration->opacity();
 }
