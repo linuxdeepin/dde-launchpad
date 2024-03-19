@@ -79,14 +79,19 @@ Item {
                 Layout.fillHeight: true
             }
 
-            AnalysisView {
-                id: analysisView
-
+            Loader {
+                Component { id: analysisViewCom
+                    AnalysisView { }
+                }
+                Component { id: searchResultViewCom
+                    SearchResultView { }
+                }
                 Layout.fillHeight: true
                 Layout.preferredWidth: 362
                 Layout.alignment: Qt.AlignRight | Qt.AlignTop
                 Layout.rightMargin: Helper.frequentlyUsed.rightMargin
-                searchingMode: bottomBar.searchEdit.text !== ""
+                sourceComponent: bottomBar.searchEdit.text === "" ? analysisViewCom
+                                                                  : searchResultViewCom
             }
         }
 

@@ -4,9 +4,8 @@
 <context>
     <name>AnalysisView</name>
     <message>
-        <location filename="../qml/windowed/AnalysisView.qml" line="66"/>
         <source>No search results</source>
-        <translation>無搜索結果</translation>
+        <translation type="vanished">無搜索結果</translation>
     </message>
 </context>
 <context>
@@ -213,17 +212,17 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/Main.qml" line="298"/>
+        <location filename="../qml/Main.qml" line="313"/>
         <source>Are you sure you want to uninstall %1?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/Main.qml" line="310"/>
+        <location filename="../qml/Main.qml" line="325"/>
         <source>Cancel</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/Main.qml" line="324"/>
+        <location filename="../qml/Main.qml" line="339"/>
         <source>Confirm</source>
         <translation></translation>
     </message>
@@ -234,6 +233,19 @@
         <location filename="../qml/windowed/RecentlyInstalledView.qml" line="27"/>
         <source>Recently Installed</source>
         <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>SearchResultView</name>
+    <message>
+        <location filename="../qml/windowed/SearchResultView.qml" line="26"/>
+        <source>All Apps</source>
+        <translation type="unfinished">所有應用</translation>
+    </message>
+    <message>
+        <location filename="../qml/windowed/SearchResultView.qml" line="76"/>
+        <source>No search results</source>
+        <translation type="unfinished">無搜索結果</translation>
     </message>
 </context>
 <context>

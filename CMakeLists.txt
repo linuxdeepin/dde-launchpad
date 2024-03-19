@@ -67,16 +67,13 @@ set(QML_FILES
     qml/FolderGridViewPopup.qml
 )
 
+get_target_property(WINDOWED_QML_FILES launcher-qml-windowed QT_QML_MODULE_QML_FILES)
 # TODO: switch to the new qt_add_translations usage introduced in Qt 6.7
 #       see also: https://www.qt.io/blog/revisited-i18n-with-cmake
 set(QML_FILES_NEED_TRANSLATION
     qml/AppItemMenu.qml
     qml/Main.qml
-    qml/windowed/AnalysisView.qml
-    qml/windowed/BottomBar.qml
-    qml/windowed/FrequentlyUsedView.qml
-    qml/windowed/RecentlyInstalledView.qml
-    qml/windowed/SideBar.qml
+    ${WINDOWED_QML_FILES}
 )
 
 set_source_files_properties(qml/Helper.qml
