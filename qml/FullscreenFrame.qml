@@ -95,13 +95,21 @@ Control {
                         if (!searchEdit.focus) { // reset keyboard focus when using mouse to flip page, but keep searchEdit focus
                             baseLayer.focus = true
                         }
-                        pages.decrementCurrentIndex()
+                        if (pages.currentIndex == 0 && pages.count > 1) {
+                            pages.setCurrentIndex(pages.count - 1)
+                        } else {
+                            pages.decrementCurrentIndex()
+                        }
                     } else if (toPage > 0) {
                         flipPageDelay.start()
                         if (!searchEdit.focus) { // reset keyboard focus when using mouse to flip page, but keep searchEdit focus
                             baseLayer.focus = true
                         }
-                        pages.incrementCurrentIndex()
+                        if (pages.currentIndex == pages.count - 1 && pages.count > 1) {
+                            pages.setCurrentIndex(0)
+                        } else {
+                            pages.incrementCurrentIndex()
+                        }
                     }
                 }
             }
@@ -275,6 +283,24 @@ Control {
                                 padding: 10
                                 interactive: false
                                 focus: true
+                                Keys.onLeftPressed: function(event) {
+                                    if (gridViewLoader.SwipeView.index === 0 && toplevelRepeater.pageCount > 1) {
+                                        // is the 1st page, go to last page
+                                        pages.setCurrentIndex(toplevelRepeater.pageCount - 1)
+                                    } else {
+                                        // not the 1st page, simply use SwipeView default behavior
+                                        event.accepted = false
+                                    }
+                                }
+                                Keys.onRightPressed: function(event) {
+                                    if (gridViewLoader.SwipeView.index === (toplevelRepeater.pageCount - 1) && toplevelRepeater.pageCount > 1) {
+                                        // is the last page, go to last page
+                                        pages.setCurrentIndex(0)
+                                    } else {
+                                        // not the last page, simply use SwipeView default behavior
+                                        event.accepted = false
+                                    }
+                                }
                                 opacity: folderGridViewPopup.visible ? 0.4 : 1
                                 activeGridViewFocusOnTab: gridViewLoader.SwipeView.isCurrentItem
                                 itemMove: Transition { NumberAnimation { properties: "x,y"; duration: 250 } }
