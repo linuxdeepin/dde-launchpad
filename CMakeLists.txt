@@ -58,6 +58,7 @@ set(QML_FILES
     qml/Helper.qml
     qml/Main.qml
     qml/FullscreenFrame.qml
+    qml/WrapView.qml
     qml/AppItemMenu.qml
     qml/GridViewContainer.qml
     qml/DrawerFolder.qml
