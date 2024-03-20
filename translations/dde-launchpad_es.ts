@@ -5,7 +5,7 @@
     <name>AnalysisView</name>
     <message>
         <source>No search results</source>
-        <translation type="obsolete">Sin resultados de búsqueda</translation>
+        <translation type="obsolete">No hay resultados</translation>
     </message>
 </context>
 <context>
@@ -128,12 +128,12 @@
     <message>
         <location filename="../qml/windowed/BottomBar.qml" line="26"/>
         <source>Power</source>
-        <translation type="unfinished">Apagar</translation>
+        <translation>Encender</translation>
     </message>
     <message>
         <location filename="../qml/windowed/BottomBar.qml" line="40"/>
         <source>Search</source>
-        <translation type="unfinished"></translation>
+        <translation>Buscar</translation>
     </message>
 </context>
 <context>
@@ -141,12 +141,12 @@
     <message>
         <location filename="../qml/windowed/FrequentlyUsedView.qml" line="29"/>
         <source>Frequently Used</source>
-        <translation type="unfinished"></translation>
+        <translation>Uso frecuente</translation>
     </message>
     <message>
         <location filename="../qml/windowed/FrequentlyUsedView.qml" line="29"/>
         <source>All Apps</source>
-        <translation type="unfinished">Todas las Aplicaciones</translation>
+        <translation>Todas las aplicaciones</translation>
     </message>
 </context>
 <context>
@@ -247,7 +247,7 @@
     <message>
         <location filename="../qml/windowed/RecentlyInstalledView.qml" line="27"/>
         <source>Recently Installed</source>
-        <translation type="unfinished"></translation>
+        <translation>Instalado recientemente</translation>
     </message>
 </context>
 <context>
@@ -268,42 +268,42 @@
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="39"/>
         <source>Free sorting</source>
-        <translation type="unfinished"></translation>
+        <translation>Ordenar libremente</translation>
     </message>
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="52"/>
         <source>Sort by category</source>
-        <translation type="unfinished"></translation>
+        <translation>Ordenar por categoría</translation>
     </message>
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="64"/>
         <source>Sort by name</source>
-        <translation type="unfinished"></translation>
+        <translation>Ordenar por nombre</translation>
     </message>
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="124"/>
         <source>Computer</source>
-        <translation type="unfinished"></translation>
+        <translation>Ordenador</translation>
     </message>
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="139"/>
         <source>Pictures</source>
-        <translation type="unfinished"></translation>
+        <translation>Imágenes</translation>
     </message>
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="154"/>
         <source>Documents</source>
-        <translation type="unfinished"></translation>
+        <translation>Documentos</translation>
     </message>
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="169"/>
         <source>Desktop</source>
-        <translation type="unfinished"></translation>
+        <translation>Escritorio</translation>
     </message>
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="184"/>
         <source>Control Center</source>
-        <translation type="unfinished">Centro de mando</translation>
+        <translation>Panel de control</translation>
     </message>
 </context>
 <context>
