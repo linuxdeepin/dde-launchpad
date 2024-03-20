@@ -121,7 +121,7 @@ void ItemsPage::insertItem(const QString id, int page, int pos)
     m_pages[page].insert(pos, id);
     if (m_pages[page].size() > m_maxItemCountPerPage) {
         QString last = m_pages[page].takeLast();
-        if (page == m_pages.size()) {
+        if (page + 1 == m_pages.size()) {
             appendPage({last});
         } else {
             insertItem(last, page + 1, 0);
