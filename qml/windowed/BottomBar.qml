@@ -40,7 +40,7 @@ Control {
             placeholder: qsTr("Search")
             onTextChanged: {
                 console.log(text)
-                SearchFilterProxyModel.setFilterRegularExpression(text)
+                SearchFilterProxyModel.setFilterRegularExpression(text.trim())
                 SearchFilterProxyModel.invalidate()
             }
 
