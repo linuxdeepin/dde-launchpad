@@ -390,7 +390,7 @@ Control {
             placeholder: qsTranslate("WindowedFrame", "Search")
             onTextChanged: {
 //            console.log(text)
-                SearchFilterProxyModel.setFilterRegularExpression(text)
+                SearchFilterProxyModel.setFilterRegularExpression(text.trim())
             }
         }
     }
