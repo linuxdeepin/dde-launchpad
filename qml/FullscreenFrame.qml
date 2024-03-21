@@ -401,7 +401,8 @@ Control {
                 placeholderIconSize: 256
                 model: delegateSearchResultModel
                 padding: 10
-                interactive: false
+                interactive: true
+                vScrollBar: ScrollBar { }
             }
         }
 
@@ -413,6 +414,17 @@ Control {
             implicitWidth: (parent.width / 2) > 280 ? 280 : (parent.width / 2)
 
             placeholder: qsTranslate("WindowedFrame", "Search")
+            KeyNavigation.up: searchEdit.text === "" ? pages : searchResultGridViewContainer
+            KeyNavigation.down: KeyNavigation.up
+            Keys.onReturnPressed: {
+                if (searchEdit.text === "") {
+                    pages.focus = true
+                    // TODO: ensure the first one is actually selected?
+                } else {
+                    searchResultGridViewContainer.focus = true
+                    // TODO: ensure the first one is actually selected?
+                }
+            }
             onTextChanged: {
 //            console.log(text)
                 SearchFilterProxyModel.setFilterRegularExpression(text.trim())
