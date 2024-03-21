@@ -10,19 +10,22 @@ import org.deepin.dtk.style 1.0 as DS
 
 import org.deepin.launchpad 1.0
 import org.deepin.launchpad.models 1.0
+import org.deepin.launchpad.windowed 1.0 as Windowed
 
 Popup {
-    //id: folderGridViewPopup
+    id: root
 
     property alias currentFolderId: folderLoader.currentFolderId
     property alias folderName: folderLoader.folderName
+    property var folderNameFont: DTK.fontManager.t3
+    readonly property bool isWindowedMode: LauncherController.currentFrame === "WindowedFrame"
 
     modal: true
     focus: true
     // visible: true
     closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutside
 
-    property var backgroundAlph: 0.15
+    property var backgroundAlpha: 0.15
     property int cs: 110 // * 5 / 4
     // anchors.centerIn: parent // seems dtkdeclarative's Popup doesn't have anchors.centerIn
 
@@ -56,10 +59,11 @@ Popup {
             }
 
             contentItem: ColumnLayout {
-                spacing: 5
+                spacing: isWindowedMode ? 0 : 5
                 anchors.fill: parent
 
                 Item {
+                    visible: !isWindowedMode
                     Layout.preferredHeight: 5
                 }
 
@@ -67,7 +71,7 @@ Popup {
                 TextInput {
                     Layout.fillWidth: true
 
-                    font: DTK.fontManager.t3
+                    font: folderNameFont
                     horizontalAlignment: Text.AlignHCenter
                     text: folderLoader.folderName
                     color: folderTextPalette.text
@@ -108,48 +112,86 @@ Popup {
                                         folderId: folderLoader.currentFolderId
                                     }
 
-                                    GridViewContainer {
-                                        id: folderGridViewContainer
+                                    //gridViewContainer
+                                    Loader {
+                                        id: gridViewContainerLoader
                                         anchors.fill: parent
-                                        rows: 3
-                                        columns: 4
-                                        model: folderProxyModel
-                                        padding: 10
-                                        interactive: false
-                                        focus: true
-                                        activeGridViewFocusOnTab: folderGridViewLoader.SwipeView.isCurrentItem
-                                        itemMove: Transition { NumberAnimation { properties: "x,y"; duration: 250 } }
-                                        delegate: DropArea {
-                                            width: folderGridViewContainer.cellWidth
-                                            height: folderGridViewContainer.cellHeight
-                                            onDropped: {
-                                                let dragId = drop.getDataAsString("text/x-dde-launcher-dnd-desktopId")
-                                                let op = 0
-                                                let sideOpPadding = width / 4
-                                                if (drop.x < sideOpPadding) {
-                                                    op = -1
-                                                } else if (drop.x > (width - sideOpPadding)) {
-                                                    op = 1
-                                                }
-                                                dropOnItem(dragId, model.desktopId, op)
+
+                                        sourceComponent: isWindowedMode ? listViewGridViewContainer : fullScreenGridViewContainer
+                                    }
+
+                                    Component {
+                                        id: fullScreenGridViewContainer
+                                        GridViewContainer {
+                                            id: folderGridViewContainer
+                                            anchors.fill: parent
+                                            rows: 3
+                                            columns: 4
+                                            model: folderProxyModel
+                                            padding: 10
+                                            interactive: false
+                                            focus: true
+                                            activeGridViewFocusOnTab: folderGridViewLoader.SwipeView.isCurrentItem
+                                            itemMove: Transition { NumberAnimation { properties: "x,y"; duration: 250 } }
+                                            delegate: DelegateDropArea {
+                                                width: folderGridViewContainer.cellWidth
+                                                height: folderGridViewContainer.cellHeight
+                                            }
+                                        }
+                                    }
+
+                                    Component {
+                                        id: listViewGridViewContainer
+                                        Windowed.GridViewContainer {
+                                            id: folderGridViewContainer
+                                            anchors.fill: parent
+                                            rows: 3
+                                            columns: 4
+                                            model: folderProxyModel
+                                            paddingRows: 6
+                                            paddingColumns: 2
+                                            interactive: false
+                                            focus: true
+                                            activeGridViewFocusOnTab: folderGridViewLoader.SwipeView.isCurrentItem
+                                            delegate: DelegateDropArea {
+                                                width: folderGridViewContainer.cellWidth
+                                                height: folderGridViewContainer.cellHeight
+                                            }
+                                        }
+                                    }
+
+                                    component DelegateDropArea: DropArea {
+                                        onDropped: function(drop) {
+                                            let dragId = drop.getDataAsString("text/x-dde-launcher-dnd-desktopId")
+                                            if (dragId === model.desktopId) {
+                                                return
                                             }
 
-                                            IconItemDelegate {
-                                                anchors.fill: parent
-                                                dndEnabled: true
-                                                Drag.mimeData: {
-                                                    "text/x-dde-launcher-dnd-desktopId": model.desktopId
-                                                }
-                                                visible: dndItem.currentlyDraggedId !== model.desktopId
-                                                iconSource: iconName
+                                            let op = 1 // DndPrepend = -1, DndJoin = 0, DndAppend = 1
+                                            let sideOpPadding = width / 2
+                                            if (drop.x < sideOpPadding) {
+                                                op = -1
+                                            }
 
-                                                padding: 5
-                                                onItemClicked: {
-                                                    launchApp(desktopId)
-                                                }
-                                                onMenuTriggered: {
-                                                    showContextMenu(this, model, false, false, true)
-                                                }
+                                            dropOnItem(dragId, model.desktopId, op)
+                                        }
+
+                                        IconItemDelegate {
+                                            anchors.fill: parent
+                                            dndEnabled: true
+                                            displayFont: isWindowedMode ? DTK.fontManager.t9 : DTK.fontManager.t8
+                                            Drag.mimeData: {
+                                                "text/x-dde-launcher-dnd-desktopId": model.desktopId
+                                            }
+                                            visible: dndItem.currentlyDraggedId !== model.desktopId
+                                            iconSource: iconName
+
+                                            padding: 5
+                                            onItemClicked: {
+                                                launchApp(desktopId)
+                                            }
+                                            onMenuTriggered: {
+                                                showContextMenu(this, model, false, false, true)
                                             }
                                         }
                                     }
@@ -163,7 +205,7 @@ Popup {
                     Layout.alignment: Qt.AlignHCenter
 
                     id: folderPageIndicator
-
+                    implicitHeight: isWindowedMode ? 13 : folderPageIndicator.implicitWidth
                     count: folderPagesView.count
                     currentIndex: folderPagesView.currentIndex
                     interactive: true
@@ -188,7 +230,7 @@ Popup {
         Rectangle {
             anchors.fill: parent
             radius: DS.Style.popup.radius
-            color: Qt.rgba(255.0, 255.0, 255.0, backgroundAlph)
+            color: Qt.rgba(255.0, 255.0, 255.0, backgroundAlpha)
         }
     }
 }
