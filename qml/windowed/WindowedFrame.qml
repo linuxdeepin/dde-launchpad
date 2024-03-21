@@ -72,26 +72,34 @@ Item {
                 color: this.palette.shadow
             }
 
-            AppList {
-                id: appList
-                Layout.fillWidth: true
-                Layout.preferredWidth: 220
-                Layout.fillHeight: true
-            }
+            RowLayout {
+                id: appArea
+                spacing: 0
+                AppList {
+                    id: appList
+                    Layout.fillWidth: true
+                    Layout.preferredWidth: 220
+                    Layout.fillHeight: true
+                }
 
-            Loader {
-                Component { id: analysisViewCom
-                    AnalysisView { }
+                Loader {
+                    Component {
+                        id: analysisViewCom
+                        AnalysisView {
+                        }
+                    }
+                    Component {
+                        id: searchResultViewCom
+                        SearchResultView {
+                        }
+                    }
+                    Layout.fillHeight: true
+                    Layout.preferredWidth: 362
+                    Layout.alignment: Qt.AlignRight | Qt.AlignTop
+                    Layout.rightMargin: Helper.frequentlyUsed.rightMargin
+                    sourceComponent: bottomBar.searchEdit.text === "" ? analysisViewCom
+                        : searchResultViewCom
                 }
-                Component { id: searchResultViewCom
-                    SearchResultView { }
-                }
-                Layout.fillHeight: true
-                Layout.preferredWidth: 362
-                Layout.alignment: Qt.AlignRight | Qt.AlignTop
-                Layout.rightMargin: Helper.frequentlyUsed.rightMargin
-                sourceComponent: bottomBar.searchEdit.text === "" ? analysisViewCom
-                                                                  : searchResultViewCom
             }
         }
 
@@ -112,11 +120,14 @@ Item {
 
     FolderGridViewPopup {
         id: folderGridViewPopup
-        backgroundAlph: 0.8
+        backgroundAlpha: 0.8
+        width: 370
+        height: 312
+        folderNameFont: LauncherController.boldFont(DTK.fontManager.t6)
 
         onVisibleChanged: function (visible) {
             if (!visible) {
-                baseLayer.opacity = 1
+                appArea.opacity = 1
             }
         }
     }
@@ -163,7 +174,7 @@ Item {
             folderGridViewPopup.folderName = folderName
             folderGridViewPopup.open()
 
-            baseLayer.opacity = 0.1
+            appArea.opacity = 0.1
         }
     }
 }

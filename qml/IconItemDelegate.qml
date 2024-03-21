@@ -14,9 +14,6 @@ import org.deepin.launchpad.models 1.0
 Control {
     id: root
 
-    width: 96
-    height: 96
-
     property var icons: undefined
     property int preferredIconSize: 48
     property string text: display.startsWith("internal/category/") ? getCategoryName(display.substring(18)) : display
@@ -24,6 +21,7 @@ Control {
     property string iconSource
     property bool dndEnabled: false
     readonly property bool isWindowedMode: LauncherController.currentFrame === "WindowedFrame"
+    property alias displayFont: iconItemLabel.font
 
     Accessible.name: iconItemLabel.text
 
@@ -54,7 +52,7 @@ Control {
             Item {
                 // actually just a top padding
                 width: root.width
-                height: root.height / 9
+                height: isWindowedMode ? 3 : root.height / 9
             }
 
             Rectangle {
@@ -69,7 +67,7 @@ Control {
             }
 
             Item {
-                width: isWindowedMode ? 48 : parent.height / 2
+                width: isWindowedMode ? 36 : parent.width / 2
                 height: width
                 anchors.horizontalCenter: parent.horizontalCenter
 
@@ -105,7 +103,7 @@ Control {
             // as topMargin
             Item {
                 width: 1
-                height: isWindowedMode ? 8 : 20
+                height: isWindowedMode ? 5 : 20
             }
 
             Label {
@@ -119,8 +117,7 @@ Control {
                 wrapMode: Text.WordWrap
                 elide: Text.ElideMiddle
                 maximumLineCount: 2
-                font: DTK.fontManager.t8
-            }    
+            }
         }
         background: ButtonPanel {
             button: parent
@@ -136,6 +133,7 @@ Control {
             }
         }
     }
+    background: DebugBounding { }
 
     TapHandler {
         acceptedButtons: Qt.RightButton

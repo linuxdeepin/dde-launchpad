@@ -53,8 +53,10 @@ void ItemArrangementProxyModel::commitDndOperation(const QString &dragId, const 
             ItemsPage * folder = folderById(std::get<0>(dropOrigPos));
             const int dragOrigPage = std::get<1>(dragOrigPos);
             const int dropOrigPage = std::get<1>(dropOrigPos);
-            // FIXME: drop position not correct
-            folder->moveItem(dragOrigPage, std::get<2>(dragOrigPos), dropOrigPage, std::get<2>(dropOrigPos));
+            const int fromIndex = std::get<2>(dragOrigPos);
+            const int toIndex = std::get<2>(dropOrigPos);
+            qDebug() << "dragOrigPage" << dragOrigPage << "dropOrigPage" << dropOrigPage << "fromIndex" << fromIndex << "toIndex" << toIndex << "op" << (op == DndOperation::DndAppend);
+            folder->moveItemPosition(dragOrigPage, fromIndex, dropOrigPage, toIndex, op == DndOperation::DndAppend);
         } else {
             // different folder item arrangement
             ItemsPage * srcFolder = folderById(std::get<0>(dragOrigPos));

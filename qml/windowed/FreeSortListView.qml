@@ -119,6 +119,8 @@ Item {
                         } else {
                             bg.visible = false
                         }
+
+                        bg.visible = Qt.binding(function() { return bg.ColorSelector.controlState === DTK.HoveredState})
                     }
                 }
 

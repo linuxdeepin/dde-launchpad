@@ -129,15 +129,18 @@ void ItemsPage::insertItem(const QString id, int page, int pos)
     }
 }
 
-// item will be moved to the index
-void ItemsPage::moveItem(int from_page, int from_index, int to_page, int to_index)
+void ItemsPage::moveItemPosition(int fromPage, int fromIndex, int toPage, int toIndex, bool appendToIndexItem)
 {
-    if (from_page == to_page) {
-        m_pages[from_page].move(from_index, to_index);
-    } else {
-        QString id = m_pages[from_page].takeAt(from_index);
-        insertItem(id, to_page, to_index);
+    if (fromPage == toPage && fromIndex > toIndex && appendToIndexItem) {
+        if (fromIndex == (toIndex+1)) {
+            // same page, append operate, do nothing
+            return;
+        }
+
+        toIndex += 1;
     }
+
+    moveItem(fromPage, fromIndex, toPage, toIndex);
 }
 
 bool ItemsPage::removeItem(const QString id, bool removePageIfPageIsEmpty)
@@ -209,4 +212,16 @@ QStringList ItemsPage::allArrangedItems() const
     }
 
     return result;
+}
+
+// item will be moved to the index
+void ItemsPage::moveItem(int fromPage, int fromIndex, int toPage, int toIndex)
+{
+    if (fromPage == toPage) {
+        auto toIndexItem = m_pages[fromPage].takeAt(fromIndex);
+        m_pages[fromPage].insert(toIndex, toIndexItem);
+    } else {
+        QString id = m_pages[fromPage].takeAt(fromIndex);
+        insertItem(id, toPage, toIndex);
+    }
 }
