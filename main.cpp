@@ -27,6 +27,8 @@ int main(int argc, char* argv[])
     // workaround for https://github.com/linuxdeepin/dtk/issues/115
     qputenv("D_POPUP_MODE", "embed");
 
+    DGuiApplicationHelper::setAttribute(DGuiApplicationHelper::DontSaveApplicationTheme, true);
+
     QGuiApplication app(argc, argv);
     Dtk::Core::DLogManager::registerConsoleAppender();
     Dtk::Core::DLogManager::registerFileAppender();
