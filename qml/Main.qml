@@ -121,14 +121,10 @@ QtObject {
                 }
             }
 
-            // Window mode: follow system theme
-            ApplicationHelper.setPaletteType(ApplicationHelper.UnknownType)
             windowedFrame.setGeometry(x, y, width, height)
             windowedFrame.requestActivate()
         } else {
 //            root.visibility = Window.FullScreen
-            // Fullscreen mode: always assume dark theme
-            ApplicationHelper.setPaletteType(ApplicationHelper.DarkType)
             if (DesktopIntegration.environmentVariable("DDE_CURRENT_COMPOSITOR") !== "TreeLand") {
                 fullscreenFrame.setGeometry(Screen.virtualX, Screen.virtualY, Screen.width, Screen.height)
             } else {
@@ -250,6 +246,8 @@ QtObject {
         DWindow.enabled: !DebugHelper.useRegularWindow
         DWindow.enableSystemResize: false
         DWindow.enableSystemMove: false
+        // Fullscreen mode: always assume dark theme
+        DWindow.themeType: ApplicationHelper.DarkType
 
         onVisibleChanged: {
             if (visible) {
