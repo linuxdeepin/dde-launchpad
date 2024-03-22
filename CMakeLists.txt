@@ -10,6 +10,8 @@ endif()
 
 project(dde-launchpad VERSION ${VERSION})
 
+option(BUILD_TEST "Whether or not to build the tests" OFF)
+
 set(CMAKE_CXX_STANDARD 17) # blurhash requires 17, otherwish we can still use 14
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
@@ -46,6 +48,11 @@ add_subdirectory(src/quick)
 add_subdirectory(src/ddeintegration)
 add_subdirectory(src/models)
 add_subdirectory(qml/windowed)
+
+if(BUILD_TEST)
+    enable_testing()
+    add_subdirectory(tests)
+endif()
 
 set(SOURCE_FILES
     main.cpp
