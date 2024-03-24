@@ -146,7 +146,7 @@
     <message>
         <location filename="../qml/windowed/FrequentlyUsedView.qml" line="29"/>
         <source>All Apps</source>
-        <translation type="unfinished">所有应用</translation>
+        <translation>所有应用</translation>
     </message>
 </context>
 <context>
@@ -255,12 +255,12 @@
     <message>
         <location filename="../qml/windowed/SearchResultView.qml" line="26"/>
         <source>All Apps</source>
-        <translation type="unfinished">所有应用</translation>
+        <translation>所有应用</translation>
     </message>
     <message>
         <location filename="../qml/windowed/SearchResultView.qml" line="76"/>
         <source>No search results</source>
-        <translation type="unfinished">无搜索结果</translation>
+        <translation>无搜索结果</translation>
     </message>
 </context>
 <context>
