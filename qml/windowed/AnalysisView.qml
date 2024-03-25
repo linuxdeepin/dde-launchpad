@@ -14,6 +14,10 @@ import "."
 Control {
     id: control
 
+    onFocusChanged: () => {
+        frequentlyUsedView.focus = true
+    }
+
     function positionViewAtBeginning() {
         frequentlyUsedView.positionViewAtBeginning()
         recentlyInstalledView.positionViewAtBeginning()
