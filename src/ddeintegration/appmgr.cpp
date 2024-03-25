@@ -7,6 +7,7 @@
 #include "AppManager1Application.h"
 #include "AppManager1ApplicationObjectManager.h"
 
+#include <DConfig>
 #include <DExpected>
 DCORE_USE_NAMESPACE
 
@@ -64,6 +65,7 @@ static AppMgr::AppItem *parseDBus2AppItem(const ObjectInterfaceMap &source)
     if (auto value = parseDBusField<QString>(appInfo, u8"ID")) {
         item = new AppMgr::AppItem();
         item->id = value.value() + ".desktop";
+        item->appId = value.value();
     }
 
     if (!item) {
@@ -94,10 +96,6 @@ static AppMgr::AppItem *parseDBus2AppItem(const ObjectInterfaceMap &source)
 
     if (auto value = parseDBusField<qint64>(appInfo, u8"LastLaunchedTime")) {
         item->lastLaunchedTime = value.value();
-    }
-
-    if (auto value = parseDBusField<qint64>(appInfo, u8"LaunchedTimes")) {
-        item->launchedTimes = value.value();
     }
 
     return item;
@@ -153,8 +151,18 @@ bool AppMgr::launchApp(const QString &desktopId)
     AppManager1Application * amAppIface = createAM1AppIface(desktopId);
     if (!amAppIface) return false;
 
-    amAppIface->Launch(QString(), QStringList{}, QVariantMap());
-
+    const auto path = amAppIface->path();
+    QProcess process;
+    process.setProcessChannelMode(QProcess::MergedChannels);
+    process.start("dde-am", {"--by-user", path});
+    if (!process.waitForFinished()) {
+        qWarning() << "Failed to launch the desktopId:" << desktopId << process.errorString();
+        return false;
+    } else if (process.exitCode() != 0) {
+        qWarning() << "Failed to launch the desktopId:" << desktopId << process.readAll();
+        return false;
+    }
+    qDebug() << "Launch the desktopId" << desktopId;
     return true;
 }
 
@@ -294,11 +302,25 @@ void AppMgr::watchingAppItemPropertyChanged(const QString &key, AppMgr::AppItem 
         appItem->lastLaunchedTime = value;
         Q_EMIT itemDataChanged(appItem->id);
     });
-    connect(amAppIface, &AppManager1Application::LaunchedTimesChanged, this, [this, appItem](const qint64 & value) {
-        qDebug() << "LaunchedTimesChanged by AM, desktopId" << appItem->id;
-        appItem->launchedTimes = value;
-        Q_EMIT itemDataChanged(appItem->id);
-    });
+}
+
+void AppMgr::updateAppsLaunchedTimes(const QVariantMap &appsLaunchedTimes)
+{
+    // need to update times for removed and updated.
+    const auto &appItems = m_appItems.values();
+    for (const auto item : std::as_const(appItems)) {
+        auto iter = appsLaunchedTimes.find(item->appId);
+        qint64 times = 0;
+        if (iter != appsLaunchedTimes.cend())
+            times = iter->toLongLong();
+
+        // including reset and increase times.
+        if (item->launchedTimes != times) {
+            qDebug() << "LaunchedTimesChanged by DConfig, desktopId" << item->id;
+            item->launchedTimes = times;
+            Q_EMIT itemDataChanged(item->id);
+        }
+    }
 }
 
 void AppMgr::initObjectManager()
@@ -327,6 +349,23 @@ void AppMgr::initObjectManager()
             });
 
     fetchAppItems();
+
+    DConfig *config = DConfig::create("org.deepin.dde.application-manager", "org.deepin.dde.am", "", this);
+    if (!config->isValid()) {
+        qWarning() << "DConfig is invalid when getting launched times.";
+    } else {
+        static const QString AppsLaunchedTimes(u8"appsLaunchedTimes");
+        const auto &value = config->value(AppsLaunchedTimes).toMap();
+        updateAppsLaunchedTimes(value);
+        QObject::connect(config, &DConfig::valueChanged, this, [this, config](const QString &key) {
+            if (key != AppsLaunchedTimes)
+                return;
+
+            qDebug() << "appsLaunchedTimes of DConfig Changed.";
+            const auto &value = config->value(AppsLaunchedTimes).toMap();
+            updateAppsLaunchedTimes(value);
+        });
+    }
 }
 
 void AppMgr::fetchAppItems()
