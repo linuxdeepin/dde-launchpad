@@ -14,6 +14,10 @@ import "."
 Control {
     id: control
 
+    onFocusChanged: () => {
+        searchResultViewContainer.focus = true
+    }
+
     function positionViewAtBeginning() {
         searchResultViewContainer.positionViewAtBeginning()
     }

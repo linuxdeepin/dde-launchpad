@@ -14,6 +14,10 @@ import "."
 Control {
     id: control
 
+    onFocusChanged: () => {
+        frequentlyUsedViewContainer.focus = true
+    }
+
     property int count: frequentlyUsedViewContainer.count
     property int maxCount: 16
 

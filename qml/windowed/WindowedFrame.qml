@@ -83,6 +83,7 @@ Item {
                 }
 
                 Loader {
+                    id: appGridLoader
                     Component {
                         id: analysisViewCom
                         AnalysisView {
@@ -136,6 +137,15 @@ Item {
         if (bottomBar.searchEdit.focus === false && !bottomBar.searchEdit.text && (event.text && !"\t ".includes(event.text))) {
             bottomBar.searchEdit.focus = true
             bottomBar.searchEdit.text = event.text
+        } else if (bottomBar.searchEdit.focus === true) {
+            // the SearchEdit will catch the key event first, and events that it won't accept will then got here
+            switch (event.key) {
+            case Qt.Key_Up:
+            case Qt.Key_Down:
+            case Qt.Key_Enter:
+            case Qt.Key_Return:
+                appGridLoader.item.forceActiveFocus()
+            }
         }
     }
 
