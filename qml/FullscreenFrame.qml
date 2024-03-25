@@ -57,6 +57,22 @@ Control {
     }
     // ----------- Drag and Drop related functions  END  -----------
 
+    function decrementPageIndex() {
+        if (pages.currentIndex === 0 && pages.count > 1) {
+            pages.setCurrentIndex(pages.count - 1)
+        } else {
+            pages.decrementCurrentIndex()
+        }
+    }
+
+    function incrementPageIndex() {
+        if (pages.currentIndex === pages.count - 1 && pages.count > 1) {
+            pages.setCurrentIndex(0)
+        } else {
+            pages.incrementCurrentIndex()
+        }
+    }
+
     Timer {
         id: flipPageDelay
         interval: 400
@@ -94,21 +110,13 @@ Control {
                         if (!searchEdit.focus) { // reset keyboard focus when using mouse to flip page, but keep searchEdit focus
                             baseLayer.focus = true
                         }
-                        if (pages.currentIndex == 0 && pages.count > 1) {
-                            pages.setCurrentIndex(pages.count - 1)
-                        } else {
-                            pages.decrementCurrentIndex()
-                        }
+                        decrementPageIndex()
                     } else if (toPage > 0) {
                         flipPageDelay.start()
                         if (!searchEdit.focus) { // reset keyboard focus when using mouse to flip page, but keep searchEdit focus
                             baseLayer.focus = true
                         }
-                        if (pages.currentIndex == pages.count - 1 && pages.count > 1) {
-                            pages.setCurrentIndex(0)
-                        } else {
-                            pages.incrementCurrentIndex()
-                        }
+                        incrementPageIndex()
                     }
                 }
             }
@@ -182,17 +190,22 @@ Control {
                 property int pageIntent: 0
                 property int horizontalPadding: searchResultGridViewContainer.cellWidth
                 anchors.fill: parent
+
+                function checkDragMove() {
+                    if (drag.x < horizontalPadding) {
+                        pageIntent = -1
+                    } else if (drag.x > (width - searchResultGridViewContainer.cellWidth)) {
+                        pageIntent = 1
+                    }
+                }
+
                 onEntered: {
                     if (folderGridViewPopup.opened) {
                         folderGridViewPopup.close()
                     }
                 }
                 onPositionChanged: {
-                    if (drag.x < horizontalPadding) {
-                        pageIntent = -1
-                    } else if (drag.x > (width - searchResultGridViewContainer.cellWidth)) {
-                        pageIntent = 1
-                    }
+                    checkDragMove()
                 }
                 onDropped: {
                     if (pageIntent === 0) {
@@ -206,7 +219,7 @@ Control {
                     pageIntent = 0
                 }
                 onPageIntentChanged: {
-                    if (pageIntent != 0) {
+                    if (pageIntent !== 0) {
                         dndMovePageTimer.restart()
                     } else {
                         dndMovePageTimer.stop()
@@ -218,10 +231,13 @@ Control {
                     interval: 1000
                     onTriggered: {
                         if (parent.pageIntent > 0) {
-                            pages.incrementCurrentIndex()
+                            incrementPageIndex()
                         } else if (parent.pageIntent < 0) {
-                            pages.decrementCurrentIndex()
+                            decrementPageIndex()
                         }
+
+                        parent.pageIntent = 0
+                        parent.checkDragMove()
                     }
                 }
             }
