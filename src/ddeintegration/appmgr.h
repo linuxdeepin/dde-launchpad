@@ -7,7 +7,11 @@
 #include <QMap>
 #include <QObject>
 #include <QPointer>
+#include <dtkcore_global.h>
 
+DCORE_BEGIN_NAMESPACE
+class DConfig;
+DCORE_END_NAMESPACE
 class __AppManager1Application;
 class __AppManager1ApplicationObjectManager;
 class AppMgr : public QObject
@@ -27,6 +31,7 @@ public:
         qint64 installedTime = 0;
         qint64 lastLaunchedTime = 0;
         qint64 launchedTimes = 0;
+        QString appId;
     };
 
     static AppMgr *instance();
@@ -54,6 +59,7 @@ private:
     void watchingAppItemAdded(const QString &key, AppMgr::AppItem *appItem);
     void watchingAppItemRemoved(const QString &key);
     void watchingAppItemPropertyChanged(const QString &key, AppMgr::AppItem *appItem);
+    void updateAppsLaunchedTimes(const QVariantMap &appsLaunchedTimes);
 
 private:
     __AppManager1ApplicationObjectManager *m_objectManager;
