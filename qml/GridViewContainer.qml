@@ -110,12 +110,17 @@ FocusScope {
             visible: placeholderLabel.text !== "" && model.count <= 0
             anchors.centerIn: parent
 
-            DciIcon {
-                id: placeholderIcon
-                visible: name !== ""
-                sourceSize {
-                    width: 128
-                    height: width
+            Control {
+                id: control
+                DciIcon {
+                    id: placeholderIcon
+                    visible: name !== ""
+                    sourceSize {
+                        width: 128
+                        height: width
+                    }
+                    palette: DTK.makeIconPalette(control.palette)
+                    theme: DTK.toColorType(control.palette.window)
                 }
             }
 

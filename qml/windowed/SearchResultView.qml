@@ -73,6 +73,8 @@ Control {
                 height: width
             }
             name: "search_no_result"
+            palette: DTK.makeIconPalette(control.palette)
+            theme: DTK.toColorType(control.palette.window)
         }
 
         Label {

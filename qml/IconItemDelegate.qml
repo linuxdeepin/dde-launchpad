@@ -96,6 +96,8 @@ Control {
                         anchors.fill: parent
                         name: iconSource
                         sourceSize: Qt.size(parent.width, parent.height)
+                        palette: DTK.makeIconPalette(root.palette)
+                        theme: DTK.toColorType(root.palette.window)
                     }
                 }
             }
