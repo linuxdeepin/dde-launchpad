@@ -39,6 +39,8 @@ Control {
                 anchors.horizontalCenter: parent.horizontalCenter
                 name: iconSource
                 sourceSize: Qt.size(36, 36)
+                palette: DTK.makeIconPalette(root.palette)
+                theme: DTK.toColorType(root.palette.window)
             }
 
             // as topMargin

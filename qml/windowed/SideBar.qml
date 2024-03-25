@@ -91,6 +91,8 @@ ColumnLayout {
                     width: parent.width
                     height: parent.height / 3 * 2
                     name: isFreeSort ? categorizedIcon("freeSort") : categorizedIcon(CategorizedSortProxyModel.categoryType)
+                    palette: D.DTK.makeIconPalette(title.palette)
+                    theme: D.DTK.toColorType(title.palette.window)
                 }
 
                 Item {
@@ -102,6 +104,8 @@ ColumnLayout {
                     rotation: 270
                     width: parent.width
                     height: parent.height / 3 * 1
+                    palette: D.DTK.makeIconPalette(title.palette)
+                    theme: D.DTK.toColorType(title.palette.window)
                 }
             }
         }
