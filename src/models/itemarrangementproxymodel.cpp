@@ -182,6 +182,12 @@ ItemArrangementProxyModel::ItemArrangementProxyModel(QObject *parent)
 {
     m_folderModel.setItemRoleNames(AppsModel::instance().roleNames());
 
+    const QString arrangementSettingBasePath(QStandardPaths::writableLocation(QStandardPaths::AppConfigLocation));
+    const QString arrangementSettingPath(QDir(arrangementSettingBasePath).absoluteFilePath("item-arrangement.ini"));
+    if (!QFile::exists(arrangementSettingPath)) {
+        createDefaultFolder();
+    }
+
     loadItemArrangementFromUserData();
     addSourceModel(&AppsModel::instance());
 
@@ -368,4 +374,49 @@ ItemsPage *ItemArrangementProxyModel::folderById(int id)
 QStringList ItemArrangementProxyModel::allArrangedItems() const
 {
     return m_topLevel->allArrangedItems();
+}
+
+void ItemArrangementProxyModel::createDefaultFolder()
+{
+    QString defaultFolderSettingPath = QStandardPaths::locate(QStandardPaths::AppDataLocation, "default-folder.ini");
+    if (!QFile::exists(defaultFolderSettingPath)) {
+        qWarning() << "Default folder setting not found:" << defaultFolderSettingPath;
+        return;
+    }
+
+    QSet<QString> appDesktopIdSet;
+    int appsCount = AppsModel::instance().rowCount();
+    for (int i = 0; i < appsCount; i++) {
+        QString desktopId(AppsModel::instance().data(AppsModel::instance().index(i, 0), AppItem::DesktopIdRole).toString());
+        appDesktopIdSet.insert(desktopId);
+    }
+
+    QSettings folderSettings(defaultFolderSettingPath, QSettings::IniFormat);
+    QStringList folders = folderSettings.childGroups();
+
+    foreach (const QString &folder, folders) {
+        folderSettings.beginGroup(folder);
+
+        // 读取名称和项目列表
+        QString name = folderSettings.value("name").toString();
+        QStringList items = folderSettings.value("items").toStringList();
+
+        folderSettings.endGroup();
+
+        // 去除在items但不在appDesktopIdList中的项目
+        items.erase(std::remove_if(items.begin(), items.end(), [&appDesktopIdSet](const QString& item) {
+            return !appDesktopIdSet.contains(item);
+        }), items.end());
+
+        if (items.isEmpty()) {
+            continue;
+        }
+
+        QString dstFolderId = findAvailableFolderId();
+        ItemsPage * dstFolder = createFolder(dstFolderId);
+        dstFolder->appendPage(items);
+        dstFolder->setName(name);
+
+        m_topLevel->appendItem(dstFolderId);
+    }
 }

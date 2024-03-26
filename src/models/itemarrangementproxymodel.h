@@ -73,6 +73,7 @@ private:
     void removeFolder(const QString & idNumber);
     ItemsPage * folderById(int id);
     QStringList allArrangedItems() const;
+    void createDefaultFolder();
 
     // <folder-id, items-arrangement-data> folder-id: internal/folder/<id number>
     ItemsPage * m_topLevel;

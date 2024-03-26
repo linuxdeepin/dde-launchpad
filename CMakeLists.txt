@@ -161,3 +161,4 @@ install(
     FILES dist/org.deepin.dde.launchpad.appdata.xml
     DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/metainfo"
 )
+install(FILES files/default-folder.ini DESTINATION ${CMAKE_INSTALL_DATADIR}/deepin/${BIN_NAME})
