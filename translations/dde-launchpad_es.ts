@@ -255,12 +255,12 @@
     <message>
         <location filename="../qml/windowed/SearchResultView.qml" line="26"/>
         <source>All Apps</source>
-        <translation type="unfinished">Todas las Aplicaciones</translation>
+        <translation>Todas las aplicaciones</translation>
     </message>
     <message>
         <location filename="../qml/windowed/SearchResultView.qml" line="76"/>
         <source>No search results</source>
-        <translation type="unfinished">Sin resultados de búsqueda</translation>
+        <translation>No hay resultados</translation>
     </message>
 </context>
 <context>
