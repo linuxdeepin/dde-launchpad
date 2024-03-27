@@ -245,6 +245,7 @@ Control {
             SwipeView {
                 id: pages
 
+                property int previousIndex: -1
                 anchors.fill: parent
                 visible: searchEdit.text === ""
 
@@ -276,6 +277,8 @@ Control {
                         id: gridViewLoader
                         objectName: "Main GridView Loader"
 
+                        property int viewIndex: index
+
                         sourceComponent: Rectangle {
                             color: "transparent"
 
@@ -298,6 +301,20 @@ Control {
                                 padding: 10
                                 interactive: false
                                 focus: true
+                                function checkPageSwitchState() {
+                                    if (gridViewLoader.viewIndex !== pages.currentIndex)
+                                        return
+                                    if (pages.previousIndex === -1) {
+                                        pages.previousIndex = pages.currentIndex
+                                        return
+                                    }
+                                    if (pages.currentIndex + 1 === pages.previousIndex || (pages.previousIndex === 0 && pages.currentIndex === pages.count - 1))
+                                        gridViewContainer.setPreviousPageSwitch(true)
+                                    else
+                                        gridViewContainer.setPreviousPageSwitch(false)
+                                    pages.previousIndex = pages.currentIndex
+                                }
+
                                 Keys.onLeftPressed: function(event) {
                                     if (gridViewLoader.SwipeView.index === 0 && toplevelRepeater.pageCount > 1) {
                                         // is the 1st page, go to last page
@@ -367,6 +384,15 @@ Control {
                                             showContextMenu(this, model, folderIcons, false, true)
                                         }
                                     }
+                                }
+                                Connections {
+                                    target: pages
+                                    function onCurrentIndexChanged() {
+                                        gridViewContainer.checkPageSwitchState()
+                                    }
+                                }
+                                Component.onCompleted: {
+                                    gridViewContainer.checkPageSwitchState()
                                 }
                             }
                         }
