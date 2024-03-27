@@ -32,6 +32,13 @@ FocusScope {
 
     readonly property alias gridViewWidth: gridView.width
 
+    function setPreviousPageSwitch(state) {
+        if (state)
+            gridView.currentIndex = gridView.count - 1
+        else
+            gridView.currentIndex = 0
+    }
+
     function positionViewAtBeginning() {
         gridView.positionViewAtBeginning()
     }
