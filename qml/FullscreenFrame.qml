@@ -413,7 +413,7 @@ Control {
                 columns: 7
                 paddingColumns: 1
                 placeholderIcon: "search_no_result"
-                placeholderText: qsTranslate("WindowedFrame", "No search results")
+                placeholderText: qsTranslate("SearchResultView", "No search results")
                 placeholderIconSize: 256
                 model: delegateSearchResultModel
                 padding: 10
