@@ -134,7 +134,7 @@ Item {
     }
 
     Keys.onPressed: function (event) {
-        if (bottomBar.searchEdit.focus === false && !bottomBar.searchEdit.text && (event.text && !"\t ".includes(event.text))) {
+        if (bottomBar.searchEdit.focus === false && !bottomBar.searchEdit.text && (event.text && !"\t\0 ".includes(event.text))) {
             bottomBar.searchEdit.focus = true
             bottomBar.searchEdit.text = event.text
         } else if (bottomBar.searchEdit.focus === true) {
