@@ -95,7 +95,7 @@ Control {
                     }
                 }
                 // TODO: this might not be the correct way to handle wheel
-                onWheel: {
+                onWheel: function(wheel) {
                     if (flipPageDelay.running) return
                     let xDelta = wheel.angleDelta.x / 8
                     let yDelta = wheel.angleDelta.y / 8
@@ -103,6 +103,7 @@ Control {
                     if (yDelta !== 0) {
                         toPage = (yDelta > 0) ? -1 : 1
                     } else if (xDelta !== 0) {
+                        // todo: handle natural scrolling
                         toPage = (xDelta > 0) ? 1 : -1
                     }
                     if (toPage < 0) {
@@ -249,6 +250,7 @@ Control {
                 visible: searchEdit.text === ""
 
                 currentIndex: indicator.currentIndex
+                interactive: false
 
                 // To ensure toplevelRepeater's model (page count) updated correctly
                 // Caution! Don't put it directly under a Repeater{}, that will prevent Connections from working
@@ -454,7 +456,7 @@ Control {
     }
 
     Keys.onPressed: {
-        if (searchEdit.focus === false && !searchEdit.text && (event.text && !"\t ".includes(event.text))) {
+        if (searchEdit.focus === false && !searchEdit.text && event.text) {
             searchEdit.focus = true
             searchEdit.text = event.text
         }
