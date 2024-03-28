@@ -484,9 +484,18 @@ Control {
     }
 
     Keys.onPressed: {
-        if (searchEdit.focus === false && !searchEdit.text && (event.text && !"\t\0 ".includes(event.text))) {
+        if (searchEdit.focus === false && !searchEdit.text && (event.text && !"\t\r\0 ".includes(event.text))) {
             searchEdit.focus = true
             searchEdit.text = event.text
+        } else if (baseLayer.focus === true) {
+            // the SearchEdit will catch the key event first, and events that it won't accept will then got here
+            switch (event.key) {
+            case Qt.Key_Up:
+            case Qt.Key_Down:
+            case Qt.Key_Enter:
+            case Qt.Key_Return:
+                pages.focus = true
+            }
         }
     }
 
