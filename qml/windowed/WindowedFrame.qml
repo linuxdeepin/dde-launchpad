@@ -20,6 +20,13 @@ Item {
     visible: true
     focus: true
 
+    MouseArea {
+        anchors.fill: parent
+        onClicked: () => {
+            baseLayer.focus = true
+        }
+    }
+
     // ----------- Drag and Drop related functions START -----------
     Label {
         property string currentlyDraggedId
