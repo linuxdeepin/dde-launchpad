@@ -42,6 +42,16 @@ QString CategorizedSortProxyModel::sortRoleName() const
 
 QList<QString> CategorizedSortProxyModel::alphabetarySections() const
 {
+    // If ‘&’ or ‘#’ appears, put it at the front. If they appear at the same time, ‘&’ will put it at the front.
+    auto customLessThan = [](const QString &s1, const QString &s2) {
+        if (s1 == "&" && s2 == "#")
+            return true;
+        else if (s1 == "#" && s2 == "&")
+            return false;
+        else
+            return s1 < s2;
+    };
+
     QSet<QString> charset;
     for (int i = 0; i < rowCount(); i++) {
         QString transliterated = data(index(i, 0), AppsModel::TransliteratedRole).toString();
@@ -50,7 +60,10 @@ QList<QString> CategorizedSortProxyModel::alphabetarySections() const
         }
     }
 
-    return charset.values();
+    QList<QString> values = charset.values();
+    std::sort(values.begin(), values.end(), customLessThan);
+
+    return values;
 }
 
 QList<int> CategorizedSortProxyModel::DDECategorySections() const

@@ -4,59 +4,80 @@
 
 import QtQuick 2.15
 import QtQml.Models 2.15
-import QtQuick.Layouts 1.15
-import QtQuick.Controls 2.15
-import QtQuick.Window 2.15
 import org.deepin.dtk 1.0
+import org.deepin.dtk.private 1.0
 
-import org.deepin.launchpad 1.0
-import org.deepin.launchpad.models 1.0
+import org.deepin.launchpad.windowed 1.0 as Windowed
 
 Popup {
-    id: gridPopup
-    width: 180
+    id: root
     modal: true
     dim: true
+    padding: 0
+    focus: true
     closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutside
 
     signal categoryClicked(string character)
 
-    property var existingSections: []
+    property alias existingSections: alphabetCategoryDelegateModel.model
+    property int columns: 5
+
+    readonly property int cellWidth: 24
+    readonly property int cellHeight: 24
+    readonly property int paddingColumns: 6
+    readonly property int paddingRows: 16
+
+    width: alphabetCategoryContainer.width + 20
+    height: alphabetCategoryContainer.height + 20
 
     DelegateModel {
         id: alphabetCategoryDelegateModel
-        model: [
-            '&', '#', 'A', 'B',
-            'C', 'D', 'E', 'F',
-            'G', 'H', 'I', 'J',
-            'K', 'L', 'M', 'N',
-            'O', 'P', 'Q', 'R',
-            'S', 'T', 'U', 'V',
-            'W', 'X', 'Y', 'Z',
-        ]
+
         delegate: ToolButton {
-            width: alphabetCategoryContainer.cellWidth
-            height: alphabetCategoryContainer.cellHeight
+            width: alphabetCategoryContainer.cellWidth + paddingColumns
+            height: alphabetCategoryContainer.cellHeight + paddingRows
             text: modelData
             focusPolicy: Qt.NoFocus
-            enabled: gridPopup.existingSections.includes(modelData)
             onClicked: {
                 categoryClicked(modelData)
+            }
+
+            background: ButtonPanel {
+                button: parent
+                anchors.centerIn: parent
+                width: root.cellWidth
+                height: root.cellHeight
+                outsideBorderColor: null
+                radius: width / 2
             }
         }
     }
 
-    GridViewContainer {
+    Windowed.GridViewContainer {
         id: alphabetCategoryContainer
 
-        width: parent.width
-        height: parent.height
+        anchors.centerIn: parent
 
-        anchors.fill: parent
-        activeGridViewFocusOnTab: true
         model: alphabetCategoryDelegateModel
-        rows: 6
-        columns: 5
-        padding: 2
+        columns: root.columns
+        rows: model.count / columns + (model.count % columns > 0 ? 1 : 0)
+        cellWidth: root.cellWidth
+        cellHeight: root.cellHeight
+        paddingColumns: root.paddingColumns
+        paddingRows: root.paddingRows
+
+        highlight: Item {
+            SystemPalette { id: highlightPalette }
+            FocusBoxBorder {
+                anchors.centerIn: parent
+                width: root.cellWidth
+                height: root.cellHeight
+                radius: root.cellWidth / 2
+                color: highlightPalette.highlight
+                visible: alphabetCategoryContainer.activeFocus
+            }
+        }
+
+       activeFocusOnTab: gridViewFocus
     }
 }
