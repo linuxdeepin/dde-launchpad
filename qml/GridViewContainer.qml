@@ -119,7 +119,7 @@ FocusScope {
 
             Control {
                 id: control
-                DciIcon {
+                contentItem: DciIcon {
                     id: placeholderIcon
                     visible: name !== ""
                     sourceSize {
