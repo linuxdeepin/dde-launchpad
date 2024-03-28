@@ -92,6 +92,7 @@ Item {
                         var mousePos = mapToItem(listView, mouseX, mouseY)
                         var y = (mousePos.y + alphabetCategoryPopup.height) < listView.height ? mousePos.y : listView.height - alphabetCategoryPopup.height
                         alphabetCategoryPopup.y = y
+                        alphabetCategoryPopup.x = 10
                         listView.opacity = 0.1
                         alphabetCategoryPopup.open()
                     } else if (CategorizedSortProxyModel.categoryType === CategorizedSortProxyModel.DDECategory) {

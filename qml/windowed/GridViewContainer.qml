@@ -31,6 +31,7 @@ FocusScope {
     property real cellWidth: 80
 
     readonly property alias gridViewWidth: gridView.width
+    property alias highlight: gridView.highlight
 
     function positionViewAtBeginning() {
         gridView.positionViewAtBeginning()
@@ -58,7 +59,6 @@ FocusScope {
 
             anchors.centerIn: parent
 
-            ScrollBar.vertical: ScrollBar { }
             clip: true
             interactive: false
             highlightFollowsCurrentItem: true
