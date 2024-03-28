@@ -1,3 +1,23 @@
+dde-launchpad (0.5.0) unstable; urgency=medium
+
+  * Adapt post-beta-3 UI changes according to designer
+  * Drop Qt 5 and DTK 5 build support
+  * Switch to use AM API to manage apps, shortcut and autostart
+  * Quick-search-related shortcuts and key navigation tweaks
+  * Hide the 'use proxy' placeholder menu entry
+  * Remove invalid empty pages when app uninstalled
+  * Remove bookmark section, add recently installed section to UI
+  * Add search rule to match untranslated desktop 'Name'
+  * Add recently installed apps section to UI
+  * Add 'free sort' mode to windowed mode app list
+  * Introduce new debug option for developer
+  * Add window title for kwin to match correct window on x11
+  * Wrap between first and last page when using key navigation
+  * Add an unit test for 'ItemPage'
+  * Update translation from Hosted Weblate
+
+ -- Gary Wang <wangzichong@deepin.org>  Tue, 26 Mar 2024 16:24:00 +0800
+
 dde-launchpad (0.4.6) unstable; urgency=medium
 
   * Adapt UI changes according to designer
