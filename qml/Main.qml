@@ -56,6 +56,7 @@ QtObject {
         }
     }
 
+    property var activeMenu: null
     property Component appContextMenuCom: AppItemMenu { }
     function showContextMenu(obj, model, folderIcons, isFavoriteItem, hideFavoriteMenu) {
         if (folderIcons) return
@@ -70,6 +71,15 @@ QtObject {
         });
         menu.closed.connect(menu.destroy)
         menu.popup();
+
+        activeMenu = menu
+    }
+
+    function closeContextMenu() {
+        if (activeMenu) {
+            activeMenu.close()
+            activeMenu = null
+        }
     }
 
     function descaledRect(rect) {

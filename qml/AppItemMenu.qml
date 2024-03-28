@@ -137,6 +137,10 @@ Loader {
         active = true;
     }
 
+    function close() {
+        active = false
+    }
+
     onStatusChanged: if (status == Loader.Ready) {
         item.popup()
     }
