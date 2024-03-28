@@ -90,10 +90,6 @@ Item {
                     }
                 }
 
-                Keys.onReturnPressed: {
-                    launchApp(desktopId)
-                }
-
                 TapHandler {
                     onTapped: {
                         if (!iconName) {
@@ -129,6 +125,14 @@ Item {
                     visible: ColorSelector.controlState === DTK.HoveredState
                     outsideBorderColor: null
                 }
+            }
+
+            Keys.onReturnPressed: {
+                launchApp(model.desktopId)
+            }
+
+            Keys.onSpacePressed: {
+                launchApp(model.desktopId)
             }
         }
     }
