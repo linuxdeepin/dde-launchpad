@@ -63,6 +63,8 @@ Control {
         } else {
             pages.decrementCurrentIndex()
         }
+
+        closeContextMenu()
     }
 
     function incrementPageIndex() {
@@ -71,6 +73,8 @@ Control {
         } else {
             pages.incrementCurrentIndex()
         }
+
+        closeContextMenu()
     }
 
     Timer {
