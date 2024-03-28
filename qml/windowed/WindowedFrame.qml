@@ -134,10 +134,10 @@ Item {
     }
 
     Keys.onPressed: function (event) {
-        if (bottomBar.searchEdit.focus === false && !bottomBar.searchEdit.text && (event.text && !"\t\0 ".includes(event.text))) {
+        if (bottomBar.searchEdit.focus === false && !bottomBar.searchEdit.text && (event.text && !"\t\r\0 ".includes(event.text))) {
             bottomBar.searchEdit.focus = true
             bottomBar.searchEdit.text = event.text
-        } else if (bottomBar.searchEdit.focus === true) {
+        } else if (bottomBar.searchEdit.focus === true || baseLayer.focus === true) {
             // the SearchEdit will catch the key event first, and events that it won't accept will then got here
             switch (event.key) {
             case Qt.Key_Up:
