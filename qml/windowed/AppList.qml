@@ -41,6 +41,8 @@ ColumnLayout {
         id: categoryListView
         AppListView {
             id: appCategoryListView
+
+            MouseAreaCom {}
         }
     }
 
@@ -52,6 +54,20 @@ ColumnLayout {
             onFolderClicked: {
                 freeSortViewFolderClicked(folderId, folderName)
             }
+
+            MouseAreaCom {}
+        }
+    }
+
+    component MouseAreaCom: MouseArea {
+        anchors.fill: parent
+
+        propagateComposedEvents: true
+        acceptedButtons: Qt.NoButton
+
+        onWheel: {
+            closeContextMenu()
+            wheel.accepted = false
         }
     }
 }
