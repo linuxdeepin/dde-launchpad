@@ -159,6 +159,10 @@ Item {
                 launchApp(desktopId)
             }
 
+            Keys.onSpacePressed: {
+                launchApp(desktopId)
+            }
+
             TapHandler {
                 onTapped: {
                     launchApp(desktopId)
