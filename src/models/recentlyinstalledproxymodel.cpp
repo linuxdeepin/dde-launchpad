@@ -26,7 +26,7 @@ bool RecentlyInstalledProxyModel::filterAcceptsRow(int sourceRow, const QModelIn
         return false;
 
     // filter pre installed applications.
-    int installedTime = modelIndex.data(AppItem::InstalledTimeRole).toLongLong();
+    const auto installedTime = modelIndex.data(AppItem::InstalledTimeRole).toLongLong();
     return installedTime > 0;
 }
 
@@ -35,8 +35,8 @@ bool RecentlyInstalledProxyModel::lessThan(const QModelIndex &source_left, const
     if (!source_left.isValid() || !source_right.isValid())
         return false;
 
-    int leftTime = source_left.data(AppItem::InstalledTimeRole).toLongLong();
-    int rightTime = source_right.data(AppItem::InstalledTimeRole).toLongLong();
+    const auto leftTime = source_left.data(AppItem::InstalledTimeRole).toLongLong();
+    const auto rightTime = source_right.data(AppItem::InstalledTimeRole).toLongLong();
 
     return leftTime < rightTime;
 }
