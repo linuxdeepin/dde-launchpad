@@ -77,53 +77,47 @@ Item {
                 Drag.hotSpot.x: width / 3
                 Drag.hotSpot.y: height / 2
                 Drag.dragType: Drag.Automatic
-                //Drag.source: itemDelegate
-                Drag.active: dragHandler.active
+                Drag.active: mouseArea.drag.active
                 Drag.mimeData: {
                     "text/x-dde-launcher-dnd-desktopId": model.desktopId
-                }
-
-                TapHandler {
-                    acceptedButtons: Qt.RightButton
-                    onTapped: {
-                        showContextMenu(itemDelegate, model, false, false, false)
-                    }
-                }
-
-                TapHandler {
-                    onTapped: {
-                        if (!iconName) {
-                            console.log("freesort view folder clicked:", desktopId);
-                            let idStr = model.desktopId
-                            let strFolderId = Number(idStr.replace("internal/folders/", ""))
-                            let strFolderName = model.display.startsWith("internal/category/") ? getCategoryName(model.display.substring(18)) : model.display
-                            folderClicked(strFolderId, strFolderName)
-                        } else {
-                            launchApp(desktopId)
-                        }
-                    }
-                }
-
-                DragHandler {
-                    id: dragHandler
-                    onActiveChanged: {
-                        if (active) {
-                            bg.visible = true
-                            itemDelegate.grabToImage(function(result) {
-                                parent.Drag.imageSource = result.url;
-                            })
-                        } else {
-                            bg.visible = false
-                        }
-
-                        bg.visible = Qt.binding(function() { return bg.ColorSelector.controlState === DTK.HoveredState})
-                    }
                 }
 
                 background: BoxPanel {
                     id: bg
                     visible: ColorSelector.controlState === DTK.HoveredState
                     outsideBorderColor: null
+                }
+
+                MouseArea {
+                    id: mouseArea
+                    anchors.fill: parent
+
+                    acceptedButtons: Qt.LeftButton | Qt.RightButton
+                    drag.target: itemDelegate
+
+                    onPressed: function (mouse) {
+                        if (mouse.button === Qt.LeftButton) {
+                            itemDelegate.grabToImage(function(result) {
+                                itemDelegate.Drag.imageSource = result.url
+                            })
+                        }
+                    }
+
+                    onClicked: function (mouse) {
+                        if (mouse.button === Qt.RightButton) {
+                            showContextMenu(itemDelegate, model, false, false, false)
+                        } else {
+                            if (!iconName) {
+                                console.log("freesort view folder clicked:", desktopId);
+                                let idStr = model.desktopId
+                                let strFolderId = Number(idStr.replace("internal/folders/", ""))
+                                let strFolderName = model.display.startsWith("internal/category/") ? getCategoryName(model.display.substring(18)) : model.display
+                                folderClicked(strFolderId, strFolderName)
+                            } else {
+                                launchApp(desktopId)
+                            }
+                        }
+                    }
                 }
             }
 
