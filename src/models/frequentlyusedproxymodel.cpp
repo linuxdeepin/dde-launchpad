@@ -33,16 +33,20 @@ bool FrequentlyUsedProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex
 
 bool FrequentlyUsedProxyModel::lessThan(const QModelIndex &sourceLeft, const QModelIndex &sourceRight) const
 {
-    const int leftLaunchedTimes = sourceLeft.data(AppItem::LaunchedTimesRole).toInt();
-    const int rightLaunchedTimes = sourceRight.data(AppItem::LaunchedTimesRole).toInt();
+    const auto leftLaunchedTimes = sourceLeft.data(AppItem::LaunchedTimesRole).toLongLong();
+    const auto rightLaunchedTimes = sourceRight.data(AppItem::LaunchedTimesRole).toLongLong();
 
     if (leftLaunchedTimes != rightLaunchedTimes)
         return leftLaunchedTimes < rightLaunchedTimes;
 
-    const auto leftLastLaunchedTime = sourceLeft.data(AppItem::LastLaunchedTimeRole).toLongLong();
-    const auto rightLastLaunchedTimes = sourceRight.data(AppItem::LastLaunchedTimeRole).toLongLong();
-    if (leftLastLaunchedTime != rightLastLaunchedTimes)
-        return leftLastLaunchedTime < rightLastLaunchedTimes;
+    // Only compare lastLaunchedTime when LaunchedTimes is not zero (
+    // maybe the app is auto-start instead of by-user).
+    if (leftLaunchedTimes != 0 && rightLaunchedTimes != 0) {
+        const auto leftLastLaunchedTime = sourceLeft.data(AppItem::LastLaunchedTimeRole).toLongLong();
+        const auto rightLastLaunchedTimes = sourceRight.data(AppItem::LastLaunchedTimeRole).toLongLong();
+        if (leftLastLaunchedTime != rightLastLaunchedTimes)
+            return leftLastLaunchedTime < rightLastLaunchedTimes;
+    }
 
     return lessThenByFrequentlyUsed(sourceLeft, sourceRight);
 }
