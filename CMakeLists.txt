@@ -55,24 +55,29 @@ if(BUILD_TEST)
 endif()
 
 set(SOURCE_FILES
-    main.cpp
     desktopintegration.cpp desktopintegration.h
     launchercontroller.cpp launchercontroller.h
     debughelper.cpp debughelper.h
 )
 
 set(QML_FILES
-    qml/Helper.qml
-    qml/Main.qml
-    qml/FullscreenFrame.qml
-    qml/AppItemMenu.qml
-    qml/GridViewContainer.qml
-    qml/DrawerFolder.qml
-    qml/IconItemDelegate.qml
-    qml/DebugDialog.qml
-    qml/DebugBounding.qml
-    qml/FolderGridViewPopup.qml
+    ${PROJECT_SOURCE_DIR}/qml/Helper.qml
+    ${PROJECT_SOURCE_DIR}/qml/Main.qml
+    ${PROJECT_SOURCE_DIR}/qml/FullscreenFrame.qml
+    ${PROJECT_SOURCE_DIR}/qml/AppItemMenu.qml
+    ${PROJECT_SOURCE_DIR}/qml/GridViewContainer.qml
+    ${PROJECT_SOURCE_DIR}/qml/DrawerFolder.qml
+    ${PROJECT_SOURCE_DIR}/qml/IconItemDelegate.qml
+    ${PROJECT_SOURCE_DIR}/qml/DebugDialog.qml
+    ${PROJECT_SOURCE_DIR}/qml/DebugBounding.qml
+    ${PROJECT_SOURCE_DIR}/qml/FolderGridViewPopup.qml
 )
+foreach(QML_FILE ${QML_FILES})
+    get_filename_component(file_name ${QML_FILE} NAME)
+    set_source_files_properties(${QML_FILE}
+        PROPERTIES QT_RESOURCE_ALIAS ${file_name}
+    )
+endforeach()
 
 get_target_property(WINDOWED_QML_FILES launcher-qml-windowed QT_QML_MODULE_QML_FILES)
 # TODO: switch to the new qt_add_translations usage introduced in Qt 6.7
@@ -83,36 +88,37 @@ set(QML_FILES_NEED_TRANSLATION
     ${WINDOWED_QML_FILES}
 )
 
-set_source_files_properties(qml/Helper.qml
+set_source_files_properties(${PROJECT_SOURCE_DIR}/qml/Helper.qml
     PROPERTIES
         QT_QML_SINGLETON_TYPE TRUE
 )
 
 set(TRANSLATION_FILES
-    translations/dde-launchpad.ts
-    translations/dde-launchpad_az.ts
-    translations/dde-launchpad_bo.ts
-    translations/dde-launchpad_ca.ts
-    translations/dde-launchpad_es.ts
-    translations/dde-launchpad_fi.ts
-    translations/dde-launchpad_fr.ts
-    translations/dde-launchpad_hu.ts
-    translations/dde-launchpad_it.ts
-    translations/dde-launchpad_ja.ts
-    translations/dde-launchpad_ko.ts
-    translations/dde-launchpad_nb_NO.ts
-    translations/dde-launchpad_pl.ts
-    translations/dde-launchpad_pt_BR.ts
-    translations/dde-launchpad_ru.ts
-    translations/dde-launchpad_uk.ts
-    translations/dde-launchpad_zh_CN.ts
-    translations/dde-launchpad_zh_HK.ts
-    translations/dde-launchpad_zh_TW.ts
+    ${PROJECT_SOURCE_DIR}/translations/dde-launchpad.ts
+    ${PROJECT_SOURCE_DIR}/translations/dde-launchpad_az.ts
+    ${PROJECT_SOURCE_DIR}/translations/dde-launchpad_bo.ts
+    ${PROJECT_SOURCE_DIR}/translations/dde-launchpad_ca.ts
+    ${PROJECT_SOURCE_DIR}/translations/dde-launchpad_es.ts
+    ${PROJECT_SOURCE_DIR}/translations/dde-launchpad_fi.ts
+    ${PROJECT_SOURCE_DIR}/translations/dde-launchpad_fr.ts
+    ${PROJECT_SOURCE_DIR}/translations/dde-launchpad_hu.ts
+    ${PROJECT_SOURCE_DIR}/translations/dde-launchpad_it.ts
+    ${PROJECT_SOURCE_DIR}/translations/dde-launchpad_ja.ts
+    ${PROJECT_SOURCE_DIR}/translations/dde-launchpad_ko.ts
+    ${PROJECT_SOURCE_DIR}/translations/dde-launchpad_nb_NO.ts
+    ${PROJECT_SOURCE_DIR}/translations/dde-launchpad_pl.ts
+    ${PROJECT_SOURCE_DIR}/translations/dde-launchpad_pt_BR.ts
+    ${PROJECT_SOURCE_DIR}/translations/dde-launchpad_ru.ts
+    ${PROJECT_SOURCE_DIR}/translations/dde-launchpad_uk.ts
+    ${PROJECT_SOURCE_DIR}/translations/dde-launchpad_zh_CN.ts
+    ${PROJECT_SOURCE_DIR}/translations/dde-launchpad_zh_HK.ts
+    ${PROJECT_SOURCE_DIR}/translations/dde-launchpad_zh_TW.ts
 )
 
 qt_add_dbus_adaptor(DBUS_ADAPTER_FILES dbus/org.deepin.dde.Launcher1.xml launchercontroller.h LauncherController)
 
 qt_add_executable(${BIN_NAME}
+    main.cpp
     ${SOURCE_FILES}
     ${DBUS_ADAPTER_FILES}
     ${RESOURCES}
