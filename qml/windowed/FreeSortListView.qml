@@ -40,6 +40,13 @@ Item {
             }
         }
 
+        onActiveFocusChanged: {
+            if (activeFocus) {
+                listView.currentIndex = 0
+                listView.positionViewAtIndex(listView.currentIndex, 0)
+            }
+        }
+
         ScrollBar.vertical: ScrollBar { }
 
         model: freeSortProxyModel
