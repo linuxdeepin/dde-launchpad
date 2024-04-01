@@ -67,6 +67,13 @@ QStringList ItemsPage::firstNItems(int count)
     return result;
 }
 
+void ItemsPage::appendEmptyPage()
+{
+    m_pages.append(QStringList());
+
+    emit pageCountChanged();
+}
+
 // if length of items larger than max item count per page, there will be another page get appended
 void ItemsPage::appendPage(const QStringList items)
 {

@@ -33,6 +33,8 @@ Control {
     Label {
         property string currentlyDraggedId
 
+        signal dragEnded()
+
         id: dndItem
         visible: DebugHelper.qtDebugEnabled
         text: "DnD DEBUG"
@@ -42,6 +44,7 @@ Control {
                 text = "Dragging " + currentlyDraggedId
             } else {
                 currentlyDraggedId = ""
+                dragEnded()
             }
         }
     }
@@ -56,6 +59,10 @@ Control {
         ItemArrangementProxyModel.commitDndOperation(dragId, dropFolderId, ItemArrangementProxyModel.DndJoin, pageNumber)
     }
     // ----------- Drag and Drop related functions  END  -----------
+
+    function tryToRemoveEmptyPage() {
+        ItemArrangementProxyModel.removeEmptyPage()
+    }
 
     function decrementPageIndex() {
         if (pages.currentIndex === 0 && pages.count > 1) {
@@ -191,14 +198,26 @@ Control {
             Layout.fillHeight: true
 
             DropArea {
+                id: dropArea
                 property int pageIntent: 0
                 property int horizontalPadding: searchResultGridViewContainer.cellWidth
                 anchors.fill: parent
 
+                property bool createdEmptyPage: false
                 function checkDragMove() {
                     if (drag.x < horizontalPadding) {
                         pageIntent = -1
                     } else if (drag.x > (width - searchResultGridViewContainer.cellWidth)) {
+                        let isLastPage = pages.currentIndex === pages.count - 1
+                        if (isLastPage) {
+                            if (!createdEmptyPage) {
+                                let newPageIndex = ItemArrangementProxyModel.creatEmptyPage()
+                                createdEmptyPage = true
+                                pages.setCurrentIndex(newPageIndex)
+                            }
+                            return
+                        }
+
                         pageIntent = 1
                     }
                 }
@@ -241,7 +260,19 @@ Control {
                         }
 
                         parent.pageIntent = 0
-                        parent.checkDragMove()
+                        if (pages.currentIndex !==0 && pages.currentIndex !== pages.count) {
+                            parent.checkDragMove()
+                        }
+                    }
+                }
+
+                Connections {
+                    target: dndItem
+                    function onDragEnded() {
+                        if (dropArea.createdEmptyPage) {
+                            tryToRemoveEmptyPage()
+                            dropArea.createdEmptyPage = false
+                        }
                     }
                 }
             }
