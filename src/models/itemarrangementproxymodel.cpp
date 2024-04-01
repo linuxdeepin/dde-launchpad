@@ -108,6 +108,18 @@ void ItemArrangementProxyModel::commitDndOperation(const QString &dragId, const 
     });
 }
 
+// return new empty page index
+int ItemArrangementProxyModel::creatEmptyPage() const
+{
+    m_topLevel->appendEmptyPage();
+    return m_topLevel->pageCount() - 1;
+}
+
+void ItemArrangementProxyModel::removeEmptyPage() const
+{
+    m_topLevel->removeEmptyPages();
+}
+
 QVariant ItemArrangementProxyModel::data(const QModelIndex &index, int role) const
 {
     int idx = index.row() - AppsModel::instance().rowCount();
