@@ -11,6 +11,7 @@ class TestItemsPage: public QObject
     Q_OBJECT
 private slots:
     void insertAndRemove();
+    void autoRemoveEmptyPage();
 };
 
 void TestItemsPage::insertAndRemove()
@@ -28,6 +29,21 @@ void TestItemsPage::insertAndRemove()
     QCOMPARE(ip.items(1), QStringList({"c", "d", "e"}));
     ip.removeItem("d");
     QCOMPARE(ip.items(1), QStringList({"c", "e"}));
+}
+
+void TestItemsPage::autoRemoveEmptyPage()
+{
+    ItemsPage ip(4);
+    ip.appendPage({"1", "2", "3"});
+    ip.appendPage({"4"});
+    ip.appendPage({"5", "6", "7"});
+
+    ip.moveItemPosition(1, 0, 2, 1, true);
+    QVERIFY(ip.pageCount() == 2);
+
+    ip.appendPage({"8"});
+    ip.moveItemPosition(2, 0, 0, 1, true);
+    QVERIFY(ip.pageCount() == 2);
 }
 
 QTEST_MAIN(TestItemsPage)

@@ -147,7 +147,16 @@ void ItemsPage::moveItemPosition(int fromPage, int fromIndex, int toPage, int to
         toIndex += 1;
     }
 
+    bool needRemoveEmptyPage = false;
+    if (m_pages[fromPage].count() == 1) {
+        needRemoveEmptyPage = true;
+    }
+
     moveItem(fromPage, fromIndex, toPage, toIndex);
+
+    if (needRemoveEmptyPage) {
+        removeEmptyPages();
+    }
 }
 
 bool ItemsPage::removeItem(const QString id, bool removePageIfPageIsEmpty)
