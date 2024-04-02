@@ -209,16 +209,12 @@ Control {
                         pageIntent = -1
                     } else if (drag.x > (width - searchResultGridViewContainer.cellWidth)) {
                         let isLastPage = pages.currentIndex === pages.count - 1
-                        if (isLastPage) {
-                            if (!createdEmptyPage) {
-                                let newPageIndex = ItemArrangementProxyModel.creatEmptyPage()
-                                createdEmptyPage = true
-                                pages.setCurrentIndex(newPageIndex)
-                            }
+                        if (isLastPage && dropArea.createdEmptyPage) {
                             return
                         }
-
                         pageIntent = 1
+                    } else {
+                        pageIntent = 0
                     }
                 }
 
@@ -231,11 +227,9 @@ Control {
                     checkDragMove()
                 }
                 onDropped: {
-                    if (pageIntent === 0) {
-                        // drop into current page
-                        let dragId = drop.getDataAsString("text/x-dde-launcher-dnd-desktopId")
-                        dropOnPage(dragId, "internal/folders/0", pages.currentIndex)
-                    }
+                    // drop into current page
+                    let dragId = drop.getDataAsString("text/x-dde-launcher-dnd-desktopId")
+                    dropOnPage(dragId, "internal/folders/0", pages.currentIndex)
                     pageIntent = 0
                 }
                 onExited: {
@@ -254,13 +248,22 @@ Control {
                     interval: 1000
                     onTriggered: {
                         if (parent.pageIntent > 0) {
-                            incrementPageIndex()
+                            let isLastPage = pages.currentIndex === pages.count - 1
+                            if (isLastPage && !dropArea.createdEmptyPage) {
+                                let newPageIndex = ItemArrangementProxyModel.creatEmptyPage()
+                                dropArea.createdEmptyPage = true
+                                pages.setCurrentIndex(newPageIndex)
+                                parent.pageIntent = 0
+                                return
+                            } else {
+                                incrementPageIndex()
+                            }
                         } else if (parent.pageIntent < 0) {
                             decrementPageIndex()
                         }
 
                         parent.pageIntent = 0
-                        if (pages.currentIndex !==0 && pages.currentIndex !== pages.count) {
+                        if (pages.currentIndex !== 0) {
                             parent.checkDragMove()
                         }
                     }
