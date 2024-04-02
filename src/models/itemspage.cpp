@@ -136,6 +136,11 @@ void ItemsPage::insertItem(const QString id, int page, int pos)
     }
 }
 
+void ItemsPage::insertItemToPage(const QString &id, int toPage)
+{
+    insertItem(id, toPage, m_pages[toPage].count());
+}
+
 void ItemsPage::moveItemPosition(int fromPage, int fromIndex, int toPage, int toIndex, bool appendToIndexItem)
 {
     if (fromPage == toPage && fromIndex > toIndex && appendToIndexItem) {
