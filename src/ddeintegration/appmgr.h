@@ -39,8 +39,8 @@ public:
     static bool launchApp(const QString & desktopId);
     static bool autoStart(const QString & desktopId);
     static void setAutoStart(const QString & desktopId, bool autoStart);
-    static double scaleFactor(const QString & desktopId);
-    static void setScaleFactor(const QString & desktopId, double scaleFactor);
+    static bool disableScale(const QString & desktopId);
+    static void setDisableScale(const QString & desktopId, bool disableScale);
     static bool isOnDesktop(const QString & desktopId);
     static bool sendToDesktop(const QString & desktopId);
     static bool removeFromDesktop(const QString & desktopId);

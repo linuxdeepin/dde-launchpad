@@ -30,7 +30,7 @@ Architecture: any
 Depends:
  ${shlibs:Depends},
  ${misc:Depends},
- dde-application-manager (>= 1.2.2),
+ dde-application-manager (>> 1.2.2),
  dde-application-wizard-daemon-compat,
  libdtk6declarative(>=6.0.9),
  qml6-module-qtquick-layouts,
