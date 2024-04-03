@@ -60,14 +60,14 @@ QString DesktopIntegration::environmentVariable(const QString &env)
     return qEnvironmentVariable(env.toStdString().c_str());
 }
 
-double DesktopIntegration::scaleFactor(const QString &desktopId)
+double DesktopIntegration::disableScale(const QString &desktopId)
 {
-    return AppMgr::scaleFactor(desktopId);
+    return AppMgr::disableScale(desktopId);
 }
 
-void DesktopIntegration::setScaleFactor(const QString &desktopId, double scaleFactor)
+void DesktopIntegration::setDisableScale(const QString &desktopId, double disableScale)
 {
-    return AppMgr::setScaleFactor(desktopId, scaleFactor);
+    return AppMgr::setDisableScale(desktopId, disableScale);
 }
 
 void DesktopIntegration::showFolder(QStandardPaths::StandardLocation location)

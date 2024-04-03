@@ -182,21 +182,57 @@ void AppMgr::setAutoStart(const QString &desktopId, bool autoStart)
     amAppIface->setAutoStart(autoStart);
 }
 
-// 0: global scaleFactor
-double AppMgr::scaleFactor(const QString &desktopId)
+static const QStringList DisabledScaleEnvironments {
+    "DEEPIN_WINE_SCALE=1",
+    "QT_SCALE_FACTOR=1",
+    "GDK_SCALE=1",
+    "GDK_DPI_SCALE=1",
+    "D_DXCB_DISABLE_OVERRIDE_HIDPI=1"
+};
+
+bool AppMgr::disableScale(const QString &desktopId)
 {
     AppManager1Application * amAppIface = createAM1AppIface(desktopId);
     if (!amAppIface) return 0;
 
-    return amAppIface->scaleFactor();
+    const auto environ = amAppIface->environ();
+    const QStringList envs(environ.split(';'));
+    // return true if envs contains any one of DisabledScaleEnvironments.
+    auto iter = std::find_if(envs.begin(), envs.end(), [] (const QString &env) {
+        return DisabledScaleEnvironments.contains(env);
+    });
+    return iter != envs.end();
 }
 
-void AppMgr::setScaleFactor(const QString &desktopId, double scaleFactor)
+void AppMgr::setDisableScale(const QString &desktopId, bool disableScale)
 {
     AppManager1Application * amAppIface = createAM1AppIface(desktopId);
     if (!amAppIface) return;
 
-    amAppIface->setScaleFactor(scaleFactor);
+    QString environ = amAppIface->environ();
+    QStringList envs(environ.split(';', Qt::SkipEmptyParts));
+    if (disableScale) {
+        // remove all ScaleEnvironments, avoid other caller has set it manually.
+        envs.removeIf([] (const QString &env) {
+            auto iter = std::find_if(DisabledScaleEnvironments.begin(), DisabledScaleEnvironments.end(),
+                                     [env] (const QString &item) {
+                                         const auto left = item.split('=');
+                                         const auto right = env.split('=');
+                                         return !right.isEmpty() && left.at(0) == right.at(0);
+                                     });
+            return iter != DisabledScaleEnvironments.end();
+        });
+        envs << DisabledScaleEnvironments;
+    } else {
+        // remove all DisabledScaleEnvironments.
+        envs.removeIf([] (const QString &env) {
+            return DisabledScaleEnvironments.contains(env);
+        });
+    }
+
+    environ = envs.join(';');
+    qDebug() << "Update environ for the desktopId" << desktopId << ", env:" << environ;
+    amAppIface->setEnviron(environ);
 }
 
 bool AppMgr::isOnDesktop(const QString &desktopId)
