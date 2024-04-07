@@ -20,6 +20,8 @@ Item {
     visible: true
     focus: true
 
+    KeyNavigation.tab: appGridLoader.item
+
     MouseArea {
         anchors.fill: parent
         onClicked: () => {
