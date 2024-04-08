@@ -32,10 +32,8 @@ Control {
         SearchEdit {
             id: searchEdit
 
-            Layout.leftMargin: parent.width / 4
-            Layout.rightMargin: parent.width / 4
-
-            Layout.fillWidth: true
+            Layout.preferredWidth: 360
+            anchors.centerIn: parent
             Layout.preferredHeight: 30
             placeholder: qsTr("Search")
             onTextChanged: {
