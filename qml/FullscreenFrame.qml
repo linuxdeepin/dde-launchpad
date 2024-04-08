@@ -404,7 +404,7 @@ Control {
                                             "text/x-dde-launcher-dnd-desktopId": model.desktopId
                                         }
                                         visible: dndItem.currentlyDraggedId !== model.desktopId
-                                        iconSource: iconName
+                                        iconSource: (iconName && iconName !== "") ? iconName : "application-x-desktop"
                                         icons: folderIcons
                                         padding: 5
                                         onItemClicked: {

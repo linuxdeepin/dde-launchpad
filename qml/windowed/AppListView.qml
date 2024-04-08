@@ -142,7 +142,7 @@ Item {
             id: itemDelegate
             text: model.display
             checkable: false
-            icon.name: iconName
+            icon.name: (iconName && iconName !== "") ? iconName : "application-x-desktop"
             width: listView.width
             font: DTK.fontManager.t8
             // icon.source: "image://app-icon/" + iconName;
