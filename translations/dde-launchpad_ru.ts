@@ -11,17 +11,17 @@
     <message>
         <location filename="../qml/AppItemMenu.qml" line="41"/>
         <source>Pin to Top</source>
-        <translation type="unfinished"></translation>
+        <translation>Закрепить сверху</translation>
     </message>
     <message>
         <location filename="../qml/AppItemMenu.qml" line="50"/>
         <source>Remove from favorites</source>
-        <translation type="unfinished"></translation>
+        <translation>Удалить из избранного</translation>
     </message>
     <message>
         <location filename="../qml/AppItemMenu.qml" line="50"/>
         <source>Add to favorites</source>
-        <translation type="unfinished"></translation>
+        <translation>Добавить в избранное</translation>
     </message>
     <message>
         <location filename="../qml/AppItemMenu.qml" line="64"/>
@@ -61,7 +61,7 @@
     <message>
         <location filename="../qml/AppItemMenu.qml" line="100"/>
         <source>Disable display scaling</source>
-        <translation type="unfinished"></translation>
+        <translation>Отключить маштабирование дисплея</translation>
     </message>
     <message>
         <location filename="../qml/AppItemMenu.qml" line="107"/>
@@ -113,12 +113,12 @@
     <message>
         <location filename="../qml/windowed/BottomBar.qml" line="26"/>
         <source>Power</source>
-        <translation type="unfinished">Питание</translation>
+        <translation>Питание</translation>
     </message>
     <message>
         <location filename="../qml/windowed/BottomBar.qml" line="40"/>
         <source>Search</source>
-        <translation type="unfinished">Поиск</translation>
+        <translation>Поиск</translation>
     </message>
 </context>
 <context>
@@ -126,12 +126,12 @@
     <message>
         <location filename="../qml/windowed/FrequentlyUsedView.qml" line="29"/>
         <source>Frequently Used</source>
-        <translation type="unfinished"></translation>
+        <translation>Часто используемое</translation>
     </message>
     <message>
         <location filename="../qml/windowed/FrequentlyUsedView.qml" line="29"/>
         <source>All Apps</source>
-        <translation type="unfinished"></translation>
+        <translation>Все приложения</translation>
     </message>
 </context>
 <context>
@@ -139,12 +139,12 @@
     <message>
         <location filename="../launchercontroller.cpp" line="19"/>
         <source>Show launcher (hidden by default)</source>
-        <translation type="unfinished"></translation>
+        <translation>Показать панель запуска (скрыта по умолчанию)</translation>
     </message>
     <message>
         <location filename="../launchercontroller.cpp" line="20"/>
         <source>Toggle launcher visibility</source>
-        <translation type="unfinished"></translation>
+        <translation>Переключить видимость программы запуска</translation>
     </message>
 </context>
 <context>
@@ -152,72 +152,72 @@
     <message>
         <location filename="../qml/Main.qml" line="21"/>
         <source>Internet</source>
-        <translation type="unfinished">Интернет</translation>
+        <translation>Интернет</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="23"/>
         <source>Chat</source>
-        <translation type="unfinished">Общение</translation>
+        <translation>Чат</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="25"/>
         <source>Music</source>
-        <translation type="unfinished">Музыка</translation>
+        <translation>Музыка</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="27"/>
         <source>Video</source>
-        <translation type="unfinished">Видео</translation>
+        <translation>Видео</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="29"/>
         <source>Graphics</source>
-        <translation type="unfinished">Графика</translation>
+        <translation>Графика</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="31"/>
         <source>Game</source>
-        <translation type="unfinished"></translation>
+        <translation>Игра</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="33"/>
         <source>Office</source>
-        <translation type="unfinished">Офис</translation>
+        <translation>Офис</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="35"/>
         <source>Reading</source>
-        <translation type="unfinished">Чтение</translation>
+        <translation>Чтение</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="37"/>
         <source>Development</source>
-        <translation type="unfinished">Разработка</translation>
+        <translation>Разработка</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="39"/>
         <source>System</source>
-        <translation type="unfinished">Система</translation>
+        <translation>Система</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="41"/>
         <source>Others</source>
-        <translation type="unfinished"></translation>
+        <translation>Прочее</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="313"/>
         <source>Are you sure you want to uninstall %1?</source>
-        <translation type="unfinished"></translation>
+        <translation>Вы уверены, что хотите удалить %1?</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="325"/>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>Отмена</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="339"/>
         <source>Confirm</source>
-        <translation type="unfinished"></translation>
+        <translation>Подтвердить</translation>
     </message>
 </context>
 <context>
@@ -225,7 +225,7 @@
     <message>
         <location filename="../qml/windowed/RecentlyInstalledView.qml" line="27"/>
         <source>Recently Installed</source>
-        <translation type="unfinished"></translation>
+        <translation>Недавно установленное</translation>
     </message>
 </context>
 <context>
@@ -233,12 +233,12 @@
     <message>
         <location filename="../qml/windowed/SearchResultView.qml" line="26"/>
         <source>All Apps</source>
-        <translation type="unfinished"></translation>
+        <translation>Все приложения</translation>
     </message>
     <message>
         <location filename="../qml/windowed/SearchResultView.qml" line="76"/>
         <source>No search results</source>
-        <translation type="unfinished"></translation>
+        <translation>Ничего не найдено</translation>
     </message>
 </context>
 <context>
@@ -246,42 +246,42 @@
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="39"/>
         <source>Free sorting</source>
-        <translation type="unfinished"></translation>
+        <translation>Свободная сортировка</translation>
     </message>
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="52"/>
         <source>Sort by category</source>
-        <translation type="unfinished"></translation>
+        <translation>Сортировать по категориям</translation>
     </message>
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="64"/>
         <source>Sort by name</source>
-        <translation type="unfinished"></translation>
+        <translation>Сортировать по имени</translation>
     </message>
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="124"/>
         <source>Computer</source>
-        <translation type="unfinished"></translation>
+        <translation>Компьютер</translation>
     </message>
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="139"/>
         <source>Pictures</source>
-        <translation type="unfinished"></translation>
+        <translation>Картинки</translation>
     </message>
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="154"/>
         <source>Documents</source>
-        <translation type="unfinished"></translation>
+        <translation>Документы</translation>
     </message>
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="169"/>
         <source>Desktop</source>
-        <translation type="unfinished"></translation>
+        <translation>Рабочий Стол</translation>
     </message>
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="184"/>
         <source>Control Center</source>
-        <translation type="unfinished"></translation>
+        <translation>Центр управления</translation>
     </message>
 </context>
 <context>
