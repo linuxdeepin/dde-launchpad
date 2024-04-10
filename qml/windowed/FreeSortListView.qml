@@ -77,6 +77,8 @@ Item {
                 checkable: false
                 icon.name: iconName === undefined ? "folder-icon" : iconName
                 anchors.fill: parent
+                anchors.leftMargin: 10
+                anchors.rightMargin: 10
                 font: DTK.fontManager.t8
                 ColorSelector.family: Palette.CrystalColor
                 visible: !Drag.active
