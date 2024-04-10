@@ -1,3 +1,18 @@
+dde-launchpad (0.6.0) unstable; urgency=medium
+
+  * Adapt to dde-shell (linuxdeepin/developer-center#5810)
+  * Support drag item to create new page (linuxdeepin/developer-center#7633)
+  * Remove empty page caused by item rearrangement
+  * Fix list position while switching tab focus (linuxdeepin/developer-center#7684)
+  * Set default tab focus to the app area
+  * Add fallback icon for apps that have no icon (linuxdeepin/developer-center#5608) (linuxdeepin/developer-center#7742)
+  * Hide fullscreen launchpad when lost focus (linuxdeepin/developer-center#7635)
+  * UI tweaks
+  * Support disable scale for app (linuxdeepin/developer-center#7733)
+  * Support press Enter to open first search result
+
+ -- Gary Wang <wangzichong@deepin.org>  Wed, 10 Apr 2024 10:03:00 +0800
+
 dde-launchpad (0.5.0) unstable; urgency=medium
 
   * Adapt post-beta-3 UI changes according to designer
