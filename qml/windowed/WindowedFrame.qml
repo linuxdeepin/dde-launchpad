@@ -106,6 +106,7 @@ Item {
                     Layout.fillHeight: true
                     Layout.preferredWidth: 362
                     Layout.alignment: Qt.AlignRight | Qt.AlignTop
+                    Layout.leftMargin: Helper.frequentlyUsed.leftMargin
                     Layout.rightMargin: Helper.frequentlyUsed.rightMargin
                     sourceComponent: bottomBar.searchEdit.text === "" ? analysisViewCom
                         : searchResultViewCom

@@ -13,6 +13,7 @@ QtObject {
         property int maxViewRows: 4
     }
     property QtObject frequentlyUsed :QtObject {
+        property int leftMargin: 10
         property int rightMargin: 10
         property int cellPaddingColumns: 14
         property int cellPaddingRows: 20
