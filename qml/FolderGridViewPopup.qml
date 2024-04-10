@@ -203,7 +203,7 @@ Popup {
 
                 PageIndicator {
                     Layout.alignment: Qt.AlignHCenter
-
+                    visible: folderPagesView.count > 1 ? true : false
                     id: folderPageIndicator
                     implicitHeight: isWindowedMode ? 13 : folderPageIndicator.implicitWidth
                     count: folderPagesView.count
