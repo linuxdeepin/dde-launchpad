@@ -18,6 +18,10 @@ Control {
         searchResultViewContainer.focus = true
     }
 
+    function launchCurrentItem() {
+        searchResultViewContainer.currentItem?.onItemClicked()
+    }
+
     function positionViewAtBeginning() {
         searchResultViewContainer.positionViewAtBeginning()
     }
