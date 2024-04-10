@@ -198,4 +198,8 @@ ColumnLayout {
     Item {
         Layout.fillHeight: true
     }
+
+    Item {
+        height: title.height
+    }
 }

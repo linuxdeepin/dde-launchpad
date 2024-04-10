@@ -57,76 +57,78 @@ Item {
     }
     // ----------- Drag and Drop related functions  END  -----------
 
-    ColumnLayout {
+    SideBar {
+        id: sideBar
+        anchors.left: parent.left
+        anchors.top: parent.top
+        anchors.bottom: parent.bottom
+        anchors.topMargin: 10
+        anchors.leftMargin: 5
+    }
+
+    Rectangle {
+        width: Helper.windowed.splitLineWidth
+        anchors.left: sideBar.right
+        anchors.top: sideBar.top
+        anchors.bottom: bottomBar.top
+        anchors.leftMargin: 5
+        color: this.palette.shadow
+    }
+
+    RowLayout {
+        id: appArea
+        anchors.left: sideBar.right
+        anchors.top: sideBar.top
+        anchors.right: parent.right
+        anchors.bottom: bottomBar.top
+        anchors.leftMargin: 5
+        anchors.bottomMargin: 5
         spacing: 0
-        anchors.fill: parent
-        Layout.margins: 0
-
-        RowLayout {
-            spacing: 0
+        AppList {
+            id: appList
             Layout.fillWidth: true
+            Layout.preferredWidth: 220
             Layout.fillHeight: true
-            Layout.topMargin: Helper.windowed.topMargin
+        }
 
-            SideBar {
-                id: sideBar
-                Layout.fillWidth: false
-                Layout.fillHeight: true
-                Layout.margins: 10
-            }
-
-            Rectangle {
-                Layout.preferredWidth: Helper.windowed.splitLineWidth
-                Layout.fillHeight: true
-                color: this.palette.shadow
-            }
-
-            RowLayout {
-                id: appArea
-                spacing: 0
-                AppList {
-                    id: appList
-                    Layout.fillWidth: true
-                    Layout.preferredWidth: 220
-                    Layout.fillHeight: true
-                }
-
-                Loader {
-                    id: appGridLoader
-                    Component {
-                        id: analysisViewCom
-                        AnalysisView {
-                        }
-                    }
-                    Component {
-                        id: searchResultViewCom
-                        SearchResultView {
-                        }
-                    }
-                    Layout.fillHeight: true
-                    Layout.preferredWidth: 362
-                    Layout.alignment: Qt.AlignRight | Qt.AlignTop
-                    Layout.leftMargin: Helper.frequentlyUsed.leftMargin
-                    Layout.rightMargin: Helper.frequentlyUsed.rightMargin
-                    sourceComponent: bottomBar.searchEdit.text === "" ? analysisViewCom
-                        : searchResultViewCom
+        Loader {
+            id: appGridLoader
+            Component {
+                id: analysisViewCom
+                AnalysisView {
                 }
             }
+            Component {
+                id: searchResultViewCom
+                SearchResultView {
+                }
+            }
+            Layout.fillHeight: true
+            Layout.preferredWidth: 362
+            Layout.alignment: Qt.AlignRight | Qt.AlignTop
+            Layout.leftMargin: Helper.frequentlyUsed.leftMargin
+            Layout.rightMargin: Helper.frequentlyUsed.rightMargin
+            sourceComponent: bottomBar.searchEdit.text === "" ? analysisViewCom
+                : searchResultViewCom
         }
+    }
 
-        Rectangle {
-            Layout.preferredHeight: Helper.windowed.splitLineWidth
-            Layout.fillWidth: true
-            color: this.palette.shadow
-        }
+    BottomBar {
+        id: bottomBar
+        height: 30
+        anchors.left: parent.left
+        anchors.right: parent.right
+        anchors.bottom: parent.bottom
+        anchors.margins: 5
+    }
 
-        BottomBar {
-            id: bottomBar
-            Layout.alignment: Qt.AlignBottom
-            Layout.preferredHeight: 30
-            Layout.fillWidth: true
-            Layout.margins: Helper.windowed.bottomBarMargins
-        }
+    Rectangle {
+        height: Helper.windowed.splitLineWidth
+        anchors.left: bottomBar.left
+        anchors.right: bottomBar.right
+        anchors.bottom: bottomBar.top
+        anchors.bottomMargin: 5
+        color: this.palette.shadow
     }
 
     FolderGridViewPopup {
