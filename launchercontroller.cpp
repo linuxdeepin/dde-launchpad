@@ -151,9 +151,9 @@ bool LauncherController::shouldAvoidHideOrActive()
     return m_timer->isActive();
 }
 
-QFont LauncherController::boldFont(const QFont &f)
+QFont LauncherController::adjustFontWeight(const QFont &f, QFont::Weight weight)
 {
     QFont font(f);
-    font.setWeight(QFont::Bold);
+    font.setWeight(weight);
     return font;
 }
