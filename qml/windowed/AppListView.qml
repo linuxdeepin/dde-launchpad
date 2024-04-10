@@ -77,7 +77,8 @@ Item {
                     QQC2.Label {
                         anchors.verticalCenter: parent.verticalCenter
                         text: headingBtn.text
-                        font: LauncherController.boldFont(DTK.fontManager.t6)
+                        font: LauncherController.adjustFontWeight(DTK.fontManager.t7, Font.Medium)
+                        color: Qt.rgba(0, 0, 0, 0.6)
                     }
                 }
             }

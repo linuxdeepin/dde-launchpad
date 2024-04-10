@@ -25,7 +25,7 @@ Control {
         spacing: 0
         Label {
             text: qsTr("Recently Installed")
-            font: LauncherController.boldFont(DTK.fontManager.t6)
+            font: LauncherController.adjustFontWeight(DTK.fontManager.t6, Font.Bold)
         }
 
         GridViewContainer {

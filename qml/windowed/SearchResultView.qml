@@ -28,7 +28,7 @@ Control {
 
         Label {
             text: qsTr("All Apps")
-            font: LauncherController.boldFont(DTK.fontManager.t6)
+            font: LauncherController.adjustFontWeight(DTK.fontManager.t6, Font.Bold)
         }
 
         GridViewContainer {
