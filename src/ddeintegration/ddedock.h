@@ -14,7 +14,6 @@ class DdeDock : public QObject
 
     Q_PROPERTY(Qt::ArrowType direction READ direction NOTIFY directionChanged)
     Q_PROPERTY(QRect geometry READ geometry NOTIFY geometryChanged)
-    Q_PROPERTY(uint windowMargin READ windowMargin NOTIFY windowMarginChanged)
 
 public:
     explicit DdeDock(QObject *parent = nullptr);
@@ -22,7 +21,6 @@ public:
 
     Qt::ArrowType direction() const;
     QRect geometry() const;
-    uint windowMargin() const;
 
     bool isDocked(const QString & desktop) const;
     void sendToDock(const QString & desktop, int idx = -1);
@@ -31,17 +29,14 @@ public:
 signals:
     void directionChanged();
     void geometryChanged();
-    void windowMarginChanged();
 
 private:
     void updateDockRectAndPositionFromDBus();
     void updateDockPositionFromDBus();
-    void updateDockWindowMarginFromDBus();
     void updateDockRectFromDBus();
 
     __Dock1 * m_dbusDaemonDockIface;
 
     Qt::ArrowType m_direction;
     QRect m_rect;
-    uint m_windowMargin;
 };

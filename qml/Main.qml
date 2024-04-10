@@ -100,23 +100,23 @@ QtObject {
 
             let dockGeometry = descaledRect(DesktopIntegration.dockGeometry)
             if (dockGeometry.width > 0 && dockGeometry.height > 0) {
-//                console.log(114514, dockGeometry)
+                let dockSpacing = DesktopIntegration.dockSpacing
                 switch (DesktopIntegration.dockPosition) {
                 case Qt.DownArrow:
-                    x = dockGeometry.left
-                    y = (dockGeometry.top >= 0 ? dockGeometry.top : (Screen.height - dockGeometry.height)) - height - DesktopIntegration.dockSpacing
+                    x = dockGeometry.left + dockSpacing
+                    y = (dockGeometry.top >= 0 ? dockGeometry.top : (Screen.height - dockGeometry.height)) - height - dockSpacing
                     break
                 case Qt.LeftArrow:
-                    x = dockGeometry.right + DesktopIntegration.dockSpacing
-                    y = (dockGeometry.top >= 0 ? dockGeometry.top : 0)
+                    x = dockGeometry.right + dockSpacing
+                    y = (dockGeometry.top >= 0 ? dockGeometry.top : 0) + dockSpacing
                     break
                 case Qt.UpArrow:
-                    x = dockGeometry.left
-                    y = dockGeometry.bottom + DesktopIntegration.dockSpacing
+                    x = dockGeometry.left + dockSpacing
+                    y = dockGeometry.bottom + dockSpacing
                     break
                 case Qt.RightArrow:
-                    x = (dockGeometry.left >= 0 ? dockGeometry.left : (Screen.width - dockGeometry.width)) - width - DesktopIntegration.dockSpacing
-                    y = dockGeometry.top
+                    x = (dockGeometry.left >= 0 ? dockGeometry.left : (Screen.width - dockGeometry.width)) - width - dockSpacing
+                    y = dockGeometry.top + dockSpacing
                     break
                 }
             }
