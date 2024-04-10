@@ -493,7 +493,6 @@ Control {
             Layout.alignment: Qt.AlignHCenter
             implicitWidth: (parent.width / 2) > 280 ? 280 : (parent.width / 2)
 
-            placeholder: qsTranslate("WindowedFrame", "Search")
             KeyNavigation.up: searchEdit.text === "" ? pages : searchResultGridViewContainer
             KeyNavigation.down: KeyNavigation.up
             Keys.onReturnPressed: {
