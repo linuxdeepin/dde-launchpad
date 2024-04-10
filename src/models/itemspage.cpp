@@ -138,6 +138,10 @@ void ItemsPage::insertItem(const QString id, int page, int pos)
 
 void ItemsPage::insertItemToPage(const QString &id, int toPage)
 {
+    Q_ASSERT(toPage < m_pages.count());
+
+    if (toPage < 0) toPage = qMax(m_pages.count() - 1, 0);
+
     insertItem(id, toPage, m_pages[toPage].count());
 }
 
