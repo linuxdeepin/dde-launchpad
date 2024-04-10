@@ -77,7 +77,8 @@ Item {
                     QQC2.Label {
                         anchors.verticalCenter: parent.verticalCenter
                         text: headingBtn.text
-                        font: LauncherController.boldFont(DTK.fontManager.t6)
+                        font: LauncherController.adjustFontWeight(DTK.fontManager.t7, Font.Medium)
+                        color: Qt.rgba(0, 0, 0, 0.6)
                     }
                 }
             }
@@ -142,7 +143,7 @@ Item {
             id: itemDelegate
             text: model.display
             checkable: false
-            icon.name: iconName
+            icon.name: (iconName && iconName !== "") ? iconName : "application-x-desktop"
             width: listView.width
             font: DTK.fontManager.t8
             // icon.source: "image://app-icon/" + iconName;

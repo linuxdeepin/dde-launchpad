@@ -27,9 +27,10 @@ FocusScope {
     property int rows: Math.min(Math.ceil(count * 1.0 / columns), Helper.windowed.maxViewRows)
     property int paddingColumns: Helper.frequentlyUsed.cellPaddingColumns
     property int paddingRows: Helper.frequentlyUsed.cellPaddingRows
-    property real cellHeight: 74
+    property real cellHeight: 72
     property real cellWidth: 80
 
+    readonly property alias currentItem: gridView.currentItem
     readonly property alias gridViewWidth: gridView.width
     property alias highlight: gridView.highlight
 

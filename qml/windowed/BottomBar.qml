@@ -32,10 +32,8 @@ Control {
         SearchEdit {
             id: searchEdit
 
-            Layout.leftMargin: parent.width / 4
-            Layout.rightMargin: parent.width / 4
-
-            Layout.fillWidth: true
+            Layout.preferredWidth: 360
+            Layout.alignment: Qt.AlignHCenter
             Layout.preferredHeight: 30
             placeholder: qsTr("Search")
             onTextChanged: {
@@ -43,22 +41,29 @@ Control {
                 SearchFilterProxyModel.setFilterRegularExpression(text.trim())
                 SearchFilterProxyModel.invalidate()
             }
+            ColorSelector.family: Palette.CrystalColor
 
             property Palette edittingPalette: Palette {
                 normal {
-                    common: Qt.rgba(0, 0, 0, 0.1)
+                    crystal: Qt.rgba(0, 0, 0, 0.1)
                 }
                 normalDark {
-                    common: Qt.rgba(1, 1, 1, 0.1)
+                    crystal: Qt.rgba(1, 1, 1, 0.1)
                 }
             }
 
             property Palette nomalPalette: Palette {
                 normal {
-                    common: ("transparent")
+                    crystal: ("transparent")
                 }
                 normalDark {
-                    common: ("transparent")
+                    crystal: ("transparent")
+                }
+                hovered {
+                    crystal:  Qt.rgba(0, 0, 0, 0.05)
+                }
+                hoveredDark {
+                    crystal:  Qt.rgba(1, 1, 1, 0.05)
                 }
             }
 

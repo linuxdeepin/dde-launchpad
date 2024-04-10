@@ -60,14 +60,14 @@ QString DesktopIntegration::environmentVariable(const QString &env)
     return qEnvironmentVariable(env.toStdString().c_str());
 }
 
-double DesktopIntegration::scaleFactor(const QString &desktopId)
+double DesktopIntegration::disableScale(const QString &desktopId)
 {
-    return AppMgr::scaleFactor(desktopId);
+    return AppMgr::disableScale(desktopId);
 }
 
-void DesktopIntegration::setScaleFactor(const QString &desktopId, double scaleFactor)
+void DesktopIntegration::setDisableScale(const QString &desktopId, double disableScale)
 {
-    return AppMgr::setScaleFactor(desktopId, scaleFactor);
+    return AppMgr::setDisableScale(desktopId, disableScale);
 }
 
 void DesktopIntegration::showFolder(QStandardPaths::StandardLocation location)
@@ -118,7 +118,7 @@ QRect DesktopIntegration::dockGeometry() const
 
 uint DesktopIntegration::dockSpacing() const
 {
-    return m_dockIntegration->windowMargin();
+    return 10;
 }
 
 QString DesktopIntegration::backgroundUrl() const
@@ -220,7 +220,6 @@ DesktopIntegration::DesktopIntegration(QObject *parent)
 
     connect(m_dockIntegration, &DdeDock::directionChanged, this, &DesktopIntegration::dockPositionChanged);
     connect(m_dockIntegration, &DdeDock::geometryChanged, this, &DesktopIntegration::dockGeometryChanged);
-    connect(m_dockIntegration, &DdeDock::windowMarginChanged, this, &DesktopIntegration::dockSpacingChanged);
     connect(m_appearanceIntegration, &Appearance::wallpaperBlurhashChanged, this, &DesktopIntegration::backgroundUrlChanged);
     connect(m_appearanceIntegration, &Appearance::opacityChanged, this, &DesktopIntegration::opacityChanged);
 }

@@ -20,6 +20,8 @@ Item {
     visible: true
     focus: true
 
+    KeyNavigation.tab: appGridLoader.item
+
     MouseArea {
         anchors.fill: parent
         onClicked: () => {
@@ -104,6 +106,7 @@ Item {
                     Layout.fillHeight: true
                     Layout.preferredWidth: 362
                     Layout.alignment: Qt.AlignRight | Qt.AlignTop
+                    Layout.leftMargin: Helper.frequentlyUsed.leftMargin
                     Layout.rightMargin: Helper.frequentlyUsed.rightMargin
                     sourceComponent: bottomBar.searchEdit.text === "" ? analysisViewCom
                         : searchResultViewCom
@@ -131,7 +134,7 @@ Item {
         backgroundAlpha: 0.8
         width: 370
         height: 312
-        folderNameFont: LauncherController.boldFont(DTK.fontManager.t6)
+        folderNameFont: LauncherController.adjustFontWeight(DTK.fontManager.t6, Font.Bold)
 
         onVisibleChanged: function (visible) {
             if (!visible) {
@@ -149,9 +152,15 @@ Item {
             switch (event.key) {
             case Qt.Key_Up:
             case Qt.Key_Down:
+                appGridLoader.item.forceActiveFocus()
+                return;
             case Qt.Key_Enter:
             case Qt.Key_Return:
-                appGridLoader.item.forceActiveFocus()
+                if (bottomBar.searchEdit.text !== "") {
+                    appGridLoader.item.launchCurrentItem()
+                } else {
+                    appGridLoader.item.forceActiveFocus()
+                }
             }
         }
     }

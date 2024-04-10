@@ -404,7 +404,7 @@ Control {
                                             "text/x-dde-launcher-dnd-desktopId": model.desktopId
                                         }
                                         visible: dndItem.currentlyDraggedId !== model.desktopId
-                                        iconSource: iconName
+                                        iconSource: (iconName && iconName !== "") ? iconName : "application-x-desktop"
                                         icons: folderIcons
                                         padding: 5
                                         onItemClicked: {
@@ -493,21 +493,19 @@ Control {
             Layout.alignment: Qt.AlignHCenter
             implicitWidth: (parent.width / 2) > 280 ? 280 : (parent.width / 2)
 
-            placeholder: qsTranslate("WindowedFrame", "Search")
             KeyNavigation.up: searchEdit.text === "" ? pages : searchResultGridViewContainer
             KeyNavigation.down: KeyNavigation.up
             Keys.onReturnPressed: {
                 if (searchEdit.text === "") {
                     pages.focus = true
-                    // TODO: ensure the first one is actually selected?
                 } else {
-                    searchResultGridViewContainer.focus = true
-                    // TODO: ensure the first one is actually selected?
+                    searchResultGridViewContainer.currentItem?.onItemClicked()
                 }
             }
             onTextChanged: {
-//            console.log(text)
                 SearchFilterProxyModel.setFilterRegularExpression(text.trim())
+                // this can help indirectly reset the currentIndex of the view that the model is attached to
+                SearchFilterProxyModel.invalidate()
             }
         }
     }
