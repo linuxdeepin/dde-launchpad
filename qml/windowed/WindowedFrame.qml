@@ -152,9 +152,15 @@ Item {
             switch (event.key) {
             case Qt.Key_Up:
             case Qt.Key_Down:
+                appGridLoader.item.forceActiveFocus()
+                return;
             case Qt.Key_Enter:
             case Qt.Key_Return:
-                appGridLoader.item.forceActiveFocus()
+                if (bottomBar.searchEdit.text !== "") {
+                    appGridLoader.item.launchCurrentItem()
+                } else {
+                    appGridLoader.item.forceActiveFocus()
+                }
             }
         }
     }

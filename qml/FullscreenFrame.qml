@@ -498,15 +498,14 @@ Control {
             Keys.onReturnPressed: {
                 if (searchEdit.text === "") {
                     pages.focus = true
-                    // TODO: ensure the first one is actually selected?
                 } else {
-                    searchResultGridViewContainer.focus = true
-                    // TODO: ensure the first one is actually selected?
+                    searchResultGridViewContainer.currentItem?.onItemClicked()
                 }
             }
             onTextChanged: {
-//            console.log(text)
                 SearchFilterProxyModel.setFilterRegularExpression(text.trim())
+                // this can help indirectly reset the currentIndex of the view that the model is attached to
+                SearchFilterProxyModel.invalidate()
             }
         }
     }

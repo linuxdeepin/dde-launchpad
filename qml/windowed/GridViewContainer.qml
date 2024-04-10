@@ -30,6 +30,7 @@ FocusScope {
     property real cellHeight: 72
     property real cellWidth: 80
 
+    readonly property alias currentItem: gridView.currentItem
     readonly property alias gridViewWidth: gridView.width
     property alias highlight: gridView.highlight
 
