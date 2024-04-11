@@ -66,13 +66,29 @@ Item {
         anchors.leftMargin: 5
     }
 
-    Rectangle {
+    Control {
+        id: rowLineControl
         width: Helper.windowed.splitLineWidth
         anchors.left: sideBar.right
         anchors.top: sideBar.top
         anchors.bottom: bottomBar.top
         anchors.leftMargin: 5
-        color: this.palette.shadow
+        anchors.bottomMargin: 5 + columnLineControl.height
+
+        property Palette backgroundColor: Palette {
+            normal {
+                common: Qt.rgba(0, 0, 0, 0.15)
+                crystal: Qt.rgba(0, 0, 0, 0.15)
+            }
+            normalDark {
+                common: Qt.rgba(1, 1, 1, 0.15)
+                crystal: Qt.rgba(1, 1, 1, 0.15)
+            }
+        }
+
+        contentItem: Rectangle {
+            color: rowLineControl.ColorSelector.backgroundColor
+        }
     }
 
     RowLayout {
@@ -122,13 +138,28 @@ Item {
         anchors.margins: 5
     }
 
-    Rectangle {
+    Control {
+        id: columnLineControl
         height: Helper.windowed.splitLineWidth
         anchors.left: bottomBar.left
         anchors.right: bottomBar.right
         anchors.bottom: bottomBar.top
         anchors.bottomMargin: 5
-        color: this.palette.shadow
+
+        property Palette backgroundColor: Palette {
+            normal {
+                common: Qt.rgba(0, 0, 0, 0.15)
+                crystal: Qt.rgba(0, 0, 0, 0.15)
+            }
+            normalDark {
+                common: Qt.rgba(1, 1, 1, 0.15)
+                crystal: Qt.rgba(1, 1, 1, 0.15)
+            }
+        }
+
+        contentItem: Rectangle {
+            color: columnLineControl.ColorSelector.backgroundColor
+        }
     }
 
     FolderGridViewPopup {
