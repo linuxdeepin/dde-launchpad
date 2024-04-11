@@ -32,6 +32,7 @@ Control {
     // ----------- Drag and Drop related functions START -----------
     Label {
         property string currentlyDraggedId
+        property bool canDrag: false
 
         signal dragEnded()
 
@@ -44,6 +45,7 @@ Control {
                 text = "Dragging " + currentlyDraggedId
             } else {
                 currentlyDraggedId = ""
+                canDrag = false
                 dragEnded()
             }
         }
@@ -286,6 +288,7 @@ Control {
                 property int previousIndex: -1
                 anchors.fill: parent
                 visible: searchEdit.text === ""
+                interactive: !dndItem.canDrag
 
                 currentIndex: indicator.currentIndex
 
