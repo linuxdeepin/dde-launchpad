@@ -12,6 +12,7 @@ class TestItemsPage: public QObject
 private slots:
     void insertAndRemove();
     void autoRemoveEmptyPage();
+    void dragItemToFolder();
 };
 
 void TestItemsPage::insertAndRemove()
@@ -44,6 +45,16 @@ void TestItemsPage::autoRemoveEmptyPage()
     ip.appendPage({"8"});
     ip.moveItemPosition(2, 0, 0, 1, true);
     QVERIFY(ip.pageCount() == 2);
+}
+
+void TestItemsPage::dragItemToFolder()
+{
+    ItemsPage dstFolder(3);
+    dstFolder.appendPage({"1", "2"});
+
+    dstFolder.insertItemToPage("3", -1);
+    QVERIFY(dstFolder.pageCount() == 1);
+    QVERIFY(dstFolder.items(0) == QStringList({"1", "2", "3"}));
 }
 
 QTEST_MAIN(TestItemsPage)
