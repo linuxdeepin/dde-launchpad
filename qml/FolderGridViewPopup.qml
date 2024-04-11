@@ -17,7 +17,7 @@ Popup {
 
     property alias currentFolderId: folderLoader.currentFolderId
     property alias folderName: folderLoader.folderName
-    property var folderNameFont: DTK.fontManager.t3
+    property var folderNameFont: DTK.fontManager.t2
     readonly property bool isWindowedMode: LauncherController.currentFrame === "WindowedFrame"
 
     modal: true
@@ -70,11 +70,10 @@ Popup {
                 SystemPalette { id: folderTextPalette }
                 TextInput {
                     Layout.fillWidth: true
-
                     font: folderNameFont
                     horizontalAlignment: Text.AlignHCenter
                     text: folderLoader.folderName
-                    color: folderTextPalette.text
+                    color: palette.text
                     onEditingFinished: {
                         ItemArrangementProxyModel.updateFolderName(folderLoader.currentFolderId, text);
                     }
@@ -124,6 +123,7 @@ Popup {
                                         id: fullScreenGridViewContainer
                                         GridViewContainer {
                                             id: folderGridViewContainer
+                                            objectName: "folderGridViewContainer"
                                             anchors.fill: parent
                                             rows: 3
                                             columns: 4
