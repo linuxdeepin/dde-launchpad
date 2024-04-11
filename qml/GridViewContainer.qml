@@ -64,7 +64,12 @@ FocusScope {
         property int cellWidth: cellHeight
         Rectangle {
             anchors.centerIn: parent
-            width: item.cellWidth * root.columns
+            width: {
+                if (root.objectName === "folderGridViewContainer")
+                    return model.rowCount() > root.columns - 1 ? item.cellWidth * root.columns : model.rowCount() * item.cellWidth
+                else
+                    return item.cellWidth * root.columns
+            }
             height: rows == 0 ? parent.height : (item.cellHeight * root.rows)
             color: "transparent"
 

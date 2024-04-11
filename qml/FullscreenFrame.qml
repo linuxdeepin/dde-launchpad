@@ -331,6 +331,7 @@ Control {
 
                             GridViewContainer {
                                 id: gridViewContainer
+                                objectName: "gridViewContainer"
                                 anchors.fill: parent
                                 rows: 4
                                 columns: 7
