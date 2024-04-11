@@ -78,7 +78,7 @@ Item {
                         anchors.verticalCenter: parent.verticalCenter
                         text: headingBtn.text
                         font: LauncherController.adjustFontWeight(DTK.fontManager.t7, Font.Medium)
-                        color: Qt.rgba(0, 0, 0, 0.6)
+                        opacity: 0.6
                     }
                 }
             }
@@ -121,6 +121,7 @@ Item {
                             contentItem: IconLabel {
                                 alignment: Qt.AlignCenter
                                 text: menuItem.text
+                                color: parent.palette.windowText
                             }
                         }
                     }
