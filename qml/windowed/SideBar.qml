@@ -18,6 +18,8 @@ ColumnLayout {
     spacing: 10
 
     property var isFreeSort: true
+    property Item keyTabTarget: title
+    property Item nextKeyTabTarget
 
     signal switchToFreeSort(bool freeSort)
 
@@ -81,6 +83,7 @@ ColumnLayout {
         Layout.alignment: Qt.AlignCenter
         KeyNavigation.down: computer
         KeyNavigation.up: setting
+        KeyNavigation.tab: nextKeyTabTarget
 
         contentItem: Item {
             ColumnLayout {

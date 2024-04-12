@@ -14,6 +14,9 @@ import "."
 Control {
     id: control
 
+    property Item keyTabTarget: frequentlyUsedView.keyTabTarget
+    property Item nextKeyTabTarget
+
     onFocusChanged: () => {
         frequentlyUsedView.focus = true
     }
@@ -36,12 +39,14 @@ Control {
             id: frequentlyUsedView
             visible: count > 0
             maxCount: recentlyInstalledView.visible ? 12 : 16
+            nextKeyTabTarget : recentlyInstalledView.visible ? recentlyInstalledView.keyTabTarget : control.nextKeyTabTarget
         }
 
         RecentlyInstalledView {
             id: recentlyInstalledView
             visible: count > 0
             Layout.topMargin: -(Helper.frequentlyUsed.cellPaddingRows / 2)
+            nextKeyTabTarget: control.nextKeyTabTarget
         }
 
         Item {

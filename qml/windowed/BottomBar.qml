@@ -14,12 +14,15 @@ import "."
 Control {
     id: control
 
+    property Item keyTabTarget: shutdownBtn
+    property Item nextKeyTabTarget
     property alias searchEdit: searchEdit
 
     contentItem: RowLayout {
         width: parent.width
 
         ToolButton {
+            id: shutdownBtn
             icon.name: "shutdown"
             ToolTip.visible: hovered
             ToolTip.delay: 1000
@@ -76,6 +79,7 @@ Control {
             onClicked: {
                 LauncherController.currentFrame = "FullscreenFrame"
             }
+            KeyNavigation.tab: nextKeyTabTarget
         }
     }
 
