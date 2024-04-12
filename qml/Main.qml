@@ -158,6 +158,7 @@ QtObject {
         DWindow.enabled: !DebugHelper.useRegularWindow
         DWindow.enableSystemResize: false
         DWindow.enableSystemMove: false
+        DWindow.enableBlurWindow: true
 
         onVisibleChanged: {
             updateWindowVisibilityAndPosition()
