@@ -15,6 +15,12 @@ Item {
 
     signal folderClicked(string folderId, string folderName)
 
+    property Item keyTabTarget: listView
+
+    onFocusChanged: () => {
+        listView.focus = true
+    }
+
     function positionViewAtBeginning() {
         listView.positionViewAtBeginning()
     }
@@ -22,11 +28,9 @@ Item {
     ListView {
         id: listView
         anchors.fill: parent
-        activeFocusOnTab: true
         highlightFollowsCurrentItem: true
 
         clip: true
-        focus: true
         highlight: Item {
             SystemPalette { id: highlightPalette }
             FocusBoxBorder {

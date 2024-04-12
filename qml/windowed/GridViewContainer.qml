@@ -92,6 +92,16 @@ FocusScope {
                     visible: gridView.activeFocus
                 }
             }
+
+            Keys.onPressed: function (event) {
+                if (event.key === Qt.Key_Right && currentIndex === gridView.count - 1) {
+                    gridView.currentIndex = 0;
+                    event.accepted = true;
+                } else if (event.key === Qt.Key_Left && currentIndex === 0) {
+                    currentIndex = gridView.count - 1;
+                    event.accepted = true;
+                }
+            }
         }
     }
 }

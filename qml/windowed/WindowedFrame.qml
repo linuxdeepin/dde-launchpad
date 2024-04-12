@@ -64,6 +64,7 @@ Item {
         anchors.bottom: parent.bottom
         anchors.topMargin: 10
         anchors.leftMargin: 5
+        nextKeyTabTarget: bottomBar.keyTabTarget
     }
 
     Rectangle {
@@ -89,18 +90,23 @@ Item {
             Layout.fillWidth: true
             Layout.preferredWidth: 220
             Layout.fillHeight: true
+            nextKeyTabTarget: sideBar.keyTabTarget
         }
 
         Loader {
             id: appGridLoader
+            property Item keyTabTarget: appGridLoader.item.keyTabTarget
             Component {
                 id: analysisViewCom
                 AnalysisView {
+                    id: analysisViewCom
+                    nextKeyTabTarget: appList.keyTabTarget
                 }
             }
             Component {
                 id: searchResultViewCom
                 SearchResultView {
+                    nextKeyTabTarget: appList.keyTabTarget
                 }
             }
             Layout.fillHeight: true
@@ -120,6 +126,7 @@ Item {
         anchors.right: parent.right
         anchors.bottom: parent.bottom
         anchors.margins: 5
+        nextKeyTabTarget: appGridLoader.keyTabTarget
     }
 
     Rectangle {

@@ -14,6 +14,9 @@ import "."
 Control {
     id: control
 
+    property Item nextKeyTabTarget
+    property Item keyTabTarget: searchResultViewContainer
+
     onFocusChanged: () => {
         searchResultViewContainer.focus = true
     }
@@ -38,6 +41,7 @@ Control {
         GridViewContainer {
             id: searchResultViewContainer
 
+            KeyNavigation.tab: nextKeyTabTarget
             Layout.alignment: Qt.AlignRight
             Layout.topMargin: 10
             Layout.preferredHeight: searchResultViewContainer.height

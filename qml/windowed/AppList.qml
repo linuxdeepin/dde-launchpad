@@ -18,6 +18,13 @@ ColumnLayout {
 
     signal freeSortViewFolderClicked(string folderId, string folderName)
 
+    property Item keyTabTarget: loader.item
+    property Item nextKeyTabTarget
+
+    onFocusChanged: () => {
+        loader.item.focus = true
+    }
+
     function positionViewAtBeginning() {
         loader.item.positionViewAtBeginning()
     }
@@ -43,6 +50,7 @@ ColumnLayout {
             id: appCategoryListView
 
             MouseAreaCom {}
+            KeyNavigation.tab: nextKeyTabTarget
         }
     }
 
@@ -56,6 +64,7 @@ ColumnLayout {
             }
 
             MouseAreaCom {}
+            KeyNavigation.tab: nextKeyTabTarget
         }
     }
 

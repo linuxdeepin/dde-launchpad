@@ -14,8 +14,15 @@ import "."
 Control {
     id: control
 
+    property Item nextKeyTabTarget
+    property Item keyTabTarget: recentlyInstalledViewContainer
+
     readonly property int count: recentlyInstalledViewContainer.count
     readonly property var model: recentlyInstalledViewContainer.model
+
+    onFocusChanged: () => {
+        recentlyInstalledViewContainer.focus = true
+    }
 
     function positionViewAtBeginning() {
         recentlyInstalledViewContainer.positionViewAtBeginning()
@@ -31,6 +38,7 @@ Control {
         GridViewContainer {
             id: recentlyInstalledViewContainer
 
+            KeyNavigation.tab: nextKeyTabTarget
             Layout.alignment: Qt.AlignRight
             Layout.preferredHeight: recentlyInstalledViewContainer.height
             Layout.preferredWidth: recentlyInstalledViewContainer.width
