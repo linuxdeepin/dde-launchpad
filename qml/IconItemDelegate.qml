@@ -105,7 +105,7 @@ Control {
             // as topMargin
             Item {
                 width: 1
-                height: isWindowedMode ? 5 : 20
+                height: isWindowedMode ? 5 : root.height / 10
             }
 
             Label {
