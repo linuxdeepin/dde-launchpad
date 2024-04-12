@@ -33,6 +33,7 @@ FocusScope {
     readonly property alias currentIndex: gridView.currentIndex
     readonly property alias currentItem: gridView.currentItem
     readonly property alias gridViewWidth: gridView.width
+    readonly property bool isWindowedMode: LauncherController.currentFrame === "WindowedFrame"
 
     function setPreviousPageSwitch(state) {
         if (state)
@@ -106,7 +107,7 @@ FocusScope {
                             fill: parent
                             margins: 5
                         }
-                        radius: 8
+                        radius: isWindowedMode ? 8 : 18
                         color: highlightPalette.highlight
                         visible: gridView.activeFocus
                     }
