@@ -32,12 +32,14 @@ Control {
             }
         }
 
-        SearchEdit {
-            id: searchEdit
-
+        // TODO dtk's bug, ColorSelector's control is wrong for SearchEdit.
+        Control {
             Layout.preferredWidth: 360
             Layout.alignment: Qt.AlignHCenter
             Layout.preferredHeight: 30
+            contentItem: SearchEdit {
+            id: searchEdit
+
             placeholder: qsTr("Search")
             onTextChanged: {
                 console.log(text)
@@ -71,6 +73,7 @@ Control {
             }
 
             backgroundColor: searchEdit.editting ? edittingPalette : nomalPalette
+            }
         }
 
         ToolButton {
