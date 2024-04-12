@@ -25,7 +25,6 @@ Popup {
     // visible: true
     closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutside
 
-    property var backgroundAlpha: 0.15
     property int cs: 110 // * 5 / 4
     // anchors.centerIn: parent // seems dtkdeclarative's Popup doesn't have anchors.centerIn
 
@@ -217,20 +216,32 @@ Popup {
         id: blur
         implicitWidth: DS.Style.popup.width
         implicitHeight: DS.Style.popup.height
-        radius: DS.Style.popup.radius
+        radius: 40
         offscreen: true
         ItemViewport {
             anchors.fill: parent
             fixed: true
             sourceItem: blur.content
-            radius: DS.Style.popup.radius
+            radius: blurBackground.radius
             hideSource: false
         }
 
+        BoxShadow {
+            anchors.fill: blurBackground
+            shadowOffsetX: 0
+            shadowOffsetY: 2
+            shadowColor:  Qt.rgba(0, 0, 0, 0.1)
+            shadowBlur: 14
+            cornerRadius: blurBackground.radius
+            spread: 0
+            hollow: true
+        }
+
         Rectangle {
+            id: blurBackground
             anchors.fill: parent
-            radius: DS.Style.popup.radius
-            color: Qt.rgba(255.0, 255.0, 255.0, backgroundAlpha)
+            radius: 36
+            color: Qt.rgba(1.0, 1.0, 1.0, 0.2)
         }
     }
 }

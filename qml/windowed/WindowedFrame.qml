@@ -164,7 +164,6 @@ Item {
 
     FolderGridViewPopup {
         id: folderGridViewPopup
-        backgroundAlpha: 0.8
         width: 370
         height: 312
         folderNameFont: LauncherController.adjustFontWeight(DTK.fontManager.t6, Font.Bold)
