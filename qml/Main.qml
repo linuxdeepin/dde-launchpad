@@ -87,11 +87,47 @@ QtObject {
         let ratio = Screen.devicePixelRatio
         return Qt.rect(rect.left / ratio, rect.top / ratio, rect.width / ratio, rect.height / ratio)
     }
+    function descaledPos(pos) {
+        let ratio = Screen.devicePixelRatio
+        return Qt.point(pos.x / ratio, pos.y / ratio)
+    }
 
     function updateWindowVisibilityAndPosition() {
         if (!LauncherController.visible) return;
 
         if (LauncherController.currentFrame === "WindowedFrame") {
+        //            root.visibility = Window.Windowed
+
+            let width = windowedFrameSize.width
+            let height = windowedFrameSize.height
+            let x = 0
+            let y = 0
+
+            let dockGeometry = descaledRect(DesktopIntegration.dockGeometry)
+            let descaledWindowdPos = descaledPos(windowedPos)
+            if (dockGeometry.width > 0 && dockGeometry.height > 0) {
+                let dockSpacing = DesktopIntegration.dockSpacing
+                switch (DesktopIntegration.dockPosition) {
+                case Qt.DownArrow:
+                    x = descaledWindowdPos.x > 0 ? descaledWindowdPos.x - dockSpacing : dockGeometry.left + dockSpacing
+                    y = (dockGeometry.top >= 0 ? dockGeometry.top : (Screen.height - dockGeometry.height)) - height - dockSpacing
+                    break
+                case Qt.LeftArrow:
+                    x = dockGeometry.right + dockSpacing
+                    y = (dockGeometry.top >= 0 ? dockGeometry.top : 0) + dockSpacing
+                    break
+                case Qt.UpArrow:
+                    x = dockGeometry.left + dockSpacing
+                    y = dockGeometry.bottom + dockSpacing
+                    break
+                case Qt.RightArrow:
+                    x = (dockGeometry.left >= 0 ? dockGeometry.left : (Screen.width - dockGeometry.width)) - width - dockSpacing
+                    y = dockGeometry.top + dockSpacing
+                    break
+                }
+            }
+
+            windowedFrame.setGeometry(x, y, width, height)
             windowedFrame.requestActivate()
         } else {
             fullscreenFrame.requestActivate()
@@ -118,10 +154,6 @@ QtObject {
         objectName: "WindowedFrameApplicationWindow"
         title: "Windowed Launchpad"
         visible: LauncherController.visible && (LauncherController.currentFrame === "WindowedFrame")
-
-        DLayerShellWindow.anchors: DLayerShellWindow.AnchorBottom | DLayerShellWindow.AnchorLeft
-        DLayerShellWindow.leftMargin: windowedPos.x
-        DLayerShellWindow.bottomMargin: DesktopIntegration.dockSpacing
 
         width: windowedFrameSize.width
         height: windowedFrameSize.height
