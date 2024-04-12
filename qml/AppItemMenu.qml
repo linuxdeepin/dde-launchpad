@@ -71,6 +71,7 @@ Loader {
                 }
             }
             MenuItem {
+                enabled: !root.desktopId.startsWith("internal/")
                 text: DesktopIntegration.isDockedApp(root.desktopId) ? qsTr("Remove from dock") : qsTr("Send to dock")
                 onTriggered: {
                     if (DesktopIntegration.isDockedApp(root.desktopId)) {
