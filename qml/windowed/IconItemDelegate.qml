@@ -58,9 +58,10 @@ Control {
                 rightPadding: 2
                 horizontalAlignment: Text.AlignHCenter
                 wrapMode: Text.WordWrap
-                elide: Text.ElideMiddle
+                elide: Text.ElideRight
                 maximumLineCount: 2
                 font: DTK.fontManager.t9
+                verticalAlignment: Text.AlignTop
             }    
         }
         background: ButtonPanel {

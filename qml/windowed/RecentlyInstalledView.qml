@@ -46,7 +46,7 @@ Control {
             delegate: IconItemDelegate {
                 iconSource: iconName
                 width: recentlyInstalledViewContainer.cellWidth
-                height: recentlyInstalledViewContainer.cellHeight
+                height: recentlyInstalledViewContainer.cellHeight + recentlyInstalledViewContainer.paddingRows
                 onItemClicked: {
                     launchApp(desktopId)
                 }

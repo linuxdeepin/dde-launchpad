@@ -49,7 +49,7 @@ Control {
 
             delegate: IconItemDelegate {
                 width: frequentlyUsedViewContainer.cellWidth
-                height: frequentlyUsedViewContainer.cellHeight
+                height: frequentlyUsedViewContainer.cellHeight + frequentlyUsedViewContainer.paddingRows
                 iconSource: iconName
                 onItemClicked: {
                     launchApp(desktopId)
