@@ -53,22 +53,74 @@ Item {
         delegate: DropArea {
             width: listView.width
             height: itemDelegate.height
+
+            property bool showDropIndicator: false
+            property int op: 0 // DndPrepend = -1,DndJoin = 0, DndAppend = 1
+            readonly property int indicatorDefaultHeight: 1
+
+            function dropPositionCheck(mouseY, isDraggingFolder) {
+                let sideOpPadding = height / 3
+                if (mouseY < sideOpPadding) {
+                    dropIndicator.y = 0
+                    dropIndicator.height = indicatorDefaultHeight
+                    op = -1
+                } else if (mouseY > (height - sideOpPadding)) {
+                    dropIndicator.y = itemDelegate.height
+                    dropIndicator.height = indicatorDefaultHeight
+                    op = 1
+                } else {
+                    if (isDraggingFolder) {
+                        dropIndicator.height = indicatorDefaultHeight
+                        showDropIndicator = false
+                    } else {
+                        dropIndicator.y = 0
+                        dropIndicator.height = itemDelegate.height
+                    }
+
+                    op = 0
+                }
+            }
+
+            onPositionChanged: function(drag) {
+                let dragId = drag.getDataAsString("text/x-dde-launcher-dnd-desktopId")
+                if (dragId === desktopId) {
+                    return
+                }
+
+                let isDraggingFolder = false
+                if (dragId.indexOf("internal/folders/") !== -1) {
+                    isDraggingFolder = true
+                }
+
+                showDropIndicator = true
+                dropPositionCheck(drag.y, isDraggingFolder)
+            }
+
             onEntered: {
                 if (folderGridViewPopup.opened) {
                     folderGridViewPopup.close()
                 }
             }
+
+            onExited: {
+                showDropIndicator = false;
+            }
+
             onDropped: function(drop) {
                 drop.accept()
                 let dragId = drop.getDataAsString("text/x-dde-launcher-dnd-desktopId")
-                let op = 0 // DndPrepend = -1,DndJoin = 0, DndAppend = 1
-                let sideOpPadding = height / 3
-                if (drop.y < sideOpPadding) {
-                    op = -1
-                } else if (drop.y > (height - sideOpPadding)) {
-                    op = 1
-                }
+                showDropIndicator = false
                 dropOnItem(dragId, model.desktopId, op)
+            }
+
+            Rectangle {
+                id: dropIndicator
+                width: bg.width
+                height: indicatorDefaultHeight
+                color: "lightgray"
+                visible: showDropIndicator
+                radius: height > indicatorDefaultHeight ? 8 : 1
+                opacity: 0.5
             }
 
             ItemDelegate {
