@@ -5,12 +5,18 @@
 #include "appsmodel.h"
 #include "categorizedsortproxymodel.h"
 
+#include <QGuiApplication>
 #include <QSet>
+
+#include <DConfig>
+
+DCORE_USE_NAMESPACE
 
 void CategorizedSortProxyModel::setCategoryType(CategoryType categoryType)
 {
-    const int oldSortRole = sortRole();
+    CategoryType oldCategoryType = this->categoryType();
 
+    isFreeSort = (categoryType == FreeCategory);
     switch (categoryType) {
     case Alphabetary:
         setSortRole(AppsModel::TransliteratedRole);
@@ -22,7 +28,9 @@ void CategorizedSortProxyModel::setCategoryType(CategoryType categoryType)
         break;
     }
 
-    if (oldSortRole != sortRole()) {
+    if (oldCategoryType != categoryType) {
+        QScopedPointer<DConfig> config(DConfig::create("dde-launchpad", "org.deepin.dde.launchpad.appsmodel"));
+        config->setValue("categoryType", categoryType);
         emit categoryTypeChanged();
     }
 
@@ -31,6 +39,7 @@ void CategorizedSortProxyModel::setCategoryType(CategoryType categoryType)
 
 CategorizedSortProxyModel::CategoryType CategorizedSortProxyModel::categoryType() const
 {
+    if (isFreeSort) return FreeCategory;
     if (sortRole() == AppsModel::TransliteratedRole) return CategorizedSortProxyModel::Alphabetary;
     return CategorizedSortProxyModel::DDECategory;
 }
@@ -122,4 +131,9 @@ CategorizedSortProxyModel::CategorizedSortProxyModel(QObject *parent)
 {
     setSortCaseSensitivity(Qt::CaseInsensitive);
     setSourceModel(&AppsModel::instance());
+    QScopedPointer<DConfig> config(DConfig::create("dde-launchpad", "org.deepin.dde.launchpad.appsmodel"));
+    CategoryType categoryType = CategoryType(config->value("categoryType", FreeCategory).toInt());
+    isFreeSort = (categoryType == FreeCategory);
+    setCategoryType(categoryType);
+    qDebug() << "CategoryType by DConfig:" << categoryType;
 }

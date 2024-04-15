@@ -17,7 +17,7 @@ import org.deepin.launchpad.models 1.0
 ColumnLayout {
     spacing: 10
 
-    property var isFreeSort: true
+    property bool isFreeSort: CategorizedSortProxyModel.categoryType === CategorizedSortProxyModel.FreeCategory
     property Item keyTabTarget: title
     property Item nextKeyTabTarget
 
@@ -33,7 +33,6 @@ ColumnLayout {
 
     Component {
         id: categorizedCom
-
         D.Menu {
             id: categorizedMenu
 
@@ -46,6 +45,7 @@ ColumnLayout {
                     if (!isFreeSort) {
                         isFreeSort = true
                         switchToFreeSort(true)
+                        CategorizedSortProxyModel.categoryType = CategorizedSortProxyModel.FreeCategory
                     }
                 }
             }
@@ -54,7 +54,7 @@ ColumnLayout {
                 text: qsTr("Sort by category")
                 icon.name: categorizedIcon(CategorizedSortProxyModel.DDECategory)
                 display: D.IconLabel.IconBesideText
-                checked: !isFreeSort ? CategorizedSortProxyModel.categoryType === CategorizedSortProxyModel.DDECategory : false
+                checked: CategorizedSortProxyModel.categoryType === CategorizedSortProxyModel.DDECategory
                 onTriggered: {
                     isFreeSort = false
                     switchToFreeSort(false)
@@ -66,7 +66,7 @@ ColumnLayout {
                 text: qsTr("Sort by name")
                 icon.name: categorizedIcon(CategorizedSortProxyModel.Alphabetary)
                 display: D.IconLabel.IconBesideText
-                checked: !isFreeSort ? CategorizedSortProxyModel.categoryType === CategorizedSortProxyModel.Alphabetary : false
+                checked: CategorizedSortProxyModel.categoryType === CategorizedSortProxyModel.Alphabetary
                 onTriggered: {
                     isFreeSort = false
                     switchToFreeSort(false)

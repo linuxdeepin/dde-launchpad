@@ -40,6 +40,17 @@
       "description[zh_CN]": "我的常用中默认显示的应用程序的 desktop ID 列表。",
       "permissions": "readonly",
       "visibility": "private"
+    },
+    "categoryType": {
+      "value": 0,
+      "serial": 0,
+      "flags": [],
+      "name": "Application Sort Type",
+      "name[zh_CN]": "应用排序类别",
+      "description": "The type of sorting Application list under windows mode",
+      "description[zh_CN]": "在窗口模式下排序应用列表的类别",
+      "permissions": "readwrite",
+      "visibility": "private"
     }
   }
 }

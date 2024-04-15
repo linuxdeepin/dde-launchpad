@@ -39,7 +39,7 @@ ColumnLayout {
 
     Loader {
         id: loader
-        sourceComponent: freeSortListView
+        sourceComponent: CategorizedSortProxyModel.categoryType === CategorizedSortProxyModel.FreeCategory ? freeSortListView : categoryListView
         Layout.fillWidth: true
         Layout.fillHeight: true
     }
