@@ -11,11 +11,12 @@ QtObject {
         property int splitLineWidth: 1
         property int bottomBarMargins: 10
         property int maxViewRows: 4
+        property int doubleRowMaxFontSize: 12
     }
     property QtObject frequentlyUsed :QtObject {
         property int leftMargin: 10
         property int rightMargin: 10
         property int cellPaddingColumns: 14
-        property int cellPaddingRows: 20
+        property int cellPaddingRows: 10
     }
 }

@@ -145,7 +145,7 @@ QtObject {
         }
     }
 
-    readonly property size windowedFrameSize: Qt.size(610, 465)
+    readonly property size windowedFrameSize: Qt.size(610, 480)
 
     // update by caller.
     property point windowedPos: Qt.point(0, 0)
