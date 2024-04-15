@@ -46,7 +46,6 @@ Control {
                 SearchFilterProxyModel.setFilterRegularExpression(text.trim())
                 SearchFilterProxyModel.invalidate()
             }
-            ColorSelector.family: Palette.CrystalColor
 
             property Palette edittingPalette: Palette {
                 normal {

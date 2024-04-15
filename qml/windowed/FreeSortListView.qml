@@ -136,7 +136,6 @@ Item {
                 anchors.leftMargin: 10
                 anchors.rightMargin: 10
                 font: DTK.fontManager.t8
-                ColorSelector.family: Palette.CrystalColor
                 visible: !Drag.active
 
                 Drag.hotSpot.x: width / 3
