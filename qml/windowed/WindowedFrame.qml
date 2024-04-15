@@ -103,7 +103,6 @@ Item {
         spacing: 0
         AppList {
             id: appList
-            Layout.fillWidth: true
             Layout.preferredWidth: 220
             Layout.fillHeight: true
             nextKeyTabTarget: sideBar.keyTabTarget
@@ -115,7 +114,6 @@ Item {
             Component {
                 id: analysisViewCom
                 AnalysisView {
-                    id: analysisViewCom
                     nextKeyTabTarget: appList.keyTabTarget
                 }
             }
