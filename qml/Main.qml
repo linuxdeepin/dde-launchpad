@@ -9,7 +9,7 @@ import QtQuick.Controls 2.15
 import QtQuick.Window 2.15
 import org.deepin.dtk 1.0
 import org.deepin.ds 1.0
-import org.deepin.dtk.style 1.0 as DS
+import org.deepin.dtk.style 1.0 as DStyle
 
 import org.deepin.launchpad 1.0
 import org.deepin.launchpad.models 1.0
@@ -166,19 +166,20 @@ QtObject {
             control: parent
             anchors.fill: parent
             function blendColorAlpha(fallback) {
-                if (DesktopIntegration.opacity < 0)
+                var appearance = DS.applet("org.deepin.ds.dde-appearance")
+                if (!appearance || appearance.opacity < 0)
                     return fallback
-                return DesktopIntegration.opacity
+                return appearance.opacity
             }
             blendColor: {
                 if (valid) {
-                    return DS.Style.control.selectColor(undefined,
+                    return DStyle.Style.control.selectColor(undefined,
                                                 Qt.rgba(235 / 255.0, 235 / 255.0, 235 / 255.0, blendColorAlpha(0.6)),
                                                 Qt.rgba(0, 0, 0, blendColorAlpha(85 / 255)))
                 }
-                return DS.Style.control.selectColor(undefined,
-                                            DS.Style.behindWindowBlur.lightNoBlurColor,
-                                            DS.Style.behindWindowBlur.darkNoBlurColor)
+                return DStyle.Style.control.selectColor(undefined,
+                                            DStyle.Style.behindWindowBlur.lightNoBlurColor,
+                                            DStyle.Style.behindWindowBlur.darkNoBlurColor)
             }
         }
         InsideBoxBorder {
@@ -328,8 +329,8 @@ QtObject {
 
         DLayerShellWindow.anchors: DLayerShellWindow.AnchorNone
 
-        minimumWidth: layout.implicitWidth + 2 * DS.Style.dialogWindow.contentHMargin
-        minimumHeight: layout.implicitHeight + DS.Style.dialogWindow.titleBarHeight
+        minimumWidth: layout.implicitWidth + 2 * DStyle.Style.dialogWindow.contentHMargin
+        minimumHeight: layout.implicitHeight + DStyle.Style.dialogWindow.titleBarHeight
         maximumWidth: minimumWidth
         maximumHeight: minimumHeight
         ColumnLayout {
