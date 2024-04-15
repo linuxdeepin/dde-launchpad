@@ -407,7 +407,6 @@ Control {
                                         visible: dndItem.currentlyDraggedId !== model.desktopId
                                         iconSource: (iconName && iconName !== "") ? iconName : "application-x-desktop"
                                         icons: folderIcons
-                                        padding: 5
                                         onItemClicked: {
                                             launchApp(desktopId)
                                         }
