@@ -33,7 +33,8 @@ public:
 
     enum CategoryType {
         Alphabetary,
-        DDECategory
+        DDECategory,
+        FreeCategory,
     };
     Q_ENUM(CategoryType)
 
@@ -52,5 +53,6 @@ protected:
     bool lessThan(const QModelIndex &source_left, const QModelIndex &source_right) const override;
 
 private:
+    bool isFreeSort;
     explicit CategorizedSortProxyModel(QObject *parent = nullptr);
 };

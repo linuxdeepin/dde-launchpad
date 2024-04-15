@@ -55,8 +55,6 @@ public:
             return false;
         }
 
-        CategorizedSortProxyModel::instance().setCategoryType(CategorizedSortProxyModel::Alphabetary);
-
         auto &engine = *DQmlEngine().engine();
 
         engine.addImageProvider(QLatin1String("app-icon"), new LauncherAppIconProvider);

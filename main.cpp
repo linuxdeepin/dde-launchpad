@@ -64,8 +64,6 @@ int main(int argc, char* argv[])
         LauncherController::instance().setVisible(true);
     }
 
-    CategorizedSortProxyModel::instance().setCategoryType(CategorizedSortProxyModel::Alphabetary);
-
     QQmlApplicationEngine engine;
 
     QQuickStyle::setStyle("Chameleon");
