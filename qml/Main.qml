@@ -157,6 +157,7 @@ QtObject {
 
         width: windowedFrameSize.width
         height: windowedFrameSize.height
+        ColorSelector.family: Palette.CrystalColor
         flags: {
             if (DebugHelper.useRegularWindow) return Qt.Window
             return ( Qt.FramelessWindowHint | Qt.Tool)

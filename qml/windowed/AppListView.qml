@@ -148,7 +148,6 @@ Item {
             width: listView.width
             font: DTK.fontManager.t8
             // icon.source: "image://app-icon/" + iconName;
-            ColorSelector.family: Palette.CrystalColor
 
             TapHandler {
                 acceptedButtons: Qt.RightButton
