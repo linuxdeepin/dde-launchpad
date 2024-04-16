@@ -67,13 +67,12 @@ Popup {
         paddingRows: root.paddingRows
 
         highlight: Item {
-            SystemPalette { id: highlightPalette }
             FocusBoxBorder {
                 anchors.centerIn: parent
                 width: root.cellWidth
                 height: root.cellHeight
                 radius: root.cellWidth / 2
-                color: highlightPalette.highlight
+                color: palette.highlight
                 visible: alphabetCategoryContainer.activeFocus
             }
         }

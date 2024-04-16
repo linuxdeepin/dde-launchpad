@@ -32,14 +32,13 @@ Item {
 
         clip: true
         highlight: Item {
-            SystemPalette { id: highlightPalette }
             FocusBoxBorder {
                 anchors {
                     fill: parent
                     margins: 4
                 }
                 radius: 4
-                color: highlightPalette.highlight
+                color: palette.highlight
                 visible: listView.activeFocus
             }
         }

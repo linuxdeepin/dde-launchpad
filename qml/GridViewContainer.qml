@@ -101,14 +101,13 @@ FocusScope {
                 cellWidth: item.cellWidth
 
                 highlight: Item {
-                    SystemPalette { id: highlightPalette }
                     FocusBoxBorder {
                         anchors {
                             fill: parent
                             margins: 5
                         }
                         radius: isWindowedMode ? 8 : 18
-                        color: highlightPalette.highlight
+                        color: palette.highlight
                         visible: gridView.activeFocus
                     }
                 }

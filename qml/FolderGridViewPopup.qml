@@ -66,14 +66,13 @@ Popup {
                     Layout.preferredHeight: 5
                 }
 
-                SystemPalette { id: folderTextPalette }
                 TextInput {
                     Layout.fillWidth: true
                     clip: true
                     font: folderNameFont
                     horizontalAlignment: Text.AlignHCenter
                     text: folderLoader.folderName
-                    color: palette.text
+                    color: palette.windowText
                     onEditingFinished: {
                         ItemArrangementProxyModel.updateFolderName(folderLoader.currentFolderId, text);
                     }
