@@ -36,6 +36,7 @@ Loader {
             MenuSeparator {}
             MenuItem {
                 id: pinToTopMenu
+                enabled: false
                 visible: isFavoriteItem && !hideFavoriteMenu
                 height: visible ? implicitHeight : 0 // FIXME: seems this can cause some issue
                 text: qsTr("Pin to Top")
@@ -46,6 +47,7 @@ Loader {
             MenuItem {
                 id: addOrRemoveFavMenu
                 visible: !hideFavoriteMenu
+                enabled: false
                 height: visible ? implicitHeight : 0 // FIXME: same as above
                 text: FavoritedProxyModel.exists(root.desktopId) ? qsTr("Remove from favorites") : qsTr("Add to favorites")
                 onTriggered: {
@@ -90,6 +92,7 @@ Loader {
             }
             MenuItem {
                 visible: false
+                enabled: false
                 text: qsTr("Use a proxy")
                 height: visible ? implicitHeight : 0 // FIXME: same as above
             }
