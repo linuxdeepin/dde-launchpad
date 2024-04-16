@@ -69,6 +69,7 @@ Popup {
                 SystemPalette { id: folderTextPalette }
                 TextInput {
                     Layout.fillWidth: true
+                    clip: true
                     font: folderNameFont
                     horizontalAlignment: Text.AlignHCenter
                     text: folderLoader.folderName
