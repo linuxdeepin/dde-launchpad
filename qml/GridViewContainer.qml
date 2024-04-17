@@ -26,7 +26,7 @@ FocusScope {
     property Transition itemMove
     required property int columns
     required property int rows
-    property int paddingColumns: 0
+    property real paddingColumns: 0
     property alias cellHeight: item.cellHeight
     property alias cellWidth: item.cellWidth
 

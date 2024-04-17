@@ -191,7 +191,7 @@ QHash<int, QByteArray> ItemArrangementProxyModel::roleNames() const
 
 ItemArrangementProxyModel::ItemArrangementProxyModel(QObject *parent)
     : QConcatenateTablesProxyModel(parent)
-    , m_topLevel(new ItemsPage(7 * 4, this))
+    , m_topLevel(new ItemsPage(8 * 4, this))
 {
     m_folderModel.setItemRoleNames(AppsModel::instance().roleNames());
 
