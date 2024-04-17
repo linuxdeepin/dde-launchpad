@@ -18,15 +18,17 @@ Control {
     property Item nextKeyTabTarget
     property alias searchEdit: searchEdit
 
-    contentItem: RowLayout {
-        width: parent.width
+    leftPadding: 5
+    rightPadding: 5
 
+    contentItem: RowLayout {
         ToolButton {
             id: shutdownBtn
             icon.name: "shutdown"
             ToolTip.visible: hovered
             ToolTip.delay: 1000
             ToolTip.text: qsTr("Power")
+            Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
             onClicked: {
                 DesktopIntegration.openShutdownScreen();
             }
@@ -35,7 +37,7 @@ Control {
         // TODO dtk's bug, ColorSelector's control is wrong for SearchEdit.
         Control {
             Layout.preferredWidth: 360
-            Layout.alignment: Qt.AlignHCenter
+            Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
             Layout.preferredHeight: 30
             contentItem: SearchEdit {
             id: searchEdit
@@ -79,6 +81,7 @@ Control {
         ToolButton {
             icon.name: "launcher_fullscreen"
             Accessible.name: "Fullscreen"
+            Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
             onClicked: {
                 LauncherController.currentFrame = "FullscreenFrame"
             }
