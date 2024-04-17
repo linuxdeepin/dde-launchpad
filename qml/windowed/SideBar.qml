@@ -81,6 +81,7 @@ ColumnLayout {
 
         implicitHeight: DS.Style.control.implicitHeight(this) * 1.5
         Layout.alignment: Qt.AlignCenter
+        Layout.topMargin: 10
         KeyNavigation.down: computer
         KeyNavigation.up: setting
         KeyNavigation.tab: nextKeyTabTarget
@@ -204,5 +205,6 @@ ColumnLayout {
 
     Item {
         height: title.height
+        Layout.bottomMargin: 10
     }
 }

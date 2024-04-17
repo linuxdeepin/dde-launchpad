@@ -62,7 +62,6 @@ Item {
         anchors.left: parent.left
         anchors.top: parent.top
         anchors.bottom: parent.bottom
-        anchors.topMargin: 10
         anchors.leftMargin: 5
         nextKeyTabTarget: bottomBar.keyTabTarget
     }
@@ -74,7 +73,6 @@ Item {
         anchors.top: baseLayer.top
         anchors.bottom: bottomBar.top
         anchors.leftMargin: 5
-        anchors.bottomMargin: 5 + columnLineControl.height
 
         property Palette backgroundColor: Palette {
             normal {
@@ -98,6 +96,7 @@ Item {
         anchors.top: sideBar.top
         anchors.right: parent.right
         anchors.bottom: bottomBar.top
+        anchors.topMargin: 10
         anchors.leftMargin: 5
         spacing: 0
         AppList {
