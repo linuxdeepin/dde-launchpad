@@ -24,21 +24,18 @@ DGUI_USE_NAMESPACE
 
 int main(int argc, char* argv[])
 {
-    // workaround for https://github.com/linuxdeepin/dtk/issues/115
-    qputenv("D_POPUP_MODE", "embed");
-
     DGuiApplicationHelper::setAttribute(DGuiApplicationHelper::DontSaveApplicationTheme, true);
 
     QGuiApplication app(argc, argv);
-    Dtk::Core::DLogManager::registerConsoleAppender();
-    Dtk::Core::DLogManager::registerFileAppender();
-    Dtk::Core::DLogManager::registerJournalAppender();
 #if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
     app.setAttribute(Qt::AA_UseHighDpiPixmaps);
 #endif // (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
     QCoreApplication::setOrganizationName("deepin");
     QCoreApplication::setApplicationName("dde-launchpad");
     QCoreApplication::setApplicationVersion(QT_STRINGIFY(DDE_LAUNCHPAD_VERSION) + QStringLiteral("-technical-preview"));
+    Dtk::Core::DLogManager::registerConsoleAppender();
+    Dtk::Core::DLogManager::registerFileAppender();
+    Dtk::Core::DLogManager::registerJournalAppender();
     DGuiApplicationHelper::loadTranslator();
     bool isOnlyInstance = DGuiApplicationHelper::setSingleInstance(QStringLiteral("dde-launchpad"));
 
