@@ -75,84 +75,88 @@ Item {
                 }
             }
 
-            ToolButton {
-                id: headingBtn
+            Item {
+                width: parent.width
+                height: headingBtn.height
+                ToolButton {
+                    id: headingBtn
 
-                enabled: true
-                ColorSelector.disabled: false
+                    enabled: true
+                    ColorSelector.disabled: false
 
-                focusPolicy: Qt.NoFocus
-                anchors.fill: parent
-                anchors.leftMargin: 5
-                anchors.rightMargin: 5
-
-                text: {
-                    if (CategorizedSortProxyModel.categoryType === CategorizedSortProxyModel.Alphabetary) {
-                        return section.toUpperCase();
-                    } else {
-                        return getCategoryName(section)
-                    }
-                }
-
-                contentItem: Item {
-                    Row {
-                        anchors.fill: parent
-                        spacing: 3
-                        QQC2.Label {
-                            anchors.verticalCenter: parent.verticalCenter
-                            text: headingBtn.text
-                            font: LauncherController.adjustFontWeight(DTK.fontManager.t7, Font.Medium)
-                            opacity: 0.6
-                        }
-                    }
-                }
-
-                MouseArea {
+                    focusPolicy: Qt.NoFocus
                     anchors.fill: parent
-                    acceptedButtons: Qt.LeftButton
+                    anchors.leftMargin: 10
+                    anchors.rightMargin: 10
 
-                    onClicked: {
+                    text: {
                         if (CategorizedSortProxyModel.categoryType === CategorizedSortProxyModel.Alphabetary) {
-                            alphabetCategoryPopup.existingSections = CategorizedSortProxyModel.alphabetarySections()
-                            var mousePos = mapToItem(listView, mouseX, mouseY)
-                            var y = (mousePos.y + alphabetCategoryPopup.height) < listView.height ? mousePos.y : listView.height - alphabetCategoryPopup.height
-                            alphabetCategoryPopup.y = y
-                            alphabetCategoryPopup.x = 10
-                            listView.opacity = 0.1
-                            alphabetCategoryPopup.open()
-                        } else if (CategorizedSortProxyModel.categoryType === CategorizedSortProxyModel.DDECategory) {
-                            ddeCategoryMenu.existingSections = CategorizedSortProxyModel.DDECategorySections()
-                            listView.opacity = 0.1
-                            ddeCategoryMenu.open()
+                            return section.toUpperCase();
+                        } else {
+                            return getCategoryName(section)
                         }
                     }
 
-                    Menu {
-                        id: ddeCategoryMenu
-                        width: 150
-                        modal: true
-                        closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutsideParent
+                    contentItem: Item {
+                        Row {
+                            anchors.fill: parent
+                            spacing: 3
+                            QQC2.Label {
+                                anchors.verticalCenter: parent.verticalCenter
+                                text: headingBtn.text
+                                font: LauncherController.adjustFontWeight(DTK.fontManager.t7, Font.Medium)
+                                opacity: 0.6
+                            }
+                        }
+                    }
 
-                        property var existingSections: []
-                        Repeater {
-                            model: ddeCategoryMenu.existingSections
-                            delegate: MenuItem {
-                                id: menuItem
-                                text: getCategoryName(modelData)
-                                onTriggered: {
-                                    scrollToDDECategory(modelData)
-                                }
-                                contentItem: IconLabel {
-                                    alignment: Qt.AlignCenter
-                                    text: menuItem.text
-                                    color: parent.palette.windowText
-                                }
+                    MouseArea {
+                        anchors.fill: parent
+                        acceptedButtons: Qt.LeftButton
+
+                        onClicked: {
+                            if (CategorizedSortProxyModel.categoryType === CategorizedSortProxyModel.Alphabetary) {
+                                alphabetCategoryPopup.existingSections = CategorizedSortProxyModel.alphabetarySections()
+                                var mousePos = mapToItem(listView, mouseX, mouseY)
+                                var y = (mousePos.y + alphabetCategoryPopup.height) < listView.height ? mousePos.y : listView.height - alphabetCategoryPopup.height
+                                alphabetCategoryPopup.y = y
+                                alphabetCategoryPopup.x = 10
+                                listView.opacity = 0.1
+                                alphabetCategoryPopup.open()
+                            } else if (CategorizedSortProxyModel.categoryType === CategorizedSortProxyModel.DDECategory) {
+                                ddeCategoryMenu.existingSections = CategorizedSortProxyModel.DDECategorySections()
+                                listView.opacity = 0.1
+                                ddeCategoryMenu.open()
                             }
                         }
 
-                        onVisibleChanged: {
-                            if (!visible) {
-                                listView.opacity = 1
+                        Menu {
+                            id: ddeCategoryMenu
+                            width: 150
+                            modal: true
+                            closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutsideParent
+
+                            property var existingSections: []
+                            Repeater {
+                                model: ddeCategoryMenu.existingSections
+                                delegate: MenuItem {
+                                    id: menuItem
+                                    text: getCategoryName(modelData)
+                                    onTriggered: {
+                                        scrollToDDECategory(modelData)
+                                    }
+                                    contentItem: IconLabel {
+                                        alignment: Qt.AlignCenter
+                                        text: menuItem.text
+                                        color: parent.palette.windowText
+                                    }
+                                }
+                            }
+
+                            onVisibleChanged: {
+                                if (!visible) {
+                                    listView.opacity = 1
+                                }
                             }
                         }
                     }
