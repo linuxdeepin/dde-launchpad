@@ -71,19 +71,19 @@ Item {
         id: rowLineControl
         width: Helper.windowed.splitLineWidth
         anchors.left: sideBar.right
-        anchors.top: sideBar.top
+        anchors.top: baseLayer.top
         anchors.bottom: bottomBar.top
         anchors.leftMargin: 5
         anchors.bottomMargin: 5 + columnLineControl.height
 
         property Palette backgroundColor: Palette {
             normal {
-                common: Qt.rgba(0, 0, 0, 0.15)
-                crystal: Qt.rgba(0, 0, 0, 0.15)
+                common: Qt.rgba(0, 0, 0, 0.05)
+                crystal: Qt.rgba(0, 0, 0, 0.05)
             }
             normalDark {
-                common: Qt.rgba(1, 1, 1, 0.15)
-                crystal: Qt.rgba(1, 1, 1, 0.15)
+                common: Qt.rgba(1, 1, 1, 0.05)
+                crystal: Qt.rgba(1, 1, 1, 0.05)
             }
         }
 
@@ -146,19 +146,19 @@ Item {
     Control {
         id: columnLineControl
         height: Helper.windowed.splitLineWidth
-        anchors.left: bottomBar.left
-        anchors.right: bottomBar.right
+        anchors.left: baseLayer.left
+        anchors.right: baseLayer.right
         anchors.bottom: bottomBar.top
         anchors.bottomMargin: 5
 
         property Palette backgroundColor: Palette {
             normal {
-                common: Qt.rgba(0, 0, 0, 0.15)
-                crystal: Qt.rgba(0, 0, 0, 0.15)
+                common: Qt.rgba(0, 0, 0, 0.05)
+                crystal: Qt.rgba(0, 0, 0, 0.05)
             }
             normalDark {
-                common: Qt.rgba(1, 1, 1, 0.15)
-                crystal: Qt.rgba(1, 1, 1, 0.15)
+                common: Qt.rgba(1, 1, 1, 0.05)
+                crystal: Qt.rgba(1, 1, 1, 0.05)
             }
         }
 
