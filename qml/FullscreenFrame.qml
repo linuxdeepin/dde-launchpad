@@ -334,8 +334,8 @@ Control {
                                 objectName: "gridViewContainer"
                                 anchors.fill: parent
                                 rows: 4
-                                columns: 7
-                                paddingColumns: 1
+                                columns: 8
+                                paddingColumns: 0.5
                                 model: proxyModel
                                 padding: 10
                                 interactive: false
@@ -474,8 +474,8 @@ Control {
                 focus: true
 
                 rows: 4
-                columns: 7
-                paddingColumns: 1
+                columns: 8
+                paddingColumns: 0.5
                 placeholderIcon: "search_no_result"
                 placeholderText: qsTranslate("SearchResultView", "No search results")
                 placeholderIconSize: 256
