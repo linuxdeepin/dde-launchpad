@@ -400,7 +400,7 @@ Control {
                                     IconItemDelegate {
                                         id: iconItemDelegate
                                         anchors.fill: parent
-                                        dndEnabled: true
+                                        dndEnabled: !folderGridViewPopup.opened
                                         Drag.mimeData: {
                                             "text/x-dde-launcher-dnd-desktopId": model.desktopId
                                         }
