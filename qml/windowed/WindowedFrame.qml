@@ -99,7 +99,6 @@ Item {
         anchors.right: parent.right
         anchors.bottom: bottomBar.top
         anchors.leftMargin: 5
-        anchors.bottomMargin: 5
         spacing: 0
         AppList {
             id: appList
@@ -135,11 +134,10 @@ Item {
 
     BottomBar {
         id: bottomBar
-        height: 30
+        height: 40
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.bottom: parent.bottom
-        anchors.margins: 5
         nextKeyTabTarget: appGridLoader.keyTabTarget
     }
 
@@ -149,7 +147,6 @@ Item {
         anchors.left: baseLayer.left
         anchors.right: baseLayer.right
         anchors.bottom: bottomBar.top
-        anchors.bottomMargin: 5
 
         property Palette backgroundColor: Palette {
             normal {
