@@ -41,6 +41,7 @@ Control {
             id: searchEdit
 
             placeholder: qsTr("Search")
+            placeholderTextColor: palette.brightText
             onTextChanged: {
                 console.log(text)
                 SearchFilterProxyModel.setFilterRegularExpression(text.trim())
