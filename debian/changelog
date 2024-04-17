@@ -1,3 +1,19 @@
+dde-launchpad (0.6.1) unstable; urgency=medium
+
+  * Remember app list sort type (linuxdeepin/developer-center#7652)
+  * Fix icon overlap on HiDPI (linuxdeepin/developer-center#7634)
+  * Fix focus rect (linuxdeepin/developer-center#7624)
+  * Disable "Send to Dock" menu for app group
+  * Clip folder name text (linuxdeepin/developer-center#7949)
+  * Disable invisible menu items to avoid tab focus
+  * Fix FTBFS caused by CMP0071 CMake policy
+  * Update style when edit folder title (linuxdeepin/developer-center#7953)
+  * Fix category mode section title spacing (linuxdeepin/developer-center#7938)
+  * Full Screen Grid is now 4x8 (linuxdeepin/developer-center#7987)
+  * Various UI fixes
+
+ -- Gary Wang <wangzichong@deepin.org>  Wed, 17 Apr 2024 19:33:00 +0800
+
 dde-launchpad (0.6.0) unstable; urgency=medium
 
   * Adapt to dde-shell (linuxdeepin/developer-center#5810)
