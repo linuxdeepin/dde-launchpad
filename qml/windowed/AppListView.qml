@@ -82,7 +82,9 @@ Item {
                 ColorSelector.disabled: false
 
                 focusPolicy: Qt.NoFocus
-                width: parent.width
+                anchors.fill: parent
+                anchors.leftMargin: 5
+                anchors.rightMargin: 5
 
                 text: {
                     if (CategorizedSortProxyModel.categoryType === CategorizedSortProxyModel.Alphabetary) {
@@ -163,40 +165,46 @@ Item {
         id: delegateCategorizedModel
         model: CategorizedSortProxyModel
 
-        delegate: ItemDelegate {
-            id: itemDelegate
-            text: model.display
-            checkable: false
-            icon.name: (iconName && iconName !== "") ? iconName : "application-x-desktop"
-            width: listView.width
-            font: DTK.fontManager.t8
-            palette.windowText: palette.brightText
-            // icon.source: "image://app-icon/" + iconName;
+        delegate: Item {
+            width: root.width
+            height: itemDelegate.height
 
-            TapHandler {
-                acceptedButtons: Qt.RightButton
-                onTapped: {
-                    showContextMenu(itemDelegate, model, false, false, false)
+            ItemDelegate {
+                id: itemDelegate
+                text: model.display
+                checkable: false
+                icon.name: (iconName && iconName !== "") ? iconName : "application-x-desktop"
+                font: DTK.fontManager.t8
+                anchors.fill: parent
+                anchors.leftMargin: 10
+                anchors.rightMargin: 10
+                // icon.source: "image://app-icon/" + iconName;
+
+                TapHandler {
+                    acceptedButtons: Qt.RightButton
+                    onTapped: {
+                        showContextMenu(itemDelegate, model, false, false, false)
+                    }
                 }
-            }
 
-            Keys.onReturnPressed: {
-                launchApp(desktopId)
-            }
-
-            Keys.onSpacePressed: {
-                launchApp(desktopId)
-            }
-
-            TapHandler {
-                onTapped: {
+                Keys.onReturnPressed: {
                     launchApp(desktopId)
                 }
-            }
 
-            background: BoxPanel {
-                visible: ColorSelector.controlState === DTK.HoveredState
-                outsideBorderColor: null
+                Keys.onSpacePressed: {
+                    launchApp(desktopId)
+                }
+
+                TapHandler {
+                    onTapped: {
+                        launchApp(desktopId)
+                    }
+                }
+
+                background: BoxPanel {
+                    visible: ColorSelector.controlState === DTK.HoveredState
+                    outsideBorderColor: null
+                }
             }
         }
     }
