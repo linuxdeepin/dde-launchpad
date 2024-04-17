@@ -77,6 +77,14 @@ Popup {
                     onEditingFinished: {
                         ItemArrangementProxyModel.updateFolderName(folderLoader.currentFolderId, text);
                     }
+
+                    selectionColor: "#66FFFFFF"
+                    selectedTextColor: isWindowedMode ? "black" : "white"
+                    onActiveFocusChanged: {
+                        if (activeFocus) {
+                            selectAll();
+                        }
+                    }
                 }
 
                 Rectangle {
