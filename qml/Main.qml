@@ -104,12 +104,13 @@ QtObject {
             let y = 0
 
             let dockGeometry = descaledRect(DesktopIntegration.dockGeometry)
-            let descaledWindowdPos = descaledPos(windowedPos)
+            let descaledWindowdPos = windowedPos
             if (dockGeometry.width > 0 && dockGeometry.height > 0) {
                 let dockSpacing = DesktopIntegration.dockSpacing
                 switch (DesktopIntegration.dockPosition) {
                 case Qt.DownArrow:
-                    x = descaledWindowdPos.x > 0 ? descaledWindowdPos.x - dockSpacing : dockGeometry.left + dockSpacing
+                    var sidebarX = windowedFrameImpl.item.getHorizontalCoordinatesOfSideBar()
+                    x = descaledWindowdPos.x > 0 ? descaledWindowdPos.x - sidebarX : dockGeometry.left + dockSpacing
                     y = (dockGeometry.top >= 0 ? dockGeometry.top : (Screen.height - dockGeometry.height)) - height - dockSpacing
                     break
                 case Qt.LeftArrow:
@@ -211,6 +212,7 @@ QtObject {
         }
 
         Loader {
+            id: windowedFrameImpl
             anchors.fill: parent
             focus: true
             sourceComponent: WindowedFrame { }

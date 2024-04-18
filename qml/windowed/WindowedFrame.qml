@@ -22,6 +22,11 @@ Item {
 
     KeyNavigation.tab: appGridLoader.item
 
+    function getHorizontalCoordinatesOfSideBar()
+    {
+        return sideBar.x + sideBar.width / 2
+    }
+
     MouseArea {
         anchors.fill: parent
         onClicked: () => {
