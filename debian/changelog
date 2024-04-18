@@ -1,3 +1,15 @@
+dde-launchpad (0.6.2) unstable; urgency=medium
+
+  * Drag operation now requires 300ms press-n-hold (linuxdeepin/developer-center#6359)
+  * Don't show hover background when dragging (linuxdeepin/developer-center#7944)
+  * Adjust item name color (linuxdeepin/developer-center#7940)
+  * Fix splitter line styling (linuxdeepin/developer-center#7930)
+  * Adjust fullscreen grid item count (linuxdeepin/developer-center#7938)
+  * Adjust item background color (linuxdeepin/developer-center#7935)
+  * Various UI fixes
+
+ -- Gary Wang <wangzichong@deepin.org>  Thu, 18 Apr 2024 20:51:00 +0800
+
 dde-launchpad (0.6.1) unstable; urgency=medium
 
   * Remember app list sort type (linuxdeepin/developer-center#7652)
