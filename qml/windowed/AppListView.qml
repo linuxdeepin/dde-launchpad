@@ -58,7 +58,7 @@ Item {
             required property string section
             width: parent.width
             Rectangle {
-                height: 8
+                height: 6
                 width: parent.width
                 color: "transparent"
                 visible: {
