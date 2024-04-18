@@ -72,7 +72,7 @@ Popup {
                 width: root.cellWidth
                 height: root.cellHeight
                 radius: root.cellWidth / 2
-                color: palette.highlight
+                color: parent.palette.highlight
                 visible: alphabetCategoryContainer.activeFocus
             }
         }

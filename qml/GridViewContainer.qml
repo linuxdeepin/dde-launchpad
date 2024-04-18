@@ -107,7 +107,7 @@ FocusScope {
                             margins: 5
                         }
                         radius: isWindowedMode ? 8 : 18
-                        color: palette.highlight
+                        color: parent.palette.highlight
                         visible: gridView.activeFocus
                     }
                 }

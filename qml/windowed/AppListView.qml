@@ -242,7 +242,7 @@ Item {
                     margins: 4
                 }
                 radius: 4
-                color: palette.highlight
+                color: parent.palette.highlight
                 visible: listView.activeFocus
             }
         }

@@ -87,7 +87,7 @@ FocusScope {
                         margins: 5
                     }
                     radius: 8
-                    color: palette.highlight
+                    color: parent.palette.highlight
                     visible: gridView.activeFocus
                 }
             }

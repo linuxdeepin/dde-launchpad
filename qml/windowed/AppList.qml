@@ -74,7 +74,7 @@ ColumnLayout {
         propagateComposedEvents: true
         acceptedButtons: Qt.NoButton
 
-        onWheel: {
+        onWheel: function (wheel) {
             closeContextMenu()
             wheel.accepted = false
         }
