@@ -147,6 +147,7 @@ Item {
             icon.name: (iconName && iconName !== "") ? iconName : "application-x-desktop"
             width: listView.width
             font: DTK.fontManager.t8
+            palette.windowText: palette.brightText
             // icon.source: "image://app-icon/" + iconName;
 
             TapHandler {
