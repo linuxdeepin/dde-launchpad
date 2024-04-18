@@ -68,9 +68,7 @@ Control {
         ToolTip.text: root.text
         ToolTip.delay: 1000
         ToolTip.visible: hovered
-        background: ButtonPanel {
-            button: parent
-            outsideBorderColor: null
+        background: ItemBackground {
             radius: 8
         }
 

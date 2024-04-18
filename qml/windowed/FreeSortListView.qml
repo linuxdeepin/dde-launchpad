@@ -147,10 +147,8 @@ Item {
                     "text/x-dde-launcher-dnd-desktopId": model.desktopId
                 }
 
-                background: BoxPanel {
+                background: ItemBackground {
                     id: bg
-                    visible: ColorSelector.controlState === DTK.HoveredState
-                    outsideBorderColor: null
                 }
 
                 MouseArea {
