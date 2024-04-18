@@ -118,6 +118,7 @@ Item {
 
             Rectangle {
                 id: dropIndicator
+                x : 10
                 width: bg.width
                 height: indicatorDefaultHeight
                 color: "lightgray"
