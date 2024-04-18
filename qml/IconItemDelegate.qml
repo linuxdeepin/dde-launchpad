@@ -67,7 +67,7 @@ Control {
             }
 
             Item {
-                width: isWindowedMode ? 36 : parent.width / 2
+                width: parent.width / 2
                 height: width
                 anchors.horizontalCenter: parent.horizontalCenter
 
@@ -103,7 +103,7 @@ Control {
                         name: iconSource
                         sourceSize: Qt.size(parent.width, parent.height)
                         palette: DTK.makeIconPalette(root.palette)
-                        theme: DTK.toColorType(root.palette.window)
+                        theme: ApplicationHelper.DarkType
                     }
                 }
             }

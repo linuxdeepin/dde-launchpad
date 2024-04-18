@@ -25,6 +25,7 @@ DGUI_USE_NAMESPACE
 int main(int argc, char* argv[])
 {
     DGuiApplicationHelper::setAttribute(DGuiApplicationHelper::DontSaveApplicationTheme, true);
+    DGuiApplicationHelper::setAttribute(DGuiApplicationHelper::UseInactiveColorGroup, false);
 
     QGuiApplication app(argc, argv);
 #if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
