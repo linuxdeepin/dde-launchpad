@@ -160,8 +160,12 @@ Item {
 
                     onPressed: function (mouse) {
                         if (mouse.button === Qt.LeftButton) {
+                            bg.visible = false
                             itemDelegate.grabToImage(function(result) {
                                 itemDelegate.Drag.imageSource = result.url
+                                bg.visible = Qt.binding(function() {
+                                    return bg.ColorSelector.controlState === DTK.HoveredState
+                                })
                             })
                         }
                     }
