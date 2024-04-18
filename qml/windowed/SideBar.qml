@@ -114,6 +114,8 @@ ColumnLayout {
             }
         }
 
+        background: ItemBackground { }
+
         onClicked: {
             const menu = categorizedCom.createObject(this);
             menu.popup(this, Qt.point(title.x, title.y));
@@ -137,6 +139,7 @@ ColumnLayout {
         onClicked: {
             DesktopIntegration.showUrl("computer:///")
         }
+        background: ItemBackground { }
     }
 
     D.ToolButton {
@@ -152,6 +155,7 @@ ColumnLayout {
         onClicked: {
             DesktopIntegration.showFolder(StandardPaths.PicturesLocation)
         }
+        background: ItemBackground { }
     }
 
     D.ToolButton {
@@ -167,6 +171,7 @@ ColumnLayout {
         onClicked: {
             DesktopIntegration.showFolder(StandardPaths.DocumentsLocation)
         }
+        background: ItemBackground { }
     }
 
     D.ToolButton {
@@ -182,6 +187,7 @@ ColumnLayout {
         onClicked: {
             DesktopIntegration.showFolder(StandardPaths.DesktopLocation)
         }
+        background: ItemBackground { }
     }
 
     D.ToolButton {
@@ -197,6 +203,7 @@ ColumnLayout {
         onClicked: {
             DesktopIntegration.openSystemSettings();
         }
+        background: ItemBackground { }
     }
 
     Item {

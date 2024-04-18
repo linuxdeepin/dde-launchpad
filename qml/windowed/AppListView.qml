@@ -110,6 +110,8 @@ Item {
                         }
                     }
 
+                    background: ItemBackground { }
+
                     MouseArea {
                         anchors.fill: parent
                         acceptedButtons: Qt.LeftButton
@@ -205,10 +207,7 @@ Item {
                     }
                 }
 
-                background: BoxPanel {
-                    visible: ColorSelector.controlState === DTK.HoveredState
-                    outsideBorderColor: null
-                }
+                background: ItemBackground { }
             }
         }
     }
