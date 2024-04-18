@@ -28,6 +28,7 @@ int main(int argc, char* argv[])
     qputenv("D_POPUP_MODE", "embed");
 
     DGuiApplicationHelper::setAttribute(DGuiApplicationHelper::DontSaveApplicationTheme, true);
+    DGuiApplicationHelper::setAttribute(DGuiApplicationHelper::UseInactiveColorGroup, false);
 
     QGuiApplication app(argc, argv);
     Dtk::Core::DLogManager::registerConsoleAppender();
