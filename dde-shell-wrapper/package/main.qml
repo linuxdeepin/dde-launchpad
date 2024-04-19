@@ -11,4 +11,8 @@ ContainmentItem {
     Main {
         windowedPos: root.windowedPos
     }
+
+    function hide() {
+        LauncherController.visible = false
+    }
 }
