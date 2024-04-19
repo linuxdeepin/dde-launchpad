@@ -42,13 +42,13 @@
       "visibility": "private"
     },
     "categoryType": {
-      "value": 0,
+      "value": 2,
       "serial": 0,
       "flags": [],
       "name": "Application Sort Type",
       "name[zh_CN]": "应用排序类别",
-      "description": "The type of sorting Application list under windows mode",
-      "description[zh_CN]": "在窗口模式下排序应用列表的类别",
+      "description": "The type of sorting Application list under windows mode. 0: Alphabetary, 1: DDE Category, 2: Freeform Sort",
+      "description[zh_CN]": "在窗口模式下排序应用列表的类别。0: 首字母分组排序，1: DDE 风格分类，2: 自由排序",
       "permissions": "readwrite",
       "visibility": "private"
     }
