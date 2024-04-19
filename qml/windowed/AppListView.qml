@@ -181,6 +181,7 @@ Item {
                 checkable: false
                 icon.name: (iconName && iconName !== "") ? iconName : "application-x-desktop"
                 font: DTK.fontManager.t8
+                palette.windowText: parent.palette.brightText
                 anchors.fill: parent
                 anchors.leftMargin: 10
                 anchors.rightMargin: 10
