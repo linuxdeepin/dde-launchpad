@@ -102,5 +102,6 @@ void DdeDock::updateDockPositionFromDBus()
 void DdeDock::updateDockRectFromDBus()
 {
     m_rect = m_dbusDaemonDockIface->frontendWindowRect();
+    qDebug() << "update dock rect from DBus:" << m_rect;
     emit geometryChanged();
 }
