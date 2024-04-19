@@ -105,7 +105,7 @@ QtObject {
 
             let dockGeometry = descaledRect(DesktopIntegration.dockGeometry)
             let descaledWindowdPos = windowedPos
-            if (dockGeometry.width > 0 && dockGeometry.height > 0) {
+            if (dockGeometry.width > 0 || dockGeometry.height > 0) {
                 let dockSpacing = DesktopIntegration.dockSpacing
                 switch (DesktopIntegration.dockPosition) {
                 case Qt.DownArrow:
@@ -126,6 +126,8 @@ QtObject {
                     y = dockGeometry.top + dockSpacing
                     break
                 }
+            } else {
+                console.warn("Invalid dock geometry", dockGeometry)
             }
 
             windowedFrame.setGeometry(x, y, width, height)
