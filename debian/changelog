@@ -1,3 +1,14 @@
+dde-launchpad (0.6.3) unstable; urgency=medium
+
+  * Avoid necessary icon reload (linuxdeepin/developer-center#7826)
+  * Add missing background for two buttons (linuxdeepin/developer-center#7935)
+  * Fix bind loop warnings
+  * Fix glitch icons when icon name is blank/empty
+  * Category type default to freeform sort type (linuxdeepin/developer-center#8022)
+  * Various UI fixes
+
+ -- Gary Wang <wangzichong@deepin.org>  Fri, 19 Apr 2024 15:05:00 +0800
+
 dde-launchpad (0.6.2) unstable; urgency=medium
 
   * Drag operation now requires 300ms press-n-hold (linuxdeepin/developer-center#6359)
