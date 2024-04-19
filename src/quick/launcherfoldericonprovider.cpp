@@ -51,6 +51,7 @@ QPixmap LauncherFolderIconProvider::requestPixmap(const QString &id, QSize *size
         int curRow = curIdx / iconPerRow;
         int curCol = curIdx % iconPerRow;
         QPixmap iconPixmap(QSize(iconSize, iconSize));
+        iconPixmap.fill(Qt::transparent);
         IconUtils::getThemeIcon(iconPixmap, icon, iconSize);
         QRect iconRect;
         iconRect.setTop(padding + curRow * (iconSize + iconSpacing));
