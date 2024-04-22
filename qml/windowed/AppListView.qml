@@ -180,6 +180,7 @@ Item {
                 text: model.display
                 checkable: false
                 icon.name: (iconName && iconName !== "") ? iconName : "application-x-desktop"
+                DciIcon.mode: DTK.NormalState
                 font: DTK.fontManager.t8
                 palette.windowText: parent.palette.brightText
                 anchors.fill: parent

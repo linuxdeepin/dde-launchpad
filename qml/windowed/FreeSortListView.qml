@@ -132,6 +132,7 @@ Item {
                 text: model.display.startsWith("internal/category/") ? getCategoryName(model.display.substring(18)) : model.display
                 checkable: false
                 icon.name: iconName === undefined ? "folder-icon" : iconName
+                DciIcon.mode: DTK.NormalState
                 anchors.fill: parent
                 anchors.leftMargin: 10
                 anchors.rightMargin: 10
