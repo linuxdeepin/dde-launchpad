@@ -1,3 +1,12 @@
+dde-launchpad (0.6.4) unstable; urgency=medium
+
+  * Fix incorrect window mode launcher window position (linuxdeepin/developer-center#8072)
+  * Update DConfig documentation
+  * Only use normal state for DciIcon (linuxdeepin/developer-center#8050)
+  * Add API to allow dde-shell hide launcher window (linuxdeepin/developer-center#7943)
+
+ -- Gary Wang <wangzichong@deepin.org>  Mon, 22 Apr 2024 20:12:00 +0800
+
 dde-launchpad (0.6.3) unstable; urgency=medium
 
   * Avoid necessary icon reload (linuxdeepin/developer-center#7826)
