@@ -32,7 +32,8 @@ LauncherController::LauncherController(QObject *parent)
         m_currentFrame = QStringLiteral("FullscreenFrame");
     }
 
-    m_timer->setInterval(500);
+    // Interval set to 500=>700ms for issue https://github.com/linuxdeepin/developer-center/issues/8137
+    m_timer->setInterval(700);
     m_timer->setSingleShot(true);
 
     connect(DGuiApplicationHelper::instance(), &DGuiApplicationHelper::newProcessInstance,
