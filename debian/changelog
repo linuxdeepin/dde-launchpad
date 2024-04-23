@@ -1,3 +1,10 @@
+dde-launchpad (0.6.6) unstable; urgency=medium
+
+  * Fix missing focus box border for some items
+  * Fix the first attempt to switch from windowed mode to fullscreen mode failed
+
+ -- rewine <luhongxu@deepin.org>  Tue, 23 Apr 2024 16:23:34 +0800
+
 dde-launchpad (0.6.5) unstable; urgency=medium
 
   * fix config file location (linuxdeepin/developer-center#8096)
