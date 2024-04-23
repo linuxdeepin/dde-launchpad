@@ -212,8 +212,8 @@ ItemArrangementProxyModel::ItemArrangementProxyModel(QObject *parent)
 
 void ItemArrangementProxyModel::loadItemArrangementFromUserData()
 {
-    const QString arrangementSettingBasePath(QStandardPaths::writableLocation(QStandardPaths::AppConfigLocation));
-    const QString arrangementSettingPath(QDir(arrangementSettingBasePath).absoluteFilePath("item-arrangement.ini"));
+    const QString arrangementSettingBasePath(QStandardPaths::writableLocation(QStandardPaths::GenericConfigLocation));
+    const QString arrangementSettingPath(QDir(arrangementSettingBasePath).absoluteFilePath("deepin/dde-launchpad/item-arrangement.ini"));
     QSettings itemArrangementSettings(arrangementSettingPath, QSettings::NativeFormat);
 
     itemArrangementSettings.beginGroup("fullscreen");
