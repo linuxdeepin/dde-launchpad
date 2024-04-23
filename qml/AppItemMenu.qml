@@ -46,7 +46,7 @@ Loader {
             }
             MenuItem {
                 id: addOrRemoveFavMenu
-                visible: !hideFavoriteMenu
+                visible: false // !hideFavoriteMenu
                 enabled: false
                 height: visible ? implicitHeight : 0 // FIXME: same as above
                 text: FavoritedProxyModel.exists(root.desktopId) ? qsTr("Remove from favorites") : qsTr("Add to favorites")
