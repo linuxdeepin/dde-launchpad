@@ -110,7 +110,9 @@ Item {
                         }
                     }
 
-                    background: ItemBackground { }
+                    background: ItemBackground {
+                        button: headingBtn
+                    }
 
                     MouseArea {
                         anchors.fill: parent
@@ -209,7 +211,9 @@ Item {
                     }
                 }
 
-                background: ItemBackground { }
+                background: ItemBackground {
+                    button: itemDelegate
+                }
             }
         }
     }

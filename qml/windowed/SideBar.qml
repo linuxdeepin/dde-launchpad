@@ -114,7 +114,9 @@ ColumnLayout {
             }
         }
 
-        background: ItemBackground { }
+        background: ItemBackground {
+            button: title
+        }
 
         onClicked: {
             const menu = categorizedCom.createObject(this);
@@ -139,7 +141,9 @@ ColumnLayout {
         onClicked: {
             DesktopIntegration.showUrl("computer:///")
         }
-        background: ItemBackground { }
+        background: ItemBackground {
+            button: computer
+        }
     }
 
     D.ToolButton {
@@ -155,7 +159,9 @@ ColumnLayout {
         onClicked: {
             DesktopIntegration.showFolder(StandardPaths.PicturesLocation)
         }
-        background: ItemBackground { }
+        background: ItemBackground {
+            button: images
+        }
     }
 
     D.ToolButton {
@@ -171,7 +177,9 @@ ColumnLayout {
         onClicked: {
             DesktopIntegration.showFolder(StandardPaths.DocumentsLocation)
         }
-        background: ItemBackground { }
+        background: ItemBackground {
+            button: documents
+        }
     }
 
     D.ToolButton {
@@ -187,7 +195,9 @@ ColumnLayout {
         onClicked: {
             DesktopIntegration.showFolder(StandardPaths.DesktopLocation)
         }
-        background: ItemBackground { }
+        background: ItemBackground {
+            button: desktop
+        }
     }
 
     D.ToolButton {
@@ -203,7 +213,9 @@ ColumnLayout {
         onClicked: {
             DesktopIntegration.openSystemSettings();
         }
-        background: ItemBackground { }
+        background: ItemBackground {
+            button: setting
+        }
     }
 
     Item {

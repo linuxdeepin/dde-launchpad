@@ -150,6 +150,7 @@ Item {
 
                 background: ItemBackground {
                     id: bg
+                    button: itemDelegate
                 }
 
                 MouseArea {

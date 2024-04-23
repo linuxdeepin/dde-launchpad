@@ -25,7 +25,9 @@ Control {
         ToolButton {
             id: shutdownBtn
             icon.name: "shutdown"
-            background: ItemBackground { }
+            background: ItemBackground {
+               button: shutdownBtn
+            }
             ToolTip.visible: hovered
             ToolTip.delay: 1000
             ToolTip.text: qsTr("Power")
@@ -80,8 +82,11 @@ Control {
         }
 
         ToolButton {
+            id: fullscreenBtn
             icon.name: "launcher_fullscreen"
-            background: ItemBackground { }
+            background: ItemBackground {
+                button: fullscreenBtn
+            }
             Accessible.name: "Fullscreen"
             Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
             onClicked: {
