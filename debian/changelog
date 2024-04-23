@@ -1,3 +1,10 @@
+dde-launchpad (0.6.5) unstable; urgency=medium
+
+  * fix config file location (linuxdeepin/developer-center#8096)
+  * hide "add to favorite" menu (linuxdeepin/developer-center#8086)
+
+ -- Gary Wang <wangzichong@deepin.org>  Mon, 23 Apr 2024 14:07:00 +0800
+
 dde-launchpad (0.6.4) unstable; urgency=medium
 
   * Fix incorrect window mode launcher window position (linuxdeepin/developer-center#8072)
