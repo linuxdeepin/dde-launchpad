@@ -24,6 +24,7 @@ Control {
     signal menuTriggered()
 
     contentItem: ToolButton {
+        id: iconButton
         focusPolicy: Qt.NoFocus
         contentItem: Column {
             anchors.fill: parent
@@ -63,13 +64,14 @@ Control {
                 elide: Text.ElideRight
                 maximumLineCount: singleRow ? 1 : 2
                 font: DTK.fontManager.t9
-            }    
+            }
         }
         ToolTip.text: root.text
         ToolTip.delay: 1000
         ToolTip.visible: hovered
         background: ItemBackground {
             radius: 8
+            button: iconButton
         }
 
         onClicked: {
