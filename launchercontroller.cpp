@@ -32,8 +32,8 @@ LauncherController::LauncherController(QObject *parent)
         m_currentFrame = QStringLiteral("FullscreenFrame");
     }
 
-    // Interval set to 500=>700ms for issue https://github.com/linuxdeepin/developer-center/issues/8137
-    m_timer->setInterval(700);
+    // Interval set to 500=>1000ms for issue https://github.com/linuxdeepin/developer-center/issues/8137
+    m_timer->setInterval(1000);
     m_timer->setSingleShot(true);
 
     connect(DGuiApplicationHelper::instance(), &DGuiApplicationHelper::newProcessInstance,
@@ -131,6 +131,7 @@ void LauncherController::setCurrentFrame(const QString &frame)
     settings.setValue("current_frame", frame);
 
     m_currentFrame = frame;
+    qDebug() << "set current frame:" << m_currentFrame;
     m_timer->start();
     emit currentFrameChanged();
 }
@@ -143,6 +144,7 @@ void LauncherController::hideWithTimer()
 {
     if (visible()) {
         m_timer->start();
+        qDebug() << "hide with timer";
         setVisible(false);
     }
 }
