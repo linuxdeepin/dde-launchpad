@@ -85,6 +85,7 @@ Item {
             }
 
             onPositionChanged: function(drag) {
+                if (!drag.keys.includes("text/x-dde-launcher-dnd-desktopId")) return;
                 let dragId = drag.getDataAsString("text/x-dde-launcher-dnd-desktopId")
                 if (dragId === desktopId) {
                     return
@@ -110,6 +111,7 @@ Item {
             }
 
             onDropped: function(drop) {
+                if (!drop.keys.includes("text/x-dde-launcher-dnd-desktopId")) return;
                 drop.accept()
                 let dragId = drop.getDataAsString("text/x-dde-launcher-dnd-desktopId")
                 showDropIndicator = false

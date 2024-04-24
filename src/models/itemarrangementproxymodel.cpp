@@ -46,6 +46,12 @@ void ItemArrangementProxyModel::commitDndOperation(const QString &dragId, const 
     std::tuple<int, int, int> dragOrigPos = findItem(dragId);
     std::tuple<int, int, int> dropOrigPos = findItem(dropId);
 
+    Q_ASSERT(std::get<0>(dragOrigPos) != -1);
+    if (std::get<0>(dragOrigPos) == -1) {
+        qWarning() << "Cannot found" << dragId << "in current item arrangement.";
+        return;
+    }
+
     if (op != DndOperation::DndJoin) {
         // move to dropId's front or back
         if (std::get<0>(dragOrigPos) == std::get<0>(dropOrigPos)) {
