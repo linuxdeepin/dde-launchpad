@@ -79,38 +79,32 @@ ColumnLayout {
     D.ToolButton {
         id: title
 
-        implicitHeight: DS.Style.control.implicitHeight(this) * 1.5
         Layout.alignment: Qt.AlignCenter
         Layout.topMargin: 10
         KeyNavigation.down: computer
         KeyNavigation.up: setting
         KeyNavigation.tab: nextKeyTabTarget
+        topPadding: 7
+        bottomPadding: 5
 
-        contentItem: Item {
-            ColumnLayout {
-                anchors.centerIn: parent
-                Layout.alignment: Qt.AlignVCenter
+        contentItem: ColumnLayout {
+            spacing: 2
+            D.DciIcon {
+                width: 16
+                height: 16
+                name: isFreeSort ? categorizedIcon("freeSort") : categorizedIcon(CategorizedSortProxyModel.categoryType)
+                palette: D.DTK.makeIconPalette(title.palette)
+                theme: D.DTK.toColorType(title.palette.window)
+                Layout.alignment: Qt.AlignHCenter
+            }
 
-                D.DciIcon {
-                    width: parent.width
-                    height: parent.height / 3 * 2
-                    name: isFreeSort ? categorizedIcon("freeSort") : categorizedIcon(CategorizedSortProxyModel.categoryType)
-                    palette: D.DTK.makeIconPalette(title.palette)
-                    theme: D.DTK.toColorType(title.palette.window)
-                }
-
-                Item {
-                    Layout.preferredHeight: 5
-                }
-
-                D.DciIcon {
-                    name: "back"
-                    rotation: 270
-                    width: parent.width
-                    height: parent.height / 3 * 1
-                    palette: D.DTK.makeIconPalette(title.palette)
-                    theme: D.DTK.toColorType(title.palette.window)
-                }
+            D.DciIcon {
+                name: "arrow"
+                width: 12
+                height: 12
+                palette: D.DTK.makeIconPalette(title.palette)
+                theme: D.DTK.toColorType(title.palette.window)
+                Layout.alignment: Qt.AlignHCenter
             }
         }
 
