@@ -6,7 +6,7 @@
         <file alias="exit_fullscreen.dci">images/exit_fullscreen.dci</file>
         <file alias="switch_to_fullscreen.dci">images/switch_to_fullscreen.dci</file>
         <file alias="search_no_result.dci">images/search_no_result.dci</file>
-        <file alias="back.dci">images/back.dci</file>
+        <file alias="arrow.dci">images/arrow.dci</file>
         <file alias="folder-desktop-symbolic.dci">images/desktop.dci</file>
         <file alias="folder-documents-symbolic.dci">images/document.dci</file>
         <file alias="folder-images-symbolic.dci">images/images.dci</file>
