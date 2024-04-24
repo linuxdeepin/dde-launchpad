@@ -228,7 +228,8 @@ Control {
                 onPositionChanged: {
                     checkDragMove()
                 }
-                onDropped: {
+                onDropped: (drop) => {
+                    if (!drop.keys.includes("text/x-dde-launcher-dnd-desktopId")) return;
                     // drop into current page
                     let dragId = drop.getDataAsString("text/x-dde-launcher-dnd-desktopId")
                     dropOnPage(dragId, "internal/folders/0", pages.currentIndex)
