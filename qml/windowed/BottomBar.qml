@@ -42,42 +42,52 @@ Control {
             Layout.preferredWidth: 360
             Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
             Layout.preferredHeight: 30
+
             contentItem: SearchEdit {
-            id: searchEdit
+                id: searchEdit
+                property Palette iconPalette: Palette {
+                    normal {
+                        crystal: Qt.rgba(0, 0, 0, 1)
+                    }
+                    normalDark {
+                        crystal: Qt.rgba(1, 1, 1, 1)
+                    }
+                }
+                placeholder: qsTr("Search")
+                placeholderTextColor: palette.brightText
+                palette.windowText: ColorSelector.iconPalette
 
-            placeholder: qsTr("Search")
-            placeholderTextColor: palette.brightText
-            onTextChanged: {
-                console.log(text)
-                SearchFilterProxyModel.setFilterRegularExpression(text.trim())
-                SearchFilterProxyModel.invalidate()
-            }
+                onTextChanged: {
+                    console.log(text)
+                    SearchFilterProxyModel.setFilterRegularExpression(text.trim())
+                    SearchFilterProxyModel.invalidate()
+                }
 
-            property Palette edittingPalette: Palette {
-                normal {
-                    crystal: Qt.rgba(0, 0, 0, 0.1)
+                property Palette edittingPalette: Palette {
+                    normal {
+                        crystal: Qt.rgba(0, 0, 0, 0.1)
+                    }
+                    normalDark {
+                        crystal: Qt.rgba(1, 1, 1, 0.1)
+                    }
                 }
-                normalDark {
-                    crystal: Qt.rgba(1, 1, 1, 0.1)
-                }
-            }
 
-            property Palette nomalPalette: Palette {
-                normal {
-                    crystal: ("transparent")
+                property Palette nomalPalette: Palette {
+                    normal {
+                        crystal: ("transparent")
+                    }
+                    normalDark {
+                        crystal: ("transparent")
+                    }
+                    hovered {
+                        crystal:  Qt.rgba(0, 0, 0, 0.05)
+                    }
+                    hoveredDark {
+                        crystal:  Qt.rgba(1, 1, 1, 0.05)
+                    }
                 }
-                normalDark {
-                    crystal: ("transparent")
-                }
-                hovered {
-                    crystal:  Qt.rgba(0, 0, 0, 0.05)
-                }
-                hoveredDark {
-                    crystal:  Qt.rgba(1, 1, 1, 0.05)
-                }
-            }
 
-            backgroundColor: searchEdit.editting ? edittingPalette : nomalPalette
+                backgroundColor: searchEdit.editting ? edittingPalette : nomalPalette
             }
         }
 
