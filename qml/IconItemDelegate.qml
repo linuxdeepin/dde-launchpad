@@ -122,8 +122,8 @@ Control {
                 leftPadding: 2
                 rightPadding: 2
                 horizontalAlignment: Text.AlignHCenter
-                wrapMode: Text.WordWrap
-                elide: Text.ElideMiddle
+                wrapMode: Text.Wrap
+                elide: Text.ElideRight
                 maximumLineCount: 2
             }
         }
