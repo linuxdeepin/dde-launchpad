@@ -206,7 +206,8 @@ Control {
             DropArea {
                 id: dropArea
                 property int pageIntent: 0
-                property int horizontalPadding: searchResultGridViewContainer.cellWidth
+                readonly property real paddingColumns: 0.5
+                readonly property int horizontalPadding:  searchResultGridViewContainer.cellWidth * paddingColumns
                 anchors.fill: parent
 
                 property bool createdEmptyPage: false
@@ -234,6 +235,11 @@ Control {
                     checkDragMove()
                 }
                 onDropped: (drop) => {
+                    // drop over the left or right boundary of the page, do nothing
+                    if (pageIntent !== 0) {
+                        pageIntent = 0
+                        return
+                    }
                     // drop into current page
                     let dragId = drop.getDataAsString("text/x-dde-launcher-dnd-desktopId")
                     dropOnPage(dragId, "internal/folders/0", pages.currentIndex)

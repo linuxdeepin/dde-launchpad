@@ -76,7 +76,6 @@ void ItemArrangementProxyModel::commitDndOperation(const QString &dragId, const 
     } else {
         if (dragId.startsWith("internal/folders/") && dropId != "internal/folders/0") return; // cannot drag folder onto something
         if (std::get<0>(dropOrigPos) != 0 && dropId != "internal/folders/0") return; // folder inside folder is not allowed
-        if (dropId.startsWith("internal/folders/") && std::get<1>(dragOrigPos) == pageHint) return; // drop on same page
 
         // the source item will be inside a new folder anyway.
         const int srcFolderId = std::get<0>(dragOrigPos);
