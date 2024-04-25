@@ -1,3 +1,12 @@
+dde-launchpad (0.6.7) unstable; urgency=medium
+
+  * Check MIME before accepting drop and avoid related crash
+  * Various UI fixes (linuxdeepin/developer-center#8182)
+  * Ensure text elide when necessary (linuxdeepin/developer-center#8183)
+  * Allow same-folder drop (linuxdeepin/developer-center#7640)
+
+ -- Gary Wang <luhongxu@deepin.org>  Thu, 25 Apr 2024 18:42:00 +0800
+
 dde-launchpad (0.6.6) unstable; urgency=medium
 
   * Fix missing focus box border for some items
@@ -10,7 +19,7 @@ dde-launchpad (0.6.5) unstable; urgency=medium
   * fix config file location (linuxdeepin/developer-center#8096)
   * hide "add to favorite" menu (linuxdeepin/developer-center#8086)
 
- -- Gary Wang <wangzichong@deepin.org>  Mon, 23 Apr 2024 14:07:00 +0800
+ -- Gary Wang <wangzichong@deepin.org>  Tue, 23 Apr 2024 14:07:00 +0800
 
 dde-launchpad (0.6.4) unstable; urgency=medium
 
