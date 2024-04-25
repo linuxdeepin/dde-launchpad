@@ -155,8 +155,15 @@ QtObject {
     property var windowedFrame: ApplicationWindow {
         id: windowedFrameWindow
         objectName: "WindowedFrameApplicationWindow"
-        title: "Windowed Launchpad"
+        title: activeFocusItem + " " + (activeFocusItem ? activeFocusItem.Accessible.name : "") //"Windowed Launchpad"
         visible: LauncherController.visible && (LauncherController.currentFrame === "WindowedFrame")
+
+        onActiveFocusItemChanged: {
+            if (!activeFocusItem)
+                console.log("!!! hide?", visible)
+            else
+                console.log("!!!", activeFocusItem, activeFocusItem.objectName, activeFocusItem.Accessible.name)
+        }
 
         width: windowedFrameSize.width
         height: windowedFrameSize.height
@@ -241,7 +248,9 @@ QtObject {
 
     property var fullscreenFrame: ApplicationWindow {
         objectName: "FullscreenFrameApplicationWindow"
-        title: "Fullscreen Launchpad"
+       // title: "Fullscreen Launchpad"
+        title: activeFocusItem + " " + (activeFocusItem ? activeFocusItem.Accessible.name : "") //"Windowed Launchpad"
+
         visible: LauncherController.visible && (LauncherController.currentFrame !== "WindowedFrame")
 
         DLayerShellWindow.anchors: DLayerShellWindow.AnchorBottom | DLayerShellWindow.AnchorTop | DLayerShellWindow.AnchorLeft | DLayerShellWindow.AnchorRight

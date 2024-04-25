@@ -13,8 +13,10 @@ import org.deepin.launchpad.models 1.0
 FocusScope {
     id: root
 
-    property Item nextKeyTabTargetItem
     property alias model: listView.model
+    property Item nextKeyTabTargetItem
+
+    //focus: true
 
     function positionViewAtBeginning() {
         listView.positionViewAtBeginning()
@@ -174,13 +176,15 @@ FocusScope {
         id: delegateCategorizedModel
         model: CategorizedSortProxyModel
 
-        delegate: Item {
+        delegate: FocusScope {
+            focus:  true
             width: root.width
             height: itemDelegate.height
             KeyNavigation.tab: nextKeyTabTargetItem
 
             ItemDelegate {
                 id: itemDelegate
+
                 text: model.display
                 checkable: false
                 icon.name: (iconName && iconName !== "") ? iconName : "application-x-desktop"
@@ -244,6 +248,7 @@ FocusScope {
 
         highlight: Item {
             focus: false
+
             FocusBoxBorder {
                 anchors {
                     fill: parent

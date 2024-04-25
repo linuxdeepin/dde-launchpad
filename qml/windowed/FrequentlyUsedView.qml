@@ -14,8 +14,10 @@ import "."
 Control {
     id: control
 
-    onFocusChanged: () => {
-        frequentlyUsedViewContainer.focus = true
+    // ??
+    onFocusChanged: (focus) => {
+        if (focus)
+            frequentlyUsedViewContainer.focus = true
     }
 
     property Item nextKeyTabTarget
@@ -30,6 +32,7 @@ Control {
 
     contentItem: ColumnLayout {
         spacing: 0
+        focus: true
 
         Label {
             text: qsTr("Frequently Used")
@@ -38,6 +41,7 @@ Control {
 
         GridViewContainer {
             id: frequentlyUsedViewContainer
+            focus: true
 
             KeyNavigation.tab: control.nextKeyTabTarget
             Layout.alignment: Qt.AlignRight
@@ -52,6 +56,7 @@ Control {
             }
 
             delegate: IconItemDelegate {
+                focus: true
                 width: frequentlyUsedViewContainer.cellWidth
                 height: frequentlyUsedViewContainer.cellHeight
                 iconSource: iconName

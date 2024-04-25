@@ -17,10 +17,6 @@ Control {
     property Item nextKeyTabTarget
     property Item keyTabTarget: searchResultViewContainer
 
-    onFocusChanged: () => {
-        searchResultViewContainer.focus = true
-    }
-
     function launchCurrentItem() {
         searchResultViewContainer.currentItem?.onItemClicked()
     }
