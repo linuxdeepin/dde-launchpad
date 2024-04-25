@@ -60,7 +60,7 @@ Control {
                 rightPadding: 2
                 horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignTop
-                wrapMode: singleRow ? Text.NoWrap : Text.WordWrap
+                wrapMode: singleRow ? Text.NoWrap : Text.Wrap
                 elide: Text.ElideRight
                 maximumLineCount: singleRow ? 1 : 2
                 font: DTK.fontManager.t9

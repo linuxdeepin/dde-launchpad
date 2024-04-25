@@ -171,6 +171,7 @@ Control {
                 PageIndicator {
                     id: indicator
 
+                    opacity: folderGridViewPopup.visible ? 0.4 : 1
                     anchors.horizontalCenter: parent.horizontalCenter
         //            visible: pages.visible
                     count: searchResultGridViewContainer.visible ? 1 : pages.count
@@ -403,7 +404,10 @@ Control {
 
                                     IconItemDelegate {
                                         id: iconItemDelegate
-                                        anchors.fill: parent
+                                        anchors {
+                                            fill: parent
+                                            margins: 5
+                                        }
                                         dndEnabled: !folderGridViewPopup.opened
                                         Drag.mimeData: {
                                             "text/x-dde-launcher-dnd-desktopId": model.desktopId
