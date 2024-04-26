@@ -183,7 +183,6 @@ void AppMgr::setAutoStart(const QString &desktopId, bool autoStart)
 }
 
 static const QStringList DisabledScaleEnvironments {
-    "DEEPIN_WINE_SCALE=1",
     "QT_SCALE_FACTOR=1",
     "GDK_SCALE=1",
     "GDK_DPI_SCALE=1",
