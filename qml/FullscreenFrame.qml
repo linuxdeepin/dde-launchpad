@@ -510,6 +510,17 @@ Control {
             Layout.alignment: Qt.AlignHCenter
             implicitWidth: (parent.width / 2) > 280 ? 280 : (parent.width / 2)
 
+            property Palette iconPalette: Palette {
+                normal {
+                    crystal: Qt.rgba(0, 0, 0, 1)
+                }
+                normalDark {
+                    crystal: Qt.rgba(1, 1, 1, 1)
+                }
+            }
+            placeholderTextColor: palette.brightText
+            palette.windowText: ColorSelector.iconPalette
+
             KeyNavigation.up: searchEdit.text === "" ? pages : searchResultGridViewContainer
             KeyNavigation.down: KeyNavigation.up
             Keys.onReturnPressed: {
