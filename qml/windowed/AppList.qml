@@ -50,7 +50,7 @@ ColumnLayout {
             id: appCategoryListView
 
             MouseAreaCom {}
-            KeyNavigation.tab: nextKeyTabTarget
+            nextKeyTabTargetItem: nextKeyTabTarget
         }
     }
 
