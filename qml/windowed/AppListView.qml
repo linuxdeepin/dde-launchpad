@@ -10,9 +10,10 @@ import org.deepin.dtk 1.0
 import org.deepin.launchpad 1.0
 import org.deepin.launchpad.models 1.0
 
-Item {
+FocusScope {
     id: root
 
+    property Item nextKeyTabTargetItem
     property alias model: listView.model
 
     function positionViewAtBeginning() {
@@ -176,6 +177,7 @@ Item {
         delegate: Item {
             width: root.width
             height: itemDelegate.height
+            KeyNavigation.tab: nextKeyTabTargetItem
 
             ItemDelegate {
                 id: itemDelegate
@@ -241,6 +243,7 @@ Item {
         section.labelPositioning: ViewSection.InlineLabels // | ViewSection.CurrentLabelAtStart
 
         highlight: Item {
+            focus: false
             FocusBoxBorder {
                 anchors {
                     fill: parent
