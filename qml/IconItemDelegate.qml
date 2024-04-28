@@ -146,6 +146,7 @@ Control {
             }
 
             Label {
+                property bool singleRow: isWindowedMode && (font.pixelSize > Helper.windowed.doubleRowMaxFontSize)
                 id: iconItemLabel
                 text: root.text
                 textFormat: Text.PlainText
@@ -153,11 +154,14 @@ Control {
                 leftPadding: 2
                 rightPadding: 2
                 horizontalAlignment: Text.AlignHCenter
-                wrapMode: Text.Wrap
+                wrapMode: singleRow ? Text.NoWrap : Text.Wrap
                 elide: Text.ElideRight
-                maximumLineCount: 2
+                maximumLineCount: singleRow ? 1 : 2
             }
         }
+        ToolTip.text: root.text
+        ToolTip.delay: 1000
+        ToolTip.visible: hovered
         background: ButtonPanel {
             button: parent
             outsideBorderColor: null
