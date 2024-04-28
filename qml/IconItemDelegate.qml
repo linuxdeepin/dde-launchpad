@@ -75,6 +75,43 @@ Control {
                     id: iconLoader
                     anchors.fill: parent
                     sourceComponent: root.icons !== undefined ? folderComponent : imageComponent
+                    TapHandler {
+                        acceptedButtons: Qt.LeftButton
+                        onPressedChanged: {
+                            if (pressed) {
+                                root.Drag.hotSpot = point.pressPosition
+                                iconLoader.grabToImage(function(result) {
+                                    root.Drag.imageSource = result.url;
+                                })
+                            }
+                        }
+                    }
+                    DragHandler {
+                        id: dragHandler
+                        target: root
+                        acceptedButtons: Qt.LeftButton
+                        enabled: root.dndEnabled
+                        onActiveChanged: {
+                            if (active) {
+                                // We switch to use the `dndItem` to handle Drag event since that one will always exists.
+                                // If we use the current item, then if the item that provides the drag attached property
+                                // get destoryed (e.g. switch page or folder close caused destory), dropping at that moment
+                                // will cause a crash.
+
+                                // Item will be hidden by checking the dndItem.currentlyDraggedId property. We assign the value
+                                // to that property here
+                                dndItem.currentlyDraggedId = root.Drag.mimeData["text/x-dde-launcher-dnd-desktopId"]
+                                // TODO: This way we couldn't give it an image size hint,
+                                dndItem.Drag.imageSource = root.Drag.imageSource
+                                dndItem.Drag.hotSpot = root.Drag.hotSpot
+                                Qt.callLater(function() {
+                                    dndItem.Drag.mimeData = root.Drag.mimeData
+                                    dndItem.Drag.active = true
+                                    dndItem.Drag.startDrag()
+                                })
+                            }
+                        }
+                    }
                 }
 
                 Component {
@@ -127,47 +164,25 @@ Control {
             radius: isWindowedMode ? 8 : 18
         }
 
-        onClicked: {
-            if (root.icons) {
-                root.folderClicked()
-            } else {
-                root.itemClicked()
+        TapHandler {
+            acceptedButtons: Qt.LeftButton
+            onTapped: {
+                if (root.icons) {
+                    root.folderClicked()
+                } else {
+                    root.itemClicked()
+                }
+            }
+        }
+
+        TapHandler {
+            acceptedButtons: Qt.RightButton
+            onTapped: {
+                root.menuTriggered()
             }
         }
     }
     background: DebugBounding { }
-
-    TapHandler {
-        acceptedButtons: Qt.RightButton
-        onTapped: {
-            root.menuTriggered()
-        }
-    }
-
-    DragHandler {
-        id: dragHandler
-        enabled: root.dndEnabled
-
-        onActiveChanged: {
-            if (active) {
-                // We switch to use the `dndItem` to handle Drag event since that one will always exists.
-                // If we use the current item, then if the item that provides the drag attached property
-                // get destoryed (e.g. switch page or folder close caused destory), dropping at that moment
-                // will cause a crash.
-
-                // Item will be hidden by checking the dndItem.currentlyDraggedId property. We assign the value
-                // to that property here
-                dndItem.currentlyDraggedId = parent.Drag.mimeData["text/x-dde-launcher-dnd-desktopId"]
-                // TODO: This way we couldn't give it an image size hint,
-                dndItem.Drag.imageSource = icons ? ("image://folder-icon/" + icons.join(':')) : ("image://app-icon/" + DTK.platformTheme.iconThemeName + "/" + parent.iconSource)
-                Qt.callLater(function() {
-                    dndItem.Drag.mimeData = parent.Drag.mimeData
-                    dndItem.Drag.active = true
-                    dndItem.Drag.startDrag()
-                })
-            }
-        }
-    }
 
     Keys.onSpacePressed: {
         if (root.icons !== undefined) {
