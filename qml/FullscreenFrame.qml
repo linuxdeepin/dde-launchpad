@@ -69,7 +69,7 @@ Control {
 
     function decrementPageIndex() {
         if (pages.currentIndex === 0 && pages.count > 1) {
-            pages.setCurrentIndex(pages.count - 1)
+            // pages.setCurrentIndex(pages.count - 1)
         } else {
             pages.decrementCurrentIndex()
         }
@@ -79,7 +79,7 @@ Control {
 
     function incrementPageIndex() {
         if (pages.currentIndex === pages.count - 1 && pages.count > 1) {
-            pages.setCurrentIndex(0)
+            // pages.setCurrentIndex(0)
         } else {
             pages.incrementCurrentIndex()
         }
