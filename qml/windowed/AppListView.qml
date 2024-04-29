@@ -6,6 +6,7 @@ import QtQuick 2.15
 import QtQml.Models 2.15
 import QtQuick.Controls 2.15 as QQC2
 import org.deepin.dtk 1.0
+import org.deepin.dtk.style 1.0 as DStyle
 
 import org.deepin.launchpad 1.0
 import org.deepin.launchpad.models 1.0
@@ -162,6 +163,12 @@ FocusScope {
                                 if (!visible) {
                                     listView.opacity = 1
                                 }
+                            }
+                            background: FloatingPanel {
+                                radius: DStyle.Style.menu.radius
+                                backgroundColor: ddeCategoryMenu.backgroundColor
+                                backgroundNoBlurColor: ddeCategoryMenu.backgroundNoBlurColor
+                                dropShadowColor: null
                             }
                         }
                     }
