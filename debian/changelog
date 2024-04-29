@@ -1,3 +1,14 @@
+dde-launchpad (0.6.8) unstable; urgency=medium
+
+  * Fix keyboard focus navigation (linuxdeepin/developer-center#8135)
+  * Fix search icon color in fullscreen (linuxdeepin/developer-center#8182)
+  * Fix swipe and drag conflict, take two.
+  * Disable page wrap in fullscreen
+  * Fix text overflow when font size is too large (linuxdeepin/developer-center#8239)
+  * Various UI fixes
+
+ -- Wang Zichong <wangzichong@deepin.org>  Mon, 29 Apr 2024 16:51:00 +0800
+
 dde-launchpad (0.6.7) unstable; urgency=medium
 
   * Check MIME before accepting drop and avoid related crash
@@ -5,7 +16,7 @@ dde-launchpad (0.6.7) unstable; urgency=medium
   * Ensure text elide when necessary (linuxdeepin/developer-center#8183)
   * Allow same-folder drop (linuxdeepin/developer-center#7640)
 
- -- Gary Wang <luhongxu@deepin.org>  Thu, 25 Apr 2024 18:42:00 +0800
+ -- Gary Wang <wangzichong@deepin.org>  Thu, 25 Apr 2024 18:42:00 +0800
 
 dde-launchpad (0.6.6) unstable; urgency=medium
 
