@@ -6,6 +6,7 @@ import QtQuick 2.15
 import QtQml.Models 2.15
 import org.deepin.dtk 1.0
 import org.deepin.dtk.private 1.0
+import org.deepin.dtk.style 1.0 as DStyle
 
 import org.deepin.launchpad.windowed 1.0 as Windowed
 
@@ -78,5 +79,10 @@ Popup {
         }
 
        activeFocusOnTab: gridViewFocus
+    }
+
+    background: FloatingPanel {
+        radius: DStyle.Style.popup.radius
+        dropShadowColor: null
     }
 }

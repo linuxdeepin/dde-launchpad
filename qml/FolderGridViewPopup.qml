@@ -6,7 +6,6 @@ import QtQuick 2.15
 import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.15
 import org.deepin.dtk 1.0
-import org.deepin.dtk.style 1.0 as DS
 
 import org.deepin.launchpad 1.0
 import org.deepin.launchpad.models 1.0
@@ -220,36 +219,14 @@ Popup {
             }
         }
     }
-    background: InWindowBlur {
-        id: blur
-        implicitWidth: DS.Style.popup.width
-        implicitHeight: DS.Style.popup.height
-        radius: 40
-        offscreen: true
-        ItemViewport {
-            anchors.fill: parent
-            fixed: true
-            sourceItem: blur.content
-            radius: blurBackground.radius
-            hideSource: false
+    background: FloatingPanel {
+        radius: 36
+        backgroundColor: Palette {
+            normal: Qt.rgba(1.0, 1.0, 1.0, 0.2)
+            normalDark: Qt.rgba(1.0, 1.0, 1.0, 0.2)
         }
-
-        BoxShadow {
-            anchors.fill: blurBackground
-            shadowOffsetX: 0
-            shadowOffsetY: 2
-            shadowColor:  Qt.rgba(0, 0, 0, 0.1)
-            shadowBlur: 14
-            cornerRadius: blurBackground.radius
-            spread: 0
-            hollow: true
-        }
-
-        Rectangle {
-            id: blurBackground
-            anchors.fill: parent
-            radius: 36
-            color: Qt.rgba(1.0, 1.0, 1.0, 0.2)
-        }
+        dropShadowColor: null
+        outsideBorderColor: null
+        insideBorderColor: null
     }
 }
