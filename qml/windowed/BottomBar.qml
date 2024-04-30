@@ -45,6 +45,7 @@ Control {
 
             contentItem: SearchEdit {
                 id: searchEdit
+                padding: 1
                 property Palette iconPalette: Palette {
                     normal {
                         crystal: Qt.rgba(0, 0, 0, 1)
