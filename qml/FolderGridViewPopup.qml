@@ -220,7 +220,7 @@ Popup {
         }
     }
     background: FloatingPanel {
-        radius: 36
+        radius: isWindowedMode ? 12 : 36
         backgroundColor: Palette {
             normal: Qt.rgba(1.0, 1.0, 1.0, 0.2)
             normalDark: Qt.rgba(1.0, 1.0, 1.0, 0.2)

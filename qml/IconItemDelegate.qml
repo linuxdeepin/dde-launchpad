@@ -7,6 +7,8 @@ import QtQml.Models 2.15
 import QtQuick.Controls 2.15
 import org.deepin.dtk 1.0
 import org.deepin.dtk.private 1.0
+import org.deepin.dtk 1.0 as D
+import org.deepin.dtk.style 1.0 as DS
 
 import org.deepin.launchpad 1.0
 import org.deepin.launchpad.models 1.0
@@ -166,6 +168,24 @@ Control {
             button: parent
             outsideBorderColor: null
             radius: isWindowedMode ? 8 : 18
+            insideBorderColor: isWindowedMode ? null : DS.Style.button.insideBorder
+
+            property D.Palette background: D.Palette {
+                normal {
+                    common: Qt.rgba(0, 0, 0, 0.1)
+                    crystal: Qt.rgba(0, 0, 0, 0.1)
+                }
+                normalDark {
+                    common: Qt.rgba(1, 1, 1, 0.1)
+                    crystal: Qt.rgba(1, 1, 1, 0.1)
+                }
+                hovered {
+                    common: Qt.rgba(16.0 / 255, 16.0 / 255, 16.0 / 255, 0.1)
+                    crystal: Qt.rgba(16.0 / 255, 16.0 / 255, 16.0 / 255, 0.1)
+                }
+            }
+            color1: isWindowedMode ? background : DS.Style.button.background1
+            color2: isWindowedMode ? background : DS.Style.button.background2
         }
 
         TapHandler {
