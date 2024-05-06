@@ -11,17 +11,17 @@
     <message>
         <location filename="../qml/AppItemMenu.qml" line="41"/>
         <source>Pin to Top</source>
-        <translation type="unfinished"></translation>
+        <translation>Kiinnitä ylös</translation>
     </message>
     <message>
         <location filename="../qml/AppItemMenu.qml" line="50"/>
         <source>Remove from favorites</source>
-        <translation type="unfinished"></translation>
+        <translation>Poista suosikeista</translation>
     </message>
     <message>
         <location filename="../qml/AppItemMenu.qml" line="50"/>
         <source>Add to favorites</source>
-        <translation type="unfinished"></translation>
+        <translation>Lisää suosikkeihin</translation>
     </message>
     <message>
         <location filename="../qml/AppItemMenu.qml" line="64"/>
@@ -61,7 +61,7 @@
     <message>
         <location filename="../qml/AppItemMenu.qml" line="100"/>
         <source>Disable display scaling</source>
-        <translation type="unfinished"></translation>
+        <translation>Poista näytön skaalaus käytöstä</translation>
     </message>
     <message>
         <location filename="../qml/AppItemMenu.qml" line="107"/>
@@ -113,12 +113,12 @@
     <message>
         <location filename="../qml/windowed/BottomBar.qml" line="26"/>
         <source>Power</source>
-        <translation type="unfinished">Virta</translation>
+        <translation>Virta</translation>
     </message>
     <message>
         <location filename="../qml/windowed/BottomBar.qml" line="40"/>
         <source>Search</source>
-        <translation type="unfinished">Etsi</translation>
+        <translation>Hae</translation>
     </message>
 </context>
 <context>
@@ -126,12 +126,12 @@
     <message>
         <location filename="../qml/windowed/FrequentlyUsedView.qml" line="29"/>
         <source>Frequently Used</source>
-        <translation type="unfinished"></translation>
+        <translation>Usein käytetty</translation>
     </message>
     <message>
         <location filename="../qml/windowed/FrequentlyUsedView.qml" line="29"/>
         <source>All Apps</source>
-        <translation type="unfinished"></translation>
+        <translation>Kaikki sovellukset</translation>
     </message>
 </context>
 <context>
@@ -146,12 +146,12 @@
     <message>
         <location filename="../launchercontroller.cpp" line="19"/>
         <source>Show launcher (hidden by default)</source>
-        <translation type="unfinished"></translation>
+        <translation>Näytä käynnistysohjelma (oletuksena piilotettu)</translation>
     </message>
     <message>
         <location filename="../launchercontroller.cpp" line="20"/>
         <source>Toggle launcher visibility</source>
-        <translation type="unfinished"></translation>
+        <translation>Vaihda käynnistysohjelman näkyvyyttä</translation>
     </message>
 </context>
 <context>
@@ -159,72 +159,72 @@
     <message>
         <location filename="../qml/Main.qml" line="21"/>
         <source>Internet</source>
-        <translation type="unfinished">Internet</translation>
+        <translation>Internet</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="23"/>
         <source>Chat</source>
-        <translation type="unfinished">Chatti</translation>
+        <translation>Pikakeskustelu</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="25"/>
         <source>Music</source>
-        <translation type="unfinished">Musiikki</translation>
+        <translation>Musiikki</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="27"/>
         <source>Video</source>
-        <translation type="unfinished">Video</translation>
+        <translation>Video</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="29"/>
         <source>Graphics</source>
-        <translation type="unfinished">Grafiikka</translation>
+        <translation>Grafiikka</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="31"/>
         <source>Game</source>
-        <translation type="unfinished"></translation>
+        <translation>Peli</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="33"/>
         <source>Office</source>
-        <translation type="unfinished">Toimisto</translation>
+        <translation>Toimisto</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="35"/>
         <source>Reading</source>
-        <translation type="unfinished">Lukeminen</translation>
+        <translation>Lukeminen</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="37"/>
         <source>Development</source>
-        <translation type="unfinished">Ohjelmointi</translation>
+        <translation>Ohjelmointi</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="39"/>
         <source>System</source>
-        <translation type="unfinished">Järjestelmä</translation>
+        <translation>Järjestelmä</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="41"/>
         <source>Others</source>
-        <translation type="unfinished"></translation>
+        <translation>Muut</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="313"/>
         <source>Are you sure you want to uninstall %1?</source>
-        <translation type="unfinished"></translation>
+        <translation>Haluatko varmasti poistaa asennuksen %1?</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="325"/>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>Peruuta</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="339"/>
         <source>Confirm</source>
-        <translation type="unfinished"></translation>
+        <translation>Vahvista</translation>
     </message>
 </context>
 <context>
@@ -232,7 +232,7 @@
     <message>
         <location filename="../qml/windowed/RecentlyInstalledView.qml" line="27"/>
         <source>Recently Installed</source>
-        <translation type="unfinished"></translation>
+        <translation>Äskettäin asennettu</translation>
     </message>
 </context>
 <context>
@@ -240,12 +240,12 @@
     <message>
         <location filename="../qml/windowed/SearchResultView.qml" line="26"/>
         <source>All Apps</source>
-        <translation type="unfinished"></translation>
+        <translation>Kaikki sovellukset</translation>
     </message>
     <message>
         <location filename="../qml/windowed/SearchResultView.qml" line="76"/>
         <source>No search results</source>
-        <translation type="unfinished"></translation>
+        <translation>Ei hakutuloksia</translation>
     </message>
 </context>
 <context>
@@ -253,42 +253,42 @@
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="39"/>
         <source>Free sorting</source>
-        <translation type="unfinished"></translation>
+        <translation>Vapaa lajittelu</translation>
     </message>
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="52"/>
         <source>Sort by category</source>
-        <translation type="unfinished"></translation>
+        <translation>Lajittele luokan mukaan</translation>
     </message>
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="64"/>
         <source>Sort by name</source>
-        <translation type="unfinished"></translation>
+        <translation>Lajittele nimen mukaan</translation>
     </message>
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="124"/>
         <source>Computer</source>
-        <translation type="unfinished"></translation>
+        <translation>Tietokone</translation>
     </message>
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="139"/>
         <source>Pictures</source>
-        <translation type="unfinished"></translation>
+        <translation>Kuvat</translation>
     </message>
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="154"/>
         <source>Documents</source>
-        <translation type="unfinished"></translation>
+        <translation>Asiakirjat</translation>
     </message>
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="169"/>
         <source>Desktop</source>
-        <translation type="unfinished"></translation>
+        <translation>Työpöytä</translation>
     </message>
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="184"/>
         <source>Control Center</source>
-        <translation type="unfinished"></translation>
+        <translation>Ohjauskeskus</translation>
     </message>
 </context>
 <context>
