@@ -312,9 +312,12 @@ void ItemArrangementProxyModel::onSourceModelChanged()
     }
 
     m_topLevel->removeItemsNotIn(appDesktopIdSet);
-    for (int i = 0; i < m_folderModel.rowCount(); i++) {
+    for (int i = m_folderModel.rowCount() - 1; i >= 0 ; i--) {
         const QString & folderId = m_folderModel.index(i, 0).data(AppItem::DesktopIdRole).toString();
         m_folders.value(folderId)->removeItemsNotIn(appDesktopIdSet);
+        if (m_folders.value(folderId)->pageCount() == 0) {
+            removeFolder(QString(folderId).remove("internal/folders/"));
+        }
     }
 
     emit dataChanged(index(0, 0), index(rowCount() - 1, 0), {
