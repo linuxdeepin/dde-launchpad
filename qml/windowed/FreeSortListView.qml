@@ -6,6 +6,7 @@ import QtQuick 2.15
 import QtQml.Models 2.15
 import QtQuick.Controls 2.15 as QQC2
 import org.deepin.dtk 1.0
+import org.deepin.dtk.style 1.0 as DStyle
 
 import org.deepin.launchpad 1.0
 import org.deepin.launchpad.models 1.0
@@ -151,6 +152,8 @@ Item {
 
                 background: ItemBackground {
                     id: bg
+                    implicitWidth: DStyle.Style.itemDelegate.width
+                    implicitHeight: Helper.windowed.listItemHeight
                     button: itemDelegate
                 }
 

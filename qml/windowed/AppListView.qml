@@ -221,6 +221,8 @@ FocusScope {
                 }
 
                 background: ItemBackground {
+                    implicitWidth: DStyle.Style.itemDelegate.width
+                    implicitHeight: Helper.windowed.listItemHeight
                     button: itemDelegate
                 }
             }
