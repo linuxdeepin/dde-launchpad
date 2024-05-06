@@ -160,6 +160,10 @@ QtObject {
 
         width: windowedFrameSize.width
         height: windowedFrameSize.height
+        maximumWidth: width
+        minimumWidth: width
+        minimumHeight: height
+        maximumHeight: height
         ColorSelector.family: Palette.CrystalColor
         flags: {
             if (DebugHelper.useRegularWindow) return Qt.Window
