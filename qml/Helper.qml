@@ -12,6 +12,7 @@ QtObject {
         property int bottomBarMargins: 10
         property int maxViewRows: 4
         property int doubleRowMaxFontSize: 12
+        property int listItemHeight: 36
     }
     property QtObject frequentlyUsed :QtObject {
         property int leftMargin: 10
