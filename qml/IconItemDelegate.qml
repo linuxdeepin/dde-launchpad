@@ -201,6 +201,7 @@ Control {
 
         TapHandler {
             acceptedButtons: Qt.RightButton
+            gesturePolicy: TapHandler.WithinBounds
             onTapped: {
                 root.menuTriggered()
             }
