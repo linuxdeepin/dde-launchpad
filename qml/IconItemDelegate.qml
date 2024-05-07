@@ -164,7 +164,7 @@ Control {
         }
         ToolTip.text: root.text
         ToolTip.delay: 1000
-        ToolTip.visible: hovered
+        ToolTip.visible: hovered && iconItemLabel.truncated
         background: ButtonPanel {
             button: parent
             outsideBorderColor: null
