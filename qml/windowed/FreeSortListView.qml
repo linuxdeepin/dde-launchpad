@@ -133,7 +133,7 @@ Item {
                 id: itemDelegate
                 text: model.display.startsWith("internal/category/") ? getCategoryName(model.display.substring(18)) : model.display
                 checkable: false
-                icon.name: iconName === undefined ? "folder" : iconName
+                icon.name: itemType === ItemArrangementProxyModel.FolderItemType ? "folder" : iconName
                 DciIcon.mode: DTK.NormalState
                 anchors.fill: parent
                 anchors.leftMargin: 10
@@ -180,7 +180,7 @@ Item {
                         if (mouse.button === Qt.RightButton) {
                             showContextMenu(itemDelegate, model, false, false, false)
                         } else {
-                            if (!iconName) {
+                            if (itemType === ItemArrangementProxyModel.FolderItemType) {
                                 console.log("freesort view folder clicked:", desktopId);
                                 let idStr = model.desktopId
                                 let strFolderId = Number(idStr.replace("internal/folders/", ""))

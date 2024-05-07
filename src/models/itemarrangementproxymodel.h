@@ -17,11 +17,18 @@ class ItemArrangementProxyModel : public QConcatenateTablesProxyModel
     QML_NAMED_ELEMENT(ItemArrangementProxyModel)
     QML_SINGLETON
 public:
+    enum ItemType{
+        AppItemType = 0,
+        FolderItemType = 1
+    };
+    Q_ENUM(ItemType)
+
     enum Roles {
         PageRole = AppsModel::ProxyModelExtendedRole,
         IndexInPageRole,
         FolderIdNumberRole,
-        IconsNameRole
+        IconsNameRole,
+        ItemTypeRole
     };
     Q_ENUM(Roles)
 
