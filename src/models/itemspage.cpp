@@ -239,6 +239,15 @@ QStringList ItemsPage::allArrangedItems() const
     return result;
 }
 
+int ItemsPage::itemCount() const 
+{
+    int count = 0;
+    for (const QStringList &pageItems : m_pages) {
+        count += pageItems.count();
+    }
+    return count;
+}
+
 // item will be moved to the index
 void ItemsPage::moveItem(int fromPage, int fromIndex, int toPage, int toIndex)
 {

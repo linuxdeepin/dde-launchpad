@@ -29,6 +29,7 @@ public:
     QStringList items(int page = 0);
     QStringList firstNItems(int count = 4);
     QStringList allArrangedItems() const;
+    int itemCount() const;
 
     void appendEmptyPage();
     void appendPage(const QStringList items);
