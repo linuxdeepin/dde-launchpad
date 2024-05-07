@@ -121,93 +121,75 @@ ColumnLayout {
         Layout.fillHeight: true
     }
 
-    D.ToolButton {
-        id: computer
-        icon.name: "computer-symbolic"
+    component SideBarButton: D.ActionButton {
+        id: btn
         ToolTip.visible: hovered
         ToolTip.delay: 1000
-        ToolTip.text: qsTr("Computer")
         Layout.alignment: Qt.AlignCenter
         focusPolicy: Qt.NoFocus
+        // don't inherit window's windowText (it's has opacity of 0.7 in dtkgui.)
+        palette.windowText: D.ColorSelector.textColor
+        icon {
+            width: 16
+            height: 16
+        }
+        background: ItemBackground {
+            button: btn
+        }
+    }
+
+    SideBarButton {
+        id: computer
+        icon.name: "computer-symbolic"
+        ToolTip.text: qsTr("Computer")
         KeyNavigation.down: images
         KeyNavigation.up: title
         onClicked: {
             DesktopIntegration.showUrl("computer:///")
         }
-        background: ItemBackground {
-            button: computer
-        }
     }
 
-    D.ToolButton {
+    SideBarButton {
         id: images
         icon.name: "folder-images-symbolic"
-        ToolTip.visible: hovered
-        ToolTip.delay: 1000
         ToolTip.text: qsTr("Pictures")
-        Layout.alignment: Qt.AlignCenter
-        focusPolicy: Qt.NoFocus
         KeyNavigation.down: documents
         KeyNavigation.up: computer
         onClicked: {
             DesktopIntegration.showFolder(StandardPaths.PicturesLocation)
         }
-        background: ItemBackground {
-            button: images
-        }
     }
 
-    D.ToolButton {
+    SideBarButton {
         id: documents
         icon.name: "folder-documents-symbolic"
-        ToolTip.visible: hovered
-        ToolTip.delay: 1000
         ToolTip.text: qsTr("Documents")
-        Layout.alignment: Qt.AlignCenter
-        focusPolicy: Qt.NoFocus
         KeyNavigation.down: desktop
         KeyNavigation.up: images
         onClicked: {
             DesktopIntegration.showFolder(StandardPaths.DocumentsLocation)
         }
-        background: ItemBackground {
-            button: documents
-        }
     }
 
-    D.ToolButton {
+    SideBarButton {
         id: desktop
         icon.name: "folder-desktop-symbolic"
-        ToolTip.visible: hovered
-        ToolTip.delay: 1000
         ToolTip.text: qsTr("Desktop")
-        Layout.alignment: Qt.AlignCenter
-        focusPolicy: Qt.NoFocus
         KeyNavigation.down: setting
         KeyNavigation.up: documents
         onClicked: {
             DesktopIntegration.showFolder(StandardPaths.DesktopLocation)
         }
-        background: ItemBackground {
-            button: desktop
-        }
     }
 
-    D.ToolButton {
+    SideBarButton {
         id: setting
         icon.name: "setting"
-        ToolTip.visible: hovered
-        ToolTip.delay: 1000
         ToolTip.text: qsTr("Control Center")
-        Layout.alignment: Qt.AlignCenter
-        focusPolicy: Qt.NoFocus
         KeyNavigation.down: title
         KeyNavigation.up: desktop
         onClicked: {
             DesktopIntegration.openSystemSettings();
-        }
-        background: ItemBackground {
-            button: setting
         }
     }
 
