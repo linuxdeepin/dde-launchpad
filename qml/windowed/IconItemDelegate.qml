@@ -26,6 +26,7 @@ Control {
     contentItem: ToolButton {
         id: iconButton
         focusPolicy: Qt.NoFocus
+        ColorSelector.pressed: false
         contentItem: Column {
             anchors.fill: parent
 
