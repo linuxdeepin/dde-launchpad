@@ -73,6 +73,10 @@ Popup {
                     text: folderLoader.folderName
                     color: palette.windowText
                     onEditingFinished: {
+                        if (text === "") {
+                            return
+                        }
+
                         ItemArrangementProxyModel.updateFolderName(folderLoader.currentFolderId, text);
                     }
 
