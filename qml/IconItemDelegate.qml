@@ -191,7 +191,7 @@ Control {
         TapHandler {
             acceptedButtons: Qt.LeftButton
             onTapped: {
-                if (root.icons) {
+                if (model.itemType === ItemArrangementProxyModel.FolderItemType) {
                     root.folderClicked()
                 } else {
                     root.itemClicked()
@@ -210,7 +210,7 @@ Control {
     background: DebugBounding { }
 
     Keys.onSpacePressed: {
-        if (root.icons !== undefined) {
+        if (model.itemType === ItemArrangementProxyModel.FolderItemType) {
             root.folderClicked()
         } else {
             root.itemClicked()
@@ -218,7 +218,7 @@ Control {
     }
 
     Keys.onReturnPressed: {
-        if (root.icons !== undefined) {
+        if (model.itemType === ItemArrangementProxyModel.FolderItemType) {
             root.folderClicked()
         } else {
             root.itemClicked()

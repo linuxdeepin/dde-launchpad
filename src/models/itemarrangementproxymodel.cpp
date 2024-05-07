@@ -24,7 +24,12 @@ int ItemArrangementProxyModel::pageCount(int folderId) const
     QString fullId("internal/folders/" + QString::number(folderId));
     Q_ASSERT(m_folders.contains(fullId));
 
-    return m_folders.value(fullId)->pageCount();
+    if (auto itemPage = m_folders.value(fullId); itemPage) {
+        return itemPage->pageCount();
+    } else {
+        qWarning() << "itemPage is null, return 0. fullId is" << fullId;
+        return 0;
+    }
 }
 
 void ItemArrangementProxyModel::updateFolderName(int folderId, const QString &name)
@@ -152,6 +157,8 @@ QVariant ItemArrangementProxyModel::data(const QModelIndex &index, int role) con
                 return folder;
             case IconsNameRole:
                 return QVariant();
+            case ItemTypeRole:
+                return AppItemType;
         }
     } else {
         // a folder
@@ -184,9 +191,10 @@ QVariant ItemArrangementProxyModel::data(const QModelIndex &index, int role) con
                 }
                 return icons;//QStringList({"deepin-music"});
             }
+            case ItemTypeRole:
+                return FolderItemType;
         }
     }
-
     return QConcatenateTablesProxyModel::data(index, role);
 }
 
@@ -194,6 +202,7 @@ QHash<int, QByteArray> ItemArrangementProxyModel::roleNames() const
 {
     auto existingRoleNames = AppsModel::instance().roleNames();
     existingRoleNames.insert(IconsNameRole, QByteArrayLiteral("folderIcons"));
+    existingRoleNames.insert(ItemTypeRole, QByteArrayLiteral("itemType"));
     return existingRoleNames;
 }
 

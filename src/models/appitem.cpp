@@ -47,7 +47,7 @@ const QString AppItem::iconName() const
 
 void AppItem::setIconName(const QString &iconName)
 {
-    setData(iconName, AppItem::IconNameRole);
+    setData(iconName.isEmpty() ? "application-x-desktop" : iconName, AppItem::IconNameRole);
 }
 
 const QStringList AppItem::categories() const
