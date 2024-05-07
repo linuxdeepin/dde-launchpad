@@ -197,6 +197,7 @@ QtObject {
         color: "transparent"
 
         DWindow.enabled: !DebugHelper.useRegularWindow
+        DWindow.windowRadius: 12
         DWindow.enableSystemResize: false
         DWindow.enableSystemMove: false
         DWindow.enableBlurWindow: true

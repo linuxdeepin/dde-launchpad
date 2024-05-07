@@ -80,7 +80,6 @@ ColumnLayout {
         id: title
 
         Layout.alignment: Qt.AlignCenter
-        Layout.topMargin: 10
         KeyNavigation.down: computer
         KeyNavigation.up: setting
         KeyNavigation.tab: nextKeyTabTarget

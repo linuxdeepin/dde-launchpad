@@ -66,6 +66,7 @@ Item {
         id: sideBar
         anchors.left: parent.left
         anchors.top: parent.top
+        anchors.topMargin: anchors.leftMargin
         anchors.bottom: parent.bottom
         anchors.leftMargin: 5
         nextKeyTabTarget: bottomBar.keyTabTarget
