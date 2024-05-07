@@ -72,6 +72,7 @@ Popup {
                     horizontalAlignment: Text.AlignHCenter
                     text: folderLoader.folderName
                     color: palette.windowText
+                    selectByMouse: true
                     onEditingFinished: {
                         ItemArrangementProxyModel.updateFolderName(folderLoader.currentFolderId, text);
                     }
