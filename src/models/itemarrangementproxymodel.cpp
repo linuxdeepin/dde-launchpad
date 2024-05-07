@@ -80,17 +80,20 @@ void ItemArrangementProxyModel::commitDndOperation(const QString &dragId, const 
         // the source item will be inside a new folder anyway.
         const int srcFolderId = std::get<0>(dragOrigPos);
         ItemsPage * srcFolder = folderById(srcFolderId);
-        srcFolder->removeItem(dragId);
 
         if (dropId.startsWith("internal/folders/")) {
             // drop into existing folder
             const int dropOrigFolder = QStringView{dropId}.mid(17).toInt();
             ItemsPage * dstFolder = folderById(dropOrigFolder);
+            if (srcFolder == dstFolder && srcFolder->itemCount() == 1)
+                return;
+            srcFolder->removeItem(dragId);
             if (srcFolder->pageCount() == 0 && srcFolder != dstFolder) {
                 removeFolder(QString::number(srcFolderId));
             }
             dstFolder->insertItemToPage(dragId, pageHint);
         } else {
+            srcFolder->removeItem(dragId);
             // make a new folder, move two items into the folder
             QString dstFolderId = findAvailableFolderId();
             ItemsPage * dstFolder = createFolder(dstFolderId);
