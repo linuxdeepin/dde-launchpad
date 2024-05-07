@@ -57,8 +57,10 @@ Popup {
             }
 
             contentItem: ColumnLayout {
+                id: contentRoot
                 spacing: isWindowedMode ? 0 : 5
                 anchors.fill: parent
+                property bool nameEditing: false
 
                 Item {
                     visible: !isWindowedMode
@@ -66,7 +68,11 @@ Popup {
                 }
 
                 TextInput {
+                    id: folderNameEdit
                     Layout.fillWidth: true
+                    Layout.leftMargin: 30 - root.padding
+                    Layout.rightMargin: 30 - root.padding
+                    visible: contentRoot.nameEditing
                     clip: true
                     font: folderNameFont
                     horizontalAlignment: Text.AlignHCenter
@@ -74,18 +80,44 @@ Popup {
                     color: palette.windowText
                     selectByMouse: true
                     onEditingFinished: {
+                        contentRoot.nameEditing = false
                         if (text === "") {
+                            text = folderLoader.folderName
                             return
                         }
-
                         ItemArrangementProxyModel.updateFolderName(folderLoader.currentFolderId, text);
+                        folderNameText.text = text
                     }
 
                     selectionColor: "#66FFFFFF"
                     selectedTextColor: isWindowedMode ? "black" : "white"
-                    onActiveFocusChanged: {
-                        if (activeFocus) {
-                            selectAll();
+                }
+                Text {
+                    id: folderNameText
+                    Layout.fillWidth: true
+                    Layout.leftMargin: 30 - root.padding
+                    Layout.rightMargin: 30 - root.padding
+                    clip: true
+                    font: folderNameFont
+                    horizontalAlignment: Text.AlignHCenter
+                    text: folderLoader.folderName
+                    color: palette.windowText
+                    visible: !contentRoot.nameEditing
+                    elide: Text.ElideRight
+                    ToolTip.visible: folderNameTextMouseArea.containsMouse ? implicitWidth > width : false
+                    ToolTip.delay: 1000
+                    ToolTip.timeout: 5000
+                    ToolTip.text: text
+
+                    MouseArea {
+                        id: folderNameTextMouseArea
+                        hoverEnabled: true
+                        anchors.fill: parent
+
+                        onClicked: {
+                            contentRoot.nameEditing = true
+                            folderNameEdit.forceActiveFocus()
+                            folderNameEdit.selectAll()
                         }
                     }
                 }
@@ -208,6 +240,12 @@ Popup {
                                     }
                                 }
                             }
+                        }
+                    }
+                    MouseArea {
+                        anchors.fill: parent
+                        onClicked: {
+                            folderNameEdit.editingFinished()
                         }
                     }
                 }
