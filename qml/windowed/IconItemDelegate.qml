@@ -69,7 +69,7 @@ Control {
         }
         ToolTip.text: root.text
         ToolTip.delay: 1000
-        ToolTip.visible: hovered
+        ToolTip.visible: hovered && iconItemLabel.truncated
         background: ItemBackground {
             radius: 8
             button: iconButton
