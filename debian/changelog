@@ -1,3 +1,23 @@
+dde-launchpad (0.6.9) unstable; urgency=medium
+
+  * fix: padding error in large font(Issue: https://github.com/linuxdeepin/developer-center/issues/8295)
+  * fix: List's item is not centered(Issue: https://github.com/linuxdeepin/developer-center/issues/8361)
+  * i18n: Translated using Weblate (Finnish) (#245)
+    Thanks to Weblate (bot)
+  * fix: There are empty application groups.(issue: 8367)
+  * fix: The size of the rounded corners in the small window folder is incorrect(Issue: https://github.com/linuxdeepin/developer-center/issues/8338)
+  * fix: folder icon not change with theme(Issue: https://github.com/linuxdeepin/developer-center/issues/8343)
+  * fix: still can resize when effects closed(Issue: https://github.com/linuxdeepin/developer-center/issues/7647)
+  * fix: Launchpad crashes.(issue: 8384)
+  * fix: The full-screen configuration is reset.(issue: 8370)
+  * fix: The folder has a context menu.(issue: 8403)
+  * fix: two popup when right folder's popup item(Issue: https://github.com/linuxdeepin/developer-center/issues/8368)
+  * feat: Application group name TextInput supports mouse selection
+  * fix: application groups can set empty name(Issue: https://github.com/linuxdeepin/developer-center/issues/8334)
+  * fix: appItem without icon field clicking to start causing crash(Issue: https://github.com/linuxdeepin/developer-center/issues/8396)
+
+ -- Yixue Wang <wangyixue@deepin.org>  Tue, 07 May 2024 15:53:08 +0800
+
 dde-launchpad (0.6.8) unstable; urgency=medium
 
   * Fix keyboard focus navigation (linuxdeepin/developer-center#8135)
