@@ -524,7 +524,7 @@ Control {
                 if (searchEdit.text === "") {
                     pages.focus = true
                 } else {
-                    searchResultGridViewContainer.currentItem?.onItemClicked()
+                    searchResultGridViewContainer.currentItem?.itemClicked()
                 }
             }
             onTextChanged: {
