@@ -128,12 +128,12 @@
     <message>
         <location filename="../qml/windowed/BottomBar.qml" line="26"/>
         <source>Power</source>
-        <translation type="unfinished">Kikapcsolás</translation>
+        <translation>Kikapcsolás</translation>
     </message>
     <message>
         <location filename="../qml/windowed/BottomBar.qml" line="40"/>
         <source>Search</source>
-        <translation type="unfinished">Keresés</translation>
+        <translation>Keresés</translation>
     </message>
 </context>
 <context>
@@ -141,12 +141,12 @@
     <message>
         <location filename="../qml/windowed/FrequentlyUsedView.qml" line="29"/>
         <source>Frequently Used</source>
-        <translation type="unfinished"></translation>
+        <translation>Gyakran Használt</translation>
     </message>
     <message>
         <location filename="../qml/windowed/FrequentlyUsedView.qml" line="29"/>
         <source>All Apps</source>
-        <translation type="unfinished">Minden alkalmazás</translation>
+        <translation>Minden alkalmazás</translation>
     </message>
 </context>
 <context>
@@ -174,57 +174,57 @@
     <message>
         <location filename="../qml/Main.qml" line="21"/>
         <source>Internet</source>
-        <translation type="unfinished">Internet</translation>
+        <translation>Internet</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="23"/>
         <source>Chat</source>
-        <translation type="unfinished">Csevegés</translation>
+        <translation>Csevegés</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="25"/>
         <source>Music</source>
-        <translation type="unfinished">Zene</translation>
+        <translation>Zene</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="27"/>
         <source>Video</source>
-        <translation type="unfinished">Videó</translation>
+        <translation>Videó</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="29"/>
         <source>Graphics</source>
-        <translation type="unfinished">Grafika</translation>
+        <translation>Grafika</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="31"/>
         <source>Game</source>
-        <translation type="unfinished">Játékok</translation>
+        <translation>Játékok</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="33"/>
         <source>Office</source>
-        <translation type="unfinished">Iroda</translation>
+        <translation>Iroda</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="35"/>
         <source>Reading</source>
-        <translation type="unfinished">Olvasás</translation>
+        <translation>Olvasás</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="37"/>
         <source>Development</source>
-        <translation type="unfinished">Fejlesztés</translation>
+        <translation>Fejlesztés</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="39"/>
         <source>System</source>
-        <translation type="unfinished">Rendszer</translation>
+        <translation>Rendszer</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="41"/>
         <source>Others</source>
-        <translation type="unfinished">Egyéb</translation>
+        <translation>Egyéb</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="313"/>
@@ -247,7 +247,7 @@
     <message>
         <location filename="../qml/windowed/RecentlyInstalledView.qml" line="27"/>
         <source>Recently Installed</source>
-        <translation type="unfinished"></translation>
+        <translation>Újonnan Telepített</translation>
     </message>
 </context>
 <context>
@@ -255,12 +255,12 @@
     <message>
         <location filename="../qml/windowed/SearchResultView.qml" line="26"/>
         <source>All Apps</source>
-        <translation type="unfinished">Minden alkalmazás</translation>
+        <translation>Minden alkalmazás</translation>
     </message>
     <message>
         <location filename="../qml/windowed/SearchResultView.qml" line="76"/>
         <source>No search results</source>
-        <translation type="unfinished">Nincs keresési eredmény</translation>
+        <translation>Nincs keresési eredmény</translation>
     </message>
 </context>
 <context>
@@ -268,42 +268,42 @@
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="39"/>
         <source>Free sorting</source>
-        <translation type="unfinished"></translation>
+        <translation>Szabad rendezés</translation>
     </message>
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="52"/>
         <source>Sort by category</source>
-        <translation type="unfinished"></translation>
+        <translation>Rendezés Kategóriánként</translation>
     </message>
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="64"/>
         <source>Sort by name</source>
-        <translation type="unfinished"></translation>
+        <translation>Rendezés név szerint</translation>
     </message>
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="124"/>
         <source>Computer</source>
-        <translation type="unfinished"></translation>
+        <translation>Számítógép</translation>
     </message>
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="139"/>
         <source>Pictures</source>
-        <translation type="unfinished"></translation>
+        <translation>Képek</translation>
     </message>
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="154"/>
         <source>Documents</source>
-        <translation type="unfinished"></translation>
+        <translation>Dokumentumok</translation>
     </message>
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="169"/>
         <source>Desktop</source>
-        <translation type="unfinished"></translation>
+        <translation>Asztal</translation>
     </message>
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="184"/>
         <source>Control Center</source>
-        <translation type="unfinished">Vezérlőpult</translation>
+        <translation>Vezérlőpult</translation>
     </message>
 </context>
 <context>
