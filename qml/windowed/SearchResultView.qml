@@ -38,18 +38,9 @@ Control {
             font: LauncherController.adjustFontWeight(DTK.fontManager.t6, Font.Bold)
         }
 
-        GridViewContainer {
-            id: searchResultViewContainer
-
-            KeyNavigation.tab: nextKeyTabTarget
-            Layout.alignment: Qt.AlignRight
-            Layout.topMargin: 10
-            Layout.preferredHeight: searchResultViewContainer.height
-            Layout.preferredWidth: searchResultViewContainer.width
-            interactive: true
-
+        DelegateModel {
+            id: delegateSearchResultModel
             model: SearchFilterProxyModel
-
             delegate: IconItemDelegate {
                 width: searchResultViewContainer.cellWidth
                 height: searchResultViewContainer.cellHeight
@@ -61,8 +52,28 @@ Control {
                     showContextMenu(this, model, false, false, true)
                 }
             }
+        }
+
+        GridViewContainer {
+            id: searchResultViewContainer
+
+            KeyNavigation.tab: nextKeyTabTarget
+            Layout.alignment: Qt.AlignRight
+            Layout.topMargin: 10
+            Layout.rightMargin: 10
+            Layout.preferredHeight: searchResultViewContainer.height
+            Layout.preferredWidth: searchResultViewContainer.width - 10
+            interactive: true
+
+            model: delegateSearchResultModel
 
             activeFocusOnTab: gridViewFocus
+
+            vScrollBar: ScrollBar {
+                id: vScrollBar
+                visible: parent.model.count > 4 * 4
+                active: parent.model.count > 4 * 4
+            }
         }
 
         Item {
