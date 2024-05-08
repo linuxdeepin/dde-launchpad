@@ -22,7 +22,7 @@ Control {
     }
 
     function launchCurrentItem() {
-        searchResultViewContainer.currentItem?.onItemClicked()
+        searchResultViewContainer.currentItem?.itemClicked()
     }
 
     function positionViewAtBeginning() {
