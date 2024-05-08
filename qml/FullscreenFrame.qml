@@ -496,7 +496,10 @@ Control {
                 model: delegateSearchResultModel
                 padding: 10
                 interactive: true
-                vScrollBar: ScrollBar { }
+                vScrollBar: ScrollBar {
+                    visible: parent.model.count > 4 * 8
+                    active: parent.model.count > 4 * 8
+                }
             }
         }
 
