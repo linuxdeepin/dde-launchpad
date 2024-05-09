@@ -62,7 +62,6 @@ FocusScope {
 
             anchors.centerIn: parent
 
-            clip: true
             interactive: false
             highlightFollowsCurrentItem: true
             keyNavigationEnabled: true
