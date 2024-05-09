@@ -80,7 +80,7 @@ FocusScope {
                 ScrollBar.vertical: root.vScrollBar
 
                 anchors.fill: parent
-                clip: true
+                clip: false // TODO it maybe a bug for dtk, https://github.com/linuxdeepin/developer-center/issues/8468
                 highlightFollowsCurrentItem: true
                 keyNavigationEnabled: true
                 highlightMoveDuration: 150
