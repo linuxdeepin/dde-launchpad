@@ -33,7 +33,7 @@ Control {
             Item {
                 // actually just a top padding
                 width: 1
-                height: 3
+                height: 7
             }
 
             DciIcon {
@@ -48,7 +48,7 @@ Control {
             // as topMargin
             Item {
                 width: 1
-                height: 8
+                height: 4
             }
 
             Label {
