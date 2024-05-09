@@ -242,10 +242,13 @@ Popup {
                             }
                         }
                     }
-                    MouseArea {
+
+                    Item {
                         anchors.fill: parent
-                        onClicked: {
-                            folderNameEdit.editingFinished()
+                        TapHandler {
+                            onTapped: {
+                                folderNameEdit.editingFinished()
+                            }
                         }
                     }
                 }
