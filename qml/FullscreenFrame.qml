@@ -340,6 +340,17 @@ Control {
                                 folderId: 0
                             }
 
+                            MouseArea {
+                                anchors.fill: parent
+                                acceptedButtons: Qt.RightButton
+                                onClicked: {
+                                    // FIXME: prevent the bug:https://bugreports.qt.io/browse/QTBUG-125139;
+                                    if (mouse.button === Qt.RightButton) {
+                                        mouse.accepted = false;
+                                    }
+                                }
+                            }
+
                             GridViewContainer {
                                 id: gridViewContainer
                                 objectName: "gridViewContainer"
