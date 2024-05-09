@@ -78,22 +78,12 @@ Control {
                     id: iconLoader
                     anchors.fill: parent
                     sourceComponent: root.icons !== undefined ? folderComponent : imageComponent
-                    TapHandler {
-                        acceptedButtons: Qt.LeftButton
-                        onPressedChanged: {
-                            if (pressed) {
-                                root.Drag.hotSpot = point.pressPosition
-                                iconLoader.grabToImage(function(result) {
-                                    root.Drag.imageSource = result.url;
-                                })
-                            }
-                        }
-                    }
                     DragHandler {
                         id: dragHandler
                         target: root
                         acceptedButtons: Qt.LeftButton
                         enabled: root.dndEnabled
+                        dragThreshold: 1
                         onActiveChanged: {
                             if (active) {
                                 // We switch to use the `dndItem` to handle Drag event since that one will always exists.
@@ -161,6 +151,34 @@ Control {
                 elide: Text.ElideRight
                 maximumLineCount: singleRow ? 1 : 2
             }
+
+            TapHandler {
+                acceptedButtons: Qt.RightButton
+                gesturePolicy: TapHandler.WithinBounds
+                onTapped: {
+                    root.menuTriggered()
+                }
+            }
+
+            TapHandler {
+                acceptedButtons: Qt.LeftButton
+                gesturePolicy: TapHandler.WithinBounds
+                onPressedChanged: {
+                    if (pressed) {
+                        root.Drag.hotSpot = mapToItem(iconLoader, point.pressPosition)
+                        iconLoader.grabToImage(function(result) {
+                            root.Drag.imageSource = result.url;
+                        })
+                    }
+                }
+                onTapped: {
+                    if (model.itemType === ItemArrangementProxyModel.FolderItemType) {
+                        root.folderClicked()
+                    } else {
+                        root.itemClicked()
+                    }
+                }
+            }
         }
         ToolTip.text: root.text
         ToolTip.delay: 1000
@@ -187,25 +205,6 @@ Control {
             }
             color1: isWindowedMode ? background : DS.Style.button.background1
             color2: isWindowedMode ? background : DS.Style.button.background2
-        }
-
-        TapHandler {
-            acceptedButtons: Qt.LeftButton
-            onTapped: {
-                if (model.itemType === ItemArrangementProxyModel.FolderItemType) {
-                    root.folderClicked()
-                } else {
-                    root.itemClicked()
-                }
-            }
-        }
-
-        TapHandler {
-            acceptedButtons: Qt.RightButton
-            gesturePolicy: TapHandler.WithinBounds
-            onTapped: {
-                root.menuTriggered()
-            }
         }
     }
     background: DebugBounding { }
