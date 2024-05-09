@@ -94,11 +94,11 @@ Control {
                                 // Item will be hidden by checking the dndItem.currentlyDraggedId property. We assign the value
                                 // to that property here
                                 dndItem.currentlyDraggedId = root.Drag.mimeData["text/x-dde-launcher-dnd-desktopId"]
-                                // TODO: This way we couldn't give it an image size hint,
-                                dndItem.Drag.imageSource = root.Drag.imageSource
                                 dndItem.Drag.hotSpot = root.Drag.hotSpot
-                                Qt.callLater(function() {
-                                    dndItem.Drag.mimeData = root.Drag.mimeData
+                                dndItem.Drag.mimeData = root.Drag.mimeData
+
+                                iconLoader.grabToImage(function(result) {
+                                    dndItem.Drag.imageSource = result.url;
                                     dndItem.Drag.active = true
                                     dndItem.Drag.startDrag()
                                 })
@@ -166,9 +166,6 @@ Control {
                 onPressedChanged: {
                     if (pressed) {
                         root.Drag.hotSpot = mapToItem(iconLoader, point.pressPosition)
-                        iconLoader.grabToImage(function(result) {
-                            root.Drag.imageSource = result.url;
-                        })
                     }
                 }
                 onTapped: {
