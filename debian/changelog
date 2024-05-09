@@ -1,3 +1,22 @@
+dde-launchpad (0.6.10) unstable; urgency=medium
+
+  * Fix missing blur (linuxdeepin/developer-center#8468)
+  * Workaround QTBUG-125139 (linuxdeepin/developer-center#8475)
+  * Fix blank page after drag (linuxdeepin/developer-center#8358) (linuxdeepin/developer-center#8363)
+  * Check Ctrl key before accepting quick search (linuxdeepin/developer-center#8463)
+  * Avoid hang when drop to last item in page (linuxdeepin/developer-center#8457)
+  * Avoid two apps launched when click in folder (linuxdeepin/developer-center#8462)
+  * Ensure scrollbar visible for search result (linuxdeepin/developer-center#7833)
+  * Fix thumbnail not shown when folder name too long (linuxdeepin/developer-center#8336)
+  * Allow continue search when search edit is not focused (linuxdeepin/developer-center#7627)
+  * Fix enter to launch current app (linuxdeepin/developer-center#8060)
+  * Only show tooltip when truncated (linuxdeepin/developer-center#8409)
+  * Fix icon not clear (linuxdeepin/developer-center#8409)
+  * Various UI fixes (linuxdeepin/developer-center#8409)
+  * Update translations
+
+ -- Wang Zichong <wangzichong@deepin.org>  Thu, 09 May 2024 14:18:00 +0800
+
 dde-launchpad (0.6.9) unstable; urgency=medium
 
   * fix: padding error in large font(Issue: https://github.com/linuxdeepin/developer-center/issues/8295)
