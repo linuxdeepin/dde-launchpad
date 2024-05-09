@@ -55,7 +55,7 @@ Control {
             Item {
                 // actually just a top padding
                 width: root.width
-                height: isWindowedMode ? 3 : root.height / 9
+                height: isWindowedMode ? 7 : root.height / 9
             }
 
             Rectangle {
@@ -135,7 +135,7 @@ Control {
             // as topMargin
             Item {
                 width: 1
-                height: isWindowedMode ? 5 : root.height / 10
+                height: isWindowedMode ? 4 : root.height / 10
             }
 
             Label {

@@ -192,6 +192,7 @@ Popup {
                                             columns: 4
                                             model: folderProxyModel
                                             paddingRows: 6
+                                            cellHeight: 86
                                             paddingColumns: 2
                                             interactive: false
                                             focus: true
@@ -229,7 +230,7 @@ Popup {
                                             visible: dndItem.currentlyDraggedId !== model.desktopId
                                             iconSource: iconName
 
-                                            padding: 5
+                                            padding: isWindowedMode ? 0 : 5
                                             onItemClicked: {
                                                 launchApp(desktopId)
                                             }
