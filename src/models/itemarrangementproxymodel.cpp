@@ -109,8 +109,8 @@ void ItemArrangementProxyModel::commitDndOperation(const QString &dragId, const 
             if (srcFolder->pageCount() == 0 && srcFolder != m_topLevel) {
                 removeFolder(QString::number(srcFolderId));
             }
-            m_topLevel->removeItem(dropId);
             m_topLevel->insertItem(dstFolderId, std::get<1>(dropOrigPos), std::get<2>(dropOrigPos));
+            m_topLevel->removeItem(dropId);
         }
     }
 
