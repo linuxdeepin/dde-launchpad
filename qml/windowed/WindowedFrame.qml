@@ -183,7 +183,7 @@ Item {
     }
 
     Keys.onPressed: function (event) {
-        if (bottomBar.searchEdit.focus === false && !bottomBar.searchEdit.text && ((event.modifiers === Qt.NoModifier || event.modifiers === Qt.ShiftModifier) && event.text && !"\t\r\0 ".includes(event.text))) {
+        if (bottomBar.searchEdit.focus === false && !bottomBar.searchEdit.text && ((event.modifiers === Qt.NoModifier || event.modifiers === Qt.ShiftModifier || event.modifiers === Qt.KeypadModifier) && event.text && !"\t\r\0 ".includes(event.text))) {
             bottomBar.searchEdit.focus = true
             bottomBar.searchEdit.text = event.text
         } else if (bottomBar.searchEdit.focus === true || baseLayer.focus === true) {
