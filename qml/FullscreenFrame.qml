@@ -444,7 +444,8 @@ Control {
                                             console.log("open folder id:" + idNum)
                                         }
                                         onMenuTriggered: {
-                                            showContextMenu(this, model, folderIcons, false, true)
+                                            if (folderIcons) return;
+                                            showContextMenu(this, model)
                                         }
                                     }
                                 }
@@ -485,7 +486,7 @@ Control {
                         launchApp(desktopId)
                     }
                     onMenuTriggered: {
-                        showContextMenu(this, model, false, false, true)
+                        showContextMenu(this, model)
                     }
                 }
             }

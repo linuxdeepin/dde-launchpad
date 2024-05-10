@@ -202,7 +202,7 @@ FocusScope {
                 TapHandler {
                     acceptedButtons: Qt.RightButton
                     onTapped: {
-                        showContextMenu(itemDelegate, model, false, false, false)
+                        showContextMenu(itemDelegate, model)
                     }
                 }
 
