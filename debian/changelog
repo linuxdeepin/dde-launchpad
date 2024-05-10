@@ -1,3 +1,11 @@
+dde-launchpad (0.6.11) unstable; urgency=medium
+
+  * Fix search result overflow
+  * Ensure AppItemMenu is modal (linuxdeepin/developer-center#8477)
+  * Fix numpad quick search not working (linuxdeepin/developer-center#8495)
+
+ -- Wang Zichong <wangzichong@deepin.org>  Fri, 10 May 2024 18:35:00 +0800
+
 dde-launchpad (0.6.10) unstable; urgency=medium
 
   * Fix missing blur (linuxdeepin/developer-center#8468)
