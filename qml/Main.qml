@@ -59,17 +59,15 @@ QtObject {
 
     property var activeMenu: null
     property Component appContextMenuCom: AppItemMenu { }
-    function showContextMenu(obj, model, folderIcons, isFavoriteItem, hideFavoriteMenu) {
-        if (folderIcons) return
-
-        const menu = appContextMenuCom.createObject(obj, {
+    function showContextMenu(obj, model, additionalProps = {}) {
+        const menu = appContextMenuCom.createObject(obj, Object.assign({
             display: model.display,
             desktopId: model.desktopId,
             iconName: model.iconName,
-            isFavoriteItem: isFavoriteItem,
-            hideFavoriteMenu: hideFavoriteMenu,
+            isFavoriteItem: false,
+            hideFavoriteMenu: true,
             hideDisplayScalingMenu: false
-        });
+        }, additionalProps));
         menu.closed.connect(menu.destroy)
         menu.popup();
 

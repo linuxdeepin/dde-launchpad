@@ -180,7 +180,7 @@ Item {
                         if (mouse.button === Qt.RightButton) {
                             // not folder
                             if (iconName)
-                                showContextMenu(itemDelegate, model, false, false, false)
+                                showContextMenu(itemDelegate, model)
                         } else {
                             if (itemType === ItemArrangementProxyModel.FolderItemType) {
                                 console.log("freesort view folder clicked:", desktopId);

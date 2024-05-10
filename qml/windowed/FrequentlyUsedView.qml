@@ -59,7 +59,7 @@ Control {
                     launchApp(desktopId)
                 }
                 onMenuTriggered: {
-                    showContextMenu(this, model, false, false, true)
+                    showContextMenu(this, model)
                 }
             }
 
