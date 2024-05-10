@@ -21,6 +21,7 @@ FocusScope {
     property alias interactive: gridView.interactive
     property alias padding: item.anchors.margins
     property alias gridViewFocus: gridView.focus
+    property alias gridViewClip: gridView.clip
     property ScrollBar vScrollBar
     property bool activeGridViewFocusOnTab: false
     property Transition itemMove
@@ -80,7 +81,7 @@ FocusScope {
                 ScrollBar.vertical: root.vScrollBar
 
                 anchors.fill: parent
-                clip: false // TODO it maybe a bug for dtk, https://github.com/linuxdeepin/developer-center/issues/8468
+                clip: true
                 highlightFollowsCurrentItem: true
                 keyNavigationEnabled: true
                 highlightMoveDuration: 150

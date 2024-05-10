@@ -174,6 +174,7 @@ Popup {
                                             padding: 10
                                             interactive: false
                                             focus: true
+                                            gridViewClip: false // TODO it maybe a bug for dtk, https://github.com/linuxdeepin/developer-center/issues/8468
                                             activeGridViewFocusOnTab: folderGridViewLoader.SwipeView.isCurrentItem
                                             itemMove: Transition { NumberAnimation { properties: "x,y"; duration: 250 } }
                                             delegate: DelegateDropArea {
@@ -196,6 +197,7 @@ Popup {
                                             paddingColumns: 2
                                             interactive: false
                                             focus: true
+                                            gridViewClip: false
                                             activeGridViewFocusOnTab: folderGridViewLoader.SwipeView.isCurrentItem
                                             delegate: DelegateDropArea {
                                                 width: folderGridViewContainer.cellWidth

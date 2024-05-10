@@ -22,6 +22,7 @@ FocusScope {
     property alias delegate: gridView.delegate
     property alias interactive: gridView.interactive
     property alias gridViewFocus: gridView.focus
+    property alias gridViewClip: gridView.clip
     property bool activeGridViewFocusOnTab: false
     property int columns: 4
     property int rows: Math.min(Math.ceil(count * 1.0 / columns), Helper.windowed.maxViewRows)
