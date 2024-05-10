@@ -26,6 +26,7 @@ Loader {
 
         Menu {
             id: contextMenu
+            modal: true
 
             MenuItem {
                 text: qsTr("Open")
