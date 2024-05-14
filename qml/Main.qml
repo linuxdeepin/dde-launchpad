@@ -60,7 +60,13 @@ QtObject {
     property var activeMenu: null
     property Component appContextMenuCom: AppItemMenu { }
     function showContextMenu(obj, model, additionalProps = {}) {
-        const menu = appContextMenuCom.createObject(obj, Object.assign({
+        if (!obj || !obj.Window.window) {
+            console.log("obj or obj.Window.window is null")
+            return
+        }
+        closeContextMenu()
+
+        const menu = appContextMenuCom.createObject(obj.Window.window.contentItem, Object.assign({
             display: model.display,
             desktopId: model.desktopId,
             iconName: model.iconName,
