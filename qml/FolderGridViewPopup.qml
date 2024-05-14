@@ -129,13 +129,14 @@ Popup {
 
                     SwipeView {
                         id: folderPagesView
-                        clip: true
+                        clip: gridViews.count > 1
 
                         anchors.fill: parent
 
                         currentIndex: folderPageIndicator.currentIndex
 
                         Repeater {
+                            id: gridViews
                             model: ItemArrangementProxyModel.pageCount(folderLoader.currentFolderId) // FIXME: should be a property?
 
                             Loader {
