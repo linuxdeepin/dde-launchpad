@@ -204,7 +204,7 @@ DesktopIntegration::DesktopIntegration(QObject *parent)
     //   2. ensure dde-control-center, deepin-calendar, dde-file-manager ship their AppStream MetaInfo file
     //   3. remove the hard-coded list below
     static const QStringList defaultCompulsoryAppIdList{
-        "dde-control-center.desktop",
+        "org.deepin.dde.control-center.desktop",
         "dde-computer.desktop",
         "dde-trash.desktop",
         "dde-file-manager.desktop",

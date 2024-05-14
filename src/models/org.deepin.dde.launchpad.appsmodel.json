@@ -15,7 +15,7 @@
     },
     "compulsoryAppIdList": {
       "value": [
-        "dde-control-center.desktop",
+        "org.deepin.dde.control-center.desktop",
         "dde-computer.desktop",
         "dde-trash.desktop",
         "dde-file-manager.desktop",
