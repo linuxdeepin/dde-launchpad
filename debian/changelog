@@ -1,3 +1,10 @@
+dde-launchpad (0.6.12) unstable; urgency=medium
+
+  * fix: dde-control-center can be uninstalled
+  * fix: missing blur for Menu when it's parent is clip(Issue: https://github.com/linuxdeepin/developer-center/issues/8468)
+
+ -- YeShanShan <yeshanshan@deepin.org>  Tue, 14 May 2024 18:26:49 +0800
+
 dde-launchpad (0.6.11) unstable; urgency=medium
 
   * Fix search result overflow
