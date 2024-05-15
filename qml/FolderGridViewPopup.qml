@@ -6,6 +6,7 @@ import QtQuick 2.15
 import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.15
 import org.deepin.dtk 1.0
+import org.deepin.dtk.style 1.0 as DStyle
 
 import org.deepin.launchpad 1.0
 import org.deepin.launchpad.models 1.0
@@ -276,7 +277,7 @@ Popup {
             normalDark: Qt.rgba(1.0, 1.0, 1.0, 0.2)
         }
         dropShadowColor: null
-        outsideBorderColor: null
-        insideBorderColor: null
+        outsideBorderColor: isWindowedMode ? DStyle.Style.floatingPanel.outsideBorder : null
+        insideBorderColor: isWindowedMode ? DStyle.Style.floatingPanel.insideBorder : null
     }
 }
