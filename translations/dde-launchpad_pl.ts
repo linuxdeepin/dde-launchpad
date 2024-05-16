@@ -68,7 +68,7 @@
     <message>
         <location filename="../qml/AppItemMenu.qml" line="100"/>
         <source>Disable display scaling</source>
-        <translation type="unfinished"></translation>
+        <translation>Wyłącz skalowanie wyświetlacza</translation>
     </message>
     <message>
         <location filename="../qml/AppItemMenu.qml" line="107"/>
@@ -133,7 +133,7 @@
     <message>
         <location filename="../qml/windowed/BottomBar.qml" line="40"/>
         <source>Search</source>
-        <translation type="unfinished"></translation>
+        <translation>Szukaj</translation>
     </message>
 </context>
 <context>
@@ -141,12 +141,12 @@
     <message>
         <location filename="../qml/windowed/FrequentlyUsedView.qml" line="29"/>
         <source>Frequently Used</source>
-        <translation type="unfinished"></translation>
+        <translation>Często używane</translation>
     </message>
     <message>
         <location filename="../qml/windowed/FrequentlyUsedView.qml" line="29"/>
         <source>All Apps</source>
-        <translation type="unfinished">Wszystkie programy</translation>
+        <translation>Wszystkie aplikacje</translation>
     </message>
 </context>
 <context>
@@ -174,72 +174,72 @@
     <message>
         <location filename="../qml/Main.qml" line="21"/>
         <source>Internet</source>
-        <translation type="unfinished">Internet</translation>
+        <translation>Internet</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="23"/>
         <source>Chat</source>
-        <translation type="unfinished">Rozmowy</translation>
+        <translation>Rozmowy</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="25"/>
         <source>Music</source>
-        <translation type="unfinished">Muzyka</translation>
+        <translation>Muzyka</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="27"/>
         <source>Video</source>
-        <translation type="unfinished">Wideo</translation>
+        <translation>Wideo</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="29"/>
         <source>Graphics</source>
-        <translation type="unfinished">Grafika</translation>
+        <translation>Grafika</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="31"/>
         <source>Game</source>
-        <translation type="unfinished">Gra</translation>
+        <translation>Gry</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="33"/>
         <source>Office</source>
-        <translation type="unfinished">Biurowe</translation>
+        <translation>Biuro</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="35"/>
         <source>Reading</source>
-        <translation type="unfinished">Czytanie</translation>
+        <translation>Czytanie</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="37"/>
         <source>Development</source>
-        <translation type="unfinished">Programowanie</translation>
+        <translation>Programowanie</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="39"/>
         <source>System</source>
-        <translation type="unfinished">System</translation>
+        <translation>System</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="41"/>
         <source>Others</source>
-        <translation type="unfinished">Inne</translation>
+        <translation>Inne</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="313"/>
         <source>Are you sure you want to uninstall %1?</source>
-        <translation type="unfinished"></translation>
+        <translation>Czy na pewno chcesz odinstalować %1?</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="325"/>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>Anuluj</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="339"/>
         <source>Confirm</source>
-        <translation type="unfinished"></translation>
+        <translation>Potwierdź</translation>
     </message>
 </context>
 <context>
@@ -247,7 +247,7 @@
     <message>
         <location filename="../qml/windowed/RecentlyInstalledView.qml" line="27"/>
         <source>Recently Installed</source>
-        <translation type="unfinished"></translation>
+        <translation>Ostatnio zainstalowane</translation>
     </message>
 </context>
 <context>
@@ -255,12 +255,12 @@
     <message>
         <location filename="../qml/windowed/SearchResultView.qml" line="26"/>
         <source>All Apps</source>
-        <translation type="unfinished">Wszystkie programy</translation>
+        <translation>Wszystkie aplikacje</translation>
     </message>
     <message>
         <location filename="../qml/windowed/SearchResultView.qml" line="76"/>
         <source>No search results</source>
-        <translation type="unfinished">Brak wyników wyszukiwania</translation>
+        <translation>Brak wyników wyszukiwania</translation>
     </message>
 </context>
 <context>
@@ -273,37 +273,37 @@
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="52"/>
         <source>Sort by category</source>
-        <translation type="unfinished"></translation>
+        <translation>Sortuj według kategorii</translation>
     </message>
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="64"/>
         <source>Sort by name</source>
-        <translation type="unfinished"></translation>
+        <translation>Sortuj według nazwy</translation>
     </message>
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="124"/>
         <source>Computer</source>
-        <translation type="unfinished"></translation>
+        <translation>Komputer</translation>
     </message>
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="139"/>
         <source>Pictures</source>
-        <translation type="unfinished"></translation>
+        <translation>Obrazy</translation>
     </message>
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="154"/>
         <source>Documents</source>
-        <translation type="unfinished"></translation>
+        <translation>Dokumenty</translation>
     </message>
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="169"/>
         <source>Desktop</source>
-        <translation type="unfinished"></translation>
+        <translation>Pulpit</translation>
     </message>
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="184"/>
         <source>Control Center</source>
-        <translation type="unfinished"></translation>
+        <translation>Centrum sterowania</translation>
     </message>
 </context>
 <context>
