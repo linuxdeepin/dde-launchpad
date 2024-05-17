@@ -144,14 +144,4 @@ target_link_libraries(dde-integration-dbus
 PUBLIC
     Qt::Concurrent
 PRIVATE
-    Qt::Core Qt::Gui ${DTK_NS}::Core launcher-utils)
-
-if (${ASQT_NS}_FOUND)
-    target_link_libraries(dde-integration-dbus
-    PRIVATE
-        ${ASQT_NS})
-else()
-    target_compile_definitions(dde-integration-dbus
-    PUBLIC NO_APPSTREAM_QT
-    )
-endif()
+    Qt::Core Qt::Gui ${DTK_NS}::Core ${ASQT_NS} launcher-utils)
