@@ -13,9 +13,7 @@
 #include <appinfo.h>
 #include <appmgr.h>
 
-#ifndef NO_APPSTREAM_QT
 #include <AppStreamQt/pool.h>
-#endif
 
 #include "appwiz.h"
 #include "ddedock.h"

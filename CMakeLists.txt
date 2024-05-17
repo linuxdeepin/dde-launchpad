@@ -4,11 +4,7 @@
 
 cmake_minimum_required(VERSION 3.10)
 
-if(NOT DEFINED VERSION)
-    set(VERSION 0.6.11)
-endif()
-
-project(dde-launchpad VERSION ${VERSION})
+project(dde-launchpad VERSION 0.6.12)
 
 option(BUILD_TEST "Whether or not to build the tests" OFF)
 
@@ -30,7 +26,7 @@ set(ASQT_NS AppStreamQt)
 find_package(QT NAMES ${QT_NS} REQUIRED COMPONENTS Core)
 find_package(${QT_NS} REQUIRED COMPONENTS Core Gui Concurrent Qml Svg Quick QuickControls2 LinguistTools)
 find_package(${DTK_NS} REQUIRED COMPONENTS Core Gui)
-find_package(${ASQT_NS} 1.0)
+find_package(${ASQT_NS} 1.0 REQUIRED)
 
 set_package_properties(${ASQT_NS} PROPERTIES
     DESCRIPTION "Library that lists Appstream resources"

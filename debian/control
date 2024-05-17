@@ -22,7 +22,7 @@ Build-Depends:
  libdtk6gui-dev,
  libdtk6declarative-dev,
  libdde-shell-dev (>= 0.0.10),
- libappstreamqt-dev
+ libappstreamqt-dev (>= 1.0.0)
 Standards-Version: 4.6.0
 Rules-Requires-Root: no
 
