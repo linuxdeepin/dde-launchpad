@@ -62,6 +62,7 @@ Popup {
                 spacing: isWindowedMode ? 0 : 5
                 anchors.fill: parent
                 property bool nameEditing: false
+                property int titleMargin: isWindowedMode ? 20 : 30
 
                 Item {
                     visible: !isWindowedMode
@@ -71,8 +72,8 @@ Popup {
                 TextInput {
                     id: folderNameEdit
                     Layout.fillWidth: true
-                    Layout.leftMargin: 30 - root.padding
-                    Layout.rightMargin: 30 - root.padding
+                    Layout.leftMargin: contentRoot.titleMargin - root.padding
+                    Layout.rightMargin: contentRoot.titleMargin - root.padding
                     visible: contentRoot.nameEditing
                     clip: true
                     font: folderNameFont
@@ -96,8 +97,8 @@ Popup {
                 Text {
                     id: folderNameText
                     Layout.fillWidth: true
-                    Layout.leftMargin: 30 - root.padding
-                    Layout.rightMargin: 30 - root.padding
+                    Layout.leftMargin: contentRoot.titleMargin - root.padding
+                    Layout.rightMargin: contentRoot.titleMargin - root.padding
                     clip: true
                     font: folderNameFont
                     horizontalAlignment: Text.AlignHCenter
