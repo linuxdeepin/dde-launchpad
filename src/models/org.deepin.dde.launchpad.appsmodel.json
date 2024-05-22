@@ -15,7 +15,6 @@
     },
     "compulsoryAppIdList": {
       "value": [
-        "org.deepin.dde.control-center.desktop",
         "dde-computer.desktop",
         "dde-trash.desktop",
         "dde-file-manager.desktop",
@@ -23,9 +22,11 @@
         "deepin-manual.desktop",
         "deepin-system-monitor.desktop",
         "deepin-devicemanager.desktop",
-        "dde-printer.desktop",
-        "deepin-app-store.desktop",
-        "dde-calendar.desktop"
+        "dde-printer-watch.desktop",
+        "dde-calendar.desktop",
+        "org.fcitx.fcitx5-migrator.desktop",
+        "fcitx5-configtool.desktop",
+        "org.fcitx.Fcitx5.desktop"
       ],
       "serial": 0,
       "flags": [],
