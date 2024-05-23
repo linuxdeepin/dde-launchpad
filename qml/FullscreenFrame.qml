@@ -362,6 +362,7 @@ Control {
                                 padding: 10
                                 interactive: false
                                 focus: true
+                                alwaysShowHighlighted: true
                                 function checkPageSwitchState() {
                                     if (gridViewLoader.viewIndex !== pages.currentIndex)
                                         return
@@ -498,6 +499,7 @@ Control {
                 visible: searchEdit.text !== ""
                 activeFocusOnTab: visible && gridViewFocus
                 focus: true
+                alwaysShowHighlighted: true
 
                 rows: 4
                 columns: 8
@@ -544,8 +546,12 @@ Control {
             }
             onTextChanged: {
                 SearchFilterProxyModel.setFilterRegularExpression(text.trim())
-                // this can help indirectly reset the currentIndex of the view that the model is attached to
-                SearchFilterProxyModel.invalidate()
+                // reset highlighted item
+                if (searchResultGridViewContainer.visible) {
+                    if (delegateSearchResultModel.count > 0) {
+                        searchResultGridViewContainer.currentIndex = 0
+                    }
+                }
             }
         }
     }
