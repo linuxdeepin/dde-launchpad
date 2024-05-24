@@ -18,8 +18,7 @@ Control {
     property Item nextKeyTabTarget
     property alias searchEdit: searchEdit
 
-    leftPadding: 5
-    rightPadding: 5
+    padding: 10
 
     contentItem: RowLayout {
         ToolButton {

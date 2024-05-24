@@ -66,9 +66,9 @@ Item {
         id: sideBar
         anchors.left: parent.left
         anchors.top: parent.top
-        anchors.topMargin: anchors.leftMargin
         anchors.bottom: parent.bottom
-        anchors.leftMargin: 5
+        anchors.topMargin: 10
+        anchors.leftMargin: 10
         nextKeyTabTarget: bottomBar.keyTabTarget
     }
 
@@ -78,7 +78,7 @@ Item {
         anchors.left: sideBar.right
         anchors.top: baseLayer.top
         anchors.bottom: bottomBar.top
-        anchors.leftMargin: 5
+        anchors.leftMargin: 10
 
         property Palette backgroundColor: Palette {
             normal {
@@ -99,11 +99,11 @@ Item {
     RowLayout {
         id: appArea
         anchors.left: sideBar.right
-        anchors.top: sideBar.top
+        anchors.top: parent.top
         anchors.right: parent.right
         anchors.bottom: bottomBar.top
         anchors.topMargin: 10
-        anchors.leftMargin: 5
+        anchors.leftMargin: 10
         spacing: 0
         AppList {
             id: appList
@@ -139,7 +139,6 @@ Item {
 
     BottomBar {
         id: bottomBar
-        height: 40
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.bottom: parent.bottom
