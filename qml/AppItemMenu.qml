@@ -17,6 +17,7 @@ Loader {
     property string iconName
     property bool isFavoriteItem
     property bool hideFavoriteMenu
+    property bool hideMoveToTopMenu
     property bool hideDisplayScalingMenu
 
     signal closed()
@@ -31,6 +32,7 @@ Loader {
 
             MenuItem {
                 text: qsTr("Open")
+                enabled: !root.desktopId.startsWith("internal/folders/")
                 onTriggered: {
                     launchApp(root.desktopId)
                 }
@@ -44,6 +46,15 @@ Loader {
                 text: qsTr("Pin to Top")
                 onTriggered: {
                     FavoritedProxyModel.pinToTop(root.desktopId)
+                }
+            }
+            MenuItem {
+                id: moveToTopMenu
+                visible: !hideMoveToTopMenu
+                height: visible ? implicitHeight : 0
+                text: qsTr("Move to Top")
+                onTriggered: {
+                    ItemArrangementProxyModel.bringToFront(root.desktopId)
                 }
             }
             MenuItem {
@@ -65,6 +76,7 @@ Loader {
                 height: visible ? implicitHeight : 0 // FIXME: same as above
             }
             MenuItem {
+                enabled: !root.desktopId.startsWith("internal/folders/")
                 text: DesktopIntegration.isOnDesktop(root.desktopId) ? qsTr("Remove from desktop") : qsTr("Send to desktop")
                 onTriggered: {
                     if (DesktopIntegration.isOnDesktop(root.desktopId)) {
@@ -87,6 +99,7 @@ Loader {
             }
             MenuSeparator {}
             MenuItem {
+                enabled: !root.desktopId.startsWith("internal/folders/")
                 text: DesktopIntegration.isAutoStart(root.desktopId) ? qsTr("Remove from startup") : qsTr("Add to startup")
                 onTriggered: {
                     DesktopIntegration.setAutoStart(root.desktopId, !DesktopIntegration.isAutoStart(root.desktopId))
@@ -100,6 +113,7 @@ Loader {
             }
             MenuItem {
                 visible: !hideDisplayScalingMenu
+                enabled: !root.desktopId.startsWith("internal/folders/")
                 height: visible ? implicitHeight : 0 // FIXME: same as above
                 checkable: true
                 checked: DesktopIntegration.disableScale(root.desktopId)
@@ -109,7 +123,7 @@ Loader {
                 }
             }
             MenuItem {
-                enabled: !DesktopIntegration.appIsCompulsoryForDesktop(root.desktopId)
+                enabled: !root.desktopId.startsWith("internal/folders/") && !DesktopIntegration.appIsCompulsoryForDesktop(root.desktopId)
                 text: qsTr("Uninstall")
                 onTriggered: {
                     LauncherController.visible = false
