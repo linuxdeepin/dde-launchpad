@@ -178,9 +178,9 @@ Item {
 
                     onClicked: function (mouse) {
                         if (mouse.button === Qt.RightButton) {
-                            // not folder
-                            if (iconName)
-                                showContextMenu(itemDelegate, model)
+                            showContextMenu(itemDelegate, model, {
+                                hideMoveToTopMenu: index === 0
+                            })
                         } else {
                             if (itemType === ItemArrangementProxyModel.FolderItemType) {
                                 console.log("freesort view folder clicked:", desktopId);

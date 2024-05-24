@@ -44,6 +44,26 @@ void ItemArrangementProxyModel::updateFolderName(int folderId, const QString &na
     saveItemArrangementToUserData();
 }
 
+void ItemArrangementProxyModel::bringToFront(const QString & id)
+{
+    std::tuple<int, int, int> origPos = findItem(id);
+
+    // can only bring top-level item to front
+    if (std::get<0>(origPos) != 0) return;
+
+    // already at front
+    if (std::get<1>(origPos) == 0 && std::get<2>(origPos) == 0) return;
+
+    m_topLevel->moveItemPosition(std::get<1>(origPos), std::get<2>(origPos), 0, 0, false);
+
+    saveItemArrangementToUserData();
+
+    // Lazy solution, just notify the view that all rows and its roles are changed so they need to be updated.
+    emit dataChanged(index(0, 0), index(rowCount() - 1, 0), {
+        PageRole, IndexInPageRole, FolderIdNumberRole, IconsNameRole
+    });
+}
+
 void ItemArrangementProxyModel::commitDndOperation(const QString &dragId, const QString &dropId, const DndOperation op, int pageHint)
 {
     if (dragId == dropId) return;
