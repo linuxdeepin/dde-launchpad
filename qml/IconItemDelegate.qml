@@ -5,6 +5,7 @@
 import QtQuick 2.15
 import QtQml.Models 2.15
 import QtQuick.Controls 2.15
+import QtQuick.Layouts 2.15
 import org.deepin.dtk 1.0
 import org.deepin.dtk.private 1.0
 import org.deepin.dtk 1.0 as D
@@ -110,11 +111,47 @@ Control {
                 Component {
                     id: folderComponent
 
-                    Image {
-                        id: iconImage
+                    Rectangle {
                         anchors.fill: parent
-                        source: "image://folder-icon/" + icons.join(':')
-                        sourceSize: Qt.size(parent.width, parent.height)
+                        color: "#26FFFFFF"
+                        radius: 12
+
+                        GridLayout {
+                            anchors.fill: parent
+                            rows: 2
+                            columns: 2
+                            anchors.margins: 8
+                            columnSpacing: 8
+                            rowSpacing: 8
+
+                            Repeater {
+                                model: icons
+
+                                DciIcon {
+                                    Layout.fillHeight: true
+                                    Layout.fillWidth: true
+                                    Layout.alignment: Qt.AlignTop | Qt.AlignLeft
+
+                                    name: modelData
+                                    sourceSize: Qt.size(parent.width / 2, parent.height / 2)
+                                    palette: DTK.makeIconPalette(root.palette)
+                                    theme: ApplicationHelper.DarkType
+                                }
+                            }
+
+                            Repeater {
+                                model: 4 - icons.length
+
+                                Item {
+                                    Layout.fillHeight: true
+                                    Layout.fillWidth: true
+                                    Layout.alignment: Qt.AlignTop | Qt.AlignLeft
+
+                                    width: parent.width / 2
+                                    height: parent.height / 2
+                                }
+                            }
+                        }
                     }
                 }
 
