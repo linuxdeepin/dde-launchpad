@@ -178,19 +178,18 @@ Control {
                     count: searchResultGridViewContainer.visible ? 1 : pages.count
                     currentIndex: searchResultGridViewContainer.visible ? 1 : pages.currentIndex
                     interactive: true
+                    spacing: 10
                     delegate: Rectangle {
-                        width: DS.Style.pageIndicator.width
-                        height: width
+                        width: 10
+                        height: 10
 
                         radius: width / 2
-                        color: indicator.enabled ? "white" : "gray"
-
-                        opacity: index === indicator.currentIndex ? 1 : pressed ? 0.7 : 0.40
-
+                        color: Qt.rgba(255, 255, 255, index === indicator.currentIndex ? 0.9 : pressed ? 0.5 : 0.2)
                         OutsideBoxBorder {
                             anchors.fill: parent
                             radius: parent.radius
-                            color: Qt.rgba(0, 0, 0, 0.2)
+                            width: 1
+                            color: Qt.rgba(0, 0, 0, 0.1)
                         }
                     }
                 }

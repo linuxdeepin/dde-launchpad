@@ -267,6 +267,22 @@ Popup {
                     count: folderPagesView.count
                     currentIndex: folderPagesView.currentIndex
                     interactive: true
+                    spacing: isWindowedMode ? 5 : 10
+
+                    delegate: Rectangle {
+                        implicitWidth: isWindowedMode ? 5 : 10
+                        implicitHeight: isWindowedMode ? 5 : 10
+
+                        radius: width / 2
+                        color: Qt.rgba(255, 255, 255, index === folderPageIndicator.currentIndex ? 0.9 : pressed ? 0.5 : 0.2)
+                        Behavior on opacity { OpacityAnimator { duration: 100 } }
+                        OutsideBoxBorder {
+                            anchors.fill: parent
+                            radius: parent.radius
+                            width: 1
+                            color: Qt.rgba(0, 0, 0, 0.1)
+                        }
+                    }
                 }
             }
         }
