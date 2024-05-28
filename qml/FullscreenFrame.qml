@@ -446,6 +446,7 @@ Control {
                                         onMenuTriggered: {
                                             if (folderIcons) return;
                                             showContextMenu(this, model)
+                                            baseLayer.focus = true
                                         }
                                     }
                                 }
