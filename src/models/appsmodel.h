@@ -8,9 +8,11 @@
 
 #include <QtQml/qqml.h>
 #include <QStandardItemModel>
+#include <QTimer>
 
 namespace Dtk::Core {
 class DConfig;
+class DFileWatcherManager;
 }
 
 // List of applications and nothing else.
@@ -63,4 +65,6 @@ private:
 
     Dtk::Core::DConfig * m_dconfig;
     QStringList m_excludedAppIdList;
+    Dtk::Core::DFileWatcherManager *m_fwIconCache = nullptr;
+    QTimer *m_tmUpdateCache = nullptr;
 };

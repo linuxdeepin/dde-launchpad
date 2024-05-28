@@ -7,9 +7,12 @@
 #include "iconutils.h"
 
 #include <QDebug>
+#include <QStandardPaths>
 #include <DConfig>
 #include <DPinyin>
+#include <DFileWatcherManager>
 #include <appinfo.h>
+#include <QFileInfo>
 #include "appmgr.h"
 
 DCORE_USE_NAMESPACE
@@ -58,7 +61,7 @@ AppsModel::AppsModel(QObject *parent)
     qDebug() << rowCount();
 
     if (AppMgr::instance()->isValid()) {
-        connect(AppMgr::instance(), &AppMgr::changed, this, &AppsModel::updateModelData);
+        connect(AppMgr::instance(), &AppMgr::changed, m_tmUpdateCache, qOverload<>(&QTimer::start));
         connect(AppMgr::instance(), &AppMgr::itemDataChanged, this, [this](const QString &id) {
             const auto appItem = this->appItem(id);
             if (!appItem) {
@@ -68,6 +71,22 @@ AppsModel::AppsModel(QObject *parent)
             updateAppItemFromAM(appItem);
         });
     }
+
+    m_tmUpdateCache = new QTimer(this);
+    m_tmUpdateCache->setInterval(1000);
+    m_tmUpdateCache->setSingleShot(true);
+
+    m_fwIconCache = new DFileWatcherManager(this);
+    const QStringList paths = QStandardPaths::standardLocations(QStandardPaths::GenericDataLocation);
+    const QString suffix("/icons/hicolor/icon-theme.cache");
+    for (const QString &path : paths) {
+        if (QFileInfo::exists(path + suffix))
+            m_fwIconCache->add(path + suffix);
+    }
+
+    connect(m_fwIconCache, &DFileWatcherManager::fileModified, m_tmUpdateCache, qOverload<>(&QTimer::start));
+    connect(m_fwIconCache, &DFileWatcherManager::fileAttributeChanged, m_tmUpdateCache, qOverload<>(&QTimer::start));
+    connect(m_tmUpdateCache, &QTimer::timeout, this, &AppsModel::updateModelData);
 }
 
 QList<AppItem *> AppsModel::appItems() const
@@ -178,7 +197,6 @@ QVariant AppsModel::data(const QModelIndex &index, int role) const
 
 void AppsModel::updateModelData()
 {
-    qDebug() << "changed";
     // TODO release icon's cache when gtk's icon-theme.cache is updated.
     IconUtils::tryUpdateIconCache();
     QList<AppItem *> items(allAppInfosShouldBeShown());
