@@ -206,14 +206,6 @@ FocusScope {
                     }
                 }
 
-                Keys.onReturnPressed: {
-                    launchApp(desktopId)
-                }
-
-                Keys.onSpacePressed: {
-                    launchApp(desktopId)
-                }
-
                 TapHandler {
                     onTapped: {
                         launchApp(desktopId)
@@ -225,6 +217,14 @@ FocusScope {
                     implicitHeight: Helper.windowed.listItemHeight
                     button: itemDelegate
                 }
+            }
+
+            Keys.onReturnPressed: {
+                launchApp(desktopId)
+            }
+
+            Keys.onSpacePressed: {
+                launchApp(desktopId)
             }
         }
     }
