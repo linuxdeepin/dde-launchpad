@@ -50,6 +50,7 @@ Control {
                 }
                 onMenuTriggered: {
                     showContextMenu(this, model)
+                    baseLayer.focus = true
                 }
             }
         }

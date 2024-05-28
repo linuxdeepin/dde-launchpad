@@ -203,6 +203,7 @@ FocusScope {
                     acceptedButtons: Qt.RightButton
                     onTapped: {
                         showContextMenu(itemDelegate, model)
+                        baseLayer.focus = true
                     }
                 }
 

@@ -181,6 +181,8 @@ Item {
                             showContextMenu(itemDelegate, model, {
                                 hideMoveToTopMenu: index === 0
                             })
+
+                            baseLayer.focus = true
                         } else {
                             if (itemType === ItemArrangementProxyModel.FolderItemType) {
                                 console.log("freesort view folder clicked:", desktopId);
