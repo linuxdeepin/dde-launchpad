@@ -76,9 +76,9 @@ static AppMgr::AppItem *parseDBus2AppItem(const ObjectInterfaceMap &source)
         item->categories = value.value();
     }
 
-    // fallback to Name if GenericName is empty for X_Deepin_Vendor.
+    // fallback to Name if GenericName is empty, only for X_Deepin_Vendor equals to "deepin".
     const auto deepinVendor = parseDBusField<QString>(appInfo, u8"X_Deepin_Vendor");
-    item->displayName = getDisplayName(deepinVendor && !deepinVendor.value().isEmpty(),
+    item->displayName = getDisplayName(deepinVendor && deepinVendor.value() == QStringLiteral("deepin"),
                                        parseDBusField<QStringMap>(appInfo, u8"Name").value(),
                                        parseDBusField<QStringMap>(appInfo, u8"GenericName").value());
 
