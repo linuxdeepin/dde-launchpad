@@ -4,7 +4,7 @@
 
 cmake_minimum_required(VERSION 3.10)
 
-project(dde-launchpad VERSION 0.6.12)
+project(dde-launchpad VERSION 0.7.0)
 
 option(BUILD_TEST "Whether or not to build the tests" OFF)
 
