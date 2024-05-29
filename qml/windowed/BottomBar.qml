@@ -59,6 +59,7 @@ Control {
 
                 onTextChanged: {
                     console.log(text)
+                    searchEdit.focus = true
                     SearchFilterProxyModel.setFilterRegularExpression(text.trim())
                     SearchFilterProxyModel.invalidate()
                 }
