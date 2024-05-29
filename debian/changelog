@@ -1,3 +1,19 @@
+dde-launchpad (0.7.0) unstable; urgency=medium
+
+  * Fix missing border in popup (linuxdeepin/developer-center#8409)
+  * Now requires AppStreamQt 1.0
+  * App group round corner (linuxdeepin/developer-center#8336)
+  * Update built-in compulsory app list (linuxdeepin/developer-center#8674)
+  * Show highlighted item all the time in fullscreen mode
+  * Add menu entry to bring item to front in freeform sort mode
+  * Update translations
+  * Fix Enter and Space key not able to launch app (linuxdeepin/developer-center#8584)
+  * PageIndicator styling fix (linuxdeepin/developer-center#8688)
+  * Fix menu popup focus (linuxdeepin/developer-center#7629)
+  * Fix incorrect X-Deepin-Vendor check
+
+ -- Wang Zichong <wangzichong@deepin.org>  Wed, 29 May 2024 13:37:00 +0800
+
 dde-launchpad (0.6.12) unstable; urgency=medium
 
   * fix: dde-control-center can be uninstalled
