@@ -546,6 +546,7 @@ Control {
                 }
             }
             onTextChanged: {
+                searchEdit.focus = true
                 SearchFilterProxyModel.setFilterRegularExpression(text.trim())
                 // reset highlighted item
                 if (searchResultGridViewContainer.visible) {
@@ -562,15 +563,9 @@ Control {
         cs: searchResultGridViewContainer.cellHeight
     }
 
+    Keys.forwardTo: [searchEdit]
     Keys.onPressed: {
-        if (searchEdit.focus === false && ((event.modifiers === Qt.NoModifier || event.modifiers === Qt.ShiftModifier || event.modifiers === Qt.KeypadModifier) && event.text && !"\t\r\0 ".includes(event.text))) {
-            searchEdit.focus = true
-            if (searchEdit.text) {
-                searchEdit.text += event.text
-            } else {
-                searchEdit.text = event.text
-            }
-        } else if (baseLayer.focus === true) {
+        if (baseLayer.focus === true) {
             // the SearchEdit will catch the key event first, and events that it won't accept will then got here
             switch (event.key) {
             case Qt.Key_Up:
