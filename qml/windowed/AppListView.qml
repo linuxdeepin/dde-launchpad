@@ -198,6 +198,9 @@ FocusScope {
                 anchors.leftMargin: 10
                 anchors.rightMargin: 10
                 // icon.source: "image://app-icon/" + iconName;
+                ToolTip.text: text
+                ToolTip.delay: 1000
+                ToolTip.visible: hovered && contentItem.implicitWidth > contentItem.width
 
                 TapHandler {
                     acceptedButtons: Qt.RightButton

@@ -142,6 +142,10 @@ Item {
                 palette.windowText: parent.palette.brightText
                 visible: !Drag.active
 
+                ToolTip.text: text
+                ToolTip.delay: 1000
+                ToolTip.visible: hovered && contentItem.implicitWidth > contentItem.width
+
                 Drag.hotSpot.x: width / 3
                 Drag.hotSpot.y: height / 2
                 Drag.dragType: Drag.Automatic
