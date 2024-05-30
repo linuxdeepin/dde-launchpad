@@ -151,7 +151,7 @@ ColumnLayout {
 
     SideBarButton {
         id: images
-        icon.name: "folder-images-symbolic"
+        icon.name: "folder-pictures-symbolic"
         ToolTip.text: qsTr("Pictures")
         KeyNavigation.down: documents
         KeyNavigation.up: computer
@@ -173,7 +173,7 @@ ColumnLayout {
 
     SideBarButton {
         id: desktop
-        icon.name: "folder-desktop-symbolic"
+        icon.name: "user-desktop-symbolic"
         ToolTip.text: qsTr("Desktop")
         KeyNavigation.down: setting
         KeyNavigation.up: documents
