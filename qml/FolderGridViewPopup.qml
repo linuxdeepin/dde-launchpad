@@ -91,7 +91,8 @@ Popup {
                         folderNameText.text = text
                     }
 
-                    selectionColor: "#66FFFFFF"
+                    // TODO: selectionColor will work after dtkdeclarative fix background blur isssues
+                    selectionColor: palette.highlight
                     selectedTextColor: isWindowedMode ? "black" : "white"
                 }
                 Text {
