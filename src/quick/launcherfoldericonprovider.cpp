@@ -7,6 +7,7 @@
 #include "iconutils.h"
 
 #include <QPainter>
+#include <QGuiApplication>
 
 LauncherFolderIconProvider::LauncherFolderIconProvider():
     QQuickImageProvider(QQuickImageProvider::Pixmap)
@@ -36,11 +37,13 @@ QPixmap LauncherFolderIconProvider::requestPixmap(const QString &id, QSize *size
     QPainter painter;
     painter.begin(&result);
 
+    qreal radius = 12.0 * qGuiApp->devicePixelRatio();
+
     // folder background
     painter.setBrush(QBrush(QColor(255, 255, 255, 255 * 0.15)));
     painter.setPen(Qt::NoPen);
     painter.setRenderHint(QPainter::Antialiasing);
-    painter.drawRoundedRect(result.rect(), 12.0, 12.0);
+    painter.drawRoundedRect(result.rect(), radius, radius);
 
     // icons
     // uri: image://provider/icon-name:icon-name:icon-name
