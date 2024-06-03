@@ -28,7 +28,7 @@ Loader {
         Menu {
             id: contextMenu
 
-            // modal: true //https://github.com/linuxdeepin/developer-center/issues/8571
+            modal: true
 
             MenuItem {
                 text: qsTr("Open")
