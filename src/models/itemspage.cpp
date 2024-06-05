@@ -46,7 +46,7 @@ int ItemsPage::pageCount() const
     return m_pages.size();
 }
 
-QStringList ItemsPage::items(int page)
+QStringList ItemsPage::items(int page) const
 {
     return m_pages.at(page);
 }
@@ -249,6 +249,14 @@ int ItemsPage::itemCount() const
         count += pageItems.count();
     }
     return count;
+}
+
+int ItemsPage::itemCount(int page) const
+{
+    if (page >= pageCount())
+        return 0;
+
+    return items(page).count();
 }
 
 // item will be moved to the index
