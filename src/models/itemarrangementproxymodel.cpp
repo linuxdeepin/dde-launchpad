@@ -71,6 +71,7 @@ void ItemArrangementProxyModel::commitDndOperation(const QString &dragId, const 
     std::tuple<int, int, int> dragOrigPos = findItem(dragId);
     std::tuple<int, int, int> dropOrigPos = findItem(dropId);
 
+
     Q_ASSERT(std::get<0>(dragOrigPos) != -1);
     if (std::get<0>(dragOrigPos) == -1) {
         qWarning() << "Cannot found" << dragId << "in current item arrangement.";
@@ -110,13 +111,22 @@ void ItemArrangementProxyModel::commitDndOperation(const QString &dragId, const 
             // drop into existing folder
             const int dropOrigFolder = QStringView{dropId}.mid(17).toInt();
             ItemsPage * dstFolder = folderById(dropOrigFolder);
-            if (srcFolder == dstFolder && srcFolder->itemCount() == 1)
-                return;
-            srcFolder->removeItem(dragId);
+            const int fromPage = std::get<1>(dragOrigPos);
+            const int &toPage = pageHint;
+            if (srcFolder == dstFolder)
+                if (srcFolder->itemCount() == 1 ||
+                    (fromPage == toPage && srcFolder->itemCount(fromPage) == 1))// dnd the only item to the same page
+                    return;
+
+            // hold the empty page avoid access out of page range !
+            srcFolder->removeItem(dragId, false);
             if (srcFolder->pageCount() == 0 && srcFolder != dstFolder) {
                 removeFolder(QString::number(srcFolderId));
             }
             dstFolder->insertItemToPage(dragId, pageHint);
+
+            // clear empty page
+            srcFolder->removeEmptyPages();
         } else {
             srcFolder->removeItem(dragId);
             // make a new folder, move two items into the folder
