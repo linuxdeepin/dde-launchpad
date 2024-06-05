@@ -1,3 +1,15 @@
+dde-launchpad (0.7.1) unstable; urgency=medium
+
+  * Fix #8577
+  * Fix #8862
+  * Fix #8376
+  * Fix #8689
+  * Fix #8244
+  * Fix #8384
+  * release 0.7.1
+
+ -- Mike Chen <chenke@deepin.org>  Wed, 05 Jun 2024 16:37:53 +0800
+
 dde-launchpad (0.7.0) unstable; urgency=medium
 
   * Fix missing border in popup (linuxdeepin/developer-center#8409)
