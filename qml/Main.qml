@@ -196,7 +196,7 @@ QtObject {
         }
         InsideBoxBorder {
             anchors.fill: parent
-            radius: windowedFrameWindow.DWindow.windowRadius
+            radius: WindowManagerHelper.hasComposite ? windowedFrameWindow.DWindow.windowRadius : 0
         }
 
         color: "transparent"
