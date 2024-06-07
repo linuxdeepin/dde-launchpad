@@ -72,8 +72,7 @@ QtObject {
             iconName: model.iconName,
             isFavoriteItem: false,
             hideFavoriteMenu: true,
-            hideDisplayScalingMenu: false,
-            hideMoveToTopMenu: true
+            hideDisplayScalingMenu: false
         }, additionalProps));
         menu.closed.connect(menu.destroy)
         menu.popup();
