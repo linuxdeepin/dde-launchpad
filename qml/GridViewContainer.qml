@@ -24,7 +24,6 @@ FocusScope {
     property alias gridViewClip: gridView.clip
     property ScrollBar vScrollBar
     property bool activeGridViewFocusOnTab: false
-    property bool alwaysShowHighlighted: false
     property Transition itemMove
     required property int columns
     required property int rows
@@ -32,7 +31,7 @@ FocusScope {
     property alias cellHeight: item.cellHeight
     property alias cellWidth: item.cellWidth
 
-    property alias currentIndex: gridView.currentIndex
+    readonly property alias currentIndex: gridView.currentIndex
     readonly property alias currentItem: gridView.currentItem
     readonly property alias gridViewWidth: gridView.width
     readonly property bool isWindowedMode: LauncherController.currentFrame === "WindowedFrame"
@@ -111,15 +110,6 @@ FocusScope {
                         radius: isWindowedMode ? 8 : 18
                         color: parent.palette.highlight
                         visible: gridView.activeFocus
-                    }
-                    Rectangle {
-                        anchors {
-                            fill: parent
-                            margins: 5    
-                        }
-                        radius: 18
-                        color: Qt.rgba(0, 0, 0, 0.2)
-                        visible: alwaysShowHighlighted
                     }
                 }
 
