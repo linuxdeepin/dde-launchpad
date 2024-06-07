@@ -120,7 +120,7 @@ void ItemArrangementProxyModel::commitDndOperation(const QString &dragId, const 
 
             // hold the empty page avoid access out of page range !
             srcFolder->removeItem(dragId, false);
-            if (srcFolder->pageCount() == 0 && srcFolder != dstFolder) {
+            if (srcFolder->itemCount() == 0 && srcFolder != dstFolder) {
                 removeFolder(QString::number(srcFolderId));
             }
             dstFolder->insertItemToPage(dragId, pageHint);
