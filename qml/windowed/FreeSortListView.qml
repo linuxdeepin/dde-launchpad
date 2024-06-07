@@ -182,9 +182,9 @@ Item {
 
                     onClicked: function (mouse) {
                         if (mouse.button === Qt.RightButton) {
-                            showContextMenu(itemDelegate, model, {
-                                hideMoveToTopMenu: index === 0
-                            })
+                            // not folder
+                            if (iconName)
+                                showContextMenu(itemDelegate, model)
 
                             baseLayer.focus = true
                         } else {
