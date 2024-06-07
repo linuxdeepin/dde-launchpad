@@ -89,8 +89,7 @@ ColumnLayout {
         contentItem: ColumnLayout {
             spacing: 2
             D.DciIcon {
-                width: 16
-                height: 16
+                sourceSize: Qt.size(16, 16)
                 name: isFreeSort ? categorizedIcon("freeSort") : categorizedIcon(CategorizedSortProxyModel.categoryType)
                 palette: D.DTK.makeIconPalette(title.palette)
                 theme: D.DTK.toColorType(title.palette.window)
@@ -99,8 +98,7 @@ ColumnLayout {
 
             D.DciIcon {
                 name: "arrow"
-                width: 12
-                height: 12
+                sourceSize: Qt.size(12, 12)
                 palette: D.DTK.makeIconPalette(title.palette)
                 theme: D.DTK.toColorType(title.palette.window)
                 Layout.alignment: Qt.AlignHCenter
