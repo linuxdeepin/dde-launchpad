@@ -128,7 +128,7 @@
     <message>
         <location filename="../qml/windowed/BottomBar.qml" line="26"/>
         <source>Power</source>
-        <translation type="unfinished">Zasilanie</translation>
+        <translation>Zasilanie</translation>
     </message>
     <message>
         <location filename="../qml/windowed/BottomBar.qml" line="40"/>
@@ -268,7 +268,7 @@
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="39"/>
         <source>Free sorting</source>
-        <translation type="unfinished"></translation>
+        <translation>Sortowanie swobodne</translation>
     </message>
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="52"/>
