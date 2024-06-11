@@ -137,7 +137,6 @@ void LauncherController::setCurrentFrame(const QString &frame)
 
     m_currentFrame = frame;
     qDebug() << "set current frame:" << m_currentFrame;
-    m_timer->start();
     emit currentFrameChanged();
 }
 
@@ -152,11 +151,6 @@ void LauncherController::hideWithTimer()
         qDebug() << "hide with timer";
         setVisible(false);
     }
-}
-
-bool LauncherController::shouldAvoidHideOrActive()
-{
-    return m_timer->isActive();
 }
 
 QFont LauncherController::adjustFontWeight(const QFont &f, QFont::Weight weight)

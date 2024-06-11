@@ -236,13 +236,7 @@ QtObject {
 
         onActiveChanged: {
             if (!active && !DebugHelper.avoidHideWindow && (LauncherController.currentFrame === "WindowedFrame")) {
-                // When composting is disabled, switching mode from fullscreen to windowed mode will cause window
-                // activeChanged signal get emitted. We reused the delay timer here to avoid the window get hide
-                // caused by that.
-                // Issue: https://github.com/linuxdeepin/developer-center/issues/6818
-                if (!LauncherController.shouldAvoidHideOrActive()) {
-                    LauncherController.hideWithTimer()
-                }
+                LauncherController.hideWithTimer()
             }
         }
 
@@ -300,13 +294,7 @@ QtObject {
 
         onActiveChanged: {
             if (!active && !DebugHelper.avoidHideWindow && (LauncherController.currentFrame === "FullscreenFrame")) {
-                // When composting is disabled, switching mode from fullscreen to windowed mode will cause window
-                // activeChanged signal get emitted. We reused the delay timer here to avoid the window get hide
-                // caused by that.
-                // Issue: https://github.com/linuxdeepin/developer-center/issues/6818
-                if (!LauncherController.shouldAvoidHideOrActive()) {
-                    LauncherController.hideWithTimer()
-                }
+                LauncherController.hideWithTimer()
             }
         }
 
