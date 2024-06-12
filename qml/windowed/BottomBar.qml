@@ -100,6 +100,7 @@ Control {
             Accessible.name: "Fullscreen"
             Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
             onClicked: {
+                searchEdit.text = ""
                 LauncherController.currentFrame = "FullscreenFrame"
             }
             KeyNavigation.tab: nextKeyTabTarget
