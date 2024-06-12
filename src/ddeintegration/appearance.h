@@ -6,7 +6,7 @@
 
 #include <QObject>
 #include <QtConcurrent>
-
+class QUrl;
 class __Appearance1;
 class Appearance : public QObject
 {
@@ -31,10 +31,13 @@ signals:
 
 private:
     void updateCurrentWallpaperBlurhash();
+    void updateAllWallpaper();
 
     __Appearance1 * m_dbusAppearanceIface;
 
     QString m_wallpaperBlurhash;
-    QFutureWatcher<QString> m_blurhashWatcher;
+    QList<QFutureWatcher<QString> *> m_blurhashWatchers;
+    QMap<QUrl, QString> m_wallpaperBlurMap; // { file:blurhash }
     qreal m_opacity = -1;
+
 };

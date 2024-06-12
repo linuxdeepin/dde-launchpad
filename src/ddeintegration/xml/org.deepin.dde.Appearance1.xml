@@ -55,5 +55,6 @@
     <property name="FontSize" type="d" access="readwrite"></property>
     <property name="Opacity" type="d" access="readwrite"/>
     <property name="WallpaperSlideShow" type="s" access="readwrite"/>
+    <property name="WallpaperURls" type="s" access="read"/>
     <property name="QtActiveColor" type="s" access="readwrite"/>
 </interface>
