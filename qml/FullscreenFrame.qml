@@ -362,7 +362,6 @@ Control {
                                 padding: 10
                                 interactive: false
                                 focus: true
-                                alwaysShowHighlighted: true
                                 function checkPageSwitchState() {
                                     if (gridViewLoader.viewIndex !== pages.currentIndex)
                                         return
