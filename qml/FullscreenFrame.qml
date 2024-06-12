@@ -165,6 +165,7 @@ Control {
 
                     icon.name: "launcher_exit_fullscreen"
                     onClicked: {
+                        searchEdit.text = ""
                         LauncherController.currentFrame = "WindowedFrame"
                     }
                 }
