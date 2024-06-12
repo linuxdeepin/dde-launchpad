@@ -10,6 +10,7 @@
 
 #include "Appearance1.h"
 #include "blurhash.hpp"
+#include "../launchercontroller.h"
 
 using Appearance1 = __Appearance1;
 
@@ -19,25 +20,23 @@ Appearance::Appearance(QObject *parent)
                                             QDBusConnection::sessionBus(), this))
     , m_wallpaperBlurhash("L35?hb%#0ADeorNFVuy501Me?*%o")
 {
-    QTimer::singleShot(0, this, &Appearance::updateCurrentWallpaperBlurhash);
+    QTimer::singleShot(0, this, &Appearance::updateAllWallpaper);
 
     connect(m_dbusAppearanceIface, &Appearance1::Changed, this, [this](const QString & key, const QString &) {
-        if (key == "allwallpaperuris") updateCurrentWallpaperBlurhash();
+        if (key == "allwallpaperuris") updateAllWallpaper();
     });
+
+    connect(&(LauncherController::instance()), &LauncherController::visibleChanged, this, [this](bool isVisible){
+        if (isVisible && (QStringLiteral("FullscreenFrame") == LauncherController::instance().currentFrame()))
+            updateCurrentWallpaperBlurhash();
+    });
+
     if (m_dbusAppearanceIface->isValid()) {
         connect(m_dbusAppearanceIface, &Appearance1::OpacityChanged, this, [this](double value) {
             setOpacity(value);
         });
         setOpacity(m_dbusAppearanceIface->opacity());
     }
-
-    connect(&m_blurhashWatcher, &QFutureWatcher<QString>::finished, this, [this](){
-        QString result(m_blurhashWatcher.result());
-        if (!result.isEmpty()) {
-            m_wallpaperBlurhash = result;
-            emit wallpaperBlurhashChanged();
-        }
-    });
 }
 
 Appearance::~Appearance()
@@ -53,7 +52,6 @@ QString Appearance::wallpaperBlurhash() const
 void Appearance::updateCurrentWallpaperBlurhash()
 {
     const QString screenName = qApp->primaryScreen()->name();
-
     QDBusPendingReply<QString> async = m_dbusAppearanceIface->GetCurrentWorkspaceBackgroundForMonitor(screenName);
     QDBusPendingCallWatcher *watcher = new QDBusPendingCallWatcher(async, this);
     connect(watcher, &QDBusPendingCallWatcher::finished, this, [this](QDBusPendingCallWatcher* call){
@@ -63,21 +61,75 @@ void Appearance::updateCurrentWallpaperBlurhash()
         } else {
             QUrl wallpaperUrl(reply.value());
             qDebug() << "Got wallpaper URL from dbus:" << wallpaperUrl;
-
-            QFuture<QString> blurhashFuture = QtConcurrent::run([wallpaperUrl](){
-                QImage image;
-                if (image.load(wallpaperUrl.toLocalFile())) {
-                    image.convertTo(QImage::Format_RGB888);
-                    std::string blurhash = blurhash::encode(image.constBits(), image.width(), image.height(), 4, 3);
-                    QString newBlurhash(QString::fromStdString(blurhash));
-                    return newBlurhash;
-                } else {
-                    return QString();
-                }
-            });
-            m_blurhashWatcher.setFuture(blurhashFuture);
+            if (m_wallpaperBlurMap.contains(wallpaperUrl)) {
+                m_wallpaperBlurhash = m_wallpaperBlurMap.value(wallpaperUrl);
+                emit wallpaperBlurhashChanged();
+            } else {
+                // try update new workspace background image
+                updateAllWallpaper();
+            }
         }
     });
+}
+
+void Appearance::updateAllWallpaper()
+{
+    QJsonParseError err;
+    QString urls = m_dbusAppearanceIface->wallpaperURls();
+    QJsonDocument doc = QJsonDocument::fromJson(urls.toUtf8(), &err);
+    if (err.error != QJsonParseError::NoError) {
+        qWarning() << "get wallpapers failed" << err.errorString();
+    }
+
+    assert(doc.isObject());
+    int i = 1;
+    do {
+        const QString k = QString("Primary&&%1").arg(i++);
+        QJsonValue v = doc[k];
+
+#ifdef QT_DEBUG
+        qDebug() << k << ":" << v;
+#endif
+
+        if (!v.isString())
+            break;
+
+        QUrl wallpaperUrl(v.toString());
+        if (m_wallpaperBlurMap.contains(wallpaperUrl))
+            continue;
+
+        QFuture<QString> blurhashFuture = QtConcurrent::run([wallpaperUrl](){
+            QImage image;
+            if (image.load(wallpaperUrl.toLocalFile())) {
+                image.convertTo(QImage::Format_RGB888);
+                std::string blurhash = blurhash::encode(image.constBits(), image.width(), image.height(), 4, 3);
+                QString newBlurhash(QString::fromStdString(blurhash));
+                return newBlurhash;
+            } else {
+                return QString();
+            }
+        });
+
+        QFutureWatcher<QString> *watcher = new QFutureWatcher<QString>;
+        watcher->setFuture(blurhashFuture);
+        connect(watcher, &QFutureWatcher<QString>::finished, this, [this, wallpaperUrl](){
+            auto watcher = static_cast<QFutureWatcher<QString>*>(sender());
+            if (!watcher)
+                return;
+
+            QString result(watcher->result());
+            if (!result.isEmpty() && !m_wallpaperBlurMap.contains(wallpaperUrl)) {
+                m_wallpaperBlurhash = result;
+                m_wallpaperBlurMap[wallpaperUrl] = result;
+                updateCurrentWallpaperBlurhash();
+            }
+
+            watcher->deleteLater();
+            m_blurhashWatchers.removeOne(watcher);
+        });
+
+        m_blurhashWatchers << watcher;
+    } while(1);
 }
 
 qreal Appearance::opacity() const
