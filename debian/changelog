@@ -1,3 +1,9 @@
+dde-launchpad (0.7.2) unstable; urgency=medium
+
+  * release 0.7.2
+
+ -- Mike Chen <chenke@deepin.org>  Thu, 13 Jun 2024 10:26:10 +0800
+
 dde-launchpad (0.7.1) unstable; urgency=medium
 
   * fix: folder did not remove without item (linuxdeepin/developer-center#8947)
