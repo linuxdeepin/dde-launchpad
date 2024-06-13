@@ -39,6 +39,7 @@ static void updateAppItemFromAM(AppItem *appItem)
 AppsModel::AppsModel(QObject *parent)
     : QStandardItemModel(parent)
     , m_dconfig(DConfig::create("dde-launchpad", "org.deepin.dde.launchpad.appsmodel"))
+    , m_tmUpdateCache(new QTimer(this))
 {
     Q_ASSERT_X(m_dconfig->isValid(), "DConfig", "DConfig file is missing or invalid");
     m_excludedAppIdList = m_dconfig->value("excludeAppIdList", QStringList{}).toStringList();
@@ -60,6 +61,9 @@ AppsModel::AppsModel(QObject *parent)
     Q_ASSERT(duplicatedItems.isEmpty());
     qDebug() << rowCount();
 
+    m_tmUpdateCache->setInterval(1000);
+    m_tmUpdateCache->setSingleShot(true);
+
     if (AppMgr::instance()->isValid()) {
         connect(AppMgr::instance(), &AppMgr::changed, m_tmUpdateCache, qOverload<>(&QTimer::start));
         connect(AppMgr::instance(), &AppMgr::itemDataChanged, this, [this](const QString &id) {
@@ -71,10 +75,6 @@ AppsModel::AppsModel(QObject *parent)
             updateAppItemFromAM(appItem);
         });
     }
-
-    m_tmUpdateCache = new QTimer(this);
-    m_tmUpdateCache->setInterval(1000);
-    m_tmUpdateCache->setSingleShot(true);
 
     m_fwIconCache = new DFileWatcherManager(this);
     const QStringList paths = QStandardPaths::standardLocations(QStandardPaths::GenericDataLocation);
