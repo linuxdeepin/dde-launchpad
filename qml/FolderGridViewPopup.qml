@@ -230,7 +230,7 @@ Popup {
                                         IconItemDelegate {
                                             anchors.fill: parent
                                             dndEnabled: true
-                                            displayFont: isWindowedMode ? DTK.fontManager.t9 : DTK.fontManager.t8
+                                            displayFont: isWindowedMode ? DTK.fontManager.t9 : DTK.fontManager.t6
                                             Drag.mimeData: {
                                                 "text/x-dde-launcher-dnd-desktopId": model.desktopId
                                             }
