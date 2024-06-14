@@ -197,14 +197,17 @@ QVariant AppsModel::data(const QModelIndex &index, int role) const
 
 void AppsModel::updateModelData()
 {
-    // TODO release icon's cache when gtk's icon-theme.cache is updated.
-    IconUtils::tryUpdateIconCache();
+    beginResetModel();
+    qDebug() << "reset model.";
+
     QList<AppItem *> items(allAppInfosShouldBeShown());
     cleanUpInvalidApps(items);
     QList<AppItem *> duplicatedItems = updateItems(items);
     for (AppItem * item : std::as_const(duplicatedItems)) {
         delete item;
     }
+
+    endResetModel();
 }
 
 // the caller manage the return values' ownership (i.e. might need to free them)
