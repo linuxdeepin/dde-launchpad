@@ -81,6 +81,7 @@ Popup {
                     text: folderLoader.folderName
                     color: palette.windowText
                     selectByMouse: true
+                    maximumLength: 255
                     onEditingFinished: {
                         contentRoot.nameEditing = false
                         if (text === "") {
