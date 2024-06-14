@@ -4,6 +4,8 @@
 
 #include "appitem.h"
 
+#include <QFileInfo>
+
 AppItem::AppItem(const QString &freedesktopId)
     : QStandardItem()
 {
@@ -47,7 +49,12 @@ const QString AppItem::iconName() const
 
 void AppItem::setIconName(const QString &iconName)
 {
-    setData(iconName.isEmpty() ? "application-x-desktop" : iconName, AppItem::IconNameRole);
+    QString name = iconName;
+    if (QFileInfo(iconName).isAbsolute()) {
+        name = QUrl::fromLocalFile(iconName).toString(); // path ==> file://path
+    }
+
+    setData(iconName.isEmpty() ? "application-x-desktop" : name, AppItem::IconNameRole);
 }
 
 const QStringList AppItem::categories() const
