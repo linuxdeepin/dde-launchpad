@@ -22,7 +22,7 @@
         "deepin-manual.desktop",
         "deepin-system-monitor.desktop",
         "deepin-devicemanager.desktop",
-        "dde-printer-watch.desktop",
+        "dde-printer.desktop",
         "dde-calendar.desktop",
         "org.fcitx.fcitx5-migrator.desktop",
         "fcitx5-configtool.desktop",
