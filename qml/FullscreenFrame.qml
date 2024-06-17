@@ -175,7 +175,7 @@ Control {
 
                     opacity: folderGridViewPopup.visible ? 0.4 : 1
                     anchors.horizontalCenter: parent.horizontalCenter
-        //            visible: pages.visible
+                    visible: pages.visible
                     count: searchResultGridViewContainer.visible ? 1 : pages.count
                     currentIndex: searchResultGridViewContainer.visible ? 1 : pages.currentIndex
                     interactive: true
