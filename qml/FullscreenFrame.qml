@@ -67,26 +67,6 @@ Control {
         ItemArrangementProxyModel.removeEmptyPage()
     }
 
-    function decrementPageIndex() {
-        if (pages.currentIndex === 0 && pages.count > 1) {
-            // pages.setCurrentIndex(pages.count - 1)
-        } else {
-            pages.decrementCurrentIndex()
-        }
-
-        closeContextMenu()
-    }
-
-    function incrementPageIndex() {
-        if (pages.currentIndex === pages.count - 1 && pages.count > 1) {
-            // pages.setCurrentIndex(0)
-        } else {
-            pages.incrementCurrentIndex()
-        }
-
-        closeContextMenu()
-    }
-
     Timer {
         id: flipPageDelay
         interval: 400
@@ -124,13 +104,13 @@ Control {
                         if (!searchEdit.focus) { // reset keyboard focus when using mouse to flip page, but keep searchEdit focus
                             baseLayer.focus = true
                         }
-                        decrementPageIndex()
+                        decrementPageIndex(pages)
                     } else if (toPage > 0) {
                         flipPageDelay.start()
                         if (!searchEdit.focus) { // reset keyboard focus when using mouse to flip page, but keep searchEdit focus
                             baseLayer.focus = true
                         }
-                        incrementPageIndex()
+                        incrementPageIndex(pages)
                     }
                 }
             }
