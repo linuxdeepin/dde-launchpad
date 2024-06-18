@@ -87,6 +87,26 @@ QtObject {
         }
     }
 
+    function decrementPageIndex(pages) {
+        if (pages.currentIndex === 0 && pages.count > 1) {
+            // pages.setCurrentIndex(pages.count - 1)
+        } else {
+            pages.decrementCurrentIndex()
+        }
+
+        closeContextMenu()
+    }
+
+    function incrementPageIndex(pages) {
+        if (pages.currentIndex === pages.count - 1 && pages.count > 1) {
+            // pages.setCurrentIndex(0)
+        } else {
+            pages.incrementCurrentIndex()
+        }
+
+        closeContextMenu()
+    }
+
     function descaledRect(rect) {
         let ratio = Screen.devicePixelRatio
         return Qt.rect(rect.left / ratio, rect.top / ratio, rect.width / ratio, rect.height / ratio)
