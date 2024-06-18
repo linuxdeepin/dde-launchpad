@@ -254,8 +254,10 @@ Popup {
 
                     Item {
                         anchors.fill: parent
-                        TapHandler {
-                            onTapped: {
+                        MouseArea {
+                            anchors.fill: parent
+                            enabled: contentRoot.nameEditing
+                            onClicked: {
                                 folderNameEdit.editingFinished()
                             }
                         }
