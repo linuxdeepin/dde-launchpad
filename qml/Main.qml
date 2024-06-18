@@ -194,20 +194,22 @@ QtObject {
             if (DebugHelper.useRegularWindow) return Qt.Window
             return ( Qt.FramelessWindowHint | Qt.Tool)
         }
+
+        function blendColorAlpha(fallback) {
+            var appearance = DS.applet("org.deepin.ds.dde-appearance")
+            if (!appearance || appearance.opacity < 0)
+                return fallback
+            return appearance.opacity
+        }
+
         StyledBehindWindowBlur {
             control: parent
             anchors.fill: parent
-            function blendColorAlpha(fallback) {
-                var appearance = DS.applet("org.deepin.ds.dde-appearance")
-                if (!appearance || appearance.opacity < 0)
-                    return fallback
-                return appearance.opacity
-            }
             blendColor: {
                 if (valid) {
                     return DStyle.Style.control.selectColor(undefined,
-                                                Qt.rgba(235 / 255.0, 235 / 255.0, 235 / 255.0, blendColorAlpha(0.6)),
-                                                Qt.rgba(0, 0, 0, blendColorAlpha(85 / 255)))
+                                                Qt.rgba(235 / 255.0, 235 / 255.0, 235 / 255.0, windowedFrameWindow.blendColorAlpha(0.6)),
+                                                Qt.rgba(0, 0, 0, windowedFrameWindow.blendColorAlpha(85 / 255)))
                 }
                 return DStyle.Style.control.selectColor(undefined,
                                             DStyle.Style.behindWindowBlur.lightNoBlurColor,
@@ -217,6 +219,7 @@ QtObject {
         InsideBoxBorder {
             anchors.fill: parent
             radius: WindowManagerHelper.hasComposite ? windowedFrameWindow.DWindow.windowRadius : 0
+            color: DTK.themeType === ApplicationHelper.DarkType ? Qt.rgba(1, 1, 1, 0.15) : Qt.rgba(1, 1, 1, windowedFrameWindow.blendColorAlpha(0.6) - 0.05)
         }
 
         color: "transparent"
@@ -226,6 +229,7 @@ QtObject {
         DWindow.enableSystemResize: false
         DWindow.enableSystemMove: false
         DWindow.enableBlurWindow: true
+        DWindow.borderColor: DTK.themeType === ApplicationHelper.DarkType ? Qt.rgba(0, 0, 0, windowedFrameWindow.blendColorAlpha(0.6) + 10 / 255) : Qt.rgba(0, 0, 0, 0.15)
 
         onVisibleChanged: {
             updateWindowVisibilityAndPosition()
