@@ -1,3 +1,23 @@
+dde-launchpad (0.7.3) unstable; urgency=medium
+
+  * Fix #8694
+  * Fix #8805
+  * Fix #8980
+  * Fix #8495
+  * Fix #8828
+  * Fix #7949
+  * Fix #8577
+  * Fix #8824
+  * Fix #8674
+  * Fix #8655
+  * Fix #9009
+  * Fix #8832
+  * Fix #8972
+  * Fix #8342
+  * release 0.7.3
+
+ -- Mike Chen <chenke@deepin.org>  Mon, 17 Jun 2024 10:34:07 +0800
+
 dde-launchpad (0.7.2) unstable; urgency=medium
 
   * release 0.7.2
