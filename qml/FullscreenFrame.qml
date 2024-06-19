@@ -247,10 +247,10 @@ Control {
                                 parent.pageIntent = 0
                                 return
                             } else {
-                                incrementPageIndex()
+                                incrementPageIndex(pages)
                             }
                         } else if (parent.pageIntent < 0) {
-                            decrementPageIndex()
+                            decrementPageIndex(pages)
                         }
 
                         parent.pageIntent = 0
