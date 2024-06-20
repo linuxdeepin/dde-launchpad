@@ -135,7 +135,7 @@ Popup {
                         scrollGestureEnabled: false
 
                         // TODO: this might not be the correct way to handle wheel
-                        onWheel: {
+                        onWheel: function (wheel) {
                             let xDelta = wheel.angleDelta.x / 8
                             let yDelta = wheel.angleDelta.y / 8
                             let toPage = 0; // -1 prev, +1 next, 0 don't change
@@ -145,14 +145,8 @@ Popup {
                                 toPage = (xDelta > 0) ? 1 : -1
                             }
                             if (toPage < 0) {
-                                if (!searchEdit.focus) { // reset keyboard focus when using mouse to flip page, but keep searchEdit focus
-                                    baseLayer.focus = true
-                                }
                                 decrementPageIndex(folderPagesView)
                             } else if (toPage > 0) {
-                                if (!searchEdit.focus) { // reset keyboard focus when using mouse to flip page, but keep searchEdit focus
-                                    baseLayer.focus = true
-                                }
                                 incrementPageIndex(folderPagesView)
                             }
                         }
