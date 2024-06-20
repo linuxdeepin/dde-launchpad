@@ -115,6 +115,11 @@ void LauncherController::setVisible(bool visible)
     emit visibleChanged(m_visible);
 }
 
+bool LauncherController::isFullScreenFrame() const
+{
+    return m_currentFrame == QStringLiteral("FullscreenFrame");
+}
+
 QString LauncherController::currentFrame() const
 {
     return m_currentFrame;
