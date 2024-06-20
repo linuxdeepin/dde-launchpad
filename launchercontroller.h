@@ -42,6 +42,7 @@ public:
 
     bool visible() const;
     void setVisible(bool visible);
+    bool isFullScreenFrame() const;
     QString currentFrame() const;
     void setCurrentFrame(const QString & frame);
 

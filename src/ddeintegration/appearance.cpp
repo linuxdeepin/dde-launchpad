@@ -26,10 +26,10 @@ Appearance::Appearance(QObject *parent)
         if (key == "allwallpaperuris") updateAllWallpaper();
     });
 
-    connect(&(LauncherController::instance()), &LauncherController::visibleChanged, this, [this](bool isVisible){
-        if (isVisible && (QStringLiteral("FullscreenFrame") == LauncherController::instance().currentFrame()))
-            updateCurrentWallpaperBlurhash();
-    });
+    connect(&(LauncherController::instance()), &LauncherController::currentFrameChanged,
+            this, &Appearance::updateCurrentWallpaperBlurhash);
+    connect(&(LauncherController::instance()), &LauncherController::visibleChanged,
+            this, &Appearance::updateCurrentWallpaperBlurhash);
 
     if (m_dbusAppearanceIface->isValid()) {
         connect(m_dbusAppearanceIface, &Appearance1::OpacityChanged, this, [this](double value) {
@@ -51,6 +51,9 @@ QString Appearance::wallpaperBlurhash() const
 
 void Appearance::updateCurrentWallpaperBlurhash()
 {
+    if (!LauncherController::instance().visible() || !LauncherController::instance().isFullScreenFrame())
+        return;
+
     const QString screenName = qApp->primaryScreen()->name();
     QDBusPendingReply<QString> async = m_dbusAppearanceIface->GetCurrentWorkspaceBackgroundForMonitor(screenName);
     QDBusPendingCallWatcher *watcher = new QDBusPendingCallWatcher(async, this);
