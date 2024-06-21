@@ -436,6 +436,12 @@ Control {
                                         gridViewContainer.checkPageSwitchState()
                                     }
                                 }
+                                Connections {
+                                    target: dropArea
+                                    function onDropped() {
+                                        gridViewContainer.checkPageSwitchState()
+                                    }
+                                }
                                 Component.onCompleted: {
                                     gridViewContainer.checkPageSwitchState()
                                 }
