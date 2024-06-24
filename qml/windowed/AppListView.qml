@@ -156,6 +156,14 @@ FocusScope {
                                         text: menuItem.text
                                         color: parent.palette.windowText
                                     }
+                                    background: Rectangle {
+                                        property Palette hoveredPalette: DStyle.Style.button.background1
+                                        implicitWidth: DStyle.Style.menu.item.width
+                                        implicitHeight: DStyle.Style.menu.item.height
+                                        visible: menuItem.down || menuItem.highlighted
+                                        color: ColorSelector.hoveredPalette
+                                        radius: 1 // TODO can't display background when using dtk's InWindowBlur.
+                                    }
                                 }
                             }
 
