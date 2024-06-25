@@ -197,6 +197,8 @@ QVariant AppsModel::data(const QModelIndex &index, int role) const
 
 void AppsModel::updateModelData()
 {
+    IconUtils::tryUpdateIconCache();
+
     beginResetModel();
     qDebug() << "reset model.";
 
