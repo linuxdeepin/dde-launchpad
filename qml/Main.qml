@@ -120,42 +120,13 @@ QtObject {
     function updateWindowVisibilityAndPosition() {
         if (!LauncherController.visible) return;
 
+        var dock = DS.applet("org.deepin.ds.dock")
+        if (dock) {
+            windowedFrameWindow.screen = dock.rootObject.screen
+            fullscreenFrame.screen = dock.rootObject.screen
+        }
+
         if (LauncherController.currentFrame === "WindowedFrame") {
-        //            root.visibility = Window.Windowed
-
-            let width = windowedFrameSize.width
-            let height = windowedFrameSize.height
-            let x = 0
-            let y = 0
-
-            let dockGeometry = descaledRect(DesktopIntegration.dockGeometry)
-            let descaledWindowdPos = windowedPos
-            if (dockGeometry.width > 0 || dockGeometry.height > 0) {
-                let dockSpacing = DesktopIntegration.dockSpacing
-                switch (DesktopIntegration.dockPosition) {
-                case Qt.DownArrow:
-                    var sidebarX = windowedFrameImpl.item.getHorizontalCoordinatesOfSideBar()
-                    x = descaledWindowdPos.x > 0 ? descaledWindowdPos.x - sidebarX : dockGeometry.left + dockSpacing
-                    y = (dockGeometry.top >= 0 ? dockGeometry.top : (Screen.height - dockGeometry.height)) - height - dockSpacing
-                    break
-                case Qt.LeftArrow:
-                    x = dockGeometry.right + dockSpacing
-                    y = (dockGeometry.top >= 0 ? dockGeometry.top : 0) + dockSpacing
-                    break
-                case Qt.UpArrow:
-                    x = dockGeometry.left + dockSpacing
-                    y = dockGeometry.bottom + dockSpacing
-                    break
-                case Qt.RightArrow:
-                    x = (dockGeometry.left >= 0 ? dockGeometry.left : (Screen.width - dockGeometry.width)) - width - dockSpacing
-                    y = dockGeometry.top + dockSpacing
-                    break
-                }
-            } else {
-                console.warn("Invalid dock geometry", dockGeometry)
-            }
-
-            windowedFrame.setGeometry(x, y, width, height)
             windowedFrame.requestActivate()
         } else {
             fullscreenFrame.requestActivate()
@@ -190,6 +161,45 @@ QtObject {
         minimumHeight: height
         maximumHeight: height
         ColorSelector.family: Palette.CrystalColor
+        DLayerShellWindow.topMargin: {
+            if (Qt.UpArrow === DesktopIntegration.dockPosition)
+                return descaledRect(DesktopIntegration.dockGeometry).height + DesktopIntegration.dockSpacing
+            else if (Qt.RightArrow === DesktopIntegration.dockPosition || Qt.LeftArrow === DesktopIntegration.dockPosition)
+                return windowedPos.y
+            else
+                return 0
+        }
+        DLayerShellWindow.rightMargin:  {
+            if (Qt.RightArrow === DesktopIntegration.dockPosition)
+                return descaledRect(DesktopIntegration.dockGeometry).width + DesktopIntegration.dockSpacing
+            else
+                return 0
+        }
+        DLayerShellWindow.bottomMargin: {
+            if (Qt.DownArrow === DesktopIntegration.dockPosition)
+                return descaledRect(DesktopIntegration.dockGeometry).height + DesktopIntegration.dockSpacing
+            else
+                return 0
+        }
+        DLayerShellWindow.leftMargin: {
+            if (Qt.LeftArrow === DesktopIntegration.dockPosition)
+                return descaledRect(DesktopIntegration.dockGeometry).width + DesktopIntegration.dockSpacing
+            else if (Qt.UpArrow === DesktopIntegration.dockPosition || Qt.DownArrow === DesktopIntegration.dockPosition)
+                return windowedPos.x - windowedFrameImpl.item.getHorizontalCoordinatesOfSideBar()
+            else
+                return 0
+        }
+        DLayerShellWindow.anchors: {
+            switch (DesktopIntegration.dockPosition) {
+            case Qt.UpArrow:
+            case Qt.LeftArrow:
+                return DLayerShellWindow.AnchorTop | DLayerShellWindow.AnchorLeft
+            case Qt.RightArrow:
+                return DLayerShellWindow.AnchorRight | DLayerShellWindow.AnchorTop
+            case Qt.DownArrow:
+                return DLayerShellWindow.AnchorBottom | DLayerShellWindow.AnchorLeft
+            }
+        }
         flags: {
             if (DebugHelper.useRegularWindow) return Qt.Window
             return ( Qt.FramelessWindowHint | Qt.Tool)
