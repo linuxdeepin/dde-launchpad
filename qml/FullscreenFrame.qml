@@ -532,8 +532,12 @@ Control {
             onTextChanged: {
                 searchEdit.focus = true
                 SearchFilterProxyModel.setFilterRegularExpression(text.trim())
-                // this can help indirectly reset the currentIndex of the view that the model is attached to
-                SearchFilterProxyModel.invalidate()
+
+                if (searchResultGridViewContainer.visible) {
+                    if (delegateSearchResultModel.count > 0) {
+                        searchResultGridViewContainer.currentIndex = 0
+                    }
+                }
             }
         }
     }
