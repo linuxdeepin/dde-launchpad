@@ -13,25 +13,18 @@ import org.deepin.launchpad 1.0
 import org.deepin.launchpad.models 1.0
 import "."
 
-Item {
+FocusScope {
     id: baseLayer
     objectName: "WindowedFrame-BaseLayer"
 
     visible: true
-    focus: true
+    focus: visible
 
     KeyNavigation.tab: appGridLoader.item
 
     function getHorizontalCoordinatesOfSideBar()
     {
         return sideBar.x + sideBar.width / 2
-    }
-
-    MouseArea {
-        anchors.fill: parent
-        onClicked: () => {
-            baseLayer.focus = true
-        }
     }
 
     // ----------- Drag and Drop related functions START -----------

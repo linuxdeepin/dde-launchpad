@@ -53,6 +53,7 @@ FocusScope {
     Item {
         id: item
         visible: true
+        // focus: gridView.count > 0
         anchors.fill: parent
 
         GridView {

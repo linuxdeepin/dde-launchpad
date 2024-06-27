@@ -11,16 +11,12 @@ import org.deepin.dtk.style 1.0 as DStyle
 import org.deepin.launchpad 1.0
 import org.deepin.launchpad.models 1.0
 
-Item {
+FocusScope {
     id: root
 
     signal folderClicked(string folderId, string folderName)
 
     property Item keyTabTarget: listView
-
-    onFocusChanged: () => {
-        listView.focus = true
-    }
 
     function positionViewAtBeginning() {
         listView.positionViewAtBeginning()
@@ -31,6 +27,7 @@ Item {
         anchors.fill: parent
         highlightFollowsCurrentItem: true
 
+        focus: true
         clip: true
         highlight: Item {
             FocusBoxBorder {

@@ -21,10 +21,6 @@ ColumnLayout {
     property Item keyTabTarget: loader.item
     property Item nextKeyTabTarget
 
-    onFocusChanged: () => {
-        loader.item.focus = true
-    }
-
     function positionViewAtBeginning() {
         loader.item.positionViewAtBeginning()
     }

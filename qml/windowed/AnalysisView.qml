@@ -16,6 +16,7 @@ Control {
 
     property Item keyTabTarget: frequentlyUsedView.keyTabTarget
     property Item nextKeyTabTarget
+    focus: true
 
     onFocusChanged: () => {
         frequentlyUsedView.focus = true
@@ -34,10 +35,12 @@ Control {
 
     contentItem: ColumnLayout {
         spacing: 0
+        focus: true
 
         FrequentlyUsedView {
             id: frequentlyUsedView
             visible: count > 0
+            focus: visible
             maxCount: recentlyInstalledView.visible ? 12 : 16
             nextKeyTabTarget : recentlyInstalledView.visible ? recentlyInstalledView.keyTabTarget : control.nextKeyTabTarget
         }

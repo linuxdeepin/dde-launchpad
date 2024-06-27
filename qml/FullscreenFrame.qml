@@ -18,7 +18,7 @@ Control {
     id: baseLayer
     visible: true
     anchors.fill: parent
-    focus: true
+    focus: visible
     objectName: "FullscreenFrame-BaseLayer"
 
     readonly property bool isHorizontalDock: DesktopIntegration.dockPosition === Qt.UpArrow || DesktopIntegration.dockPosition === Qt.DownArrow
