@@ -6,6 +6,7 @@ import QtQuick 2.15
 import QtQml.Models 2.15
 import QtQuick.Controls 2.15 as QQC2
 import org.deepin.dtk 1.0
+import org.deepin.dtk.private 1.0
 import org.deepin.dtk.style 1.0 as DStyle
 
 import org.deepin.launchpad 1.0
@@ -148,6 +149,7 @@ FocusScope {
                                 delegate: MenuItem {
                                     id: menuItem
                                     text: getCategoryName(modelData)
+                                    textColor: DStyle.Style.menu.itemText
                                     onTriggered: {
                                         scrollToDDECategory(modelData)
                                     }
@@ -156,13 +158,35 @@ FocusScope {
                                         text: menuItem.text
                                         color: parent.palette.windowText
                                     }
-                                    background: Rectangle {
-                                        property Palette hoveredPalette: DStyle.Style.button.background1
-                                        implicitWidth: DStyle.Style.menu.item.width
-                                        implicitHeight: DStyle.Style.menu.item.height
+                                    background: ButtonPanel {
+                                        button: parent
+                                        anchors.left: parent.left
+                                        anchors.leftMargin: 10
+                                        anchors.right: parent.right
+                                        anchors.rightMargin: 10
+                                        anchors.top: parent.top
+                                        anchors.bottom: parent.bottom
                                         visible: menuItem.down || menuItem.highlighted
-                                        color: ColorSelector.hoveredPalette
-                                        radius: 1 // TODO can't display background when using dtk's InWindowBlur.
+                                        outsideBorderColor: null
+                                        insideBorderColor: null
+                                        radius: 6
+
+                                        property Palette background: Palette {
+                                            normal {
+                                                common: Qt.rgba(0, 0, 0, 0.1)
+                                                crystal: Qt.rgba(0, 0, 0, 0.1)
+                                            }
+                                            normalDark {
+                                                common: Qt.rgba(1, 1, 1, 0.1)
+                                                crystal: Qt.rgba(1, 1, 1, 0.1)
+                                            }
+                                            hovered {
+                                                common: Qt.rgba(16.0 / 255, 16.0 / 255, 16.0 / 255, 0.1)
+                                                crystal: Qt.rgba(16.0 / 255, 16.0 / 255, 16.0 / 255, 0.1)
+                                            }
+                                        }
+                                        color1: background
+                                        color2: background
                                     }
                                 }
                             }

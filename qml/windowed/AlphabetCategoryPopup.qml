@@ -38,6 +38,7 @@ Popup {
             width: alphabetCategoryContainer.cellWidth + paddingColumns
             height: alphabetCategoryContainer.cellHeight + paddingRows
             text: modelData
+            textColor: DStyle.Style.menu.itemText
             focusPolicy: Qt.NoFocus
             onClicked: {
                 categoryClicked(modelData)
@@ -49,7 +50,25 @@ Popup {
                 width: root.cellWidth
                 height: root.cellHeight
                 outsideBorderColor: null
+                insideBorderColor: null
                 radius: width / 2
+
+                property Palette background: Palette {
+                    normal {
+                        common: Qt.rgba(0, 0, 0, 0.1)
+                        crystal: Qt.rgba(0, 0, 0, 0.1)
+                    }
+                    normalDark {
+                        common: Qt.rgba(1, 1, 1, 0.1)
+                        crystal: Qt.rgba(1, 1, 1, 0.1)
+                    }
+                    hovered {
+                        common: Qt.rgba(16.0 / 255, 16.0 / 255, 16.0 / 255, 0.1)
+                        crystal: Qt.rgba(16.0 / 255, 16.0 / 255, 16.0 / 255, 0.1)
+                    }
+                }
+                color1: background
+                color2: background
             }
         }
     }
