@@ -31,7 +31,7 @@ FocusScope {
     property alias cellHeight: item.cellHeight
     property alias cellWidth: item.cellWidth
 
-    readonly property alias currentIndex: gridView.currentIndex
+    property alias currentIndex: gridView.currentIndex
     readonly property alias currentItem: gridView.currentItem
     readonly property alias gridViewWidth: gridView.width
     readonly property bool isWindowedMode: LauncherController.currentFrame === "WindowedFrame"
