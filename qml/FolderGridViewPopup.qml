@@ -69,7 +69,18 @@ Popup {
 
                 Item {
                     visible: !isWindowedMode
-                    Layout.preferredHeight: 5
+                    Layout.preferredHeight: 15
+                }
+
+                property Palette titleTextColor: Palette {
+                    normal {
+                        common: Qt.rgba(0, 0, 0, 1)
+                        crystal: Qt.rgba(0, 0, 0, 1)
+                    }
+                    normalDark {
+                        common: Qt.rgba(1, 1, 1, 1)
+                        crystal: Qt.rgba(1, 1, 1, 1)
+                    }
                 }
 
                 TextInput {
@@ -108,7 +119,7 @@ Popup {
                     font: folderNameFont
                     horizontalAlignment: Text.AlignHCenter
                     text: folderLoader.folderName
-                    color: palette.windowText
+                    color: contentRoot.ColorSelector.titleTextColor
                     visible: !contentRoot.nameEditing
                     elide: Text.ElideRight
                     ToolTip.visible: folderNameTextMouseArea.containsMouse ? implicitWidth > width : false
