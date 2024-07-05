@@ -47,6 +47,7 @@ public:
     void setCurrentFrame(const QString & frame);
 
     Q_INVOKABLE void hideWithTimer();
+    Q_INVOKABLE void cancelHide();
     Q_INVOKABLE QFont adjustFontWeight(const QFont& f, QFont::Weight weight);
 
 signals:
@@ -77,4 +78,5 @@ private:
     Launcher1Adaptor * m_launcher1Adaptor;
     bool m_visible;
     QString m_currentFrame;
+    bool m_pendingHide = false;
 };
