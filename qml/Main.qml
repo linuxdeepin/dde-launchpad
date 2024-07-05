@@ -231,11 +231,20 @@ QtObject {
         DWindow.borderColor: DTK.themeType === ApplicationHelper.DarkType ? Qt.rgba(0, 0, 0, windowedFrameWindow.blendColorAlpha(0.6) + 10 / 255) : Qt.rgba(0, 0, 0, 0.15)
 
         onVisibleChanged: {
-            updateWindowVisibilityAndPosition()
+            if (visible) {
+                updateWindowVisibilityAndPosition()
+            }
         }
 
         onActiveChanged: {
-            if (!active && !DebugHelper.avoidHideWindow && (LauncherController.currentFrame === "WindowedFrame")) {
+            if (LauncherController.currentFrame !== "WindowedFrame") {
+                return;
+            }
+            if (active) {
+                LauncherController.cancelHide()
+                return;
+            }
+            if (!active && !DebugHelper.avoidHideWindow) {
                 LauncherController.hideWithTimer()
             }
         }
@@ -298,7 +307,14 @@ QtObject {
         }
 
         onActiveChanged: {
-            if (!active && !DebugHelper.avoidHideWindow && (LauncherController.currentFrame === "FullscreenFrame")) {
+            if (LauncherController.currentFrame !== "FullscreenFrame") {
+                return
+            }
+            if (active) {
+                LauncherController.cancelHide()
+                return;
+            }
+            if (!active && !DebugHelper.avoidHideWindow) {
                 LauncherController.hideWithTimer()
             }
         }

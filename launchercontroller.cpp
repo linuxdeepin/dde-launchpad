@@ -35,6 +35,12 @@ LauncherController::LauncherController(QObject *parent)
     // Interval set to 500=>1000ms for issue https://github.com/linuxdeepin/developer-center/issues/8137
     m_timer->setInterval(1000);
     m_timer->setSingleShot(true);
+    connect(m_timer, &QTimer::timeout, this, [this] {
+        if (m_pendingHide) {
+            m_pendingHide = false;
+            setVisible(false);
+        }
+    });
 
     connect(DGuiApplicationHelper::instance(), &DGuiApplicationHelper::newProcessInstance,
             this, [this](qint64 pid, const QStringList & args) {
@@ -90,6 +96,7 @@ void LauncherController::Toggle()
 {
     if (m_timer->isActive()) {
         qDebug() << "hit";
+        m_pendingHide = false;
         m_timer->stop();
         return;
     }
@@ -137,6 +144,8 @@ void LauncherController::setCurrentFrame(const QString &frame)
 
     m_currentFrame = frame;
     qDebug() << "set current frame:" << m_currentFrame;
+    m_pendingHide = false;
+    m_timer->start();
     emit currentFrameChanged();
 }
 
@@ -147,10 +156,19 @@ void LauncherController::setCurrentFrame(const QString &frame)
 void LauncherController::hideWithTimer()
 {
     if (visible()) {
-        m_timer->start();
+        if (m_timer->isActive()) {
+            m_pendingHide = true;
+            return;
+        }
+
         qDebug() << "hide with timer";
         setVisible(false);
     }
+}
+
+void LauncherController::cancelHide()
+{
+    m_pendingHide = false;
 }
 
 QFont LauncherController::adjustFontWeight(const QFont &f, QFont::Weight weight)
