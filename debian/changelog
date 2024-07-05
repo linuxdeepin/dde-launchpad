@@ -1,3 +1,17 @@
+dde-launchpad (0.7.6) unstable; urgency=medium
+
+  * Fix: #8807
+  * Fix: #9067
+  * Fix: #9446
+  * Fix: #8060
+  * Fix: #9450
+  * Fix: #9449
+  * Fix: #9578
+  * Fix: #9567
+  * Fix: #9615
+
+ -- xionglinlin <xionglinlin@uniontech.com>  Fri, 05 Jul 2024 14:47:36 +0800
+
 dde-launchpad (0.7.5) unstable; urgency=medium
 
   * Fix #6818
