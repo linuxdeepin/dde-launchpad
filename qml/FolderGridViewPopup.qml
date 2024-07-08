@@ -33,8 +33,8 @@ Popup {
     // TODO: 经验证发现：Poppu窗口高度为奇数时，会多显示一个像素的外边框；为偶数时不会显示
     // 因此，这里需要保证高度是偶数来确保Popup窗口没有外边框
     height: (cs * 3) % 2 === 0 ? (cs * 3) : (cs * 3 + 1) + 130 /* title height*/
-    x: (parent.width - width) / 2
-    y: (parent.height - height) / 2
+    x: (parent.width - parent.rightPadding + parent.leftPadding - width) / 2
+    y: (parent.height - parent.bottomPadding + parent.topPadding - height) / 2
 
     onAboutToHide: {
         // reset folder view
