@@ -239,7 +239,7 @@ QtObject {
         DWindow.enableSystemResize: false
         DWindow.enableSystemMove: false
         DWindow.enableBlurWindow: true
-        DWindow.borderColor: DTK.themeType === ApplicationHelper.DarkType ? Qt.rgba(0, 0, 0, windowedFrameWindow.blendColorAlpha(0.6) + 10 / 255) : Qt.rgba(0, 0, 0, 0.15)
+        DWindow.borderColor: DTK.themeType === ApplicationHelper.DarkType ? Qt.rgba(0, 0, 0, windowedFrameWindow.blendColorAlpha(0.6) + 20 / 255) : Qt.rgba(0, 0, 0, 0.15)
 
         onVisibleChanged: {
             if (visible) {
