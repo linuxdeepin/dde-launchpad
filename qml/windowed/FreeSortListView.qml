@@ -86,6 +86,18 @@ Item {
                 }
             }
 
+            function launchItem() {
+                if (itemType === ItemArrangementProxyModel.FolderItemType) {
+                    console.log("freesort view folder clicked:", desktopId);
+                    let idStr = model.desktopId
+                    let strFolderId = Number(idStr.replace("internal/folders/", ""))
+                    let strFolderName = model.display.startsWith("internal/category/") ? getCategoryName(model.display.substring(18)) : model.display
+                    folderClicked(strFolderId, strFolderName)
+                } else {
+                    launchApp(desktopId)
+                }
+            }
+
             onPositionChanged: function(drag) {
                 let dragId = drag.getDataAsString("text/x-dde-launcher-dnd-desktopId")
                 if (dragId === desktopId) {
@@ -188,27 +200,15 @@ Item {
 
                             baseLayer.focus = true
                         } else {
-                            if (itemType === ItemArrangementProxyModel.FolderItemType) {
-                                console.log("freesort view folder clicked:", desktopId);
-                                let idStr = model.desktopId
-                                let strFolderId = Number(idStr.replace("internal/folders/", ""))
-                                let strFolderName = model.display.startsWith("internal/category/") ? getCategoryName(model.display.substring(18)) : model.display
-                                folderClicked(strFolderId, strFolderName)
-                            } else {
-                                launchApp(desktopId)
-                            }
+                            launchItem()
                         }
                     }
                 }
             }
 
-            Keys.onReturnPressed: {
-                launchApp(model.desktopId)
-            }
+            Keys.onReturnPressed: launchItem()
 
-            Keys.onSpacePressed: {
-                launchApp(model.desktopId)
-            }
+            Keys.onSpacePressed: launchItem()
         }
     }
 
