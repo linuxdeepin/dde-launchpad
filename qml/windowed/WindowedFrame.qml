@@ -13,7 +13,7 @@ import org.deepin.launchpad 1.0
 import org.deepin.launchpad.models 1.0
 import "."
 
-Item {
+InputEventItem {
     id: baseLayer
     objectName: "WindowedFrame-BaseLayer"
 
@@ -204,6 +204,12 @@ Item {
     Keys.onEscapePressed: function (event) {
         if (!DebugHelper.avoidHideWindow) {
             LauncherController.visible = false;
+        }
+    }
+    onInputReceived: function(text){
+        if (bottomBar.searchEdit.text !== "" || bottomBar.searchEdit.focus !== true) {
+            bottomBar.searchEdit.text = text
+            bottomBar.searchEdit.focus = true
         }
     }
 
