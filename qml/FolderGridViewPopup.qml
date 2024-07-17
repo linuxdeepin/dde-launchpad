@@ -18,6 +18,7 @@ Popup {
     property alias currentFolderId: folderLoader.currentFolderId
     property alias folderName: folderLoader.folderName
     property var folderNameFont: DTK.fontManager.t2
+    required property point centerPosition
     readonly property bool isWindowedMode: LauncherController.currentFrame === "WindowedFrame"
 
     modal: true
@@ -33,10 +34,10 @@ Popup {
     // TODO: 经验证发现：Poppu窗口高度为奇数时，会多显示一个像素的外边框；为偶数时不会显示
     // 因此，这里需要保证高度是偶数来确保Popup窗口没有外边框
     height: (cs * 3) % 2 === 0 ? (cs * 3) : (cs * 3 + 1) + 130 /* title height*/
-    x: isWindowedMode ? (parent.width - width) / 2 : (parent.width - parent.rightPadding + parent.leftPadding - width) / 2
-    y: isWindowedMode ? (parent.height - height) / 2 : (parent.height - parent.bottomPadding + parent.topPadding - height) / 2
+    x: centerPosition.x - (width / 2)
+    y: centerPosition.y - (height / 2)
 
-    onAboutToHide: {
+    onClosed: {
         // reset folder view
         folderLoader.currentFolderId = -1
     }

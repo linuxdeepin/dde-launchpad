@@ -168,15 +168,80 @@ InputEventItem {
         }
     }
 
+    MouseArea {
+        id: cursorPosTracker
+        anchors.fill: parent
+        propagateComposedEvents: true
+    }
+
     FolderGridViewPopup {
         id: folderGridViewPopup
         width: 370
         height: 330
         folderNameFont: LauncherController.adjustFontWeight(DTK.fontManager.t6, Font.Bold)
+        centerPosition: Qt.point(curPointX, curPointY)
+
+        property int startPointX: 0
+        property int startPointY: 0
+        readonly property point endPoint: Qt.point(parent.width / 2, parent.height / 2)
+        property int curPointX: 0
+        property int curPointY: 0
 
         onVisibleChanged: function (visible) {
             if (!visible) {
                 appArea.opacity = 1
+            }
+        }
+
+        enter: Transition {
+            ParallelAnimation {
+                NumberAnimation {
+                    duration: 200
+                    properties: "scale"
+                    easing.type: Easing.OutQuad
+                    from: 0
+                    to: 1
+                }
+                NumberAnimation {
+                    duration: 200
+                    properties: "curPointX"
+                    easing.type: Easing.OutQuad
+                    from: folderGridViewPopup.startPointX
+                    to: folderGridViewPopup.endPoint.x
+                }
+                NumberAnimation {
+                    duration: 200
+                    properties: "curPointY"
+                    easing.type: Easing.OutQuad
+                    from: folderGridViewPopup.startPointY
+                    to: folderGridViewPopup.endPoint.y
+                }
+            }
+        }
+
+        exit: Transition {
+            ParallelAnimation {
+                NumberAnimation {
+                    duration: 200
+                    properties: "scale"
+                    easing.type: Easing.InQuad
+                    from: 1
+                    to: 0
+                }
+                NumberAnimation {
+                    duration: 200
+                    properties: "curPointX"
+                    easing.type: Easing.InQuad
+                    to: folderGridViewPopup.startPointX
+                    from: folderGridViewPopup.endPoint.x
+                }
+                NumberAnimation {
+                    duration: 200
+                    properties: "curPointY"
+                    easing.type: Easing.InQuad
+                    to: folderGridViewPopup.startPointY
+                    from: folderGridViewPopup.endPoint.y
+                }
             }
         }
     }
@@ -238,6 +303,8 @@ InputEventItem {
     Connections {
         target: appList
         function onFreeSortViewFolderClicked(folderId, folderName) {
+            folderGridViewPopup.startPointX = cursorPosTracker.mouseX
+            folderGridViewPopup.startPointY = cursorPosTracker.mouseY
             folderGridViewPopup.currentFolderId = folderId
             folderGridViewPopup.folderName = folderName
             folderGridViewPopup.open()

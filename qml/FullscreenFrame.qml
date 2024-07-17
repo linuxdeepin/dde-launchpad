@@ -549,6 +549,7 @@ InputEventItem {
         FolderGridViewPopup {
             id: folderGridViewPopup
             cs: searchResultGridViewContainer.cellHeight
+            centerPosition: Qt.point((parent.width - parent.rightPadding + parent.leftPadding) / 2, (parent.height - parent.bottomPadding + parent.topPadding) / 2)
         }
 
         Keys.forwardTo: [searchEdit]
