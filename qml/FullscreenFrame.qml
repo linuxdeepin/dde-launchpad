@@ -422,7 +422,10 @@ InputEventItem {
                                             onFolderClicked: {
                                                 let idStr = model.desktopId
                                                 let idNum = Number(idStr.replace("internal/folders/", ""))
+                                                let itemPos = mapToItem(baseLayer, x, y)
                                                 folderGridViewPopup.currentFolderId = idNum
+                                                folderGridViewPopup.startPointX = itemPos.x
+                                                folderGridViewPopup.startPointY = itemPos.y
                                                 folderGridViewPopup.open()
                                                 folderGridViewPopup.folderName = model.display.startsWith("internal/category/") ? getCategoryName(model.display.substring(18)) : model.display
                                                 console.log("open folder id:" + idNum)
@@ -550,7 +553,65 @@ InputEventItem {
         FolderGridViewPopup {
             id: folderGridViewPopup
             cs: searchResultGridViewContainer.cellHeight
-            centerPosition: Qt.point((parent.width - parent.rightPadding + parent.leftPadding) / 2, (parent.height - parent.bottomPadding + parent.topPadding) / 2)
+            centerPosition: Qt.point(curPointX, curPointY)
+
+            property int startPointX: 0
+            property int startPointY: 0
+            readonly property point endPoint: Qt.point((parent.width - parent.rightPadding + parent.leftPadding) / 2, (parent.height - parent.bottomPadding + parent.topPadding) / 2)
+            property int curPointX: 0
+            property int curPointY: 0
+
+            enter: Transition {
+                ParallelAnimation {
+                    NumberAnimation {
+                        duration: 200
+                        properties: "scale"
+                        easing.type: Easing.OutQuad
+                        from: 0.2
+                        to: 1
+                    }
+                    NumberAnimation {
+                        duration: 200
+                        properties: "curPointX"
+                        easing.type: Easing.OutQuad
+                        from: folderGridViewPopup.startPointX
+                        to: folderGridViewPopup.endPoint.x
+                    }
+                    NumberAnimation {
+                        duration: 200
+                        properties: "curPointY"
+                        easing.type: Easing.OutQuad
+                        from: folderGridViewPopup.startPointY
+                        to: folderGridViewPopup.endPoint.y
+                    }
+                }
+            }
+
+            exit: Transition {
+                ParallelAnimation {
+                    NumberAnimation {
+                        duration: 200
+                        properties: "scale"
+                        easing.type: Easing.InQuad
+                        from: 1
+                        to: 0.2
+                    }
+                    NumberAnimation {
+                        duration: 200
+                        properties: "curPointX"
+                        easing.type: Easing.InQuad
+                        to: folderGridViewPopup.startPointX
+                        from: folderGridViewPopup.endPoint.x
+                    }
+                    NumberAnimation {
+                        duration: 200
+                        properties: "curPointY"
+                        easing.type: Easing.InQuad
+                        to: folderGridViewPopup.startPointY
+                        from: folderGridViewPopup.endPoint.y
+                    }
+                }
+            }
         }
 
         Keys.forwardTo: [searchEdit]
