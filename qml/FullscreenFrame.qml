@@ -17,6 +17,38 @@ import org.deepin.launchpad.models 1.0
 InputEventItem {
     anchors.fill: parent
     objectName: "FullscreenFrame-InputEventItem"
+
+    // ----------- Drag and Drop related functions START -----------
+    Label {
+        property string currentlyDraggedId
+
+        signal dragEnded()
+
+        id: dndItem
+        visible: DebugHelper.qtDebugEnabled
+        text: "DnD DEBUG"
+
+        Drag.onActiveChanged: {
+            if (Drag.active) {
+                text = "Dragging " + currentlyDraggedId
+            } else {
+                currentlyDraggedId = ""
+                dragEnded()
+            }
+        }
+    }
+
+    function dropOnItem(dragId, dropId, op) {
+        dndItem.text = "drag " + dragId + " onto " + dropId + " with " + op
+        ItemArrangementProxyModel.commitDndOperation(dragId, dropId, op)
+    }
+
+    function dropOnPage(dragId, dropFolderId, pageNumber) {
+        dndItem.text = "drag " + dragId + " into " + dropFolderId + " at page " + pageNumber
+        ItemArrangementProxyModel.commitDndOperation(dragId, dropFolderId, ItemArrangementProxyModel.DndJoin, pageNumber)
+    }
+    // ----------- Drag and Drop related functions  END  -----------
+
     Control {
         id: baseLayer
         visible: true
@@ -34,37 +66,6 @@ InputEventItem {
 
         property Palette textColor: appTextColor
         palette.windowText: ColorSelector.textColor
-
-        // ----------- Drag and Drop related functions START -----------
-        Label {
-            property string currentlyDraggedId
-
-            signal dragEnded()
-
-            id: dndItem
-            visible: DebugHelper.qtDebugEnabled
-            text: "DnD DEBUG"
-
-            Drag.onActiveChanged: {
-                if (Drag.active) {
-                    text = "Dragging " + currentlyDraggedId
-                } else {
-                    currentlyDraggedId = ""
-                    dragEnded()
-                }
-            }
-        }
-
-        function dropOnItem(dragId, dropId, op) {
-            dndItem.text = "drag " + dragId + " onto " + dropId + " with " + op
-            ItemArrangementProxyModel.commitDndOperation(dragId, dropId, op)
-        }
-
-        function dropOnPage(dragId, dropFolderId, pageNumber) {
-            dndItem.text = "drag " + dragId + " into " + dropFolderId + " at page " + pageNumber
-            ItemArrangementProxyModel.commitDndOperation(dragId, dropFolderId, ItemArrangementProxyModel.DndJoin, pageNumber)
-        }
-        // ----------- Drag and Drop related functions  END  -----------
 
         function tryToRemoveEmptyPage() {
             ItemArrangementProxyModel.removeEmptyPage()
