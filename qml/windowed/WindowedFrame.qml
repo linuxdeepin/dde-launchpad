@@ -168,12 +168,6 @@ InputEventItem {
         }
     }
 
-    MouseArea {
-        id: cursorPosTracker
-        anchors.fill: parent
-        propagateComposedEvents: true
-    }
-
     FolderGridViewPopup {
         id: folderGridViewPopup
         width: 370
@@ -302,9 +296,9 @@ InputEventItem {
 
     Connections {
         target: appList
-        function onFreeSortViewFolderClicked(folderId, folderName) {
-            folderGridViewPopup.startPointX = cursorPosTracker.mouseX
-            folderGridViewPopup.startPointY = cursorPosTracker.mouseY
+        function onFreeSortViewFolderClicked(folderId, folderName, triggerPosition) {
+            folderGridViewPopup.startPointX = rowLineControl.x + rowLineControl.width / 2
+            folderGridViewPopup.startPointY = triggerPosition.y
             folderGridViewPopup.currentFolderId = folderId
             folderGridViewPopup.folderName = folderName
             folderGridViewPopup.open()

@@ -14,7 +14,7 @@ import org.deepin.launchpad.models 1.0
 Item {
     id: root
 
-    signal folderClicked(string folderId, string folderName)
+    signal folderClicked(string folderId, string folderName, point triggerPosition)
 
     property Item keyTabTarget: listView
 
@@ -92,7 +92,7 @@ Item {
                     let idStr = model.desktopId
                     let strFolderId = Number(idStr.replace("internal/folders/", ""))
                     let strFolderName = model.display.startsWith("internal/category/") ? getCategoryName(model.display.substring(18)) : model.display
-                    folderClicked(strFolderId, strFolderName)
+                    folderClicked(strFolderId, strFolderName, mapToItem(listView, 0, 0))
                 } else {
                     launchApp(desktopId)
                 }

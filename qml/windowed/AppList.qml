@@ -16,7 +16,7 @@ import "."
 
 ColumnLayout {
 
-    signal freeSortViewFolderClicked(string folderId, string folderName)
+    signal freeSortViewFolderClicked(string folderId, string folderName, point triggerPosition)
 
     property Item keyTabTarget: loader.item
     property Item nextKeyTabTarget
@@ -60,7 +60,7 @@ ColumnLayout {
             id: appFreeSortListView
 
             onFolderClicked: {
-                freeSortViewFolderClicked(folderId, folderName)
+                freeSortViewFolderClicked(folderId, folderName, triggerPosition)
             }
 
             MouseAreaCom {}
