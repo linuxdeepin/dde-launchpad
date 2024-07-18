@@ -193,7 +193,7 @@ InputEventItem {
                     duration: 200
                     properties: "scale"
                     easing.type: Easing.OutQuad
-                    from: 0
+                    from: 0.2
                     to: 1
                 }
                 NumberAnimation {
@@ -220,7 +220,7 @@ InputEventItem {
                     properties: "scale"
                     easing.type: Easing.InQuad
                     from: 1
-                    to: 0
+                    to: 0.2
                 }
                 NumberAnimation {
                     duration: 200
