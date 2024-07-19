@@ -105,6 +105,9 @@ InputEventItem {
         anchors.topMargin: 10
         anchors.leftMargin: 10
         spacing: 0
+        Behavior on opacity {
+            NumberAnimation { duration: 200; easing.type: Easing.OutQuad }
+        }
         AppList {
             id: appList
             Layout.preferredWidth: 220
