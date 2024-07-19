@@ -379,6 +379,9 @@ InputEventItem {
                                         }
                                     }
                                     opacity: folderGridViewPopup.visible ? 0.4 : 1
+                                    Behavior on opacity {
+                                        NumberAnimation { duration: 200; easing.type: Easing.OutQuad }
+                                    }
                                     activeGridViewFocusOnTab: gridViewLoader.SwipeView.isCurrentItem
                                     itemMove: Transition { NumberAnimation { properties: "x,y"; duration: 250 } }
                                     delegate: DropArea {
