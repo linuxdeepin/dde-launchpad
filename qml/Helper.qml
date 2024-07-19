@@ -18,6 +18,6 @@ QtObject {
         property int leftMargin: 10
         property int rightMargin: 10
         property int cellPaddingColumns: 14
-        property int cellPaddingRows: 10
+        property int cellPaddingRows: 6
     }
 }
