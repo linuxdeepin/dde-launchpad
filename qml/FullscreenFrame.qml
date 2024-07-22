@@ -387,6 +387,7 @@ InputEventItem {
                                     delegate: DropArea {
                                         Keys.forwardTo: [iconItemDelegate]
 
+                                        visible: !folderGridViewPopup.visible || folderGridViewPopup.currentFolderId !== Number(model.desktopId.replace("internal/folders/", ""))
                                         width: gridViewContainer.cellWidth
                                         height: gridViewContainer.cellHeight
                                         onEntered: {
