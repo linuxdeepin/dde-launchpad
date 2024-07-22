@@ -11,67 +11,72 @@
 <context>
     <name>AppItemMenu</name>
     <message>
-        <location filename="../qml/AppItemMenu.qml" line="31"/>
+        <location filename="../qml/AppItemMenu.qml" line="34"/>
         <source>Open</source>
         <translation>Відкрити</translation>
     </message>
     <message>
-        <location filename="../qml/AppItemMenu.qml" line="41"/>
+        <location filename="../qml/AppItemMenu.qml" line="46"/>
         <source>Pin to Top</source>
         <translation>Пришпилити нагорі</translation>
     </message>
     <message>
-        <location filename="../qml/AppItemMenu.qml" line="50"/>
+        <location filename="../qml/AppItemMenu.qml" line="55"/>
+        <source>Move to Top</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/AppItemMenu.qml" line="65"/>
         <source>Remove from favorites</source>
         <translation>Вилучити з вибраного</translation>
     </message>
     <message>
-        <location filename="../qml/AppItemMenu.qml" line="50"/>
+        <location filename="../qml/AppItemMenu.qml" line="65"/>
         <source>Add to favorites</source>
         <translation>Додати до вибраного</translation>
     </message>
     <message>
-        <location filename="../qml/AppItemMenu.qml" line="64"/>
+        <location filename="../qml/AppItemMenu.qml" line="80"/>
         <source>Send to desktop</source>
         <translation>Надіслати на стільницю</translation>
     </message>
     <message>
-        <location filename="../qml/AppItemMenu.qml" line="64"/>
+        <location filename="../qml/AppItemMenu.qml" line="80"/>
         <source>Remove from desktop</source>
         <translation>Видалити з стільниці</translation>
     </message>
     <message>
-        <location filename="../qml/AppItemMenu.qml" line="74"/>
+        <location filename="../qml/AppItemMenu.qml" line="91"/>
         <source>Remove from dock</source>
         <translation>Видалити з док-панелі</translation>
     </message>
     <message>
-        <location filename="../qml/AppItemMenu.qml" line="74"/>
+        <location filename="../qml/AppItemMenu.qml" line="91"/>
         <source>Send to dock</source>
         <translation>Надіслати на панель</translation>
     </message>
     <message>
-        <location filename="../qml/AppItemMenu.qml" line="85"/>
+        <location filename="../qml/AppItemMenu.qml" line="103"/>
         <source>Add to startup</source>
         <translation>Додати до запуску</translation>
     </message>
     <message>
-        <location filename="../qml/AppItemMenu.qml" line="85"/>
+        <location filename="../qml/AppItemMenu.qml" line="103"/>
         <source>Remove from startup</source>
         <translation>Вилучити із запуску</translation>
     </message>
     <message>
-        <location filename="../qml/AppItemMenu.qml" line="92"/>
+        <location filename="../qml/AppItemMenu.qml" line="111"/>
         <source>Use a proxy</source>
         <translation>Використовувати проксі</translation>
     </message>
     <message>
-        <location filename="../qml/AppItemMenu.qml" line="100"/>
+        <location filename="../qml/AppItemMenu.qml" line="120"/>
         <source>Disable display scaling</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/AppItemMenu.qml" line="107"/>
+        <location filename="../qml/AppItemMenu.qml" line="127"/>
         <source>Uninstall</source>
         <translation>Видалити</translation>
     </message>
@@ -118,12 +123,12 @@
 <context>
     <name>BottomBar</name>
     <message>
-        <location filename="../qml/windowed/BottomBar.qml" line="26"/>
+        <location filename="../qml/windowed/BottomBar.qml" line="32"/>
         <source>Power</source>
         <translation type="unfinished">Живлення</translation>
     </message>
     <message>
-        <location filename="../qml/windowed/BottomBar.qml" line="40"/>
+        <location filename="../qml/windowed/BottomBar.qml" line="56"/>
         <source>Search</source>
         <translation type="unfinished">Пошук</translation>
     </message>
@@ -131,14 +136,13 @@
 <context>
     <name>FrequentlyUsedView</name>
     <message>
-        <location filename="../qml/windowed/FrequentlyUsedView.qml" line="29"/>
+        <location filename="../qml/windowed/FrequentlyUsedView.qml" line="35"/>
         <source>Frequently Used</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/windowed/FrequentlyUsedView.qml" line="29"/>
         <source>All Apps</source>
-        <translation type="unfinished">Усі програми</translation>
+        <translation type="obsolete">Усі програми</translation>
     </message>
 </context>
 <context>
@@ -164,72 +168,72 @@
 <context>
     <name>Main</name>
     <message>
-        <location filename="../qml/Main.qml" line="21"/>
+        <location filename="../qml/Main.qml" line="22"/>
         <source>Internet</source>
         <translation type="unfinished">Інтернет</translation>
     </message>
     <message>
-        <location filename="../qml/Main.qml" line="23"/>
+        <location filename="../qml/Main.qml" line="24"/>
         <source>Chat</source>
         <translation type="unfinished">Спілкування</translation>
     </message>
     <message>
-        <location filename="../qml/Main.qml" line="25"/>
+        <location filename="../qml/Main.qml" line="26"/>
         <source>Music</source>
         <translation type="unfinished">Музика</translation>
     </message>
     <message>
-        <location filename="../qml/Main.qml" line="27"/>
+        <location filename="../qml/Main.qml" line="28"/>
         <source>Video</source>
         <translation type="unfinished">Відео</translation>
     </message>
     <message>
-        <location filename="../qml/Main.qml" line="29"/>
+        <location filename="../qml/Main.qml" line="30"/>
         <source>Graphics</source>
         <translation type="unfinished">Графіка</translation>
     </message>
     <message>
-        <location filename="../qml/Main.qml" line="31"/>
+        <location filename="../qml/Main.qml" line="32"/>
         <source>Game</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/Main.qml" line="33"/>
+        <location filename="../qml/Main.qml" line="34"/>
         <source>Office</source>
         <translation type="unfinished">Офіс</translation>
     </message>
     <message>
-        <location filename="../qml/Main.qml" line="35"/>
+        <location filename="../qml/Main.qml" line="36"/>
         <source>Reading</source>
         <translation type="unfinished">Читання</translation>
     </message>
     <message>
-        <location filename="../qml/Main.qml" line="37"/>
+        <location filename="../qml/Main.qml" line="38"/>
         <source>Development</source>
         <translation type="unfinished">Розробка</translation>
     </message>
     <message>
-        <location filename="../qml/Main.qml" line="39"/>
+        <location filename="../qml/Main.qml" line="40"/>
         <source>System</source>
         <translation type="unfinished">Система</translation>
     </message>
     <message>
-        <location filename="../qml/Main.qml" line="41"/>
+        <location filename="../qml/Main.qml" line="42"/>
         <source>Others</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/Main.qml" line="313"/>
+        <location filename="../qml/Main.qml" line="398"/>
         <source>Are you sure you want to uninstall %1?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/Main.qml" line="325"/>
+        <location filename="../qml/Main.qml" line="410"/>
         <source>Cancel</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/Main.qml" line="339"/>
+        <location filename="../qml/Main.qml" line="424"/>
         <source>Confirm</source>
         <translation type="unfinished"></translation>
     </message>
@@ -237,7 +241,7 @@
 <context>
     <name>RecentlyInstalledView</name>
     <message>
-        <location filename="../qml/windowed/RecentlyInstalledView.qml" line="27"/>
+        <location filename="../qml/windowed/RecentlyInstalledView.qml" line="34"/>
         <source>Recently Installed</source>
         <translation type="unfinished"></translation>
     </message>
@@ -245,12 +249,12 @@
 <context>
     <name>SearchResultView</name>
     <message>
-        <location filename="../qml/windowed/SearchResultView.qml" line="26"/>
+        <location filename="../qml/windowed/SearchResultView.qml" line="37"/>
         <source>All Apps</source>
         <translation type="unfinished">Усі програми</translation>
     </message>
     <message>
-        <location filename="../qml/windowed/SearchResultView.qml" line="76"/>
+        <location filename="../qml/windowed/SearchResultView.qml" line="102"/>
         <source>No search results</source>
         <translation type="unfinished">Нічого не знайдено</translation>
     </message>
@@ -258,42 +262,42 @@
 <context>
     <name>SideBar</name>
     <message>
-        <location filename="../qml/windowed/SideBar.qml" line="39"/>
+        <location filename="../qml/windowed/SideBar.qml" line="40"/>
         <source>Free sorting</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/windowed/SideBar.qml" line="52"/>
+        <location filename="../qml/windowed/SideBar.qml" line="54"/>
         <source>Sort by category</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/windowed/SideBar.qml" line="64"/>
+        <location filename="../qml/windowed/SideBar.qml" line="66"/>
         <source>Sort by name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/windowed/SideBar.qml" line="124"/>
+        <location filename="../qml/windowed/SideBar.qml" line="142"/>
         <source>Computer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/windowed/SideBar.qml" line="139"/>
+        <location filename="../qml/windowed/SideBar.qml" line="153"/>
         <source>Pictures</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/windowed/SideBar.qml" line="154"/>
+        <location filename="../qml/windowed/SideBar.qml" line="164"/>
         <source>Documents</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/windowed/SideBar.qml" line="169"/>
+        <location filename="../qml/windowed/SideBar.qml" line="175"/>
         <source>Desktop</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/windowed/SideBar.qml" line="184"/>
+        <location filename="../qml/windowed/SideBar.qml" line="186"/>
         <source>Control Center</source>
         <translation type="unfinished"></translation>
     </message>
