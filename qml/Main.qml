@@ -156,10 +156,6 @@ QtObject {
 
         width: windowedFrameSize.width
         height: windowedFrameSize.height
-        maximumWidth: width
-        minimumWidth: width
-        minimumHeight: height
-        maximumHeight: height
         ColorSelector.family: Palette.CrystalColor
         DLayerShellWindow.topMargin: {
             if (Qt.UpArrow === DesktopIntegration.dockPosition)
@@ -290,11 +286,6 @@ QtObject {
         objectName: "FullscreenFrameApplicationWindow"
         title: "Fullscreen Launchpad"
         visible: LauncherController.visible && (LauncherController.currentFrame !== "WindowedFrame")
-       //  disable resizable
-        maximumWidth: width
-        minimumWidth: width
-        minimumHeight: height
-        maximumHeight: height
 
         DLayerShellWindow.anchors: DLayerShellWindow.AnchorBottom | DLayerShellWindow.AnchorTop | DLayerShellWindow.AnchorLeft | DLayerShellWindow.AnchorRight
         DLayerShellWindow.layer: DLayerShellWindow.LayerTop
