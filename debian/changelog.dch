@@ -1,10 +1,10 @@
-dde-launchpad (0.8.1) unstable; urgency=medium
+dde-launchpad (0.8.1) UNRELEASED; urgency=medium
 
   * fix: mini launcher can't open the appGroup by space or return key(Issue: 9737)
   * fix: Frequently used app items will overlap search bar splitline(Issue: 9748)
   * chore(i18n): update translations(Issue: 9898)
 
- -- zyz <zhaoyingzhen@uniontech.com>  Wed, 24 Jul 2024 13:49:48 +0800
+ -- Deepin Packages Builder <uos@uos-PC>  Wed, 24 Jul 2024 13:49:48 +0800
 
 dde-launchpad (0.8.0) unstable; urgency=medium
 
