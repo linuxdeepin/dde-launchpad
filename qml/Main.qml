@@ -196,6 +196,7 @@ QtObject {
                 return DLayerShellWindow.AnchorBottom | DLayerShellWindow.AnchorLeft
             }
         }
+        DLayerShellWindow.keyboardInteractivity: DLayerShellWindow.KeyboardInteractivityOnDemand
         flags: {
             if (DebugHelper.useRegularWindow) return Qt.Window
             return ( Qt.FramelessWindowHint | Qt.Tool)
@@ -289,6 +290,7 @@ QtObject {
 
         DLayerShellWindow.anchors: DLayerShellWindow.AnchorBottom | DLayerShellWindow.AnchorTop | DLayerShellWindow.AnchorLeft | DLayerShellWindow.AnchorRight
         DLayerShellWindow.layer: DLayerShellWindow.LayerTop
+        DLayerShellWindow.keyboardInteractivity: DLayerShellWindow.KeyboardInteractivityOnDemand
 
         // visibility: Window.FullScreen
         flags: {
