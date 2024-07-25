@@ -317,11 +317,18 @@ InputEventItem {
 
                                 property var grids: gridViewContainer
 
-                                MultipageSortFilterProxyModel {
+                                SortProxyModel {
                                     id: proxyModel
-                                    sourceModel: ItemArrangementProxyModel
-                                    pageId: modelData
-                                    folderId: 0
+                                    sourceModel: MultipageSortFilterProxyModel {
+                                        filterOnlyMode: true
+                                        sourceModel: ItemArrangementProxyModel
+                                        pageId: modelData
+                                        folderId: 0
+                                    }
+                                    sortRole: ItemArrangementProxyModel.IndexInPageRole
+                                    Component.onCompleted: {
+                                        proxyModel.sort(0)
+                                    }
                                 }
 
                                 MouseArea {
@@ -383,7 +390,13 @@ InputEventItem {
                                         NumberAnimation { duration: 200; easing.type: Easing.OutQuad }
                                     }
                                     activeGridViewFocusOnTab: gridViewLoader.SwipeView.isCurrentItem
-                                    itemMove: Transition { NumberAnimation { properties: "x,y"; duration: 250 } }
+                                    itemMove: Transition {
+                                        NumberAnimation {
+                                            properties: "x,y"
+                                            duration: 200
+                                            easing.type: Easing.OutQuad
+                                        }
+                                    }
                                     delegate: DropArea {
                                         Keys.forwardTo: [iconItemDelegate]
 
@@ -405,6 +418,7 @@ InputEventItem {
                                                 op = 1
                                             }
                                             dropOnItem(dragId, model.desktopId, op)
+                                            proxyModel.sort(0)
                                         }
 
                                         IconItemDelegate {
@@ -428,8 +442,8 @@ InputEventItem {
                                                 let idNum = Number(idStr.replace("internal/folders/", ""))
                                                 let itemPos = mapToItem(baseLayer, x, y)
                                                 folderGridViewPopup.currentFolderId = idNum
-                                                folderGridViewPopup.startPointX = itemPos.x
-                                                folderGridViewPopup.startPointY = itemPos.y
+                                                folderGridViewPopup.startPointX = itemPos.x + width / 2
+                                                folderGridViewPopup.startPointY = itemPos.y + height / 2
                                                 folderGridViewPopup.open()
                                                 folderGridViewPopup.folderName = model.display.startsWith("internal/category/") ? getCategoryName(model.display.substring(18)) : model.display
                                                 console.log("open folder id:" + idNum)

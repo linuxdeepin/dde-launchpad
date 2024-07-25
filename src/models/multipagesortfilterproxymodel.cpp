@@ -10,6 +10,7 @@
 
 MultipageSortFilterProxyModel::MultipageSortFilterProxyModel(QObject *parent)
     : QSortFilterProxyModel(parent)
+    , m_filterOnlyMode(false)
 {
     setSortRole(ItemArrangementProxyModel::FolderIdNumberRole);
     setDynamicSortFilter(true);
@@ -45,6 +46,10 @@ bool MultipageSortFilterProxyModel::filterAcceptsRow(int source_row, const QMode
 
 bool MultipageSortFilterProxyModel::lessThan(const QModelIndex &source_left, const QModelIndex &source_right) const
 {
+    if (m_filterOnlyMode) {
+        return QSortFilterProxyModel::lessThan(source_left, source_right);
+    }
+
     if (source_left.data(ItemArrangementProxyModel::FolderIdNumberRole).toInt() < source_right.data(ItemArrangementProxyModel::FolderIdNumberRole).toInt()) {
         return true;
     } else if (source_left.data(ItemArrangementProxyModel::PageRole).toInt() < source_right.data(ItemArrangementProxyModel::PageRole).toInt()) {
