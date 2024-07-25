@@ -14,6 +14,7 @@ class MultipageSortFilterProxyModel : public QSortFilterProxyModel
     Q_PROPERTY(QAbstractItemModel *sourceModel READ sourceModel WRITE setModel NOTIFY sourceModelChanged)
     Q_PROPERTY(int folderId MEMBER m_folderId NOTIFY onFolderIdChanged)
     Q_PROPERTY(int pageId MEMBER m_pageId NOTIFY onPageIdChanged)
+    Q_PROPERTY(bool filterOnlyMode MEMBER m_filterOnlyMode NOTIFY onFilterOnlyModeChanged)
     QML_NAMED_ELEMENT(MultipageSortFilterProxyModel)
 
 public:
@@ -30,8 +31,10 @@ signals:
     void onFolderIdChanged(int);
     void onPageIdChanged(int);
     void sourceModelChanged(QObject *);
+    void onFilterOnlyModeChanged(bool);
 
 private:
     int m_folderId;
     int m_pageId;
+    bool m_filterOnlyMode;
 };

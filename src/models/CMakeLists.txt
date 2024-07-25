@@ -2,6 +2,8 @@
 #
 # SPDX-License-Identifier: CC0-1.0
 
+find_package(Qt6Core CONFIG REQUIRED Private)
+
 qt_add_qml_module(
     launcher-models
     URI org.deepin.launchpad.models
@@ -14,6 +16,7 @@ target_sources(launcher-models PUBLIC
 FILE_SET HEADERS
 FILES
     appsmodel.h
+    sortproxymodel.h
     searchfilterproxymodel.h
     categorizedsortproxymodel.h
     favoritedproxymodel.h
@@ -29,6 +32,7 @@ target_sources(launcher-models
 PRIVATE
     appsmodel.cpp
     appitem.cpp appitem.h
+    sortproxymodel.cpp
     searchfilterproxymodel.cpp
     categorizedsortproxymodel.cpp
     favoritedproxymodel.cpp
@@ -44,6 +48,7 @@ PRIVATE
 target_link_libraries(launcher-models PRIVATE
     Qt::Core
     Qt::Gui
+    Qt::CorePrivate
     ${DTK_NS}::Core
 
     gio-utils
