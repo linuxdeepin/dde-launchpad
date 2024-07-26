@@ -262,8 +262,10 @@ Popup {
 
                                             dropOnItem(dragId, model.desktopId, op)
                                         }
+                                        Keys.forwardTo: [innerItem]
 
                                         IconItemDelegate {
+                                            id: innerItem
                                             anchors.fill: parent
                                             dndEnabled: true
                                             displayFont: isWindowedMode ? DTK.fontManager.t9 : DTK.fontManager.t6
