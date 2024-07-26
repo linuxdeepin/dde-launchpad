@@ -403,12 +403,20 @@ InputEventItem {
                                         visible: !folderGridViewPopup.visible || folderGridViewPopup.currentFolderId !== Number(model.desktopId.replace("internal/folders/", ""))
                                         width: gridViewContainer.cellWidth
                                         height: gridViewContainer.cellHeight
-                                        onEntered: {
+                                        onEntered: function (drag) {
                                             if (folderGridViewPopup.opened) {
                                                 folderGridViewPopup.close()
                                             }
+                                            dndDropEnterTimer.dragId = drag.getDataAsString("text/x-dde-launcher-dnd-desktopId")
+                                            dndDropEnterTimer.restart()
                                         }
-                                        onDropped: {
+                                        onExited: {
+                                            dndDropEnterTimer.stop()
+                                            dndDropEnterTimer.dragId = ""
+                                        }
+                                        onDropped: function (drop) {
+                                            dndDropEnterTimer.stop()
+                                            dndDropEnterTimer.dragId = ""
                                             let dragId = drop.getDataAsString("text/x-dde-launcher-dnd-desktopId")
                                             let op = 0
                                             let sideOpPadding = width / 4
@@ -419,6 +427,28 @@ InputEventItem {
                                             }
                                             dropOnItem(dragId, model.desktopId, op)
                                             proxyModel.sort(0)
+                                        }
+
+                                        Timer {
+                                            id: dndDropEnterTimer
+                                            interval: 500
+                                            property string dragId: ""
+                                            onTriggered: function() {
+                                                if (dragId === "") return
+                                                let op = 0
+                                                let sideOpPadding = width / 4
+                                                if (drag.x < sideOpPadding) {
+                                                    op = -1
+                                                } else if (drag.x > (width - sideOpPadding)) {
+                                                    op = 1
+                                                }
+                                                if (op === 0) {
+                                                    dndDropEnterTimer.restart()
+                                                    return
+                                                }
+                                                dropOnItem(dragId, model.desktopId, op)
+                                                proxyModel.sort(0)
+                                            }
                                         }
 
                                         IconItemDelegate {
