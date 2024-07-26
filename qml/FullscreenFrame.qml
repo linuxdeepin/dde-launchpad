@@ -139,8 +139,6 @@ InputEventItem {
                     ToolButton {
                         id: exitFullscreenBtn
 
-                        visible: (DesktopIntegration.environmentVariable("DDE_CURRENT_COMPOSITOR") !== "TreeLand")
-
                         Accessible.name: "Exit fullscreen"
 
                         anchors.right: fullscreenHeader.right
