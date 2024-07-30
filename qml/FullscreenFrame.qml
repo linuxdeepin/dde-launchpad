@@ -383,7 +383,7 @@ InputEventItem {
                                             event.accepted = false
                                         }
                                     }
-                                    opacity: folderGridViewPopup.visible ? 0.4 : 1
+                                    opacity: folderGridViewPopup.visible ? 0.2 : 1
                                     Behavior on opacity {
                                         NumberAnimation { duration: 200; easing.type: Easing.OutQuad }
                                     }
