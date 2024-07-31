@@ -176,7 +176,7 @@ Control {
             }
 
             Label {
-                property bool singleRow: isWindowedMode && (font.pixelSize > Helper.windowed.doubleRowMaxFontSize)
+                property bool singleRow: font.pixelSize > (isWindowedMode ? Helper.windowed.doubleRowMaxFontSize : Helper.fullscreen.doubleRowMaxFontSize)
                 id: iconItemLabel
                 text: root.text
                 textFormat: Text.PlainText
