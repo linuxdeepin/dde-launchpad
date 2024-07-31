@@ -1,3 +1,10 @@
+dde-launchpad (0.8.2) unstable; urgency=medium
+
+  * fix: Cannot open apps inside folders with keyboard(Issue: 9930)
+  * fix: Insufficient background opacity when opening folder(Issue: 10037)
+
+ -- zyz <zhaoyingzhen@uniontech.com>  Wed, 31 Jul 2024 14:56:03 +0800
+
 dde-launchpad (0.8.1) unstable; urgency=medium
 
   * fix: mini launcher can't open the appGroup by space or return key(Issue: 9737)
