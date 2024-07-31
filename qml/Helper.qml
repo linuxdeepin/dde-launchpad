@@ -14,6 +14,9 @@ QtObject {
         property int doubleRowMaxFontSize: 12
         property int listItemHeight: 36
     }
+    property QtObject fullscreen :QtObject {
+        property int doubleRowMaxFontSize: 14
+    }
     property QtObject frequentlyUsed :QtObject {
         property int leftMargin: 10
         property int rightMargin: 10
