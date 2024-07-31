@@ -293,9 +293,10 @@ QtObject {
         DLayerShellWindow.keyboardInteractivity: DLayerShellWindow.KeyboardInteractivityOnDemand
 
         // visibility: Window.FullScreen
-        flags: {
-            if (DebugHelper.useRegularWindow) return Qt.Window
-            return (Qt.FramelessWindowHint | Qt.Tool)
+        Component.onCompleted: {
+            if (DebugHelper.useRegularWindow) {
+                flags = Qt.Window
+            }
         }
 
         DWindow.enabled: !DebugHelper.useRegularWindow
