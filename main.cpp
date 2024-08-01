@@ -4,6 +4,7 @@
 
 #include "categorizedsortproxymodel.h"
 #include "launchercontroller.h"
+#include "personalizationmanager.h"
 
 #include <QDBusConnection>
 #include <QGuiApplication>
@@ -11,6 +12,7 @@
 #include <QQmlContext>
 #include <QQuickStyle>
 #include <QCommandLineParser>
+#include <QWindow>
 #include <DGuiApplicationHelper>
 #include <DStandardPaths>
 #include <DPathBuf>
@@ -75,6 +77,12 @@ int main(int argc, char* argv[])
     engine.loadFromModule("org.deepin.launchpad", "Main");
     if (engine.rootObjects().isEmpty())
         return -1;
+    QWindow * windowdFrameWindow = engine.rootObjects().at(0)->findChild<QWindow *>("WindowedFrameApplicationWindow");
+    Q_CHECK_PTR(windowdFrameWindow);
+    PersonalizationManager personalizationmgr;
+    if (windowdFrameWindow) {
+        personalizationmgr.personalizeWindow(windowdFrameWindow, PersonalizationManager::BgBlurredWallpaper);
+    }
 
     return app.exec();
 }

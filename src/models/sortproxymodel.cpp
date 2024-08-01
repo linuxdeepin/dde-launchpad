@@ -1,8 +1,10 @@
 /*
-  This file is part of KDToolBox.
+  This file was part of KDToolBox, modified by deepin to fit their own needs.
 
   SPDX-FileCopyrightText: 2018 Klarälvdalens Datakonsult AB, a KDAB Group company <info@kdab.com>
   Author: André Somers <andre.somers@kdab.com>
+  SPDX-FileCopyrightText: 2024 UnionTech Software Technology Co., Ltd.
+  Author: Wang Zichong <wangzichong@deepin.org>
 
   SPDX-License-Identifier: MIT
 */

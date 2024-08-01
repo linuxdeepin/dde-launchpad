@@ -78,7 +78,7 @@ InputEventItem {
         }
 
         background: Image {
-            source: DesktopIntegration.backgroundUrl
+            source: DesktopIntegration.isTreeLand() ? undefined : DesktopIntegration.backgroundUrl
 
             Rectangle {
                 anchors.fill: parent
