@@ -77,9 +77,7 @@ InputEventItem {
             repeat: false
         }
 
-        background: Image {
-            source: DesktopIntegration.backgroundUrl
-
+        background: Item {
             Rectangle {
                 anchors.fill: parent
                 color: folderGridViewPopup.visible ? Qt.rgba(0, 0, 0, 0.6) : Qt.rgba(0, 0, 0, 0.5)
