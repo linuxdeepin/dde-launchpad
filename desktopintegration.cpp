@@ -26,6 +26,11 @@ QString DesktopIntegration::currentDE()
     return qEnvironmentVariable("XDG_CURRENT_DESKTOP", QStringLiteral("DDE")).split(':').constFirst();
 }
 
+bool DesktopIntegration::isTreeLand()
+{
+    return qEnvironmentVariable("DDE_CURRENT_COMPOSITOR") == QStringLiteral("TreeLand");
+}
+
 void DesktopIntegration::openShutdownScreen()
 {
     DDBusSender()
