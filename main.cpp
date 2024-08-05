@@ -77,11 +77,11 @@ int main(int argc, char* argv[])
     engine.loadFromModule("org.deepin.launchpad", "Main");
     if (engine.rootObjects().isEmpty())
         return -1;
-    QWindow * windowdFrameWindow = engine.rootObjects().at(0)->findChild<QWindow *>("WindowedFrameApplicationWindow");
-    Q_CHECK_PTR(windowdFrameWindow);
+    QWindow * fullscreenFrameWindow = engine.rootObjects().at(0)->findChild<QWindow *>("FullscreenFrameApplicationWindow");
+    Q_CHECK_PTR(fullscreenFrameWindow);
     PersonalizationManager personalizationmgr;
-    if (windowdFrameWindow) {
-        personalizationmgr.personalizeWindow(windowdFrameWindow, PersonalizationManager::BgBlurredWallpaper);
+    if (fullscreenFrameWindow) {
+        personalizationmgr.personalizeWindow(fullscreenFrameWindow, PersonalizationManager::BgBlurredWallpaper);
     }
 
     return app.exec();
