@@ -8,7 +8,9 @@ import org.deepin.launchpad 1.0
 ContainmentItem {
     id: root
     property point windowedPos: Qt.point(0, 0)
+    property alias fullscreenFrame: main.fullscreenFrame
     Main {
+        id: main
         windowedPos: root.windowedPos
     }
 
