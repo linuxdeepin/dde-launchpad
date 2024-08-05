@@ -29,7 +29,7 @@ Copyright: None
 License: CC0-1.0
 
 # dconfig base template files
-Files: */org.deepin.dde.launchpad.*.json
+Files: */org.deepin.dde.*.json
 Copyright: None
 License: CC0-1.0
 

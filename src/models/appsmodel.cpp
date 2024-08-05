@@ -38,7 +38,7 @@ static void updateAppItemFromAM(AppItem *appItem)
 
 AppsModel::AppsModel(QObject *parent)
     : QStandardItemModel(parent)
-    , m_dconfig(DConfig::create("dde-launchpad", "org.deepin.dde.launchpad.appsmodel"))
+    , m_dconfig(DConfig::create("org.deepin.dde.shell", "org.deepin.ds.launchpad"))
     , m_tmUpdateCache(new QTimer(this))
 {
     Q_ASSERT_X(m_dconfig->isValid(), "DConfig", "DConfig file is missing or invalid");
