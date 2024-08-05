@@ -178,6 +178,7 @@ InputEventItem {
         folderNameFont: LauncherController.adjustFontWeight(DTK.fontManager.t6, Font.Bold)
         centerPosition: Qt.point(curPointX, curPointY)
 
+        readonly property int animationDuration: 200
         property int startPointX: 0
         property int startPointY: 0
         readonly property point endPoint: Qt.point(parent.width / 2, parent.height / 2)
@@ -193,21 +194,21 @@ InputEventItem {
         enter: Transition {
             ParallelAnimation {
                 NumberAnimation {
-                    duration: 200
+                    duration: folderGridViewPopup.animationDuration
                     properties: "scale"
                     easing.type: Easing.OutQuad
-                    from: 0.2
+                    from: 0.1
                     to: 1
                 }
                 NumberAnimation {
-                    duration: 200
+                    duration: folderGridViewPopup.animationDuration
                     properties: "curPointX"
                     easing.type: Easing.OutQuad
                     from: folderGridViewPopup.startPointX
                     to: folderGridViewPopup.endPoint.x
                 }
                 NumberAnimation {
-                    duration: 200
+                    duration: folderGridViewPopup.animationDuration
                     properties: "curPointY"
                     easing.type: Easing.OutQuad
                     from: folderGridViewPopup.startPointY
@@ -219,21 +220,21 @@ InputEventItem {
         exit: Transition {
             ParallelAnimation {
                 NumberAnimation {
-                    duration: 200
+                    duration: folderGridViewPopup.animationDuration
                     properties: "scale"
                     easing.type: Easing.InQuad
                     from: 1
-                    to: 0.2
+                    to: 0.1
                 }
                 NumberAnimation {
-                    duration: 200
+                    duration: folderGridViewPopup.animationDuration
                     properties: "curPointX"
                     easing.type: Easing.InQuad
                     to: folderGridViewPopup.startPointX
                     from: folderGridViewPopup.endPoint.x
                 }
                 NumberAnimation {
-                    duration: 200
+                    duration: folderGridViewPopup.animationDuration
                     properties: "curPointY"
                     easing.type: Easing.InQuad
                     to: folderGridViewPopup.startPointY
@@ -300,8 +301,9 @@ InputEventItem {
     Connections {
         target: appList
         function onFreeSortViewFolderClicked(folderId, folderName, triggerPosition) {
-            folderGridViewPopup.startPointX = rowLineControl.x + rowLineControl.width / 2
-            folderGridViewPopup.startPointY = triggerPosition.y
+            let point = mapFromItem(appList, triggerPosition)
+            folderGridViewPopup.startPointX = point.x
+            folderGridViewPopup.startPointY = point.y
             folderGridViewPopup.currentFolderId = folderId
             folderGridViewPopup.folderName = folderName
             folderGridViewPopup.open()

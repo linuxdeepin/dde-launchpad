@@ -92,7 +92,8 @@ Item {
                     let idStr = model.desktopId
                     let strFolderId = Number(idStr.replace("internal/folders/", ""))
                     let strFolderName = model.display.startsWith("internal/category/") ? getCategoryName(model.display.substring(18)) : model.display
-                    folderClicked(strFolderId, strFolderName, mapToItem(listView, 0, 0))
+                    let offset = height / 2
+                    folderClicked(strFolderId, strFolderName, mapToItem(listView, offset, offset))
                 } else {
                     launchApp(desktopId)
                 }
