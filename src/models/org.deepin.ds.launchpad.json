@@ -1,0 +1,80 @@
+{
+  "magic": "dsg.config.meta",
+  "version": "1.0",
+  "contents": {
+    "excludeAppIdList": {
+      "value": [],
+      "serial": 0,
+      "flags": [],
+      "name": "Exclude Application ID List",
+      "name[zh_CN]": "应用排除 ID 列表",
+      "description": "List of application's desktop IDs that should be exclude/hidden from the launchpad.",
+      "description[zh_CN]": "需要使 launchpad 排除（避免显示）的应用程序的 desktop ID 列表。",
+      "permissions": "readonly",
+      "visibility": "private"
+    },
+    "compulsoryAppIdList": {
+      "value": [
+        "dde-computer.desktop",
+        "dde-trash.desktop",
+        "dde-file-manager.desktop",
+        "deepin-terminal.desktop",
+        "deepin-manual.desktop",
+        "deepin-system-monitor.desktop",
+        "deepin-devicemanager.desktop",
+        "dde-printer.desktop",
+        "dde-calendar.desktop",
+        "org.fcitx.fcitx5-migrator.desktop",
+        "fcitx5-configtool.desktop",
+        "org.fcitx.Fcitx5.desktop"
+      ],
+      "serial": 0,
+      "flags": [],
+      "name": "Compulsory Application ID List",
+      "name[zh_CN]": "核心必要应用 ID 列表",
+      "description": "The desktop ID list for applications considered as compulsory.",
+      "description[zh_CN]": "需要被视为核心必要应用的应用 ID 列表。",
+      "permissions": "readonly",
+      "visibility": "private"
+    },
+    "frequentlyUsedAppIdList": {
+      "value": [
+          "org.deepin.browser.desktop",
+          "deepin-app-store.desktop",
+          "dde-file-manager.desktop",
+          "deepin-mail.desktop",
+          "deepin-home.desktop",
+          "deepin-screen-recorder.desktop",
+          "deepin-calculator.desktop",
+          "deepin-terminal.desktop",
+          "dde-calendar.desktop",
+          "deepin-image-viewer.desktop",
+          "deepin-movie.desktop",
+          "deepin-album.desktop",
+          "deepin-system-monitor.desktop",
+          "libreoffice-base.desktop",
+          "libreoffice-writer.desktop",
+          "libreoffice-calc.desktop"
+      ],
+      "serial": 0,
+      "flags": [],
+      "name": "Frequently Used Application ID List",
+      "name[zh_CN]": "常用应用 ID 列表",
+      "description": "The default desktop ID list for \"my frequently used\" applications.",
+      "description[zh_CN]": "我的常用中默认显示的应用程序的 desktop ID 列表。",
+      "permissions": "readonly",
+      "visibility": "private"
+    },
+    "categoryType": {
+      "value": 2,
+      "serial": 0,
+      "flags": [],
+      "name": "Application Sort Type",
+      "name[zh_CN]": "应用排序类别",
+      "description": "The type of sorting Application list under windows mode. 0: Alphabetary, 1: DDE Category, 2: Freeform Sort",
+      "description[zh_CN]": "在窗口模式下排序应用列表的类别。0: 首字母分组排序，1: DDE 风格分类，2: 自由排序",
+      "permissions": "readwrite",
+      "visibility": "private"
+    }
+  }
+}

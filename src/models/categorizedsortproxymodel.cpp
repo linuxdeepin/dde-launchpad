@@ -29,7 +29,7 @@ void CategorizedSortProxyModel::setCategoryType(CategoryType categoryType)
     }
 
     if (oldCategoryType != categoryType) {
-        QScopedPointer<DConfig> config(DConfig::create("dde-launchpad", "org.deepin.dde.launchpad.appsmodel"));
+        QScopedPointer<DConfig> config(DConfig::create("org.deepin.dde.shell", "org.deepin.ds.launchpad"));
         config->setValue("categoryType", categoryType);
         emit categoryTypeChanged();
     }
@@ -131,7 +131,7 @@ CategorizedSortProxyModel::CategorizedSortProxyModel(QObject *parent)
 {
     setSortCaseSensitivity(Qt::CaseInsensitive);
     setSourceModel(&AppsModel::instance());
-    QScopedPointer<DConfig> config(DConfig::create("dde-launchpad", "org.deepin.dde.launchpad.appsmodel"));
+    QScopedPointer<DConfig> config(DConfig::create("org.deepin.dde.shell", "org.deepin.ds.launchpad"));
     CategoryType categoryType = CategoryType(config->value("categoryType", FreeCategory).toInt());
     isFreeSort = (categoryType == FreeCategory);
     setCategoryType(categoryType);

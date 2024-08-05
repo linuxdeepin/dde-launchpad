@@ -12,7 +12,7 @@ DCORE_USE_NAMESPACE
 FrequentlyUsedProxyModel::FrequentlyUsedProxyModel(QObject *parent)
     : QSortFilterProxyModel(parent)
 {
-    QScopedPointer<DConfig> dconfig(DConfig::create("dde-launchpad", "org.deepin.dde.launchpad.appsmodel"));
+    QScopedPointer<DConfig> dconfig(DConfig::create("org.deepin.dde.shell", "org.deepin.ds.launchpad"));
     // lower priority is higher.
     m_frequentlyUsedAppIdList = dconfig->value("frequentlyUsedAppIdList").toStringList();
     qDebug() << "Fetched frequentlyUsed app list by DConfig" << m_frequentlyUsedAppIdList;

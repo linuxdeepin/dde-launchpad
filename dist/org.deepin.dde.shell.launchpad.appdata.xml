@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <component>
-  <id>org.deepin.dde.launchpad</id>
+  <id>org.deepin.dde.shell.launchpad</id>
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-3.0+</project_license>
   <name>DDE Launchpad</name>

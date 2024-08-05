@@ -56,7 +56,14 @@ target_link_libraries(launcher-models PRIVATE
     launcher-utils
 )
 
+# legacy one, provided for migration purpose (begin)
 dtk_add_config_meta_files(
-  APPID ${PROJECT_NAME}
-  FILES org.deepin.dde.launchpad.appsmodel.json
+    APPID ${PROJECT_NAME}
+    FILES org.deepin.dde.launchpad.appsmodel.json
+)
+# (end)
+
+dtk_add_config_meta_files(
+    APPID org.deepin.dde.shell
+    FILES org.deepin.ds.launchpad.json
 )

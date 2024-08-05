@@ -20,16 +20,16 @@ Some heads-up:
 - `dde-dconfig-editor` is a GUI util to tweak those values.
   - `readonly` fields will be read-only in the editor, but it's override-able!
 - `dde-dconfig` cli util can be used to test out the config values when needed:
-  - Example usage: `dde-dconfig get -a dde-launchpad -r org.deepin.dde.launchpad.appsmodel -k excludeAppIdList`
+  - Example usage: `dde-dconfig get -a org.deepin.dde.shell -r org.deepin.ds.launchpad -k excludeAppIdList`
 - If you just changed the on-disk base configuration template file or override file, dde-dconfig service might still holding a outdated cache!
   - To avoid that, simply restart the service: `systemctl restart dde-dconfig-daemon.service`.
-  - `dde-config`'s `reset` option won't clear the default value cache that offered by base configuration template file and override file. i.e. things like `dde-dconfig reset -a dde-launchpad -r org.deepin.dde.launchpad.appsmodel -k excludeAppIdList` won't work as intended.
+  - `dde-config`'s `reset` option won't clear the default value cache that offered by base configuration template file and override file. i.e. things like `dde-dconfig reset -a org.deepin.dde.shell -r org.deepin.ds.launchpad -k excludeAppIdList` won't work as intended.
 
 ### OEM Configuration Quick Guide
 
 The base configuration template is **usually** located at `/usr/share/dsg/configs/${app-id}/${conf-desc-file}.json`. Redistributors can override this configuration template by putting files under `/usr/share/dsg/configs/overrides/${app-id}/${conf-desc-file}/${preferred-oem-filename}.json`. Please note the json structure of the base template file and the override file are different. Please consult the related documentations for detail information.
 
-- `${app-id}`: the name of the executable, `dde-launchpad` in this case.
+- `${app-id}`: the name of the executable, `org.deepin.dde.shell` in this case.
 - `${conf-desc-file}`: the name of the base configuration template file, without the `.json` suffix.
 - `${preferred-oem-filename}`: can be any name, please notice only latin characters are allowed.
 
@@ -37,7 +37,7 @@ The base configuration template is **usually** located at `/usr/share/dsg/config
 
 ## Configurations
 
-### org.deepin.dde.launchpad.appsmodel
+### org.deepin.ds.launchpad
 
 #### `excludeAppIdList` (readonly)
 
