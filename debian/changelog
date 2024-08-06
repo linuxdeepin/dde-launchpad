@@ -1,3 +1,12 @@
+dde-launchpad (0.8.3) unstable; urgency=medium
+
+  * fix: display issues with fullscreen frame(Issue: 9996)
+  * fix: personalize fullscreen mode instead of windowed mode
+  * fix: windowed mode folder animation incorrect start point
+  * fix: fullscreen frame follows the dock(Issue: 7188)
+
+ -- xionglinlin <xionglinlin@uniontech.com>  Tue, 06 Aug 2024 15:47:58 +0800
+
 dde-launchpad (0.8.2) unstable; urgency=medium
 
   * fix: Cannot open apps inside folders with keyboard(Issue: 9930)
