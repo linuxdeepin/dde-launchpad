@@ -309,9 +309,6 @@ QtObject {
 
         onVisibleChanged: {
             DS.grabKeyboard(fullscreenFrame, visible)
-            if (visible) {
-                requestActivate()
-            }
         }
 
         onActiveChanged: {
