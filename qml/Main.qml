@@ -301,6 +301,7 @@ QtObject {
         }
 
         DWindow.enabled: !DebugHelper.useRegularWindow
+        DWindow.windowRadius: 0
         DWindow.enableSystemResize: false
         DWindow.enableSystemMove: false
         // Fullscreen mode: always assume dark theme
