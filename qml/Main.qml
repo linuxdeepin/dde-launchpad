@@ -287,7 +287,8 @@ QtObject {
         objectName: "FullscreenFrameApplicationWindow"
         title: "Fullscreen Launchpad"
         visible: LauncherController.visible && (LauncherController.currentFrame !== "WindowedFrame")
-        color: "transparent"
+        // Set transparent on kwin will cause abnormal rounded corners in FolderPopup, Bug: 10219
+        color: DesktopIntegration.isTreeLand() ? "transparent" : undefined
 
         DLayerShellWindow.anchors: DLayerShellWindow.AnchorBottom | DLayerShellWindow.AnchorTop | DLayerShellWindow.AnchorLeft | DLayerShellWindow.AnchorRight
         DLayerShellWindow.layer: DLayerShellWindow.LayerTop
