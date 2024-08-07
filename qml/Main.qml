@@ -307,6 +307,7 @@ QtObject {
         DWindow.themeType: ApplicationHelper.DarkType
 
         onVisibleChanged: {
+            DS.grabKeyboard(fullscreenFrame, visible)
             if (visible) {
                 requestActivate()
             }
