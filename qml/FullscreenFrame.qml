@@ -82,7 +82,10 @@ InputEventItem {
 
             Rectangle {
                 anchors.fill: parent
-                color: folderGridViewPopup.visible ? Qt.rgba(0, 0, 0, 0.6) : Qt.rgba(0, 0, 0, 0.5)
+                color: folderGridViewPopup.visible ? Qt.rgba(0, 0, 0, 0.6)
+                                                   : DesktopIntegration.isTreeLand()
+                                                       ? "transparent"
+                                                       : Qt.rgba(0, 0, 0, 0.5)
 
                 MouseArea {
                     anchors.fill: parent
