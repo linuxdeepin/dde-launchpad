@@ -11,7 +11,7 @@ url="https://github.com/linuxdeepin/dde-launchpad"
 license=('GPL3')
 depends=('qt6-svg' 'qt6-declarative' 'appstream-qt'
          'dtk6declarative-git' 'dtk6gui-git' 'dtk6widget-git' 'dtk6core-git'
-         'qt6-base' 'qt6-svg')
+         'qt6-base' 'qt6-svg' 'qt6-wayland')
 makedepends=('git' 'cmake' 'ninja' 'qt6-tools' 'dtkcommon' )
 conflicts=('deepin-launcher')
 provides=('deepin-launchpad')
