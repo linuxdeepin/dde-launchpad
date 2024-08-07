@@ -2,7 +2,7 @@
 #
 # SPDX-License-Identifier: CC0-1.0
 
-find_package(Qt6 REQUIRED COMPONENTS WaylandClient)
+find_package(Qt6 REQUIRED GLOBAL COMPONENTS WaylandClient)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
