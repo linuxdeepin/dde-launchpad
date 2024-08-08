@@ -292,6 +292,7 @@ QtObject {
         DLayerShellWindow.anchors: DLayerShellWindow.AnchorBottom | DLayerShellWindow.AnchorTop | DLayerShellWindow.AnchorLeft | DLayerShellWindow.AnchorRight
         DLayerShellWindow.layer: DLayerShellWindow.LayerTop
         DLayerShellWindow.keyboardInteractivity: DLayerShellWindow.KeyboardInteractivityOnDemand
+        DLayerShellWindow.scope: "dde-shell/launchpad"
 
         // visibility: Window.FullScreen
         flags: {
