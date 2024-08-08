@@ -82,9 +82,12 @@ void Appearance::updateAllWallpaper()
     QJsonDocument doc = QJsonDocument::fromJson(urls.toUtf8(), &err);
     if (err.error != QJsonParseError::NoError) {
         qWarning() << "get wallpapers failed" << err.errorString();
+        return;
     }
 
-    assert(doc.isObject());
+    if (!doc.isObject()) {
+        return;
+    }
     int i = 1;
     do {
         const QString k = QString("Primary&&%1").arg(i++);
