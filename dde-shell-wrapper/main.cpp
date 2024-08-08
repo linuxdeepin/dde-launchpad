@@ -4,6 +4,7 @@
 
 #include "categorizedsortproxymodel.h"
 #include "launchercontroller.h"
+#include "personalizationmanager.h"
 
 #include <QDBusConnection>
 #include <QGuiApplication>
@@ -60,6 +61,15 @@ public:
         engine.addImageProvider(QLatin1String("app-icon"), new LauncherAppIconProvider);
         engine.addImageProvider(QLatin1String("folder-icon"), new LauncherFolderIconProvider);
         engine.addImageProvider(QLatin1String("blurhash"), new BlurhashImageProvider);
+
+        connect(engine, &DQmlEngine::finished, this, [this](){
+            QWindow * windowdFrameWindow = engine.rootObject()->findChild<QWindow *>("WindowedFrameApplicationWindow");
+            Q_CHECK_PTR(windowdFrameWindow);
+            PersonalizationManager * personalizationmgr = new PersonalizationManager(this);
+            if (windowdFrameWindow) {
+                personalizationmgr->personalizeWindow(windowdFrameWindow, PersonalizationManager::BgBlurredWallpaper);
+            }
+        });
 
         return DPanel::load();
     }
