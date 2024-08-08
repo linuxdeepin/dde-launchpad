@@ -18,42 +18,42 @@
     <message>
         <location filename="../qml/AppItemMenu.qml" line="46"/>
         <source>Pin to Top</source>
-        <translation>Fixar no Topo</translation>
+        <translation>Fixar no topo</translation>
     </message>
     <message>
         <location filename="../qml/AppItemMenu.qml" line="55"/>
         <source>Move to Top</source>
-        <translation type="unfinished"></translation>
+        <translation>Mover para o topo</translation>
     </message>
     <message>
         <location filename="../qml/AppItemMenu.qml" line="65"/>
         <source>Remove from favorites</source>
-        <translation>Remover dos Favoritos</translation>
+        <translation>Remover dos favoritos</translation>
     </message>
     <message>
         <location filename="../qml/AppItemMenu.qml" line="65"/>
         <source>Add to favorites</source>
-        <translation>Adicionar aos Favoritos</translation>
+        <translation>Adicionar aos favoritos</translation>
     </message>
     <message>
         <location filename="../qml/AppItemMenu.qml" line="80"/>
         <source>Send to desktop</source>
-        <translation>Enviar para a área de trabalho</translation>
+        <translation>Enviar para área de trabalho</translation>
     </message>
     <message>
         <location filename="../qml/AppItemMenu.qml" line="80"/>
         <source>Remove from desktop</source>
-        <translation>Remover da Área de Trabalho</translation>
+        <translation>Remover da área de trabalho</translation>
     </message>
     <message>
         <location filename="../qml/AppItemMenu.qml" line="91"/>
         <source>Remove from dock</source>
-        <translation>Remover da Dock</translation>
+        <translation>Remover do dock</translation>
     </message>
     <message>
         <location filename="../qml/AppItemMenu.qml" line="91"/>
         <source>Send to dock</source>
-        <translation>Enviar para a dock</translation>
+        <translation>Fixar no dock</translation>
     </message>
     <message>
         <location filename="../qml/AppItemMenu.qml" line="103"/>
@@ -68,12 +68,12 @@
     <message>
         <location filename="../qml/AppItemMenu.qml" line="111"/>
         <source>Use a proxy</source>
-        <translation>Usar Proxy</translation>
+        <translation>Usar proxy</translation>
     </message>
     <message>
         <location filename="../qml/AppItemMenu.qml" line="120"/>
         <source>Disable display scaling</source>
-        <translation>Desabilitar escala de exibição</translation>
+        <translation>Desativar escala de exibição</translation>
     </message>
     <message>
         <location filename="../qml/AppItemMenu.qml" line="127"/>
@@ -138,7 +138,7 @@
     <message>
         <location filename="../qml/windowed/FrequentlyUsedView.qml" line="35"/>
         <source>Frequently Used</source>
-        <translation>Utilizado Frequentemente</translation>
+        <translation>Usado frequentemente</translation>
     </message>
     <message>
         <source>All Apps</source>
@@ -157,7 +157,7 @@
     <message>
         <location filename="../launchercontroller.cpp" line="19"/>
         <source>Show launcher (hidden by default)</source>
-        <translation>Mostrar lançador (escondido por padrão)</translation>
+        <translation>Exibir lançador (oculto por padrão)</translation>
     </message>
     <message>
         <location filename="../launchercontroller.cpp" line="20"/>
@@ -175,22 +175,22 @@
     <message>
         <location filename="../qml/Main.qml" line="24"/>
         <source>Chat</source>
-        <translation>Bate-Papo</translation>
+        <translation>Comunicação</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="26"/>
         <source>Music</source>
-        <translation>Players de Música</translation>
+        <translation>Música</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="28"/>
         <source>Video</source>
-        <translation>Players de Vídeo</translation>
+        <translation>Vídeo</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="30"/>
         <source>Graphics</source>
-        <translation>Imagem/Editores Gráficos</translation>
+        <translation>Imagem</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="32"/>
@@ -200,7 +200,7 @@
     <message>
         <location filename="../qml/Main.qml" line="34"/>
         <source>Office</source>
-        <translation>Escritório</translation>
+        <translation>Produtividade</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="36"/>
@@ -225,7 +225,7 @@
     <message>
         <location filename="../qml/Main.qml" line="398"/>
         <source>Are you sure you want to uninstall %1?</source>
-        <translation>Tem certeza que quer desinstalar %1?</translation>
+        <translation>Desinstalar %1?</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="410"/>
@@ -243,7 +243,7 @@
     <message>
         <location filename="../qml/windowed/RecentlyInstalledView.qml" line="34"/>
         <source>Recently Installed</source>
-        <translation>Instalado Recentemente</translation>
+        <translation>Instalado recentemente</translation>
     </message>
 </context>
 <context>
@@ -251,12 +251,12 @@
     <message>
         <location filename="../qml/windowed/SearchResultView.qml" line="37"/>
         <source>All Apps</source>
-        <translation>Todos os Aplicativos</translation>
+        <translation>Todos os aplicativos</translation>
     </message>
     <message>
         <location filename="../qml/windowed/SearchResultView.qml" line="102"/>
         <source>No search results</source>
-        <translation>Nenhum resultado</translation>
+        <translation>Nenhum resultado encontrado</translation>
     </message>
 </context>
 <context>
@@ -264,17 +264,17 @@
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="40"/>
         <source>Free sorting</source>
-        <translation>Ordenação livre</translation>
+        <translation>Classificação livre</translation>
     </message>
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="54"/>
         <source>Sort by category</source>
-        <translation>Ordenar por categoria</translation>
+        <translation>Classificar por categoria</translation>
     </message>
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="66"/>
         <source>Sort by name</source>
-        <translation>Ordenar por nome</translation>
+        <translation>Classificar por nome</translation>
     </message>
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="142"/>
@@ -299,7 +299,7 @@
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="186"/>
         <source>Control Center</source>
-        <translation>Centro de Controle</translation>
+        <translation>Central de Controle</translation>
     </message>
 </context>
 <context>

@@ -207,7 +207,7 @@
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="40"/>
         <source>Free sorting</source>
-        <translation>Keine bestimmte Reihenfolge</translation>
+        <translation>Eigene Reihenfolge</translation>
     </message>
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="54"/>
@@ -217,7 +217,7 @@
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="66"/>
         <source>Sort by name</source>
-        <translation>Nach Name sortieren</translation>
+        <translation>Nach Namen sortieren</translation>
     </message>
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="142"/>

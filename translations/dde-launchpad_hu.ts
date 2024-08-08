@@ -23,7 +23,7 @@
     <message>
         <location filename="../qml/AppItemMenu.qml" line="55"/>
         <source>Move to Top</source>
-        <translation type="unfinished"></translation>
+        <translation>Ugrás a tetejére</translation>
     </message>
     <message>
         <location filename="../qml/AppItemMenu.qml" line="65"/>
