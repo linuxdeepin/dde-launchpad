@@ -161,7 +161,7 @@ QtObject {
             if (Qt.UpArrow === DesktopIntegration.dockPosition)
                 return descaledRect(DesktopIntegration.dockGeometry).height + DesktopIntegration.dockSpacing
             else if (Qt.RightArrow === DesktopIntegration.dockPosition || Qt.LeftArrow === DesktopIntegration.dockPosition)
-                return windowedPos.y
+                return Math.max(windowedPos.y, DesktopIntegration.dockSpacing)
             else
                 return 0
         }
@@ -180,9 +180,10 @@ QtObject {
         DLayerShellWindow.leftMargin: {
             if (Qt.LeftArrow === DesktopIntegration.dockPosition)
                 return descaledRect(DesktopIntegration.dockGeometry).width + DesktopIntegration.dockSpacing
-            else if (Qt.UpArrow === DesktopIntegration.dockPosition || Qt.DownArrow === DesktopIntegration.dockPosition)
-                return windowedPos.x - windowedFrameImpl.item.getHorizontalCoordinatesOfSideBar()
-            else
+            else if (Qt.UpArrow === DesktopIntegration.dockPosition || Qt.DownArrow === DesktopIntegration.dockPosition) {
+                let value = windowedPos.x - windowedFrameImpl.item.getHorizontalCoordinatesOfSideBar()
+                return Math.max(value, DesktopIntegration.dockSpacing)
+            } else
                 return 0
         }
         DLayerShellWindow.anchors: {
