@@ -1,3 +1,10 @@
+dde-launchpad (0.8.4) unstable; urgency=medium
+
+  * fix: fullscreen frame can't get keyboard focus(Issue: 10224)
+  * fix: the full screen window has rounded corners(Issue: 9994)
+
+ -- xionglinlin <xionglinlin@uniontech.com>  Thu, 08 Aug 2024 15:10:38 +0800
+
 dde-launchpad (0.8.3) unstable; urgency=medium
 
   * fix: display issues with fullscreen frame(Issue: 9996)
