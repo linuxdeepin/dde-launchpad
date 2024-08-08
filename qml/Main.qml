@@ -294,10 +294,9 @@ QtObject {
         DLayerShellWindow.keyboardInteractivity: DLayerShellWindow.KeyboardInteractivityOnDemand
 
         // visibility: Window.FullScreen
-        Component.onCompleted: {
-            if (DebugHelper.useRegularWindow) {
-                flags = Qt.Window
-            }
+        flags: {
+            if (DebugHelper.useRegularWindow) return Qt.Window
+            return (Qt.FramelessWindowHint | Qt.Tool)
         }
 
         DWindow.enabled: !DebugHelper.useRegularWindow
@@ -308,7 +307,6 @@ QtObject {
         DWindow.themeType: ApplicationHelper.DarkType
 
         onVisibleChanged: {
-            DS.grabKeyboard(fullscreenFrame, visible)
             if (visible) {
                 requestActivate()
             }
