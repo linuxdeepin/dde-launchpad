@@ -335,7 +335,7 @@ Popup {
         blurMultiplier: 5.0
         backgroundColor: Palette {
             normal: Qt.rgba(1.0, 1.0, 1.0, 0.2)
-            normalDark: Qt.rgba(1.0, 1.0, 1.0, 0.2)
+            normalDark: Qt.rgba(20/255, 20/255, 20/255, 0.4)
         }
         dropShadowColor: null
         outsideBorderColor: isWindowedMode ? DStyle.Style.floatingPanel.outsideBorder : null
