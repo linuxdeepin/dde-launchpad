@@ -338,7 +338,13 @@ Popup {
             normalDark: isWindowedMode ? Qt.rgba(20/255, 20/255, 20/255, 0.4) : Qt.rgba(1.0, 1.0, 1.0, 0.2)
         }
         dropShadowColor: null
-        outsideBorderColor: isWindowedMode ? DStyle.Style.floatingPanel.outsideBorder : null
+        outsideBorderColor: isWindowedMode ? windowedOutBorderPalette : null
         insideBorderColor: isWindowedMode ? DStyle.Style.floatingPanel.insideBorder : null
+    }
+
+    Palette {
+        id: windowedOutBorderPalette
+        normal: Qt.rgba(0, 0, 0, 0.06)
+        normalDark: Qt.rgba(0, 0, 0, 0.4)
     }
 }
