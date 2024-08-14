@@ -33,7 +33,7 @@ Popup {
 
     // TODO: 经验证发现：Poppu窗口高度为奇数时，会多显示一个像素的外边框；为偶数时不会显示
     // 因此，这里需要保证高度是偶数来确保Popup窗口没有外边框
-    height: (cs * 3) % 2 === 0 ? (cs * 3) : (cs * 3 + 1) + 130 /* title height*/
+    height: ((cs * 3) % 2 === 0 ? (cs * 3) : (cs * 3 + 1)) + 130 /* title height*/
     x: centerPosition.x - (width / 2)
     y: centerPosition.y - (height / 2)
 
