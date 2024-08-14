@@ -1,3 +1,9 @@
+dde-launchpad (0.8.5) unstable; urgency=medium
+
+  * bump version to 0.8.5
+
+ -- Deepin Packages Builder <packages@deepin.org>  Wed, 14 Aug 2024 14:32:05 +0800
+
 dde-launchpad (0.8.4) unstable; urgency=medium
 
   * fix: fullscreen frame can't get keyboard focus(Issue: 10224)
