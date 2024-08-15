@@ -309,6 +309,7 @@ QtObject {
         DWindow.enableSystemMove: false
         // Fullscreen mode: always assume dark theme
         DWindow.themeType: ApplicationHelper.DarkType
+        DWindow.windowStartUpEffect: PlatformHandle.EffectOut
 
         onVisibleChanged: {
             if (visible) {
