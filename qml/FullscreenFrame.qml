@@ -111,13 +111,13 @@ InputEventItem {
                             if (!searchEdit.focus) { // reset keyboard focus when using mouse to flip page, but keep searchEdit focus
                                 baseLayer.focus = true
                             }
-                            decrementPageIndex(pages)
+                            decrementPageIndex(listviewPage)
                         } else if (toPage > 0) {
                             flipPageDelay.start()
                             if (!searchEdit.focus) { // reset keyboard focus when using mouse to flip page, but keep searchEdit focus
                                 baseLayer.focus = true
                             }
-                            incrementPageIndex(pages)
+                            incrementPageIndex(listviewPage)
                         }
                     }
                 }
@@ -160,9 +160,9 @@ InputEventItem {
 
                         opacity: folderGridViewPopup.visible ? 0.4 : 1
                         anchors.horizontalCenter: parent.horizontalCenter
-                        visible: pages.visible
-                        count: searchResultGridViewContainer.visible ? 1 : pages.count
-                        currentIndex: searchResultGridViewContainer.visible ? 1 : pages.currentIndex
+                        visible: listviewPage.visible
+                        count: searchResultGridViewContainer.visible ? 1 : listviewPage.count
+                        currentIndex: searchResultGridViewContainer.visible ? 1 : listviewPage.currentIndex
                         interactive: true
                         spacing: 10
                         delegate: Rectangle {
@@ -185,6 +185,7 @@ InputEventItem {
             Item {
                 Layout.fillWidth: true
                 Layout.fillHeight: true
+                clip: true
 
                 DropArea {
                     id: dropArea
@@ -198,7 +199,7 @@ InputEventItem {
                         if (drag.x < horizontalPadding) {
                             pageIntent = -1
                         } else if (drag.x > (width - searchResultGridViewContainer.cellWidth)) {
-                            let isLastPage = pages.currentIndex === pages.count - 1
+                            let isLastPage = listviewPage.currentIndex === listviewPage.count - 1
                             if (isLastPage && dropArea.createdEmptyPage) {
                                 return
                             }
@@ -225,7 +226,7 @@ InputEventItem {
                                    }
                                    // drop into current page
                                    let dragId = drop.getDataAsString("text/x-dde-launcher-dnd-desktopId")
-                                   dropOnPage(dragId, "internal/folders/0", pages.currentIndex)
+                                   dropOnPage(dragId, "internal/folders/0", listviewPage.currentIndex)
                                    pageIntent = 0
                                }
                     onExited: {
@@ -244,22 +245,22 @@ InputEventItem {
                         interval: 1000
                         onTriggered: {
                             if (parent.pageIntent > 0) {
-                                let isLastPage = pages.currentIndex === pages.count - 1
+                                let isLastPage = listviewPage.currentIndex === listviewPage.count - 1
                                 if (isLastPage && !dropArea.createdEmptyPage) {
                                     let newPageIndex = ItemArrangementProxyModel.creatEmptyPage()
                                     dropArea.createdEmptyPage = true
-                                    pages.setCurrentIndex(newPageIndex)
+                                    listviewPage.currentIndex = newPageIndex
                                     parent.pageIntent = 0
                                     return
                                 } else {
-                                    incrementPageIndex(pages)
+                                    incrementPageIndex(listviewPage)
                                 }
                             } else if (parent.pageIntent < 0) {
-                                decrementPageIndex(pages)
+                                decrementPageIndex(listviewPage)
                             }
 
                             parent.pageIntent = 0
-                            if (pages.currentIndex !== 0) {
+                            if (listviewPage.currentIndex !== 0) {
                                 parent.checkDragMove()
                             }
                         }
@@ -269,251 +270,239 @@ InputEventItem {
                         target: dndItem
                         function onDragEnded() {
                             if (dropArea.createdEmptyPage) {
-                                tryToRemoveEmptyPage()
+                                baseLayer.tryToRemoveEmptyPage()
                                 dropArea.createdEmptyPage = false
                             }
                         }
                     }
                 }
 
-                SwipeView {
-                    id: pages
+                ItemsPageModel {
+                    id: itemPageModel
+                    sourceModel: ItemArrangementProxyModel
+                }
 
-                    property int previousIndex: -1
+                ListView {
+                    id: listviewPage
+
                     anchors.fill: parent
+                    snapMode: ListView.SnapOneItem
+                    orientation: ListView.Horizontal
+                    highlightRangeMode: ListView.StrictlyEnforceRange
+                    highlightFollowsCurrentItem: true
+                    highlightMoveDuration: 200
+                    highlightMoveVelocity: -1
+
+                    activeFocusOnTab: true
+                    focus: true
                     visible: searchEdit.text === ""
 
                     currentIndex: indicator.currentIndex
 
-                    // To ensure toplevelRepeater's model (page count) updated correctly
-                    // Caution! Don't put it directly under a Repeater{}, that will prevent Connections from working
-                    Connections {
-                        target: ItemArrangementProxyModel
-                        function onRowsInserted() {
-                            toplevelRepeater.pageCount = ItemArrangementProxyModel.pageCount(0)
+                    property int previousIndex: -1
+                    model: itemPageModel
+
+                    delegate: FocusScope {
+                        id: listItem
+                        width: listviewPage.width
+                        height: listviewPage.height
+
+                        property int viewIndex: index
+
+                        SortProxyModel {
+                            id: proxyModel
+                            sourceModel: MultipageSortFilterProxyModel {
+                                filterOnlyMode: true
+                                sourceModel: ItemArrangementProxyModel
+                                pageId: viewIndex
+                                folderId: 0
+                            }
+                            sortRole: ItemArrangementProxyModel.IndexInPageRole
+                            Component.onCompleted: {
+                                proxyModel.sort(0)
+                            }
                         }
-                        function onRowsRemoved() {
-                            toplevelRepeater.pageCount = ItemArrangementProxyModel.pageCount(0)
+
+                        MouseArea {
+                            anchors.fill: parent
+                            acceptedButtons: Qt.RightButton | Qt.LeftButton
+                            onClicked: {
+                                // FIXME: prevent the bug:https://bugreports.qt.io/browse/QTBUG-125139;
+                                if (mouse.button === Qt.RightButton) {
+                                    mouse.accepted = false;
+                                } else if (!DebugHelper.avoidHideWindow) {
+                                    LauncherController.visible = false
+                                }
+                            }
                         }
 
-                        function onTopLevelPageCountChanged() {
-                            toplevelRepeater.pageCount = ItemArrangementProxyModel.pageCount(0)
-                        }
-                    }
+                        GridViewContainer {
+                            id: gridViewContainer
+                            objectName: "gridViewContainer"
+                            anchors.fill: parent
+                            rows: 4
+                            columns: 8
+                            paddingColumns: 0.5
+                            model: proxyModel
+                            padding: 10
+                            interactive: false
+                            focus: true
 
-                    Repeater {
-                        id: toplevelRepeater
-                        property int pageCount: ItemArrangementProxyModel.pageCount(0)
-                        model: pageCount
+                            function checkPageSwitchState() {
+                                if (listItem.viewIndex !== listviewPage.currentIndex)
+                                    return
+                                if (listviewPage.previousIndex === -1) {
+                                    listviewPage.previousIndex = listviewPage.currentIndex
+                                    return
+                                }
+                                if (listviewPage.currentIndex + 1 === listviewPage.previousIndex || (listviewPage.previousIndex === 0 && listviewPage.currentIndex === listviewPage.count - 1)) {
+                                    gridViewContainer.setPreviousPageSwitch(true)
+                                } else {
+                                    gridViewContainer.setPreviousPageSwitch(false)
+                                }
+                                listviewPage.previousIndex = listviewPage.currentIndex
+                            }
 
-                        Loader {
-                            active: SwipeView.isCurrentItem || SwipeView.isNextItem || SwipeView.isPreviousItem
-                            id: gridViewLoader
-                            objectName: "Main GridView Loader"
+                            Keys.onLeftPressed: function(event) {
+                                if (listItem.viewIndex === 0 && itemPageModel.rowCount() > 1) {
+                                    // is the 1st page, go to last page
+                                    listviewPage.currentIndex = itemPageModel.rowCount() - 1
+                                } else {
+                                    // not the 1st page, simply use SwipeView default behavior
+                                    event.accepted = false
+                                }
+                            }
+                            Keys.onRightPressed: function(event) {
+                                if (listItem.viewIndex === (itemPageModel.rowCount() - 1) && itemPageModel.rowCount() > 1) {
+                                    // is the last page, go to last page
+                                    listviewPage.currentIndex = 0
+                                } else {
+                                    // not the last page, simply use SwipeView default behavior
+                                    event.accepted = false
+                                }
+                            }
+                            opacity: folderGridViewPopup.visible ? 0.2 : 1
+                            Behavior on opacity {
+                                NumberAnimation { duration: 200; easing.type: Easing.OutQuad }
+                            }
+                            activeGridViewFocusOnTab: listviewPage.ListView.isCurrentItem
+                            itemMove: Transition {
+                                NumberAnimation {
+                                    properties: "x,y"
+                                    duration: 200
+                                    easing.type: Easing.OutQuad
+                                }
+                            }
+                            delegate: DropArea {
+                                Keys.forwardTo: [iconItemDelegate]
 
-                            property int viewIndex: index
-
-                            sourceComponent: Rectangle {
-                                color: "transparent"
-
-                                property var grids: gridViewContainer
-
-                                SortProxyModel {
-                                    id: proxyModel
-                                    sourceModel: MultipageSortFilterProxyModel {
-                                        filterOnlyMode: true
-                                        sourceModel: ItemArrangementProxyModel
-                                        pageId: modelData
-                                        folderId: 0
+                                visible: !folderGridViewPopup.visible || folderGridViewPopup.currentFolderId !== Number(model.desktopId.replace("internal/folders/", ""))
+                                width: gridViewContainer.cellWidth
+                                height: gridViewContainer.cellHeight
+                                onEntered: function (drag) {
+                                    if (folderGridViewPopup.opened) {
+                                        folderGridViewPopup.close()
                                     }
-                                    sortRole: ItemArrangementProxyModel.IndexInPageRole
-                                    Component.onCompleted: {
+                                    dndDropEnterTimer.dragId = drag.getDataAsString("text/x-dde-launcher-dnd-desktopId")
+                                    dndDropEnterTimer.restart()
+                                }
+                                onExited: {
+                                    dndDropEnterTimer.stop()
+                                    dndDropEnterTimer.dragId = ""
+                                }
+                                onDropped: function (drop) {
+                                    dndDropEnterTimer.stop()
+                                    dndDropEnterTimer.dragId = ""
+                                    let dragId = drop.getDataAsString("text/x-dde-launcher-dnd-desktopId")
+                                    let op = 0
+                                    let sideOpPadding = width / 4
+                                    if (drop.x < sideOpPadding) {
+                                        op = -1
+                                    } else if (drop.x > (width - sideOpPadding)) {
+                                        op = 1
+                                    }
+                                    dropOnItem(dragId, model.desktopId, op)
+                                    proxyModel.sort(0)
+                                }
+
+                                Timer {
+                                    id: dndDropEnterTimer
+                                    interval: 500
+                                    property string dragId: ""
+                                    onTriggered: function() {
+                                        if (dragId === "") return
+                                        let op = 0
+                                        let sideOpPadding = width / 4
+                                        if (drag.x < sideOpPadding) {
+                                            op = -1
+                                        } else if (drag.x > (width - sideOpPadding)) {
+                                            op = 1
+                                        }
+                                        if (op === 0) {
+                                            dndDropEnterTimer.restart()
+                                            return
+                                        }
+                                        dropOnItem(dragId, model.desktopId, op)
                                         proxyModel.sort(0)
                                     }
                                 }
 
-                                MouseArea {
-                                    anchors.fill: parent
-                                    acceptedButtons: Qt.RightButton
-                                    onClicked: {
-                                        // FIXME: prevent the bug:https://bugreports.qt.io/browse/QTBUG-125139;
-                                        if (mouse.button === Qt.RightButton) {
-                                            mouse.accepted = false;
-                                        }
+                                IconItemDelegate {
+                                    id: iconItemDelegate
+                                    anchors {
+                                        fill: parent
+                                        margins: 5
                                     }
-                                }
-
-                                GridViewContainer {
-                                    id: gridViewContainer
-                                    objectName: "gridViewContainer"
-                                    anchors.fill: parent
-                                    rows: 4
-                                    columns: 8
-                                    paddingColumns: 0.5
-                                    model: proxyModel
-                                    padding: 10
-                                    interactive: false
-                                    focus: true
-                                    function checkPageSwitchState() {
-                                        if (gridViewLoader.viewIndex !== pages.currentIndex)
-                                            return
-                                        if (pages.previousIndex === -1) {
-                                            pages.previousIndex = pages.currentIndex
-                                            return
-                                        }
-                                        if (pages.currentIndex + 1 === pages.previousIndex || (pages.previousIndex === 0 && pages.currentIndex === pages.count - 1))
-                                            gridViewContainer.setPreviousPageSwitch(true)
-                                        else
-                                            gridViewContainer.setPreviousPageSwitch(false)
-                                        pages.previousIndex = pages.currentIndex
+                                    dndEnabled: !folderGridViewPopup.opened
+                                    Drag.mimeData: {
+                                        "text/x-dde-launcher-dnd-desktopId": model.desktopId
                                     }
-
-                                    Keys.onLeftPressed: function(event) {
-                                        if (gridViewLoader.SwipeView.index === 0 && toplevelRepeater.pageCount > 1) {
-                                            // is the 1st page, go to last page
-                                            pages.setCurrentIndex(toplevelRepeater.pageCount - 1)
-                                        } else {
-                                            // not the 1st page, simply use SwipeView default behavior
-                                            event.accepted = false
-                                        }
+                                    visible: dndItem.currentlyDraggedId !== model.desktopId
+                                    iconSource: (iconName && iconName !== "") ? iconName : "application-x-desktop"
+                                    icons: folderIcons
+                                    onItemClicked: {
+                                        launchApp(desktopId)
                                     }
-                                    Keys.onRightPressed: function(event) {
-                                        if (gridViewLoader.SwipeView.index === (toplevelRepeater.pageCount - 1) && toplevelRepeater.pageCount > 1) {
-                                            // is the last page, go to last page
-                                            pages.setCurrentIndex(0)
-                                        } else {
-                                            // not the last page, simply use SwipeView default behavior
-                                            event.accepted = false
-                                        }
+                                    onFolderClicked: {
+                                        let idStr = model.desktopId
+                                        let idNum = Number(idStr.replace("internal/folders/", ""))
+                                        let itemPos = mapToItem(baseLayer, x, y)
+                                        folderGridViewPopup.currentFolderId = idNum
+                                        folderGridViewPopup.startPointX = itemPos.x + width / 2
+                                        folderGridViewPopup.startPointY = itemPos.y + height / 2
+                                        folderGridViewPopup.open()
+                                        folderGridViewPopup.folderName = model.display.startsWith("internal/category/") ? getCategoryName(model.display.substring(18)) : model.display
+                                        console.log("open folder id:" + idNum)
                                     }
-                                    opacity: folderGridViewPopup.visible ? 0.2 : 1
-                                    Behavior on opacity {
-                                        NumberAnimation { duration: 200; easing.type: Easing.OutQuad }
-                                    }
-                                    activeGridViewFocusOnTab: gridViewLoader.SwipeView.isCurrentItem
-                                    itemMove: Transition {
-                                        NumberAnimation {
-                                            properties: "x,y"
-                                            duration: 200
-                                            easing.type: Easing.OutQuad
-                                        }
-                                    }
-                                    delegate: DropArea {
-                                        Keys.forwardTo: [iconItemDelegate]
-
-                                        visible: !folderGridViewPopup.visible || folderGridViewPopup.currentFolderId !== Number(model.desktopId.replace("internal/folders/", ""))
-                                        width: gridViewContainer.cellWidth
-                                        height: gridViewContainer.cellHeight
-                                        onEntered: function (drag) {
-                                            if (folderGridViewPopup.opened) {
-                                                folderGridViewPopup.close()
-                                            }
-                                            dndDropEnterTimer.dragId = drag.getDataAsString("text/x-dde-launcher-dnd-desktopId")
-                                            dndDropEnterTimer.restart()
-                                        }
-                                        onExited: {
-                                            dndDropEnterTimer.stop()
-                                            dndDropEnterTimer.dragId = ""
-                                        }
-                                        onDropped: function (drop) {
-                                            dndDropEnterTimer.stop()
-                                            dndDropEnterTimer.dragId = ""
-                                            let dragId = drop.getDataAsString("text/x-dde-launcher-dnd-desktopId")
-                                            let op = 0
-                                            let sideOpPadding = width / 4
-                                            if (drop.x < sideOpPadding) {
-                                                op = -1
-                                            } else if (drop.x > (width - sideOpPadding)) {
-                                                op = 1
-                                            }
-                                            dropOnItem(dragId, model.desktopId, op)
-                                            proxyModel.sort(0)
-                                        }
-
-                                        Timer {
-                                            id: dndDropEnterTimer
-                                            interval: 500
-                                            property string dragId: ""
-                                            onTriggered: function() {
-                                                if (dragId === "") return
-                                                let op = 0
-                                                let sideOpPadding = width / 4
-                                                if (drag.x < sideOpPadding) {
-                                                    op = -1
-                                                } else if (drag.x > (width - sideOpPadding)) {
-                                                    op = 1
-                                                }
-                                                if (op === 0) {
-                                                    dndDropEnterTimer.restart()
-                                                    return
-                                                }
-                                                dropOnItem(dragId, model.desktopId, op)
-                                                proxyModel.sort(0)
-                                            }
-                                        }
-
-                                        IconItemDelegate {
-                                            id: iconItemDelegate
-                                            anchors {
-                                                fill: parent
-                                                margins: 5
-                                            }
-                                            dndEnabled: !folderGridViewPopup.opened
-                                            Drag.mimeData: {
-                                                "text/x-dde-launcher-dnd-desktopId": model.desktopId
-                                            }
-                                            visible: dndItem.currentlyDraggedId !== model.desktopId
-                                            iconSource: (iconName && iconName !== "") ? iconName : "application-x-desktop"
-                                            icons: folderIcons
-                                            onItemClicked: {
-                                                launchApp(desktopId)
-                                            }
-                                            onFolderClicked: {
-                                                let idStr = model.desktopId
-                                                let idNum = Number(idStr.replace("internal/folders/", ""))
-                                                let itemPos = mapToItem(baseLayer, x, y)
-                                                folderGridViewPopup.currentFolderId = idNum
-                                                folderGridViewPopup.startPointX = itemPos.x + width / 2
-                                                folderGridViewPopup.startPointY = itemPos.y + height / 2
-                                                folderGridViewPopup.open()
-                                                folderGridViewPopup.folderName = model.display.startsWith("internal/category/") ? getCategoryName(model.display.substring(18)) : model.display
-                                                console.log("open folder id:" + idNum)
-                                            }
-                                            onMenuTriggered: {
-                                                if (folderIcons) return;
-                                                showContextMenu(this, model)
-                                                baseLayer.focus = true
-                                            }
-                                        }
-                                    }
-                                    Connections {
-                                        target: pages
-                                        function onCurrentIndexChanged() {
-                                            gridViewContainer.checkPageSwitchState()
-                                        }
-                                    }
-                                    Connections {
-                                        target: dropArea
-                                        function onDropped() {
-                                            gridViewContainer.checkPageSwitchState()
-                                        }
-                                    }
-                                    Component.onCompleted: {
-                                        gridViewContainer.checkPageSwitchState()
+                                    onMenuTriggered: {
+                                        if (folderIcons) return;
+                                        showContextMenu(this, model)
+                                        baseLayer.focus = true
                                     }
                                 }
                             }
-
-                            // Since SwipeView will catch the mouse click event so we need to also do it here...
-                            MouseArea {
-                                anchors.fill: parent
-                                onClicked: {
-                                    if (!DebugHelper.avoidHideWindow) {
-                                        LauncherController.visible = false
-                                    }
+                            Connections {
+                                target: listviewPage
+                                function onCurrentIndexChanged() {
+                                    gridViewContainer.checkPageSwitchState()
                                 }
                             }
+                            Connections {
+                                target: dropArea
+                                function onDropped() {
+                                    gridViewContainer.checkPageSwitchState()
+                                }
+                            }
+                            Component.onCompleted: {
+                                gridViewContainer.checkPageSwitchState()
+                            }
+                            Component.onDestruction: {
+                            }                            
                         }
+                    }
+
+                    Component.onCompleted: {
+                        listviewPage.currentIndex = 0
                     }
                 }
 
@@ -577,11 +566,11 @@ InputEventItem {
                 placeholderTextColor: palette.brightText
                 palette.windowText: ColorSelector.iconPalette
 
-                KeyNavigation.up: searchEdit.text === "" ? pages : searchResultGridViewContainer
+                KeyNavigation.up: searchEdit.text === "" ? listviewPage : searchResultGridViewContainer
                 KeyNavigation.down: KeyNavigation.up
                 Keys.onReturnPressed: {
                     if (searchEdit.text === "") {
-                        pages.focus = true
+                        listviewPage.focus = true
                     } else {
                         searchResultGridViewContainer.currentItem?.itemClicked()
                     }
@@ -672,7 +661,7 @@ InputEventItem {
                 case Qt.Key_Down:
                 case Qt.Key_Enter:
                 case Qt.Key_Return:
-                    pages.focus = true
+                    listviewPage.focus = true
                 }
             }
         }
@@ -695,7 +684,7 @@ InputEventItem {
                 // reset(remove) keyboard focus
                 baseLayer.focus = true
                 // reset page to the first page
-                pages.setCurrentIndex(0)
+                listviewPage.currentIndex = 0
             }
         }
     }

@@ -5,6 +5,7 @@
 #include "itemspage.h"
 
 #include <QSet>
+#include <QDebug>
 
 ItemsPage::ItemsPage(const QString &name, int maxItemCountPerPage, QObject *parent)
     : QObject(parent)
@@ -72,6 +73,7 @@ void ItemsPage::appendEmptyPage()
     m_pages.append(QStringList());
 
     emit pageCountChanged();
+    emit sigPageAdded(m_pages.count() - 1, m_pages.count() - 1);
 }
 
 // if length of items larger than max item count per page, there will be another page get appended
@@ -81,6 +83,8 @@ void ItemsPage::appendPage(const QStringList items)
     const int pages = len / m_maxItemCountPerPage;
 
     if (len == 0) return;
+
+    int first = m_pages.count();
 
     QList<QString>::const_iterator begin = items.constBegin();
 
@@ -99,6 +103,7 @@ void ItemsPage::appendPage(const QStringList items)
     }
 
     emit pageCountChanged();
+    emit sigPageAdded(first, m_pages.count() - 1);
 }
 
 // find a page with empty place and append the item to that page.
@@ -182,6 +187,7 @@ bool ItemsPage::removeItem(const QString id, bool removePageIfPageIsEmpty)
         if (removePageIfPageIsEmpty && m_pages.at(page).isEmpty()) {
             m_pages.removeAt(page);
             emit pageCountChanged();
+            emit sigPageRemoved(m_pages.count() - 1, m_pages.count() - 1);
         }
 
         return true;
@@ -209,6 +215,7 @@ void ItemsPage::removeEmptyPages()
     m_pages.removeAll({});
     if (count != m_pages.size()) {
         emit pageCountChanged();
+        emit sigPageRemoved(m_pages.count() - 1, m_pages.count() - 1);
     }
 }
 
