@@ -51,6 +51,8 @@ private:
 signals:
     void nameChanged();
     void pageCountChanged();
+    void sigPageAdded(int first, int last);
+    void sigPageRemoved(int first, int last);
 
 private:
     int m_maxItemCountPerPage;

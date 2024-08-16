@@ -61,6 +61,8 @@ public:
     Q_INVOKABLE int creatEmptyPage() const;
     Q_INVOKABLE void removeEmptyPage() const;
 
+    ItemsPage *itemsPage() { return m_topLevel; }
+
     // QAbstractItemModel interface
 public:
     QVariant data(const QModelIndex &index, int role) const override;
