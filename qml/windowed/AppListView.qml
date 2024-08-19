@@ -213,45 +213,43 @@ FocusScope {
         id: delegateCategorizedModel
         model: CategorizedSortProxyModel
 
-        delegate: Item {
+        delegate: ItemDelegate {
+            id: itemDelegate
             width: root.width
-            height: itemDelegate.height
             KeyNavigation.tab: nextKeyTabTargetItem
 
-            ItemDelegate {
-                id: itemDelegate
-                text: model.display
-                checkable: false
-                icon.name: (iconName && iconName !== "") ? iconName : "application-x-desktop"
-                DciIcon.mode: DTK.NormalState
-                font: DTK.fontManager.t8
-                palette.windowText: parent.palette.brightText
-                anchors.fill: parent
-                anchors.leftMargin: 10
-                anchors.rightMargin: 10
-                // icon.source: "image://app-icon/" + iconName;
-                ToolTip.text: text
-                ToolTip.delay: 1000
-                ToolTip.visible: hovered && contentItem.implicitWidth > contentItem.width
+            text: model.display
+            checkable: false
+            icon.name: (iconName && iconName !== "") ? iconName : "application-x-desktop"
+            DciIcon.mode: DTK.NormalState
+            font: DTK.fontManager.t8
+            palette.windowText: ListView.view.palette.brightText
+            anchors.leftMargin: 10
+            anchors.rightMargin: 10
+            ToolTip.text: text
+            ToolTip.delay: 1000
+            ToolTip.visible: hovered && contentItem.implicitWidth > contentItem.width
 
-                TapHandler {
-                    acceptedButtons: Qt.RightButton
-                    onTapped: {
-                        showContextMenu(itemDelegate, model)
-                        baseLayer.focus = true
-                    }
+            TapHandler {
+                acceptedButtons: Qt.RightButton
+                onTapped: {
+                    showContextMenu(itemDelegate, model)
+                    baseLayer.focus = true
                 }
+            }
 
-                TapHandler {
-                    onTapped: {
-                        launchApp(desktopId)
-                    }
-                }
-
-                background: ItemBackground {
+            background: Loader {
+                active: itemDelegate.ListView.view.bgVisible === undefined
+                sourceComponent: ItemBackground {
                     implicitWidth: DStyle.Style.itemDelegate.width
                     implicitHeight: Helper.windowed.listItemHeight
                     button: itemDelegate
+                }
+            }
+
+            TapHandler {
+                onTapped: {
+                    launchApp(desktopId)
                 }
             }
 
