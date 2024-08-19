@@ -87,7 +87,9 @@ PersonalizationManager::~PersonalizationManager()
 // return if the window is "personalized" right away.
 bool PersonalizationManager::personalizeWindow(QWindow * window, PersonalizationManager::BgState state)
 {
-    return m_dptr ? m_dptr->personalizeWindow(window, state) : true;
+    // temporary do nothing for now, since TreeLand plans to update the related protocol
+    return true;
+    // return m_dptr ? m_dptr->personalizeWindow(window, state) : true;
 }
 
 #include "personalizationmanager.moc"
