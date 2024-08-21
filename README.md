@@ -43,7 +43,7 @@ $ make update_translations
 
 - [Code contribution via GitHub](https://github.com/linuxdeepin/dde-launchpad/)
 - [Submit bug or suggestions to GitHub Issues or GitHub Discussions](https://github.com/linuxdeepin/developer-center/issues/new/choose)
-- [Translate this project into your language on Hosted Weblate](https://hosted.weblate.org/projects/deepin/dde-launchpad/)
+- Contribute translation: [deepin-translation-program](https://www.deepin.org/index/zh/docs/sig/sig/deepin-translation-program/README.md)
 
 ## License
 
