@@ -184,7 +184,7 @@
     <message>
         <location filename="../qml/windowed/RecentlyInstalledView.qml" line="34"/>
         <source>Recently Installed</source>
-        <translation type="unfinished"/>
+        <translation>Onlangs geïnstalleerd</translation>
     </message>
 </context>
 <context>
@@ -192,12 +192,12 @@
     <message>
         <location filename="../qml/windowed/SearchResultView.qml" line="37"/>
         <source>All Apps</source>
-        <translation type="unfinished"/>
+        <translation>Alle programma&apos;s</translation>
     </message>
     <message>
         <location filename="../qml/windowed/SearchResultView.qml" line="102"/>
         <source>No search results</source>
-        <translation type="unfinished"/>
+        <translation>Geen zoekresultaten</translation>
     </message>
 </context>
 <context>
