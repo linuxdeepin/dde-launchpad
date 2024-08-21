@@ -1,13 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="hu">
-<context>
-    <name>AnalysisView</name>
-    <message>
-        <source>No search results</source>
-        <translation type="obsolete">Nincs keresési eredmény</translation>
-    </message>
-</context>
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="hu">
 <context>
     <name>AppItemMenu</name>
     <message>
@@ -82,53 +73,6 @@
     </message>
 </context>
 <context>
-    <name>AppListView</name>
-    <message>
-        <source>Internet</source>
-        <translation type="vanished">Internet</translation>
-    </message>
-    <message>
-        <source>Chat</source>
-        <translation type="vanished">Csevegés</translation>
-    </message>
-    <message>
-        <source>Music</source>
-        <translation type="vanished">Zene</translation>
-    </message>
-    <message>
-        <source>Video</source>
-        <translation type="vanished">Videó</translation>
-    </message>
-    <message>
-        <source>Graphics</source>
-        <translation type="vanished">Grafika</translation>
-    </message>
-    <message>
-        <source>Game</source>
-        <translation type="vanished">Játékok</translation>
-    </message>
-    <message>
-        <source>Office</source>
-        <translation type="vanished">Iroda</translation>
-    </message>
-    <message>
-        <source>Reading</source>
-        <translation type="vanished">Olvasás</translation>
-    </message>
-    <message>
-        <source>Development</source>
-        <translation type="vanished">Fejlesztés</translation>
-    </message>
-    <message>
-        <source>System</source>
-        <translation type="vanished">Rendszer</translation>
-    </message>
-    <message>
-        <source>Others</source>
-        <translation type="vanished">Egyéb</translation>
-    </message>
-</context>
-<context>
     <name>BottomBar</name>
     <message>
         <location filename="../qml/windowed/BottomBar.qml" line="32"/>
@@ -147,17 +91,6 @@
         <location filename="../qml/windowed/FrequentlyUsedView.qml" line="35"/>
         <source>Frequently Used</source>
         <translation>Gyakran Használt</translation>
-    </message>
-    <message>
-        <source>All Apps</source>
-        <translation type="vanished">Minden alkalmazás</translation>
-    </message>
-</context>
-<context>
-    <name>FullscreenFrame</name>
-    <message>
-        <source>Search</source>
-        <translation type="obsolete">Keresés</translation>
     </message>
 </context>
 <context>
@@ -308,45 +241,6 @@
         <location filename="../qml/windowed/SideBar.qml" line="186"/>
         <source>Control Center</source>
         <translation>Vezérlőpult</translation>
-    </message>
-</context>
-<context>
-    <name>WindowedFrame</name>
-    <message>
-        <source>Categories</source>
-        <translation type="vanished">Kategóriák</translation>
-    </message>
-    <message>
-        <source>Power</source>
-        <translation type="vanished">Kikapcsolás</translation>
-    </message>
-    <message>
-        <source>Settings</source>
-        <translation type="vanished">Beállítások</translation>
-    </message>
-    <message>
-        <source>Search</source>
-        <translation type="vanished">Keresés</translation>
-    </message>
-    <message>
-        <source>Control Center</source>
-        <translation type="vanished">Vezérlőpult</translation>
-    </message>
-    <message>
-        <source>My Favorites</source>
-        <translation type="vanished">Kedvenceim</translation>
-    </message>
-    <message>
-        <source>Add your favorite apps here</source>
-        <translation type="vanished">Adja hozzá kedvenc alkalmazásait ide</translation>
-    </message>
-    <message>
-        <source>All Apps</source>
-        <translation type="vanished">Minden alkalmazás</translation>
-    </message>
-    <message>
-        <source>No search results</source>
-        <translation type="vanished">Nincs keresési eredmény</translation>
     </message>
 </context>
 </TS>
