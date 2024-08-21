@@ -1,13 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="es">
-<context>
-    <name>AnalysisView</name>
-    <message>
-        <source>No search results</source>
-        <translation type="obsolete">No hay resultados</translation>
-    </message>
-</context>
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="es">
 <context>
     <name>AppItemMenu</name>
     <message>
@@ -47,13 +38,13 @@
     </message>
     <message>
         <location filename="../qml/AppItemMenu.qml" line="91"/>
-        <source>Send to dock</source>
-        <translation>Anclar al muelle</translation>
+        <source>Remove from dock</source>
+        <translation>Desanclar del muelle</translation>
     </message>
     <message>
         <location filename="../qml/AppItemMenu.qml" line="91"/>
-        <source>Remove from dock</source>
-        <translation>Desanclar del muelle</translation>
+        <source>Send to dock</source>
+        <translation>Anclar al muelle</translation>
     </message>
     <message>
         <location filename="../qml/AppItemMenu.qml" line="103"/>
@@ -82,53 +73,6 @@
     </message>
 </context>
 <context>
-    <name>AppListView</name>
-    <message>
-        <source>Internet</source>
-        <translation type="vanished">Internet</translation>
-    </message>
-    <message>
-        <source>Chat</source>
-        <translation type="vanished">Mensajería</translation>
-    </message>
-    <message>
-        <source>Music</source>
-        <translation type="vanished">Música</translation>
-    </message>
-    <message>
-        <source>Video</source>
-        <translation type="vanished">Vídeo</translation>
-    </message>
-    <message>
-        <source>Graphics</source>
-        <translation type="vanished">Gráficos</translation>
-    </message>
-    <message>
-        <source>Game</source>
-        <translation type="vanished">Juegos</translation>
-    </message>
-    <message>
-        <source>Office</source>
-        <translation type="vanished">Ofimática</translation>
-    </message>
-    <message>
-        <source>Reading</source>
-        <translation type="vanished">Lectura</translation>
-    </message>
-    <message>
-        <source>Development</source>
-        <translation type="vanished">Desarrollo</translation>
-    </message>
-    <message>
-        <source>System</source>
-        <translation type="vanished">Sistema</translation>
-    </message>
-    <message>
-        <source>Others</source>
-        <translation type="vanished">Otros</translation>
-    </message>
-</context>
-<context>
     <name>BottomBar</name>
     <message>
         <location filename="../qml/windowed/BottomBar.qml" line="32"/>
@@ -147,17 +91,6 @@
         <location filename="../qml/windowed/FrequentlyUsedView.qml" line="35"/>
         <source>Frequently Used</source>
         <translation>Uso frecuente</translation>
-    </message>
-    <message>
-        <source>All Apps</source>
-        <translation type="vanished">Todas las aplicaciones</translation>
-    </message>
-</context>
-<context>
-    <name>FullscreenFrame</name>
-    <message>
-        <source>Search</source>
-        <translation type="vanished">Buscar</translation>
     </message>
 </context>
 <context>
@@ -308,45 +241,6 @@
         <location filename="../qml/windowed/SideBar.qml" line="186"/>
         <source>Control Center</source>
         <translation>Panel de control</translation>
-    </message>
-</context>
-<context>
-    <name>WindowedFrame</name>
-    <message>
-        <source>Categories</source>
-        <translation type="vanished">Categorías</translation>
-    </message>
-    <message>
-        <source>Power</source>
-        <translation type="vanished">Apagar</translation>
-    </message>
-    <message>
-        <source>Settings</source>
-        <translation type="vanished">Ajustes</translation>
-    </message>
-    <message>
-        <source>Search</source>
-        <translation type="vanished">Buscar en Internet</translation>
-    </message>
-    <message>
-        <source>Control Center</source>
-        <translation type="vanished">Centro de mando</translation>
-    </message>
-    <message>
-        <source>My Favorites</source>
-        <translation type="vanished">Mis favoritos</translation>
-    </message>
-    <message>
-        <source>Add your favorite apps here</source>
-        <translation type="vanished">Añadir tus aplicaciones favoritas aquí</translation>
-    </message>
-    <message>
-        <source>All Apps</source>
-        <translation type="vanished">Todas las Aplicaciones</translation>
-    </message>
-    <message>
-        <source>No search results</source>
-        <translation type="vanished">Sin resultados de búsqueda</translation>
     </message>
 </context>
 </TS>
