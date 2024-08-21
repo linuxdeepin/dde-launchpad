@@ -141,12 +141,12 @@
     <message>
         <location filename="../qml/Main.qml" line="34"/>
         <source>Office</source>
-        <translation type="unfinished"/>
+        <translation>Офіс</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="36"/>
         <source>Reading</source>
-        <translation type="unfinished"/>
+        <translation>Читання</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="38"/>
