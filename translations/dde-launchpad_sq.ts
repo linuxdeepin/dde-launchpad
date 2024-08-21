@@ -184,7 +184,7 @@
     <message>
         <location filename="../qml/windowed/RecentlyInstalledView.qml" line="34"/>
         <source>Recently Installed</source>
-        <translation type="unfinished"/>
+        <translation>Instaluar Së Fundi</translation>
     </message>
 </context>
 <context>
