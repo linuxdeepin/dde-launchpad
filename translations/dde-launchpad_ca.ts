@@ -192,7 +192,7 @@
     <message>
         <location filename="../qml/windowed/SearchResultView.qml" line="37"/>
         <source>All Apps</source>
-        <translation type="unfinished"/>
+        <translation>Totes les aplicacions</translation>
     </message>
     <message>
         <location filename="../qml/windowed/SearchResultView.qml" line="102"/>
