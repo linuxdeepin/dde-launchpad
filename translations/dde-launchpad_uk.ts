@@ -161,22 +161,22 @@
     <message>
         <location filename="../qml/Main.qml" line="42"/>
         <source>Others</source>
-        <translation type="unfinished"/>
+        <translation>Інше</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="398"/>
         <source>Are you sure you want to uninstall %1?</source>
-        <translation type="unfinished"/>
+        <translation>Ви справді хочете вилучити %1?</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="410"/>
         <source>Cancel</source>
-        <translation type="unfinished"/>
+        <translation>Скасувати</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="424"/>
         <source>Confirm</source>
-        <translation type="unfinished"/>
+        <translation>Підтвердити</translation>
     </message>
 </context>
 <context>
@@ -184,7 +184,7 @@
     <message>
         <location filename="../qml/windowed/RecentlyInstalledView.qml" line="34"/>
         <source>Recently Installed</source>
-        <translation type="unfinished"/>
+        <translation>Нещодавно встановлені</translation>
     </message>
 </context>
 <context>
@@ -192,7 +192,7 @@
     <message>
         <location filename="../qml/windowed/SearchResultView.qml" line="37"/>
         <source>All Apps</source>
-        <translation type="unfinished"/>
+        <translation>Усі програми</translation>
     </message>
     <message>
         <location filename="../qml/windowed/SearchResultView.qml" line="102"/>
