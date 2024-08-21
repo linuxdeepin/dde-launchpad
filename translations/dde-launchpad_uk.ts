@@ -215,7 +215,7 @@
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="66"/>
         <source>Sort by name</source>
-        <translation type="unfinished"/>
+        <translation>Упорядкування за назвами</translation>
     </message>
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="142"/>
