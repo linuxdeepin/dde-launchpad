@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="fi">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="fi">
 <context>
     <name>AppItemMenu</name>
     <message>
@@ -16,7 +14,7 @@
     <message>
         <location filename="../qml/AppItemMenu.qml" line="55"/>
         <source>Move to Top</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../qml/AppItemMenu.qml" line="65"/>
@@ -40,13 +38,13 @@
     </message>
     <message>
         <location filename="../qml/AppItemMenu.qml" line="91"/>
-        <source>Send to dock</source>
-        <translation>Kiinnitä telakkaan</translation>
+        <source>Remove from dock</source>
+        <translation>Poista telakasta</translation>
     </message>
     <message>
         <location filename="../qml/AppItemMenu.qml" line="91"/>
-        <source>Remove from dock</source>
-        <translation>Poista telakasta</translation>
+        <source>Send to dock</source>
+        <translation>Kiinnitä telakkaan</translation>
     </message>
     <message>
         <location filename="../qml/AppItemMenu.qml" line="103"/>
@@ -75,45 +73,6 @@
     </message>
 </context>
 <context>
-    <name>AppListView</name>
-    <message>
-        <source>Internet</source>
-        <translation type="vanished">Internet</translation>
-    </message>
-    <message>
-        <source>Chat</source>
-        <translation type="vanished">Chatti</translation>
-    </message>
-    <message>
-        <source>Music</source>
-        <translation type="vanished">Musiikki</translation>
-    </message>
-    <message>
-        <source>Video</source>
-        <translation type="vanished">Video</translation>
-    </message>
-    <message>
-        <source>Graphics</source>
-        <translation type="vanished">Grafiikka</translation>
-    </message>
-    <message>
-        <source>Office</source>
-        <translation type="vanished">Toimisto</translation>
-    </message>
-    <message>
-        <source>Reading</source>
-        <translation type="vanished">Lukeminen</translation>
-    </message>
-    <message>
-        <source>Development</source>
-        <translation type="vanished">Ohjelmointi</translation>
-    </message>
-    <message>
-        <source>System</source>
-        <translation type="vanished">Järjestelmä</translation>
-    </message>
-</context>
-<context>
     <name>BottomBar</name>
     <message>
         <location filename="../qml/windowed/BottomBar.qml" line="32"/>
@@ -132,17 +91,6 @@
         <location filename="../qml/windowed/FrequentlyUsedView.qml" line="35"/>
         <source>Frequently Used</source>
         <translation>Usein käytetty</translation>
-    </message>
-    <message>
-        <source>All Apps</source>
-        <translation type="vanished">Kaikki sovellukset</translation>
-    </message>
-</context>
-<context>
-    <name>FullscreenFrame</name>
-    <message>
-        <source>Search</source>
-        <translation type="obsolete">Etsi</translation>
     </message>
 </context>
 <context>
@@ -293,21 +241,6 @@
         <location filename="../qml/windowed/SideBar.qml" line="186"/>
         <source>Control Center</source>
         <translation>Ohjauskeskus</translation>
-    </message>
-</context>
-<context>
-    <name>WindowedFrame</name>
-    <message>
-        <source>Power</source>
-        <translation type="vanished">Virta</translation>
-    </message>
-    <message>
-        <source>Settings</source>
-        <translation type="vanished">Asetukset</translation>
-    </message>
-    <message>
-        <source>Search</source>
-        <translation type="vanished">Etsi</translation>
     </message>
 </context>
 </TS>
