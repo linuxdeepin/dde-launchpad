@@ -197,7 +197,7 @@
     <message>
         <location filename="../qml/windowed/SearchResultView.qml" line="102"/>
         <source>No search results</source>
-        <translation type="unfinished"/>
+        <translation>No hi ha resultats de la cerca.</translation>
     </message>
 </context>
 <context>
