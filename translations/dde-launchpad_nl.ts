@@ -220,27 +220,27 @@
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="142"/>
         <source>Computer</source>
-        <translation type="unfinished"/>
+        <translation>Computer</translation>
     </message>
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="153"/>
         <source>Pictures</source>
-        <translation type="unfinished"/>
+        <translation>Afbeeldingen</translation>
     </message>
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="164"/>
         <source>Documents</source>
-        <translation type="unfinished"/>
+        <translation>Documenten</translation>
     </message>
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="175"/>
         <source>Desktop</source>
-        <translation type="unfinished"/>
+        <translation>Bureaublad</translation>
     </message>
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="186"/>
         <source>Control Center</source>
-        <translation type="unfinished"/>
+        <translation>Instellingencentrum</translation>
     </message>
 </context>
 </TS>
