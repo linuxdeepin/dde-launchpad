@@ -131,17 +131,17 @@
     <message>
         <location filename="../qml/Main.qml" line="30"/>
         <source>Graphics</source>
-        <translation type="unfinished"/>
+        <translation>Grafika</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="32"/>
         <source>Game</source>
-        <translation type="unfinished"/>
+        <translation>Lojë</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="34"/>
         <source>Office</source>
-        <translation type="unfinished"/>
+        <translation>Zyrë</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="36"/>
