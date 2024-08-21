@@ -215,17 +215,17 @@
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="66"/>
         <source>Sort by name</source>
-        <translation type="unfinished"/>
+        <translation>Renditi sipas emrash</translation>
     </message>
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="142"/>
         <source>Computer</source>
-        <translation type="unfinished"/>
+        <translation>Kompjuter</translation>
     </message>
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="153"/>
         <source>Pictures</source>
-        <translation type="unfinished"/>
+        <translation>Fotografi</translation>
     </message>
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="164"/>
