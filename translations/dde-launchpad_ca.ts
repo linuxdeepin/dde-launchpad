@@ -146,17 +146,17 @@
     <message>
         <location filename="../qml/Main.qml" line="36"/>
         <source>Reading</source>
-        <translation type="unfinished"/>
+        <translation>Lectura</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="38"/>
         <source>Development</source>
-        <translation type="unfinished"/>
+        <translation>Desenvolupament</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="40"/>
         <source>System</source>
-        <translation type="unfinished"/>
+        <translation>Sistema</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="42"/>
