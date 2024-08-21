@@ -136,12 +136,12 @@
     <message>
         <location filename="../qml/Main.qml" line="32"/>
         <source>Game</source>
-        <translation type="unfinished"/>
+        <translation>Joc</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="34"/>
         <source>Office</source>
-        <translation type="unfinished"/>
+        <translation>Oficina</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="36"/>
