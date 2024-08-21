@@ -176,7 +176,7 @@
     <message>
         <location filename="../qml/Main.qml" line="424"/>
         <source>Confirm</source>
-        <translation type="unfinished"/>
+        <translation>Ripohojeni</translation>
     </message>
 </context>
 <context>
