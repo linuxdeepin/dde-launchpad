@@ -1,13 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="pt_BR">
-<context>
-    <name>AnalysisView</name>
-    <message>
-        <source>No search results</source>
-        <translation type="obsolete">Nenhum resultado</translation>
-    </message>
-</context>
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="pt_BR">
 <context>
     <name>AppItemMenu</name>
     <message>
@@ -82,45 +73,6 @@
     </message>
 </context>
 <context>
-    <name>AppListView</name>
-    <message>
-        <source>Internet</source>
-        <translation type="vanished">Internet</translation>
-    </message>
-    <message>
-        <source>Chat</source>
-        <translation type="vanished">Bate-Papo</translation>
-    </message>
-    <message>
-        <source>Music</source>
-        <translation type="vanished">Player de Música</translation>
-    </message>
-    <message>
-        <source>Video</source>
-        <translation type="vanished">Player de Vídeo</translation>
-    </message>
-    <message>
-        <source>Graphics</source>
-        <translation type="vanished">Imagem</translation>
-    </message>
-    <message>
-        <source>Office</source>
-        <translation type="vanished">Escritório</translation>
-    </message>
-    <message>
-        <source>Reading</source>
-        <translation type="vanished">Leitura</translation>
-    </message>
-    <message>
-        <source>Development</source>
-        <translation type="vanished">Desenvolvimento</translation>
-    </message>
-    <message>
-        <source>System</source>
-        <translation type="vanished">Sistema</translation>
-    </message>
-</context>
-<context>
     <name>BottomBar</name>
     <message>
         <location filename="../qml/windowed/BottomBar.qml" line="32"/>
@@ -139,17 +91,6 @@
         <location filename="../qml/windowed/FrequentlyUsedView.qml" line="35"/>
         <source>Frequently Used</source>
         <translation>Usado frequentemente</translation>
-    </message>
-    <message>
-        <source>All Apps</source>
-        <translation type="vanished">Todos os Aplicativos</translation>
-    </message>
-</context>
-<context>
-    <name>FullscreenFrame</name>
-    <message>
-        <source>Search</source>
-        <translation type="obsolete">Pesquisar</translation>
     </message>
 </context>
 <context>
@@ -300,41 +241,6 @@
         <location filename="../qml/windowed/SideBar.qml" line="186"/>
         <source>Control Center</source>
         <translation>Central de Controle</translation>
-    </message>
-</context>
-<context>
-    <name>WindowedFrame</name>
-    <message>
-        <source>Categories</source>
-        <translation type="vanished">Categorias</translation>
-    </message>
-    <message>
-        <source>Power</source>
-        <translation type="vanished">Energia</translation>
-    </message>
-    <message>
-        <source>Settings</source>
-        <translation type="vanished">Configurações</translation>
-    </message>
-    <message>
-        <source>Search</source>
-        <translation type="vanished">Pesquisar</translation>
-    </message>
-    <message>
-        <source>My Favorites</source>
-        <translation type="vanished">Favoritos</translation>
-    </message>
-    <message>
-        <source>Add your favorite apps here</source>
-        <translation type="vanished">Adicione seus aplicativos favoritos aqui</translation>
-    </message>
-    <message>
-        <source>All Apps</source>
-        <translation type="vanished">Todos os Aplicativos</translation>
-    </message>
-    <message>
-        <source>No search results</source>
-        <translation type="vanished">Nenhum resultado</translation>
     </message>
 </context>
 </TS>
