@@ -166,12 +166,12 @@
     <message>
         <location filename="../qml/Main.qml" line="398"/>
         <source>Are you sure you want to uninstall %1?</source>
-        <translation type="unfinished"/>
+        <translation>Jeni i sigurt se doni të çinstalohet %1?</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="410"/>
         <source>Cancel</source>
-        <translation type="unfinished"/>
+        <translation>Anuloje</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="424"/>
