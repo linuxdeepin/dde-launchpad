@@ -220,12 +220,12 @@
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="142"/>
         <source>Computer</source>
-        <translation type="unfinished"/>
+        <translation>Ordinador</translation>
     </message>
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="153"/>
         <source>Pictures</source>
-        <translation type="unfinished"/>
+        <translation>Imatges</translation>
     </message>
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="164"/>
