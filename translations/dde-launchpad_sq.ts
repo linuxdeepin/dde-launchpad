@@ -161,7 +161,7 @@
     <message>
         <location filename="../qml/Main.qml" line="42"/>
         <source>Others</source>
-        <translation type="unfinished"/>
+        <translation>Të tjera</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="398"/>
