@@ -230,7 +230,7 @@
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="164"/>
         <source>Documents</source>
-        <translation type="unfinished"/>
+        <translation>Документи</translation>
     </message>
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="175"/>
