@@ -90,7 +90,7 @@
     <message>
         <location filename="../qml/windowed/FrequentlyUsedView.qml" line="35"/>
         <source>Frequently Used</source>
-        <translation>S&apos;usa amb freqüència</translation>
+        <translation>Usat amb freqüència</translation>
     </message>
 </context>
 <context>
