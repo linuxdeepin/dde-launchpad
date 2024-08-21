@@ -210,7 +210,7 @@
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="54"/>
         <source>Sort by category</source>
-        <translation type="unfinished"/>
+        <translation>Ordena per categoria</translation>
     </message>
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="66"/>
