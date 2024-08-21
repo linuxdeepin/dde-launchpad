@@ -151,12 +151,12 @@
     <message>
         <location filename="../qml/Main.qml" line="38"/>
         <source>Development</source>
-        <translation type="unfinished"/>
+        <translation>Розробка</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="40"/>
         <source>System</source>
-        <translation type="unfinished"/>
+        <translation>Система</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="42"/>
