@@ -166,7 +166,7 @@
     <message>
         <location filename="../qml/Main.qml" line="398"/>
         <source>Are you sure you want to uninstall %1?</source>
-        <translation type="unfinished"/>
+        <translation>Segur que voleu desinstal·lar %1?</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="410"/>
