@@ -240,7 +240,7 @@
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="186"/>
         <source>Control Center</source>
-        <translation type="unfinished"/>
+        <translation>Centre de control</translation>
     </message>
 </context>
 </TS>
