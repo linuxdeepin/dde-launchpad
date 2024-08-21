@@ -136,7 +136,7 @@
     <message>
         <location filename="../qml/Main.qml" line="32"/>
         <source>Game</source>
-        <translation type="unfinished"/>
+        <translation>Ігри</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="34"/>
