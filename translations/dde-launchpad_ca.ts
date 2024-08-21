@@ -171,12 +171,12 @@
     <message>
         <location filename="../qml/Main.qml" line="410"/>
         <source>Cancel</source>
-        <translation type="unfinished"/>
+        <translation>Cancel·la</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="424"/>
         <source>Confirm</source>
-        <translation type="unfinished"/>
+        <translation>Confirmeu-ho</translation>
     </message>
 </context>
 <context>
