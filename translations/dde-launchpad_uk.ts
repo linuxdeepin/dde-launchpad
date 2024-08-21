@@ -205,7 +205,7 @@
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="40"/>
         <source>Free sorting</source>
-        <translation type="unfinished"/>
+        <translation>Довільне упорядкування</translation>
     </message>
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="54"/>
