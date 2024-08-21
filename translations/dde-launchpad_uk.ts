@@ -1,13 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="uk">
-<context>
-    <name>AnalysisView</name>
-    <message>
-        <source>No search results</source>
-        <translation type="obsolete">Нічого не знайдено</translation>
-    </message>
-</context>
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="uk">
 <context>
     <name>AppItemMenu</name>
     <message>
@@ -23,7 +14,7 @@
     <message>
         <location filename="../qml/AppItemMenu.qml" line="55"/>
         <source>Move to Top</source>
-        <translation type="unfinished"></translation>
+        <translation>Пересунути нагору</translation>
     </message>
     <message>
         <location filename="../qml/AppItemMenu.qml" line="65"/>
@@ -73,7 +64,7 @@
     <message>
         <location filename="../qml/AppItemMenu.qml" line="120"/>
         <source>Disable display scaling</source>
-        <translation type="unfinished"></translation>
+        <translation>Вимкнути масштабування дисплею</translation>
     </message>
     <message>
         <location filename="../qml/AppItemMenu.qml" line="127"/>
@@ -82,55 +73,16 @@
     </message>
 </context>
 <context>
-    <name>AppListView</name>
-    <message>
-        <source>Internet</source>
-        <translation type="vanished">Інтернет</translation>
-    </message>
-    <message>
-        <source>Chat</source>
-        <translation type="vanished">Спілкування</translation>
-    </message>
-    <message>
-        <source>Music</source>
-        <translation type="vanished">Музика</translation>
-    </message>
-    <message>
-        <source>Video</source>
-        <translation type="vanished">Відео</translation>
-    </message>
-    <message>
-        <source>Graphics</source>
-        <translation type="vanished">Графіка</translation>
-    </message>
-    <message>
-        <source>Office</source>
-        <translation type="vanished">Офіс</translation>
-    </message>
-    <message>
-        <source>Reading</source>
-        <translation type="vanished">Читання</translation>
-    </message>
-    <message>
-        <source>Development</source>
-        <translation type="vanished">Розробка</translation>
-    </message>
-    <message>
-        <source>System</source>
-        <translation type="vanished">Система</translation>
-    </message>
-</context>
-<context>
     <name>BottomBar</name>
     <message>
         <location filename="../qml/windowed/BottomBar.qml" line="32"/>
         <source>Power</source>
-        <translation type="unfinished">Живлення</translation>
+        <translation>Живлення</translation>
     </message>
     <message>
         <location filename="../qml/windowed/BottomBar.qml" line="56"/>
         <source>Search</source>
-        <translation type="unfinished">Пошук</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -138,18 +90,7 @@
     <message>
         <location filename="../qml/windowed/FrequentlyUsedView.qml" line="35"/>
         <source>Frequently Used</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>All Apps</source>
-        <translation type="obsolete">Усі програми</translation>
-    </message>
-</context>
-<context>
-    <name>FullscreenFrame</name>
-    <message>
-        <source>Search</source>
-        <translation type="obsolete">Пошук</translation>
+        <translation>Часто використані</translation>
     </message>
 </context>
 <context>
@@ -157,12 +98,12 @@
     <message>
         <location filename="../launchercontroller.cpp" line="19"/>
         <source>Show launcher (hidden by default)</source>
-        <translation type="unfinished"></translation>
+        <translation>Показати засіб запуску (типово приховано)</translation>
     </message>
     <message>
         <location filename="../launchercontroller.cpp" line="20"/>
         <source>Toggle launcher visibility</source>
-        <translation type="unfinished"></translation>
+        <translation>Показати/Приховати засіб запуску</translation>
     </message>
 </context>
 <context>
@@ -170,72 +111,72 @@
     <message>
         <location filename="../qml/Main.qml" line="22"/>
         <source>Internet</source>
-        <translation type="unfinished">Інтернет</translation>
+        <translation>Інтернет</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="24"/>
         <source>Chat</source>
-        <translation type="unfinished">Спілкування</translation>
+        <translation>Спілкування</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="26"/>
         <source>Music</source>
-        <translation type="unfinished">Музика</translation>
+        <translation>Музика</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="28"/>
         <source>Video</source>
-        <translation type="unfinished">Відео</translation>
+        <translation>Відео</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="30"/>
         <source>Graphics</source>
-        <translation type="unfinished">Графіка</translation>
+        <translation>Графіка</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="32"/>
         <source>Game</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="34"/>
         <source>Office</source>
-        <translation type="unfinished">Офіс</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="36"/>
         <source>Reading</source>
-        <translation type="unfinished">Читання</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="38"/>
         <source>Development</source>
-        <translation type="unfinished">Розробка</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="40"/>
         <source>System</source>
-        <translation type="unfinished">Система</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="42"/>
         <source>Others</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="398"/>
         <source>Are you sure you want to uninstall %1?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="410"/>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="424"/>
         <source>Confirm</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -243,7 +184,7 @@
     <message>
         <location filename="../qml/windowed/RecentlyInstalledView.qml" line="34"/>
         <source>Recently Installed</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -251,12 +192,12 @@
     <message>
         <location filename="../qml/windowed/SearchResultView.qml" line="37"/>
         <source>All Apps</source>
-        <translation type="unfinished">Усі програми</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../qml/windowed/SearchResultView.qml" line="102"/>
         <source>No search results</source>
-        <translation type="unfinished">Нічого не знайдено</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -264,77 +205,42 @@
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="40"/>
         <source>Free sorting</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="54"/>
         <source>Sort by category</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="66"/>
         <source>Sort by name</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="142"/>
         <source>Computer</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="153"/>
         <source>Pictures</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="164"/>
         <source>Documents</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="175"/>
         <source>Desktop</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="186"/>
         <source>Control Center</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>WindowedFrame</name>
-    <message>
-        <source>Categories</source>
-        <translation type="vanished">Категорії</translation>
-    </message>
-    <message>
-        <source>Power</source>
-        <translation type="vanished">Живлення</translation>
-    </message>
-    <message>
-        <source>Settings</source>
-        <translation type="vanished">Налаштування</translation>
-    </message>
-    <message>
-        <source>Search</source>
-        <translation type="vanished">Пошук</translation>
-    </message>
-    <message>
-        <source>My Favorites</source>
-        <translation type="vanished">Мої улюблені</translation>
-    </message>
-    <message>
-        <source>Add your favorite apps here</source>
-        <translation type="vanished">Сюди ви можете додати вибрані програми</translation>
-    </message>
-    <message>
-        <source>All Apps</source>
-        <translation type="vanished">Усі програми</translation>
-    </message>
-    <message>
-        <source>No search results</source>
-        <translation type="vanished">Нічого не знайдено</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 </TS>
