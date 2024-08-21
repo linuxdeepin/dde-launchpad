@@ -235,12 +235,12 @@
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="175"/>
         <source>Desktop</source>
-        <translation type="unfinished"/>
+        <translation>Стільниця</translation>
     </message>
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="186"/>
         <source>Control Center</source>
-        <translation type="unfinished"/>
+        <translation>Центр керування</translation>
     </message>
 </context>
 </TS>
