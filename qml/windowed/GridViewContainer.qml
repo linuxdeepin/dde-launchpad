@@ -66,6 +66,7 @@ FocusScope {
 
             interactive: false
             highlightFollowsCurrentItem: true
+            highlightMoveDuration: 100
             keyNavigationEnabled: true
             activeFocusOnTab: focus ? root.activeGridViewFocusOnTab : false
             focus: count > 0
@@ -96,13 +97,21 @@ FocusScope {
             }
 
             Keys.onPressed: function (event) {
-                if (event.key === Qt.Key_Right && currentIndex === gridView.count - 1) {
-                    gridView.currentIndex = 0;
-                    event.accepted = true;
-                } else if (event.key === Qt.Key_Left && currentIndex === 0) {
-                    currentIndex = gridView.count - 1;
-                    event.accepted = true;
+                if (event.key === Qt.Key_Left ||
+                    event.key === Qt.Key_Right ||
+                    event.key === Qt.Key_Up ||
+                    event.key === Qt.Key_Down) {
+
+                    if (!keyTimer.running) {
+                        keyTimer.start()
+                    } else {
+                        event.accepted = true
+                    }
                 }
+            }
+            Timer {
+                id: keyTimer
+                interval: 100
             }
         }
     }
