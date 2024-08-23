@@ -132,7 +132,6 @@ InputEventItem {
 
                 leftPadding: 20
                 rightPadding: 20
-                topPadding: 10
 
                 contentItem: Rectangle {
                     id: fullscreenHeader
@@ -160,14 +159,15 @@ InputEventItem {
 
                         opacity: folderGridViewPopup.visible ? 0.4 : 1
                         anchors.horizontalCenter: parent.horizontalCenter
+                        anchors.verticalCenter: parent.verticalCenter
                         visible: listviewPage.visible
                         count: searchResultGridViewContainer.visible ? 1 : listviewPage.count
                         currentIndex: searchResultGridViewContainer.visible ? 1 : listviewPage.currentIndex
                         interactive: true
                         spacing: 10
                         delegate: Rectangle {
-                            width: 10
-                            height: 10
+                            width: 8
+                            height: 8
 
                             radius: width / 2
                             color: Qt.rgba(255, 255, 255, index === indicator.currentIndex ? 0.9 : pressed ? 0.5 : 0.2)
