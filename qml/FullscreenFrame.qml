@@ -136,17 +136,14 @@ InputEventItem {
                 contentItem: Rectangle {
                     id: fullscreenHeader
                     implicitHeight: exitFullscreenBtn.height
+                    opacity: folderGridViewPopup.visible ? 0.4 : 1
                     color: "transparent"
 
                     ToolButton {
                         id: exitFullscreenBtn
-
                         Accessible.name: "Exit fullscreen"
-
                         anchors.right: fullscreenHeader.right
-
                         ColorSelector.family: Palette.CrystalColor
-
                         icon.name: "launcher_exit_fullscreen"
                         onClicked: {
                             searchEdit.text = ""
@@ -157,7 +154,6 @@ InputEventItem {
                     PageIndicator {
                         id: indicator
 
-                        opacity: folderGridViewPopup.visible ? 0.4 : 1
                         anchors.horizontalCenter: parent.horizontalCenter
                         anchors.verticalCenter: parent.verticalCenter
                         visible: listviewPage.visible
@@ -554,6 +550,7 @@ InputEventItem {
 
                 Layout.alignment: Qt.AlignHCenter
                 implicitWidth: (parent.width / 2) > 280 ? 280 : (parent.width / 2)
+                opacity: folderGridViewPopup.visible ? 0.4 : 1
 
                 property Palette iconPalette: Palette {
                     normal {
