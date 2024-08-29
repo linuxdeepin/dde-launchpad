@@ -1,3 +1,9 @@
+dde-launchpad (0.8.7) unstable; urgency=medium
+
+  * fix: gridView tab switched too quickly(Issue: https://github.com/linuxdeepin/developer-center/issues/10481)
+
+ -- Zhang Kun <zhangkun2@uniontech.com>  Thu, 29 Aug 2024 10:19:01 +0800
+
 dde-launchpad (0.8.6) unstable; urgency=medium
 
   * fix: modify the fullscreen launcher window opening and closing animation(Issue: 10322)
