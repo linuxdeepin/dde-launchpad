@@ -18,7 +18,11 @@ Control {
     id: root
 
     property var icons: undefined
-    property int preferredIconSize: 48
+
+    // TODO: When DciIcon changes the sourceSize, the icon will flash, It may be a bug of dciicon or qt?
+    // So we give the max sourceSize and use scale to solve it.
+    property int maxIconSize: 128
+    property int maxIconSizeInFolder: 64
     property string text: display.startsWith("internal/category/") ? getCategoryName(display.substring(18)) : display
 
     property string iconSource
@@ -133,7 +137,8 @@ Control {
                                     Layout.alignment: Qt.AlignTop | Qt.AlignLeft
 
                                     name: modelData
-                                    sourceSize: Qt.size(parent.width / 2, parent.height / 2)
+                                    sourceSize: Qt.size(root.maxIconSizeInFolder, root.maxIconSizeInFolder)
+                                    scale: parent.width / 2 / root.maxIconSizeInFolder
                                     palette: DTK.makeIconPalette(root.palette)
                                     theme: ApplicationHelper.DarkType
                                 }
@@ -162,7 +167,8 @@ Control {
                         objectName: "appIcon"
                         anchors.fill: parent
                         name: iconSource
-                        sourceSize: Qt.size(parent.width, parent.height)
+                        sourceSize: Qt.size(root.maxIconSize, root.maxIconSize)
+                        scale: parent.width / root.maxIconSize
                         palette: DTK.makeIconPalette(root.palette)
                         theme: ApplicationHelper.DarkType
                     }
