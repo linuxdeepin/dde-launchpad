@@ -136,10 +136,11 @@ Item {
                 x : 10
                 width: bg.width
                 height: indicatorDefaultHeight
-                color: "lightgray"
                 visible: showDropIndicator
                 radius: height > indicatorDefaultHeight ? 8 : 1
-                opacity: 0.5
+
+                property Palette background: Helper.itemBackground
+                color: dropIndicator.ColorSelector.background
             }
 
             ItemDelegate {

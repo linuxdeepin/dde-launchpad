@@ -6,23 +6,12 @@ import QtQuick 2.15
 import org.deepin.dtk 1.0 as D
 import org.deepin.dtk.style 1.0 as DS
 
+import org.deepin.launchpad 1.0
+
 D.BoxPanel {
     id: control
     property Item button
-    property D.Palette background: D.Palette {
-        normal {
-            common: Qt.rgba(0, 0, 0, 0.1)
-            crystal: Qt.rgba(0, 0, 0, 0.1)
-        }
-        normalDark {
-            common: Qt.rgba(1, 1, 1, 0.1)
-            crystal: Qt.rgba(1, 1, 1, 0.1)
-        }
-        hovered {
-            common: Qt.rgba(16.0 / 255, 16.0 / 255, 16.0 / 255, 0.1)
-            crystal: Qt.rgba(16.0 / 255, 16.0 / 255, 16.0 / 255, 0.1)
-        }
-    }
+    property D.Palette background: Helper.itemBackground
 
     implicitWidth: DS.Style.toolButton.width
     implicitHeight: DS.Style.toolButton.height
