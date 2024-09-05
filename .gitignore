@@ -8,5 +8,8 @@
 # Clangd cache folder
 .cache/
 
+# IDE folders
+.vscode/
+
 # User project file
 CMakeLists.txt.user*
