@@ -38,8 +38,6 @@ feature_summary(WHAT ALL FATAL_ON_MISSING_REQUIRED_PACKAGES)
 
 set(QML_IMPORT_PATH ${QML_IMPORT_PATH} ${CMAKE_CURRENT_BINARY_DIR}/ CACHE STRING "" FORCE)
 
-add_subdirectory(systemd)
-add_subdirectory(dbus)
 add_subdirectory(src/gioutils)
 add_subdirectory(src/utils)
 add_subdirectory(src/quick)
@@ -117,15 +115,18 @@ set(TRANSLATION_FILES
 
 qt_add_dbus_adaptor(DBUS_ADAPTER_FILES dbus/org.deepin.dde.Launcher1.xml launchercontroller.h LauncherController)
 
-qt_add_executable(${BIN_NAME}
-    main.cpp
+qt_add_library(liblaunchpad SHARED
     ${SOURCE_FILES}
     ${DBUS_ADAPTER_FILES}
     ${RESOURCES}
     ${TRANSLATED_FILES}
 )
 
-qt_add_qml_module(${BIN_NAME}
+qt_add_executable(${BIN_NAME}
+    main.cpp
+)
+
+qt_add_qml_module(liblaunchpad
     URI org.deepin.launchpad
     VERSION 1.0
     RESOURCES qml.qrc
@@ -146,7 +147,7 @@ PRIVATE
     DDE_LAUNCHPAD_VERSION=${CMAKE_PROJECT_VERSION}
 )
 
-target_link_libraries(${BIN_NAME} PRIVATE
+target_link_libraries(liblaunchpad PUBLIC
     ${DTK_NS}::Core
     ${DTK_NS}::Gui
     Qt::Qml
@@ -162,11 +163,14 @@ target_link_libraries(${BIN_NAME} PRIVATE
     treeland-integration
 )
 
-install(TARGETS ${BIN_NAME} DESTINATION ${CMAKE_INSTALL_BINDIR})
+target_link_libraries(${BIN_NAME} PRIVATE
+    liblaunchpad
+)
+
 install(FILES ${TRANSLATED_FILES} DESTINATION ${CMAKE_INSTALL_DATADIR}/${BIN_NAME}/translations)
 install(
     FILES dist/org.deepin.dde.shell.launchpad.appdata.xml
     DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/metainfo"
 )
 
-include(dde-shell-wrapper/src.cmake)
+add_subdirectory(shell-launcher-applet)
