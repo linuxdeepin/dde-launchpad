@@ -233,7 +233,7 @@ QtObject {
         color: "transparent"
 
         DWindow.enabled: !DebugHelper.useRegularWindow
-        DWindow.windowRadius: 12
+        DWindow.windowRadius: DTK.platformTheme.windowRadius < 0 ? 12 : DTK.platformTheme.windowRadius
         DWindow.enableSystemResize: false
         DWindow.enableSystemMove: false
         DWindow.enableBlurWindow: true
