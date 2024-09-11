@@ -250,7 +250,7 @@ InputEventItem {
                                 if (isLastPage && !dropArea.createdEmptyPage) {
                                     let newPageIndex = ItemArrangementProxyModel.creatEmptyPage()
                                     dropArea.createdEmptyPage = true
-                                    setCurrentIndex(newPageIndex)
+                                    listviewPage.setCurrentIndex(newPageIndex)
                                     parent.pageIntent = 0
                                     return
                                 } else {
@@ -371,7 +371,7 @@ InputEventItem {
                             Keys.onLeftPressed: function(event) {
                                 if (listItem.viewIndex === 0 && itemPageModel.rowCount() > 1) {
                                     // is the 1st page, go to last page
-                                    setCurrentIndex(itemPageModel.rowCount() - 1)
+                                    listviewPage.setCurrentIndex(itemPageModel.rowCount() - 1)
                                 } else {
                                     // not the 1st page, simply use SwipeView default behavior
                                     event.accepted = false
@@ -380,7 +380,7 @@ InputEventItem {
                             Keys.onRightPressed: function(event) {
                                 if (listItem.viewIndex === (itemPageModel.rowCount() - 1) && itemPageModel.rowCount() > 1) {
                                     // is the last page, go to last page
-                                    setCurrentIndex(0)
+                                    listviewPage.setCurrentIndex(0)
                                 } else {
                                     // not the last page, simply use SwipeView default behavior
                                     event.accepted = false
@@ -507,7 +507,7 @@ InputEventItem {
                     }
 
                     Component.onCompleted: {
-                        setCurrentIndex(0)
+                        listviewPage.setCurrentIndex(0)
                     }
                 }
 
@@ -690,7 +690,7 @@ InputEventItem {
                 // reset(remove) keyboard focus
                 baseLayer.focus = true
                 // reset page to the first page
-                setCurrentIndex(0)
+                listviewPage.setCurrentIndex(0)
             }
         }
     }
