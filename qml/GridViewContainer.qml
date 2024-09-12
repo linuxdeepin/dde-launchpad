@@ -85,7 +85,7 @@ FocusScope {
                 clip: true
                 highlightFollowsCurrentItem: true
                 keyNavigationEnabled: true
-                highlightMoveDuration: 100
+                highlightMoveDuration: 50
                 activeFocusOnTab: focus ? root.activeGridViewFocusOnTab : false
                 focus: count > 0
                 onActiveFocusChanged: {
@@ -128,24 +128,6 @@ FocusScope {
                 // not wroking
                 move: root.itemMove
                 moveDisplaced: root.itemMove
-
-                Keys.onPressed: function (event) {
-                    if (event.key === Qt.Key_Left ||
-                        event.key === Qt.Key_Right ||
-                        event.key === Qt.Key_Up ||
-                        event.key === Qt.Key_Down) {
-
-                        if (!keyTimer.running) {
-                            keyTimer.start()
-                        } else {
-                            event.accepted = true
-                        }
-                    }
-                }
-                Timer {
-                    id: keyTimer
-                    interval: 100
-                }
             }
         }
 
