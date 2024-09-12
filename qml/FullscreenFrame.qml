@@ -299,7 +299,9 @@ InputEventItem {
                         listviewPage.currentIndex = Qt.binding(function() { return indicator.currentIndex })
                     }
 
-                    property int previousIndex: -1
+                    // -1: left key pressed  1: right key pressed
+                    property int keyLOrRPressed: 0
+
                     model: itemPageModel
 
                     delegate: FocusScope {
@@ -349,21 +351,20 @@ InputEventItem {
                             focus: true
 
                             function checkPageSwitchState() {
-                                if (listItem.viewIndex !== listviewPage.currentIndex)
-                                    return
-                                if (listviewPage.previousIndex === -1) {
-                                    listviewPage.previousIndex = listviewPage.currentIndex
+                                gridViewContainer.setPreviousPageSwitch(false)
+                                if (listItem.viewIndex !== listviewPage.currentIndex) {
                                     return
                                 }
-                                if (listviewPage.currentIndex + 1 === listviewPage.previousIndex || (listviewPage.previousIndex === 0 && listviewPage.currentIndex === listviewPage.count - 1)) {
+
+                                if (listviewPage.keyLOrRPressed === -1) {
                                     gridViewContainer.setPreviousPageSwitch(true)
-                                } else {
+                                } else if (listviewPage.keyLOrRPressed === 1) {
                                     gridViewContainer.setPreviousPageSwitch(false)
                                 }
-                                listviewPage.previousIndex = listviewPage.currentIndex
                             }
 
                             Keys.onLeftPressed: function(event) {
+                                listviewPage.keyLOrRPressed = -1
                                 if (listItem.viewIndex === 0 && itemPageModel.rowCount() > 1) {
                                     // is the 1st page, go to last page
                                     listviewPage.setCurrentIndex(itemPageModel.rowCount() - 1)
@@ -373,6 +374,7 @@ InputEventItem {
                                 }
                             }
                             Keys.onRightPressed: function(event) {
+                                listviewPage.keyLOrRPressed = 1
                                 if (listItem.viewIndex === (itemPageModel.rowCount() - 1) && itemPageModel.rowCount() > 1) {
                                     // is the last page, go to last page
                                     listviewPage.setCurrentIndex(0)
@@ -496,8 +498,6 @@ InputEventItem {
                             Component.onCompleted: {
                                 gridViewContainer.checkPageSwitchState()
                             }
-                            Component.onDestruction: {
-                            }                            
                         }
                     }
 
