@@ -121,7 +121,7 @@ Control {
             }
         }
         ToolTip.text: root.text
-        ToolTip.delay: 1000
+        ToolTip.delay: 500
         ToolTip.visible: hovered && iconItemLabel.truncated
         background: ItemBackground {
             radius: 8

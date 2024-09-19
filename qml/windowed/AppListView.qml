@@ -236,7 +236,7 @@ FocusScope {
             anchors.leftMargin: 10
             anchors.rightMargin: 10
             ToolTip.text: text
-            ToolTip.delay: 1000
+            ToolTip.delay: 500
             ToolTip.visible: hovered && contentItem.implicitWidth > contentItem.width
 
             KeyNavigation.tab: nextKeyTabTargetItem

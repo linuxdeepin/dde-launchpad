@@ -228,7 +228,7 @@ Item {
                 visible: !Drag.active
 
                 ToolTip.text: text
-                ToolTip.delay: 1000
+                ToolTip.delay: 500
                 ToolTip.visible: hovered && contentItem.implicitWidth > contentItem.width
 
                 Drag.hotSpot.x: width / 3
