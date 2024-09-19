@@ -25,6 +25,11 @@ QtObject {
         property int cellPaddingRows: 6
     }
 
+    property QtObject itemBackgroundColor :QtObject {
+        property color hoveredColor: Qt.rgba(16.0 / 255, 16.0 / 255, 16.0 / 255, 0.1)
+        property color hoveredDarkColor: Qt.rgba(1, 1, 1, 0.1)
+    }
+
     property D.Palette itemBackground: D.Palette {
         normal {
             common: Qt.rgba(0, 0, 0, 0.1)
@@ -35,8 +40,12 @@ QtObject {
             crystal: Qt.rgba(1, 1, 1, 0.1)
         }
         hovered {
-            common: Qt.rgba(16.0 / 255, 16.0 / 255, 16.0 / 255, 0.1)
-            crystal: Qt.rgba(16.0 / 255, 16.0 / 255, 16.0 / 255, 0.1)
+            common: itemBackgroundColor.hoveredColor
+            crystal: itemBackgroundColor.hoveredColor
+        }
+        hoveredDark {
+            common: itemBackgroundColor.hoveredDarkColor
+            crystal: itemBackgroundColor.hoveredDarkColor
         }
     }
 }

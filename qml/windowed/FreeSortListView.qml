@@ -139,8 +139,8 @@ Item {
                 visible: showDropIndicator
                 radius: height > indicatorDefaultHeight ? 8 : 1
 
-                property Palette background: Helper.itemBackground
-                color: dropIndicator.ColorSelector.background
+                color: DTK.themeType === ApplicationHelper.DarkType ? Helper.itemBackgroundColor.hoveredDarkColor 
+                                                                    : Helper.itemBackgroundColor.hoveredColor
             }
 
             ItemDelegate {
