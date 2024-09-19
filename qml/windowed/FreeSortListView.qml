@@ -19,6 +19,18 @@ Item {
     property Item keyTabTarget: listView
     property bool animationEnabled: false
 
+    Timer {
+        id: enableAnimationTimer
+        interval: 100
+        onTriggered: {
+            root.animationEnabled = true
+        }
+    }
+
+    Component.onCompleted: {
+        enableAnimationTimer.start()
+    }
+
     onFocusChanged: () => {
         listView.focus = true
     }
@@ -209,7 +221,6 @@ Item {
 
             onEntered: function(drag) {
                 listDelegateDragApplyTimer.startTimer(drag.getDataAsString("text/x-dde-launcher-dnd-desktopId"))   
-                root.animationEnabled = true
                 if (folderGridViewPopup.opened) {
                     folderGridViewPopup.close()
                 }
@@ -222,7 +233,6 @@ Item {
             }
 
             onDropped: function(drop) {
-                root.animationEnabled = false
                 listDelegateDragApplyTimer.stopTimer()
                 drop.accept()
                 let dragId = drop.getDataAsString("text/x-dde-launcher-dnd-desktopId")
@@ -333,7 +343,6 @@ Item {
                             showContextMenu(itemDelegate, model, {
                                 hideMoveToTopMenu: index === 0
                             })
-
                             baseLayer.focus = true
                         } else {
                             launchItem()
