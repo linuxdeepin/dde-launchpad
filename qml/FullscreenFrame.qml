@@ -389,6 +389,8 @@ InputEventItem {
                             }
                             activeGridViewFocusOnTab: listviewPage.ListView.isCurrentItem
                             itemMove: Transition {
+                                id: itemMoveTransition
+                                enabled: false
                                 NumberAnimation {
                                     properties: "x,y"
                                     duration: 200
@@ -493,6 +495,28 @@ InputEventItem {
                                 target: dropArea
                                 function onDropped() {
                                     gridViewContainer.checkPageSwitchState()
+                                }
+                            }
+                            Timer {
+                                id: delayedEnableItemMoveTimer
+                                interval: 100
+                                onTriggered: function() {
+                                    itemMoveTransition.enabled = true
+                                }
+                            }
+                            Connections {
+                                target: LauncherController
+                                function onCurrentFrameChanged() {
+                                    // Disable itemMoveTransition on launch for bug https://pms.uniontech.com/bug-view-270945.html
+                                    if (LauncherController.currentFrame === "WindowedFrame") {
+                                        itemMoveTransition.enabled = false
+                                    } else {
+                                        delayedEnableItemMoveTimer.restart()
+                                    }
+                                }
+                                function onVisibleChanged() {
+                                    // itemMoveTransition should be enabled when launch to FullscreenFrame at first
+                                    itemMoveTransition.enabled = (LauncherController.currentFrame !== "WindowedFrame")
                                 }
                             }
                             Component.onCompleted: {
