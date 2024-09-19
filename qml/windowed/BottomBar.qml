@@ -28,7 +28,7 @@ Control {
                button: shutdownBtn
             }
             ToolTip.visible: hovered
-            ToolTip.delay: 1000
+            ToolTip.delay: 500
             ToolTip.text: qsTr("Power")
             Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
             onClicked: {
