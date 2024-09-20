@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="ca">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="ca">
 <context>
     <name>AppItemMenu</name>
     <message>
@@ -84,6 +86,11 @@
         <source>Search</source>
         <translation>Cerca</translation>
     </message>
+    <message>
+        <location filename="../qml/windowed/BottomBar.qml" line="103"/>
+        <source>Full-screen Mode</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>FrequentlyUsedView</name>
@@ -91,6 +98,14 @@
         <location filename="../qml/windowed/FrequentlyUsedView.qml" line="35"/>
         <source>Frequently Used</source>
         <translation>Usat amb freqüència</translation>
+    </message>
+</context>
+<context>
+    <name>FullscreenFrame</name>
+    <message>
+        <location filename="../qml/FullscreenFrame.qml" line="150"/>
+        <source>Window Mode</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -195,6 +210,7 @@
         <translation>Totes les aplicacions</translation>
     </message>
     <message>
+        <location filename="../qml/FullscreenFrame.qml" line="542"/>
         <location filename="../qml/windowed/SearchResultView.qml" line="102"/>
         <source>No search results</source>
         <translation>No hi ha resultats de la cerca.</translation>
@@ -218,27 +234,32 @@
         <translation>Ordena per nom</translation>
     </message>
     <message>
-        <location filename="../qml/windowed/SideBar.qml" line="142"/>
+        <location filename="../qml/windowed/SideBar.qml" line="90"/>
+        <source>Sorting Mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/windowed/SideBar.qml" line="144"/>
         <source>Computer</source>
         <translation>Ordinador</translation>
     </message>
     <message>
-        <location filename="../qml/windowed/SideBar.qml" line="153"/>
+        <location filename="../qml/windowed/SideBar.qml" line="155"/>
         <source>Pictures</source>
         <translation>Imatges</translation>
     </message>
     <message>
-        <location filename="../qml/windowed/SideBar.qml" line="164"/>
+        <location filename="../qml/windowed/SideBar.qml" line="166"/>
         <source>Documents</source>
         <translation>Documents</translation>
     </message>
     <message>
-        <location filename="../qml/windowed/SideBar.qml" line="175"/>
+        <location filename="../qml/windowed/SideBar.qml" line="177"/>
         <source>Desktop</source>
         <translation>Escriptori</translation>
     </message>
     <message>
-        <location filename="../qml/windowed/SideBar.qml" line="186"/>
+        <location filename="../qml/windowed/SideBar.qml" line="188"/>
         <source>Control Center</source>
         <translation>Centre de control</translation>
     </message>
