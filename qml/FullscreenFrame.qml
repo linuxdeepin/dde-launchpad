@@ -145,6 +145,9 @@ InputEventItem {
                         anchors.right: fullscreenHeader.right
                         ColorSelector.family: Palette.CrystalColor
                         icon.name: "launcher_exit_fullscreen"
+                        ToolTip.visible: hovered
+                        ToolTip.delay: 500
+                        ToolTip.text: qsTr("Window Mode")
                         onClicked: {
                             searchEdit.text = ""
                             LauncherController.currentFrame = "WindowedFrame"

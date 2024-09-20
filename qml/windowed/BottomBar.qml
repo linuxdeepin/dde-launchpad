@@ -98,6 +98,9 @@ Control {
             background: ItemBackground {
                 button: fullscreenBtn
             }
+            ToolTip.visible: hovered
+            ToolTip.delay: 500
+            ToolTip.text: qsTr("Full-screen Mode")
             Accessible.name: "Fullscreen"
             Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
             onClicked: {

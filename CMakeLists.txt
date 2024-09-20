@@ -85,6 +85,7 @@ get_target_property(WINDOWED_QML_FILES launcher-qml-windowed QT_QML_MODULE_QML_F
 set(QML_FILES_NEED_TRANSLATION
     qml/AppItemMenu.qml
     qml/Main.qml
+    qml/FullscreenFrame.qml
     ${WINDOWED_QML_FILES}
 )
 
