@@ -171,7 +171,7 @@
     <message>
         <location filename="../qml/Main.qml" line="410"/>
         <source>Cancel</source>
-        <translation type="unfinished"/>
+        <translation>Abbrechen</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="424"/>
