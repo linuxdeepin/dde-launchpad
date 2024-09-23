@@ -5,10 +5,14 @@
 #include "launcheritem.h"
 #include "pluginfactory.h"
 #include "../launchercontroller.h"
+#include <blurhashimageprovider.h>
 
 #include <DDBusSender>
 
 #include <applet.h>
+#include <qmlengine.h>
+
+DS_USE_NAMESPACE
 
 namespace dock {
 
@@ -22,6 +26,8 @@ LauncherItem::LauncherItem(QObject *parent)
 bool LauncherItem::init()
 {
     DApplet::init();
+
+    DQmlEngine().engine()->addImageProvider(QLatin1String("blurhash"), new BlurhashImageProvider);
 
     QDBusConnection connection = QDBusConnection::sessionBus();
     if (!connection.registerService(QStringLiteral("org.deepin.dde.Launcher1")) ||
