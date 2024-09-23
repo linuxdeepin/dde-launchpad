@@ -131,7 +131,7 @@
     <message>
         <location filename="../qml/Main.qml" line="30"/>
         <source>Graphics</source>
-        <translation type="unfinished"/>
+        <translation>Grafik</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="32"/>
