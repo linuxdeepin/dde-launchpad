@@ -11,7 +11,7 @@ add_library(shell-launcherapplet SHARED
 
 target_link_libraries(shell-launcherapplet PRIVATE
     Dde::Shell
-    liblaunchpad
+    launchpadcommon
 )
 
 ds_install_package(PACKAGE org.deepin.ds.dock.launcherapplet TARGET shell-launcherapplet)

@@ -79,6 +79,7 @@ InputEventItem {
 
         background: Image {
             source: DesktopIntegration.isTreeLand() ? undefined : DesktopIntegration.backgroundUrl
+            sourceSize: Qt.size(width / 3, height / 3)
 
             Rectangle {
                 anchors.fill: parent

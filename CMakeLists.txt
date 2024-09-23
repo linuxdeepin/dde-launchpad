@@ -115,7 +115,7 @@ set(TRANSLATION_FILES
 
 qt_add_dbus_adaptor(DBUS_ADAPTER_FILES dbus/org.deepin.dde.Launcher1.xml launchercontroller.h LauncherController)
 
-qt_add_library(liblaunchpad SHARED
+qt_add_library(launchpadcommon SHARED
     ${SOURCE_FILES}
     ${DBUS_ADAPTER_FILES}
     ${RESOURCES}
@@ -126,7 +126,7 @@ qt_add_executable(${BIN_NAME}
     main.cpp
 )
 
-qt_add_qml_module(liblaunchpad
+qt_add_qml_module(launchpadcommon
     URI org.deepin.launchpad
     VERSION 1.0
     RESOURCES qml.qrc
@@ -135,6 +135,7 @@ qt_add_qml_module(liblaunchpad
     QML_FILES
         ${QML_FILES}
 )
+set_target_properties(launchpadcommon PROPERTIES PREFIX "")
 
 qt_add_translations(${BIN_NAME}
     TS_FILES ${TRANSLATION_FILES}
@@ -147,7 +148,7 @@ PRIVATE
     DDE_LAUNCHPAD_VERSION=${CMAKE_PROJECT_VERSION}
 )
 
-target_link_libraries(liblaunchpad PUBLIC
+target_link_libraries(launchpadcommon PUBLIC
     ${DTK_NS}::Core
     ${DTK_NS}::Gui
     Qt::Qml
@@ -164,9 +165,10 @@ target_link_libraries(liblaunchpad PUBLIC
 )
 
 target_link_libraries(${BIN_NAME} PRIVATE
-    liblaunchpad
+    launchpadcommon
 )
 
+install(TARGETS launchpadcommon DESTINATION ${CMAKE_INSTALL_LIBDIR})
 install(FILES ${TRANSLATED_FILES} DESTINATION ${CMAKE_INSTALL_DATADIR}/${BIN_NAME}/translations)
 install(
     FILES dist/org.deepin.dde.shell.launchpad.appdata.xml
