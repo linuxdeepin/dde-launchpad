@@ -156,7 +156,7 @@
     <message>
         <location filename="../qml/Main.qml" line="40"/>
         <source>System</source>
-        <translation type="unfinished"/>
+        <translation>System</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="42"/>
