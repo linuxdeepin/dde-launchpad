@@ -225,12 +225,12 @@
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="153"/>
         <source>Pictures</source>
-        <translation type="unfinished"/>
+        <translation>Bilder</translation>
     </message>
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="164"/>
         <source>Documents</source>
-        <translation type="unfinished"/>
+        <translation>Dokumente</translation>
     </message>
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="175"/>
