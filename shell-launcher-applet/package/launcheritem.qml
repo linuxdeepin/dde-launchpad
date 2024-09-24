@@ -235,6 +235,12 @@ AppletItem {
                 windowedModeLauncher.close()
             }
         }
+        onPopupVisibleChanged: function() {
+            if (LauncherController.currentFrame !== "WindowedFrame") return
+            if (popupVisible !== visibility) {
+                LauncherController.visible = popupVisible
+            }
+        }
     }
 
     D.DciIcon {
