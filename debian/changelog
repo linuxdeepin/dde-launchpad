@@ -1,3 +1,15 @@
+dde-launchpad (1.0.3) unstable; urgency=medium
+
+  * fix: missing oblique tab operation
+  * fix: the focus position is wrong when turning the page
+  * feat: Disable itemMoveTransition when switching to FullscreenFrame
+  * fix: the color of dropIndicator under the black theme
+  * fix: tooltip delay time
+  * fix: missing tips when button hover
+  * fix: window radius isn't changed
+
+ -- xionglinlin <xionglinlin@uniontech.com>  Wed, 25 Sep 2024 16:33:36 +0800
+
 dde-launchpad (1.0.2) unstable; urgency=medium
 
   * fix: failed to switch pages by clicking indicator button
