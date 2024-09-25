@@ -108,6 +108,24 @@ bool DesktopIntegration::appIsCompulsoryForDesktop(const QString &desktopId)
     return false;
 }
 
+bool DesktopIntegration::appIsDummyPackage(const QString &desktopId)
+{
+#ifdef NO_APPSTREAM_QT
+    Q_UNUSED(desktopId)
+#else
+    AppStream::Pool pool;
+    // qDebug() << pool.flags();
+    pool.load();
+
+    const AppStream::ComponentBox components = pool.componentsByLaunchable(AppStream::Launchable::KindDesktopId, desktopId);
+    for (const AppStream::Component & component : components) {
+        return component.customValue("DDE::is_dummy_package") == "true";
+    }
+#endif
+
+    return false;
+}
+
 Qt::ArrowType DesktopIntegration::dockPosition() const
 {
     return m_dockIntegration->direction();
