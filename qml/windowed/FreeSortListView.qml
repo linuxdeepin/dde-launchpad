@@ -53,15 +53,58 @@ Item {
 
         ScrollBar.vertical: ScrollBar { }
 
+        Timer {
+            id: listViewDragScroller
+
+            property int scrollDelta: 0
+
+            interval: 20
+            repeat: true
+            running: false
+            onTriggered: function() {
+                scroll()
+            }
+
+            function scroll() {
+                if ((scrollDelta < 0 && !listView.atYBeginning) || (scrollDelta > 0 && !listView.atYEnd)) {
+                    listView.contentY += scrollDelta
+                }
+            }
+
+            function startScroll(delta) {
+                scrollDelta = delta
+                listViewDragScroller.start()
+            }
+
+            function stopScroll() {
+                if (listViewDragScroller.running) {
+                    scrollDelta = 0
+                    listViewDragScroller.stop()
+                }
+            }
+        }
+
         model: freeSortProxyModel
         delegate: DropArea {
             width: listView.width
             height: itemDelegate.height
             keys: ["text/x-dde-launcher-dnd-desktopId"]
+            ListView.delayRemove: itemDelegate.Drag.active
 
             property bool showDropIndicator: false
             property int op: 0 // DndPrepend = -1,DndJoin = 0, DndAppend = 1
             readonly property int indicatorDefaultHeight: 1
+
+            function scrollViewWhenNeeded(mouseY) {
+                let dragPosY = listView.mapFromItem(this, 0, mouseY).y
+                if (dragPosY < (listView.height / 10) && !listView.atYBeginning) {
+                    listViewDragScroller.startScroll(-10)
+                } else if (dragPosY > (listView.height / 10 * 9) && !listView.atYEnd) {
+                    listViewDragScroller.startScroll(10)
+                } else {
+                    listViewDragScroller.stopScroll()
+                }
+            }
 
             function dropPositionCheck(mouseY, isDraggingFolder) {
                 let sideOpPadding = height / 3
@@ -99,6 +142,12 @@ Item {
                 }
             }
 
+            Drag.onActiveChanged: function(active) {
+                if (!active) {
+                    listViewDragScroller.stopScroll()
+                }
+            }
+
             onPositionChanged: function(drag) {
                 let dragId = drag.getDataAsString("text/x-dde-launcher-dnd-desktopId")
                 if (dragId === desktopId) {
@@ -111,6 +160,7 @@ Item {
                 }
 
                 showDropIndicator = true
+                scrollViewWhenNeeded(drag.y)
                 dropPositionCheck(drag.y, isDraggingFolder)
             }
 
@@ -129,6 +179,7 @@ Item {
                 let dragId = drop.getDataAsString("text/x-dde-launcher-dnd-desktopId")
                 showDropIndicator = false
                 dropOnItem(dragId, model.desktopId, op)
+                listViewDragScroller.stopScroll()
             }
 
             Rectangle {
