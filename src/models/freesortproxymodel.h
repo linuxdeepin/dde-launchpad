@@ -5,26 +5,18 @@
 #ifndef FREE_SORT_PROXY_MODEL_H
 #define FREE_SORT_PROXY_MODEL_H
 
-#include <QtQml/qqml.h>
-#include <QSortFilterProxyModel>
+#include <QQmlEngine>
 
-class FreeSortProxyModel : public QSortFilterProxyModel
+#include "sortproxymodel.h"
+
+class FreeSortProxyModel : public SortProxyModel
 {
     Q_OBJECT
-
-    Q_PROPERTY(QAbstractItemModel *sourceModel READ sourceModel WRITE setModel NOTIFY sourceModelChanged)
     QML_NAMED_ELEMENT(FreeSortProxyModel)
-
 public:
     explicit FreeSortProxyModel(QObject *parent = nullptr);
 
-    void setModel(QAbstractItemModel *model);
-
-signals:
-    void sourceModelChanged(QObject *);
-
 protected:
-    bool filterAcceptsRow(int source_row, const QModelIndex &source_parent) const override;
     bool lessThan(const QModelIndex &source_left, const QModelIndex &source_right) const override;
 };
 

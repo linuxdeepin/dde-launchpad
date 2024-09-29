@@ -72,7 +72,7 @@ Q_SIGNALS:
     void sortOrderChanged();
 
 protected:
-    bool lessThan(const QModelIndex &source_left, const QModelIndex &source_right) const;
+    virtual bool lessThan(const QModelIndex &source_left, const QModelIndex &source_right) const;
 
 protected Q_SLOTS:
     void resetInternalData() override;
