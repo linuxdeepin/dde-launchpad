@@ -41,7 +41,7 @@ void MultipageSortFilterProxyModel::setModel(QAbstractItemModel *model)
 bool MultipageSortFilterProxyModel::filterAcceptsRow(int source_row, const QModelIndex &source_parent) const
 {
     return sourceModel()->data(sourceModel()->index(source_row, 0, source_parent), ItemArrangementProxyModel::FolderIdNumberRole).toInt() == m_folderId &&
-           sourceModel()->data(sourceModel()->index(source_row, 0, source_parent), ItemArrangementProxyModel::PageRole).toInt() == m_pageId;
+           (m_pageId == -1 || sourceModel()->data(sourceModel()->index(source_row, 0, source_parent), ItemArrangementProxyModel::PageRole).toInt() == m_pageId);
 }
 
 bool MultipageSortFilterProxyModel::lessThan(const QModelIndex &source_left, const QModelIndex &source_right) const

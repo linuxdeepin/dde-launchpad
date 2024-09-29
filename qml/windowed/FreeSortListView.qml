@@ -31,6 +31,10 @@ Item {
         anchors.fill: parent
         highlightFollowsCurrentItem: true
 
+        displaced: Transition { NumberAnimation { properties: "y"; duration: 150 } }
+        move: displaced
+        moveDisplaced: displaced
+
         clip: true
         highlight: Item {
             FocusBoxBorder {
@@ -84,7 +88,19 @@ Item {
             }
         }
 
-        model: freeSortProxyModel
+        model: FreeSortProxyModel {
+            id: freeSortProxyModel
+            sourceModel: MultipageSortFilterProxyModel {
+                filterOnlyMode: true
+                sourceModel: ItemArrangementProxyModel
+                pageId: -1
+                folderId: 0
+            }
+            sortRole: ItemArrangementProxyModel.IndexInPageRole
+            Component.onCompleted: {
+                freeSortProxyModel.sort(0)
+            }
+        }
         delegate: DropArea {
             width: listView.width
             height: itemDelegate.height
@@ -263,10 +279,5 @@ Item {
 
             Keys.onSpacePressed: launchItem()
         }
-    }
-
-    FreeSortProxyModel {
-        id: freeSortProxyModel
-        sourceModel: ItemArrangementProxyModel
     }
 }

@@ -6,25 +6,8 @@
 #include "itemarrangementproxymodel.h"
 
 FreeSortProxyModel::FreeSortProxyModel(QObject *parent)
-    : QSortFilterProxyModel(parent)
+    : SortProxyModel(parent)
 {
-    setSortRole(ItemArrangementProxyModel::FolderIdNumberRole);
-    setDynamicSortFilter(true);
-}
-
-void FreeSortProxyModel::setModel(QAbstractItemModel *model)
-{
-    if (model == sourceModel()) {
-        return;
-    }
-
-    setSourceModel(model);
-    sort(0);
-}
-
-bool FreeSortProxyModel::filterAcceptsRow(int source_row, const QModelIndex &source_parent) const
-{
-    return sourceModel()->data(sourceModel()->index(source_row, 0, source_parent), ItemArrangementProxyModel::FolderIdNumberRole).toInt() == 0;
 }
 
 bool FreeSortProxyModel::lessThan(const QModelIndex &source_left, const QModelIndex &source_right) const
