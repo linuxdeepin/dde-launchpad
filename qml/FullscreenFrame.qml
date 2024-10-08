@@ -13,6 +13,7 @@ import org.deepin.dtk.style 1.0 as DS
 
 import org.deepin.launchpad 1.0
 import org.deepin.launchpad.models 1.0
+import 'windowed' as WindowedLaunchpad
 
 InputEventItem {
     anchors.fill: parent
@@ -148,6 +149,9 @@ InputEventItem {
                         ToolTip.visible: hovered
                         ToolTip.delay: 500
                         ToolTip.text: qsTr("Window Mode")
+                        background: WindowedLaunchpad.ItemBackground {
+                            button: exitFullscreenBtn
+                        }
                         onClicked: {
                             searchEdit.text = ""
                             LauncherController.currentFrame = "WindowedFrame"
