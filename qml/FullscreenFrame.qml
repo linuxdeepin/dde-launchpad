@@ -13,6 +13,7 @@ import org.deepin.dtk.style 1.0 as DS
 
 import org.deepin.launchpad 1.0
 import org.deepin.launchpad.models 1.0
+import 'windowed' as WindowedLaunchpad
 
 InputEventItem {
     anchors.fill: parent
@@ -146,6 +147,9 @@ InputEventItem {
                         anchors.right: fullscreenHeader.right
                         ColorSelector.family: Palette.CrystalColor
                         icon.name: "launcher_exit_fullscreen"
+                        background: WindowedLaunchpad.ItemBackground {
+                            button: exitFullscreenBtn
+                        }
                         onClicked: {
                             searchEdit.text = ""
                             LauncherController.currentFrame = "WindowedFrame"
