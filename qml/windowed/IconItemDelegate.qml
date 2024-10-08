@@ -23,10 +23,12 @@ Control {
     signal itemClicked()
     signal menuTriggered()
 
-    contentItem: ToolButton {
+    contentItem: Button {
         id: iconButton
         focusPolicy: Qt.NoFocus
         ColorSelector.pressed: false
+        ColorSelector.family: Palette.CrystalColor
+        flat: true
         contentItem: Column {
             anchors.fill: parent
 
