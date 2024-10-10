@@ -219,8 +219,11 @@ AppletItem {
 
         width: 610
         height: 480
-        popupX: launcher.itemPos.x
-        popupY: launcher.itemPos.y
+        popupX: DockPanelPositioner.x
+        popupY: DockPanelPositioner.y
+        DockPanelPositioner.bounding: Qt.rect(launcher.itemPos.x + width / 2 * ((Panel.position + 1) % 2),
+                                              launcher.itemPos.y + height / 2 * (Panel.position % 2),
+                                              width, height)
 
         WindowedFrame {
             anchors.fill: parent
