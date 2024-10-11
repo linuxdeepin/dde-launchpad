@@ -34,6 +34,7 @@ static void updateAppItemFromAM(AppItem *appItem)
     appItem->setInstalledTime(item->installedTime);
     appItem->setLastLaunchedTime(item->lastLaunchedTime);
     appItem->setLaunchedTimes(item->launchedTimes);
+    appItem->setIsAutoStart(item->isAutoStart);
 }
 
 AppsModel::AppsModel(QObject *parent)
@@ -52,6 +53,7 @@ AppsModel::AppsModel(QObject *parent)
         {AppItem::InstalledTimeRole, QByteArrayLiteral("installedTime")},
         {AppItem::LastLaunchedTimeRole, QByteArrayLiteral("lastLaunchedTime")},
         {AppItem::LaunchedTimesRole, QByteArrayLiteral("launchedTimes")},
+        {AppItem::IsAutoStartRole, QByteArrayLiteral("isAutoStart")},
         {AppsModel::TransliteratedRole, QByteArrayLiteral("transliterated")}
     });
     setItemRoleNames(defaultRoleNames);
@@ -230,6 +232,7 @@ QList<AppItem *> AppsModel::allAppInfosShouldBeShown() const
         item->setInstalledTime(appItem->installedTime);
         item->setLastLaunchedTime(appItem->lastLaunchedTime);
         item->setLaunchedTimes(appItem->launchedTimes);
+        item->setIsAutoStart(appItem->isAutoStart);
         items.append(item);
     }
     return items;

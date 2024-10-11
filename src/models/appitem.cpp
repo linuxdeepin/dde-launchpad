@@ -107,6 +107,16 @@ void AppItem::setLaunchedTimes(qint64 times)
     setData(times, AppItem::LaunchedTimesRole);
 }
 
+bool AppItem::isAutoStart() const
+{
+    return data(AppItem::IsAutoStartRole).toBool();
+}
+
+void AppItem::setIsAutoStart(bool autostart)
+{
+    setData(autostart, AppItem::IsAutoStartRole);
+}
+
 // assign/update data from another AppItem object
 // assume the desktopId is the same, will update other data.
 // doesn't take the ownership of the passed appItem.
@@ -122,5 +132,6 @@ void AppItem::updateData(const AppItem *appItem)
     setData(appItem->data(AppItem::InstalledTimeRole), AppItem::InstalledTimeRole);
     setData(appItem->data(AppItem::LastLaunchedTimeRole), AppItem::LastLaunchedTimeRole);
     setData(appItem->data(AppItem::LaunchedTimesRole), AppItem::LaunchedTimesRole);
+    setData(appItem->data(AppItem::IsAutoStartRole), AppItem::IsAutoStartRole);
 }
 

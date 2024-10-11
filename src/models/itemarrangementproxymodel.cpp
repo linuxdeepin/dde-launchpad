@@ -204,6 +204,8 @@ QVariant ItemArrangementProxyModel::data(const QModelIndex &index, int role) con
                 return m_folders.value(id)->name();
             case AppItem::DesktopIdRole:
                 return id;
+            case AppItem::IsAutoStartRole:
+                return false;
             case PageRole:
                 return page;
             case IndexInPageRole:

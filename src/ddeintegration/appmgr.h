@@ -31,6 +31,7 @@ public:
         qint64 installedTime = 0;
         qint64 lastLaunchedTime = 0;
         qint64 launchedTimes = 0;
+        bool isAutoStart = false;
         QString appId;
     };
 
