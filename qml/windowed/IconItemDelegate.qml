@@ -43,6 +43,17 @@ Control {
                 sourceSize: Qt.size(36, 36)
                 palette: DTK.makeIconPalette(root.palette)
                 theme: DTK.toColorType(root.palette.window)
+
+                DciIcon {
+                    anchors.right: parent.right
+                    anchors.bottom: parent.bottom
+
+                    name: "emblem_autostart"
+                    visible: isAutoStart
+                    sourceSize: Qt.size(12, 12)
+                    palette: DTK.makeIconPalette(root.palette)
+                    theme: ApplicationHelper.DarkType
+                }
             }
 
             // as topMargin

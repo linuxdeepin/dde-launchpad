@@ -63,17 +63,6 @@ Control {
                 height: isWindowedMode ? 7 : root.height / 9
             }
 
-            Rectangle {
-                visible: false
-                anchors.right: parent.right
-
-                color: "blue"
-
-                width: 6
-                height: 6
-                radius: width / 2
-            }
-
             Item {
                 width: parent.width / 2
                 height: width
@@ -110,6 +99,17 @@ Control {
                             }
                         }
                     }
+                }
+
+                DciIcon {
+                    anchors.right: parent.right
+                    anchors.bottom: parent.bottom
+
+                    name: "emblem_autostart"
+                    visible: isAutoStart
+                    sourceSize: Qt.size(14, 14)
+                    palette: DTK.makeIconPalette(root.palette)
+                    theme: ApplicationHelper.DarkType
                 }
 
                 Component {

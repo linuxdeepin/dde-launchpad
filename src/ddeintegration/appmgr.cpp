@@ -98,6 +98,10 @@ static AppMgr::AppItem *parseDBus2AppItem(const ObjectInterfaceMap &source)
         item->lastLaunchedTime = value.value();
     }
 
+    if (auto value = parseDBusField<bool>(appInfo, u8"AutoStart")) {
+        item->isAutoStart = value.value();
+    }
+
     return item;
 }
 
@@ -336,6 +340,11 @@ void AppMgr::watchingAppItemPropertyChanged(const QString &key, AppMgr::AppItem 
     connect(amAppIface, &AppManager1Application::LastLaunchedTimeChanged, this, [this, appItem](const qint64 & value) {
         qDebug() << "LastLaunchedTimeChanged by AM, desktopId" << appItem->id;
         appItem->lastLaunchedTime = value;
+        Q_EMIT itemDataChanged(appItem->id);
+    });
+    connect(amAppIface, &AppManager1Application::AutoStartChanged, this, [this, appItem](bool value) {
+        qDebug() << "AutoStartChanged by AM, desktopId" << appItem->id;
+        appItem->isAutoStart = value;
         Q_EMIT itemDataChanged(appItem->id);
     });
 }
