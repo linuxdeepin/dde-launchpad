@@ -22,6 +22,7 @@ public:
         InstalledTimeRole,
         LastLaunchedTimeRole,
         LaunchedTimesRole,
+        IsAutoStartRole,
         ModelExtendedRole = 0x1000
     };
     Q_ENUM(Roles)
@@ -67,6 +68,8 @@ public:
     void setLastLaunchedTime(qint64 time);
     qint64 launchedTimes() const;
     void setLaunchedTimes(qint64 times);
+    bool isAutoStart() const;
+    void setIsAutoStart(bool autostart);
     void updateData(const AppItem * appItem);
 };
 
