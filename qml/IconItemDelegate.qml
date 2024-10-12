@@ -105,12 +105,12 @@ Control {
                 }
 
                 DciIcon {
-                    anchors.right: parent.right
+                    anchors.left: parent.left
                     anchors.bottom: parent.bottom
 
                     name: "emblem_autostart"
                     visible: isAutoStart
-                    sourceSize: Qt.size(14, 14)
+                    sourceSize: Qt.size(16, 16)
                     palette: DTK.makeIconPalette(root.palette)
                     theme: ApplicationHelper.DarkType
                 }

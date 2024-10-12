@@ -47,7 +47,7 @@ Control {
                 theme: DTK.toColorType(root.palette.window)
 
                 DciIcon {
-                    anchors.right: parent.right
+                    anchors.left: parent.left
                     anchors.bottom: parent.bottom
 
                     name: "emblem_autostart"
