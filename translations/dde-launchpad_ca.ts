@@ -90,12 +90,12 @@
     <message>
         <location filename="../qml/DummyAppItemMenu.qml" line="27"/>
         <source>Install</source>
-        <translation type="unfinished"/>
+        <translation>Instal·la</translation>
     </message>
     <message>
         <location filename="../qml/DummyAppItemMenu.qml" line="34"/>
         <source>Remove</source>
-        <translation type="unfinished"/>
+        <translation>Elimina</translation>
     </message>
 </context>
 <context>
