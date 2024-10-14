@@ -142,6 +142,19 @@
     </message>
 </context>
 <context>
+    <name>DummyAppItemMenu</name>
+    <message>
+        <location filename="../qml/DummyAppItemMenu.qml" line="27"/>
+        <source>Install</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/DummyAppItemMenu.qml" line="34"/>
+        <source>Remove</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>FrequentlyUsedView</name>
     <message>
         <location filename="../qml/windowed/FrequentlyUsedView.qml" line="35"/>
@@ -231,17 +244,17 @@
         <translation>其他应用</translation>
     </message>
     <message>
-        <location filename="../qml/Main.qml" line="398"/>
+        <location filename="../qml/Main.qml" line="411"/>
         <source>Are you sure you want to uninstall %1?</source>
         <translation>您确定要卸载 %1 吗？</translation>
     </message>
     <message>
-        <location filename="../qml/Main.qml" line="410"/>
+        <location filename="../qml/Main.qml" line="423"/>
         <source>Cancel</source>
         <translation>取 消</translation>
     </message>
     <message>
-        <location filename="../qml/Main.qml" line="424"/>
+        <location filename="../qml/Main.qml" line="437"/>
         <source>Confirm</source>
         <translation>确 定</translation>
     </message>

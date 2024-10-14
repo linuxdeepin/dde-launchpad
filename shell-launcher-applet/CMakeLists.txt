@@ -15,4 +15,7 @@ target_link_libraries(shell-launcherapplet PRIVATE
 )
 
 ds_install_package(PACKAGE org.deepin.ds.dock.launcherapplet TARGET shell-launcherapplet)
-ds_handle_package_translation(PACKAGE org.deepin.ds.dock.launcherapplet)
+ds_handle_package_translation(
+PACKAGE org.deepin.ds.dock.launcherapplet
+QML_FILES ${QML_FILES_NEED_TRANSLATION}
+)
