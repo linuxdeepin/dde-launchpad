@@ -4,8 +4,10 @@
 
 import QtQuick 2.15
 import QtQuick.Controls 2.15
+import QtQuick.Layouts 1.15
 
 import org.deepin.dtk 1.0
+import org.deepin.dtk.style 1.0 as DStyle
 
 import org.deepin.ds 1.0
 import org.deepin.dtk 1.0 as D
@@ -242,6 +244,65 @@ AppletItem {
             if (LauncherController.currentFrame !== "WindowedFrame") return
             if (popupVisible !== visibility) {
                 LauncherController.visible = popupVisible
+            }
+        }
+    }
+
+    DialogWindow {
+        id: confirmUninstallDlg
+
+        property string appId: ""
+        property string appName: ""
+
+        DLayerShellWindow.anchors: DLayerShellWindow.AnchorNone
+
+        minimumWidth: layout.implicitWidth + 2 * DStyle.Style.dialogWindow.contentHMargin
+        minimumHeight: layout.implicitHeight + DStyle.Style.dialogWindow.titleBarHeight
+        maximumWidth: minimumWidth
+        maximumHeight: minimumHeight
+        ColumnLayout {
+            id: layout
+            spacing: 0
+            Label {
+                font: DTK.fontManager.t5
+                text: qsTr("Are you sure you want to uninstall %1?").arg(confirmUninstallDlg.appName)
+                wrapMode: Text.Wrap
+                horizontalAlignment: Text.AlignHCenter
+                Layout.preferredWidth: 400
+                Layout.alignment: Qt.AlignCenter
+                Layout.margins: 10
+            }
+            RowLayout {
+                spacing: 0
+                Item {
+                    Button {
+                        id: cancelButton
+                        text: qsTr("Cancel")
+                        onClicked: {
+                            confirmUninstallDlg.close()
+                        }
+                        anchors.centerIn: parent
+                    }
+                    Layout.fillWidth: true
+                    Layout.preferredHeight: cancelButton.implicitHeight
+                    Layout.topMargin: 20
+                    Layout.bottomMargin: 20
+                }
+                Item {
+                    WarningButton {
+                        id: confirmButton
+                        text: qsTr("Confirm")
+                        onClicked: {
+                            DesktopIntegration.uninstallApp(confirmUninstallDlg.appId)
+                            confirmUninstallDlg.close()
+                        }
+                        anchors.centerIn: parent
+                    }
+                    Layout.fillWidth: true
+                    Layout.preferredHeight: confirmButton.implicitHeight
+                    Layout.topMargin: 20
+                    Layout.bottomMargin: 20
+                }
             }
         }
     }
