@@ -65,6 +65,7 @@ set(QML_FILES
     ${PROJECT_SOURCE_DIR}/qml/Main.qml
     ${PROJECT_SOURCE_DIR}/qml/FullscreenFrame.qml
     ${PROJECT_SOURCE_DIR}/qml/AppItemMenu.qml
+    ${PROJECT_SOURCE_DIR}/qml/DummyAppItemMenu.qml
     ${PROJECT_SOURCE_DIR}/qml/GridViewContainer.qml
     ${PROJECT_SOURCE_DIR}/qml/DrawerFolder.qml
     ${PROJECT_SOURCE_DIR}/qml/IconItemDelegate.qml
@@ -84,6 +85,7 @@ get_target_property(WINDOWED_QML_FILES launcher-qml-windowed QT_QML_MODULE_QML_F
 #       see also: https://www.qt.io/blog/revisited-i18n-with-cmake
 set(QML_FILES_NEED_TRANSLATION
     qml/AppItemMenu.qml
+    qml/DummyAppItemMenu.qml
     qml/Main.qml
     qml/FullscreenFrame.qml
     ${WINDOWED_QML_FILES}

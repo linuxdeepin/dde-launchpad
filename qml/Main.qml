@@ -59,6 +59,7 @@ QtObject {
 
     property var activeMenu: null
     property Component appContextMenuCom: AppItemMenu { }
+    property Component dummyAppContextMenuCom: DummyAppItemMenu {}
     function showContextMenu(obj, model, additionalProps = {}) {
         if (!obj || !obj.Window.window) {
             console.log("obj or obj.Window.window is null")
@@ -66,19 +67,31 @@ QtObject {
         }
         closeContextMenu()
 
-        const menu = appContextMenuCom.createObject(obj.Window.window.contentItem, Object.assign({
-            display: model.display,
-            desktopId: model.desktopId,
-            iconName: model.iconName,
-            isFavoriteItem: false,
-            hideFavoriteMenu: true,
-            hideDisplayScalingMenu: false,
-            hideMoveToTopMenu: true
-        }, additionalProps));
-        menu.closed.connect(menu.destroy)
-        menu.popup();
+        if (!DesktopIntegration.appIsDummyPackage(model.desktopId)) {
+            // Pop a menu for normal apps
+            const menu = appContextMenuCom.createObject(obj.Window.window.contentItem, Object.assign({
+                display: model.display,
+                desktopId: model.desktopId,
+                iconName: model.iconName,
+                isFavoriteItem: false,
+                hideFavoriteMenu: true,
+                hideDisplayScalingMenu: false,
+                hideMoveToTopMenu: true
+            }, additionalProps));
+            menu.closed.connect(menu.destroy)
+            menu.popup();
 
-        activeMenu = menu
+            activeMenu = menu
+        } else {
+            // Pop a simplified menu for dummy apps
+            const menu = dummyAppContextMenuCom.createObject(obj.Window.window.contentItem, Object.assign({
+                desktopId: model.desktopId
+            }), additionalProps);
+            menu.closed.connect(menu.destroy)
+            menu.popup();
+
+            activeMenu = menu
+        }
     }
 
     function closeContextMenu() {
