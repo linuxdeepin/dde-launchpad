@@ -19,7 +19,7 @@ Copyright: UnionTech Software Technology Co., Ltd.
 License: CC-BY-4.0
 
 # images
-Files: images/*.dci images/*.svg dde-shell-wrapper/package/icons/*/*.dci
+Files: images/*.dci images/*.svg shell-launcher-applet/package/icons/*/*.dci
 Copyright: UnionTech Software Technology Co., Ltd.
 License: GPL-3.0-or-later
 

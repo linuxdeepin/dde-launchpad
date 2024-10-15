@@ -12,21 +12,8 @@ class FrequentlyUsedProxyModel : public QSortFilterProxyModel
     Q_OBJECT
     Q_PROPERTY(QAbstractItemModel* recentlyInstalledModel READ recentlyInstalledModel WRITE setRecentlyInstalledModel NOTIFY recentlyInstalledModelChanged FINAL)
     QML_NAMED_ELEMENT(FrequentlyUsedProxyModel)
-    QML_SINGLETON
 public:
-    static FrequentlyUsedProxyModel &instance()
-    {
-        static FrequentlyUsedProxyModel _instance;
-        return _instance;
-    }
-
-    static FrequentlyUsedProxyModel *create(QQmlEngine *qmlEngine, QJSEngine *jsEngine)
-    {
-        Q_UNUSED(qmlEngine)
-        Q_UNUSED(jsEngine)
-        return &instance();
-    }
-
+    explicit FrequentlyUsedProxyModel(QObject *parent = nullptr);
     QAbstractItemModel *recentlyInstalledModel() const;
     void setRecentlyInstalledModel(QAbstractItemModel *newRecentlyInstalledModel);
 
@@ -39,7 +26,6 @@ protected:
 
     bool lessThan(const QModelIndex &sourceLeft, const QModelIndex &sourceRight) const override;
 private:
-    explicit FrequentlyUsedProxyModel(QObject *parent = nullptr);
     bool inRecentlyInstalledModel(const QModelIndex &index) const;
     bool lessThenByFrequentlyUsed(const QModelIndex &sourceLeft, const QModelIndex &sourceRight) const;
 

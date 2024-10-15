@@ -18,8 +18,9 @@ FrequentlyUsedProxyModel::FrequentlyUsedProxyModel(QObject *parent)
     qDebug() << "Fetched frequentlyUsed app list by DConfig" << m_frequentlyUsedAppIdList;
     std::reverse(m_frequentlyUsedAppIdList.begin(), m_frequentlyUsedAppIdList.end());
 
-    setSourceModel(&AppsModel::instance());
-    sort(0, Qt::DescendingOrder);
+    connect(this, &QAbstractProxyModel::sourceModelChanged, this, [=](){
+        sort(0, Qt::DescendingOrder);
+    });
 }
 
 bool FrequentlyUsedProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const

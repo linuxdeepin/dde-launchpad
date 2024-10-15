@@ -20,6 +20,7 @@ Control {
 
     property Item nextKeyTabTarget
     property Item keyTabTarget: frequentlyUsedViewContainer
+    required property var model
 
     property int count: frequentlyUsedViewContainer.count
     property int maxCount: 16
@@ -47,7 +48,7 @@ Control {
             interactive: false
 
             model: CountLimitProxyModel {
-                sourceModel: FrequentlyUsedProxyModel
+                sourceModel: model
                 maxRowCount: maxCount
             }
 

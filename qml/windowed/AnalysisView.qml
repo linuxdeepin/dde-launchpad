@@ -26,17 +26,17 @@ Control {
         recentlyInstalledView.positionViewAtBeginning()
     }
 
-    // Binding SearchFilterProxyModel with RecentlyInstalledProxyModel
-    Binding {
-        target: FrequentlyUsedProxyModel; property: "recentlyInstalledModel"
-        value: recentlyInstalledView.model
-    }
-
     contentItem: ColumnLayout {
         spacing: 0
 
+        FrequentlyUsedProxyModel {
+            id: freqUsedModel
+            sourceModel: AppsModel
+        }
+
         FrequentlyUsedView {
             id: frequentlyUsedView
+            model: freqUsedModel
             visible: count > 0
             maxCount: recentlyInstalledView.visible ? 12 : 16
             nextKeyTabTarget : recentlyInstalledView.visible ? recentlyInstalledView.keyTabTarget : control.nextKeyTabTarget
@@ -44,6 +44,7 @@ Control {
 
         RecentlyInstalledView {
             id: recentlyInstalledView
+            model: freqUsedModel.recentlyInstalledModel
             visible: count > 0
             Layout.topMargin: -(Helper.frequentlyUsed.cellPaddingRows / 2)
             nextKeyTabTarget: control.nextKeyTabTarget
