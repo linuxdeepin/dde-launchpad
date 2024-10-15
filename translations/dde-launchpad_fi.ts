@@ -111,7 +111,7 @@
     <message>
         <location filename="../launchercontroller.cpp" line="19"/>
         <source>Show launcher (hidden by default)</source>
-        <translation>Näytä käynnistysohjelma (oletuksena piilotettu)</translation>
+        <translation>Näytä käynnistin (oletuksena piilotettu)</translation>
     </message>
     <message>
         <location filename="../launchercontroller.cpp" line="20"/>
