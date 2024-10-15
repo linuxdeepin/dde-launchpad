@@ -253,7 +253,7 @@
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="186"/>
         <source>Control Center</source>
-        <translation>Ohjauskeskus</translation>
+        <translation>Ohjauspaneli</translation>
     </message>
 </context>
 </TS>
