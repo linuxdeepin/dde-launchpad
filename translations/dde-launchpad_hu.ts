@@ -93,6 +93,19 @@
     </message>
 </context>
 <context>
+    <name>DummyAppItemMenu</name>
+    <message>
+        <location filename="../qml/DummyAppItemMenu.qml" line="27"/>
+        <source>Install</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/DummyAppItemMenu.qml" line="34"/>
+        <source>Remove</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>FrequentlyUsedView</name>
     <message>
         <location filename="../qml/windowed/FrequentlyUsedView.qml" line="35"/>
@@ -179,17 +192,17 @@
         <translation>Egyéb</translation>
     </message>
     <message>
-        <location filename="../qml/Main.qml" line="398"/>
+        <location filename="../qml/Main.qml" line="411"/>
         <source>Are you sure you want to uninstall %1?</source>
         <translation>Biztosan el szeretné távolítani a következőt: %1?</translation>
     </message>
     <message>
-        <location filename="../qml/Main.qml" line="410"/>
+        <location filename="../qml/Main.qml" line="423"/>
         <source>Cancel</source>
         <translation>Mégsem</translation>
     </message>
     <message>
-        <location filename="../qml/Main.qml" line="424"/>
+        <location filename="../qml/Main.qml" line="437"/>
         <source>Confirm</source>
         <translation>Megerősítés</translation>
     </message>
@@ -210,7 +223,7 @@
         <translation>Minden alkalmazás</translation>
     </message>
     <message>
-        <location filename="../qml/FullscreenFrame.qml" line="542"/>
+        <location filename="../qml/FullscreenFrame.qml" line="566"/>
         <location filename="../qml/windowed/SearchResultView.qml" line="102"/>
         <source>No search results</source>
         <translation>Nincs keresési eredmény</translation>
