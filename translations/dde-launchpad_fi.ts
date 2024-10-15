@@ -116,7 +116,7 @@
     <message>
         <location filename="../launchercontroller.cpp" line="20"/>
         <source>Toggle launcher visibility</source>
-        <translation>Vaihda käynnistysohjelman näkyvyyttä</translation>
+        <translation>Vaihda käynnistimen näkyvyyttä</translation>
     </message>
 </context>
 <context>
