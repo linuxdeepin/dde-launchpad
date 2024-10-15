@@ -29,7 +29,7 @@
     <message>
         <location filename="../qml/AppItemMenu.qml" line="80"/>
         <source>Send to desktop</source>
-        <translation type="unfinished"/>
+        <translation>Siųsti į darbalaukį</translation>
     </message>
     <message>
         <location filename="../qml/AppItemMenu.qml" line="80"/>
