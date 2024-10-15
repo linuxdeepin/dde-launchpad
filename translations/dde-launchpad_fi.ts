@@ -197,7 +197,7 @@
     <message>
         <location filename="../qml/windowed/RecentlyInstalledView.qml" line="34"/>
         <source>Recently Installed</source>
-        <translation>Äskettäin asennettu</translation>
+        <translation>Hiljattain asennettu</translation>
     </message>
 </context>
 <context>
