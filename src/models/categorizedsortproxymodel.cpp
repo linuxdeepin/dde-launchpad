@@ -46,7 +46,7 @@ CategorizedSortProxyModel::CategoryType CategorizedSortProxyModel::categoryType(
 
 QString CategorizedSortProxyModel::sortRoleName() const
 {
-    return QString(AppsModel::instance().roleNames().value(sortRole()));
+    return QString(sourceModel()->roleNames().value(sortRole()));
 }
 
 QList<QString> CategorizedSortProxyModel::alphabetarySections() const

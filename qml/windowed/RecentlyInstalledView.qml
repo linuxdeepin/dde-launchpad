@@ -18,7 +18,7 @@ Control {
     property Item keyTabTarget: recentlyInstalledViewContainer
 
     readonly property int count: recentlyInstalledViewContainer.count
-    readonly property var model: recentlyInstalledViewContainer.model
+    property var model: recentlyInstalledViewContainer.model
 
     onFocusChanged: () => {
         recentlyInstalledViewContainer.focus = true
