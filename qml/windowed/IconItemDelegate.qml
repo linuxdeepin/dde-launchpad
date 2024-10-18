@@ -51,7 +51,7 @@ Control {
                     anchors.bottom: parent.bottom
 
                     name: "emblem_autostart"
-                    visible: isAutoStart
+                    visible: autoStart
                     sourceSize: Qt.size(12, 12)
                     palette: DTK.makeIconPalette(root.palette)
                     theme: ApplicationHelper.DarkType
