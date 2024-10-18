@@ -53,7 +53,7 @@ AppsModel::AppsModel(QObject *parent)
         {AppItem::InstalledTimeRole, QByteArrayLiteral("installedTime")},
         {AppItem::LastLaunchedTimeRole, QByteArrayLiteral("lastLaunchedTime")},
         {AppItem::LaunchedTimesRole, QByteArrayLiteral("launchedTimes")},
-        {AppItem::IsAutoStartRole, QByteArrayLiteral("isAutoStart")},
+        {AppItem::IsAutoStartRole, QByteArrayLiteral("autoStart")},
         {AppsModel::TransliteratedRole, QByteArrayLiteral("transliterated")}
     });
     setItemRoleNames(defaultRoleNames);
