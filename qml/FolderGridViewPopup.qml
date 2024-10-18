@@ -269,9 +269,7 @@ Popup {
                                             anchors.fill: parent
                                             dndEnabled: true
                                             displayFont: isWindowedMode ? DTK.fontManager.t9 : DTK.fontManager.t6
-                                            Drag.mimeData: {
-                                                "text/x-dde-launcher-dnd-desktopId": model.desktopId
-                                            }
+                                            Drag.mimeData: Helper.generateDragMimeData(model.desktopId)
                                             visible: dndItem.currentlyDraggedId !== model.desktopId
                                             iconSource: iconName
 

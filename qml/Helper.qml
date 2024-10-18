@@ -39,4 +39,14 @@ QtObject {
             crystal: Qt.rgba(16.0 / 255, 16.0 / 255, 16.0 / 255, 0.1)
         }
     }
+
+    function generateDragMimeData(desktopId) {
+        // In some cases an app is not allowed to be pinned onto dock via drag-n-drop;
+        // We only insert the MIME data for dde-dock in those allowed cases.
+        var mime = { "text/x-dde-launcher-dnd-desktopId": desktopId }
+        if (!DesktopIntegration.appIsDummyPackage(desktopId)) {
+            mime["text/x-dde-dock-dnd-appid"] = desktopId
+        }
+        return mime
+    }
 }

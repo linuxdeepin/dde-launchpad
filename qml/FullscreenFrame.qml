@@ -459,9 +459,7 @@ InputEventItem {
                                         margins: 5
                                     }
                                     dndEnabled: !folderGridViewPopup.opened
-                                    Drag.mimeData: {
-                                        "text/x-dde-launcher-dnd-desktopId": model.desktopId
-                                    }
+                                    Drag.mimeData: Helper.generateDragMimeData(model.desktopId)
                                     visible: dndItem.currentlyDraggedId !== model.desktopId
                                     iconSource: (iconName && iconName !== "") ? iconName : "application-x-desktop"
                                     icons: folderIcons
