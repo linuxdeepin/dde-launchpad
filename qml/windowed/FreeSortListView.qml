@@ -164,9 +164,7 @@ Item {
                 Drag.hotSpot.y: height / 2
                 Drag.dragType: Drag.Automatic
                 Drag.active: mouseArea.drag.active
-                Drag.mimeData: {
-                    "text/x-dde-launcher-dnd-desktopId": model.desktopId
-                }
+                Drag.mimeData: Helper.generateDragMimeData(model.desktopId)
 
                 background: ItemBackground {
                     id: bg
