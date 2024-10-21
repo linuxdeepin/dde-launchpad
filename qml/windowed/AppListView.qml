@@ -153,6 +153,9 @@ FocusScope {
                                     onTriggered: {
                                         scrollToDDECategory(modelData)
                                     }
+                                    onHoveredChanged: {
+                                        highlighted = hovered
+                                    }
                                     contentItem: IconLabel {
                                         alignment: Qt.AlignCenter
                                         text: menuItem.text
