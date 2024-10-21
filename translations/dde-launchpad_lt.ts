@@ -1,75 +1,75 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="hu">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="lt">
 <context>
     <name>AppItemMenu</name>
     <message>
         <location filename="../qml/AppItemMenu.qml" line="34"/>
         <source>Open</source>
-        <translation>Megnyitás</translation>
+        <translation>Atverti</translation>
     </message>
     <message>
         <location filename="../qml/AppItemMenu.qml" line="46"/>
         <source>Pin to Top</source>
-        <translation>Rögzítés a tetejére</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../qml/AppItemMenu.qml" line="55"/>
         <source>Move to Top</source>
-        <translation>Ugrás a tetejére</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../qml/AppItemMenu.qml" line="65"/>
         <source>Remove from favorites</source>
-        <translation>Eltávolítás a kedvencekből</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../qml/AppItemMenu.qml" line="65"/>
         <source>Add to favorites</source>
-        <translation>Hozzáadás a kedvencekhez</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../qml/AppItemMenu.qml" line="80"/>
         <source>Send to desktop</source>
-        <translation>Küldés az asztalra</translation>
+        <translation>Siųsti į darbalaukį</translation>
     </message>
     <message>
         <location filename="../qml/AppItemMenu.qml" line="80"/>
         <source>Remove from desktop</source>
-        <translation>Eltávolítás az asztalról</translation>
+        <translation>Šalinti iš darbalaukio</translation>
     </message>
     <message>
         <location filename="../qml/AppItemMenu.qml" line="91"/>
         <source>Remove from dock</source>
-        <translation>Eltávolítás a Dokkolóról</translation>
+        <translation>Šalinti iš doko</translation>
     </message>
     <message>
         <location filename="../qml/AppItemMenu.qml" line="91"/>
         <source>Send to dock</source>
-        <translation>Küldés a Dokkolóra</translation>
+        <translation>Siųsti į doką</translation>
     </message>
     <message>
         <location filename="../qml/AppItemMenu.qml" line="103"/>
         <source>Add to startup</source>
-        <translation>Hozzáadás az automatikus indításhoz</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../qml/AppItemMenu.qml" line="103"/>
         <source>Remove from startup</source>
-        <translation>Eltávolítás az automatikus indításból</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../qml/AppItemMenu.qml" line="111"/>
         <source>Use a proxy</source>
-        <translation>Proxy használata</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../qml/AppItemMenu.qml" line="120"/>
         <source>Disable display scaling</source>
-        <translation>Képernyő méretezés letiltása</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../qml/AppItemMenu.qml" line="127"/>
         <source>Uninstall</source>
-        <translation>Eltávolítás</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -77,12 +77,12 @@
     <message>
         <location filename="../qml/windowed/BottomBar.qml" line="32"/>
         <source>Power</source>
-        <translation>Kikapcsolás</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../qml/windowed/BottomBar.qml" line="56"/>
         <source>Search</source>
-        <translation>Keresés</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -90,12 +90,12 @@
     <message>
         <location filename="../qml/DummyAppItemMenu.qml" line="27"/>
         <source>Install</source>
-        <translation>Telepítés</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../qml/DummyAppItemMenu.qml" line="34"/>
         <source>Remove</source>
-        <translation>Eltávolítás</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -103,7 +103,7 @@
     <message>
         <location filename="../qml/windowed/FrequentlyUsedView.qml" line="35"/>
         <source>Frequently Used</source>
-        <translation>Gyakran Használt</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -111,12 +111,12 @@
     <message>
         <location filename="../launchercontroller.cpp" line="19"/>
         <source>Show launcher (hidden by default)</source>
-        <translation>Indító megjelenítése (alapértelmezés szerint rejtve)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../launchercontroller.cpp" line="20"/>
         <source>Toggle launcher visibility</source>
-        <translation>Az indító láthatóságának váltása</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -124,22 +124,22 @@
     <message>
         <location filename="../qml/Main.qml" line="22"/>
         <source>Internet</source>
-        <translation>Internet</translation>
+        <translation>Internetas</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="24"/>
         <source>Chat</source>
-        <translation>Csevegés</translation>
+        <translation>Pokalbiai</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="26"/>
         <source>Music</source>
-        <translation>Zene</translation>
+        <translation>Muzika</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="28"/>
         <source>Video</source>
-        <translation>Videó</translation>
+        <translation>Vaizdo įrašai</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="30"/>
@@ -149,47 +149,47 @@
     <message>
         <location filename="../qml/Main.qml" line="32"/>
         <source>Game</source>
-        <translation>Játékok</translation>
+        <translation>Žaidimai</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="34"/>
         <source>Office</source>
-        <translation>Iroda</translation>
+        <translation>Raštinė</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="36"/>
         <source>Reading</source>
-        <translation>Olvasás</translation>
+        <translation>Skaitymas</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="38"/>
         <source>Development</source>
-        <translation>Fejlesztés</translation>
+        <translation>Plėtojimas</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="40"/>
         <source>System</source>
-        <translation>Rendszer</translation>
+        <translation>Sistema</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="42"/>
         <source>Others</source>
-        <translation>Egyéb</translation>
+        <translation>Kita</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="411"/>
         <source>Are you sure you want to uninstall %1?</source>
-        <translation>Biztosan el szeretné távolítani a következőt: %1?</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="423"/>
         <source>Cancel</source>
-        <translation>Mégsem</translation>
+        <translation>Atsisakyti</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="437"/>
         <source>Confirm</source>
-        <translation>Megerősítés</translation>
+        <translation>Patvirtinti</translation>
     </message>
 </context>
 <context>
@@ -197,7 +197,7 @@
     <message>
         <location filename="../qml/windowed/RecentlyInstalledView.qml" line="34"/>
         <source>Recently Installed</source>
-        <translation>Újonnan Telepített</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -205,12 +205,12 @@
     <message>
         <location filename="../qml/windowed/SearchResultView.qml" line="37"/>
         <source>All Apps</source>
-        <translation>Minden alkalmazás</translation>
+        <translation>Visos programos</translation>
     </message>
     <message>
         <location filename="../qml/windowed/SearchResultView.qml" line="102"/>
         <source>No search results</source>
-        <translation>Nincs keresési eredmény</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -218,42 +218,42 @@
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="40"/>
         <source>Free sorting</source>
-        <translation>Szabad rendezés</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="54"/>
         <source>Sort by category</source>
-        <translation>Rendezés Kategóriánként</translation>
+        <translation>Rikiuoti pagal kategoriją</translation>
     </message>
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="66"/>
         <source>Sort by name</source>
-        <translation>Rendezés név szerint</translation>
+        <translation>Rikiuoti pagal pavadinimą</translation>
     </message>
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="142"/>
         <source>Computer</source>
-        <translation>Számítógép</translation>
+        <translation>Kompiuteris</translation>
     </message>
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="153"/>
         <source>Pictures</source>
-        <translation>Képek</translation>
+        <translation>Paveikslai</translation>
     </message>
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="164"/>
         <source>Documents</source>
-        <translation>Dokumentumok</translation>
+        <translation>Dokumentai</translation>
     </message>
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="175"/>
         <source>Desktop</source>
-        <translation>Asztal</translation>
+        <translation>Darbalaukis</translation>
     </message>
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="186"/>
         <source>Control Center</source>
-        <translation>Vezérlőpult</translation>
+        <translation>Valdymo centras</translation>
     </message>
 </context>
 </TS>
