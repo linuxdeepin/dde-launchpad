@@ -24,7 +24,7 @@ Control {
     // So we give the max sourceSize and use scale to solve it.
     property int maxIconSize: 128
     property int maxIconSizeInFolder: 64
-    property string text: display.startsWith("internal/category/") ? getCategoryName(display.substring(18)) : display
+    readonly property string text: display.startsWith("internal/category/") ? getCategoryName(display.substring(18)) : display
 
     property string iconSource
     property bool dndEnabled: false

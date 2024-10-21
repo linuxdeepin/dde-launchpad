@@ -2,7 +2,6 @@
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-#include "appsmodel.h"
 #include "frequentlyusedproxymodel.h"
 
 #include <QDebug>
@@ -34,8 +33,8 @@ bool FrequentlyUsedProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex
 
 bool FrequentlyUsedProxyModel::lessThan(const QModelIndex &sourceLeft, const QModelIndex &sourceRight) const
 {
-    const auto leftLaunchedTimes = sourceLeft.data(AppItem::LaunchedTimesRole).toLongLong();
-    const auto rightLaunchedTimes = sourceRight.data(AppItem::LaunchedTimesRole).toLongLong();
+    const auto leftLaunchedTimes = sourceLeft.data(m_launchedTimesRole).toLongLong();
+    const auto rightLaunchedTimes = sourceRight.data(m_launchedTimesRole).toLongLong();
 
     if (leftLaunchedTimes != rightLaunchedTimes)
         return leftLaunchedTimes < rightLaunchedTimes;
@@ -43,8 +42,8 @@ bool FrequentlyUsedProxyModel::lessThan(const QModelIndex &sourceLeft, const QMo
     // Only compare lastLaunchedTime when LaunchedTimes is not zero (
     // maybe the app is auto-start instead of by-user).
     if (leftLaunchedTimes != 0 && rightLaunchedTimes != 0) {
-        const auto leftLastLaunchedTime = sourceLeft.data(AppItem::LastLaunchedTimeRole).toLongLong();
-        const auto rightLastLaunchedTimes = sourceRight.data(AppItem::LastLaunchedTimeRole).toLongLong();
+        const auto leftLastLaunchedTime = sourceLeft.data(m_lastLaunchedTimeRole).toLongLong();
+        const auto rightLastLaunchedTimes = sourceRight.data(m_lastLaunchedTimeRole).toLongLong();
         if (leftLastLaunchedTime != rightLastLaunchedTimes)
             return leftLastLaunchedTime < rightLastLaunchedTimes;
     }
@@ -88,16 +87,25 @@ void FrequentlyUsedProxyModel::setRecentlyInstalledModel(QAbstractItemModel *new
     emit recentlyInstalledModelChanged();
 }
 
+void FrequentlyUsedProxyModel::classBegin()
+{
+}
+
+void FrequentlyUsedProxyModel::componentComplete()
+{
+    sort(0, Qt::DescendingOrder);
+}
+
 bool FrequentlyUsedProxyModel::inRecentlyInstalledModel(const QModelIndex &index) const
 {
     if (!m_recentlyInstalledModel)
         return false;
 
-    const auto desktopId = index.data(AppItem::DesktopIdRole).toString();
+    const auto desktopId = index.data(m_desktopIdRole).toString();
 
     const auto targetModel = m_recentlyInstalledModel;
     for (int i = 0; i < targetModel->rowCount(); i++) {
-        const auto id = targetModel->data(targetModel->index(i, 0), AppItem::DesktopIdRole).toString();
+        const auto id = targetModel->data(targetModel->index(i, 0), m_desktopIdRole).toString();
         if (id == desktopId)
             return true;
     }
@@ -106,8 +114,8 @@ bool FrequentlyUsedProxyModel::inRecentlyInstalledModel(const QModelIndex &index
 
 bool FrequentlyUsedProxyModel::lessThenByFrequentlyUsed(const QModelIndex &sourceLeft, const QModelIndex &sourceRight) const
 {
-    const auto leftId = sourceLeft.data(AppItem::DesktopIdRole).toString();
-    const auto rightId = sourceRight.data(AppItem::DesktopIdRole).toString();
+    const auto leftId = sourceLeft.data(m_desktopIdRole).toString();
+    const auto rightId = sourceRight.data(m_desktopIdRole).toString();
     const auto leftInFrequentlyUsed = m_frequentlyUsedAppIdList.indexOf(leftId);
     const auto rightInFrequentlyUsed = m_frequentlyUsedAppIdList.indexOf(rightId);
     return leftInFrequentlyUsed < rightInFrequentlyUsed;

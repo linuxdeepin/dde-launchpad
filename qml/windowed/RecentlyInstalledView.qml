@@ -18,7 +18,7 @@ Control {
     property Item keyTabTarget: recentlyInstalledViewContainer
 
     readonly property int count: recentlyInstalledViewContainer.count
-    property var model: recentlyInstalledViewContainer.model
+    property alias model: limitCountModel.sourceModel
 
     onFocusChanged: () => {
         recentlyInstalledViewContainer.focus = true
@@ -45,9 +45,7 @@ Control {
             Layout.topMargin: 6
 
             model: CountLimitProxyModel {
-                // TODO removing sourceModel's binding
-                property var holder: RecentlyInstalledProxyModel
-                sourceModel: holder
+                id: limitCountModel
                 maxRowCount: 4
             }
 
