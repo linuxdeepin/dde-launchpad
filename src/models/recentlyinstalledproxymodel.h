@@ -7,30 +7,28 @@
 #include <QtQml/qqml.h>
 #include <QSortFilterProxyModel>
 
-class RecentlyInstalledProxyModel : public QSortFilterProxyModel
+class RecentlyInstalledProxyModel : public QSortFilterProxyModel, public QQmlParserStatus
 {
     Q_OBJECT
     QML_NAMED_ELEMENT(RecentlyInstalledProxyModel)
-    QML_SINGLETON
+    Q_PROPERTY(int lastLaunchedTimeRole MEMBER m_lastLaunchedTimeRole NOTIFY lastLaunchedTimeRoleChanged)
+    Q_PROPERTY(int installedTimeRole MEMBER m_installedTimeRole NOTIFY installedTimeRoleChanged)
 public:
-    static RecentlyInstalledProxyModel &instance()
-    {
-        static RecentlyInstalledProxyModel _instance;
-        return _instance;
-    }
+    explicit RecentlyInstalledProxyModel(QObject *parent = nullptr);
 
-    static RecentlyInstalledProxyModel *create(QQmlEngine *qmlEngine, QJSEngine *jsEngine)
-    {
-        Q_UNUSED(qmlEngine)
-        Q_UNUSED(jsEngine)
-        return &instance();
-    }
+    void classBegin() override;
+    void componentComplete() override;
 
     // QSortFilterProxyModel interface
 protected:
     bool filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const override;
     bool lessThan(const QModelIndex &source_left, const QModelIndex &source_right) const override;
 
+signals:
+    void lastLaunchedTimeRoleChanged();
+    void installedTimeRoleChanged();
+
 private:
-    explicit RecentlyInstalledProxyModel(QObject *parent = nullptr);
+    int m_lastLaunchedTimeRole;
+    int m_installedTimeRole;
 };

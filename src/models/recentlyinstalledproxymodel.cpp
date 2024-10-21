@@ -11,9 +11,6 @@
 RecentlyInstalledProxyModel::RecentlyInstalledProxyModel(QObject *parent)
     : QSortFilterProxyModel(parent)
 {
-    setSourceModel(&AppsModel::instance());
-
-    sort(0, Qt::DescendingOrder);
 }
 
 bool RecentlyInstalledProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const
@@ -21,12 +18,12 @@ bool RecentlyInstalledProxyModel::filterAcceptsRow(int sourceRow, const QModelIn
     QModelIndex modelIndex = this->sourceModel()->index(sourceRow, 0, sourceParent);
     if (!modelIndex.isValid())
         return false;
-    const auto lastLaunchedTime = modelIndex.data(AppItem::LastLaunchedTimeRole).toLongLong();
+    const auto lastLaunchedTime = modelIndex.data(m_lastLaunchedTimeRole).toLongLong();
     if (lastLaunchedTime > 0)
         return false;
 
     // filter pre installed applications.
-    const auto installedTime = modelIndex.data(AppItem::InstalledTimeRole).toLongLong();
+    const auto installedTime = modelIndex.data(m_installedTimeRole).toLongLong();
     return installedTime > 0;
 }
 
@@ -35,8 +32,17 @@ bool RecentlyInstalledProxyModel::lessThan(const QModelIndex &source_left, const
     if (!source_left.isValid() || !source_right.isValid())
         return false;
 
-    const auto leftTime = source_left.data(AppItem::InstalledTimeRole).toLongLong();
-    const auto rightTime = source_right.data(AppItem::InstalledTimeRole).toLongLong();
+    const auto leftTime = source_left.data(m_installedTimeRole).toLongLong();
+    const auto rightTime = source_right.data(m_installedTimeRole).toLongLong();
 
     return leftTime < rightTime;
+}
+
+void RecentlyInstalledProxyModel::classBegin()
+{
+}
+
+void RecentlyInstalledProxyModel::componentComplete()
+{
+    sort(0, Qt::DescendingOrder);
 }
