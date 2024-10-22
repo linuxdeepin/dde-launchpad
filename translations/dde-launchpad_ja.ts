@@ -218,7 +218,7 @@
     <message>
         <location filename="../qml/windowed/SearchResultView.qml" line="37"/>
         <source>All Apps</source>
-        <translation type="unfinished"/>
+        <translation>すべてのアプリ</translation>
     </message>
     <message>
         <location filename="../qml/FullscreenFrame.qml" line="545"/>
