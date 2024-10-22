@@ -64,7 +64,7 @@
     <message>
         <location filename="../qml/AppItemMenu.qml" line="120"/>
         <source>Disable display scaling</source>
-        <translation type="unfinished"/>
+        <translation>ディスプレイスケーリングを無効化</translation>
     </message>
     <message>
         <location filename="../qml/AppItemMenu.qml" line="127"/>
