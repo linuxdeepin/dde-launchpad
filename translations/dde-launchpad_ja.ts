@@ -129,7 +129,7 @@
     <message>
         <location filename="../launchercontroller.cpp" line="20"/>
         <source>Toggle launcher visibility</source>
-        <translation type="unfinished"/>
+        <translation>ランチャーの可視性を切り替え</translation>
     </message>
 </context>
 <context>
