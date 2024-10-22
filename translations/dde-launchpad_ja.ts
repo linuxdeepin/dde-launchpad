@@ -9,7 +9,7 @@
     <message>
         <location filename="../qml/AppItemMenu.qml" line="46"/>
         <source>Pin to Top</source>
-        <translation type="unfinished"/>
+        <translation>上部に固定</translation>
     </message>
     <message>
         <location filename="../qml/AppItemMenu.qml" line="55"/>
