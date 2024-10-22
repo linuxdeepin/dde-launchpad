@@ -14,7 +14,7 @@
     <message>
         <location filename="../qml/AppItemMenu.qml" line="55"/>
         <source>Move to Top</source>
-        <translation type="unfinished"/>
+        <translation>上部に移動</translation>
     </message>
     <message>
         <location filename="../qml/AppItemMenu.qml" line="65"/>
