@@ -252,12 +252,12 @@
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="145"/>
         <source>Computer</source>
-        <translation type="unfinished"/>
+        <translation>コンピューター</translation>
     </message>
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="156"/>
         <source>Pictures</source>
-        <translation type="unfinished"/>
+        <translation>ピクチャー</translation>
     </message>
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="167"/>
