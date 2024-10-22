@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="zh_CN">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="zh_CN">
 <context>
     <name>AppItemMenu</name>
     <message>
@@ -84,6 +86,11 @@
         <source>Search</source>
         <translation>搜索</translation>
     </message>
+    <message>
+        <location filename="../qml/windowed/BottomBar.qml" line="103"/>
+        <source>Full-screen Mode</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>DummyAppItemMenu</name>
@@ -101,9 +108,17 @@
 <context>
     <name>FrequentlyUsedView</name>
     <message>
-        <location filename="../qml/windowed/FrequentlyUsedView.qml" line="35"/>
+        <location filename="../qml/windowed/FrequentlyUsedView.qml" line="36"/>
         <source>Frequently Used</source>
         <translation>我的常用</translation>
+    </message>
+</context>
+<context>
+    <name>FullscreenFrame</name>
+    <message>
+        <location filename="../qml/FullscreenFrame.qml" line="152"/>
+        <source>Window Mode</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -208,6 +223,7 @@
         <translation>所有应用</translation>
     </message>
     <message>
+        <location filename="../qml/FullscreenFrame.qml" line="545"/>
         <location filename="../qml/windowed/SearchResultView.qml" line="102"/>
         <source>No search results</source>
         <translation>无搜索结果</translation>
@@ -231,27 +247,32 @@
         <translation>按名称</translation>
     </message>
     <message>
-        <location filename="../qml/windowed/SideBar.qml" line="142"/>
+        <location filename="../qml/windowed/SideBar.qml" line="90"/>
+        <source>Sorting Mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/windowed/SideBar.qml" line="145"/>
         <source>Computer</source>
         <translation>计算机</translation>
     </message>
     <message>
-        <location filename="../qml/windowed/SideBar.qml" line="153"/>
+        <location filename="../qml/windowed/SideBar.qml" line="156"/>
         <source>Pictures</source>
         <translation>图片</translation>
     </message>
     <message>
-        <location filename="../qml/windowed/SideBar.qml" line="164"/>
+        <location filename="../qml/windowed/SideBar.qml" line="167"/>
         <source>Documents</source>
         <translation>文档</translation>
     </message>
     <message>
-        <location filename="../qml/windowed/SideBar.qml" line="175"/>
+        <location filename="../qml/windowed/SideBar.qml" line="178"/>
         <source>Desktop</source>
         <translation>桌面</translation>
     </message>
     <message>
-        <location filename="../qml/windowed/SideBar.qml" line="186"/>
+        <location filename="../qml/windowed/SideBar.qml" line="189"/>
         <source>Control Center</source>
         <translation>控制中心</translation>
     </message>

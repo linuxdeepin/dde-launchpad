@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="uk">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="uk">
 <context>
     <name>AppItemMenu</name>
     <message>
@@ -84,26 +86,39 @@
         <source>Search</source>
         <translation>Пошук</translation>
     </message>
+    <message>
+        <location filename="../qml/windowed/BottomBar.qml" line="103"/>
+        <source>Full-screen Mode</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>DummyAppItemMenu</name>
     <message>
         <location filename="../qml/DummyAppItemMenu.qml" line="27"/>
         <source>Install</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../qml/DummyAppItemMenu.qml" line="34"/>
         <source>Remove</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>FrequentlyUsedView</name>
     <message>
-        <location filename="../qml/windowed/FrequentlyUsedView.qml" line="35"/>
+        <location filename="../qml/windowed/FrequentlyUsedView.qml" line="36"/>
         <source>Frequently Used</source>
         <translation>Часто використані</translation>
+    </message>
+</context>
+<context>
+    <name>FullscreenFrame</name>
+    <message>
+        <location filename="../qml/FullscreenFrame.qml" line="152"/>
+        <source>Window Mode</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -208,6 +223,7 @@
         <translation>Усі програми</translation>
     </message>
     <message>
+        <location filename="../qml/FullscreenFrame.qml" line="545"/>
         <location filename="../qml/windowed/SearchResultView.qml" line="102"/>
         <source>No search results</source>
         <translation>Нічого не знайдено</translation>
@@ -231,27 +247,32 @@
         <translation>Упорядкування за назвами</translation>
     </message>
     <message>
-        <location filename="../qml/windowed/SideBar.qml" line="142"/>
+        <location filename="../qml/windowed/SideBar.qml" line="90"/>
+        <source>Sorting Mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/windowed/SideBar.qml" line="145"/>
         <source>Computer</source>
         <translation>Комп&apos;ютер</translation>
     </message>
     <message>
-        <location filename="../qml/windowed/SideBar.qml" line="153"/>
+        <location filename="../qml/windowed/SideBar.qml" line="156"/>
         <source>Pictures</source>
         <translation>Зображення</translation>
     </message>
     <message>
-        <location filename="../qml/windowed/SideBar.qml" line="164"/>
+        <location filename="../qml/windowed/SideBar.qml" line="167"/>
         <source>Documents</source>
         <translation>Документи</translation>
     </message>
     <message>
-        <location filename="../qml/windowed/SideBar.qml" line="175"/>
+        <location filename="../qml/windowed/SideBar.qml" line="178"/>
         <source>Desktop</source>
         <translation>Стільниця</translation>
     </message>
     <message>
-        <location filename="../qml/windowed/SideBar.qml" line="186"/>
+        <location filename="../qml/windowed/SideBar.qml" line="189"/>
         <source>Control Center</source>
         <translation>Центр керування</translation>
     </message>
