@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="fi">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="fi">
 <context>
     <name>AppItemMenu</name>
     <message>
@@ -97,12 +95,12 @@
     <message>
         <location filename="../qml/DummyAppItemMenu.qml" line="27"/>
         <source>Install</source>
-        <translation type="unfinished"></translation>
+        <translation>Asenna</translation>
     </message>
     <message>
         <location filename="../qml/DummyAppItemMenu.qml" line="34"/>
         <source>Remove</source>
-        <translation type="unfinished"></translation>
+        <translation>Poista</translation>
     </message>
 </context>
 <context>
@@ -126,12 +124,12 @@
     <message>
         <location filename="../launchercontroller.cpp" line="19"/>
         <source>Show launcher (hidden by default)</source>
-        <translation>Näytä käynnistysohjelma (oletuksena piilotettu)</translation>
+        <translation>Näytä käynnistin (oletuksena piilotettu)</translation>
     </message>
     <message>
         <location filename="../launchercontroller.cpp" line="20"/>
         <source>Toggle launcher visibility</source>
-        <translation>Vaihda käynnistysohjelman näkyvyyttä</translation>
+        <translation>Vaihda käynnistimen näkyvyyttä</translation>
     </message>
 </context>
 <context>
@@ -212,7 +210,7 @@
     <message>
         <location filename="../qml/windowed/RecentlyInstalledView.qml" line="34"/>
         <source>Recently Installed</source>
-        <translation>Äskettäin asennettu</translation>
+        <translation>Hiljattain asennettu</translation>
     </message>
 </context>
 <context>
@@ -274,7 +272,7 @@
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="188"/>
         <source>Control Center</source>
-        <translation>Ohjauskeskus</translation>
+        <translation>Ohjauspaneli</translation>
     </message>
 </context>
 </TS>

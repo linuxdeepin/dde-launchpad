@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="pl">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="pl">
 <context>
     <name>AppItemMenu</name>
     <message>
@@ -97,12 +95,12 @@
     <message>
         <location filename="../qml/DummyAppItemMenu.qml" line="27"/>
         <source>Install</source>
-        <translation type="unfinished"></translation>
+        <translation>Zainstaluj</translation>
     </message>
     <message>
         <location filename="../qml/DummyAppItemMenu.qml" line="34"/>
         <source>Remove</source>
-        <translation type="unfinished"></translation>
+        <translation>Usuń</translation>
     </message>
 </context>
 <context>
