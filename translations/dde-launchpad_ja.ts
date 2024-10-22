@@ -242,7 +242,7 @@
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="66"/>
         <source>Sort by name</source>
-        <translation type="unfinished"/>
+        <translation>名前で並べ替え</translation>
     </message>
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="90"/>
