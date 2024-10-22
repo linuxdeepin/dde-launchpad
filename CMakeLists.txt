@@ -85,6 +85,7 @@ set(QML_FILES_NEED_TRANSLATION
     ${PROJECT_SOURCE_DIR}/qml/AppItemMenu.qml
     ${PROJECT_SOURCE_DIR}/qml/DummyAppItemMenu.qml
     ${PROJECT_SOURCE_DIR}/qml/Main.qml
+    ${PROJECT_SOURCE_DIR}/qml/FullscreenFrame.qml
     ${WINDOWED_QML_FILES}
 )
 
