@@ -13,6 +13,9 @@ Loader {
     id: root
 
     property string desktopId
+    readonly property bool isFullscreen: LauncherController.currentFrame === "FullscreenFrame"
+    readonly property bool isHorizontalDock: DesktopIntegration.dockPosition === Qt.UpArrow || DesktopIntegration.dockPosition === Qt.DownArrow
+    readonly property int dockSpacing: (isHorizontalDock ? DesktopIntegration.dockGeometry.height : DesktopIntegration.dockGeometry.width) / Screen.devicePixelRatio
 
     signal closed()
 
@@ -21,6 +24,7 @@ Loader {
 
         Menu {
             id: contextMenu
+            margins: isFullscreen ? dockSpacing : 0
             modal: true
 
             MenuItem {
