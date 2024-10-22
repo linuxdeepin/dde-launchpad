@@ -267,7 +267,7 @@
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="178"/>
         <source>Desktop</source>
-        <translation type="unfinished"/>
+        <translation>デスクトップ</translation>
     </message>
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="189"/>
