@@ -124,7 +124,7 @@
     <message>
         <location filename="../launchercontroller.cpp" line="19"/>
         <source>Show launcher (hidden by default)</source>
-        <translation type="unfinished"/>
+        <translation>ランチャーを表示(デフォルトで非表示)</translation>
     </message>
     <message>
         <location filename="../launchercontroller.cpp" line="20"/>
