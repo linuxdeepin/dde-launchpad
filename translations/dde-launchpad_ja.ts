@@ -262,7 +262,7 @@
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="167"/>
         <source>Documents</source>
-        <translation type="unfinished"/>
+        <translation>ドキュメント</translation>
     </message>
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="178"/>
@@ -272,7 +272,7 @@
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="189"/>
         <source>Control Center</source>
-        <translation type="unfinished"/>
+        <translation>コントロールセンター</translation>
     </message>
 </context>
 </TS>
