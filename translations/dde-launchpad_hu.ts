@@ -87,7 +87,7 @@
     <message>
         <location filename="../qml/windowed/BottomBar.qml" line="103"/>
         <source>Full-screen Mode</source>
-        <translation>Teljes képernyős mód</translation>
+        <translation>Teljes képernyős Mód</translation>
     </message>
 </context>
 <context>
@@ -116,7 +116,7 @@
     <message>
         <location filename="../qml/FullscreenFrame.qml" line="152"/>
         <source>Window Mode</source>
-        <translation>Ablak mód</translation>
+        <translation>Ablak Mód</translation>
     </message>
 </context>
 <context>
@@ -247,7 +247,7 @@
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="90"/>
         <source>Sorting Mode</source>
-        <translation>Rendezési mód</translation>
+        <translation>Rendezési Mód</translation>
     </message>
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="145"/>
