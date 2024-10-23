@@ -30,7 +30,10 @@ Loader {
 
         Menu {
             id: contextMenu
-            margins: isFullscreen ? dockSpacing : 0
+            topMargin: isFullscreen && DesktopIntegration.dockPosition == Qt.UpArrow ? dockSpacing : 0
+            bottomMargin: isFullscreen && DesktopIntegration.dockPosition == Qt.DownArrow ? dockSpacing : 0
+            leftMargin: isFullscreen && DesktopIntegration.dockPosition == Qt.LeftArrow ? dockSpacing : 0
+            rightMargin: isFullscreen && DesktopIntegration.dockPosition == Qt.RightArrow ? dockSpacing : 0
             modal: true
 
             MenuItem {
