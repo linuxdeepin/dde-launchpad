@@ -142,7 +142,7 @@
     <message>
         <location filename="../qml/Main.qml" line="24"/>
         <source>Chat</source>
-        <translation>Pikakeskustelu</translation>
+        <translation>Keskustelu</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="26"/>
