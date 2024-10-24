@@ -1,3 +1,9 @@
+dde-launchpad (1.0.5) unstable; urgency=medium
+
+  * fix: Dock can overlap right-click menu (#454)
+
+ -- Yutao Meng <mengyutao@deepin.org>  Thu, 24 Oct 2024 10:37:25 +0800
+
 dde-launchpad (1.0.4) unstable; urgency=medium
 
   * fix: avoid hover animation for grid items
