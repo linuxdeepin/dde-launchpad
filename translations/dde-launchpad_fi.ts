@@ -242,7 +242,7 @@
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="66"/>
         <source>Sort by name</source>
-        <translation>Lajittele nimen mukaan</translation>
+        <translation>Nimen mukaan</translation>
     </message>
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="90"/>
