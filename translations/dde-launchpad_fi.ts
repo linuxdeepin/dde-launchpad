@@ -192,7 +192,7 @@
     <message>
         <location filename="../qml/Main.qml" line="411"/>
         <source>Are you sure you want to uninstall %1?</source>
-        <translation>Haluatko varmasti poistaa asennuksen %1?</translation>
+        <translation>Haluatko poistaa asennuksen %1?</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="423"/>
