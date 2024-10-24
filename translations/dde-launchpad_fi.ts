@@ -162,7 +162,7 @@
     <message>
         <location filename="../qml/Main.qml" line="32"/>
         <source>Game</source>
-        <translation>Peli</translation>
+        <translation>Pelit</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="34"/>
