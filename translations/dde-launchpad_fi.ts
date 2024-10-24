@@ -237,7 +237,7 @@
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="54"/>
         <source>Sort by category</source>
-        <translation>Lajittele luokan mukaan</translation>
+        <translation>Luokan mukaan</translation>
     </message>
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="66"/>
