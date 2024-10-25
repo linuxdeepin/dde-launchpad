@@ -62,8 +62,8 @@ Control {
             Layout.alignment: Qt.AlignRight
             Layout.topMargin: 10
             Layout.rightMargin: 10
-            Layout.preferredHeight: searchResultViewContainer.height
-            Layout.preferredWidth: searchResultViewContainer.width - 10
+            Layout.fillHeight: true
+            Layout.fillWidth: true
             interactive: true
 
             model: delegateSearchResultModel
