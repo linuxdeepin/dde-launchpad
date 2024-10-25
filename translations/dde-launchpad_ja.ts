@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="ja_JP">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="ja">
 <context>
     <name>AppItemMenu</name>
     <message>
@@ -11,22 +9,22 @@
     <message>
         <location filename="../qml/AppItemMenu.qml" line="46"/>
         <source>Pin to Top</source>
-        <translation type="unfinished"></translation>
+        <translation>上部に固定</translation>
     </message>
     <message>
         <location filename="../qml/AppItemMenu.qml" line="55"/>
         <source>Move to Top</source>
-        <translation type="unfinished"></translation>
+        <translation>上部に移動</translation>
     </message>
     <message>
         <location filename="../qml/AppItemMenu.qml" line="65"/>
         <source>Remove from favorites</source>
-        <translation type="unfinished"></translation>
+        <translation>お気に入りから削除</translation>
     </message>
     <message>
         <location filename="../qml/AppItemMenu.qml" line="65"/>
         <source>Add to favorites</source>
-        <translation type="unfinished"></translation>
+        <translation>お気に入りに追加</translation>
     </message>
     <message>
         <location filename="../qml/AppItemMenu.qml" line="80"/>
@@ -66,7 +64,7 @@
     <message>
         <location filename="../qml/AppItemMenu.qml" line="120"/>
         <source>Disable display scaling</source>
-        <translation type="unfinished"></translation>
+        <translation>ディスプレイスケーリングを無効化</translation>
     </message>
     <message>
         <location filename="../qml/AppItemMenu.qml" line="127"/>
@@ -75,60 +73,21 @@
     </message>
 </context>
 <context>
-    <name>AppListView</name>
-    <message>
-        <source>Internet</source>
-        <translation type="vanished">インターネット</translation>
-    </message>
-    <message>
-        <source>Chat</source>
-        <translation type="vanished">チャット</translation>
-    </message>
-    <message>
-        <source>Music</source>
-        <translation type="vanished">ミュージック</translation>
-    </message>
-    <message>
-        <source>Video</source>
-        <translation type="vanished">ビデオ</translation>
-    </message>
-    <message>
-        <source>Graphics</source>
-        <translation type="vanished">グラフィックス</translation>
-    </message>
-    <message>
-        <source>Office</source>
-        <translation type="vanished">オフィス</translation>
-    </message>
-    <message>
-        <source>Reading</source>
-        <translation type="vanished">文書</translation>
-    </message>
-    <message>
-        <source>Development</source>
-        <translation type="vanished">開発</translation>
-    </message>
-    <message>
-        <source>System</source>
-        <translation type="vanished">システム</translation>
-    </message>
-</context>
-<context>
     <name>BottomBar</name>
     <message>
         <location filename="../qml/windowed/BottomBar.qml" line="32"/>
         <source>Power</source>
-        <translation type="unfinished">電源</translation>
+        <translation>電源</translation>
     </message>
     <message>
         <location filename="../qml/windowed/BottomBar.qml" line="56"/>
         <source>Search</source>
-        <translation type="unfinished">検索</translation>
+        <translation>検索</translation>
     </message>
     <message>
         <location filename="../qml/windowed/BottomBar.qml" line="103"/>
         <source>Full-screen Mode</source>
-        <translation type="unfinished"></translation>
+        <translation>全画面モード</translation>
     </message>
 </context>
 <context>
@@ -136,12 +95,12 @@
     <message>
         <location filename="../qml/DummyAppItemMenu.qml" line="27"/>
         <source>Install</source>
-        <translation type="unfinished"></translation>
+        <translation>インストール</translation>
     </message>
     <message>
         <location filename="../qml/DummyAppItemMenu.qml" line="34"/>
         <source>Remove</source>
-        <translation type="unfinished"></translation>
+        <translation>削除</translation>
     </message>
 </context>
 <context>
@@ -149,7 +108,7 @@
     <message>
         <location filename="../qml/windowed/FrequentlyUsedView.qml" line="36"/>
         <source>Frequently Used</source>
-        <translation type="unfinished"></translation>
+        <translation>最近使用したもの</translation>
     </message>
 </context>
 <context>
@@ -157,7 +116,7 @@
     <message>
         <location filename="../qml/FullscreenFrame.qml" line="152"/>
         <source>Window Mode</source>
-        <translation type="unfinished"></translation>
+        <translation>ウィンドウ モード</translation>
     </message>
 </context>
 <context>
@@ -165,12 +124,12 @@
     <message>
         <location filename="../launchercontroller.cpp" line="19"/>
         <source>Show launcher (hidden by default)</source>
-        <translation type="unfinished"></translation>
+        <translation>ランチャーを表示(デフォルトで非表示)</translation>
     </message>
     <message>
         <location filename="../launchercontroller.cpp" line="20"/>
         <source>Toggle launcher visibility</source>
-        <translation type="unfinished"></translation>
+        <translation>ランチャーの可視性を切り替え</translation>
     </message>
 </context>
 <context>
@@ -203,7 +162,7 @@
     <message>
         <location filename="../qml/Main.qml" line="32"/>
         <source>Game</source>
-        <translation type="unfinished"></translation>
+        <translation>ゲーム</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="34"/>
@@ -228,22 +187,22 @@
     <message>
         <location filename="../qml/Main.qml" line="42"/>
         <source>Others</source>
-        <translation type="unfinished"></translation>
+        <translation>その他</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="411"/>
         <source>Are you sure you want to uninstall %1?</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 をアンインストールしてもよろしいですか？</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="423"/>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>キャンセル</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="437"/>
         <source>Confirm</source>
-        <translation type="unfinished"></translation>
+        <translation>確認</translation>
     </message>
 </context>
 <context>
@@ -251,7 +210,7 @@
     <message>
         <location filename="../qml/windowed/RecentlyInstalledView.qml" line="34"/>
         <source>Recently Installed</source>
-        <translation type="unfinished"></translation>
+        <translation>最近インストールされたもの</translation>
     </message>
 </context>
 <context>
@@ -259,13 +218,13 @@
     <message>
         <location filename="../qml/windowed/SearchResultView.qml" line="37"/>
         <source>All Apps</source>
-        <translation type="unfinished"></translation>
+        <translation>すべてのアプリ</translation>
     </message>
     <message>
         <location filename="../qml/FullscreenFrame.qml" line="545"/>
         <location filename="../qml/windowed/SearchResultView.qml" line="102"/>
         <source>No search results</source>
-        <translation type="unfinished"></translation>
+        <translation>検索結果はありません</translation>
     </message>
 </context>
 <context>
@@ -273,62 +232,47 @@
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="40"/>
         <source>Free sorting</source>
-        <translation type="unfinished"></translation>
+        <translation>フリー並び替え</translation>
     </message>
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="54"/>
         <source>Sort by category</source>
-        <translation type="unfinished"></translation>
+        <translation>カテゴリで並べ替え</translation>
     </message>
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="66"/>
         <source>Sort by name</source>
-        <translation type="unfinished"></translation>
+        <translation>名前で並べ替え</translation>
     </message>
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="90"/>
         <source>Sorting Mode</source>
-        <translation type="unfinished"></translation>
+        <translation>並び替えモード</translation>
     </message>
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="145"/>
         <source>Computer</source>
-        <translation type="unfinished"></translation>
+        <translation>コンピューター</translation>
     </message>
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="156"/>
         <source>Pictures</source>
-        <translation type="unfinished"></translation>
+        <translation>ピクチャー</translation>
     </message>
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="167"/>
         <source>Documents</source>
-        <translation type="unfinished"></translation>
+        <translation>ドキュメント</translation>
     </message>
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="178"/>
         <source>Desktop</source>
-        <translation type="unfinished"></translation>
+        <translation>デスクトップ</translation>
     </message>
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="189"/>
         <source>Control Center</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>WindowedFrame</name>
-    <message>
-        <source>Power</source>
-        <translation type="vanished">電源</translation>
-    </message>
-    <message>
-        <source>Settings</source>
-        <translation type="vanished">設定</translation>
-    </message>
-    <message>
-        <source>Search</source>
-        <translation type="vanished">検索</translation>
+        <translation>コントロールセンター</translation>
     </message>
 </context>
 </TS>
