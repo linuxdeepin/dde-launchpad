@@ -1,3 +1,15 @@
+dde-launchpad (1.99.0) UNRELEASED; urgency=medium
+
+  * Support freeform sort area drag-to-scroll in windowed mode launcher
+  * Move launcheritem applet from dde-shell to dde-launchpad
+  * Support dummy (placeholder) package
+  * Display autostart badge for autostart items
+  * fix failed to switch pages by clicking page indicator (PMS-272715)
+  * Add tooltip for some icon-only buttons
+  * Fix incorrect alignment windowed mode search result view on Qt 6.8
+
+ -- Wang Zichong <wangzichong@deepin.org>  Mon, 28 Oct 2024 19:14:00 +0800
+
 dde-launchpad (1.0.0) unstable; urgency=medium
 
   * Update translation from Transifex
