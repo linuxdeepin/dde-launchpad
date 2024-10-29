@@ -34,7 +34,7 @@
     <message>
         <location filename="../qml/AppItemMenu.qml" line="80"/>
         <source>Remove from desktop</source>
-        <translation>移除桌面捷徑</translation>
+        <translation>從桌面上移除</translation>
     </message>
     <message>
         <location filename="../qml/AppItemMenu.qml" line="91"/>
