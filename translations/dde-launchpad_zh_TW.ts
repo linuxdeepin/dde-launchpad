@@ -39,7 +39,7 @@
     <message>
         <location filename="../qml/AppItemMenu.qml" line="91"/>
         <source>Remove from dock</source>
-        <translation>移除任務欄捷徑</translation>
+        <translation>從任務欄上移除</translation>
     </message>
     <message>
         <location filename="../qml/AppItemMenu.qml" line="91"/>
