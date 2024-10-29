@@ -192,12 +192,12 @@
     <message>
         <location filename="../qml/Main.qml" line="411"/>
         <source>Are you sure you want to uninstall %1?</source>
-        <translation type="unfinished"/>
+        <translation>您確定要卸載 %1 嗎？</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="423"/>
         <source>Cancel</source>
-        <translation type="unfinished"/>
+        <translation>取 消</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="437"/>
