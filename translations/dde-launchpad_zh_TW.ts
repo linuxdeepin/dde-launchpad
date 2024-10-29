@@ -29,7 +29,7 @@
     <message>
         <location filename="../qml/AppItemMenu.qml" line="80"/>
         <source>Send to desktop</source>
-        <translation>建立桌面捷徑</translation>
+        <translation>發送到桌面</translation>
     </message>
     <message>
         <location filename="../qml/AppItemMenu.qml" line="80"/>
