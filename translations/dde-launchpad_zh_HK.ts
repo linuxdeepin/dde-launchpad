@@ -237,12 +237,12 @@
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="54"/>
         <source>Sort by category</source>
-        <translation type="unfinished"/>
+        <translation>按分類</translation>
     </message>
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="66"/>
         <source>Sort by name</source>
-        <translation type="unfinished"/>
+        <translation>按名稱</translation>
     </message>
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="90"/>
