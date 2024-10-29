@@ -262,17 +262,17 @@
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="167"/>
         <source>Documents</source>
-        <translation type="unfinished"/>
+        <translation>文檔</translation>
     </message>
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="178"/>
         <source>Desktop</source>
-        <translation type="unfinished"/>
+        <translation>桌面</translation>
     </message>
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="189"/>
         <source>Control Center</source>
-        <translation type="unfinished"/>
+        <translation>控制中心</translation>
     </message>
 </context>
 </TS>
