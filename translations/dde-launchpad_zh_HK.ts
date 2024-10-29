@@ -87,7 +87,7 @@
     <message>
         <location filename="../qml/windowed/BottomBar.qml" line="103"/>
         <source>Full-screen Mode</source>
-        <translation type="unfinished"/>
+        <translation>全螢幕模式</translation>
     </message>
 </context>
 <context>
@@ -95,7 +95,7 @@
     <message>
         <location filename="../qml/DummyAppItemMenu.qml" line="27"/>
         <source>Install</source>
-        <translation type="unfinished"/>
+        <translation>安裝</translation>
     </message>
     <message>
         <location filename="../qml/DummyAppItemMenu.qml" line="34"/>
