@@ -187,7 +187,7 @@
     <message>
         <location filename="../qml/Main.qml" line="42"/>
         <source>Others</source>
-        <translation type="unfinished"/>
+        <translation>其他應用</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="411"/>
