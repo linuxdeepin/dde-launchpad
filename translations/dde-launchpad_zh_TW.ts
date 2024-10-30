@@ -49,7 +49,7 @@
     <message>
         <location filename="../qml/AppItemMenu.qml" line="103"/>
         <source>Add to startup</source>
-        <translation>開機啟動</translation>
+        <translation>開機自動啟動</translation>
     </message>
     <message>
         <location filename="../qml/AppItemMenu.qml" line="103"/>
