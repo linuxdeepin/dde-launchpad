@@ -210,7 +210,7 @@
     <message>
         <location filename="../qml/windowed/RecentlyInstalledView.qml" line="34"/>
         <source>Recently Installed</source>
-        <translation type="unfinished"/>
+        <translation>最近安裝</translation>
     </message>
 </context>
 <context>
