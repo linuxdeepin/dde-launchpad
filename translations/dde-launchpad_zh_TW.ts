@@ -257,12 +257,12 @@
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="156"/>
         <source>Pictures</source>
-        <translation type="unfinished"/>
+        <translation>圖片</translation>
     </message>
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="167"/>
         <source>Documents</source>
-        <translation type="unfinished"/>
+        <translation>文件</translation>
     </message>
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="178"/>
