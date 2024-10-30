@@ -64,7 +64,7 @@
     <message>
         <location filename="../qml/AppItemMenu.qml" line="120"/>
         <source>Disable display scaling</source>
-        <translation>停用畫面縮放</translation>
+        <translation>禁用螢幕縮放</translation>
     </message>
     <message>
         <location filename="../qml/AppItemMenu.qml" line="127"/>
