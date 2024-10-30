@@ -224,7 +224,7 @@
         <location filename="../qml/FullscreenFrame.qml" line="545"/>
         <location filename="../qml/windowed/SearchResultView.qml" line="102"/>
         <source>No search results</source>
-        <translation type="unfinished"/>
+        <translation>無搜尋結果</translation>
     </message>
 </context>
 <context>
@@ -232,7 +232,7 @@
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="40"/>
         <source>Free sorting</source>
-        <translation type="unfinished"/>
+        <translation>自由排序</translation>
     </message>
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="54"/>
