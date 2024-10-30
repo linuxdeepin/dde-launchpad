@@ -177,7 +177,7 @@
     <message>
         <location filename="../qml/Main.qml" line="38"/>
         <source>Development</source>
-        <translation>開發</translation>
+        <translation>編程開發</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="40"/>
