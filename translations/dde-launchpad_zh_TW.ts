@@ -152,7 +152,7 @@
     <message>
         <location filename="../qml/Main.qml" line="28"/>
         <source>Video</source>
-        <translation>影片</translation>
+        <translation>影片播放</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="30"/>
