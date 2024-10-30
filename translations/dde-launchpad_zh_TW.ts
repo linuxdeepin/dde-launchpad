@@ -172,7 +172,7 @@
     <message>
         <location filename="../qml/Main.qml" line="36"/>
         <source>Reading</source>
-        <translation>閱讀閱讀翻譯</translation>
+        <translation>閱讀翻譯</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="38"/>
