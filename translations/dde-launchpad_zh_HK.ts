@@ -14,7 +14,7 @@
     <message>
         <location filename="../qml/AppItemMenu.qml" line="55"/>
         <source>Move to Top</source>
-        <translation type="unfinished"/>
+        <translation>移至頂部</translation>
     </message>
     <message>
         <location filename="../qml/AppItemMenu.qml" line="65"/>
@@ -87,7 +87,7 @@
     <message>
         <location filename="../qml/windowed/BottomBar.qml" line="103"/>
         <source>Full-screen Mode</source>
-        <translation>全屏模式</translation>
+        <translation>全螢幕模式</translation>
     </message>
 </context>
 <context>
@@ -95,12 +95,12 @@
     <message>
         <location filename="../qml/DummyAppItemMenu.qml" line="27"/>
         <source>Install</source>
-        <translation type="unfinished"/>
+        <translation>安裝</translation>
     </message>
     <message>
         <location filename="../qml/DummyAppItemMenu.qml" line="34"/>
         <source>Remove</source>
-        <translation type="unfinished"/>
+        <translation>移除</translation>
     </message>
 </context>
 <context>
@@ -108,7 +108,7 @@
     <message>
         <location filename="../qml/windowed/FrequentlyUsedView.qml" line="35"/>
         <source>Frequently Used</source>
-        <translation type="unfinished"/>
+        <translation>我的常用</translation>
     </message>
 </context>
 <context>
@@ -124,12 +124,12 @@
     <message>
         <location filename="../launchercontroller.cpp" line="19"/>
         <source>Show launcher (hidden by default)</source>
-        <translation type="unfinished"/>
+        <translation>顯示啟動器（默認為隱藏）</translation>
     </message>
     <message>
         <location filename="../launchercontroller.cpp" line="20"/>
         <source>Toggle launcher visibility</source>
-        <translation type="unfinished"/>
+        <translation>切換啟動器的可見性</translation>
     </message>
 </context>
 <context>
@@ -162,7 +162,7 @@
     <message>
         <location filename="../qml/Main.qml" line="32"/>
         <source>Game</source>
-        <translation type="unfinished"/>
+        <translation>遊戲娛樂</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="34"/>
@@ -187,22 +187,22 @@
     <message>
         <location filename="../qml/Main.qml" line="42"/>
         <source>Others</source>
-        <translation type="unfinished"/>
+        <translation>其他應用</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="411"/>
         <source>Are you sure you want to uninstall %1?</source>
-        <translation type="unfinished"/>
+        <translation>您確定要卸載 %1 嗎？</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="423"/>
         <source>Cancel</source>
-        <translation type="unfinished"/>
+        <translation>取 消</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="437"/>
         <source>Confirm</source>
-        <translation type="unfinished"/>
+        <translation>確 定</translation>
     </message>
 </context>
 <context>
@@ -210,7 +210,7 @@
     <message>
         <location filename="../qml/windowed/RecentlyInstalledView.qml" line="34"/>
         <source>Recently Installed</source>
-        <translation type="unfinished"/>
+        <translation>最近安裝</translation>
     </message>
 </context>
 <context>
@@ -218,13 +218,13 @@
     <message>
         <location filename="../qml/windowed/SearchResultView.qml" line="37"/>
         <source>All Apps</source>
-        <translation type="unfinished"/>
+        <translation>所有應用</translation>
     </message>
     <message>
         <location filename="../qml/FullscreenFrame.qml" line="566"/>
         <location filename="../qml/windowed/SearchResultView.qml" line="102"/>
         <source>No search results</source>
-        <translation type="unfinished"/>
+        <translation>無搜索結果</translation>
     </message>
 </context>
 <context>
@@ -232,17 +232,17 @@
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="40"/>
         <source>Free sorting</source>
-        <translation type="unfinished"/>
+        <translation>自由排序</translation>
     </message>
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="54"/>
         <source>Sort by category</source>
-        <translation type="unfinished"/>
+        <translation>按分類</translation>
     </message>
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="66"/>
         <source>Sort by name</source>
-        <translation type="unfinished"/>
+        <translation>按名稱</translation>
     </message>
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="90"/>
@@ -252,27 +252,27 @@
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="144"/>
         <source>Computer</source>
-        <translation type="unfinished"/>
+        <translation>計算機</translation>
     </message>
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="155"/>
         <source>Pictures</source>
-        <translation type="unfinished"/>
+        <translation>圖片</translation>
     </message>
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="166"/>
         <source>Documents</source>
-        <translation type="unfinished"/>
+        <translation>文檔</translation>
     </message>
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="177"/>
         <source>Desktop</source>
-        <translation type="unfinished"/>
+        <translation>桌面</translation>
     </message>
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="188"/>
         <source>Control Center</source>
-        <translation type="unfinished"/>
+        <translation>控制中心</translation>
     </message>
 </context>
 </TS>
