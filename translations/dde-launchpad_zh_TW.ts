@@ -69,7 +69,7 @@
     <message>
         <location filename="../qml/AppItemMenu.qml" line="127"/>
         <source>Uninstall</source>
-        <translation>解除安裝</translation>
+        <translation>移除</translation>
     </message>
 </context>
 <context>
