@@ -124,12 +124,12 @@
     <message>
         <location filename="../launchercontroller.cpp" line="19"/>
         <source>Show launcher (hidden by default)</source>
-        <translation type="unfinished"/>
+        <translation>顯示啟動器（預設為隱藏）</translation>
     </message>
     <message>
         <location filename="../launchercontroller.cpp" line="20"/>
         <source>Toggle launcher visibility</source>
-        <translation type="unfinished"/>
+        <translation>切換啟動器的可見性</translation>
     </message>
 </context>
 <context>
