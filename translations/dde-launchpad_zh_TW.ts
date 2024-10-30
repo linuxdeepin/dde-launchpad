@@ -162,7 +162,7 @@
     <message>
         <location filename="../qml/Main.qml" line="32"/>
         <source>Game</source>
-        <translation type="unfinished"/>
+        <translation>遊戲娛樂</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="34"/>
