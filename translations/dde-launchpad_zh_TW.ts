@@ -44,7 +44,7 @@
     <message>
         <location filename="../qml/AppItemMenu.qml" line="91"/>
         <source>Send to dock</source>
-        <translation>釘選到任務欄</translation>
+        <translation>發送到任務欄</translation>
     </message>
     <message>
         <location filename="../qml/AppItemMenu.qml" line="103"/>
