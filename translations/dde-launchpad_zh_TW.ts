@@ -167,7 +167,7 @@
     <message>
         <location filename="../qml/Main.qml" line="34"/>
         <source>Office</source>
-        <translation>辦公</translation>
+        <translation>辦公學習</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="36"/>
