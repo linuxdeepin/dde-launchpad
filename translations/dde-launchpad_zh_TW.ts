@@ -54,12 +54,12 @@
     <message>
         <location filename="../qml/AppItemMenu.qml" line="103"/>
         <source>Remove from startup</source>
-        <translation>取消開機啟動</translation>
+        <translation>取消開機自動啟動</translation>
     </message>
     <message>
         <location filename="../qml/AppItemMenu.qml" line="111"/>
         <source>Use a proxy</source>
-        <translation>使用代理伺服器</translation>
+        <translation>使用代理</translation>
     </message>
     <message>
         <location filename="../qml/AppItemMenu.qml" line="120"/>
