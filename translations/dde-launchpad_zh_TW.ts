@@ -137,7 +137,7 @@
     <message>
         <location filename="../qml/Main.qml" line="22"/>
         <source>Internet</source>
-        <translation>網路</translation>
+        <translation>網路應用</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="24"/>
