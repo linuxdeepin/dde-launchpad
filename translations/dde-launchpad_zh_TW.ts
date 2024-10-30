@@ -142,12 +142,12 @@
     <message>
         <location filename="../qml/Main.qml" line="24"/>
         <source>Chat</source>
-        <translation>聊天</translation>
+        <translation>社交溝通</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="26"/>
         <source>Music</source>
-        <translation>音樂</translation>
+        <translation>音樂欣賞</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="28"/>
