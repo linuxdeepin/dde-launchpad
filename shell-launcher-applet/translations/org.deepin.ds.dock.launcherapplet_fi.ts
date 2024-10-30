@@ -66,7 +66,7 @@
     <message>
         <location filename="../qml/AppItemMenu.qml" line="120"/>
         <source>Disable display scaling</source>
-        <translation>Poista näytön skaalaus käytöstä</translation>
+        <translation>Poista näytön skaalaus</translation>
     </message>
     <message>
         <location filename="../qml/AppItemMenu.qml" line="127"/>
@@ -89,7 +89,7 @@
     <message>
         <location filename="../qml/windowed/BottomBar.qml" line="103"/>
         <source>Full-screen Mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Koko näyttö</translation>
     </message>
 </context>
 <context>
@@ -118,7 +118,7 @@
     <message>
         <location filename="../qml/FullscreenFrame.qml" line="152"/>
         <source>Window Mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Ikkunatila</translation>
     </message>
 </context>
 <context>
@@ -144,7 +144,7 @@
     <message>
         <location filename="../qml/Main.qml" line="24"/>
         <source>Chat</source>
-        <translation>Pikakeskustelu</translation>
+        <translation>Keskustelu</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="26"/>
@@ -164,7 +164,7 @@
     <message>
         <location filename="../qml/Main.qml" line="32"/>
         <source>Game</source>
-        <translation>Peli</translation>
+        <translation>Pelit</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="34"/>
@@ -194,7 +194,7 @@
     <message>
         <location filename="../qml/Main.qml" line="411"/>
         <source>Are you sure you want to uninstall %1?</source>
-        <translation>Haluatko varmasti poistaa asennuksen %1?</translation>
+        <translation>Haluatko poistaa asennuksen %1?</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="423"/>
@@ -239,17 +239,17 @@
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="54"/>
         <source>Sort by category</source>
-        <translation>Lajittele luokan mukaan</translation>
+        <translation>Luokan mukaan</translation>
     </message>
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="66"/>
         <source>Sort by name</source>
-        <translation>Lajittele nimen mukaan</translation>
+        <translation>Nimen mukaan</translation>
     </message>
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="90"/>
         <source>Sorting Mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Lajittelutila</translation>
     </message>
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="145"/>

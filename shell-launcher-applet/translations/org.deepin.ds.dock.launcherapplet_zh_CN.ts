@@ -89,7 +89,7 @@
     <message>
         <location filename="../qml/windowed/BottomBar.qml" line="103"/>
         <source>Full-screen Mode</source>
-        <translation type="unfinished"></translation>
+        <translation>全屏模式</translation>
     </message>
 </context>
 <context>
@@ -118,7 +118,7 @@
     <message>
         <location filename="../qml/FullscreenFrame.qml" line="152"/>
         <source>Window Mode</source>
-        <translation type="unfinished"></translation>
+        <translation>窗口模式</translation>
     </message>
 </context>
 <context>
@@ -249,7 +249,7 @@
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="90"/>
         <source>Sorting Mode</source>
-        <translation type="unfinished"></translation>
+        <translation>排序模式</translation>
     </message>
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="145"/>
