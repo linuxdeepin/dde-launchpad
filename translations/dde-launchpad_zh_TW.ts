@@ -157,7 +157,7 @@
     <message>
         <location filename="../qml/Main.qml" line="30"/>
         <source>Graphics</source>
-        <translation>圖形</translation>
+        <translation>圖形圖像</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="32"/>
