@@ -1,3 +1,9 @@
+dde-launchpad (1.0.7) unstable; urgency=medium
+
+  * backport Qt 6.8 fix for release branch
+
+ -- Wang Zichong <wangzichong@deepin.org>  Thu, 07 Nov 2024 10:59:00 +0800
+
 dde-launchpad (1.0.6) unstable; urgency=medium
 
   * i18n: Updates for project Deepin Desktop Environment (#453)
