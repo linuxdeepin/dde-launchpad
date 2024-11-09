@@ -187,7 +187,7 @@
     <message>
         <location filename="../qml/Main.qml" line="42"/>
         <source>Others</source>
-        <translation type="unfinished"/>
+        <translation>Autres</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="411"/>
@@ -197,7 +197,7 @@
     <message>
         <location filename="../qml/Main.qml" line="423"/>
         <source>Cancel</source>
-        <translation type="unfinished"/>
+        <translation>Annuler</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="437"/>
