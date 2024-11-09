@@ -252,17 +252,17 @@
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="145"/>
         <source>Computer</source>
-        <translation type="unfinished"/>
+        <translation>Ordinateur</translation>
     </message>
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="156"/>
         <source>Pictures</source>
-        <translation type="unfinished"/>
+        <translation>Images</translation>
     </message>
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="167"/>
         <source>Documents</source>
-        <translation type="unfinished"/>
+        <translation>Documents</translation>
     </message>
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="178"/>
