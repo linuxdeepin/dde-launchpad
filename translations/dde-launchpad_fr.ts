@@ -267,12 +267,12 @@
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="178"/>
         <source>Desktop</source>
-        <translation type="unfinished"/>
+        <translation>Bureau</translation>
     </message>
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="189"/>
         <source>Control Center</source>
-        <translation type="unfinished"/>
+        <translation>Centre de contrôle</translation>
     </message>
 </context>
 </TS>
