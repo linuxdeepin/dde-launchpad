@@ -202,7 +202,7 @@
     <message>
         <location filename="../qml/Main.qml" line="437"/>
         <source>Confirm</source>
-        <translation type="unfinished"/>
+        <translation>Confirmer</translation>
     </message>
 </context>
 <context>
