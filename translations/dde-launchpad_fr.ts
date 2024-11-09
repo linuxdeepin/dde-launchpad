@@ -152,12 +152,12 @@
     <message>
         <location filename="../qml/Main.qml" line="28"/>
         <source>Video</source>
-        <translation type="unfinished"/>
+        <translation>Vidéo</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="30"/>
         <source>Graphics</source>
-        <translation type="unfinished"/>
+        <translation>Graphiques</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="32"/>
