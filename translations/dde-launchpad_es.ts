@@ -192,7 +192,7 @@
     <message>
         <location filename="../qml/Main.qml" line="411"/>
         <source>Are you sure you want to uninstall %1?</source>
-        <translation>¿Estás seguro de que quieres desinstalar %1?</translation>
+        <translation>¿Desea desinstalar %1?</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="423"/>
