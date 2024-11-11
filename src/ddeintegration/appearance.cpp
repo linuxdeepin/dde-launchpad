@@ -88,11 +88,10 @@ void Appearance::updateAllWallpaper()
     if (!doc.isObject()) {
         return;
     }
-    int i = 1;
-    do {
-        const QString k = QString("Primary&&%1").arg(i++);
-        QJsonValue v = doc[k];
 
+    for (auto it = doc.object().begin(); it != doc.object().end(); ++it) {
+        QString k = it.key();
+        QJsonValue v = it.value();
 #ifdef QT_DEBUG
         qDebug() << k << ":" << v;
 #endif
@@ -135,7 +134,7 @@ void Appearance::updateAllWallpaper()
         });
 
         m_blurhashWatchers << watcher;
-    } while(1);
+    }
 }
 
 qreal Appearance::opacity() const
