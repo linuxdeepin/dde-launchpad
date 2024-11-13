@@ -9,11 +9,12 @@ qt_standard_project_setup()
 macro(launchpad_add_tests)
     foreach(_testname ${ARGN})
         qt_add_executable(launchpad-${_testname} ${_testname}.cpp)
-        target_link_libraries(launchpad-${_testname} PRIVATE Qt6::Core Qt6::Test launcher-models)
+        target_link_libraries(launchpad-${_testname} PRIVATE Qt6::Core Qt6::Test launchpadcommon)
         add_test(NAME launchpad-${_testname} COMMAND launchpad-${_testname})
     endforeach()
 endmacro()
 
 launchpad_add_tests(
     itemspagetest
+    gioappinfotest
 )
