@@ -10,6 +10,7 @@
 #include <DStandardPaths>
 #include <DDesktopServices>
 #include <QRect>
+#include <QGuiApplication>
 #include <appinfo.h>
 #include <appmgr.h>
 
@@ -28,7 +29,7 @@ QString DesktopIntegration::currentDE()
 
 bool DesktopIntegration::isTreeLand()
 {
-    return qEnvironmentVariable("DDE_CURRENT_COMPOSITOR") == QStringLiteral("TreeLand");
+    return QGuiApplication::platformName() == "wayland";
 }
 
 void DesktopIntegration::openShutdownScreen()
