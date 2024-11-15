@@ -49,12 +49,12 @@
     <message>
         <location filename="../qml/AppItemMenu.qml" line="103"/>
         <source>Add to startup</source>
-        <translation>Dodaj do uruchamiania</translation>
+        <translation>Dodaj do startu systemu</translation>
     </message>
     <message>
         <location filename="../qml/AppItemMenu.qml" line="103"/>
         <source>Remove from startup</source>
-        <translation>Usuń z uruchamiania</translation>
+        <translation>Usuń z startu systemu</translation>
     </message>
     <message>
         <location filename="../qml/AppItemMenu.qml" line="111"/>
