@@ -59,7 +59,7 @@
     <message>
         <location filename="../qml/AppItemMenu.qml" line="111"/>
         <source>Use a proxy</source>
-        <translation>Użyj Proxy</translation>
+        <translation>Użyj proxy</translation>
     </message>
     <message>
         <location filename="../qml/AppItemMenu.qml" line="120"/>
