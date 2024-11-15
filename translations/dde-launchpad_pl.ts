@@ -257,7 +257,7 @@
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="156"/>
         <source>Pictures</source>
-        <translation>Obrazy</translation>
+        <translation>Zdjęcia</translation>
     </message>
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="167"/>
