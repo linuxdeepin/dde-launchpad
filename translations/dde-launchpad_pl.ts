@@ -272,7 +272,7 @@
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="189"/>
         <source>Control Center</source>
-        <translation>Centrum sterowania</translation>
+        <translation>Centrum kontroli</translation>
     </message>
 </context>
 </TS>
