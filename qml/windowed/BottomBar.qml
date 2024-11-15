@@ -31,6 +31,8 @@ Control {
             ToolTip.delay: 1000
             ToolTip.text: qsTr("Power")
             Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
+            // TODO: remove this when treeland is supported
+            visible: !DesktopIntegration.isTreeLand()
             onClicked: {
                 DesktopIntegration.openShutdownScreen();
             }
