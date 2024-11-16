@@ -1,3 +1,9 @@
+dde-launchpad (1.0.7) unstable; urgency=medium
+
+  * fix: Launchpad blurry background will never adapt to secondary monitor (#462)
+
+ -- Yutao Meng <mengyutao@deepin.org>  Wed, 13 Nov 2024 11:17:38 +0800
+
 dde-launchpad (1.0.6) unstable; urgency=medium
 
   * i18n: Updates for project Deepin Desktop Environment (#453)
