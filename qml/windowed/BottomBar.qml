@@ -6,6 +6,7 @@ import QtQuick 2.15
 import QtQuick.Layouts 1.15
 import QtQuick.Controls 2.15
 import org.deepin.dtk 1.0
+import org.deepin.ds 1.0
 
 import org.deepin.launchpad 1.0
 import org.deepin.launchpad.models 1.0
@@ -31,10 +32,13 @@ Control {
             ToolTip.delay: 1000
             ToolTip.text: qsTr("Power")
             Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
-            // TODO: remove this when treeland is supported
-            visible: !DesktopIntegration.isTreeLand()
             onClicked: {
-                DesktopIntegration.openShutdownScreen();
+                var shutdown = DS.applet("org.deepin.ds.dde-shutdown")
+                if (shutdown) {
+                    shutdown.requestShutdown()
+                } else {
+                    console.warn("shutdown applet not found")
+                }
             }
         }
 

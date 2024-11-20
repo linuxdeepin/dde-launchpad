@@ -32,16 +32,6 @@ bool DesktopIntegration::isTreeLand()
     return QGuiApplication::platformName() == "wayland";
 }
 
-void DesktopIntegration::openShutdownScreen()
-{
-    DDBusSender()
-        .service("org.deepin.dde.ShutdownFront1")
-        .interface("org.deepin.dde.ShutdownFront1")
-        .path("/org/deepin/dde/ShutdownFront1")
-        .method("Show")
-        .call();
-}
-
 void DesktopIntegration::openSystemSettings()
 {
     DDBusSender()
