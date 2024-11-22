@@ -89,7 +89,8 @@ void Appearance::updateAllWallpaper()
         return;
     }
 
-    for (auto it = doc.object().begin(); it != doc.object().end(); ++it) {
+    auto obj = doc.object();
+    for (auto it = obj.begin(); it != obj.end(); ++it) {
         QString k = it.key();
         QJsonValue v = it.value();
 #ifdef QT_DEBUG
