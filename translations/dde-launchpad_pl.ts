@@ -14,7 +14,7 @@
     <message>
         <location filename="../qml/AppItemMenu.qml" line="55"/>
         <source>Move to Top</source>
-        <translation>Przesuń na górę</translation>
+        <translation>Przenieś na górę</translation>
     </message>
     <message>
         <location filename="../qml/AppItemMenu.qml" line="65"/>
@@ -49,17 +49,17 @@
     <message>
         <location filename="../qml/AppItemMenu.qml" line="103"/>
         <source>Add to startup</source>
-        <translation>Dodaj do uruchamiania</translation>
+        <translation>Dodaj do startu systemu</translation>
     </message>
     <message>
         <location filename="../qml/AppItemMenu.qml" line="103"/>
         <source>Remove from startup</source>
-        <translation>Usuń z uruchamiania</translation>
+        <translation>Usuń z startu systemu</translation>
     </message>
     <message>
         <location filename="../qml/AppItemMenu.qml" line="111"/>
         <source>Use a proxy</source>
-        <translation>Użyj Proxy</translation>
+        <translation>Użyj proxy</translation>
     </message>
     <message>
         <location filename="../qml/AppItemMenu.qml" line="120"/>
@@ -237,12 +237,12 @@
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="54"/>
         <source>Sort by category</source>
-        <translation>Sortuj według kategorii</translation>
+        <translation>Sortuj wg. kategorii</translation>
     </message>
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="66"/>
         <source>Sort by name</source>
-        <translation>Sortuj według nazwy</translation>
+        <translation>Sortuj wg. nazwy</translation>
     </message>
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="90"/>
@@ -257,7 +257,7 @@
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="156"/>
         <source>Pictures</source>
-        <translation>Obrazy</translation>
+        <translation>Zdjęcia</translation>
     </message>
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="167"/>
@@ -272,7 +272,7 @@
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="189"/>
         <source>Control Center</source>
-        <translation>Centrum sterowania</translation>
+        <translation>Centrum kontroli</translation>
     </message>
 </context>
 </TS>
