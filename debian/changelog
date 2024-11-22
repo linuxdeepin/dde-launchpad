@@ -1,3 +1,13 @@
+dde-launchpad (1.99.1) UNRELEASED; urgency=medium
+
+  * update tr
+  * i18n: update ts files for launcher applet
+  * chore: update current unit test
+  * fix: hide the power button in treeland
+  * fix: modify the way of request shutdown (#466)
+
+ -- Zhang Kun <zhangkun2@uniontech.com>  Fri, 22 Nov 2024 11:39:37 +0800
+
 dde-launchpad (1.99.0) UNRELEASED; urgency=medium
 
   * Support freeform sort area drag-to-scroll in windowed mode launcher
