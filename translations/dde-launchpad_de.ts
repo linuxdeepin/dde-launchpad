@@ -82,7 +82,7 @@
     <message>
         <location filename="../qml/windowed/BottomBar.qml" line="56"/>
         <source>Search</source>
-        <translation>Suche</translation>
+        <translation>Suchen</translation>
     </message>
     <message>
         <location filename="../qml/windowed/BottomBar.qml" line="103"/>
