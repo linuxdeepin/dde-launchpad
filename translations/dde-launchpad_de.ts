@@ -129,7 +129,7 @@
     <message>
         <location filename="../launchercontroller.cpp" line="20"/>
         <source>Toggle launcher visibility</source>
-        <translation>Starteranzeige hin- und herwechseln</translation>
+        <translation>Sichtbarkeit des Starters umschalten</translation>
     </message>
 </context>
 <context>
