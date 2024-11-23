@@ -4,72 +4,72 @@
 <context>
     <name>AppItemMenu</name>
     <message>
-        <location filename="../qml/AppItemMenu.qml" line="34"/>
+        <location filename="../../qml/AppItemMenu.qml" line="34"/>
         <source>Open</source>
         <translation>開啟</translation>
     </message>
     <message>
-        <location filename="../qml/AppItemMenu.qml" line="46"/>
+        <location filename="../../qml/AppItemMenu.qml" line="46"/>
         <source>Pin to Top</source>
         <translation>移到頂部</translation>
     </message>
     <message>
-        <location filename="../qml/AppItemMenu.qml" line="55"/>
+        <location filename="../../qml/AppItemMenu.qml" line="55"/>
         <source>Move to Top</source>
         <translation>移至頂部</translation>
     </message>
     <message>
-        <location filename="../qml/AppItemMenu.qml" line="65"/>
+        <location filename="../../qml/AppItemMenu.qml" line="65"/>
         <source>Remove from favorites</source>
         <translation>從收藏中移除</translation>
     </message>
     <message>
-        <location filename="../qml/AppItemMenu.qml" line="65"/>
+        <location filename="../../qml/AppItemMenu.qml" line="65"/>
         <source>Add to favorites</source>
         <translation>添加到收藏</translation>
     </message>
     <message>
-        <location filename="../qml/AppItemMenu.qml" line="80"/>
+        <location filename="../../qml/AppItemMenu.qml" line="80"/>
         <source>Send to desktop</source>
         <translation>發送到桌面</translation>
     </message>
     <message>
-        <location filename="../qml/AppItemMenu.qml" line="80"/>
+        <location filename="../../qml/AppItemMenu.qml" line="80"/>
         <source>Remove from desktop</source>
         <translation>從桌面上移除</translation>
     </message>
     <message>
-        <location filename="../qml/AppItemMenu.qml" line="91"/>
+        <location filename="../../qml/AppItemMenu.qml" line="91"/>
         <source>Remove from dock</source>
         <translation>從任務欄上移除</translation>
     </message>
     <message>
-        <location filename="../qml/AppItemMenu.qml" line="91"/>
+        <location filename="../../qml/AppItemMenu.qml" line="91"/>
         <source>Send to dock</source>
         <translation>發送到任務欄</translation>
     </message>
     <message>
-        <location filename="../qml/AppItemMenu.qml" line="103"/>
+        <location filename="../../qml/AppItemMenu.qml" line="103"/>
         <source>Add to startup</source>
         <translation>開機自動啟動</translation>
     </message>
     <message>
-        <location filename="../qml/AppItemMenu.qml" line="103"/>
+        <location filename="../../qml/AppItemMenu.qml" line="103"/>
         <source>Remove from startup</source>
         <translation>取消開機自動啟動</translation>
     </message>
     <message>
-        <location filename="../qml/AppItemMenu.qml" line="111"/>
+        <location filename="../../qml/AppItemMenu.qml" line="111"/>
         <source>Use a proxy</source>
         <translation>使用代理</translation>
     </message>
     <message>
-        <location filename="../qml/AppItemMenu.qml" line="120"/>
+        <location filename="../../qml/AppItemMenu.qml" line="120"/>
         <source>Disable display scaling</source>
         <translation>禁用螢幕縮放</translation>
     </message>
     <message>
-        <location filename="../qml/AppItemMenu.qml" line="127"/>
+        <location filename="../../qml/AppItemMenu.qml" line="127"/>
         <source>Uninstall</source>
         <translation>移除</translation>
     </message>
@@ -77,17 +77,17 @@
 <context>
     <name>BottomBar</name>
     <message>
-        <location filename="../qml/windowed/BottomBar.qml" line="32"/>
+        <location filename="../../qml/windowed/BottomBar.qml" line="32"/>
         <source>Power</source>
         <translation>電源</translation>
     </message>
     <message>
-        <location filename="../qml/windowed/BottomBar.qml" line="56"/>
+        <location filename="../../qml/windowed/BottomBar.qml" line="58"/>
         <source>Search</source>
         <translation>搜尋</translation>
     </message>
     <message>
-        <location filename="../qml/windowed/BottomBar.qml" line="103"/>
+        <location filename="../../qml/windowed/BottomBar.qml" line="105"/>
         <source>Full-screen Mode</source>
         <translation>全螢幕模式</translation>
     </message>
@@ -95,12 +95,12 @@
 <context>
     <name>DummyAppItemMenu</name>
     <message>
-        <location filename="../qml/DummyAppItemMenu.qml" line="27"/>
+        <location filename="../../qml/DummyAppItemMenu.qml" line="27"/>
         <source>Install</source>
         <translation>安裝</translation>
     </message>
     <message>
-        <location filename="../qml/DummyAppItemMenu.qml" line="34"/>
+        <location filename="../../qml/DummyAppItemMenu.qml" line="34"/>
         <source>Remove</source>
         <translation>移除</translation>
     </message>
@@ -108,7 +108,7 @@
 <context>
     <name>FrequentlyUsedView</name>
     <message>
-        <location filename="../qml/windowed/FrequentlyUsedView.qml" line="36"/>
+        <location filename="../../qml/windowed/FrequentlyUsedView.qml" line="36"/>
         <source>Frequently Used</source>
         <translation>我的常用</translation>
     </message>
@@ -116,7 +116,7 @@
 <context>
     <name>FullscreenFrame</name>
     <message>
-        <location filename="../qml/FullscreenFrame.qml" line="152"/>
+        <location filename="../../qml/FullscreenFrame.qml" line="152"/>
         <source>Window Mode</source>
         <translation>視窗模式</translation>
     </message>
@@ -124,12 +124,12 @@
 <context>
     <name>LauncherController</name>
     <message>
-        <location filename="../launchercontroller.cpp" line="19"/>
+        <location filename="../../launchercontroller.cpp" line="19"/>
         <source>Show launcher (hidden by default)</source>
         <translation>顯示啟動器（預設為隱藏）</translation>
     </message>
     <message>
-        <location filename="../launchercontroller.cpp" line="20"/>
+        <location filename="../../launchercontroller.cpp" line="20"/>
         <source>Toggle launcher visibility</source>
         <translation>切換啟動器的可見性</translation>
     </message>
@@ -137,72 +137,72 @@
 <context>
     <name>Main</name>
     <message>
-        <location filename="../qml/Main.qml" line="22"/>
+        <location filename="../../qml/Main.qml" line="22"/>
         <source>Internet</source>
         <translation>網路應用</translation>
     </message>
     <message>
-        <location filename="../qml/Main.qml" line="24"/>
+        <location filename="../../qml/Main.qml" line="24"/>
         <source>Chat</source>
         <translation>社交溝通</translation>
     </message>
     <message>
-        <location filename="../qml/Main.qml" line="26"/>
+        <location filename="../../qml/Main.qml" line="26"/>
         <source>Music</source>
         <translation>音樂欣賞</translation>
     </message>
     <message>
-        <location filename="../qml/Main.qml" line="28"/>
+        <location filename="../../qml/Main.qml" line="28"/>
         <source>Video</source>
         <translation>影片播放</translation>
     </message>
     <message>
-        <location filename="../qml/Main.qml" line="30"/>
+        <location filename="../../qml/Main.qml" line="30"/>
         <source>Graphics</source>
         <translation>圖形圖像</translation>
     </message>
     <message>
-        <location filename="../qml/Main.qml" line="32"/>
+        <location filename="../../qml/Main.qml" line="32"/>
         <source>Game</source>
         <translation>遊戲娛樂</translation>
     </message>
     <message>
-        <location filename="../qml/Main.qml" line="34"/>
+        <location filename="../../qml/Main.qml" line="34"/>
         <source>Office</source>
         <translation>辦公學習</translation>
     </message>
     <message>
-        <location filename="../qml/Main.qml" line="36"/>
+        <location filename="../../qml/Main.qml" line="36"/>
         <source>Reading</source>
         <translation>閱讀翻譯</translation>
     </message>
     <message>
-        <location filename="../qml/Main.qml" line="38"/>
+        <location filename="../../qml/Main.qml" line="38"/>
         <source>Development</source>
         <translation>編程開發</translation>
     </message>
     <message>
-        <location filename="../qml/Main.qml" line="40"/>
+        <location filename="../../qml/Main.qml" line="40"/>
         <source>System</source>
         <translation>系統管理</translation>
     </message>
     <message>
-        <location filename="../qml/Main.qml" line="42"/>
+        <location filename="../../qml/Main.qml" line="42"/>
         <source>Others</source>
         <translation>其他應用</translation>
     </message>
     <message>
-        <location filename="../qml/Main.qml" line="411"/>
+        <location filename="../../qml/Main.qml" line="411"/>
         <source>Are you sure you want to uninstall %1?</source>
         <translation>您確定要移除 %1 嗎？</translation>
     </message>
     <message>
-        <location filename="../qml/Main.qml" line="423"/>
+        <location filename="../../qml/Main.qml" line="423"/>
         <source>Cancel</source>
         <translation>取 消</translation>
     </message>
     <message>
-        <location filename="../qml/Main.qml" line="437"/>
+        <location filename="../../qml/Main.qml" line="437"/>
         <source>Confirm</source>
         <translation>確 定</translation>
     </message>
@@ -210,7 +210,7 @@
 <context>
     <name>RecentlyInstalledView</name>
     <message>
-        <location filename="../qml/windowed/RecentlyInstalledView.qml" line="34"/>
+        <location filename="../../qml/windowed/RecentlyInstalledView.qml" line="34"/>
         <source>Recently Installed</source>
         <translation>最近安裝</translation>
     </message>
@@ -218,13 +218,13 @@
 <context>
     <name>SearchResultView</name>
     <message>
-        <location filename="../qml/windowed/SearchResultView.qml" line="37"/>
+        <location filename="../../qml/windowed/SearchResultView.qml" line="37"/>
         <source>All Apps</source>
         <translation>所有應用</translation>
     </message>
     <message>
-        <location filename="../qml/FullscreenFrame.qml" line="545"/>
-        <location filename="../qml/windowed/SearchResultView.qml" line="102"/>
+        <location filename="../../qml/windowed/SearchResultView.qml" line="102"/>
+        <location filename="../../qml/FullscreenFrame.qml" line="545"/>
         <source>No search results</source>
         <translation>無搜尋結果</translation>
     </message>
@@ -232,49 +232,127 @@
 <context>
     <name>SideBar</name>
     <message>
-        <location filename="../qml/windowed/SideBar.qml" line="40"/>
+        <location filename="../../qml/windowed/SideBar.qml" line="40"/>
         <source>Free sorting</source>
         <translation>自由排序</translation>
     </message>
     <message>
-        <location filename="../qml/windowed/SideBar.qml" line="54"/>
+        <location filename="../../qml/windowed/SideBar.qml" line="54"/>
         <source>Sort by category</source>
         <translation>按分類</translation>
     </message>
     <message>
-        <location filename="../qml/windowed/SideBar.qml" line="66"/>
+        <location filename="../../qml/windowed/SideBar.qml" line="66"/>
         <source>Sort by name</source>
         <translation>按名稱</translation>
     </message>
     <message>
-        <location filename="../qml/windowed/SideBar.qml" line="90"/>
+        <location filename="../../qml/windowed/SideBar.qml" line="90"/>
         <source>Sorting Mode</source>
         <translation>排序模式</translation>
     </message>
     <message>
-        <location filename="../qml/windowed/SideBar.qml" line="145"/>
+        <location filename="../../qml/windowed/SideBar.qml" line="145"/>
         <source>Computer</source>
         <translation>電腦</translation>
     </message>
     <message>
-        <location filename="../qml/windowed/SideBar.qml" line="156"/>
+        <location filename="../../qml/windowed/SideBar.qml" line="156"/>
         <source>Pictures</source>
         <translation>圖片</translation>
     </message>
     <message>
-        <location filename="../qml/windowed/SideBar.qml" line="167"/>
+        <location filename="../../qml/windowed/SideBar.qml" line="167"/>
         <source>Documents</source>
         <translation>文件</translation>
     </message>
     <message>
-        <location filename="../qml/windowed/SideBar.qml" line="178"/>
+        <location filename="../../qml/windowed/SideBar.qml" line="178"/>
         <source>Desktop</source>
         <translation>桌面</translation>
     </message>
     <message>
-        <location filename="../qml/windowed/SideBar.qml" line="189"/>
+        <location filename="../../qml/windowed/SideBar.qml" line="189"/>
         <source>Control Center</source>
         <translation>控制中心</translation>
+    </message>
+</context>
+<context>
+    <name>launcheritem</name>
+    <message>
+        <location filename="../package/launcheritem.qml" line="110"/>
+        <source>Internet</source>
+        <translation type="unfinished">網路應用</translation>
+    </message>
+    <message>
+        <location filename="../package/launcheritem.qml" line="112"/>
+        <source>Chat</source>
+        <translation type="unfinished">社交溝通</translation>
+    </message>
+    <message>
+        <location filename="../package/launcheritem.qml" line="114"/>
+        <source>Music</source>
+        <translation type="unfinished">音樂欣賞</translation>
+    </message>
+    <message>
+        <location filename="../package/launcheritem.qml" line="116"/>
+        <source>Video</source>
+        <translation type="unfinished">影片播放</translation>
+    </message>
+    <message>
+        <location filename="../package/launcheritem.qml" line="118"/>
+        <source>Graphics</source>
+        <translation type="unfinished">圖形圖像</translation>
+    </message>
+    <message>
+        <location filename="../package/launcheritem.qml" line="120"/>
+        <source>Game</source>
+        <translation type="unfinished">遊戲娛樂</translation>
+    </message>
+    <message>
+        <location filename="../package/launcheritem.qml" line="122"/>
+        <source>Office</source>
+        <translation type="unfinished">辦公學習</translation>
+    </message>
+    <message>
+        <location filename="../package/launcheritem.qml" line="124"/>
+        <source>Reading</source>
+        <translation type="unfinished">閱讀翻譯</translation>
+    </message>
+    <message>
+        <location filename="../package/launcheritem.qml" line="126"/>
+        <source>Development</source>
+        <translation type="unfinished">編程開發</translation>
+    </message>
+    <message>
+        <location filename="../package/launcheritem.qml" line="128"/>
+        <source>System</source>
+        <translation type="unfinished">系統管理</translation>
+    </message>
+    <message>
+        <location filename="../package/launcheritem.qml" line="130"/>
+        <source>Others</source>
+        <translation type="unfinished">其他應用</translation>
+    </message>
+    <message>
+        <location filename="../package/launcheritem.qml" line="140"/>
+        <source>launchpad</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../package/launcheritem.qml" line="268"/>
+        <source>Are you sure you want to uninstall %1?</source>
+        <translation type="unfinished">您確定要移除 %1 嗎？</translation>
+    </message>
+    <message>
+        <location filename="../package/launcheritem.qml" line="280"/>
+        <source>Cancel</source>
+        <translation type="unfinished">取 消</translation>
+    </message>
+    <message>
+        <location filename="../package/launcheritem.qml" line="294"/>
+        <source>Confirm</source>
+        <translation type="unfinished">確 定</translation>
     </message>
 </context>
 </TS>
