@@ -82,12 +82,12 @@
     <message>
         <location filename="../qml/windowed/BottomBar.qml" line="56"/>
         <source>Search</source>
-        <translation>Suche</translation>
+        <translation>Suchen</translation>
     </message>
     <message>
         <location filename="../qml/windowed/BottomBar.qml" line="103"/>
         <source>Full-screen Mode</source>
-        <translation type="unfinished"/>
+        <translation>Vollbildmodus</translation>
     </message>
 </context>
 <context>
@@ -95,12 +95,12 @@
     <message>
         <location filename="../qml/DummyAppItemMenu.qml" line="27"/>
         <source>Install</source>
-        <translation type="unfinished"/>
+        <translation>Installieren</translation>
     </message>
     <message>
         <location filename="../qml/DummyAppItemMenu.qml" line="34"/>
         <source>Remove</source>
-        <translation type="unfinished"/>
+        <translation>Entfernen</translation>
     </message>
 </context>
 <context>
@@ -108,7 +108,7 @@
     <message>
         <location filename="../qml/windowed/FrequentlyUsedView.qml" line="36"/>
         <source>Frequently Used</source>
-        <translation>häufig verwendet</translation>
+        <translation>Häufig verwendet</translation>
     </message>
 </context>
 <context>
@@ -116,7 +116,7 @@
     <message>
         <location filename="../qml/FullscreenFrame.qml" line="152"/>
         <source>Window Mode</source>
-        <translation type="unfinished"/>
+        <translation>Fenstermodus</translation>
     </message>
 </context>
 <context>
@@ -129,7 +129,7 @@
     <message>
         <location filename="../launchercontroller.cpp" line="20"/>
         <source>Toggle launcher visibility</source>
-        <translation>Starteranzeige hin- und herwechseln</translation>
+        <translation>Sichtbarkeit des Starters umschalten</translation>
     </message>
 </context>
 <context>
@@ -224,7 +224,7 @@
         <location filename="../qml/FullscreenFrame.qml" line="545"/>
         <location filename="../qml/windowed/SearchResultView.qml" line="102"/>
         <source>No search results</source>
-        <translation>Die Suche ergab keine Ergebnisse</translation>
+        <translation>Keine Suchergebnisse</translation>
     </message>
 </context>
 <context>
@@ -247,7 +247,7 @@
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="90"/>
         <source>Sorting Mode</source>
-        <translation type="unfinished"/>
+        <translation>Sortiermodus</translation>
     </message>
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="145"/>
