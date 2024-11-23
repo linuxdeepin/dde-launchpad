@@ -108,7 +108,7 @@
     <message>
         <location filename="../qml/windowed/FrequentlyUsedView.qml" line="36"/>
         <source>Frequently Used</source>
-        <translation>häufig verwendet</translation>
+        <translation>Häufig verwendet</translation>
     </message>
 </context>
 <context>
