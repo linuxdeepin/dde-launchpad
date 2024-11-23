@@ -224,7 +224,7 @@
         <location filename="../qml/FullscreenFrame.qml" line="545"/>
         <location filename="../qml/windowed/SearchResultView.qml" line="102"/>
         <source>No search results</source>
-        <translation>Die Suche ergab keine Ergebnisse</translation>
+        <translation>Keine Suchergebnisse</translation>
     </message>
 </context>
 <context>
