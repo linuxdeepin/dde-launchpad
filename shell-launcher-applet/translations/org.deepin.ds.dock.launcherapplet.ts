@@ -82,12 +82,12 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qml/windowed/BottomBar.qml" line="56"/>
+        <location filename="../../qml/windowed/BottomBar.qml" line="58"/>
         <source>Search</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qml/windowed/BottomBar.qml" line="103"/>
+        <location filename="../../qml/windowed/BottomBar.qml" line="105"/>
         <source>Full-screen Mode</source>
         <translation type="unfinished"></translation>
     </message>
@@ -118,6 +118,19 @@
     <message>
         <location filename="../../qml/FullscreenFrame.qml" line="152"/>
         <source>Window Mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>LauncherController</name>
+    <message>
+        <location filename="../../launchercontroller.cpp" line="19"/>
+        <source>Show launcher (hidden by default)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../launchercontroller.cpp" line="20"/>
+        <source>Toggle launcher visibility</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -210,8 +223,8 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qml/FullscreenFrame.qml" line="545"/>
         <location filename="../../qml/windowed/SearchResultView.qml" line="102"/>
+        <location filename="../../qml/FullscreenFrame.qml" line="545"/>
         <source>No search results</source>
         <translation type="unfinished"></translation>
     </message>
@@ -261,6 +274,84 @@
     <message>
         <location filename="../../qml/windowed/SideBar.qml" line="189"/>
         <source>Control Center</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>launcheritem</name>
+    <message>
+        <location filename="../package/launcheritem.qml" line="110"/>
+        <source>Internet</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../package/launcheritem.qml" line="112"/>
+        <source>Chat</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../package/launcheritem.qml" line="114"/>
+        <source>Music</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../package/launcheritem.qml" line="116"/>
+        <source>Video</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../package/launcheritem.qml" line="118"/>
+        <source>Graphics</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../package/launcheritem.qml" line="120"/>
+        <source>Game</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../package/launcheritem.qml" line="122"/>
+        <source>Office</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../package/launcheritem.qml" line="124"/>
+        <source>Reading</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../package/launcheritem.qml" line="126"/>
+        <source>Development</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../package/launcheritem.qml" line="128"/>
+        <source>System</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../package/launcheritem.qml" line="130"/>
+        <source>Others</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../package/launcheritem.qml" line="140"/>
+        <source>launchpad</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../package/launcheritem.qml" line="268"/>
+        <source>Are you sure you want to uninstall %1?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../package/launcheritem.qml" line="280"/>
+        <source>Cancel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../package/launcheritem.qml" line="294"/>
+        <source>Confirm</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

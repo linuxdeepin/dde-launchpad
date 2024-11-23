@@ -4,72 +4,72 @@
 <context>
     <name>AppItemMenu</name>
     <message>
-        <location filename="../qml/AppItemMenu.qml" line="34"/>
+        <location filename="../../qml/AppItemMenu.qml" line="34"/>
         <source>Open</source>
         <translation>Abrir</translation>
     </message>
     <message>
-        <location filename="../qml/AppItemMenu.qml" line="46"/>
+        <location filename="../../qml/AppItemMenu.qml" line="46"/>
         <source>Pin to Top</source>
         <translation>Fixar no topo</translation>
     </message>
     <message>
-        <location filename="../qml/AppItemMenu.qml" line="55"/>
+        <location filename="../../qml/AppItemMenu.qml" line="55"/>
         <source>Move to Top</source>
         <translation>Mover para o topo</translation>
     </message>
     <message>
-        <location filename="../qml/AppItemMenu.qml" line="65"/>
+        <location filename="../../qml/AppItemMenu.qml" line="65"/>
         <source>Remove from favorites</source>
         <translation>Remover dos favoritos</translation>
     </message>
     <message>
-        <location filename="../qml/AppItemMenu.qml" line="65"/>
+        <location filename="../../qml/AppItemMenu.qml" line="65"/>
         <source>Add to favorites</source>
         <translation>Adicionar aos favoritos</translation>
     </message>
     <message>
-        <location filename="../qml/AppItemMenu.qml" line="80"/>
+        <location filename="../../qml/AppItemMenu.qml" line="80"/>
         <source>Send to desktop</source>
         <translation>Enviar para área de trabalho</translation>
     </message>
     <message>
-        <location filename="../qml/AppItemMenu.qml" line="80"/>
+        <location filename="../../qml/AppItemMenu.qml" line="80"/>
         <source>Remove from desktop</source>
         <translation>Remover da área de trabalho</translation>
     </message>
     <message>
-        <location filename="../qml/AppItemMenu.qml" line="91"/>
+        <location filename="../../qml/AppItemMenu.qml" line="91"/>
         <source>Remove from dock</source>
         <translation>Remover do dock</translation>
     </message>
     <message>
-        <location filename="../qml/AppItemMenu.qml" line="91"/>
+        <location filename="../../qml/AppItemMenu.qml" line="91"/>
         <source>Send to dock</source>
         <translation>Fixar no dock</translation>
     </message>
     <message>
-        <location filename="../qml/AppItemMenu.qml" line="103"/>
+        <location filename="../../qml/AppItemMenu.qml" line="103"/>
         <source>Add to startup</source>
         <translation>Adicionar à inicialização</translation>
     </message>
     <message>
-        <location filename="../qml/AppItemMenu.qml" line="103"/>
+        <location filename="../../qml/AppItemMenu.qml" line="103"/>
         <source>Remove from startup</source>
         <translation>Remover da inicialização</translation>
     </message>
     <message>
-        <location filename="../qml/AppItemMenu.qml" line="111"/>
+        <location filename="../../qml/AppItemMenu.qml" line="111"/>
         <source>Use a proxy</source>
         <translation>Usar proxy</translation>
     </message>
     <message>
-        <location filename="../qml/AppItemMenu.qml" line="120"/>
+        <location filename="../../qml/AppItemMenu.qml" line="120"/>
         <source>Disable display scaling</source>
         <translation>Desativar escala de exibição</translation>
     </message>
     <message>
-        <location filename="../qml/AppItemMenu.qml" line="127"/>
+        <location filename="../../qml/AppItemMenu.qml" line="127"/>
         <source>Uninstall</source>
         <translation>Desinstalar</translation>
     </message>
@@ -77,17 +77,17 @@
 <context>
     <name>BottomBar</name>
     <message>
-        <location filename="../qml/windowed/BottomBar.qml" line="32"/>
+        <location filename="../../qml/windowed/BottomBar.qml" line="32"/>
         <source>Power</source>
         <translation>Energia</translation>
     </message>
     <message>
-        <location filename="../qml/windowed/BottomBar.qml" line="56"/>
+        <location filename="../../qml/windowed/BottomBar.qml" line="58"/>
         <source>Search</source>
         <translation>Pesquisar</translation>
     </message>
     <message>
-        <location filename="../qml/windowed/BottomBar.qml" line="103"/>
+        <location filename="../../qml/windowed/BottomBar.qml" line="105"/>
         <source>Full-screen Mode</source>
         <translation>Modo de tela cheia</translation>
     </message>
@@ -95,12 +95,12 @@
 <context>
     <name>DummyAppItemMenu</name>
     <message>
-        <location filename="../qml/DummyAppItemMenu.qml" line="27"/>
+        <location filename="../../qml/DummyAppItemMenu.qml" line="27"/>
         <source>Install</source>
         <translation>Instalar</translation>
     </message>
     <message>
-        <location filename="../qml/DummyAppItemMenu.qml" line="34"/>
+        <location filename="../../qml/DummyAppItemMenu.qml" line="34"/>
         <source>Remove</source>
         <translation>Remover</translation>
     </message>
@@ -108,7 +108,7 @@
 <context>
     <name>FrequentlyUsedView</name>
     <message>
-        <location filename="../qml/windowed/FrequentlyUsedView.qml" line="36"/>
+        <location filename="../../qml/windowed/FrequentlyUsedView.qml" line="36"/>
         <source>Frequently Used</source>
         <translation>Usado frequentemente</translation>
     </message>
@@ -116,7 +116,7 @@
 <context>
     <name>FullscreenFrame</name>
     <message>
-        <location filename="../qml/FullscreenFrame.qml" line="152"/>
+        <location filename="../../qml/FullscreenFrame.qml" line="152"/>
         <source>Window Mode</source>
         <translation>Modo de janela</translation>
     </message>
@@ -124,12 +124,12 @@
 <context>
     <name>LauncherController</name>
     <message>
-        <location filename="../launchercontroller.cpp" line="19"/>
+        <location filename="../../launchercontroller.cpp" line="19"/>
         <source>Show launcher (hidden by default)</source>
         <translation>Exibir lançador (oculto por padrão)</translation>
     </message>
     <message>
-        <location filename="../launchercontroller.cpp" line="20"/>
+        <location filename="../../launchercontroller.cpp" line="20"/>
         <source>Toggle launcher visibility</source>
         <translation>Alternar visibilidade do lançador</translation>
     </message>
@@ -137,72 +137,72 @@
 <context>
     <name>Main</name>
     <message>
-        <location filename="../qml/Main.qml" line="22"/>
+        <location filename="../../qml/Main.qml" line="22"/>
         <source>Internet</source>
         <translation>Internet</translation>
     </message>
     <message>
-        <location filename="../qml/Main.qml" line="24"/>
+        <location filename="../../qml/Main.qml" line="24"/>
         <source>Chat</source>
         <translation>Comunicação</translation>
     </message>
     <message>
-        <location filename="../qml/Main.qml" line="26"/>
+        <location filename="../../qml/Main.qml" line="26"/>
         <source>Music</source>
         <translation>Música</translation>
     </message>
     <message>
-        <location filename="../qml/Main.qml" line="28"/>
+        <location filename="../../qml/Main.qml" line="28"/>
         <source>Video</source>
         <translation>Vídeo</translation>
     </message>
     <message>
-        <location filename="../qml/Main.qml" line="30"/>
+        <location filename="../../qml/Main.qml" line="30"/>
         <source>Graphics</source>
         <translation>Imagem</translation>
     </message>
     <message>
-        <location filename="../qml/Main.qml" line="32"/>
+        <location filename="../../qml/Main.qml" line="32"/>
         <source>Game</source>
         <translation>Jogos</translation>
     </message>
     <message>
-        <location filename="../qml/Main.qml" line="34"/>
+        <location filename="../../qml/Main.qml" line="34"/>
         <source>Office</source>
         <translation>Produtividade</translation>
     </message>
     <message>
-        <location filename="../qml/Main.qml" line="36"/>
+        <location filename="../../qml/Main.qml" line="36"/>
         <source>Reading</source>
         <translation>Leitura</translation>
     </message>
     <message>
-        <location filename="../qml/Main.qml" line="38"/>
+        <location filename="../../qml/Main.qml" line="38"/>
         <source>Development</source>
         <translation>Desenvolvimento</translation>
     </message>
     <message>
-        <location filename="../qml/Main.qml" line="40"/>
+        <location filename="../../qml/Main.qml" line="40"/>
         <source>System</source>
         <translation>Sistema</translation>
     </message>
     <message>
-        <location filename="../qml/Main.qml" line="42"/>
+        <location filename="../../qml/Main.qml" line="42"/>
         <source>Others</source>
         <translation>Outros</translation>
     </message>
     <message>
-        <location filename="../qml/Main.qml" line="411"/>
+        <location filename="../../qml/Main.qml" line="411"/>
         <source>Are you sure you want to uninstall %1?</source>
         <translation>Desinstalar %1?</translation>
     </message>
     <message>
-        <location filename="../qml/Main.qml" line="423"/>
+        <location filename="../../qml/Main.qml" line="423"/>
         <source>Cancel</source>
         <translation>Cancelar</translation>
     </message>
     <message>
-        <location filename="../qml/Main.qml" line="437"/>
+        <location filename="../../qml/Main.qml" line="437"/>
         <source>Confirm</source>
         <translation>Confirmar</translation>
     </message>
@@ -210,7 +210,7 @@
 <context>
     <name>RecentlyInstalledView</name>
     <message>
-        <location filename="../qml/windowed/RecentlyInstalledView.qml" line="34"/>
+        <location filename="../../qml/windowed/RecentlyInstalledView.qml" line="34"/>
         <source>Recently Installed</source>
         <translation>Instalado recentemente</translation>
     </message>
@@ -218,13 +218,13 @@
 <context>
     <name>SearchResultView</name>
     <message>
-        <location filename="../qml/windowed/SearchResultView.qml" line="37"/>
+        <location filename="../../qml/windowed/SearchResultView.qml" line="37"/>
         <source>All Apps</source>
         <translation>Todos os aplicativos</translation>
     </message>
     <message>
-        <location filename="../qml/FullscreenFrame.qml" line="545"/>
-        <location filename="../qml/windowed/SearchResultView.qml" line="102"/>
+        <location filename="../../qml/windowed/SearchResultView.qml" line="102"/>
+        <location filename="../../qml/FullscreenFrame.qml" line="545"/>
         <source>No search results</source>
         <translation>Nenhum resultado encontrado</translation>
     </message>
@@ -232,49 +232,127 @@
 <context>
     <name>SideBar</name>
     <message>
-        <location filename="../qml/windowed/SideBar.qml" line="40"/>
+        <location filename="../../qml/windowed/SideBar.qml" line="40"/>
         <source>Free sorting</source>
         <translation>Classificação livre</translation>
     </message>
     <message>
-        <location filename="../qml/windowed/SideBar.qml" line="54"/>
+        <location filename="../../qml/windowed/SideBar.qml" line="54"/>
         <source>Sort by category</source>
         <translation>Classificar por categoria</translation>
     </message>
     <message>
-        <location filename="../qml/windowed/SideBar.qml" line="66"/>
+        <location filename="../../qml/windowed/SideBar.qml" line="66"/>
         <source>Sort by name</source>
         <translation>Classificar por nome</translation>
     </message>
     <message>
-        <location filename="../qml/windowed/SideBar.qml" line="90"/>
+        <location filename="../../qml/windowed/SideBar.qml" line="90"/>
         <source>Sorting Mode</source>
         <translation>Modo de Triagem</translation>
     </message>
     <message>
-        <location filename="../qml/windowed/SideBar.qml" line="145"/>
+        <location filename="../../qml/windowed/SideBar.qml" line="145"/>
         <source>Computer</source>
         <translation>Computador</translation>
     </message>
     <message>
-        <location filename="../qml/windowed/SideBar.qml" line="156"/>
+        <location filename="../../qml/windowed/SideBar.qml" line="156"/>
         <source>Pictures</source>
         <translation>Imagens</translation>
     </message>
     <message>
-        <location filename="../qml/windowed/SideBar.qml" line="167"/>
+        <location filename="../../qml/windowed/SideBar.qml" line="167"/>
         <source>Documents</source>
         <translation>Documentos</translation>
     </message>
     <message>
-        <location filename="../qml/windowed/SideBar.qml" line="178"/>
+        <location filename="../../qml/windowed/SideBar.qml" line="178"/>
         <source>Desktop</source>
         <translation>Área de Trabalho</translation>
     </message>
     <message>
-        <location filename="../qml/windowed/SideBar.qml" line="189"/>
+        <location filename="../../qml/windowed/SideBar.qml" line="189"/>
         <source>Control Center</source>
         <translation>Central de Controle</translation>
+    </message>
+</context>
+<context>
+    <name>launcheritem</name>
+    <message>
+        <location filename="../package/launcheritem.qml" line="110"/>
+        <source>Internet</source>
+        <translation type="unfinished">Internet</translation>
+    </message>
+    <message>
+        <location filename="../package/launcheritem.qml" line="112"/>
+        <source>Chat</source>
+        <translation type="unfinished">Comunicação</translation>
+    </message>
+    <message>
+        <location filename="../package/launcheritem.qml" line="114"/>
+        <source>Music</source>
+        <translation type="unfinished">Música</translation>
+    </message>
+    <message>
+        <location filename="../package/launcheritem.qml" line="116"/>
+        <source>Video</source>
+        <translation type="unfinished">Vídeo</translation>
+    </message>
+    <message>
+        <location filename="../package/launcheritem.qml" line="118"/>
+        <source>Graphics</source>
+        <translation type="unfinished">Imagem</translation>
+    </message>
+    <message>
+        <location filename="../package/launcheritem.qml" line="120"/>
+        <source>Game</source>
+        <translation type="unfinished">Jogos</translation>
+    </message>
+    <message>
+        <location filename="../package/launcheritem.qml" line="122"/>
+        <source>Office</source>
+        <translation type="unfinished">Produtividade</translation>
+    </message>
+    <message>
+        <location filename="../package/launcheritem.qml" line="124"/>
+        <source>Reading</source>
+        <translation type="unfinished">Leitura</translation>
+    </message>
+    <message>
+        <location filename="../package/launcheritem.qml" line="126"/>
+        <source>Development</source>
+        <translation type="unfinished">Desenvolvimento</translation>
+    </message>
+    <message>
+        <location filename="../package/launcheritem.qml" line="128"/>
+        <source>System</source>
+        <translation type="unfinished">Sistema</translation>
+    </message>
+    <message>
+        <location filename="../package/launcheritem.qml" line="130"/>
+        <source>Others</source>
+        <translation type="unfinished">Outros</translation>
+    </message>
+    <message>
+        <location filename="../package/launcheritem.qml" line="140"/>
+        <source>launchpad</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../package/launcheritem.qml" line="268"/>
+        <source>Are you sure you want to uninstall %1?</source>
+        <translation type="unfinished">Desinstalar %1?</translation>
+    </message>
+    <message>
+        <location filename="../package/launcheritem.qml" line="280"/>
+        <source>Cancel</source>
+        <translation type="unfinished">Cancelar</translation>
+    </message>
+    <message>
+        <location filename="../package/launcheritem.qml" line="294"/>
+        <source>Confirm</source>
+        <translation type="unfinished">Confirmar</translation>
     </message>
 </context>
 </TS>
