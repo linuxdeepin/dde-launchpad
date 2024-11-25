@@ -19,6 +19,17 @@ InputEventItem {
     anchors.fill: parent
     objectName: "FullscreenFrame-InputEventItem"
 
+    property Palette appTextColor: Palette {
+        normal {
+            common: Qt.rgba(0, 0, 0, 1)
+            crystal: Qt.rgba(0, 0, 0, 1)
+        }
+        normalDark {
+            common: Qt.rgba(1, 1, 1, 0.7)
+            crystal: Qt.rgba(1, 1, 1, 0.7)
+        }
+    }
+
     // ----------- Drag and Drop related functions START -----------
     Label {
         property string currentlyDraggedId

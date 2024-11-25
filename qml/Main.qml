@@ -146,17 +146,6 @@ QtObject {
         }
     }
 
-    property Palette appTextColor: Palette {
-        normal {
-            common: Qt.rgba(0, 0, 0, 1)
-            crystal: Qt.rgba(0, 0, 0, 1)
-        }
-        normalDark {
-            common: Qt.rgba(1, 1, 1, 0.7)
-            crystal: Qt.rgba(1, 1, 1, 0.7)
-        }
-    }
-
     readonly property size windowedFrameSize: Qt.size(610, 480)
 
     // update by caller.
