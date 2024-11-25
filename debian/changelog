@@ -1,3 +1,9 @@
+dde-launchpad (1.0.8) unstable; urgency=medium
+
+  * fix: launchpad crash at josn2value
+
+ -- Yutao Meng <mengyutao@deepin.org>  Mon, 25 Nov 2024 16:43:06 +0800
+
 dde-launchpad (1.0.7) unstable; urgency=medium
 
   * fix: Launchpad blurry background will never adapt to secondary monitor (#462)
