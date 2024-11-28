@@ -56,6 +56,8 @@ Control {
                 width: frequentlyUsedViewContainer.cellWidth
                 height: frequentlyUsedViewContainer.cellHeight
                 iconSource: iconName
+                dndEnabled: true
+                Drag.mimeData: Helper.generateDragMimeData(model.desktopId, true)
                 onItemClicked: {
                     launchApp(desktopId)
                 }

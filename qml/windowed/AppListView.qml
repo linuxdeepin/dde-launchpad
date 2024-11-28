@@ -216,8 +216,7 @@ FocusScope {
         delegate: ItemDelegate {
             id: itemDelegate
             width: root.width
-            KeyNavigation.tab: nextKeyTabTargetItem
-
+            visible: !dragHandler.active
             text: model.display
             checkable: false
             icon.name: (iconName && iconName !== "") ? iconName : "application-x-desktop"
@@ -230,11 +229,52 @@ FocusScope {
             ToolTip.delay: 1000
             ToolTip.visible: hovered && contentItem.implicitWidth > contentItem.width
 
+            KeyNavigation.tab: nextKeyTabTargetItem
+            Drag.dragType: Drag.Automatic
+            Drag.mimeData: Helper.generateDragMimeData(model.desktopId, true)
+            Drag.hotSpot.y: height / 2
+            Drag.hotSpot.x: Drag.hotSpot.y
+
+            states: State {
+                name: "dragged";
+                when: dragHandler.active
+                // FIXME: When dragging finished, the position of the item is changed for unknown reason,
+                //        so we use the state to reset the x and y here.
+                PropertyChanges {
+                    target: dragHandler.target
+                    x: x
+                    y: y
+                }
+            }
+
             TapHandler {
                 acceptedButtons: Qt.RightButton
                 onTapped: {
                     showContextMenu(itemDelegate, model)
                     baseLayer.focus = true
+                }
+            }
+
+            DragHandler {
+                id: dragHandler
+                target: parent
+                acceptedButtons: Qt.LeftButton
+                dragThreshold: 1
+                onActiveChanged: {
+                    if (active) {
+                        // We switch to use the `dndItem` to handle Drag event since that one will always exists.
+                        // If we use the current item, then if the item that provides the drag attached property
+                        // get destoryed (e.g. switch page or folder close caused destory), dropping at that moment
+                        // will cause a crash.
+                        dndItem.Drag.hotSpot = target.Drag.hotSpot
+                        dndItem.Drag.mimeData = target.Drag.mimeData
+
+                        parent.grabToImage(function(result) {
+                            dndItem.Drag.imageSource = result.url;
+                            dndItem.Drag.active = true
+                            dndItem.Drag.startDrag()
+                        })
+                    }
                 }
             }
 

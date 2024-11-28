@@ -53,6 +53,8 @@ Control {
                 iconSource: iconName
                 width: recentlyInstalledViewContainer.cellWidth
                 height: recentlyInstalledViewContainer.cellHeight
+                dndEnabled: true
+                Drag.mimeData: Helper.generateDragMimeData(model.desktopId, true)
                 onItemClicked: {
                     launchApp(desktopId)
                 }

@@ -40,10 +40,13 @@ QtObject {
         }
     }
 
-    function generateDragMimeData(desktopId) {
+    function generateDragMimeData(desktopId, dockOnly = false) {
         // In some cases an app is not allowed to be pinned onto dock via drag-n-drop;
         // We only insert the MIME data for dde-dock in those allowed cases.
-        var mime = { "text/x-dde-launcher-dnd-desktopId": desktopId }
+        let mime = {}
+        if (!dockOnly) {
+            mime["text/x-dde-launcher-dnd-desktopId"] = desktopId
+        }
         if (!DesktopIntegration.appIsDummyPackage(desktopId)) {
             mime["text/x-dde-dock-dnd-appid"] = desktopId
         }

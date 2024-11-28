@@ -12,6 +12,7 @@ import org.deepin.launchpad 1.0
 
 Control {
     id: root
+    visible: !dragHandler.active
 
     property string text: display.startsWith("internal/category/") ? getCategoryName(display.substring(18)) : display
 
@@ -22,6 +23,20 @@ Control {
 
     signal itemClicked()
     signal menuTriggered()
+
+    Drag.dragType: Drag.Automatic
+
+    states: State {
+        name: "dragged";
+        when: dragHandler.active
+        // FIXME: When dragging finished, the position of the item is changed for unknown reason,
+        //        so we use the state to reset the x and y here.
+        PropertyChanges {
+            target: root
+            x: x
+            y: y
+        }
+    }
 
     contentItem: Button {
         id: iconButton
@@ -39,6 +54,7 @@ Control {
             }
 
             DciIcon {
+                id: appIcon
                 objectName: "appIcon"
                 anchors.horizontalCenter: parent.horizontalCenter
                 name: iconSource
@@ -55,6 +71,30 @@ Control {
                     sourceSize: Qt.size(12, 12)
                     palette: DTK.makeIconPalette(root.palette)
                     theme: ApplicationHelper.DarkType
+                }
+
+                DragHandler {
+                    id: dragHandler
+                    target: root
+                    acceptedButtons: Qt.LeftButton
+                    enabled: root.dndEnabled
+                    dragThreshold: 1
+                    onActiveChanged: {
+                        if (active) {
+                            // We switch to use the `dndItem` to handle Drag event since that one will always exists.
+                            // If we use the current item, then if the item that provides the drag attached property
+                            // get destoryed (e.g. switch page or folder close caused destory), dropping at that moment
+                            // will cause a crash.
+                            dndItem.Drag.hotSpot = target.Drag.hotSpot
+                            dndItem.Drag.mimeData = target.Drag.mimeData
+
+                            appIcon.grabToImage(function(result) {
+                                dndItem.Drag.imageSource = result.url;
+                                dndItem.Drag.active = true
+                                dndItem.Drag.startDrag()
+                            })
+                        }
+                    }
                 }
             }
 
