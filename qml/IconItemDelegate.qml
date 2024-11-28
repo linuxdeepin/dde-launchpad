@@ -38,7 +38,6 @@ Control {
     signal menuTriggered()
 
     Drag.dragType: Drag.Automatic
-    // Drag.active: dragHandler.active
 
     states: State {
         name: "dragged";
@@ -46,7 +45,7 @@ Control {
         // FIXME: When dragging finished, the position of the item is changed for unknown reason,
         //        so we use the state to reset the x and y here.
         PropertyChanges {
-            target: root
+            target: dragHandler.target
             x: x
             y: y
         }
@@ -90,9 +89,9 @@ Control {
 
                                 // Item will be hidden by checking the dndItem.currentlyDraggedId property. We assign the value
                                 // to that property here
-                                dndItem.currentlyDraggedId = root.Drag.mimeData["text/x-dde-launcher-dnd-desktopId"]
-                                dndItem.Drag.hotSpot = root.Drag.hotSpot
-                                dndItem.Drag.mimeData = root.Drag.mimeData
+                                dndItem.currentlyDraggedId = target.Drag.mimeData["text/x-dde-launcher-dnd-desktopId"]
+                                dndItem.Drag.hotSpot = target.Drag.hotSpot
+                                dndItem.Drag.mimeData = target.Drag.mimeData
 
                                 iconLoader.grabToImage(function(result) {
                                     dndItem.Drag.imageSource = result.url;
