@@ -1,3 +1,12 @@
+dde-launchpad (1.99.2) UNRELEASED; urgency=medium
+
+  * support most areas apps drop to dock (PMS-285139)
+  * fix some strings on windowed launcher mode not translated
+    (PMS-287975, PMS-287083, PMS-289493)
+  * update translations
+
+ -- Wang Zichong <wangzichong@deepin.org>  Sat, 30 Nov 2024 14:20:00 +0800
+
 dde-launchpad (1.99.1) UNRELEASED; urgency=medium
 
   * update tr
