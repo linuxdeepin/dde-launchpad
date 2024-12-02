@@ -222,6 +222,16 @@ FocusScope {
             checkable: false
             icon.name: (iconName && iconName !== "") ? iconName : "application-x-desktop"
             DciIcon.mode: DTK.NormalState
+            DciIcon {
+                anchors.left: parent.left
+                anchors.bottom: parent.bottom
+                name: "emblem_autostart"
+                visible: autoStart
+                sourceSize: Qt.size(12, 12)
+                palette: DTK.makeIconPalette(parent.palette)
+                theme: ApplicationHelper.DarkType
+                z: 1
+            }
             font: DTK.fontManager.t8
             palette.windowText: ListView.view.palette.brightText
             anchors.leftMargin: 10
