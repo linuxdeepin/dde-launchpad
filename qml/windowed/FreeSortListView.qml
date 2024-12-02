@@ -149,6 +149,16 @@ Item {
                 checkable: false
                 icon.name: itemType === ItemArrangementProxyModel.FolderItemType ? "folder" : iconName
                 DciIcon.mode: DTK.NormalState
+                DciIcon {
+                    anchors.left: parent.left
+                    anchors.bottom: parent.bottom
+                    name: "emblem_autostart"
+                    visible: autoStart
+                    sourceSize: Qt.size(12, 12)
+                    palette: DTK.makeIconPalette(parent.palette)
+                    theme: ApplicationHelper.DarkType
+                    z: 1
+                }
                 anchors.fill: parent
                 anchors.leftMargin: 10
                 anchors.rightMargin: 10
