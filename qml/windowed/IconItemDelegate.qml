@@ -127,6 +127,12 @@ Control {
             radius: 8
             button: iconButton
         }
+
+        // FIXME: This event never get triggered if and only if the DragHandler is enabled,
+        //        which is not expected. This is a workaround for now.
+        onClicked: {
+            root.itemClicked()
+        }
     }
     background: DebugBounding { }
 
