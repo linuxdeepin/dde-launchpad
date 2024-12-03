@@ -129,7 +129,7 @@
     <message>
         <location filename="../launchercontroller.cpp" line="20"/>
         <source>Toggle launcher visibility</source>
-        <translation>Przełącz widoczność programu uruchamiającego</translation>
+        <translation>Przełącz widoczność programu wywołującego</translation>
     </message>
 </context>
 <context>
