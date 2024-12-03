@@ -127,10 +127,6 @@ Control {
             radius: 8
             button: iconButton
         }
-
-        onClicked: {
-            root.itemClicked()
-        }
     }
     background: DebugBounding { }
 
@@ -138,6 +134,14 @@ Control {
         acceptedButtons: Qt.RightButton
         onTapped: {
             root.menuTriggered()
+        }
+    }
+
+    TapHandler {
+        acceptedButtons: Qt.LeftButton
+        gesturePolicy: TapHandler.WithinBounds
+        onTapped: {
+            root.itemClicked()
         }
     }
 
