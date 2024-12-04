@@ -337,7 +337,7 @@
     <message>
         <location filename="../package/launcheritem.qml" line="140"/>
         <source>launchpad</source>
-        <translation type="unfinished"></translation>
+        <translation>启动器</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="268"/>
