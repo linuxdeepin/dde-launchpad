@@ -158,12 +158,6 @@ Item {
                 }
             }
 
-            Drag.onActiveChanged: function(active) {
-                if (!active) {
-                    listViewDragScroller.stopScroll()
-                }
-            }
-
             onPositionChanged: function(drag) {
                 let dragId = drag.getDataAsString("text/x-dde-launcher-dnd-desktopId")
                 if (dragId === desktopId) {
@@ -242,6 +236,11 @@ Item {
                 Drag.dragType: Drag.Automatic
                 Drag.active: mouseArea.drag.active
                 Drag.mimeData: Helper.generateDragMimeData(model.desktopId)
+                Drag.onActiveChanged: function() {
+                    if (!Drag.active) {
+                        listViewDragScroller.stopScroll()
+                    }
+                }
 
                 background: ItemBackground {
                     id: bg
