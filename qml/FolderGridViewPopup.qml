@@ -124,7 +124,7 @@ Popup {
                     visible: !contentRoot.nameEditing
                     elide: Text.ElideRight
                     ToolTip.visible: folderNameTextMouseArea.containsMouse ? implicitWidth > width : false
-                    ToolTip.delay: 1000
+                    ToolTip.delay: 500
                     ToolTip.timeout: 5000
                     ToolTip.text: text
 

@@ -125,7 +125,7 @@ ColumnLayout {
     component SideBarButton: D.ActionButton {
         id: btn
         ToolTip.visible: hovered
-        ToolTip.delay: 1000
+        ToolTip.delay: 500
         Layout.alignment: Qt.AlignCenter
         focusPolicy: Qt.NoFocus
         // don't inherit window's windowText (it's has opacity of 0.7 in dtkgui.)
