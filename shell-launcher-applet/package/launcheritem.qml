@@ -325,11 +325,17 @@ AppletItem {
                 toolTip.open()
             }
         }
-        TapHandler {
-            acceptedButtons: Qt.LeftButton
-            onTapped: {
-                LauncherController.visible = !LauncherController.visible
-                toolTip.close()
+
+        // FIXME: The TapHandler receives the event after visibleChange, which causes the state to be inverted after synchronization,
+        // causing the launchpad to be displayed again. However, the MouseArea receives the event before visibleChange.
+        MouseArea {
+            id: mouseHandler
+            anchors.fill: parent
+            onClicked: function (mouse) {
+                if (mouse.button === Qt.LeftButton) {
+                    LauncherController.visible = !LauncherController.visible
+                    toolTip.close()
+                }
             }
         }
         HoverHandler {
