@@ -124,12 +124,12 @@
     <message>
         <location filename="../launchercontroller.cpp" line="19"/>
         <source>Show launcher (hidden by default)</source>
-        <translation>Pokaż program uruchamiający (domyślnie ukryty)</translation>
+        <translation>Pokaż program wywołujący (domyślnie ukryty)</translation>
     </message>
     <message>
         <location filename="../launchercontroller.cpp" line="20"/>
         <source>Toggle launcher visibility</source>
-        <translation>Przełącz widoczność programu uruchamiającego</translation>
+        <translation>Przełącz widoczność programu wywołującego</translation>
     </message>
 </context>
 <context>
