@@ -154,6 +154,7 @@ PRIVATE
 target_link_libraries(launchpadcommon PUBLIC
     ${DTK_NS}::Core
     ${DTK_NS}::Gui
+    Qt::GuiPrivate
     Qt::Qml
     Qt::Quick
     Qt::QuickControls2
