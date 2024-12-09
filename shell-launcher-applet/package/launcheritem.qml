@@ -173,6 +173,7 @@ AppletItem {
         onVisibleChanged: {
             if (visible) {
                 requestActivate()
+                LauncherController.closeAllPopups()
             }
         }
 
