@@ -50,6 +50,8 @@ public:
     Q_INVOKABLE void cancelHide();
     Q_INVOKABLE QFont adjustFontWeight(const QFont& f, QFont::Weight weight);
 
+    Q_INVOKABLE void closeAllPopups();
+
 signals:
     void currentFrameChanged();
     void visibleChanged(bool visible);
