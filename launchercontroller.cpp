@@ -12,6 +12,8 @@
 #include <QCommandLineParser>
 #include <launcher1adaptor.h>
 
+#include <private/qguiapplication_p.h>
+
 DGUI_USE_NAMESPACE
 
 LauncherController::LauncherController(QObject *parent)
@@ -173,4 +175,11 @@ QFont LauncherController::adjustFontWeight(const QFont &f, QFont::Weight weight)
     QFont font(f);
     font.setWeight(weight);
     return font;
+}
+
+void LauncherController::closeAllPopups()
+{
+    QGuiApplicationPrivate *qAppPrivate = QGuiApplicationPrivate::instance();
+    Q_ASSERT(qAppPrivate);
+    qAppPrivate->closeAllPopups();
 }
