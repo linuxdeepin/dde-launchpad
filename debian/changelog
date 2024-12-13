@@ -1,3 +1,10 @@
+dde-launchpad (1.0.9) unstable; urgency=medium
+
+ feat: Show autostart icon for autostart apps in the windowed list
+ fix: incomplete compulsory apps
+
+ -- Wang Fei <wangfei@deepin.org>  Fri, 13 Dec 2024 15:55:52 +0800
+
 dde-launchpad (1.0.8) unstable; urgency=medium
 
   * fix: launchpad crash at josn2value
