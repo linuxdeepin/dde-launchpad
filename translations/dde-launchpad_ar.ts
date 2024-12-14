@@ -19,7 +19,7 @@
     <message>
         <location filename="../qml/AppItemMenu.qml" line="65"/>
         <source>Remove from favorites</source>
-        <translation>إزالة favoris</translation>
+        <translation>إزالة من المفضلة</translation>
     </message>
     <message>
         <location filename="../qml/AppItemMenu.qml" line="65"/>
@@ -39,12 +39,12 @@
     <message>
         <location filename="../qml/AppItemMenu.qml" line="91"/>
         <source>Remove from dock</source>
-        <translation>إزالة من السحب</translation>
+        <translation>إزالة من الرصيف</translation>
     </message>
     <message>
         <location filename="../qml/AppItemMenu.qml" line="91"/>
         <source>Send to dock</source>
-        <translation>إرسال إلى السحب</translation>
+        <translation>إرسال إلى الرصيف</translation>
     </message>
     <message>
         <location filename="../qml/AppItemMenu.qml" line="103"/>
@@ -124,12 +124,12 @@
     <message>
         <location filename="../launchercontroller.cpp" line="19"/>
         <source>Show launcher (hidden by default)</source>
-        <translation>إظهار قارئ الأدوات (مخبأ افتراضيًا)</translation>
+        <translation>عرض الرائد (مخبأ افتراضيًا)</translation>
     </message>
     <message>
         <location filename="../launchercontroller.cpp" line="20"/>
         <source>Toggle launcher visibility</source>
-        <translation>تبديل إظهار قارئ الأدوات</translation>
+        <translation>تبديل إظهار الرائد</translation>
     </message>
 </context>
 <context>
@@ -137,7 +137,7 @@
     <message>
         <location filename="../qml/Main.qml" line="22"/>
         <source>Internet</source>
-        <translation>الإنترنت</translation>
+        <translation>إنترنت</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="24"/>
@@ -162,7 +162,7 @@
     <message>
         <location filename="../qml/Main.qml" line="32"/>
         <source>Game</source>
-        <translation>لعبة</translation>
+        <translation>ألعاب</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="34"/>
@@ -192,7 +192,7 @@
     <message>
         <location filename="../qml/Main.qml" line="411"/>
         <source>Are you sure you want to uninstall %1?</source>
-        <translation>هل أنت متأكد أنك تريد إزالة %1؟</translation>
+        <translation>هل أنت متأكد ترغب في إزالة %1؟</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="423"/>
@@ -218,7 +218,7 @@
     <message>
         <location filename="../qml/windowed/SearchResultView.qml" line="37"/>
         <source>All Apps</source>
-        <translation>جميع التطبيقات</translation>
+        <translation>كل التطبيقات</translation>
     </message>
     <message>
         <location filename="../qml/FullscreenFrame.qml" line="545"/>
@@ -232,7 +232,7 @@
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="40"/>
         <source>Free sorting</source>
-        <translation>فرز غير مقيد</translation>
+        <translation>فرز مجاني</translation>
     </message>
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="54"/>
@@ -252,7 +252,7 @@
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="145"/>
         <source>Computer</source>
-        <translation>حاسوب</translation>
+        <translation>جهاز الكمبيوتر</translation>
     </message>
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="156"/>
@@ -262,12 +262,12 @@
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="167"/>
         <source>Documents</source>
-        <translation>وثائق</translation>
+        <translation>ملفات</translation>
     </message>
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="178"/>
         <source>Desktop</source>
-        <translation>مكتب</translation>
+        <translation>السطح المكتب</translation>
     </message>
     <message>
         <location filename="../qml/windowed/SideBar.qml" line="189"/>
