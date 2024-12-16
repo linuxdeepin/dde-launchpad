@@ -132,6 +132,7 @@ AppletItem {
     }
 
     function launchApp(desktopId) {
+        LauncherController.visible = false;
         DesktopIntegration.launchByDesktopId(desktopId);
     }
 
