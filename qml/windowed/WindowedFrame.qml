@@ -288,6 +288,7 @@ InputEventItem {
             baseLayer.focus = true
             // reset scroll area position
             appList.positionViewAtBeginning()
+            folderGridViewPopup.close()
         }
     }
 
