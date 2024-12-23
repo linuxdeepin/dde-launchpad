@@ -289,7 +289,7 @@ FocusScope {
             }
 
             background: Loader {
-                active: itemDelegate.ListView.view.bgVisible === undefined
+                active: !dragHandler.active
                 sourceComponent: ItemBackground {
                     implicitWidth: DStyle.Style.itemDelegate.width
                     implicitHeight: Helper.windowed.listItemHeight
