@@ -1,5 +1,5 @@
 Source: dde-launchpad
-Section: unknown
+Section: DDE
 Priority: optional
 Maintainer: Gary Wang <wangzichong@deepin.org>
 Build-Depends:
