@@ -1,3 +1,16 @@
+dde-launchpad (1.99.4) UNRELEASED; urgency=medium
+
+  * fix: Hide launchpad window as soon as launching Apps (#492)
+  * [skip CI] Translate dde-launchpad.ts in ar
+  * [skip CI] Translate dde-launchpad.ts in ar
+  * fix: Close folder popup in windowed mode
+  * fix: hover background for category list view items
+  * chore: update section to DDE in debian/control
+  * fix: quick panel still show while launchpad show
+  * fix: the search results are displayed in the middle (#495)
+
+ -- xionglinlin <xionglinlin@uniontech.com>  Tue, 24 Dec 2024 19:44:07 +0800
+
 dde-launchpad (1.99.3) UNRELEASED; urgency=medium
 
   * Show autostart icons for items in freeform-sort view
