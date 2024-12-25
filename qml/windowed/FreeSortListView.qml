@@ -116,6 +116,30 @@ Item {
             property int op: 0 // DndPrepend = -1,DndJoin = 0, DndAppend = 1
             readonly property int indicatorDefaultHeight: 1
 
+            Timer {
+                id: listDelegateDragApplyTimer
+                interval: 500
+                repeat: true
+                running: false
+                property string dragId: ""
+                onTriggered: function() {
+                    if (dragId === "") return
+                    if (parent.op === 0) return
+                    dropOnItem(dragId, model.desktopId, parent.op)
+                    stopTimer()
+                }
+
+                function startTimer(id) {
+                    dragId = id
+                    start()
+                }
+
+                function stopTimer() {
+                    dragId = ""
+                    stop()
+                }
+            }
+
             function scrollViewWhenNeeded(mouseY) {
                 let dragPosY = listView.mapFromItem(this, 0, mouseY).y
                 if (dragPosY < (listView.height / 10) && !listView.atYBeginning) {
@@ -179,7 +203,8 @@ Item {
                 dropPositionCheck(drag.y, isDraggingFolder)
             }
 
-            onEntered: {
+            onEntered: function(drag) {
+                listDelegateDragApplyTimer.startTimer(drag.getDataAsString("text/x-dde-launcher-dnd-desktopId"))   
                 if (folderGridViewPopup.opened) {
                     folderGridViewPopup.close()
                 }
@@ -187,9 +212,11 @@ Item {
 
             onExited: {
                 showDropIndicator = false;
+                listDelegateDragApplyTimer.stopTimer()
             }
 
             onDropped: function(drop) {
+                listDelegateDragApplyTimer.stopTimer()
                 drop.accept()
                 let dragId = drop.getDataAsString("text/x-dde-launcher-dnd-desktopId")
                 showDropIndicator = false
