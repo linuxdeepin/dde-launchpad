@@ -1,3 +1,9 @@
+dde-launchpad (1.0.10) unstable; urgency=medium
+
+  * fix: the search results are displayed in the middle (#496)
+
+ -- xionglinlin <xionglinlin@uniontech.com>  Tue, 31 Dec 2024 11:39:40 +0800
+
 dde-launchpad (1.0.9) unstable; urgency=medium
 
  feat: Show autostart icon for autostart apps in the windowed list
