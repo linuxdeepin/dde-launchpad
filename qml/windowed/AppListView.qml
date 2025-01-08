@@ -158,8 +158,7 @@ FocusScope {
                                         text: menuItem.text
                                         color: parent.palette.windowText
                                     }
-                                    background: ButtonPanel {
-                                        button: parent
+                                    background: BoxPanel {
                                         anchors.left: parent.left
                                         anchors.leftMargin: 10
                                         anchors.right: parent.right
@@ -291,6 +290,7 @@ FocusScope {
             background: Loader {
                 active: !dragHandler.active
                 sourceComponent: ItemBackground {
+                    focusPolicy: Qt.NoFocus
                     implicitWidth: DStyle.Style.itemDelegate.width
                     implicitHeight: Helper.windowed.listItemHeight
                     button: itemDelegate
