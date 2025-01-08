@@ -33,7 +33,7 @@ D.BoxPanel {
 
     Loader {
         anchors.fill: parent
-        active: button.visualFocus
+        active: button.visualFocus && control.focusPolicy !== Qt.NoFocus
 
         sourceComponent: D.FocusBoxBorder {
             radius: control.radius
