@@ -1,3 +1,10 @@
+dde-launchpad (1.99.5) UNRELEASED; urgency=medium
+
+  * fix: incorrect FocusBorder for Windowed
+  * fix: siderBar icons display error icons under dark theme (#502)
+
+ -- Deepin Packages Builder <packages@deepin.org>  Thu, 09 Jan 2025 20:23:24 +0800
+
 dde-launchpad (1.99.4) UNRELEASED; urgency=medium
 
   * fix: Hide launchpad window as soon as launching Apps (#492)
