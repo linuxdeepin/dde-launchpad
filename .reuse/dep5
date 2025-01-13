@@ -47,3 +47,8 @@ License: GPL-3.0-or-later
 Files: */metadata.json
 Copyright: None
 License: CC0-1.0
+
+
+Files: toolGenerate/**/*
+Copyright: None
+License: CC0-1.0
