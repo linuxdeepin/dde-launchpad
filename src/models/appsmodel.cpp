@@ -190,6 +190,12 @@ QVariant AppsModel::data(const QModelIndex &index, int role) const
         else if (!firstChar.isLetter()) return QString("&%1").arg(transliterated);
         return transliterated;
     }
+    case AppsModel::AllTransliteratedRole: {
+        // it's useful to search(e.g. Music: YinYue or YinLe -> YinYueYinLe)
+        const auto decodedDisplay = Dtk::Core::pinyin(index.data(Qt::DisplayRole).toString(), Dtk::Core::TS_NoneTone);
+        const QString &transliterated = decodedDisplay.join(".");
+        return transliterated;
+    }
     default:
         break;
     }

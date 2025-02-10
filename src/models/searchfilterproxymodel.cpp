@@ -25,7 +25,7 @@ bool SearchFilterProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex &
 
     const QString & displayName = modelIndex.data(Qt::DisplayRole).toString();
     const QString & name = modelIndex.data(AppsModel::NameRole).toString();
-    const QString & transliterated = modelIndex.data(AppsModel::TransliteratedRole).toString();
+    const QString & transliterated = modelIndex.data(AppsModel::AllTransliteratedRole).toString();
     const QString & jianpin = Dtk::Core::firstLetters(displayName).join(',');
 
     auto nameCopy = name;
