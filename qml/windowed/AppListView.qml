@@ -348,6 +348,11 @@ FocusScope {
             }
         }
 
+        // End margin, see PMS-301113
+        footer: Item {
+            height: 10
+        }
+
         model: delegateCategorizedModel
 
         ScrollBar.vertical: ScrollBar { }

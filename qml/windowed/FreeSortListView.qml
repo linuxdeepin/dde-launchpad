@@ -48,6 +48,11 @@ Item {
             }
         }
 
+        // End margin, see PMS-301113
+        footer: Item {
+            height: 10
+        }
+
         onActiveFocusChanged: {
             if (activeFocus) {
                 listView.currentIndex = 0
