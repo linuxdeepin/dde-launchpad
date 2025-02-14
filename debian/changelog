@@ -1,6 +1,5 @@
 dde-launchpad (1.99.6) UNRELEASED; urgency=medium
 
- -- Deepin Packages Builder <packages@deepin.org>  Thu, 09 Jan 2025 20:23:24 +0800
   * fix(UI): add a footer for windowed mode list view for padding
   * feat: apply drop while dragging for freeform sort view
   * i18n: Updates for project Deepin Desktop Environment (#505)
