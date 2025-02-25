@@ -136,6 +136,26 @@ AppletItem {
         DesktopIntegration.launchByDesktopId(desktopId);
     }
 
+    function assignFullscreenFrameScreen() {
+        const newScreenName = DS.applet("org.deepin.ds.dock").screenName
+        for (const scr of Qt.application.screens) {
+            if (scr.name === newScreenName) {
+                launcher.fullscreenFrame.screen = scr
+                return
+            }
+        }
+    }
+
+    // A singleshot timer
+    Timer {
+        id: reassignFullscreenFrameScreenTimer
+        interval: 100
+        repeat: false
+        onTriggered: {
+            assignFullscreenFrameScreen()
+        }
+    }
+
     PanelToolTip {
         id: toolTip
         text: qsTr("launchpad")
@@ -150,6 +170,14 @@ AppletItem {
         // Set transparent on kwin will cause abnormal rounded corners in FolderPopup, Bug: 10219
         color: DesktopIntegration.isTreeLand() ? "transparent" : palette.window
         transientParent: null
+
+        Connections {
+            target: DS.applet("org.deepin.ds.dock")
+            function onScreenNameChanged() {
+                LauncherController.visible = false
+                reassignFullscreenFrameScreenTimer.start()
+            }
+        }
 
         DLayerShellWindow.anchors: DLayerShellWindow.AnchorBottom | DLayerShellWindow.AnchorTop | DLayerShellWindow.AnchorLeft | DLayerShellWindow.AnchorRight
         DLayerShellWindow.layer: DLayerShellWindow.LayerTop
