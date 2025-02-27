@@ -1,3 +1,9 @@
+dde-launchpad (1.99.7) UNRELEASED; urgency=medium
+
+  * fix: fullscreen launcher should follow dock screen (Bug-300309)
+
+ -- Wang Zichong <wangzichong@deepin.org>  Thu, 27 Feb 2025 13:37:00 +0800
+
 dde-launchpad (1.99.6) UNRELEASED; urgency=medium
 
   * fix(UI): add a footer for windowed mode list view for padding
