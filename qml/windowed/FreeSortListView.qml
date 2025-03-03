@@ -252,9 +252,12 @@ Item {
                     theme: ApplicationHelper.DarkType
                     z: 1
                 }
-                anchors.fill: parent
-                anchors.leftMargin: 10
-                anchors.rightMargin: 10
+                anchors {
+                    left: parent.left
+                    right: parent.right
+                    leftMargin: 10
+                    rightMargin: 10
+                }
                 font: DTK.fontManager.t8
                 palette.windowText: parent.palette.brightText
                 visible: !Drag.active
