@@ -87,7 +87,7 @@
     <message>
         <location filename="../qml/windowed/BottomBar.qml" line="103"/>
         <source>Full-screen Mode</source>
-        <translation>Vollbildschirm-Modus</translation>
+        <translation>Vollbild-Modus</translation>
     </message>
 </context>
 <context>
