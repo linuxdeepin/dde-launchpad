@@ -213,6 +213,7 @@ Item {
             onExited: {
                 showDropIndicator = false;
                 listDelegateDragApplyTimer.stopTimer()
+                listViewDragScroller.stopScroll()
             }
 
             onDropped: function(drop) {
