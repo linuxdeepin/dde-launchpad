@@ -1,3 +1,11 @@
+dde-launchpad (1.99.8) UNRELEASED; urgency=medium
+
+  * i18n: Updates for project Deepin Desktop Environment
+  * fix: item delegate margin not working in AppListView (Bug-300939)
+  * fix: cannot stop scrolling after drop in some cases (Bug-303553)
+
+ -- Wang Zichong <wangzichong@deepin.org>  Thu, 06 Mar 2025 20:17:00 +0800
+
 dde-launchpad (1.99.7) UNRELEASED; urgency=medium
 
   * fix: fullscreen launcher should follow dock screen (Bug-300309)
