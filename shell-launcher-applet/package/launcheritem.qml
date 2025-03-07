@@ -51,6 +51,7 @@ AppletItem {
     }
     Component.onCompleted: {
         updateLaunchpadPos()
+        assignFullscreenFrameScreen()
     }
 
     function decrementPageIndex(pages) {
