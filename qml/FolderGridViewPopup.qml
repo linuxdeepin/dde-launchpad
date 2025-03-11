@@ -97,6 +97,8 @@ Popup {
                     color: palette.windowText
                     selectByMouse: true
                     maximumLength: 255
+                    // TODO Item will be drawn first when it has opacity
+                    opacity: 0.99
                     onEditingFinished: {
                         contentRoot.nameEditing = false
                         if (text === "") {
