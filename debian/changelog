@@ -1,3 +1,9 @@
+dde-launchpad (1.99.9) UNRELEASED; urgency=medium
+
+  * fix: assign fullscreen frame screen on init completed (Bug-300309)
+
+ -- Wang Zichong <wangzichong@deepin.org>  Wed, 12 Mar 2025 10:22:00 +0800
+
 dde-launchpad (1.99.8) UNRELEASED; urgency=medium
 
   * i18n: Updates for project Deepin Desktop Environment
