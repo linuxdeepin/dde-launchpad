@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="ja">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="ja">
 <context>
     <name>AppItemMenu</name>
     <message>
@@ -30,13 +28,13 @@
     </message>
     <message>
         <location filename="../../qml/AppItemMenu.qml" line="80"/>
-        <source>Send to desktop</source>
-        <translation>デスクトップへ送る</translation>
+        <source>Remove from desktop</source>
+        <translation>デスクトップから削除</translation>
     </message>
     <message>
         <location filename="../../qml/AppItemMenu.qml" line="80"/>
-        <source>Remove from desktop</source>
-        <translation>デスクトップから削除</translation>
+        <source>Send to desktop</source>
+        <translation>デスクトップへ送る</translation>
     </message>
     <message>
         <location filename="../../qml/AppItemMenu.qml" line="91"/>
@@ -50,13 +48,13 @@
     </message>
     <message>
         <location filename="../../qml/AppItemMenu.qml" line="103"/>
-        <source>Add to startup</source>
-        <translation>スタートアップへ追加</translation>
+        <source>Remove from startup</source>
+        <translation>スタートアップから削除</translation>
     </message>
     <message>
         <location filename="../../qml/AppItemMenu.qml" line="103"/>
-        <source>Remove from startup</source>
-        <translation>スタートアップから削除</translation>
+        <source>Add to startup</source>
+        <translation>スタートアップへ追加</translation>
     </message>
     <message>
         <location filename="../../qml/AppItemMenu.qml" line="111"/>
@@ -119,17 +117,6 @@
         <location filename="../../qml/FullscreenFrame.qml" line="163"/>
         <source>Window Mode</source>
         <translation>ウィンドウ モード</translation>
-    </message>
-</context>
-<context>
-    <name>LauncherController</name>
-    <message>
-        <source>Show launcher (hidden by default)</source>
-        <translation type="vanished">ランチャーを表示(デフォルトで非表示)</translation>
-    </message>
-    <message>
-        <source>Toggle launcher visibility</source>
-        <translation type="vanished">ランチャーの可視性を切り替え</translation>
     </message>
 </context>
 <context>
@@ -280,77 +267,77 @@
     <message>
         <location filename="../package/launcheritem.qml" line="111"/>
         <source>Internet</source>
-        <translation type="unfinished">インターネット</translation>
+        <translation>インターネット</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="113"/>
         <source>Chat</source>
-        <translation type="unfinished">チャット</translation>
+        <translation>チャット</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="115"/>
         <source>Music</source>
-        <translation type="unfinished">ミュージック</translation>
+        <translation>ミュージック</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="117"/>
         <source>Video</source>
-        <translation type="unfinished">ビデオ</translation>
+        <translation>ビデオ</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="119"/>
         <source>Graphics</source>
-        <translation type="unfinished">グラフィックス</translation>
+        <translation>グラフィックス</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="121"/>
         <source>Games</source>
-        <translation type="unfinished">ゲーム</translation>
+        <translation>ゲーム</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="123"/>
         <source>Office</source>
-        <translation type="unfinished">オフィス</translation>
+        <translation>オフィス</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="125"/>
         <source>Reading</source>
-        <translation type="unfinished">文書</translation>
+        <translation>文書</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="127"/>
         <source>Development</source>
-        <translation type="unfinished">開発</translation>
+        <translation>開発</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="129"/>
         <source>System</source>
-        <translation type="unfinished">システム</translation>
+        <translation>システム</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="131"/>
         <source>Others</source>
-        <translation type="unfinished">その他</translation>
+        <translation>その他</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="162"/>
         <source>launchpad</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="299"/>
         <source>Are you sure you want to uninstall %1?</source>
-        <translation type="unfinished">%1 をアンインストールしてもよろしいですか？</translation>
+        <translation>%1 をアンインストールしてもよろしいですか？</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="311"/>
         <source>Cancel</source>
-        <translation type="unfinished">キャンセル</translation>
+        <translation>キャンセル</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="325"/>
         <source>Confirm</source>
-        <translation type="unfinished">確認</translation>
+        <translation>確認</translation>
     </message>
 </context>
 </TS>
