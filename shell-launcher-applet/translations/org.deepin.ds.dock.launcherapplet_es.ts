@@ -64,7 +64,7 @@
     <message>
         <location filename="../../qml/AppItemMenu.qml" line="120"/>
         <source>Disable display scaling</source>
-        <translation>Desactivar el escalado de la pantalla</translation>
+        <translation>Desactivar escalado de pantalla</translation>
     </message>
     <message>
         <location filename="../../qml/AppItemMenu.qml" line="127"/>
