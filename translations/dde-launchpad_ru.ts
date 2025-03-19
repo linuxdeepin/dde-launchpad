@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="ru">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="ru">
 <context>
     <name>AppItemMenu</name>
     <message>
@@ -14,7 +16,7 @@
     <message>
         <location filename="../qml/AppItemMenu.qml" line="55"/>
         <source>Move to Top</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../qml/AppItemMenu.qml" line="65"/>
@@ -75,17 +77,17 @@
 <context>
     <name>BottomBar</name>
     <message>
-        <location filename="../qml/windowed/BottomBar.qml" line="32"/>
+        <location filename="../qml/windowed/BottomBar.qml" line="33"/>
         <source>Power</source>
         <translation>Питание</translation>
     </message>
     <message>
-        <location filename="../qml/windowed/BottomBar.qml" line="56"/>
+        <location filename="../qml/windowed/BottomBar.qml" line="62"/>
         <source>Search</source>
         <translation>Поиск</translation>
     </message>
     <message>
-        <location filename="../qml/windowed/BottomBar.qml" line="103"/>
+        <location filename="../qml/windowed/BottomBar.qml" line="109"/>
         <source>Full-screen Mode</source>
         <translation>Полноэкранный режим</translation>
     </message>
@@ -95,7 +97,7 @@
     <message>
         <location filename="../qml/DummyAppItemMenu.qml" line="27"/>
         <source>Install</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../qml/DummyAppItemMenu.qml" line="34"/>
@@ -114,20 +116,20 @@
 <context>
     <name>FullscreenFrame</name>
     <message>
-        <location filename="../qml/FullscreenFrame.qml" line="152"/>
+        <location filename="../qml/FullscreenFrame.qml" line="163"/>
         <source>Window Mode</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>LauncherController</name>
     <message>
-        <location filename="../launchercontroller.cpp" line="19"/>
+        <location filename="../launchercontroller.cpp" line="21"/>
         <source>Show launcher (hidden by default)</source>
         <translation>Показать панель запуска (скрыта по умолчанию)</translation>
     </message>
     <message>
-        <location filename="../launchercontroller.cpp" line="20"/>
+        <location filename="../launchercontroller.cpp" line="22"/>
         <source>Toggle launcher visibility</source>
         <translation>Переключить видимость программы запуска</translation>
     </message>
@@ -160,9 +162,13 @@
         <translation>Графика</translation>
     </message>
     <message>
-        <location filename="../qml/Main.qml" line="32"/>
         <source>Game</source>
-        <translation>Игра</translation>
+        <translation type="vanished">Игра</translation>
+    </message>
+    <message>
+        <location filename="../qml/Main.qml" line="32"/>
+        <source>Games</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="34"/>
@@ -190,17 +196,17 @@
         <translation>Прочее</translation>
     </message>
     <message>
-        <location filename="../qml/Main.qml" line="411"/>
+        <location filename="../qml/Main.qml" line="400"/>
         <source>Are you sure you want to uninstall %1?</source>
         <translation>Вы уверены, что хотите удалить %1?</translation>
     </message>
     <message>
-        <location filename="../qml/Main.qml" line="423"/>
+        <location filename="../qml/Main.qml" line="412"/>
         <source>Cancel</source>
         <translation>Отмена</translation>
     </message>
     <message>
-        <location filename="../qml/Main.qml" line="437"/>
+        <location filename="../qml/Main.qml" line="426"/>
         <source>Confirm</source>
         <translation>Подтвердить</translation>
     </message>
@@ -221,8 +227,8 @@
         <translation>Все приложения</translation>
     </message>
     <message>
-        <location filename="../qml/FullscreenFrame.qml" line="545"/>
         <location filename="../qml/windowed/SearchResultView.qml" line="102"/>
+        <location filename="../qml/FullscreenFrame.qml" line="556"/>
         <source>No search results</source>
         <translation>Ничего не найдено</translation>
     </message>

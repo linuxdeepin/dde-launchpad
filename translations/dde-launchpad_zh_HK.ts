@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="zh_HK">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="zh_HK">
 <context>
     <name>AppItemMenu</name>
     <message>
@@ -75,17 +77,17 @@
 <context>
     <name>BottomBar</name>
     <message>
-        <location filename="../qml/windowed/BottomBar.qml" line="32"/>
+        <location filename="../qml/windowed/BottomBar.qml" line="33"/>
         <source>Power</source>
         <translation>電源</translation>
     </message>
     <message>
-        <location filename="../qml/windowed/BottomBar.qml" line="56"/>
+        <location filename="../qml/windowed/BottomBar.qml" line="62"/>
         <source>Search</source>
         <translation>搜尋</translation>
     </message>
     <message>
-        <location filename="../qml/windowed/BottomBar.qml" line="103"/>
+        <location filename="../qml/windowed/BottomBar.qml" line="109"/>
         <source>Full-screen Mode</source>
         <translation>全螢幕模式</translation>
     </message>
@@ -114,7 +116,7 @@
 <context>
     <name>FullscreenFrame</name>
     <message>
-        <location filename="../qml/FullscreenFrame.qml" line="152"/>
+        <location filename="../qml/FullscreenFrame.qml" line="163"/>
         <source>Window Mode</source>
         <translation>窗口模式</translation>
     </message>
@@ -122,12 +124,12 @@
 <context>
     <name>LauncherController</name>
     <message>
-        <location filename="../launchercontroller.cpp" line="19"/>
+        <location filename="../launchercontroller.cpp" line="21"/>
         <source>Show launcher (hidden by default)</source>
         <translation>顯示啟動器（默認為隱藏）</translation>
     </message>
     <message>
-        <location filename="../launchercontroller.cpp" line="20"/>
+        <location filename="../launchercontroller.cpp" line="22"/>
         <source>Toggle launcher visibility</source>
         <translation>切換啟動器的可見性</translation>
     </message>
@@ -160,9 +162,13 @@
         <translation>美工繪圖</translation>
     </message>
     <message>
-        <location filename="../qml/Main.qml" line="32"/>
         <source>Game</source>
-        <translation>遊戲娛樂</translation>
+        <translation type="vanished">遊戲娛樂</translation>
+    </message>
+    <message>
+        <location filename="../qml/Main.qml" line="32"/>
+        <source>Games</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="34"/>
@@ -190,17 +196,17 @@
         <translation>其他應用</translation>
     </message>
     <message>
-        <location filename="../qml/Main.qml" line="411"/>
+        <location filename="../qml/Main.qml" line="400"/>
         <source>Are you sure you want to uninstall %1?</source>
         <translation>您確定要卸載 %1 嗎？</translation>
     </message>
     <message>
-        <location filename="../qml/Main.qml" line="423"/>
+        <location filename="../qml/Main.qml" line="412"/>
         <source>Cancel</source>
         <translation>取 消</translation>
     </message>
     <message>
-        <location filename="../qml/Main.qml" line="437"/>
+        <location filename="../qml/Main.qml" line="426"/>
         <source>Confirm</source>
         <translation>確 定</translation>
     </message>
@@ -221,8 +227,8 @@
         <translation>所有應用</translation>
     </message>
     <message>
-        <location filename="../qml/FullscreenFrame.qml" line="545"/>
         <location filename="../qml/windowed/SearchResultView.qml" line="102"/>
+        <location filename="../qml/FullscreenFrame.qml" line="556"/>
         <source>No search results</source>
         <translation>無搜索結果</translation>
     </message>
