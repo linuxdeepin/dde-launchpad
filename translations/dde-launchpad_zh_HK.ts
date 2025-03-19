@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="zh_HK">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="zh_HK">
 <context>
     <name>AppItemMenu</name>
     <message>
@@ -162,13 +160,9 @@
         <translation>美工繪圖</translation>
     </message>
     <message>
-        <source>Game</source>
-        <translation type="vanished">遊戲娛樂</translation>
-    </message>
-    <message>
         <location filename="../qml/Main.qml" line="32"/>
         <source>Games</source>
-        <translation type="unfinished"></translation>
+        <translation>遊戲娛樂</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="34"/>
