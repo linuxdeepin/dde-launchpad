@@ -287,7 +287,7 @@
     <message>
         <location filename="../package/launcheritem.qml" line="119"/>
         <source>Graphics</source>
-        <translation type="unfinished"/>
+        <translation>Grafik</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="121"/>
