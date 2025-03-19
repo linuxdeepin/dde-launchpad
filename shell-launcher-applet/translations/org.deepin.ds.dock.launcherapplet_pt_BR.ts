@@ -149,7 +149,7 @@
     <message>
         <location filename="../../qml/Main.qml" line="32"/>
         <source>Games</source>
-        <translation type="unfinished"/>
+        <translation>Jogos</translation>
     </message>
     <message>
         <location filename="../../qml/Main.qml" line="34"/>
