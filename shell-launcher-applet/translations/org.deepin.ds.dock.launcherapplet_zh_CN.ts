@@ -291,7 +291,7 @@
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="121"/>
-        <source>Game</source>
+        <source>Games</source>
         <translation type="unfinished"/>
     </message>
     <message>
