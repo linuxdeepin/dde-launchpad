@@ -322,7 +322,7 @@
     <message>
         <location filename="../package/launcheritem.qml" line="162"/>
         <source>launchpad</source>
-        <translation type="unfinished"/>
+        <translation>Starter-Feld</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="299"/>
