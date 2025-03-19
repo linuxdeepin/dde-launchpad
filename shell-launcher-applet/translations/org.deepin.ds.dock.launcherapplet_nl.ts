@@ -322,12 +322,12 @@
     <message>
         <location filename="../package/launcheritem.qml" line="162"/>
         <source>launchpad</source>
-        <translation type="unfinished"/>
+        <translation>Programmastarter</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="299"/>
         <source>Are you sure you want to uninstall %1?</source>
-        <translation type="unfinished"/>
+        <translation>Weet je zeker dat je ‘%1’ wilt deïnstalleren?</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="311"/>
