@@ -302,7 +302,7 @@
     <message>
         <location filename="../package/launcheritem.qml" line="125"/>
         <source>Reading</source>
-        <translation type="unfinished"/>
+        <translation>閱讀翻譯</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="127"/>
