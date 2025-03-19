@@ -267,7 +267,7 @@
     <message>
         <location filename="../package/launcheritem.qml" line="111"/>
         <source>Internet</source>
-        <translation type="unfinished"/>
+        <translation>Világháló</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="113"/>
