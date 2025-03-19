@@ -44,7 +44,7 @@
     <message>
         <location filename="../../qml/AppItemMenu.qml" line="91"/>
         <source>Send to dock</source>
-        <translation>Anclar al muelle</translation>
+        <translation>Anclar al panel</translation>
     </message>
     <message>
         <location filename="../../qml/AppItemMenu.qml" line="103"/>
