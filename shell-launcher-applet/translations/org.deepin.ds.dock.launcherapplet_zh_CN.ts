@@ -282,12 +282,12 @@
     <message>
         <location filename="../package/launcheritem.qml" line="117"/>
         <source>Video</source>
-        <translation type="unfinished"/>
+        <translation>视频播放</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="119"/>
         <source>Graphics</source>
-        <translation type="unfinished"/>
+        <translation>图形图像</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="121"/>
