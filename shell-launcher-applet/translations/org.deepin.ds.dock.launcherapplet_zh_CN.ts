@@ -277,7 +277,7 @@
     <message>
         <location filename="../package/launcheritem.qml" line="115"/>
         <source>Music</source>
-        <translation type="unfinished"/>
+        <translation>音乐欣赏</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="117"/>
