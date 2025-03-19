@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="pt_BR">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="pt_BR">
 <context>
     <name>AppItemMenu</name>
     <message>
@@ -30,13 +28,13 @@
     </message>
     <message>
         <location filename="../../qml/AppItemMenu.qml" line="80"/>
-        <source>Send to desktop</source>
-        <translation>Enviar para área de trabalho</translation>
+        <source>Remove from desktop</source>
+        <translation>Remover da área de trabalho</translation>
     </message>
     <message>
         <location filename="../../qml/AppItemMenu.qml" line="80"/>
-        <source>Remove from desktop</source>
-        <translation>Remover da área de trabalho</translation>
+        <source>Send to desktop</source>
+        <translation>Enviar para área de trabalho</translation>
     </message>
     <message>
         <location filename="../../qml/AppItemMenu.qml" line="91"/>
@@ -50,13 +48,13 @@
     </message>
     <message>
         <location filename="../../qml/AppItemMenu.qml" line="103"/>
-        <source>Add to startup</source>
-        <translation>Adicionar à inicialização</translation>
+        <source>Remove from startup</source>
+        <translation>Remover da inicialização</translation>
     </message>
     <message>
         <location filename="../../qml/AppItemMenu.qml" line="103"/>
-        <source>Remove from startup</source>
-        <translation>Remover da inicialização</translation>
+        <source>Add to startup</source>
+        <translation>Adicionar à inicialização</translation>
     </message>
     <message>
         <location filename="../../qml/AppItemMenu.qml" line="111"/>
@@ -122,17 +120,6 @@
     </message>
 </context>
 <context>
-    <name>LauncherController</name>
-    <message>
-        <source>Show launcher (hidden by default)</source>
-        <translation type="vanished">Exibir lançador (oculto por padrão)</translation>
-    </message>
-    <message>
-        <source>Toggle launcher visibility</source>
-        <translation type="vanished">Alternar visibilidade do lançador</translation>
-    </message>
-</context>
-<context>
     <name>Main</name>
     <message>
         <location filename="../../qml/Main.qml" line="22"/>
@@ -162,7 +149,7 @@
     <message>
         <location filename="../../qml/Main.qml" line="32"/>
         <source>Games</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../../qml/Main.qml" line="34"/>
@@ -280,77 +267,77 @@
     <message>
         <location filename="../package/launcheritem.qml" line="111"/>
         <source>Internet</source>
-        <translation type="unfinished">Internet</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="113"/>
         <source>Chat</source>
-        <translation type="unfinished">Comunicação</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="115"/>
         <source>Music</source>
-        <translation type="unfinished">Música</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="117"/>
         <source>Video</source>
-        <translation type="unfinished">Vídeo</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="119"/>
         <source>Graphics</source>
-        <translation type="unfinished">Imagem</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="121"/>
         <source>Games</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="123"/>
         <source>Office</source>
-        <translation type="unfinished">Produtividade</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="125"/>
         <source>Reading</source>
-        <translation type="unfinished">Leitura</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="127"/>
         <source>Development</source>
-        <translation type="unfinished">Desenvolvimento</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="129"/>
         <source>System</source>
-        <translation type="unfinished">Sistema</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="131"/>
         <source>Others</source>
-        <translation type="unfinished">Outros</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="162"/>
         <source>launchpad</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="299"/>
         <source>Are you sure you want to uninstall %1?</source>
-        <translation type="unfinished">Desinstalar %1?</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="311"/>
         <source>Cancel</source>
-        <translation type="unfinished">Cancelar</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="325"/>
         <source>Confirm</source>
-        <translation type="unfinished">Confirmar</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 </TS>

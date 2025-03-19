@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="uk">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="uk">
 <context>
     <name>AppItemMenu</name>
     <message>
@@ -30,13 +28,13 @@
     </message>
     <message>
         <location filename="../../qml/AppItemMenu.qml" line="80"/>
-        <source>Send to desktop</source>
-        <translation>Надіслати на стільницю</translation>
+        <source>Remove from desktop</source>
+        <translation>Видалити з стільниці</translation>
     </message>
     <message>
         <location filename="../../qml/AppItemMenu.qml" line="80"/>
-        <source>Remove from desktop</source>
-        <translation>Видалити з стільниці</translation>
+        <source>Send to desktop</source>
+        <translation>Надіслати на стільницю</translation>
     </message>
     <message>
         <location filename="../../qml/AppItemMenu.qml" line="91"/>
@@ -50,13 +48,13 @@
     </message>
     <message>
         <location filename="../../qml/AppItemMenu.qml" line="103"/>
-        <source>Add to startup</source>
-        <translation>Додати до запуску</translation>
+        <source>Remove from startup</source>
+        <translation>Вилучити із запуску</translation>
     </message>
     <message>
         <location filename="../../qml/AppItemMenu.qml" line="103"/>
-        <source>Remove from startup</source>
-        <translation>Вилучити із запуску</translation>
+        <source>Add to startup</source>
+        <translation>Додати до запуску</translation>
     </message>
     <message>
         <location filename="../../qml/AppItemMenu.qml" line="111"/>
@@ -122,17 +120,6 @@
     </message>
 </context>
 <context>
-    <name>LauncherController</name>
-    <message>
-        <source>Show launcher (hidden by default)</source>
-        <translation type="vanished">Показати засіб запуску (типово приховано)</translation>
-    </message>
-    <message>
-        <source>Toggle launcher visibility</source>
-        <translation type="vanished">Показати/Приховати засіб запуску</translation>
-    </message>
-</context>
-<context>
     <name>Main</name>
     <message>
         <location filename="../../qml/Main.qml" line="22"/>
@@ -162,7 +149,7 @@
     <message>
         <location filename="../../qml/Main.qml" line="32"/>
         <source>Games</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../../qml/Main.qml" line="34"/>
@@ -280,77 +267,77 @@
     <message>
         <location filename="../package/launcheritem.qml" line="111"/>
         <source>Internet</source>
-        <translation type="unfinished">Інтернет</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="113"/>
         <source>Chat</source>
-        <translation type="unfinished">Спілкування</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="115"/>
         <source>Music</source>
-        <translation type="unfinished">Музика</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="117"/>
         <source>Video</source>
-        <translation type="unfinished">Відео</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="119"/>
         <source>Graphics</source>
-        <translation type="unfinished">Графіка</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="121"/>
         <source>Games</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="123"/>
         <source>Office</source>
-        <translation type="unfinished">Офіс</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="125"/>
         <source>Reading</source>
-        <translation type="unfinished">Читання</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="127"/>
         <source>Development</source>
-        <translation type="unfinished">Розробка</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="129"/>
         <source>System</source>
-        <translation type="unfinished">Система</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="131"/>
         <source>Others</source>
-        <translation type="unfinished">Інше</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="162"/>
         <source>launchpad</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="299"/>
         <source>Are you sure you want to uninstall %1?</source>
-        <translation type="unfinished">Ви справді хочете вилучити %1?</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="311"/>
         <source>Cancel</source>
-        <translation type="unfinished">Скасувати</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="325"/>
         <source>Confirm</source>
-        <translation type="unfinished">Підтвердити</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 </TS>

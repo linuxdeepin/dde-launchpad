@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="zh_HK">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="zh_HK">
 <context>
     <name>AppItemMenu</name>
     <message>
@@ -30,13 +28,13 @@
     </message>
     <message>
         <location filename="../../qml/AppItemMenu.qml" line="80"/>
-        <source>Send to desktop</source>
-        <translation>傳送到桌面</translation>
+        <source>Remove from desktop</source>
+        <translation>從桌面移除</translation>
     </message>
     <message>
         <location filename="../../qml/AppItemMenu.qml" line="80"/>
-        <source>Remove from desktop</source>
-        <translation>從桌面移除</translation>
+        <source>Send to desktop</source>
+        <translation>傳送到桌面</translation>
     </message>
     <message>
         <location filename="../../qml/AppItemMenu.qml" line="91"/>
@@ -50,13 +48,13 @@
     </message>
     <message>
         <location filename="../../qml/AppItemMenu.qml" line="103"/>
-        <source>Add to startup</source>
-        <translation>加至開機啟動</translation>
+        <source>Remove from startup</source>
+        <translation>從開機啟動中移除</translation>
     </message>
     <message>
         <location filename="../../qml/AppItemMenu.qml" line="103"/>
-        <source>Remove from startup</source>
-        <translation>從開機啟動中移除</translation>
+        <source>Add to startup</source>
+        <translation>加至開機啟動</translation>
     </message>
     <message>
         <location filename="../../qml/AppItemMenu.qml" line="111"/>
@@ -119,17 +117,6 @@
         <location filename="../../qml/FullscreenFrame.qml" line="163"/>
         <source>Window Mode</source>
         <translation>窗口模式</translation>
-    </message>
-</context>
-<context>
-    <name>LauncherController</name>
-    <message>
-        <source>Show launcher (hidden by default)</source>
-        <translation type="vanished">顯示啟動器（默認為隱藏）</translation>
-    </message>
-    <message>
-        <source>Toggle launcher visibility</source>
-        <translation type="vanished">切換啟動器的可見性</translation>
     </message>
 </context>
 <context>
@@ -280,77 +267,77 @@
     <message>
         <location filename="../package/launcheritem.qml" line="111"/>
         <source>Internet</source>
-        <translation type="unfinished">網際網路</translation>
+        <translation>網絡應用</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="113"/>
         <source>Chat</source>
-        <translation type="unfinished">社交溝通</translation>
+        <translation>社交溝通</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="115"/>
         <source>Music</source>
-        <translation type="unfinished">音樂欣賞</translation>
+        <translation>音樂欣賞</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="117"/>
         <source>Video</source>
-        <translation type="unfinished">影片播放</translation>
+        <translation>影片播放</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="119"/>
         <source>Graphics</source>
-        <translation type="unfinished">美工繪圖</translation>
+        <translation>圖形圖像</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="121"/>
         <source>Games</source>
-        <translation type="unfinished">遊戲娛樂</translation>
+        <translation>遊戲娛樂</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="123"/>
         <source>Office</source>
-        <translation type="unfinished">文書處理</translation>
+        <translation>辦公學習</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="125"/>
         <source>Reading</source>
-        <translation type="unfinished">閱讀翻譯</translation>
+        <translation>閱讀翻譯</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="127"/>
         <source>Development</source>
-        <translation type="unfinished">程式開發</translation>
+        <translation>程式開發</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="129"/>
         <source>System</source>
-        <translation type="unfinished">系統管理</translation>
+        <translation>系統管理</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="131"/>
         <source>Others</source>
-        <translation type="unfinished">其他應用</translation>
+        <translation>其他應用</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="162"/>
         <source>launchpad</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="299"/>
         <source>Are you sure you want to uninstall %1?</source>
-        <translation type="unfinished">您確定要卸載 %1 嗎？</translation>
+        <translation>您確定要卸載 %1 嗎？</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="311"/>
         <source>Cancel</source>
-        <translation type="unfinished">取 消</translation>
+        <translation>取 消</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="325"/>
         <source>Confirm</source>
-        <translation type="unfinished">確 定</translation>
+        <translation>確 定</translation>
     </message>
 </context>
 </TS>
