@@ -234,7 +234,7 @@
     <message>
         <location filename="../../qml/windowed/SideBar.qml" line="90"/>
         <source>Sorting Mode</source>
-        <translation>Modo de Triagem</translation>
+        <translation>Modo de classificação</translation>
     </message>
     <message>
         <location filename="../../qml/windowed/SideBar.qml" line="145"/>
