@@ -75,17 +75,17 @@
 <context>
     <name>BottomBar</name>
     <message>
-        <location filename="../qml/windowed/BottomBar.qml" line="32"/>
+        <location filename="../qml/windowed/BottomBar.qml" line="33"/>
         <source>Power</source>
         <translation>Energie</translation>
     </message>
     <message>
-        <location filename="../qml/windowed/BottomBar.qml" line="56"/>
+        <location filename="../qml/windowed/BottomBar.qml" line="62"/>
         <source>Search</source>
         <translation>Suchen</translation>
     </message>
     <message>
-        <location filename="../qml/windowed/BottomBar.qml" line="103"/>
+        <location filename="../qml/windowed/BottomBar.qml" line="109"/>
         <source>Full-screen Mode</source>
         <translation>Vollbildmodus</translation>
     </message>
@@ -114,7 +114,7 @@
 <context>
     <name>FullscreenFrame</name>
     <message>
-        <location filename="../qml/FullscreenFrame.qml" line="152"/>
+        <location filename="../qml/FullscreenFrame.qml" line="163"/>
         <source>Window Mode</source>
         <translation>Fenstermodus</translation>
     </message>
@@ -122,12 +122,12 @@
 <context>
     <name>LauncherController</name>
     <message>
-        <location filename="../launchercontroller.cpp" line="19"/>
+        <location filename="../launchercontroller.cpp" line="21"/>
         <source>Show launcher (hidden by default)</source>
         <translation>Starter anzeigen (standardmäßig ausgeblendet)</translation>
     </message>
     <message>
-        <location filename="../launchercontroller.cpp" line="20"/>
+        <location filename="../launchercontroller.cpp" line="22"/>
         <source>Toggle launcher visibility</source>
         <translation>Sichtbarkeit des Starters umschalten</translation>
     </message>
@@ -161,8 +161,8 @@
     </message>
     <message>
         <location filename="../qml/Main.qml" line="32"/>
-        <source>Game</source>
-        <translation>Spiel</translation>
+        <source>Games</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="34"/>
@@ -190,17 +190,17 @@
         <translation>Anderes</translation>
     </message>
     <message>
-        <location filename="../qml/Main.qml" line="411"/>
+        <location filename="../qml/Main.qml" line="400"/>
         <source>Are you sure you want to uninstall %1?</source>
         <translation>Sind Sie sicher, dass Sie %1 deinstallieren möchten?</translation>
     </message>
     <message>
-        <location filename="../qml/Main.qml" line="423"/>
+        <location filename="../qml/Main.qml" line="412"/>
         <source>Cancel</source>
         <translation>Abbrechen</translation>
     </message>
     <message>
-        <location filename="../qml/Main.qml" line="437"/>
+        <location filename="../qml/Main.qml" line="426"/>
         <source>Confirm</source>
         <translation>Bestätigen</translation>
     </message>
@@ -221,8 +221,8 @@
         <translation>Alle Apps</translation>
     </message>
     <message>
-        <location filename="../qml/FullscreenFrame.qml" line="545"/>
         <location filename="../qml/windowed/SearchResultView.qml" line="102"/>
+        <location filename="../qml/FullscreenFrame.qml" line="556"/>
         <source>No search results</source>
         <translation>Keine Suchergebnisse</translation>
     </message>
