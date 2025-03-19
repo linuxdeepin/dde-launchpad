@@ -292,7 +292,7 @@
     <message>
         <location filename="../package/launcheritem.qml" line="121"/>
         <source>Games</source>
-        <translation type="unfinished"/>
+        <translation>遊戲娛樂</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="123"/>
