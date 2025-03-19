@@ -312,12 +312,12 @@
     <message>
         <location filename="../package/launcheritem.qml" line="129"/>
         <source>System</source>
-        <translation type="unfinished"/>
+        <translation>Sistem</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="131"/>
         <source>Others</source>
-        <translation type="unfinished"/>
+        <translation>Të tjera</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="162"/>
