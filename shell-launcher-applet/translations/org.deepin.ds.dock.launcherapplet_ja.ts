@@ -277,12 +277,12 @@
     <message>
         <location filename="../package/launcheritem.qml" line="115"/>
         <source>Music</source>
-        <translation type="unfinished"/>
+        <translation>ミュージック</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="117"/>
         <source>Video</source>
-        <translation type="unfinished"/>
+        <translation>ビデオ</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="119"/>
