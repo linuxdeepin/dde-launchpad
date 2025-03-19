@@ -292,12 +292,12 @@
     <message>
         <location filename="../package/launcheritem.qml" line="121"/>
         <source>Games</source>
-        <translation type="unfinished"/>
+        <translation>游戏娱乐</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="123"/>
         <source>Office</source>
-        <translation type="unfinished"/>
+        <translation>办公学习</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="125"/>
