@@ -77,17 +77,17 @@
 <context>
     <name>BottomBar</name>
     <message>
-        <location filename="../../qml/windowed/BottomBar.qml" line="32"/>
+        <location filename="../../qml/windowed/BottomBar.qml" line="33"/>
         <source>Power</source>
         <translation>Живлення</translation>
     </message>
     <message>
-        <location filename="../../qml/windowed/BottomBar.qml" line="58"/>
+        <location filename="../../qml/windowed/BottomBar.qml" line="62"/>
         <source>Search</source>
         <translation>Пошук</translation>
     </message>
     <message>
-        <location filename="../../qml/windowed/BottomBar.qml" line="105"/>
+        <location filename="../../qml/windowed/BottomBar.qml" line="109"/>
         <source>Full-screen Mode</source>
         <translation>Повноекранний режим</translation>
     </message>
@@ -116,7 +116,7 @@
 <context>
     <name>FullscreenFrame</name>
     <message>
-        <location filename="../../qml/FullscreenFrame.qml" line="152"/>
+        <location filename="../../qml/FullscreenFrame.qml" line="163"/>
         <source>Window Mode</source>
         <translation>Режим вікна</translation>
     </message>
@@ -124,14 +124,12 @@
 <context>
     <name>LauncherController</name>
     <message>
-        <location filename="../../launchercontroller.cpp" line="19"/>
         <source>Show launcher (hidden by default)</source>
-        <translation>Показати засіб запуску (типово приховано)</translation>
+        <translation type="vanished">Показати засіб запуску (типово приховано)</translation>
     </message>
     <message>
-        <location filename="../../launchercontroller.cpp" line="20"/>
         <source>Toggle launcher visibility</source>
-        <translation>Показати/Приховати засіб запуску</translation>
+        <translation type="vanished">Показати/Приховати засіб запуску</translation>
     </message>
 </context>
 <context>
@@ -162,9 +160,13 @@
         <translation>Графіка</translation>
     </message>
     <message>
-        <location filename="../../qml/Main.qml" line="32"/>
         <source>Game</source>
-        <translation>Ігри</translation>
+        <translation type="vanished">Ігри</translation>
+    </message>
+    <message>
+        <location filename="../../qml/Main.qml" line="32"/>
+        <source>Games</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../qml/Main.qml" line="34"/>
@@ -192,17 +194,17 @@
         <translation>Інше</translation>
     </message>
     <message>
-        <location filename="../../qml/Main.qml" line="411"/>
+        <location filename="../../qml/Main.qml" line="400"/>
         <source>Are you sure you want to uninstall %1?</source>
         <translation>Ви справді хочете вилучити %1?</translation>
     </message>
     <message>
-        <location filename="../../qml/Main.qml" line="423"/>
+        <location filename="../../qml/Main.qml" line="412"/>
         <source>Cancel</source>
         <translation>Скасувати</translation>
     </message>
     <message>
-        <location filename="../../qml/Main.qml" line="437"/>
+        <location filename="../../qml/Main.qml" line="426"/>
         <source>Confirm</source>
         <translation>Підтвердити</translation>
     </message>
@@ -223,8 +225,8 @@
         <translation>Усі програми</translation>
     </message>
     <message>
+        <location filename="../../qml/FullscreenFrame.qml" line="556"/>
         <location filename="../../qml/windowed/SearchResultView.qml" line="102"/>
-        <location filename="../../qml/FullscreenFrame.qml" line="545"/>
         <source>No search results</source>
         <translation>Нічого не знайдено</translation>
     </message>
@@ -280,77 +282,77 @@
 <context>
     <name>launcheritem</name>
     <message>
-        <location filename="../package/launcheritem.qml" line="110"/>
+        <location filename="../package/launcheritem.qml" line="111"/>
         <source>Internet</source>
         <translation type="unfinished">Інтернет</translation>
     </message>
     <message>
-        <location filename="../package/launcheritem.qml" line="112"/>
+        <location filename="../package/launcheritem.qml" line="113"/>
         <source>Chat</source>
         <translation type="unfinished">Спілкування</translation>
     </message>
     <message>
-        <location filename="../package/launcheritem.qml" line="114"/>
+        <location filename="../package/launcheritem.qml" line="115"/>
         <source>Music</source>
         <translation type="unfinished">Музика</translation>
     </message>
     <message>
-        <location filename="../package/launcheritem.qml" line="116"/>
+        <location filename="../package/launcheritem.qml" line="117"/>
         <source>Video</source>
         <translation type="unfinished">Відео</translation>
     </message>
     <message>
-        <location filename="../package/launcheritem.qml" line="118"/>
+        <location filename="../package/launcheritem.qml" line="119"/>
         <source>Graphics</source>
         <translation type="unfinished">Графіка</translation>
     </message>
     <message>
-        <location filename="../package/launcheritem.qml" line="120"/>
+        <location filename="../package/launcheritem.qml" line="121"/>
         <source>Game</source>
         <translation type="unfinished">Ігри</translation>
     </message>
     <message>
-        <location filename="../package/launcheritem.qml" line="122"/>
+        <location filename="../package/launcheritem.qml" line="123"/>
         <source>Office</source>
         <translation type="unfinished">Офіс</translation>
     </message>
     <message>
-        <location filename="../package/launcheritem.qml" line="124"/>
+        <location filename="../package/launcheritem.qml" line="125"/>
         <source>Reading</source>
         <translation type="unfinished">Читання</translation>
     </message>
     <message>
-        <location filename="../package/launcheritem.qml" line="126"/>
+        <location filename="../package/launcheritem.qml" line="127"/>
         <source>Development</source>
         <translation type="unfinished">Розробка</translation>
     </message>
     <message>
-        <location filename="../package/launcheritem.qml" line="128"/>
+        <location filename="../package/launcheritem.qml" line="129"/>
         <source>System</source>
         <translation type="unfinished">Система</translation>
     </message>
     <message>
-        <location filename="../package/launcheritem.qml" line="130"/>
+        <location filename="../package/launcheritem.qml" line="131"/>
         <source>Others</source>
         <translation type="unfinished">Інше</translation>
     </message>
     <message>
-        <location filename="../package/launcheritem.qml" line="140"/>
+        <location filename="../package/launcheritem.qml" line="162"/>
         <source>launchpad</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../package/launcheritem.qml" line="268"/>
+        <location filename="../package/launcheritem.qml" line="299"/>
         <source>Are you sure you want to uninstall %1?</source>
         <translation type="unfinished">Ви справді хочете вилучити %1?</translation>
     </message>
     <message>
-        <location filename="../package/launcheritem.qml" line="280"/>
+        <location filename="../package/launcheritem.qml" line="311"/>
         <source>Cancel</source>
         <translation type="unfinished">Скасувати</translation>
     </message>
     <message>
-        <location filename="../package/launcheritem.qml" line="294"/>
+        <location filename="../package/launcheritem.qml" line="325"/>
         <source>Confirm</source>
         <translation type="unfinished">Підтвердити</translation>
     </message>

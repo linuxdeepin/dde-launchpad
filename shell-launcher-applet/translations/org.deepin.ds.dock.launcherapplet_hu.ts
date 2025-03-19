@@ -77,17 +77,17 @@
 <context>
     <name>BottomBar</name>
     <message>
-        <location filename="../../qml/windowed/BottomBar.qml" line="32"/>
+        <location filename="../../qml/windowed/BottomBar.qml" line="33"/>
         <source>Power</source>
         <translation>Kikapcsolás</translation>
     </message>
     <message>
-        <location filename="../../qml/windowed/BottomBar.qml" line="58"/>
+        <location filename="../../qml/windowed/BottomBar.qml" line="62"/>
         <source>Search</source>
         <translation>Keresés</translation>
     </message>
     <message>
-        <location filename="../../qml/windowed/BottomBar.qml" line="105"/>
+        <location filename="../../qml/windowed/BottomBar.qml" line="109"/>
         <source>Full-screen Mode</source>
         <translation>Teljes képernyős Mód</translation>
     </message>
@@ -116,7 +116,7 @@
 <context>
     <name>FullscreenFrame</name>
     <message>
-        <location filename="../../qml/FullscreenFrame.qml" line="152"/>
+        <location filename="../../qml/FullscreenFrame.qml" line="163"/>
         <source>Window Mode</source>
         <translation>Ablak Mód</translation>
     </message>
@@ -124,14 +124,12 @@
 <context>
     <name>LauncherController</name>
     <message>
-        <location filename="../../launchercontroller.cpp" line="19"/>
         <source>Show launcher (hidden by default)</source>
-        <translation>Indító megjelenítése (alapértelmezés szerint rejtve)</translation>
+        <translation type="vanished">Indító megjelenítése (alapértelmezés szerint rejtve)</translation>
     </message>
     <message>
-        <location filename="../../launchercontroller.cpp" line="20"/>
         <source>Toggle launcher visibility</source>
-        <translation>Az indító láthatóságának váltása</translation>
+        <translation type="vanished">Az indító láthatóságának váltása</translation>
     </message>
 </context>
 <context>
@@ -162,9 +160,13 @@
         <translation>Grafika</translation>
     </message>
     <message>
-        <location filename="../../qml/Main.qml" line="32"/>
         <source>Game</source>
-        <translation>Játékok</translation>
+        <translation type="vanished">Játékok</translation>
+    </message>
+    <message>
+        <location filename="../../qml/Main.qml" line="32"/>
+        <source>Games</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../qml/Main.qml" line="34"/>
@@ -192,17 +194,17 @@
         <translation>Egyéb</translation>
     </message>
     <message>
-        <location filename="../../qml/Main.qml" line="411"/>
+        <location filename="../../qml/Main.qml" line="400"/>
         <source>Are you sure you want to uninstall %1?</source>
         <translation>Biztosan el szeretné távolítani a következőt: %1?</translation>
     </message>
     <message>
-        <location filename="../../qml/Main.qml" line="423"/>
+        <location filename="../../qml/Main.qml" line="412"/>
         <source>Cancel</source>
         <translation>Mégsem</translation>
     </message>
     <message>
-        <location filename="../../qml/Main.qml" line="437"/>
+        <location filename="../../qml/Main.qml" line="426"/>
         <source>Confirm</source>
         <translation>Megerősítés</translation>
     </message>
@@ -223,8 +225,8 @@
         <translation>Minden alkalmazás</translation>
     </message>
     <message>
+        <location filename="../../qml/FullscreenFrame.qml" line="556"/>
         <location filename="../../qml/windowed/SearchResultView.qml" line="102"/>
-        <location filename="../../qml/FullscreenFrame.qml" line="545"/>
         <source>No search results</source>
         <translation>Nincs keresési eredmény</translation>
     </message>
@@ -280,77 +282,77 @@
 <context>
     <name>launcheritem</name>
     <message>
-        <location filename="../package/launcheritem.qml" line="110"/>
+        <location filename="../package/launcheritem.qml" line="111"/>
         <source>Internet</source>
         <translation type="unfinished">Internet</translation>
     </message>
     <message>
-        <location filename="../package/launcheritem.qml" line="112"/>
+        <location filename="../package/launcheritem.qml" line="113"/>
         <source>Chat</source>
         <translation type="unfinished">Csevegés</translation>
     </message>
     <message>
-        <location filename="../package/launcheritem.qml" line="114"/>
+        <location filename="../package/launcheritem.qml" line="115"/>
         <source>Music</source>
         <translation type="unfinished">Zene</translation>
     </message>
     <message>
-        <location filename="../package/launcheritem.qml" line="116"/>
+        <location filename="../package/launcheritem.qml" line="117"/>
         <source>Video</source>
         <translation type="unfinished">Videó</translation>
     </message>
     <message>
-        <location filename="../package/launcheritem.qml" line="118"/>
+        <location filename="../package/launcheritem.qml" line="119"/>
         <source>Graphics</source>
         <translation type="unfinished">Grafika</translation>
     </message>
     <message>
-        <location filename="../package/launcheritem.qml" line="120"/>
+        <location filename="../package/launcheritem.qml" line="121"/>
         <source>Game</source>
         <translation type="unfinished">Játékok</translation>
     </message>
     <message>
-        <location filename="../package/launcheritem.qml" line="122"/>
+        <location filename="../package/launcheritem.qml" line="123"/>
         <source>Office</source>
         <translation type="unfinished">Iroda</translation>
     </message>
     <message>
-        <location filename="../package/launcheritem.qml" line="124"/>
+        <location filename="../package/launcheritem.qml" line="125"/>
         <source>Reading</source>
         <translation type="unfinished">Olvasás</translation>
     </message>
     <message>
-        <location filename="../package/launcheritem.qml" line="126"/>
+        <location filename="../package/launcheritem.qml" line="127"/>
         <source>Development</source>
         <translation type="unfinished">Fejlesztés</translation>
     </message>
     <message>
-        <location filename="../package/launcheritem.qml" line="128"/>
+        <location filename="../package/launcheritem.qml" line="129"/>
         <source>System</source>
         <translation type="unfinished">Rendszer</translation>
     </message>
     <message>
-        <location filename="../package/launcheritem.qml" line="130"/>
+        <location filename="../package/launcheritem.qml" line="131"/>
         <source>Others</source>
         <translation type="unfinished">Egyéb</translation>
     </message>
     <message>
-        <location filename="../package/launcheritem.qml" line="140"/>
+        <location filename="../package/launcheritem.qml" line="162"/>
         <source>launchpad</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../package/launcheritem.qml" line="268"/>
+        <location filename="../package/launcheritem.qml" line="299"/>
         <source>Are you sure you want to uninstall %1?</source>
         <translation type="unfinished">Biztosan el szeretné távolítani a következőt: %1?</translation>
     </message>
     <message>
-        <location filename="../package/launcheritem.qml" line="280"/>
+        <location filename="../package/launcheritem.qml" line="311"/>
         <source>Cancel</source>
         <translation type="unfinished">Mégsem</translation>
     </message>
     <message>
-        <location filename="../package/launcheritem.qml" line="294"/>
+        <location filename="../package/launcheritem.qml" line="325"/>
         <source>Confirm</source>
         <translation type="unfinished">Megerősítés</translation>
     </message>

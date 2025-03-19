@@ -77,17 +77,17 @@
 <context>
     <name>BottomBar</name>
     <message>
-        <location filename="../../qml/windowed/BottomBar.qml" line="32"/>
+        <location filename="../../qml/windowed/BottomBar.qml" line="33"/>
         <source>Power</source>
         <translation>電源</translation>
     </message>
     <message>
-        <location filename="../../qml/windowed/BottomBar.qml" line="58"/>
+        <location filename="../../qml/windowed/BottomBar.qml" line="62"/>
         <source>Search</source>
         <translation>搜尋</translation>
     </message>
     <message>
-        <location filename="../../qml/windowed/BottomBar.qml" line="105"/>
+        <location filename="../../qml/windowed/BottomBar.qml" line="109"/>
         <source>Full-screen Mode</source>
         <translation>全螢幕模式</translation>
     </message>
@@ -116,7 +116,7 @@
 <context>
     <name>FullscreenFrame</name>
     <message>
-        <location filename="../../qml/FullscreenFrame.qml" line="152"/>
+        <location filename="../../qml/FullscreenFrame.qml" line="163"/>
         <source>Window Mode</source>
         <translation>窗口模式</translation>
     </message>
@@ -124,14 +124,12 @@
 <context>
     <name>LauncherController</name>
     <message>
-        <location filename="../../launchercontroller.cpp" line="19"/>
         <source>Show launcher (hidden by default)</source>
-        <translation>顯示啟動器（默認為隱藏）</translation>
+        <translation type="vanished">顯示啟動器（默認為隱藏）</translation>
     </message>
     <message>
-        <location filename="../../launchercontroller.cpp" line="20"/>
         <source>Toggle launcher visibility</source>
-        <translation>切換啟動器的可見性</translation>
+        <translation type="vanished">切換啟動器的可見性</translation>
     </message>
 </context>
 <context>
@@ -162,9 +160,13 @@
         <translation>美工繪圖</translation>
     </message>
     <message>
-        <location filename="../../qml/Main.qml" line="32"/>
         <source>Game</source>
-        <translation>遊戲娛樂</translation>
+        <translation type="vanished">遊戲娛樂</translation>
+    </message>
+    <message>
+        <location filename="../../qml/Main.qml" line="32"/>
+        <source>Games</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../qml/Main.qml" line="34"/>
@@ -192,17 +194,17 @@
         <translation>其他應用</translation>
     </message>
     <message>
-        <location filename="../../qml/Main.qml" line="411"/>
+        <location filename="../../qml/Main.qml" line="400"/>
         <source>Are you sure you want to uninstall %1?</source>
         <translation>您確定要卸載 %1 嗎？</translation>
     </message>
     <message>
-        <location filename="../../qml/Main.qml" line="423"/>
+        <location filename="../../qml/Main.qml" line="412"/>
         <source>Cancel</source>
         <translation>取 消</translation>
     </message>
     <message>
-        <location filename="../../qml/Main.qml" line="437"/>
+        <location filename="../../qml/Main.qml" line="426"/>
         <source>Confirm</source>
         <translation>確 定</translation>
     </message>
@@ -223,8 +225,8 @@
         <translation>所有應用</translation>
     </message>
     <message>
+        <location filename="../../qml/FullscreenFrame.qml" line="556"/>
         <location filename="../../qml/windowed/SearchResultView.qml" line="102"/>
-        <location filename="../../qml/FullscreenFrame.qml" line="545"/>
         <source>No search results</source>
         <translation>無搜索結果</translation>
     </message>
@@ -280,77 +282,77 @@
 <context>
     <name>launcheritem</name>
     <message>
-        <location filename="../package/launcheritem.qml" line="110"/>
+        <location filename="../package/launcheritem.qml" line="111"/>
         <source>Internet</source>
         <translation type="unfinished">網際網路</translation>
     </message>
     <message>
-        <location filename="../package/launcheritem.qml" line="112"/>
+        <location filename="../package/launcheritem.qml" line="113"/>
         <source>Chat</source>
         <translation type="unfinished">社交溝通</translation>
     </message>
     <message>
-        <location filename="../package/launcheritem.qml" line="114"/>
+        <location filename="../package/launcheritem.qml" line="115"/>
         <source>Music</source>
         <translation type="unfinished">音樂欣賞</translation>
     </message>
     <message>
-        <location filename="../package/launcheritem.qml" line="116"/>
+        <location filename="../package/launcheritem.qml" line="117"/>
         <source>Video</source>
         <translation type="unfinished">影片播放</translation>
     </message>
     <message>
-        <location filename="../package/launcheritem.qml" line="118"/>
+        <location filename="../package/launcheritem.qml" line="119"/>
         <source>Graphics</source>
         <translation type="unfinished">美工繪圖</translation>
     </message>
     <message>
-        <location filename="../package/launcheritem.qml" line="120"/>
+        <location filename="../package/launcheritem.qml" line="121"/>
         <source>Game</source>
         <translation type="unfinished">遊戲娛樂</translation>
     </message>
     <message>
-        <location filename="../package/launcheritem.qml" line="122"/>
+        <location filename="../package/launcheritem.qml" line="123"/>
         <source>Office</source>
         <translation type="unfinished">文書處理</translation>
     </message>
     <message>
-        <location filename="../package/launcheritem.qml" line="124"/>
+        <location filename="../package/launcheritem.qml" line="125"/>
         <source>Reading</source>
         <translation type="unfinished">閱讀翻譯</translation>
     </message>
     <message>
-        <location filename="../package/launcheritem.qml" line="126"/>
+        <location filename="../package/launcheritem.qml" line="127"/>
         <source>Development</source>
         <translation type="unfinished">程式開發</translation>
     </message>
     <message>
-        <location filename="../package/launcheritem.qml" line="128"/>
+        <location filename="../package/launcheritem.qml" line="129"/>
         <source>System</source>
         <translation type="unfinished">系統管理</translation>
     </message>
     <message>
-        <location filename="../package/launcheritem.qml" line="130"/>
+        <location filename="../package/launcheritem.qml" line="131"/>
         <source>Others</source>
         <translation type="unfinished">其他應用</translation>
     </message>
     <message>
-        <location filename="../package/launcheritem.qml" line="140"/>
+        <location filename="../package/launcheritem.qml" line="162"/>
         <source>launchpad</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../package/launcheritem.qml" line="268"/>
+        <location filename="../package/launcheritem.qml" line="299"/>
         <source>Are you sure you want to uninstall %1?</source>
         <translation type="unfinished">您確定要卸載 %1 嗎？</translation>
     </message>
     <message>
-        <location filename="../package/launcheritem.qml" line="280"/>
+        <location filename="../package/launcheritem.qml" line="311"/>
         <source>Cancel</source>
         <translation type="unfinished">取 消</translation>
     </message>
     <message>
-        <location filename="../package/launcheritem.qml" line="294"/>
+        <location filename="../package/launcheritem.qml" line="325"/>
         <source>Confirm</source>
         <translation type="unfinished">確 定</translation>
     </message>
