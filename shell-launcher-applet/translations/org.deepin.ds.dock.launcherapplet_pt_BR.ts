@@ -87,7 +87,7 @@
     <message>
         <location filename="../../qml/windowed/BottomBar.qml" line="109"/>
         <source>Full-screen Mode</source>
-        <translation>Modo de tela cheia</translation>
+        <translation>Modo tela cheia</translation>
     </message>
 </context>
 <context>
