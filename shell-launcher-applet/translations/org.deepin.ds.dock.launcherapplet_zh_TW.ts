@@ -307,7 +307,7 @@
     <message>
         <location filename="../package/launcheritem.qml" line="127"/>
         <source>Development</source>
-        <translation type="unfinished"/>
+        <translation>編程開發</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="129"/>
