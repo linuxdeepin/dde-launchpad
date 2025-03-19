@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="es">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="es">
 <context>
     <name>AppItemMenu</name>
     <message>
@@ -30,13 +28,13 @@
     </message>
     <message>
         <location filename="../../qml/AppItemMenu.qml" line="80"/>
-        <source>Send to desktop</source>
-        <translation>Enviar al escritorio</translation>
+        <source>Remove from desktop</source>
+        <translation>Quitar del escritorio</translation>
     </message>
     <message>
         <location filename="../../qml/AppItemMenu.qml" line="80"/>
-        <source>Remove from desktop</source>
-        <translation>Quitar del escritorio</translation>
+        <source>Send to desktop</source>
+        <translation>Enviar al escritorio</translation>
     </message>
     <message>
         <location filename="../../qml/AppItemMenu.qml" line="91"/>
@@ -50,13 +48,13 @@
     </message>
     <message>
         <location filename="../../qml/AppItemMenu.qml" line="103"/>
-        <source>Add to startup</source>
-        <translation>Añadir al arranque</translation>
+        <source>Remove from startup</source>
+        <translation>Quitar del arranque</translation>
     </message>
     <message>
         <location filename="../../qml/AppItemMenu.qml" line="103"/>
-        <source>Remove from startup</source>
-        <translation>Quitar del arranque</translation>
+        <source>Add to startup</source>
+        <translation>Añadir al arranque</translation>
     </message>
     <message>
         <location filename="../../qml/AppItemMenu.qml" line="111"/>
@@ -119,17 +117,6 @@
         <location filename="../../qml/FullscreenFrame.qml" line="163"/>
         <source>Window Mode</source>
         <translation>Modo ventana</translation>
-    </message>
-</context>
-<context>
-    <name>LauncherController</name>
-    <message>
-        <source>Show launcher (hidden by default)</source>
-        <translation type="vanished">Mostrar el lanzador (oculto por defecto)</translation>
-    </message>
-    <message>
-        <source>Toggle launcher visibility</source>
-        <translation type="vanished">Alternar la visibilidad del lanzador</translation>
     </message>
 </context>
 <context>
@@ -280,77 +267,77 @@
     <message>
         <location filename="../package/launcheritem.qml" line="111"/>
         <source>Internet</source>
-        <translation type="unfinished">Internet</translation>
+        <translation>Internet</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="113"/>
         <source>Chat</source>
-        <translation type="unfinished">Mensajería</translation>
+        <translation>Mensajería</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="115"/>
         <source>Music</source>
-        <translation type="unfinished">Música</translation>
+        <translation>Música</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="117"/>
         <source>Video</source>
-        <translation type="unfinished">Vídeo</translation>
+        <translation>Vídeo</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="119"/>
         <source>Graphics</source>
-        <translation type="unfinished">Gráficos</translation>
+        <translation>Gráficos</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="121"/>
         <source>Games</source>
-        <translation type="unfinished">Juegos</translation>
+        <translation>Juegos</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="123"/>
         <source>Office</source>
-        <translation type="unfinished">Ofimática</translation>
+        <translation>Ofimática</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="125"/>
         <source>Reading</source>
-        <translation type="unfinished">Lectura</translation>
+        <translation>Lectura</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="127"/>
         <source>Development</source>
-        <translation type="unfinished">Desarrollo</translation>
+        <translation>Desarrollo</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="129"/>
         <source>System</source>
-        <translation type="unfinished">Sistema</translation>
+        <translation>Sistema</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="131"/>
         <source>Others</source>
-        <translation type="unfinished">Otros</translation>
+        <translation>Otros</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="162"/>
         <source>launchpad</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="299"/>
         <source>Are you sure you want to uninstall %1?</source>
-        <translation type="unfinished">¿Seguro que desea desinstalar %1?</translation>
+        <translation>¿Seguro que desea desinstalar %1?</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="311"/>
         <source>Cancel</source>
-        <translation type="unfinished">Cancelar</translation>
+        <translation>Cancelar</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="325"/>
         <source>Confirm</source>
-        <translation type="unfinished">Confirmar</translation>
+        <translation>Confirmar</translation>
     </message>
 </context>
 </TS>
