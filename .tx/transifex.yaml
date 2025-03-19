@@ -3,9 +3,9 @@
 # SPDX-License-Identifier: CC0-1.0
 filters:
   - filter_type: file
-    source_file: translations/dde-launchpad.ts
+    source_file: shell-launcher-applet/translations/org.deepin.ds.dock.launcherapplet.ts
     file_format: QT
     source_language: en_US
-    translation_files_expression: translations/dde-launchpad_<lang>.ts
+    translation_files_expression: shell-launcher-applet/translations/org.deepin.ds.dock.launcherapplet_<lang>.ts
 settings:
   pr_branch_name: transifex_update_<br_unique_id>
