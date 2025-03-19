@@ -317,7 +317,7 @@
     <message>
         <location filename="../package/launcheritem.qml" line="131"/>
         <source>Others</source>
-        <translation type="unfinished"/>
+        <translation>其他应用</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="162"/>
