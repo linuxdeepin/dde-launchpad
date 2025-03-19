@@ -267,12 +267,12 @@
     <message>
         <location filename="../package/launcheritem.qml" line="111"/>
         <source>Internet</source>
-        <translation type="unfinished"/>
+        <translation>网络应用</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="113"/>
         <source>Chat</source>
-        <translation type="unfinished"/>
+        <translation>社交沟通</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="115"/>
