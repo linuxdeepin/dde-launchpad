@@ -312,7 +312,7 @@
     <message>
         <location filename="../package/launcheritem.qml" line="129"/>
         <source>System</source>
-        <translation type="unfinished"/>
+        <translation>系統管理</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="131"/>
