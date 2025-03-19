@@ -327,7 +327,7 @@
     <message>
         <location filename="../package/launcheritem.qml" line="299"/>
         <source>Are you sure you want to uninstall %1?</source>
-        <translation type="unfinished"/>
+        <translation>Sind Sie sicher, dass Sie %1 deinstallieren wollen?</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="311"/>
