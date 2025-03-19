@@ -272,7 +272,7 @@
     <message>
         <location filename="../package/launcheritem.qml" line="113"/>
         <source>Chat</source>
-        <translation>Chat</translation>
+        <translation>Chatten</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="115"/>
@@ -337,7 +337,7 @@
     <message>
         <location filename="../package/launcheritem.qml" line="325"/>
         <source>Confirm</source>
-        <translation type="unfinished"/>
+        <translation>Oké</translation>
     </message>
 </context>
 </TS>
