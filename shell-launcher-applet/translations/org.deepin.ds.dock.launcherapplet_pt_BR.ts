@@ -272,7 +272,7 @@
     <message>
         <location filename="../package/launcheritem.qml" line="113"/>
         <source>Chat</source>
-        <translation type="unfinished"/>
+        <translation>Bate papo</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="115"/>
