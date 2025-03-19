@@ -118,7 +118,7 @@ AppletItem {
         case AppItem.Graphics:
             return qsTr("Graphics");
         case AppItem.Game:
-            return qsTr("Game");
+            return qsTr("Games");
         case AppItem.Office:
             return qsTr("Office");
         case AppItem.Reading:

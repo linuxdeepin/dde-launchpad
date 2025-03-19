@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="ru">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="ru">
 <context>
     <name>AppItemMenu</name>
     <message>
@@ -14,7 +16,7 @@
     <message>
         <location filename="../qml/AppItemMenu.qml" line="55"/>
         <source>Move to Top</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../qml/AppItemMenu.qml" line="65"/>
@@ -95,7 +97,7 @@
     <message>
         <location filename="../qml/DummyAppItemMenu.qml" line="27"/>
         <source>Install</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../qml/DummyAppItemMenu.qml" line="34"/>
@@ -116,7 +118,7 @@
     <message>
         <location filename="../qml/FullscreenFrame.qml" line="163"/>
         <source>Window Mode</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -162,7 +164,7 @@
     <message>
         <location filename="../qml/Main.qml" line="32"/>
         <source>Games</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="34"/>
