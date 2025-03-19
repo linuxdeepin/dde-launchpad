@@ -87,7 +87,7 @@
     <message>
         <location filename="../../qml/windowed/BottomBar.qml" line="109"/>
         <source>Full-screen Mode</source>
-        <translation>Teljes képernyős Mód</translation>
+        <translation>Teljes képernyős használat</translation>
     </message>
 </context>
 <context>
