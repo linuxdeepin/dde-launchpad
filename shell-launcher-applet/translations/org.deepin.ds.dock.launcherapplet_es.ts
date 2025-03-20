@@ -211,7 +211,7 @@
         <location filename="../../qml/FullscreenFrame.qml" line="556"/>
         <location filename="../../qml/windowed/SearchResultView.qml" line="102"/>
         <source>No search results</source>
-        <translation>No hay resultados</translation>
+        <translation>Sin resultados</translation>
     </message>
 </context>
 <context>
