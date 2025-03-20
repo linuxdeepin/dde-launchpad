@@ -64,7 +64,7 @@
     <message>
         <location filename="../../qml/AppItemMenu.qml" line="120"/>
         <source>Disable display scaling</source>
-        <translation>Desactivar el escalado de la pantalla</translation>
+        <translation>Desactivar escalado de pantalla</translation>
     </message>
     <message>
         <location filename="../../qml/AppItemMenu.qml" line="127"/>
@@ -179,7 +179,7 @@
     <message>
         <location filename="../../qml/Main.qml" line="400"/>
         <source>Are you sure you want to uninstall %1?</source>
-        <translation>¿Seguro que desea desinstalar %1?</translation>
+        <translation>¿Seguro desea desinstalar %1?</translation>
     </message>
     <message>
         <location filename="../../qml/Main.qml" line="412"/>
@@ -211,7 +211,7 @@
         <location filename="../../qml/FullscreenFrame.qml" line="556"/>
         <location filename="../../qml/windowed/SearchResultView.qml" line="102"/>
         <source>No search results</source>
-        <translation>No hay resultados</translation>
+        <translation>Sin resultados</translation>
     </message>
 </context>
 <context>
@@ -322,12 +322,12 @@
     <message>
         <location filename="../package/launcheritem.qml" line="162"/>
         <source>launchpad</source>
-        <translation type="unfinished"/>
+        <translation>Inicio</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="299"/>
         <source>Are you sure you want to uninstall %1?</source>
-        <translation>¿Seguro que desea desinstalar %1?</translation>
+        <translation>¿Seguro desea desinstalar %1?</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="311"/>

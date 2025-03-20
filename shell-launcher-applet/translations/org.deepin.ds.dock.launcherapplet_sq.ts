@@ -149,7 +149,7 @@
     <message>
         <location filename="../../qml/Main.qml" line="32"/>
         <source>Games</source>
-        <translation type="unfinished"/>
+        <translation>Lojëra</translation>
     </message>
     <message>
         <location filename="../../qml/Main.qml" line="34"/>
@@ -267,57 +267,57 @@
     <message>
         <location filename="../package/launcheritem.qml" line="111"/>
         <source>Internet</source>
-        <translation type="unfinished"/>
+        <translation>Internet</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="113"/>
         <source>Chat</source>
-        <translation type="unfinished"/>
+        <translation>Fjalosje</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="115"/>
         <source>Music</source>
-        <translation type="unfinished"/>
+        <translation>Muzikë</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="117"/>
         <source>Video</source>
-        <translation type="unfinished"/>
+        <translation>Video</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="119"/>
         <source>Graphics</source>
-        <translation type="unfinished"/>
+        <translation>Grafika</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="121"/>
         <source>Games</source>
-        <translation type="unfinished"/>
+        <translation>Lojëra</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="123"/>
         <source>Office</source>
-        <translation type="unfinished"/>
+        <translation>Zyrë</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="125"/>
         <source>Reading</source>
-        <translation type="unfinished"/>
+        <translation>Lexim</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="127"/>
         <source>Development</source>
-        <translation type="unfinished"/>
+        <translation>Zhvillim</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="129"/>
         <source>System</source>
-        <translation type="unfinished"/>
+        <translation>Sistem</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="131"/>
         <source>Others</source>
-        <translation type="unfinished"/>
+        <translation>Të tjera</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="162"/>
@@ -327,17 +327,17 @@
     <message>
         <location filename="../package/launcheritem.qml" line="299"/>
         <source>Are you sure you want to uninstall %1?</source>
-        <translation type="unfinished"/>
+        <translation>Jeni i sigurt se doni të çinstalohet %1?</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="311"/>
         <source>Cancel</source>
-        <translation type="unfinished"/>
+        <translation>Anuloje</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="325"/>
         <source>Confirm</source>
-        <translation type="unfinished"/>
+        <translation>Ripohojeni</translation>
     </message>
 </context>
 </TS>

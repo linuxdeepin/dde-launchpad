@@ -87,7 +87,7 @@
     <message>
         <location filename="../../qml/windowed/BottomBar.qml" line="109"/>
         <source>Full-screen Mode</source>
-        <translation>Teljes képernyős Mód</translation>
+        <translation>Teljes képernyős használat</translation>
     </message>
 </context>
 <context>
@@ -149,7 +149,7 @@
     <message>
         <location filename="../../qml/Main.qml" line="32"/>
         <source>Games</source>
-        <translation type="unfinished"/>
+        <translation>Játékok</translation>
     </message>
     <message>
         <location filename="../../qml/Main.qml" line="34"/>
@@ -267,77 +267,77 @@
     <message>
         <location filename="../package/launcheritem.qml" line="111"/>
         <source>Internet</source>
-        <translation type="unfinished"/>
+        <translation>Világháló</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="113"/>
         <source>Chat</source>
-        <translation type="unfinished"/>
+        <translation>Csevegés</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="115"/>
         <source>Music</source>
-        <translation type="unfinished"/>
+        <translation>Zene</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="117"/>
         <source>Video</source>
-        <translation type="unfinished"/>
+        <translation>Videó</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="119"/>
         <source>Graphics</source>
-        <translation type="unfinished"/>
+        <translation>Grafika</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="121"/>
         <source>Games</source>
-        <translation type="unfinished"/>
+        <translation>Játékok</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="123"/>
         <source>Office</source>
-        <translation type="unfinished"/>
+        <translation>Iroda</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="125"/>
         <source>Reading</source>
-        <translation type="unfinished"/>
+        <translation>Olvasás</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="127"/>
         <source>Development</source>
-        <translation type="unfinished"/>
+        <translation>Fejlesztés</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="129"/>
         <source>System</source>
-        <translation type="unfinished"/>
+        <translation>Rendszer</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="131"/>
         <source>Others</source>
-        <translation type="unfinished"/>
+        <translation>Egyéb</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="162"/>
         <source>launchpad</source>
-        <translation type="unfinished"/>
+        <translation>indítópult</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="299"/>
         <source>Are you sure you want to uninstall %1?</source>
-        <translation type="unfinished"/>
+        <translation>Biztosan eltávolítja a következőt: %1?</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="311"/>
         <source>Cancel</source>
-        <translation type="unfinished"/>
+        <translation>Mégse</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="325"/>
         <source>Confirm</source>
-        <translation type="unfinished"/>
+        <translation>Megerősít</translation>
     </message>
 </context>
 </TS>
