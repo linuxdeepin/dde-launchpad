@@ -1,3 +1,10 @@
+dde-launchpad (1.99.10) UNRELEASED; urgency=medium
+
+  * fix: incorrect selectedTextColor for folderPopup (Bug-301103)
+  * fix: correct category name for Games (Bug-289127)
+
+ -- Wang Zichong <wangzichong@deepin.org>  Fri, 21 Mar 2025 9:10:00 +0800
+
 dde-launchpad (1.99.9) UNRELEASED; urgency=medium
 
   * fix: assign fullscreen frame screen on init completed (Bug-300309)
