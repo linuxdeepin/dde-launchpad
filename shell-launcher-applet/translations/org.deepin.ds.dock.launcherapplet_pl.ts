@@ -317,12 +317,12 @@
     <message>
         <location filename="../package/launcheritem.qml" line="131"/>
         <source>Others</source>
-        <translation type="unfinished"/>
+        <translation>Inne</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="162"/>
         <source>launchpad</source>
-        <translation type="unfinished"/>
+        <translation>launchpad</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="299"/>
