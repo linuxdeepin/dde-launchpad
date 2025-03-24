@@ -332,7 +332,7 @@
     <message>
         <location filename="../package/launcheritem.qml" line="311"/>
         <source>Cancel</source>
-        <translation type="unfinished"/>
+        <translation>Atsisakyti</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="325"/>
