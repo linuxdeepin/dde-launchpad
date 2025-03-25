@@ -18,7 +18,8 @@ Q_CONSTRUCTOR_FUNCTION(registerComplexDbusType);
 static QString parseDisplayName(const QStringMap &source)
 {
     static QString key = QLocale::system().name();
-    return source.value(key, source.value(u8"default"));
+    const QString & defaultValue = source.value(u8"default");
+    return source.value(key, key.contains('_') ? source.value(key.split('_')[0], defaultValue) : defaultValue);
 }
 
 static QString parseName(const QStringMap &source)
