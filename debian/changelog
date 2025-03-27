@@ -1,3 +1,10 @@
+dde-launchpad (1.0.11) unstable; urgency=medium
+
+  * fix: add base locale as fallback for app display name
+  * chore: update section to DDE in debian/control
+
+ -- Wang Zichong <wangzichong@deepin.org>  Thu, 27 Mar 2025 17:25:00 +0800
+
 dde-launchpad (1.0.10) unstable; urgency=medium
 
   * fix: the search results are displayed in the middle (#496)
