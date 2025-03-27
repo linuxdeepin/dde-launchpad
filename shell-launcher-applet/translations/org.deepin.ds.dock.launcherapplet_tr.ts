@@ -19,12 +19,12 @@
     <message>
         <location filename="../../qml/AppItemMenu.qml" line="65"/>
         <source>Remove from favorites</source>
-        <translation type="unfinished"/>
+        <translation>Favorilerden kaldır</translation>
     </message>
     <message>
         <location filename="../../qml/AppItemMenu.qml" line="65"/>
         <source>Add to favorites</source>
-        <translation type="unfinished"/>
+        <translation>Favorilere ekle</translation>
     </message>
     <message>
         <location filename="../../qml/AppItemMenu.qml" line="80"/>
