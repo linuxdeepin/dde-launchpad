@@ -29,7 +29,7 @@
     <message>
         <location filename="../../qml/AppItemMenu.qml" line="80"/>
         <source>Remove from desktop</source>
-        <translation type="unfinished"/>
+        <translation>Masaüstünden kaldır</translation>
     </message>
     <message>
         <location filename="../../qml/AppItemMenu.qml" line="80"/>
@@ -49,12 +49,12 @@
     <message>
         <location filename="../../qml/AppItemMenu.qml" line="103"/>
         <source>Remove from startup</source>
-        <translation type="unfinished"/>
+        <translation>Başlangıçtan kaldır</translation>
     </message>
     <message>
         <location filename="../../qml/AppItemMenu.qml" line="103"/>
         <source>Add to startup</source>
-        <translation type="unfinished"/>
+        <translation>Başlangıca ekle</translation>
     </message>
     <message>
         <location filename="../../qml/AppItemMenu.qml" line="111"/>
