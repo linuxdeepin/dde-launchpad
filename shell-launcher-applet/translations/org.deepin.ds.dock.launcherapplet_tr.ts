@@ -59,12 +59,12 @@
     <message>
         <location filename="../../qml/AppItemMenu.qml" line="111"/>
         <source>Use a proxy</source>
-        <translation type="unfinished"/>
+        <translation>Vekil sunucu kullan</translation>
     </message>
     <message>
         <location filename="../../qml/AppItemMenu.qml" line="120"/>
         <source>Disable display scaling</source>
-        <translation type="unfinished"/>
+        <translation>Ekran ölçeklendirmeyi devre dışı bırak</translation>
     </message>
     <message>
         <location filename="../../qml/AppItemMenu.qml" line="127"/>
@@ -108,7 +108,7 @@
     <message>
         <location filename="../../qml/windowed/FrequentlyUsedView.qml" line="36"/>
         <source>Frequently Used</source>
-        <translation type="unfinished"/>
+        <translation>Sık kullanılır</translation>
     </message>
 </context>
 <context>
@@ -179,7 +179,7 @@
     <message>
         <location filename="../../qml/Main.qml" line="400"/>
         <source>Are you sure you want to uninstall %1?</source>
-        <translation type="unfinished"/>
+        <translation>%1 uygulamasını kaldırmak istediğinize emin misiniz?</translation>
     </message>
     <message>
         <location filename="../../qml/Main.qml" line="412"/>
