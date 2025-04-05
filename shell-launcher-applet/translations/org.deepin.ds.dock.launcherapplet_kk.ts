@@ -1,75 +1,75 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="ar">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="kk">
 <context>
     <name>AppItemMenu</name>
     <message>
         <location filename="../../qml/AppItemMenu.qml" line="34"/>
         <source>Open</source>
-        <translation>افتح</translation>
+        <translation>Көрсөткү</translation>
     </message>
     <message>
         <location filename="../../qml/AppItemMenu.qml" line="46"/>
         <source>Pin to Top</source>
-        <translation>اسفل إلى الأعلى</translation>
+        <translation>Түз жана таңда</translation>
     </message>
     <message>
         <location filename="../../qml/AppItemMenu.qml" line="55"/>
         <source>Move to Top</source>
-        <translation>نقل إلى الأعلى</translation>
+        <translation>Түз жана таңда</translation>
     </message>
     <message>
         <location filename="../../qml/AppItemMenu.qml" line="65"/>
         <source>Remove from favorites</source>
-        <translation>إزالة من المفضلة</translation>
+        <translation>Күчкүнүн туралы алып келүү</translation>
     </message>
     <message>
         <location filename="../../qml/AppItemMenu.qml" line="65"/>
         <source>Add to favorites</source>
-        <translation>إضافة إلى المفضلة</translation>
+        <translation>Күчкүнүн туралы жеткиликтүрүү</translation>
     </message>
     <message>
         <location filename="../../qml/AppItemMenu.qml" line="80"/>
         <source>Remove from desktop</source>
-        <translation>إزالة من سطح المكتب</translation>
+        <translation>Дэсктоптун туралы алып келүү</translation>
     </message>
     <message>
         <location filename="../../qml/AppItemMenu.qml" line="80"/>
         <source>Send to desktop</source>
-        <translation>إرسال إلى سطح المكتب</translation>
+        <translation>Дэсктопка жеткиликтүрүү</translation>
     </message>
     <message>
         <location filename="../../qml/AppItemMenu.qml" line="91"/>
         <source>Remove from dock</source>
-        <translation>إزالة من الرصيف</translation>
+        <translation>Доктан алып келүү</translation>
     </message>
     <message>
         <location filename="../../qml/AppItemMenu.qml" line="91"/>
         <source>Send to dock</source>
-        <translation>إرسال إلى الرصيف</translation>
+        <translation>Докка жеткиликтүрүү</translation>
     </message>
     <message>
         <location filename="../../qml/AppItemMenu.qml" line="103"/>
         <source>Remove from startup</source>
-        <translation>إزالة من بدء التشغيل</translation>
+        <translation>Башталыштан алып келүү</translation>
     </message>
     <message>
         <location filename="../../qml/AppItemMenu.qml" line="103"/>
         <source>Add to startup</source>
-        <translation>إضافة إلى بدء التشغيل</translation>
+        <translation>Башталышка жеткиликтүрүү</translation>
     </message>
     <message>
         <location filename="../../qml/AppItemMenu.qml" line="111"/>
         <source>Use a proxy</source>
-        <translation>استخدام وكيل</translation>
+        <translation>Просекти колдонуу</translation>
     </message>
     <message>
         <location filename="../../qml/AppItemMenu.qml" line="120"/>
         <source>Disable display scaling</source>
-        <translation>تعطيل توسيع الشاشة</translation>
+        <translation>Көрсөтүүнүн ордуна чейиндөө кылуу</translation>
     </message>
     <message>
         <location filename="../../qml/AppItemMenu.qml" line="127"/>
         <source>Uninstall</source>
-        <translation>إزالة</translation>
+        <translation>Жабуу</translation>
     </message>
 </context>
 <context>
@@ -77,17 +77,17 @@
     <message>
         <location filename="../../qml/windowed/BottomBar.qml" line="33"/>
         <source>Power</source>
-        <translation>الطاقة</translation>
+        <translation>Жарык</translation>
     </message>
     <message>
         <location filename="../../qml/windowed/BottomBar.qml" line="62"/>
         <source>Search</source>
-        <translation>البحث</translation>
+        <translation>Такырып табуу</translation>
     </message>
     <message>
         <location filename="../../qml/windowed/BottomBar.qml" line="109"/>
         <source>Full-screen Mode</source>
-        <translation>وضع الشاشة الكاملة</translation>
+        <translation>Жалпы экрандык режим</translation>
     </message>
 </context>
 <context>
@@ -95,12 +95,12 @@
     <message>
         <location filename="../../qml/DummyAppItemMenu.qml" line="27"/>
         <source>Install</source>
-        <translation>تثبيت</translation>
+        <translation>Куруу</translation>
     </message>
     <message>
         <location filename="../../qml/DummyAppItemMenu.qml" line="34"/>
         <source>Remove</source>
-        <translation>إزالة</translation>
+        <translation>Алып келүү</translation>
     </message>
 </context>
 <context>
@@ -108,7 +108,7 @@
     <message>
         <location filename="../../qml/windowed/FrequentlyUsedView.qml" line="36"/>
         <source>Frequently Used</source>
-        <translation>المستخدمة بشكل متكرر</translation>
+        <translation>Көбөй түшүлүшүү</translation>
     </message>
 </context>
 <context>
@@ -116,7 +116,7 @@
     <message>
         <location filename="../../qml/FullscreenFrame.qml" line="163"/>
         <source>Window Mode</source>
-        <translation>وضع النافذة</translation>
+        <translation>Көзгө көрсөтүү</translation>
     </message>
 </context>
 <context>
@@ -124,72 +124,72 @@
     <message>
         <location filename="../../qml/Main.qml" line="22"/>
         <source>Internet</source>
-        <translation>إنترنت</translation>
+        <translation>Интернет</translation>
     </message>
     <message>
         <location filename="../../qml/Main.qml" line="24"/>
         <source>Chat</source>
-        <translation>الدردشة</translation>
+        <translation>Чат</translation>
     </message>
     <message>
         <location filename="../../qml/Main.qml" line="26"/>
         <source>Music</source>
-        <translation>الموسيقى</translation>
+        <translation>Музика</translation>
     </message>
     <message>
         <location filename="../../qml/Main.qml" line="28"/>
         <source>Video</source>
-        <translation>الفيديو</translation>
+        <translation>Видео</translation>
     </message>
     <message>
         <location filename="../../qml/Main.qml" line="30"/>
         <source>Graphics</source>
-        <translation>رسومات</translation>
+        <translation>Графика</translation>
     </message>
     <message>
         <location filename="../../qml/Main.qml" line="32"/>
         <source>Games</source>
-        <translation>ألعاب</translation>
+        <translation>Дыңдылар</translation>
     </message>
     <message>
         <location filename="../../qml/Main.qml" line="34"/>
         <source>Office</source>
-        <translation>مكتب</translation>
+        <translation>Офис</translation>
     </message>
     <message>
         <location filename="../../qml/Main.qml" line="36"/>
         <source>Reading</source>
-        <translation>قراءة</translation>
+        <translation>Жазылыш</translation>
     </message>
     <message>
         <location filename="../../qml/Main.qml" line="38"/>
         <source>Development</source>
-        <translation>التطوير</translation>
+        <translation>Жетекчилық</translation>
     </message>
     <message>
         <location filename="../../qml/Main.qml" line="40"/>
         <source>System</source>
-        <translation>نظام</translation>
+        <translation>Система</translation>
     </message>
     <message>
         <location filename="../../qml/Main.qml" line="42"/>
         <source>Others</source>
-        <translation>أخرى</translation>
+        <translation>Келесілер</translation>
     </message>
     <message>
         <location filename="../../qml/Main.qml" line="400"/>
         <source>Are you sure you want to uninstall %1?</source>
-        <translation>هل أنت متأكد ترغب في إزالة %1؟</translation>
+        <translation>Сиз %1-ды көлөмдөө үчүн эле ээ?</translation>
     </message>
     <message>
         <location filename="../../qml/Main.qml" line="412"/>
         <source>Cancel</source>
-        <translation>إلغاء</translation>
+        <translation>Токтотуу</translation>
     </message>
     <message>
         <location filename="../../qml/Main.qml" line="426"/>
         <source>Confirm</source>
-        <translation>تأكيد</translation>
+        <translation>Таанытуу</translation>
     </message>
 </context>
 <context>
@@ -197,7 +197,7 @@
     <message>
         <location filename="../../qml/windowed/RecentlyInstalledView.qml" line="34"/>
         <source>Recently Installed</source>
-        <translation>تمت مؤخرًا التثبيت</translation>
+        <translation>Жаңы көрсөтүлгөн</translation>
     </message>
 </context>
 <context>
@@ -205,13 +205,13 @@
     <message>
         <location filename="../../qml/windowed/SearchResultView.qml" line="37"/>
         <source>All Apps</source>
-        <translation>كل التطبيقات</translation>
+        <translation>Бардык архивлер</translation>
     </message>
     <message>
         <location filename="../../qml/FullscreenFrame.qml" line="556"/>
         <location filename="../../qml/windowed/SearchResultView.qml" line="102"/>
         <source>No search results</source>
-        <translation>لا نتائج بحث</translation>
+        <translation>Көбөймө жооптун жок</translation>
     </message>
 </context>
 <context>
@@ -219,47 +219,47 @@
     <message>
         <location filename="../../qml/windowed/SideBar.qml" line="40"/>
         <source>Free sorting</source>
-        <translation>فرز مجاني</translation>
+        <translation>Без тартиби</translation>
     </message>
     <message>
         <location filename="../../qml/windowed/SideBar.qml" line="54"/>
         <source>Sort by category</source>
-        <translation>فرز حسب الفئة</translation>
+        <translation>Кategорияга тартиби</translation>
     </message>
     <message>
         <location filename="../../qml/windowed/SideBar.qml" line="66"/>
         <source>Sort by name</source>
-        <translation>فرز حسب الاسم</translation>
+        <translation>Атына тартиби</translation>
     </message>
     <message>
         <location filename="../../qml/windowed/SideBar.qml" line="90"/>
         <source>Sorting Mode</source>
-        <translation>وضع الفرز</translation>
+        <translation>Тартуу режими</translation>
     </message>
     <message>
         <location filename="../../qml/windowed/SideBar.qml" line="145"/>
         <source>Computer</source>
-        <translation>جهاز الكمبيوتر</translation>
+        <translation>Компьютер</translation>
     </message>
     <message>
         <location filename="../../qml/windowed/SideBar.qml" line="156"/>
         <source>Pictures</source>
-        <translation>صور</translation>
+        <translation>Каралет</translation>
     </message>
     <message>
         <location filename="../../qml/windowed/SideBar.qml" line="167"/>
         <source>Documents</source>
-        <translation>ملفات</translation>
+        <translation>Документтер</translation>
     </message>
     <message>
         <location filename="../../qml/windowed/SideBar.qml" line="178"/>
         <source>Desktop</source>
-        <translation>السطح المكتب</translation>
+        <translation>Маскот</translation>
     </message>
     <message>
         <location filename="../../qml/windowed/SideBar.qml" line="189"/>
         <source>Control Center</source>
-        <translation>مركز التحكم</translation>
+        <translation>Контроль центри</translation>
     </message>
 </context>
 <context>
@@ -267,77 +267,78 @@
     <message>
         <location filename="../package/launcheritem.qml" line="111"/>
         <source>Internet</source>
-        <translation>الإنترنت</translation>
+        <translation>Интернет</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="113"/>
         <source>Chat</source>
-        <translation>محادثات</translation>
+        <translation>Чат</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="115"/>
         <source>Music</source>
-        <translation>موسيقى</translation>
+        <translation>Музика</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="117"/>
         <source>Video</source>
-        <translation>فيديو</translation>
+        <translation>Видео</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="119"/>
         <source>Graphics</source>
-        <translation>رسومات</translation>
+        <translation>Графика</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="121"/>
         <source>Games</source>
-        <translation>ألعاب</translation>
+        <translation>Ойындар</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="123"/>
         <source>Office</source>
-        <translation>مكتب</translation>
+        <translation>Кабинет</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="125"/>
         <source>Reading</source>
-        <translation>قراءة</translation>
+        <translation>Жазып-қалу</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="127"/>
         <source>Development</source>
-        <translation>تطوير</translation>
+        <translation>Девелопмент</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="129"/>
         <source>System</source>
-        <translation>نظام</translation>
+        <translation>Система</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="131"/>
         <source>Others</source>
-        <translation>أخرى</translation>
+        <translation>Басқа</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="162"/>
         <source>launchpad</source>
-        <translation>مصدر التحية</translation>
+        <translation>Launchpad</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="299"/>
         <source>Are you sure you want to uninstall %1?</source>
-        <translation>هل أنت متأكد من أنك تريد إلغاء تثبيت %1؟</translation>
+        <translation>Сіз %1-ні жоюшыңыз дейін міндеттімініз?
+</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="311"/>
         <source>Cancel</source>
-        <translation>إلغاء</translation>
+        <translation>Отмена</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="325"/>
         <source>Confirm</source>
-        <translation>irms</translation>
+        <translation>Тақырыпты ескеру</translation>
     </message>
 </context>
 </TS>
