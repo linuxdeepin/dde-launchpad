@@ -20,7 +20,8 @@ Appearance::Appearance(QObject *parent)
                                             QDBusConnection::sessionBus(), this))
     , m_wallpaperBlurhash("L35?hb%#0ADeorNFVuy501Me?*%o")
 {
-    QTimer::singleShot(0, this, &Appearance::updateAllWallpaper);
+    m_dbusAppearanceIface->setSync(false);
+    m_dbusAppearanceIface->setUseCache(true);
 
     connect(m_dbusAppearanceIface, &Appearance1::Changed, this, [this](const QString & key, const QString &) {
         if (key == "allwallpaperuris") updateAllWallpaper();
