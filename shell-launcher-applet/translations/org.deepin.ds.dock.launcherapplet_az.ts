@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="az">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="az">
 <context>
     <name>AppItemMenu</name>
     <message>
@@ -11,27 +9,22 @@
     <message>
         <location filename="../../qml/AppItemMenu.qml" line="46"/>
         <source>Pin to Top</source>
-        <translation type="unfinished"></translation>
+        <translation>Yuxarına qov</translation>
     </message>
     <message>
         <location filename="../../qml/AppItemMenu.qml" line="55"/>
         <source>Move to Top</source>
-        <translation type="unfinished"></translation>
+        <translation>Yuxarıya köç</translation>
     </message>
     <message>
         <location filename="../../qml/AppItemMenu.qml" line="65"/>
         <source>Remove from favorites</source>
-        <translation type="unfinished"></translation>
+        <translation>Sevimlilərdən çıxar</translation>
     </message>
     <message>
         <location filename="../../qml/AppItemMenu.qml" line="65"/>
         <source>Add to favorites</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../qml/AppItemMenu.qml" line="80"/>
-        <source>Send to desktop</source>
-        <translation>İş Masasına göndərmək</translation>
+        <translation>Sevimlilərə əlavə et</translation>
     </message>
     <message>
         <location filename="../../qml/AppItemMenu.qml" line="80"/>
@@ -39,9 +32,9 @@
         <translation>İş Masasından silmək</translation>
     </message>
     <message>
-        <location filename="../../qml/AppItemMenu.qml" line="91"/>
-        <source>Send to dock</source>
-        <translation>Dok-a göndərmək</translation>
+        <location filename="../../qml/AppItemMenu.qml" line="80"/>
+        <source>Send to desktop</source>
+        <translation>İş Masasına göndərmək</translation>
     </message>
     <message>
         <location filename="../../qml/AppItemMenu.qml" line="91"/>
@@ -49,14 +42,19 @@
         <translation>Dok-dan silmək</translation>
     </message>
     <message>
-        <location filename="../../qml/AppItemMenu.qml" line="103"/>
-        <source>Add to startup</source>
-        <translation>Avtobaşlatmaya əlavə etmək</translation>
+        <location filename="../../qml/AppItemMenu.qml" line="91"/>
+        <source>Send to dock</source>
+        <translation>Dok-a göndərmək</translation>
     </message>
     <message>
         <location filename="../../qml/AppItemMenu.qml" line="103"/>
         <source>Remove from startup</source>
         <translation>Avtobaşlatmadan silmək</translation>
+    </message>
+    <message>
+        <location filename="../../qml/AppItemMenu.qml" line="103"/>
+        <source>Add to startup</source>
+        <translation>Avtobaşlatmaya əlavə etmək</translation>
     </message>
     <message>
         <location filename="../../qml/AppItemMenu.qml" line="111"/>
@@ -66,7 +64,7 @@
     <message>
         <location filename="../../qml/AppItemMenu.qml" line="120"/>
         <source>Disable display scaling</source>
-        <translation type="unfinished"></translation>
+        <translation>Göstərəc särilmasını etkin etmək</translation>
     </message>
     <message>
         <location filename="../../qml/AppItemMenu.qml" line="127"/>
@@ -75,60 +73,21 @@
     </message>
 </context>
 <context>
-    <name>AppListView</name>
-    <message>
-        <source>Internet</source>
-        <translation type="vanished">İnternet</translation>
-    </message>
-    <message>
-        <source>Chat</source>
-        <translation type="vanished">Çat</translation>
-    </message>
-    <message>
-        <source>Music</source>
-        <translation type="vanished">Musiqi</translation>
-    </message>
-    <message>
-        <source>Video</source>
-        <translation type="vanished">Video</translation>
-    </message>
-    <message>
-        <source>Graphics</source>
-        <translation type="vanished">Qrafikalar</translation>
-    </message>
-    <message>
-        <source>Office</source>
-        <translation type="vanished">Ofis</translation>
-    </message>
-    <message>
-        <source>Reading</source>
-        <translation type="vanished">Oxu</translation>
-    </message>
-    <message>
-        <source>Development</source>
-        <translation type="vanished">Tərtibat</translation>
-    </message>
-    <message>
-        <source>System</source>
-        <translation type="vanished">Sistem</translation>
-    </message>
-</context>
-<context>
     <name>BottomBar</name>
     <message>
         <location filename="../../qml/windowed/BottomBar.qml" line="33"/>
         <source>Power</source>
-        <translation type="unfinished">Elektrik qidalanması</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../../qml/windowed/BottomBar.qml" line="62"/>
         <source>Search</source>
-        <translation type="unfinished">Axtar</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../../qml/windowed/BottomBar.qml" line="109"/>
         <source>Full-screen Mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Şəkildə nəticə</translation>
     </message>
 </context>
 <context>
@@ -136,12 +95,12 @@
     <message>
         <location filename="../../qml/DummyAppItemMenu.qml" line="27"/>
         <source>Install</source>
-        <translation type="unfinished"></translation>
+        <translation>Yüklə</translation>
     </message>
     <message>
         <location filename="../../qml/DummyAppItemMenu.qml" line="34"/>
         <source>Remove</source>
-        <translation type="unfinished"></translation>
+        <translation>Sil</translation>
     </message>
 </context>
 <context>
@@ -149,19 +108,15 @@
     <message>
         <location filename="../../qml/windowed/FrequentlyUsedView.qml" line="36"/>
         <source>Frequently Used</source>
-        <translation type="unfinished"></translation>
+        <translation>Çox istifadə edilən</translation>
     </message>
 </context>
 <context>
     <name>FullscreenFrame</name>
     <message>
-        <source>Search</source>
-        <translation type="obsolete">Axtar</translation>
-    </message>
-    <message>
         <location filename="../../qml/FullscreenFrame.qml" line="163"/>
         <source>Window Mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Pencərə rejimi</translation>
     </message>
 </context>
 <context>
@@ -169,72 +124,73 @@
     <message>
         <location filename="../../qml/Main.qml" line="22"/>
         <source>Internet</source>
-        <translation type="unfinished">İnternet</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../../qml/Main.qml" line="24"/>
         <source>Chat</source>
-        <translation type="unfinished">Çat</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../../qml/Main.qml" line="26"/>
         <source>Music</source>
-        <translation type="unfinished">Musiqi</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../../qml/Main.qml" line="28"/>
         <source>Video</source>
-        <translation type="unfinished">Video</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../../qml/Main.qml" line="30"/>
         <source>Graphics</source>
-        <translation type="unfinished">Qrafikalar</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../../qml/Main.qml" line="32"/>
         <source>Games</source>
-        <translation type="unfinished"></translation>
+        <translation>Oyunlar</translation>
     </message>
     <message>
         <location filename="../../qml/Main.qml" line="34"/>
         <source>Office</source>
-        <translation type="unfinished">Ofis</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../../qml/Main.qml" line="36"/>
         <source>Reading</source>
-        <translation type="unfinished">Oxu</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../../qml/Main.qml" line="38"/>
         <source>Development</source>
-        <translation type="unfinished">Tərtibat</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../../qml/Main.qml" line="40"/>
         <source>System</source>
-        <translation type="unfinished">Sistem</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../../qml/Main.qml" line="42"/>
         <source>Others</source>
-        <translation type="unfinished"></translation>
+        <translation>Digər</translation>
     </message>
     <message>
         <location filename="../../qml/Main.qml" line="400"/>
         <source>Are you sure you want to uninstall %1?</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 cıxartmaq istəyirsiniz?
+</translation>
     </message>
     <message>
         <location filename="../../qml/Main.qml" line="412"/>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>İptal</translation>
     </message>
     <message>
         <location filename="../../qml/Main.qml" line="426"/>
         <source>Confirm</source>
-        <translation type="unfinished"></translation>
+        <translation>Təsdiq et</translation>
     </message>
 </context>
 <context>
@@ -242,7 +198,7 @@
     <message>
         <location filename="../../qml/windowed/RecentlyInstalledView.qml" line="34"/>
         <source>Recently Installed</source>
-        <translation type="unfinished"></translation>
+        <translation>Son yüklənən</translation>
     </message>
 </context>
 <context>
@@ -250,13 +206,13 @@
     <message>
         <location filename="../../qml/windowed/SearchResultView.qml" line="37"/>
         <source>All Apps</source>
-        <translation type="unfinished"></translation>
+        <translation>Bütün uquanlar</translation>
     </message>
     <message>
         <location filename="../../qml/FullscreenFrame.qml" line="556"/>
         <location filename="../../qml/windowed/SearchResultView.qml" line="102"/>
         <source>No search results</source>
-        <translation type="unfinished"></translation>
+        <translation>Axtarış nəticəsi tapılmadı</translation>
     </message>
 </context>
 <context>
@@ -264,62 +220,47 @@
     <message>
         <location filename="../../qml/windowed/SideBar.qml" line="40"/>
         <source>Free sorting</source>
-        <translation type="unfinished"></translation>
+        <translation>Üzvləşdirilməz təbii sıralama</translation>
     </message>
     <message>
         <location filename="../../qml/windowed/SideBar.qml" line="54"/>
         <source>Sort by category</source>
-        <translation type="unfinished"></translation>
+        <translation>Kategoriyalara görə sırala</translation>
     </message>
     <message>
         <location filename="../../qml/windowed/SideBar.qml" line="66"/>
         <source>Sort by name</source>
-        <translation type="unfinished"></translation>
+        <translation>Ada görə sırala</translation>
     </message>
     <message>
         <location filename="../../qml/windowed/SideBar.qml" line="90"/>
         <source>Sorting Mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Sıralama rejimi</translation>
     </message>
     <message>
         <location filename="../../qml/windowed/SideBar.qml" line="145"/>
         <source>Computer</source>
-        <translation type="unfinished"></translation>
+        <translation>Müvəffəqiyətli təbii sıralama</translation>
     </message>
     <message>
         <location filename="../../qml/windowed/SideBar.qml" line="156"/>
         <source>Pictures</source>
-        <translation type="unfinished"></translation>
+        <translation>Şəkillər</translation>
     </message>
     <message>
         <location filename="../../qml/windowed/SideBar.qml" line="167"/>
         <source>Documents</source>
-        <translation type="unfinished"></translation>
+        <translation>Janrillər</translation>
     </message>
     <message>
         <location filename="../../qml/windowed/SideBar.qml" line="178"/>
         <source>Desktop</source>
-        <translation type="unfinished"></translation>
+        <translation>Masaüstü</translation>
     </message>
     <message>
         <location filename="../../qml/windowed/SideBar.qml" line="189"/>
         <source>Control Center</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>WindowedFrame</name>
-    <message>
-        <source>Power</source>
-        <translation type="vanished">Elektrik qidalanması</translation>
-    </message>
-    <message>
-        <source>Settings</source>
-        <translation type="vanished">Tənzimləmələr</translation>
-    </message>
-    <message>
-        <source>Search</source>
-        <translation type="vanished">Axtar</translation>
+        <translation>Kontrol Çərçivəsi</translation>
     </message>
 </context>
 <context>
@@ -327,77 +268,78 @@
     <message>
         <location filename="../package/launcheritem.qml" line="111"/>
         <source>Internet</source>
-        <translation type="unfinished">İnternet</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="113"/>
         <source>Chat</source>
-        <translation type="unfinished">Çat</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="115"/>
         <source>Music</source>
-        <translation type="unfinished">Musiqi</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="117"/>
         <source>Video</source>
-        <translation type="unfinished">Video</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="119"/>
         <source>Graphics</source>
-        <translation type="unfinished">Qrafikalar</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="121"/>
         <source>Games</source>
-        <translation type="unfinished"></translation>
+        <translation>Oyunlar</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="123"/>
         <source>Office</source>
-        <translation type="unfinished">Ofis</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="125"/>
         <source>Reading</source>
-        <translation type="unfinished">Oxu</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="127"/>
         <source>Development</source>
-        <translation type="unfinished">Tərtibat</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="129"/>
         <source>System</source>
-        <translation type="unfinished">Sistem</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="131"/>
         <source>Others</source>
-        <translation type="unfinished"></translation>
+        <translation>Başqa</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="162"/>
         <source>launchpad</source>
-        <translation type="unfinished"></translation>
+        <translation>launchpad</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="299"/>
         <source>Are you sure you want to uninstall %1?</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 cıxış etmək istəyirsiniz?
+</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="311"/>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>İptal</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="325"/>
         <source>Confirm</source>
-        <translation type="unfinished"></translation>
+        <translation>Təsdiq et</translation>
     </message>
 </context>
 </TS>
