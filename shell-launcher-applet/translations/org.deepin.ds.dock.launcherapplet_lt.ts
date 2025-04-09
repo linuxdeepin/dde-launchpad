@@ -9,7 +9,7 @@
     <message>
         <location filename="../../qml/AppItemMenu.qml" line="46"/>
         <source>Pin to Top</source>
-        <translation type="unfinished"/>
+        <translation>Prilygiti į viršų</translation>
     </message>
     <message>
         <location filename="../../qml/AppItemMenu.qml" line="55"/>
@@ -19,12 +19,12 @@
     <message>
         <location filename="../../qml/AppItemMenu.qml" line="65"/>
         <source>Remove from favorites</source>
-        <translation type="unfinished"/>
+        <translation>Pašalinti iš svarbių</translation>
     </message>
     <message>
         <location filename="../../qml/AppItemMenu.qml" line="65"/>
         <source>Add to favorites</source>
-        <translation type="unfinished"/>
+        <translation>Pridėti prie svarbių</translation>
     </message>
     <message>
         <location filename="../../qml/AppItemMenu.qml" line="80"/>
@@ -49,27 +49,27 @@
     <message>
         <location filename="../../qml/AppItemMenu.qml" line="103"/>
         <source>Remove from startup</source>
-        <translation type="unfinished"/>
+        <translation>Pašalinti iš paleidimo</translation>
     </message>
     <message>
         <location filename="../../qml/AppItemMenu.qml" line="103"/>
         <source>Add to startup</source>
-        <translation type="unfinished"/>
+        <translation>Pridėti prie paleidimo</translation>
     </message>
     <message>
         <location filename="../../qml/AppItemMenu.qml" line="111"/>
         <source>Use a proxy</source>
-        <translation type="unfinished"/>
+        <translation>Naudoti proxy</translation>
     </message>
     <message>
         <location filename="../../qml/AppItemMenu.qml" line="120"/>
         <source>Disable display scaling</source>
-        <translation type="unfinished"/>
+        <translation>Išjungti ekrano atvaizdo skalavimą</translation>
     </message>
     <message>
         <location filename="../../qml/AppItemMenu.qml" line="127"/>
         <source>Uninstall</source>
-        <translation type="unfinished"/>
+        <translation>Atsijungti</translation>
     </message>
 </context>
 <context>
@@ -77,12 +77,12 @@
     <message>
         <location filename="../../qml/windowed/BottomBar.qml" line="33"/>
         <source>Power</source>
-        <translation type="unfinished"/>
+        <translation>Galia</translation>
     </message>
     <message>
         <location filename="../../qml/windowed/BottomBar.qml" line="62"/>
         <source>Search</source>
-        <translation type="unfinished"/>
+        <translation>Kerinti</translation>
     </message>
     <message>
         <location filename="../../qml/windowed/BottomBar.qml" line="109"/>
@@ -100,7 +100,7 @@
     <message>
         <location filename="../../qml/DummyAppItemMenu.qml" line="34"/>
         <source>Remove</source>
-        <translation type="unfinished"/>
+        <translation>Pašalinti</translation>
     </message>
 </context>
 <context>
@@ -108,7 +108,7 @@
     <message>
         <location filename="../../qml/windowed/FrequentlyUsedView.qml" line="36"/>
         <source>Frequently Used</source>
-        <translation type="unfinished"/>
+        <translation>Trumpinti naudotus</translation>
     </message>
 </context>
 <context>
@@ -116,7 +116,7 @@
     <message>
         <location filename="../../qml/FullscreenFrame.qml" line="163"/>
         <source>Window Mode</source>
-        <translation type="unfinished"/>
+        <translation>Langas režimas</translation>
     </message>
 </context>
 <context>
@@ -149,7 +149,7 @@
     <message>
         <location filename="../../qml/Main.qml" line="32"/>
         <source>Games</source>
-        <translation type="unfinished"/>
+        <translation>Žaidimai</translation>
     </message>
     <message>
         <location filename="../../qml/Main.qml" line="34"/>
@@ -179,7 +179,8 @@
     <message>
         <location filename="../../qml/Main.qml" line="400"/>
         <source>Are you sure you want to uninstall %1?</source>
-        <translation type="unfinished"/>
+        <translation>Ar tikrai norite atsijungti %1?
+</translation>
     </message>
     <message>
         <location filename="../../qml/Main.qml" line="412"/>
@@ -197,7 +198,7 @@
     <message>
         <location filename="../../qml/windowed/RecentlyInstalledView.qml" line="34"/>
         <source>Recently Installed</source>
-        <translation type="unfinished"/>
+        <translation>Naujai įdiegti</translation>
     </message>
 </context>
 <context>
@@ -211,7 +212,7 @@
         <location filename="../../qml/FullscreenFrame.qml" line="556"/>
         <location filename="../../qml/windowed/SearchResultView.qml" line="102"/>
         <source>No search results</source>
-        <translation type="unfinished"/>
+        <translation>Nėra ieškomo rezultato</translation>
     </message>
 </context>
 <context>
@@ -272,7 +273,7 @@
     <message>
         <location filename="../package/launcheritem.qml" line="113"/>
         <source>Chat</source>
-        <translation type="unfinished"/>
+        <translation>Klaidas</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="115"/>
@@ -282,12 +283,12 @@
     <message>
         <location filename="../package/launcheritem.qml" line="117"/>
         <source>Video</source>
-        <translation type="unfinished"/>
+        <translation>Video</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="119"/>
         <source>Graphics</source>
-        <translation type="unfinished"/>
+        <translation>Grafika</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="121"/>
@@ -322,12 +323,13 @@
     <message>
         <location filename="../package/launcheritem.qml" line="162"/>
         <source>launchpad</source>
-        <translation type="unfinished"/>
+        <translation>launchpad</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="299"/>
         <source>Are you sure you want to uninstall %1?</source>
-        <translation type="unfinished"/>
+        <translation>Ar tikrai norite atsijungti %1?
+</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="311"/>
