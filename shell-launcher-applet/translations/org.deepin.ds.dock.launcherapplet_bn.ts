@@ -1,75 +1,75 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="lt">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="bn">
 <context>
     <name>AppItemMenu</name>
     <message>
         <location filename="../../qml/AppItemMenu.qml" line="34"/>
         <source>Open</source>
-        <translation>Atverti</translation>
+        <translation>এন্ট্রি খোলো</translation>
     </message>
     <message>
         <location filename="../../qml/AppItemMenu.qml" line="46"/>
         <source>Pin to Top</source>
-        <translation>Prilygiti į viršų</translation>
+        <translation>শীর্ষে পিন চালানো</translation>
     </message>
     <message>
         <location filename="../../qml/AppItemMenu.qml" line="55"/>
         <source>Move to Top</source>
-        <translation>Perkelti į viršų</translation>
+        <translation>শীর্ষে সরানো</translation>
     </message>
     <message>
         <location filename="../../qml/AppItemMenu.qml" line="65"/>
         <source>Remove from favorites</source>
-        <translation>Pašalinti iš svarbių</translation>
+        <translation>পছন্দের তালিকায় থেকে মুছে ফেলো</translation>
     </message>
     <message>
         <location filename="../../qml/AppItemMenu.qml" line="65"/>
         <source>Add to favorites</source>
-        <translation>Pridėti prie svarbių</translation>
+        <translation>পছন্দের তালিকায় যোগ করো</translation>
     </message>
     <message>
         <location filename="../../qml/AppItemMenu.qml" line="80"/>
         <source>Remove from desktop</source>
-        <translation>Šalinti iš darbalaukio</translation>
+        <translation>ডেস্কটপ থেকে মুছে ফেলো</translation>
     </message>
     <message>
         <location filename="../../qml/AppItemMenu.qml" line="80"/>
         <source>Send to desktop</source>
-        <translation>Siųsti į darbalaukį</translation>
+        <translation>ডেস্কটপে পাঠিয়ে দুনো</translation>
     </message>
     <message>
         <location filename="../../qml/AppItemMenu.qml" line="91"/>
         <source>Remove from dock</source>
-        <translation>Šalinti iš doko</translation>
+        <translation>ডোকে থেকে মুছে ফেলো</translation>
     </message>
     <message>
         <location filename="../../qml/AppItemMenu.qml" line="91"/>
         <source>Send to dock</source>
-        <translation>Siųsti į doką</translation>
+        <translation>ডোকে পাঠিয়ে দুনো</translation>
     </message>
     <message>
         <location filename="../../qml/AppItemMenu.qml" line="103"/>
         <source>Remove from startup</source>
-        <translation>Pašalinti iš paleidimo</translation>
+        <translation>প্রোগ্রাম শুরু করার সময় থেকে মুছে ফেলো</translation>
     </message>
     <message>
         <location filename="../../qml/AppItemMenu.qml" line="103"/>
         <source>Add to startup</source>
-        <translation>Pridėti prie paleidimo</translation>
+        <translation>প্রোগ্রাম শুরু করার সময়ে যোগ করো</translation>
     </message>
     <message>
         <location filename="../../qml/AppItemMenu.qml" line="111"/>
         <source>Use a proxy</source>
-        <translation>Naudoti proxy</translation>
+        <translation>একটি প্রোক্সি ব্যবহার করো</translation>
     </message>
     <message>
         <location filename="../../qml/AppItemMenu.qml" line="120"/>
         <source>Disable display scaling</source>
-        <translation>Išjungti ekrano atvaizdo skalavimą</translation>
+        <translation>পর্ণপ্রদর্শনের স্কেলিং অ্যাব্ল্যাস্ট করো</translation>
     </message>
     <message>
         <location filename="../../qml/AppItemMenu.qml" line="127"/>
         <source>Uninstall</source>
-        <translation>Atsijungti</translation>
+        <translation>অডিস্টল করো</translation>
     </message>
 </context>
 <context>
@@ -77,17 +77,17 @@
     <message>
         <location filename="../../qml/windowed/BottomBar.qml" line="33"/>
         <source>Power</source>
-        <translation>Galia</translation>
+        <translation>বিদ্যুৎ</translation>
     </message>
     <message>
         <location filename="../../qml/windowed/BottomBar.qml" line="62"/>
         <source>Search</source>
-        <translation>Kerinti</translation>
+        <translation>অনুসন্ধান</translation>
     </message>
     <message>
         <location filename="../../qml/windowed/BottomBar.qml" line="109"/>
         <source>Full-screen Mode</source>
-        <translation>Viso ekrano veiksena</translation>
+        <translation>পূর্ণ স্ক্রিন মডেল</translation>
     </message>
 </context>
 <context>
@@ -95,12 +95,12 @@
     <message>
         <location filename="../../qml/DummyAppItemMenu.qml" line="27"/>
         <source>Install</source>
-        <translation>Įdiegti</translation>
+        <translation>স্থানান্তরিত করো</translation>
     </message>
     <message>
         <location filename="../../qml/DummyAppItemMenu.qml" line="34"/>
         <source>Remove</source>
-        <translation>Pašalinti</translation>
+        <translation>মুছে ফেলো</translation>
     </message>
 </context>
 <context>
@@ -108,7 +108,7 @@
     <message>
         <location filename="../../qml/windowed/FrequentlyUsedView.qml" line="36"/>
         <source>Frequently Used</source>
-        <translation>Trumpinti naudotus</translation>
+        <translation>অনেকবার ব্যবহার করা</translation>
     </message>
 </context>
 <context>
@@ -116,7 +116,7 @@
     <message>
         <location filename="../../qml/FullscreenFrame.qml" line="163"/>
         <source>Window Mode</source>
-        <translation>Langas režimas</translation>
+        <translation>বার্নেট মডেল</translation>
     </message>
 </context>
 <context>
@@ -124,73 +124,73 @@
     <message>
         <location filename="../../qml/Main.qml" line="22"/>
         <source>Internet</source>
-        <translation>Internetas</translation>
+        <translation>ওয়েব</translation>
     </message>
     <message>
         <location filename="../../qml/Main.qml" line="24"/>
         <source>Chat</source>
-        <translation>Pokalbiai</translation>
+        <translation>চ্যাট</translation>
     </message>
     <message>
         <location filename="../../qml/Main.qml" line="26"/>
         <source>Music</source>
-        <translation>Muzika</translation>
+        <translation>সঙ্গীত</translation>
     </message>
     <message>
         <location filename="../../qml/Main.qml" line="28"/>
         <source>Video</source>
-        <translation>Vaizdo įrašai</translation>
+        <translation>ভিডিও</translation>
     </message>
     <message>
         <location filename="../../qml/Main.qml" line="30"/>
         <source>Graphics</source>
-        <translation>Grafika</translation>
+        <translation>বিশ্লেষণ</translation>
     </message>
     <message>
         <location filename="../../qml/Main.qml" line="32"/>
         <source>Games</source>
-        <translation>Žaidimai</translation>
+        <translation>গেমস</translation>
     </message>
     <message>
         <location filename="../../qml/Main.qml" line="34"/>
         <source>Office</source>
-        <translation>Raštinė</translation>
+        <translation>কার্যস্থল</translation>
     </message>
     <message>
         <location filename="../../qml/Main.qml" line="36"/>
         <source>Reading</source>
-        <translation>Skaitymas</translation>
+        <translation>পড়া</translation>
     </message>
     <message>
         <location filename="../../qml/Main.qml" line="38"/>
         <source>Development</source>
-        <translation>Plėtojimas</translation>
+        <translation>নির্মাণ</translation>
     </message>
     <message>
         <location filename="../../qml/Main.qml" line="40"/>
         <source>System</source>
-        <translation>Sistema</translation>
+        <translation>সিস্টেম</translation>
     </message>
     <message>
         <location filename="../../qml/Main.qml" line="42"/>
         <source>Others</source>
-        <translation>Kita</translation>
+        <translation>অন্যান্য</translation>
     </message>
     <message>
         <location filename="../../qml/Main.qml" line="400"/>
         <source>Are you sure you want to uninstall %1?</source>
-        <translation>Ar tikrai norite atsijungti %1?
+        <translation>%1 থাই বাতিল করতে চাইনি?
 </translation>
     </message>
     <message>
         <location filename="../../qml/Main.qml" line="412"/>
         <source>Cancel</source>
-        <translation>Atsisakyti</translation>
+        <translation>বন্ধ করুন</translation>
     </message>
     <message>
         <location filename="../../qml/Main.qml" line="426"/>
         <source>Confirm</source>
-        <translation>Patvirtinti</translation>
+        <translation>পর্যালোচনা করুন</translation>
     </message>
 </context>
 <context>
@@ -198,7 +198,7 @@
     <message>
         <location filename="../../qml/windowed/RecentlyInstalledView.qml" line="34"/>
         <source>Recently Installed</source>
-        <translation>Naujai įdiegti</translation>
+        <translation>কাছাকাছি স্থাপন করা</translation>
     </message>
 </context>
 <context>
@@ -206,13 +206,13 @@
     <message>
         <location filename="../../qml/windowed/SearchResultView.qml" line="37"/>
         <source>All Apps</source>
-        <translation>Visos programos</translation>
+        <translation>সকল এপ্প</translation>
     </message>
     <message>
         <location filename="../../qml/FullscreenFrame.qml" line="556"/>
         <location filename="../../qml/windowed/SearchResultView.qml" line="102"/>
         <source>No search results</source>
-        <translation>Nėra ieškomo rezultato</translation>
+        <translation>নিশ্চিত সংস্করণ নেই</translation>
     </message>
 </context>
 <context>
@@ -220,47 +220,47 @@
     <message>
         <location filename="../../qml/windowed/SideBar.qml" line="40"/>
         <source>Free sorting</source>
-        <translation>Laisvas rikiavimas</translation>
+        <translation>ফ্রি সার্টিং</translation>
     </message>
     <message>
         <location filename="../../qml/windowed/SideBar.qml" line="54"/>
         <source>Sort by category</source>
-        <translation>Rikiuoti pagal kategoriją</translation>
+        <translation>ক্যাটাগরি অনুযায়ী সার্ট করুন</translation>
     </message>
     <message>
         <location filename="../../qml/windowed/SideBar.qml" line="66"/>
         <source>Sort by name</source>
-        <translation>Rikiuoti pagal pavadinimą</translation>
+        <translation>নাম অনুযায়ী সার্ট করুন</translation>
     </message>
     <message>
         <location filename="../../qml/windowed/SideBar.qml" line="90"/>
         <source>Sorting Mode</source>
-        <translation>Rikiavimo veiksena</translation>
+        <translation>সার্টিং মোড</translation>
     </message>
     <message>
         <location filename="../../qml/windowed/SideBar.qml" line="145"/>
         <source>Computer</source>
-        <translation>Kompiuteris</translation>
+        <translation>কম্পিউটার</translation>
     </message>
     <message>
         <location filename="../../qml/windowed/SideBar.qml" line="156"/>
         <source>Pictures</source>
-        <translation>Paveikslai</translation>
+        <translation>ছবি</translation>
     </message>
     <message>
         <location filename="../../qml/windowed/SideBar.qml" line="167"/>
         <source>Documents</source>
-        <translation>Dokumentai</translation>
+        <translation>পাঠ্যপুস্তক</translation>
     </message>
     <message>
         <location filename="../../qml/windowed/SideBar.qml" line="178"/>
         <source>Desktop</source>
-        <translation>Darbalaukis</translation>
+        <translation>ডেস্কটপ</translation>
     </message>
     <message>
         <location filename="../../qml/windowed/SideBar.qml" line="189"/>
         <source>Control Center</source>
-        <translation>Valdymo centras</translation>
+        <translation>কন্ট্রোল সেন্টার</translation>
     </message>
 </context>
 <context>
@@ -268,78 +268,78 @@
     <message>
         <location filename="../package/launcheritem.qml" line="111"/>
         <source>Internet</source>
-        <translation>Internetas</translation>
+        <translation>ইন্টারনেট</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="113"/>
         <source>Chat</source>
-        <translation>Klaidas</translation>
+        <translation>চ্যাট</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="115"/>
         <source>Music</source>
-        <translation>Muzika</translation>
+        <translation>মিউজিক</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="117"/>
         <source>Video</source>
-        <translation>Video</translation>
+        <translation>ভিডিও</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="119"/>
         <source>Graphics</source>
-        <translation>Grafika</translation>
+        <translation>গ্রাফিক্স</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="121"/>
         <source>Games</source>
-        <translation>Žaidimai</translation>
+        <translation>গেমস</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="123"/>
         <source>Office</source>
-        <translation>Raštinė</translation>
+        <translation>অফিস</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="125"/>
         <source>Reading</source>
-        <translation>Skaitymas</translation>
+        <translation>যাচ্ছেন অধ্যযন</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="127"/>
         <source>Development</source>
-        <translation>Plėtojimas</translation>
+        <translation>নিয়ন্ত্রণ</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="129"/>
         <source>System</source>
-        <translation>Sistema</translation>
+        <translation>সিস্টেম</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="131"/>
         <source>Others</source>
-        <translation>Kita</translation>
+        <translation>অন্যান্য</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="162"/>
         <source>launchpad</source>
-        <translation>launchpad</translation>
+        <translation>লঞ্চ প্ল্যাড</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="299"/>
         <source>Are you sure you want to uninstall %1?</source>
-        <translation>Ar tikrai norite atsijungti %1?
+        <translation>%1 থেকে অনু�্রমিত করতে আপনি সত্যিই চান?
 </translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="311"/>
         <source>Cancel</source>
-        <translation>Atsisakyti</translation>
+        <translation>বন্ধ করুন</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="325"/>
         <source>Confirm</source>
-        <translation>Patvirtinti</translation>
+        <translation>প্রত্যাশা করুন</translation>
     </message>
 </context>
 </TS>

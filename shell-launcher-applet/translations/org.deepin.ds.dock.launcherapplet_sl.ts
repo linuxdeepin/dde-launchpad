@@ -1,75 +1,75 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="lt">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="sl">
 <context>
     <name>AppItemMenu</name>
     <message>
         <location filename="../../qml/AppItemMenu.qml" line="34"/>
         <source>Open</source>
-        <translation>Atverti</translation>
+        <translation>Odpri</translation>
     </message>
     <message>
         <location filename="../../qml/AppItemMenu.qml" line="46"/>
         <source>Pin to Top</source>
-        <translation>Prilygiti į viršų</translation>
+        <translation>Povez na vrh</translation>
     </message>
     <message>
         <location filename="../../qml/AppItemMenu.qml" line="55"/>
         <source>Move to Top</source>
-        <translation>Perkelti į viršų</translation>
+        <translation>Premakni na vrh</translation>
     </message>
     <message>
         <location filename="../../qml/AppItemMenu.qml" line="65"/>
         <source>Remove from favorites</source>
-        <translation>Pašalinti iš svarbių</translation>
+        <translation>Odstrani iz običajnih</translation>
     </message>
     <message>
         <location filename="../../qml/AppItemMenu.qml" line="65"/>
         <source>Add to favorites</source>
-        <translation>Pridėti prie svarbių</translation>
+        <translation>Dodaj v običajne</translation>
     </message>
     <message>
         <location filename="../../qml/AppItemMenu.qml" line="80"/>
         <source>Remove from desktop</source>
-        <translation>Šalinti iš darbalaukio</translation>
+        <translation>Odstrani s namizja</translation>
     </message>
     <message>
         <location filename="../../qml/AppItemMenu.qml" line="80"/>
         <source>Send to desktop</source>
-        <translation>Siųsti į darbalaukį</translation>
+        <translation>Pošlji na namizje</translation>
     </message>
     <message>
         <location filename="../../qml/AppItemMenu.qml" line="91"/>
         <source>Remove from dock</source>
-        <translation>Šalinti iš doko</translation>
+        <translation>Odstrani iz dolge</translation>
     </message>
     <message>
         <location filename="../../qml/AppItemMenu.qml" line="91"/>
         <source>Send to dock</source>
-        <translation>Siųsti į doką</translation>
+        <translation>Pošlji na dolgo</translation>
     </message>
     <message>
         <location filename="../../qml/AppItemMenu.qml" line="103"/>
         <source>Remove from startup</source>
-        <translation>Pašalinti iš paleidimo</translation>
+        <translation>Odstrani pri začetku</translation>
     </message>
     <message>
         <location filename="../../qml/AppItemMenu.qml" line="103"/>
         <source>Add to startup</source>
-        <translation>Pridėti prie paleidimo</translation>
+        <translation>Dodaj pri začetku</translation>
     </message>
     <message>
         <location filename="../../qml/AppItemMenu.qml" line="111"/>
         <source>Use a proxy</source>
-        <translation>Naudoti proxy</translation>
+        <translation>Uporabi proxy</translation>
     </message>
     <message>
         <location filename="../../qml/AppItemMenu.qml" line="120"/>
         <source>Disable display scaling</source>
-        <translation>Išjungti ekrano atvaizdo skalavimą</translation>
+        <translation>Onemogoči povečanje prikaza</translation>
     </message>
     <message>
         <location filename="../../qml/AppItemMenu.qml" line="127"/>
         <source>Uninstall</source>
-        <translation>Atsijungti</translation>
+        <translation>Odinstaliraj</translation>
     </message>
 </context>
 <context>
@@ -77,17 +77,17 @@
     <message>
         <location filename="../../qml/windowed/BottomBar.qml" line="33"/>
         <source>Power</source>
-        <translation>Galia</translation>
+        <translation>Naprej</translation>
     </message>
     <message>
         <location filename="../../qml/windowed/BottomBar.qml" line="62"/>
         <source>Search</source>
-        <translation>Kerinti</translation>
+        <translation>Iskanje</translation>
     </message>
     <message>
         <location filename="../../qml/windowed/BottomBar.qml" line="109"/>
         <source>Full-screen Mode</source>
-        <translation>Viso ekrano veiksena</translation>
+        <translation>Celosklopnih način</translation>
     </message>
 </context>
 <context>
@@ -95,12 +95,12 @@
     <message>
         <location filename="../../qml/DummyAppItemMenu.qml" line="27"/>
         <source>Install</source>
-        <translation>Įdiegti</translation>
+        <translation>Nastavi</translation>
     </message>
     <message>
         <location filename="../../qml/DummyAppItemMenu.qml" line="34"/>
         <source>Remove</source>
-        <translation>Pašalinti</translation>
+        <translation>Odstrani</translation>
     </message>
 </context>
 <context>
@@ -108,7 +108,7 @@
     <message>
         <location filename="../../qml/windowed/FrequentlyUsedView.qml" line="36"/>
         <source>Frequently Used</source>
-        <translation>Trumpinti naudotus</translation>
+        <translation>Najčešči uporabljeni</translation>
     </message>
 </context>
 <context>
@@ -116,7 +116,7 @@
     <message>
         <location filename="../../qml/FullscreenFrame.qml" line="163"/>
         <source>Window Mode</source>
-        <translation>Langas režimas</translation>
+        <translation>Način okna</translation>
     </message>
 </context>
 <context>
@@ -124,73 +124,72 @@
     <message>
         <location filename="../../qml/Main.qml" line="22"/>
         <source>Internet</source>
-        <translation>Internetas</translation>
+        <translation>Internet</translation>
     </message>
     <message>
         <location filename="../../qml/Main.qml" line="24"/>
         <source>Chat</source>
-        <translation>Pokalbiai</translation>
+        <translation>Sprejmi</translation>
     </message>
     <message>
         <location filename="../../qml/Main.qml" line="26"/>
         <source>Music</source>
-        <translation>Muzika</translation>
+        <translation>Pesmi</translation>
     </message>
     <message>
         <location filename="../../qml/Main.qml" line="28"/>
         <source>Video</source>
-        <translation>Vaizdo įrašai</translation>
+        <translation>Video</translation>
     </message>
     <message>
         <location filename="../../qml/Main.qml" line="30"/>
         <source>Graphics</source>
-        <translation>Grafika</translation>
+        <translation>Grafični urejevalniki</translation>
     </message>
     <message>
         <location filename="../../qml/Main.qml" line="32"/>
         <source>Games</source>
-        <translation>Žaidimai</translation>
+        <translation>Igre</translation>
     </message>
     <message>
         <location filename="../../qml/Main.qml" line="34"/>
         <source>Office</source>
-        <translation>Raštinė</translation>
+        <translation>Uradniški programi</translation>
     </message>
     <message>
         <location filename="../../qml/Main.qml" line="36"/>
         <source>Reading</source>
-        <translation>Skaitymas</translation>
+        <translation>Čitanje</translation>
     </message>
     <message>
         <location filename="../../qml/Main.qml" line="38"/>
         <source>Development</source>
-        <translation>Plėtojimas</translation>
+        <translation>Razvoj</translation>
     </message>
     <message>
         <location filename="../../qml/Main.qml" line="40"/>
         <source>System</source>
-        <translation>Sistema</translation>
+        <translation>Sistem</translation>
     </message>
     <message>
         <location filename="../../qml/Main.qml" line="42"/>
         <source>Others</source>
-        <translation>Kita</translation>
+        <translation>Drugo</translation>
     </message>
     <message>
         <location filename="../../qml/Main.qml" line="400"/>
         <source>Are you sure you want to uninstall %1?</source>
-        <translation>Ar tikrai norite atsijungti %1?
-</translation>
+        <translation>Ste prepričani, da želite odinstalirati %1?</translation>
     </message>
     <message>
         <location filename="../../qml/Main.qml" line="412"/>
         <source>Cancel</source>
-        <translation>Atsisakyti</translation>
+        <translation>Prekliči</translation>
     </message>
     <message>
         <location filename="../../qml/Main.qml" line="426"/>
         <source>Confirm</source>
-        <translation>Patvirtinti</translation>
+        <translation>Potrdi</translation>
     </message>
 </context>
 <context>
@@ -198,7 +197,7 @@
     <message>
         <location filename="../../qml/windowed/RecentlyInstalledView.qml" line="34"/>
         <source>Recently Installed</source>
-        <translation>Naujai įdiegti</translation>
+        <translation>Nedавno nameščeni</translation>
     </message>
 </context>
 <context>
@@ -206,13 +205,13 @@
     <message>
         <location filename="../../qml/windowed/SearchResultView.qml" line="37"/>
         <source>All Apps</source>
-        <translation>Visos programos</translation>
+        <translation>Vse programske stvari</translation>
     </message>
     <message>
         <location filename="../../qml/FullscreenFrame.qml" line="556"/>
         <location filename="../../qml/windowed/SearchResultView.qml" line="102"/>
         <source>No search results</source>
-        <translation>Nėra ieškomo rezultato</translation>
+        <translation>Ni najdenih rezultatov iskanja</translation>
     </message>
 </context>
 <context>
@@ -220,47 +219,47 @@
     <message>
         <location filename="../../qml/windowed/SideBar.qml" line="40"/>
         <source>Free sorting</source>
-        <translation>Laisvas rikiavimas</translation>
+        <translation>Soritiraj sprostno</translation>
     </message>
     <message>
         <location filename="../../qml/windowed/SideBar.qml" line="54"/>
         <source>Sort by category</source>
-        <translation>Rikiuoti pagal kategoriją</translation>
+        <translation>Sorite po kategoriji</translation>
     </message>
     <message>
         <location filename="../../qml/windowed/SideBar.qml" line="66"/>
         <source>Sort by name</source>
-        <translation>Rikiuoti pagal pavadinimą</translation>
+        <translation>Sorite po imenu</translation>
     </message>
     <message>
         <location filename="../../qml/windowed/SideBar.qml" line="90"/>
         <source>Sorting Mode</source>
-        <translation>Rikiavimo veiksena</translation>
+        <translation>Način sorteiranja</translation>
     </message>
     <message>
         <location filename="../../qml/windowed/SideBar.qml" line="145"/>
         <source>Computer</source>
-        <translation>Kompiuteris</translation>
+        <translation>Računalnik</translation>
     </message>
     <message>
         <location filename="../../qml/windowed/SideBar.qml" line="156"/>
         <source>Pictures</source>
-        <translation>Paveikslai</translation>
+        <translation>Slikarnica</translation>
     </message>
     <message>
         <location filename="../../qml/windowed/SideBar.qml" line="167"/>
         <source>Documents</source>
-        <translation>Dokumentai</translation>
+        <translation>Dokumenti</translation>
     </message>
     <message>
         <location filename="../../qml/windowed/SideBar.qml" line="178"/>
         <source>Desktop</source>
-        <translation>Darbalaukis</translation>
+        <translation>Rablina</translation>
     </message>
     <message>
         <location filename="../../qml/windowed/SideBar.qml" line="189"/>
         <source>Control Center</source>
-        <translation>Valdymo centras</translation>
+        <translation>Kontrolna stolnica</translation>
     </message>
 </context>
 <context>
@@ -268,17 +267,17 @@
     <message>
         <location filename="../package/launcheritem.qml" line="111"/>
         <source>Internet</source>
-        <translation>Internetas</translation>
+        <translation>Internet</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="113"/>
         <source>Chat</source>
-        <translation>Klaidas</translation>
+        <translation>Posnetek</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="115"/>
         <source>Music</source>
-        <translation>Muzika</translation>
+        <translation>Pesmi</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="117"/>
@@ -288,37 +287,37 @@
     <message>
         <location filename="../package/launcheritem.qml" line="119"/>
         <source>Graphics</source>
-        <translation>Grafika</translation>
+        <translation>Grafični urejevalniki</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="121"/>
         <source>Games</source>
-        <translation>Žaidimai</translation>
+        <translation>Igre</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="123"/>
         <source>Office</source>
-        <translation>Raštinė</translation>
+        <translation>Uradni programi</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="125"/>
         <source>Reading</source>
-        <translation>Skaitymas</translation>
+        <translation>Čitanje</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="127"/>
         <source>Development</source>
-        <translation>Plėtojimas</translation>
+        <translation>Razvoj</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="129"/>
         <source>System</source>
-        <translation>Sistema</translation>
+        <translation>Sistem</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="131"/>
         <source>Others</source>
-        <translation>Kita</translation>
+        <translation>Drugo</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="162"/>
@@ -328,18 +327,17 @@
     <message>
         <location filename="../package/launcheritem.qml" line="299"/>
         <source>Are you sure you want to uninstall %1?</source>
-        <translation>Ar tikrai norite atsijungti %1?
-</translation>
+        <translation>Ali ste prepričani, da želite uvoziti %1?</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="311"/>
         <source>Cancel</source>
-        <translation>Atsisakyti</translation>
+        <translation>Prekliči</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="325"/>
         <source>Confirm</source>
-        <translation>Patvirtinti</translation>
+        <translation>Potrdi</translation>
     </message>
 </context>
 </TS>
