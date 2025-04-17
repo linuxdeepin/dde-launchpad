@@ -1,3 +1,11 @@
+dde-launchpad (1.99.11) UNRELEASED; urgency=medium
+
+  * fix: add base locale as fallback for app display name (Bug-310179)
+  * fix: drag-n-drop create app folder have incorrect app ordering (Bug-288919)
+  * Update translations from Transifex
+
+ -- Wang Zichong <wangzichong@deepin.org>  Thu, 17 Apr 2025 17:39:00 +0800
+
 dde-launchpad (1.99.10) UNRELEASED; urgency=medium
 
   * fix: incorrect selectedTextColor for folderPopup (Bug-301103)
