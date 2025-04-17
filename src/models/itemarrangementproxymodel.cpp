@@ -132,7 +132,7 @@ void ItemArrangementProxyModel::commitDndOperation(const QString &dragId, const 
             // make a new folder, move two items into the folder
             QString dstFolderId = findAvailableFolderId();
             ItemsPage * dstFolder = createFolder(dstFolderId);
-            dstFolder->appendPage({dragId, dropId});
+            dstFolder->appendPage({dropId, dragId});
             AppItem * dropItem = AppsModel::instance().itemFromDesktopId(dropId);
             AppItem::DDECategories dropCategories = AppItem::DDECategories(CategoryUtils::parseBestMatchedCategory(dropItem->categories()));
             dstFolder->setName("internal/category/" + QString::number(dropCategories));
