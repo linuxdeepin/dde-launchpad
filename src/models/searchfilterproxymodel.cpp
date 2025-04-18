@@ -18,6 +18,29 @@ SearchFilterProxyModel::SearchFilterProxyModel(QObject *parent)
     sort(0, Qt::DescendingOrder);
 }
 
+bool SearchFilterProxyModel::fuzzyMatch(const QString &modelData, const QString &pattern) const
+{
+    if (modelData.contains(pattern, Qt::CaseInsensitive)) {
+        return true;
+    }
+    QString processedText = modelData.toLower().simplified();
+    int textLen = processedText.length();
+    int patternLen = pattern.length();
+    std::vector<std::vector<int>> dp(textLen + 1, std::vector<int>(patternLen + 1, 0));
+    for (int i = 1; i <= textLen; i++) {
+        for (int j = 1; j <= patternLen; j++) {
+            if (processedText[i - 1] == pattern[j - 1]) {
+                dp[i][j] = dp[i - 1][j - 1] + 1;
+            } else {
+                dp[i][j] = std::max(dp[i - 1][j], dp[i][j - 1]);
+            }
+        }
+    }
+
+    float matchScore = static_cast<float>(dp[textLen][patternLen]) / patternLen;
+    return matchScore >= m_fuzzyThreshold;
+}
+
 bool SearchFilterProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const
 {
     QModelIndex modelIndex = this->sourceModel()->index(sourceRow, 0, sourceParent);
@@ -26,11 +49,8 @@ bool SearchFilterProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex &
     const QString & displayName = modelIndex.data(Qt::DisplayRole).toString();
     const QString & name = modelIndex.data(AppsModel::NameRole).toString();
     const QString & transliterated = modelIndex.data(AppsModel::AllTransliteratedRole).toString();
-    const QString & jianpin = Dtk::Core::firstLetters(displayName).join(',');
 
-    auto nameCopy = name;
-    nameCopy = nameCopy.toLower();
-    nameCopy.replace(" ", "");
+    QString pattern = searchPattern.pattern().toLower().remove(" ");
 
-    return displayName.contains(searchPattern) || nameCopy.contains(searchPattern) || transliterated.contains(searchPattern) || jianpin.contains(searchPattern);
+    return fuzzyMatch(displayName, pattern) || fuzzyMatch(name, pattern) || fuzzyMatch(transliterated, pattern);
 }
