@@ -64,7 +64,7 @@
     <message>
         <location filename="../../qml/AppItemMenu.qml" line="120"/>
         <source>Disable display scaling</source>
-        <translation>Wyłącz skalowanie wyświetlacza</translation>
+        <translation>Wyłącz skalowanie ekranu</translation>
     </message>
     <message>
         <location filename="../../qml/AppItemMenu.qml" line="127"/>
@@ -219,7 +219,7 @@
     <message>
         <location filename="../../qml/windowed/SideBar.qml" line="40"/>
         <source>Free sorting</source>
-        <translation>Sortowanie swobodne</translation>
+        <translation>Swobodne sortowanie</translation>
     </message>
     <message>
         <location filename="../../qml/windowed/SideBar.qml" line="54"/>
