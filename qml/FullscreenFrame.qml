@@ -677,6 +677,8 @@ InputEventItem {
                 switch (event.key) {
                 case Qt.Key_Up:
                 case Qt.Key_Down:
+                case Qt.Key_Left:
+                case Qt.Key_Right:
                 case Qt.Key_Enter:
                 case Qt.Key_Return:
                     listviewPage.focus = true
