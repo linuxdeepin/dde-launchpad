@@ -175,7 +175,7 @@ InputEventItem {
         id: folderGridViewPopup
         width: 370
         height: 330
-        folderNameFont: LauncherController.adjustFontWeight(DTK.fontManager.t6, Font.Bold)
+        folderNameFont: LauncherController.adjustFontWeight(DTK.fontManager.t6, Font.BoldFont.Bold)
         centerPosition: Qt.point(curPointX, curPointY)
 
         readonly property int animationDuration: 200
