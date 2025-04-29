@@ -1,3 +1,11 @@
+dde-launchpad (1.99.12) UNRELEASED; urgency=medium
+
+  * fix: clicking the left and right keys no response in fullscreen.
+  * fix: The title text of launcher application group fontbold
+  * Update translations from Transifex
+
+-- Wu Jiangyu <wujiangyu@uniontech.com>  Tue, 29 Apr 2025 11:14:000 +0800
+
 dde-launchpad (1.99.11) UNRELEASED; urgency=medium
 
   * fix: add base locale as fallback for app display name (Bug-310179)
