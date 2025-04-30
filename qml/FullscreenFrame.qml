@@ -83,6 +83,97 @@ InputEventItem {
             ItemArrangementProxyModel.removeEmptyPage()
         }
 
+        DropArea {
+            id: dropArea
+            property int pageIntent: 0
+            readonly property real paddingColumns: 0.5
+            readonly property int horizontalPadding:  searchResultGridViewContainer.cellWidth * paddingColumns
+            anchors.fill: parent
+            z: -1
+
+            property bool createdEmptyPage: false
+            function checkDragMove() {
+                if (drag.x < horizontalPadding) {
+                    pageIntent = -1
+                } else if (drag.x > (width - searchResultGridViewContainer.cellWidth)) {
+                    let isLastPage = listviewPage.currentIndex === listviewPage.count - 1
+                    if (isLastPage && dropArea.createdEmptyPage) {
+                        return
+                    }
+                    pageIntent = 1
+                } else {
+                    pageIntent = 0
+                }
+            }
+
+            keys: ["text/x-dde-launcher-dnd-desktopId"]
+            onEntered: {
+                if (folderGridViewPopup.opened) {
+                    folderGridViewPopup.close()
+                }
+            }
+            onPositionChanged: {
+                checkDragMove()
+            }
+            onDropped: (drop) => {
+                           // drop over the left or right boundary of the page, do nothing
+                           if (pageIntent !== 0) {
+                               pageIntent = 0
+                               return
+                           }
+                           // drop into current page
+                           let dragId = drop.getDataAsString("text/x-dde-launcher-dnd-desktopId")
+                           dropOnPage(dragId, "internal/folders/0", listviewPage.currentIndex)
+                           pageIntent = 0
+                       }
+            onExited: {
+                pageIntent = 0
+            }
+            onPageIntentChanged: {
+                if (pageIntent !== 0) {
+                    dndMovePageTimer.restart()
+                } else {
+                    dndMovePageTimer.stop()
+                }
+            }
+
+            Timer {
+                id: dndMovePageTimer
+                interval: 1000
+                onTriggered: {
+                    if (parent.pageIntent > 0) {
+                        let isLastPage = listviewPage.currentIndex === listviewPage.count - 1
+                        if (isLastPage && !dropArea.createdEmptyPage) {
+                            let newPageIndex = ItemArrangementProxyModel.creatEmptyPage()
+                            dropArea.createdEmptyPage = true
+                            listviewPage.setCurrentIndex(newPageIndex)
+                            parent.pageIntent = 0
+                            return
+                        } else {
+                            incrementPageIndex(listviewPage)
+                        }
+                    } else if (parent.pageIntent < 0) {
+                        decrementPageIndex(listviewPage)
+                    }
+
+                    parent.pageIntent = 0
+                    if (listviewPage.currentIndex !== 0) {
+                        parent.checkDragMove()
+                    }
+                }
+            }
+
+            Connections {
+                target: dndItem
+                function onDragEnded() {
+                    if (dropArea.createdEmptyPage) {
+                        baseLayer.tryToRemoveEmptyPage()
+                        dropArea.createdEmptyPage = false
+                    }
+                }
+            }
+        }
+
         Timer {
             id: flipPageDelay
             interval: 400
@@ -201,96 +292,6 @@ InputEventItem {
                 Layout.fillWidth: true
                 Layout.fillHeight: true
                 clip: true
-
-                DropArea {
-                    id: dropArea
-                    property int pageIntent: 0
-                    readonly property real paddingColumns: 0.5
-                    readonly property int horizontalPadding:  searchResultGridViewContainer.cellWidth * paddingColumns
-                    anchors.fill: parent
-
-                    property bool createdEmptyPage: false
-                    function checkDragMove() {
-                        if (drag.x < horizontalPadding) {
-                            pageIntent = -1
-                        } else if (drag.x > (width - searchResultGridViewContainer.cellWidth)) {
-                            let isLastPage = listviewPage.currentIndex === listviewPage.count - 1
-                            if (isLastPage && dropArea.createdEmptyPage) {
-                                return
-                            }
-                            pageIntent = 1
-                        } else {
-                            pageIntent = 0
-                        }
-                    }
-
-                    keys: ["text/x-dde-launcher-dnd-desktopId"]
-                    onEntered: {
-                        if (folderGridViewPopup.opened) {
-                            folderGridViewPopup.close()
-                        }
-                    }
-                    onPositionChanged: {
-                        checkDragMove()
-                    }
-                    onDropped: (drop) => {
-                                   // drop over the left or right boundary of the page, do nothing
-                                   if (pageIntent !== 0) {
-                                       pageIntent = 0
-                                       return
-                                   }
-                                   // drop into current page
-                                   let dragId = drop.getDataAsString("text/x-dde-launcher-dnd-desktopId")
-                                   dropOnPage(dragId, "internal/folders/0", listviewPage.currentIndex)
-                                   pageIntent = 0
-                               }
-                    onExited: {
-                        pageIntent = 0
-                    }
-                    onPageIntentChanged: {
-                        if (pageIntent !== 0) {
-                            dndMovePageTimer.restart()
-                        } else {
-                            dndMovePageTimer.stop()
-                        }
-                    }
-
-                    Timer {
-                        id: dndMovePageTimer
-                        interval: 1000
-                        onTriggered: {
-                            if (parent.pageIntent > 0) {
-                                let isLastPage = listviewPage.currentIndex === listviewPage.count - 1
-                                if (isLastPage && !dropArea.createdEmptyPage) {
-                                    let newPageIndex = ItemArrangementProxyModel.creatEmptyPage()
-                                    dropArea.createdEmptyPage = true
-                                    listviewPage.setCurrentIndex(newPageIndex)
-                                    parent.pageIntent = 0
-                                    return
-                                } else {
-                                    incrementPageIndex(listviewPage)
-                                }
-                            } else if (parent.pageIntent < 0) {
-                                decrementPageIndex(listviewPage)
-                            }
-
-                            parent.pageIntent = 0
-                            if (listviewPage.currentIndex !== 0) {
-                                parent.checkDragMove()
-                            }
-                        }
-                    }
-
-                    Connections {
-                        target: dndItem
-                        function onDragEnded() {
-                            if (dropArea.createdEmptyPage) {
-                                baseLayer.tryToRemoveEmptyPage()
-                                dropArea.createdEmptyPage = false
-                            }
-                        }
-                    }
-                }
 
                 ItemsPageModel {
                     id: itemPageModel
