@@ -15,7 +15,7 @@ import org.deepin.launchpad.models 1.0
 FocusScope {
     id: root
 
-    property Item nextKeyTabTargetItem
+    property Item keyTabTarget: listView
     property alias model: listView.model
 
     function positionViewAtBeginning() {
@@ -244,7 +244,6 @@ FocusScope {
                 ToolTip.delay: 500
                 ToolTip.visible: hovered && contentItem.implicitWidth > contentItem.width
 
-                KeyNavigation.tab: nextKeyTabTargetItem
                 Drag.dragType: Drag.Automatic
                 Drag.mimeData: Helper.generateDragMimeData(model.desktopId, true)
                 Drag.hotSpot.y: height / 2
@@ -324,7 +323,6 @@ FocusScope {
         id: listView
 
         anchors.fill: parent
-        activeFocusOnTab: true
         highlightFollowsCurrentItem: true
         // displayMarginBeginning: -45
         clip: true
