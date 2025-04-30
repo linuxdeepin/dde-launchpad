@@ -144,6 +144,72 @@ Popup {
                     Layout.fillWidth: true
                     Layout.fillHeight: true
                     color: "transparent"
+
+                    DropArea {
+                        id: folderPageDropArea
+                        property int pageIntent: 0
+                        readonly property real paddingColumns: 0.3
+                        readonly property int horizontalPadding: contentRoot.width * paddingColumns
+                        anchors.fill: parent
+
+
+                        function checkDragMove() {
+                            if (drag.x < horizontalPadding) {
+                                pageIntent = -1
+                            } else if (drag.x > (width - horizontalPadding)) {
+                                let isLastPage = folderPagesView.currentIndex === folderPagesView.count - 1
+                                if (isLastPage) {
+                                    return
+                                }
+                                pageIntent = 1
+                            } else {
+                                pageIntent = 0
+                            }
+                        }
+
+                        keys: ["text/x-dde-launcher-dnd-desktopId"]
+                        onPositionChanged: {
+                            checkDragMove()
+                        }
+                        onDropped: (drop) => {
+                            // drop over the left or right boundary of the page, do nothing
+                            if (pageIntent !== 0) {
+                                pageIntent = 0
+                                return
+                            }
+                            // drop into current page
+                            let dragId = drop.getDataAsString("text/x-dde-launcher-dnd-desktopId")
+                            dropOnPage(dragId, "internal/folders/" + folderLoader.currentFolderId, folderPagesView.currentIndex)
+                            pageIntent = 0
+                        }
+                        onExited: {
+                            pageIntent = 0
+                        }
+                        onPageIntentChanged: {
+                            if (pageIntent !== 0) {
+                                folderDndMovePageTimer.restart()
+                            } else {
+                                folderDndMovePageTimer.stop()
+                            }
+                        }
+
+                        Timer {
+                            id: folderDndMovePageTimer
+                            interval: 1000
+                            onTriggered: {
+                                if (parent.pageIntent > 0) {
+                                    incrementPageIndex(folderPagesView)
+                                } else if (parent.pageIntent < 0) {
+                                    decrementPageIndex(folderPagesView)
+                                }
+                                parent.pageIntent = 0
+                                if (folderPagesView.currentIndex !== 0) {
+                                    parent.checkDragMove()
+                                }
+                            }
+                        }
+                    }
+
                     MouseArea {
                         anchors.fill: parent
                         scrollGestureEnabled: false
