@@ -47,6 +47,7 @@ public:
     void setCurrentFrame(const QString & frame);
 
     Q_INVOKABLE void hideWithTimer();
+    Q_INVOKABLE void setAvoidHide(bool avoidHide);
     Q_INVOKABLE void cancelHide();
     Q_INVOKABLE QFont adjustFontWeight(const QFont& f, QFont::Weight weight);
 
@@ -81,4 +82,5 @@ private:
     bool m_visible;
     QString m_currentFrame;
     bool m_pendingHide = false;
+    bool m_avoidHide = true; 
 };

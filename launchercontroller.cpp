@@ -159,9 +159,10 @@ void LauncherController::hideWithTimer()
             m_pendingHide = true;
             return;
         }
-
-        qDebug() << "hide with timer";
-        setVisible(false);
+        if (m_avoidHide) {
+            qDebug() << "hide with timer";
+            setVisible(false);
+        }
     }
 }
 
@@ -182,4 +183,9 @@ void LauncherController::closeAllPopups()
     QGuiApplicationPrivate *qAppPrivate = QGuiApplicationPrivate::instance();
     Q_ASSERT(qAppPrivate);
     qAppPrivate->closeAllPopups();
+}
+
+void LauncherController::setAvoidHide(bool avoidHide)
+{
+    m_avoidHide = avoidHide;
 }

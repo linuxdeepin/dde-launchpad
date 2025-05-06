@@ -291,6 +291,16 @@ AppletItem {
         minimumHeight: layout.implicitHeight + DStyle.Style.dialogWindow.titleBarHeight
         maximumWidth: minimumWidth
         maximumHeight: minimumHeight
+
+        onVisibleChanged: {
+            if (!visible) {
+                LauncherController.setAvoidHide(true)
+                if (LauncherController.currentFrame === "FullscreenFrame") {
+                    fullscreenFrame.requestActivate() 
+                } 
+            }
+        }
+
         ColumnLayout {
             id: layout
             spacing: 0
