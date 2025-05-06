@@ -126,7 +126,12 @@ Loader {
                 enabled: !root.desktopId.startsWith("internal/folders/") && !DesktopIntegration.appIsCompulsoryForDesktop(root.desktopId)
                 text: qsTr("Uninstall")
                 onTriggered: {
-                    LauncherController.visible = false
+                    if(LauncherController.currentFrame !== "FullscreenFrame"){
+                        LauncherController.setAvoidHide(true)
+                        LauncherController.visible = false
+                    }else{
+                        LauncherController.setAvoidHide(false) 
+                    }
                     confirmUninstallDlg.appName = root.display
                     confirmUninstallDlg.appId = root.desktopId
                     confirmUninstallDlg.icon = root.iconName
