@@ -179,7 +179,7 @@
     <message>
         <location filename="../../qml/Main.qml" line="400"/>
         <source>Are you sure you want to uninstall &quot;%1&quot;?</source>
-        <translation type="unfinished"/>
+        <translation>Jeni i sigurt se doni të çinstalohet “%1”?</translation>
     </message>
     <message>
         <location filename="../../qml/Main.qml" line="412"/>
