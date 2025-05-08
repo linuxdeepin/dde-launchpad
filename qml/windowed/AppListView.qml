@@ -239,7 +239,9 @@ FocusScope {
                     z: 1
                 }
                 font: DTK.fontManager.t8
-                palette.windowText: ListView.view.palette.brightText
+                ColorSelector.pressed: false
+                property Palette textColor: DStyle.Style.button.text
+                palette.windowText: ColorSelector.textColor
                 ToolTip.text: text
                 ToolTip.delay: 500
                 ToolTip.visible: hovered && contentItem.implicitWidth > contentItem.width

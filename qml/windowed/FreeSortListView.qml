@@ -260,7 +260,9 @@ Item {
                     rightMargin: 10
                 }
                 font: DTK.fontManager.t8
-                palette.windowText: parent.palette.brightText
+                ColorSelector.pressed: false
+                property Palette textColor: DStyle.Style.button.text
+                palette.windowText: ColorSelector.textColor
                 visible: !Drag.active
 
                 ToolTip.text: text
