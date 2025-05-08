@@ -116,7 +116,7 @@
 <context>
     <name>FullscreenFrame</name>
     <message>
-        <location filename="../qml/FullscreenFrame.qml" line="163"/>
+        <location filename="../qml/FullscreenFrame.qml" line="254"/>
         <source>Window Mode</source>
         <translation>Mode de finestra</translation>
     </message>
@@ -193,8 +193,12 @@
     </message>
     <message>
         <location filename="../qml/Main.qml" line="400"/>
+        <source>Are you sure you want to uninstall &quot;%1&quot;?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Are you sure you want to uninstall %1?</source>
-        <translation>Segur que voleu desinstal·lar %1?</translation>
+        <translation type="vanished">Segur que voleu desinstal·lar %1?</translation>
     </message>
     <message>
         <location filename="../qml/Main.qml" line="412"/>
@@ -224,7 +228,7 @@
     </message>
     <message>
         <location filename="../qml/windowed/SearchResultView.qml" line="102"/>
-        <location filename="../qml/FullscreenFrame.qml" line="556"/>
+        <location filename="../qml/FullscreenFrame.qml" line="557"/>
         <source>No search results</source>
         <translation>No hi ha resultats de la cerca.</translation>
     </message>

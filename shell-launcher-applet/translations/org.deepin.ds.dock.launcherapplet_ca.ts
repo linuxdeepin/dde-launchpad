@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="ca">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="ca">
 <context>
     <name>AppItemMenu</name>
     <message>
@@ -114,7 +116,7 @@
 <context>
     <name>FullscreenFrame</name>
     <message>
-        <location filename="../../qml/FullscreenFrame.qml" line="163"/>
+        <location filename="../../qml/FullscreenFrame.qml" line="254"/>
         <source>Window Mode</source>
         <translation>Mode de finestra</translation>
     </message>
@@ -178,8 +180,12 @@
     </message>
     <message>
         <location filename="../../qml/Main.qml" line="400"/>
+        <source>Are you sure you want to uninstall &quot;%1&quot;?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Are you sure you want to uninstall %1?</source>
-        <translation>Segur que voleu desinstal·lar %1?</translation>
+        <translation type="vanished">Segur que voleu desinstal·lar %1?</translation>
     </message>
     <message>
         <location filename="../../qml/Main.qml" line="412"/>
@@ -208,7 +214,7 @@
         <translation>Totes les aplicacions</translation>
     </message>
     <message>
-        <location filename="../../qml/FullscreenFrame.qml" line="556"/>
+        <location filename="../../qml/FullscreenFrame.qml" line="557"/>
         <location filename="../../qml/windowed/SearchResultView.qml" line="102"/>
         <source>No search results</source>
         <translation>No hi ha resultats de la cerca.</translation>
@@ -325,17 +331,21 @@
         <translation>plataforma de llançament</translation>
     </message>
     <message>
-        <location filename="../package/launcheritem.qml" line="299"/>
-        <source>Are you sure you want to uninstall %1?</source>
-        <translation>Segur que voleu desinstal·lar %1?</translation>
+        <location filename="../package/launcheritem.qml" line="309"/>
+        <source>Are you sure you want to uninstall &quot;%1&quot;?</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../package/launcheritem.qml" line="311"/>
+        <source>Are you sure you want to uninstall %1?</source>
+        <translation type="vanished">Segur que voleu desinstal·lar %1?</translation>
+    </message>
+    <message>
+        <location filename="../package/launcheritem.qml" line="321"/>
         <source>Cancel</source>
         <translation>Cancel·la</translation>
     </message>
     <message>
-        <location filename="../package/launcheritem.qml" line="325"/>
+        <location filename="../package/launcheritem.qml" line="335"/>
         <source>Confirm</source>
         <translation>Confirmeu-ho</translation>
     </message>

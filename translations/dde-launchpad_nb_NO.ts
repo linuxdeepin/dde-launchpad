@@ -170,7 +170,7 @@
         <translation type="obsolete">Søk</translation>
     </message>
     <message>
-        <location filename="../qml/FullscreenFrame.qml" line="163"/>
+        <location filename="../qml/FullscreenFrame.qml" line="254"/>
         <source>Window Mode</source>
         <translation type="unfinished"></translation>
     </message>
@@ -247,7 +247,7 @@
     </message>
     <message>
         <location filename="../qml/Main.qml" line="400"/>
-        <source>Are you sure you want to uninstall %1?</source>
+        <source>Are you sure you want to uninstall &quot;%1&quot;?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -278,7 +278,7 @@
     </message>
     <message>
         <location filename="../qml/windowed/SearchResultView.qml" line="102"/>
-        <location filename="../qml/FullscreenFrame.qml" line="556"/>
+        <location filename="../qml/FullscreenFrame.qml" line="557"/>
         <source>No search results</source>
         <translation type="unfinished">Ingen søkeresultater</translation>
     </message>
