@@ -114,7 +114,7 @@
 <context>
     <name>FullscreenFrame</name>
     <message>
-        <location filename="../../qml/FullscreenFrame.qml" line="163"/>
+        <location filename="../../qml/FullscreenFrame.qml" line="254"/>
         <source>Window Mode</source>
         <translation>বার্নেট মডেল</translation>
     </message>
@@ -178,9 +178,8 @@
     </message>
     <message>
         <location filename="../../qml/Main.qml" line="400"/>
-        <source>Are you sure you want to uninstall %1?</source>
-        <translation>%1 থাই বাতিল করতে চাইনি?
-</translation>
+        <source>Are you sure you want to uninstall &quot;%1&quot;?</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../../qml/Main.qml" line="412"/>
@@ -209,7 +208,7 @@
         <translation>সকল এপ্প</translation>
     </message>
     <message>
-        <location filename="../../qml/FullscreenFrame.qml" line="556"/>
+        <location filename="../../qml/FullscreenFrame.qml" line="557"/>
         <location filename="../../qml/windowed/SearchResultView.qml" line="102"/>
         <source>No search results</source>
         <translation>নিশ্চিত সংস্করণ নেই</translation>
@@ -326,18 +325,17 @@
         <translation>লঞ্চ প্ল্যাড</translation>
     </message>
     <message>
-        <location filename="../package/launcheritem.qml" line="299"/>
-        <source>Are you sure you want to uninstall %1?</source>
-        <translation>%1 থেকে অনু�্রমিত করতে আপনি সত্যিই চান?
-</translation>
+        <location filename="../package/launcheritem.qml" line="309"/>
+        <source>Are you sure you want to uninstall &quot;%1&quot;?</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../package/launcheritem.qml" line="311"/>
+        <location filename="../package/launcheritem.qml" line="321"/>
         <source>Cancel</source>
         <translation>বন্ধ করুন</translation>
     </message>
     <message>
-        <location filename="../package/launcheritem.qml" line="325"/>
+        <location filename="../package/launcheritem.qml" line="335"/>
         <source>Confirm</source>
         <translation>প্রত্যাশা করুন</translation>
     </message>

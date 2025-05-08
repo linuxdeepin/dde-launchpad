@@ -114,7 +114,7 @@
 <context>
     <name>FullscreenFrame</name>
     <message>
-        <location filename="../../qml/FullscreenFrame.qml" line="163"/>
+        <location filename="../../qml/FullscreenFrame.qml" line="254"/>
         <source>Window Mode</source>
         <translation>Fenster-Modus</translation>
     </message>
@@ -178,8 +178,8 @@
     </message>
     <message>
         <location filename="../../qml/Main.qml" line="400"/>
-        <source>Are you sure you want to uninstall %1?</source>
-        <translation>Sind Sie sicher, dass Sie %1 deinstallieren wollen?</translation>
+        <source>Are you sure you want to uninstall &quot;%1&quot;?</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../../qml/Main.qml" line="412"/>
@@ -208,7 +208,7 @@
         <translation>Alle Apps</translation>
     </message>
     <message>
-        <location filename="../../qml/FullscreenFrame.qml" line="556"/>
+        <location filename="../../qml/FullscreenFrame.qml" line="557"/>
         <location filename="../../qml/windowed/SearchResultView.qml" line="102"/>
         <source>No search results</source>
         <translation>Keine Suchergebnisse</translation>
@@ -325,17 +325,17 @@
         <translation>Starter-Feld</translation>
     </message>
     <message>
-        <location filename="../package/launcheritem.qml" line="299"/>
-        <source>Are you sure you want to uninstall %1?</source>
-        <translation>Sind Sie sicher, dass Sie %1 deinstallieren wollen?</translation>
+        <location filename="../package/launcheritem.qml" line="309"/>
+        <source>Are you sure you want to uninstall &quot;%1&quot;?</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../package/launcheritem.qml" line="311"/>
+        <location filename="../package/launcheritem.qml" line="321"/>
         <source>Cancel</source>
         <translation>Abbrechen</translation>
     </message>
     <message>
-        <location filename="../package/launcheritem.qml" line="325"/>
+        <location filename="../package/launcheritem.qml" line="335"/>
         <source>Confirm</source>
         <translation>Bestätigen</translation>
     </message>
