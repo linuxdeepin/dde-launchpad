@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="hu">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="hu">
 <context>
     <name>AppItemMenu</name>
     <message>
@@ -114,7 +116,7 @@
 <context>
     <name>FullscreenFrame</name>
     <message>
-        <location filename="../../qml/FullscreenFrame.qml" line="163"/>
+        <location filename="../../qml/FullscreenFrame.qml" line="254"/>
         <source>Window Mode</source>
         <translation>Ablak Mód</translation>
     </message>
@@ -178,8 +180,12 @@
     </message>
     <message>
         <location filename="../../qml/Main.qml" line="400"/>
+        <source>Are you sure you want to uninstall &quot;%1&quot;?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Are you sure you want to uninstall %1?</source>
-        <translation>Biztosan el szeretné távolítani a következőt: %1?</translation>
+        <translation type="vanished">Biztosan el szeretné távolítani a következőt: %1?</translation>
     </message>
     <message>
         <location filename="../../qml/Main.qml" line="412"/>
@@ -208,7 +214,7 @@
         <translation>Minden alkalmazás</translation>
     </message>
     <message>
-        <location filename="../../qml/FullscreenFrame.qml" line="556"/>
+        <location filename="../../qml/FullscreenFrame.qml" line="557"/>
         <location filename="../../qml/windowed/SearchResultView.qml" line="102"/>
         <source>No search results</source>
         <translation>Nincs keresési eredmény</translation>
@@ -325,17 +331,21 @@
         <translation>indítópult</translation>
     </message>
     <message>
-        <location filename="../package/launcheritem.qml" line="299"/>
-        <source>Are you sure you want to uninstall %1?</source>
-        <translation>Biztosan eltávolítja a következőt: %1?</translation>
+        <location filename="../package/launcheritem.qml" line="309"/>
+        <source>Are you sure you want to uninstall &quot;%1&quot;?</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../package/launcheritem.qml" line="311"/>
+        <source>Are you sure you want to uninstall %1?</source>
+        <translation type="vanished">Biztosan eltávolítja a következőt: %1?</translation>
+    </message>
+    <message>
+        <location filename="../package/launcheritem.qml" line="321"/>
         <source>Cancel</source>
         <translation>Mégse</translation>
     </message>
     <message>
-        <location filename="../package/launcheritem.qml" line="325"/>
+        <location filename="../package/launcheritem.qml" line="335"/>
         <source>Confirm</source>
         <translation>Megerősít</translation>
     </message>

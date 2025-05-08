@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="uk">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="uk">
 <context>
     <name>AppItemMenu</name>
     <message>
@@ -114,7 +116,7 @@
 <context>
     <name>FullscreenFrame</name>
     <message>
-        <location filename="../../qml/FullscreenFrame.qml" line="163"/>
+        <location filename="../../qml/FullscreenFrame.qml" line="254"/>
         <source>Window Mode</source>
         <translation>Режим вікна</translation>
     </message>
@@ -178,8 +180,12 @@
     </message>
     <message>
         <location filename="../../qml/Main.qml" line="400"/>
+        <source>Are you sure you want to uninstall &quot;%1&quot;?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Are you sure you want to uninstall %1?</source>
-        <translation>Ви справді хочете вилучити %1?</translation>
+        <translation type="vanished">Ви справді хочете вилучити %1?</translation>
     </message>
     <message>
         <location filename="../../qml/Main.qml" line="412"/>
@@ -208,7 +214,7 @@
         <translation>Усі програми</translation>
     </message>
     <message>
-        <location filename="../../qml/FullscreenFrame.qml" line="556"/>
+        <location filename="../../qml/FullscreenFrame.qml" line="557"/>
         <location filename="../../qml/windowed/SearchResultView.qml" line="102"/>
         <source>No search results</source>
         <translation>Нічого не знайдено</translation>
@@ -325,17 +331,21 @@
         <translation>пусковий стіл</translation>
     </message>
     <message>
-        <location filename="../package/launcheritem.qml" line="299"/>
-        <source>Are you sure you want to uninstall %1?</source>
-        <translation>Ви справді хочете вилучити %1?</translation>
+        <location filename="../package/launcheritem.qml" line="309"/>
+        <source>Are you sure you want to uninstall &quot;%1&quot;?</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../package/launcheritem.qml" line="311"/>
+        <source>Are you sure you want to uninstall %1?</source>
+        <translation type="vanished">Ви справді хочете вилучити %1?</translation>
+    </message>
+    <message>
+        <location filename="../package/launcheritem.qml" line="321"/>
         <source>Cancel</source>
         <translation>Скасувати</translation>
     </message>
     <message>
-        <location filename="../package/launcheritem.qml" line="325"/>
+        <location filename="../package/launcheritem.qml" line="335"/>
         <source>Confirm</source>
         <translation>Підтвердити</translation>
     </message>

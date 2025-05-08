@@ -397,7 +397,7 @@ QtObject {
             spacing: 0
             Label {
                 font: DTK.fontManager.t5
-                text: qsTr("Are you sure you want to uninstall %1?").arg(confirmUninstallDlg.appName)
+                text: qsTr("Are you sure you want to uninstall \"%1\"?").arg(confirmUninstallDlg.appName)
                 wrapMode: Text.Wrap
                 horizontalAlignment: Text.AlignHCenter
                 Layout.preferredWidth: 400
