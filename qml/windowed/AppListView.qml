@@ -165,7 +165,7 @@ FocusScope {
                                         anchors.rightMargin: 10
                                         anchors.top: parent.top
                                         anchors.bottom: parent.bottom
-                                        visible: menuItem.down || menuItem.highlighted
+                                        visible: menuItem.down || menuItem.hovered
                                         outsideBorderColor: null
                                         insideBorderColor: null
                                         radius: 6
