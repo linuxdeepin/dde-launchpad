@@ -1,3 +1,14 @@
+dde-launchpad (1.99.13) UNRELEASED; urgency=medium
+
+  * fix: The four corners can't be dragged properly in full-screen mode (Bug-310813)
+  * feat: add Apps winthin folder are dragged across pages. (Bug-288691)
+  * fix: Clicking tab multiple times to switch focus appear to switch back and forth (Bug-315227)
+  * fix: Uninstalling app in fullscreen doesn't close launcher (Bug-315255)
+  * fix: Add quotation marks to the app name in the uninstall dialog (Bug-315259)
+  * Update translations from Transifex
+
+-- Wu Jiangyu <wujiangyu@uniontech.com>  Fri, 29 May 2025 08:36:000 +0800
+
 dde-launchpad (1.99.12) UNRELEASED; urgency=medium
 
   * fix: clicking the left and right keys no response in fullscreen.
