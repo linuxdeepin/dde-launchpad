@@ -49,6 +49,7 @@ QtObject {
         }
         if (!DesktopIntegration.appIsDummyPackage(desktopId)) {
             mime["text/x-dde-dock-dnd-appid"] = desktopId
+            mime["text/x-dde-dock-dnd-source"] = "launcher"
         }
         return mime
     }
