@@ -1,3 +1,11 @@
+dde-launchpad (1.99.14) UNRELEASED; urgency=medium
+
+  * fix: Dragging applications in application folder cannot create a new page (Bug-288839)
+  * fix: add x-dde-dock-dnd-source for dde-dock.
+  * fix: cancel hovered state after move mouse in the categorized display. (Bug-271375)
+
+-- Wu Jiangyu <wujiangyu@uniontech.com>  Tue, 13 May 2025 17:17:000 +0800
+
 dde-launchpad (1.99.13) UNRELEASED; urgency=medium
 
   * fix: The four corners can't be dragged properly in full-screen mode (Bug-310813)
