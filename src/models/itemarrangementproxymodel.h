@@ -58,7 +58,7 @@ public:
     Q_INVOKABLE void updateFolderName(int folderId, const QString & name);
     Q_INVOKABLE void bringToFront(const QString & id);
     Q_INVOKABLE void commitDndOperation(const QString & dragId, const QString & dropId, const DndOperation op, int pageHint = -1);
-    Q_INVOKABLE int creatEmptyPage() const;
+    Q_INVOKABLE int creatEmptyPage(int folderId = 0) const;
     Q_INVOKABLE void removeEmptyPage() const;
 
     ItemsPage *itemsPage() { return m_topLevel; }
@@ -70,6 +70,7 @@ public:
 
 signals:
     void topLevelPageCountChanged();
+    void folderPageCountChanged(int folderId);
 
 private:
     explicit ItemArrangementProxyModel(QObject *parent = nullptr);

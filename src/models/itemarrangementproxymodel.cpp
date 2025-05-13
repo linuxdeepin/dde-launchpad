@@ -153,10 +153,22 @@ void ItemArrangementProxyModel::commitDndOperation(const QString &dragId, const 
 }
 
 // return new empty page index
-int ItemArrangementProxyModel::creatEmptyPage() const
+int ItemArrangementProxyModel::creatEmptyPage(int folderId) const
 {
-    m_topLevel->appendEmptyPage();
-    return m_topLevel->pageCount() - 1;
+    if(folderId == 0){
+        m_topLevel->appendEmptyPage();
+        return m_topLevel->pageCount() - 1;
+    }
+    QString fullId("internal/folders/" + QString::number(folderId));
+    Q_ASSERT(m_folders.contains(fullId));
+
+    if (auto itemPage = m_folders.value(fullId); itemPage) {
+        itemPage->appendEmptyPage();
+        return itemPage->pageCount() - 1;
+    } else {
+        qWarning() << "itemPage create empty page false, return 0. fullId is" << fullId;
+        return 0;
+    }
 }
 
 void ItemArrangementProxyModel::removeEmptyPage() const
@@ -407,6 +419,11 @@ ItemsPage *ItemArrangementProxyModel::createFolder(const QString &id)
     QStandardItem * folder = new QStandardItem(fullId);
     folder->setData(fullId, AppItem::DesktopIdRole);
     m_folderModel.appendRow(folder);
+
+    connect(page, &ItemsPage::pageCountChanged, this, [this, fullId]() {
+        int folderId = QStringView{fullId}.mid(17).toInt();
+        emit folderPageCountChanged(folderId);
+    });
 
     return page;
 }
