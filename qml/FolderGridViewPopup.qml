@@ -151,14 +151,14 @@ Popup {
                         readonly property real paddingColumns: 0.3
                         readonly property int horizontalPadding: contentRoot.width * paddingColumns
                         anchors.fill: parent
-
+                        property bool createdEmptyPage: false
 
                         function checkDragMove() {
                             if (drag.x < horizontalPadding) {
                                 pageIntent = -1
                             } else if (drag.x > (width - horizontalPadding)) {
                                 let isLastPage = folderPagesView.currentIndex === folderPagesView.count - 1
-                                if (isLastPage) {
+                                if (isLastPage && folderPageDropArea.createdEmptyPage) {
                                     return
                                 }
                                 pageIntent = 1
@@ -181,9 +181,11 @@ Popup {
                             let dragId = drop.getDataAsString("text/x-dde-launcher-dnd-desktopId")
                             dropOnPage(dragId, "internal/folders/" + folderLoader.currentFolderId, folderPagesView.currentIndex)
                             pageIntent = 0
+                            createdEmptyPage = false
                         }
                         onExited: {
                             pageIntent = 0
+                            createdEmptyPage = false
                         }
                         onPageIntentChanged: {
                             if (pageIntent !== 0) {
@@ -198,7 +200,16 @@ Popup {
                             interval: 1000
                             onTriggered: {
                                 if (parent.pageIntent > 0) {
-                                    incrementPageIndex(folderPagesView)
+                                    let isLastPage = (folderPagesView.currentIndex === folderPagesView.count - 1)
+                                    if (isLastPage && !folderPageDropArea.createdEmptyPage) {
+                                        let newPageIndex = ItemArrangementProxyModel.creatEmptyPage(folderLoader.currentFolderId)
+                                        folderPageDropArea.createdEmptyPage = true
+                                        folderPagesView.setCurrentIndex(newPageIndex)
+                                        parent.pageIntent = 0
+                                        return
+                                    }else{
+                                        incrementPageIndex(folderPagesView)
+                                    }
                                 } else if (parent.pageIntent < 0) {
                                     decrementPageIndex(folderPagesView)
                                 }
@@ -240,6 +251,14 @@ Popup {
 
                         currentIndex: folderPageIndicator.currentIndex
 
+                        Connections {
+                            target: ItemArrangementProxyModel
+                            function onFolderPageCountChanged(folderId) {
+                                if (folderId === folderLoader.currentFolderId) {
+                                    gridViews.model = ItemArrangementProxyModel.pageCount(folderId)
+                                }
+                            }
+                        }
                         Repeater {
                             id: gridViews
                             model: ItemArrangementProxyModel.pageCount(folderLoader.currentFolderId) // FIXME: should be a property?
