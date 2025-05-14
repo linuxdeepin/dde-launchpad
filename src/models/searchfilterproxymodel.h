@@ -31,6 +31,4 @@ protected:
     bool filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const override;
 private:
     explicit SearchFilterProxyModel(QObject *parent = nullptr);
-    bool fuzzyMatch(const QString &modelData, const QString &pattern) const;
-    float m_fuzzyThreshold = 0.8f; 
 };
