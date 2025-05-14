@@ -32,5 +32,7 @@ bool SearchFilterProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex &
     nameCopy = nameCopy.toLower();
     nameCopy.replace(" ", "");
 
-    return displayName.contains(searchPattern) || nameCopy.contains(searchPattern) || transliterated.contains(searchPattern) || jianpin.contains(searchPattern);
+    QString searchPatternDelBlank = searchPattern.pattern().toLower().remove(" ");
+
+    return displayName.contains(searchPatternDelBlank) || nameCopy.contains(searchPatternDelBlank) || transliterated.contains(searchPatternDelBlank) || jianpin.contains(searchPatternDelBlank);
 }
