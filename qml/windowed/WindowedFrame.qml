@@ -286,8 +286,8 @@ InputEventItem {
             bottomBar.searchEdit.text = ""
             // reset(remove) keyboard focus
             baseLayer.focus = true
-            // reset scroll area position
-            appList.positionViewAtBeginning()
+            // reset scroll area position and state
+            appList.resetViewState()
             folderGridViewPopup.close()
         }
     }

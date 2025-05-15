@@ -17,9 +17,14 @@ FocusScope {
 
     property Item keyTabTarget: listView
     property alias model: listView.model
+    property var categoryMenu: null
 
-    function positionViewAtBeginning() {
+    function resetViewState() {
         listView.positionViewAtBeginning()
+        if (!LauncherController.visible) {
+            alphabetCategoryPopup.close()
+            if (categoryMenu) categoryMenu.close()
+        }
     }
 
     function scrollToAlphabetCategory(character) {
@@ -133,6 +138,7 @@ FocusScope {
                             } else if (CategorizedSortProxyModel.categoryType === CategorizedSortProxyModel.DDECategory) {
                                 ddeCategoryMenu.existingSections = CategorizedSortProxyModel.DDECategorySections()
                                 listView.opacity = 0.1
+                                root.categoryMenu = ddeCategoryMenu
                                 ddeCategoryMenu.open()
                             }
                         }

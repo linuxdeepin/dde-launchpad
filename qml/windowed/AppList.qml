@@ -25,8 +25,8 @@ ColumnLayout {
         loader.item.focus = true
     }
 
-    function positionViewAtBeginning() {
-        loader.item.positionViewAtBeginning()
+    function resetViewState() {
+        loader.item.resetViewState()
     }
 
     function switchToFreeSort(freeSort) {
