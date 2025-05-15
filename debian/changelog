@@ -1,3 +1,12 @@
+dde-launchpad (1.99.15) unstable; urgency=medium
+
+  * fix: The alphabet also closes when the launchpad is shut down
+  * fix: Lack of diagonal operation functionality.
+  * fix: search app when use blank can not find app.
+  * Revert "feat: Add fuzzy search support for applications"
+
+-- YeShanShan <yeshanshan@uniontech.com>  Thu, 15 May 2025 21:14:56 +0800
+
 dde-launchpad (1.99.14) UNRELEASED; urgency=medium
 
   * fix: Dragging applications in application folder cannot create a new page (Bug-288839)
