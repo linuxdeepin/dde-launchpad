@@ -266,7 +266,7 @@ InputEventItem {
 
                         anchors.horizontalCenter: parent.horizontalCenter
                         anchors.verticalCenter: parent.verticalCenter
-                        visible: listviewPage.visible
+                        visible: count !== 1
                         count: searchResultGridViewContainer.visible ? 1 : listviewPage.count
                         currentIndex: searchResultGridViewContainer.visible ? 1 : listviewPage.currentIndex
                         interactive: true
