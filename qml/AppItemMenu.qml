@@ -19,7 +19,9 @@ Loader {
     property bool hideFavoriteMenu
     property bool hideMoveToTopMenu
     property bool hideDisplayScalingMenu
-
+    readonly property bool isFullscreen: LauncherController.currentFrame === "FullscreenFrame"
+    readonly property bool isHorizontalDock: DesktopIntegration.dockPosition === Qt.UpArrow || DesktopIntegration.dockPosition === Qt.DownArrow
+    readonly property int dockSpacing: (isHorizontalDock ? DesktopIntegration.dockGeometry.height : DesktopIntegration.dockGeometry.width) / Screen.devicePixelRatio
     signal closed()
 
     Component {
@@ -28,6 +30,10 @@ Loader {
         Menu {
             id: contextMenu
 
+            topMargin: isFullscreen && DesktopIntegration.dockPosition === Qt.UpArrow ? dockSpacing : 0
+            bottomMargin: isFullscreen && DesktopIntegration.dockPosition === Qt.DownArrow ? dockSpacing : 0
+            leftMargin: isFullscreen && DesktopIntegration.dockPosition === Qt.LeftArrow ? dockSpacing : 0
+            rightMargin: isFullscreen && DesktopIntegration.dockPosition === Qt.RightArrow ? dockSpacing : 0
             modal: true
 
             MenuItem {
