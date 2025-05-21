@@ -185,9 +185,10 @@ Control {
 
             Label {
                 property bool singleRow: font.pixelSize > (isWindowedMode ? Helper.windowed.doubleRowMaxFontSize : Helper.fullscreen.doubleRowMaxFontSize)
+                property bool isNewlyInstalled: model.lastLaunchedTime === 0 && model.installedTime !== 0
                 id: iconItemLabel
-                text: root.text
-                textFormat: Text.PlainText
+                text: isNewlyInstalled ? ("<font color='#6CA6FF' size='1'>●</font>&nbsp;&nbsp;" + root.text) : root.text
+                textFormat: isNewlyInstalled ? Text.RichText : Text.PlainText
                 width: parent.width
                 leftPadding: 2
                 rightPadding: 2
