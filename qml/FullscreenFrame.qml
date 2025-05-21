@@ -200,7 +200,7 @@ InputEventItem {
                         }
                     }
                     // TODO: this might not be the correct way to handle wheel
-                    onWheel: {
+                    onWheel: function(wheel) {
                         if (flipPageDelay.running) return
                         let xDelta = wheel.angleDelta.x / 8
                         let yDelta = wheel.angleDelta.y / 8
@@ -346,7 +346,7 @@ InputEventItem {
                         MouseArea {
                             anchors.fill: parent
                             acceptedButtons: Qt.RightButton | Qt.LeftButton
-                            onClicked: {
+                            onClicked: function(mouse) {
                                 // FIXME: prevent the bug:https://bugreports.qt.io/browse/QTBUG-125139;
                                 if (mouse.button === Qt.RightButton) {
                                     mouse.accepted = false;
@@ -672,7 +672,7 @@ InputEventItem {
         }
 
         Keys.forwardTo: [searchEdit]
-        Keys.onPressed: {
+        Keys.onPressed: function(event) {
             if (baseLayer.focus === true) {
                 // the SearchEdit will catch the key event first, and events that it won't accept will then got here
                 switch (event.key) {

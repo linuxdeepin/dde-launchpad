@@ -26,7 +26,9 @@ ColumnLayout {
     }
 
     function resetViewState() {
-        loader.item.resetViewState()
+        if (CategorizedSortProxyModel.categoryType !== CategorizedSortProxyModel.FreeCategory) {
+            loader.item.resetViewState()
+        }
     }
 
     function switchToFreeSort(freeSort) {

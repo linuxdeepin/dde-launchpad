@@ -255,7 +255,7 @@ FocusScope {
                 Drag.dragType: Drag.Automatic
                 Drag.mimeData: Helper.generateDragMimeData(model.desktopId, true)
                 Drag.hotSpot.y: height / 2
-                Drag.hotSpot.x: Drag.hotSpot.y
+                Drag.hotSpot.x: width / 2
 
                 states: State {
                     name: "dragged";
