@@ -259,6 +259,19 @@ Item {
                     leftMargin: 10
                     rightMargin: 10
                 }
+                Rectangle {
+                    width: 8
+                    height: 8
+                    radius: 4
+                    color: "#6CA6FF"
+                    visible: model.lastLaunchedTime === 0 && model.installedTime !== 0
+                    anchors {
+                        right: parent.right
+                        verticalCenter: parent.verticalCenter
+                        rightMargin: 4
+                    }
+                    z: 1
+                }
                 font: DTK.fontManager.t8
                 ColorSelector.pressed: false
                 property Palette textColor: DStyle.Style.button.text
