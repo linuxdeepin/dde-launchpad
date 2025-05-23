@@ -363,7 +363,27 @@ void ItemArrangementProxyModel::onSourceModelChanged()
         // add all existing ones if they are not already in
         if (folder == -1) {
             findItem(desktopId);
-            m_topLevel->appendItem(desktopId);
+            // Find first available page with space
+            int targetPage = -1;
+            int targetIndex = -1;
+            
+            // Check each page for available space
+            for (int page = 0; page < m_topLevel->pageCount(); page++) {
+                int itemCount = m_topLevel->itemCount(page);
+                if (itemCount < m_topLevel->maxItemCountPerPage()) {
+                    targetPage = page;
+                    targetIndex = itemCount;
+                    break;
+                }
+            }
+            
+            if (targetPage != -1) {
+                // Add to first available page with space
+                m_topLevel->insertItem(desktopId, targetPage, targetIndex);
+            } else {
+                // All pages are full, append to new page
+                m_topLevel->appendItem(desktopId);
+            }
         }
     }
 
