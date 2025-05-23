@@ -7,6 +7,7 @@ import QtQuick.Layouts 1.15
 import QtQuick.Controls 2.15
 import org.deepin.dtk 1.0
 import org.deepin.ds 1.0
+import org.deepin.dtk.style 1.0 as DStyle
 
 import org.deepin.launchpad 1.0
 import org.deepin.launchpad.models 1.0
@@ -51,17 +52,11 @@ Control {
             contentItem: SearchEdit {
                 id: searchEdit
                 padding: 1
-                property Palette iconPalette: Palette {
-                    normal {
-                        crystal: Qt.rgba(0, 0, 0, 1)
-                    }
-                    normalDark {
-                        crystal: Qt.rgba(1, 1, 1, 1)
-                    }
-                }
                 placeholder: qsTr("Search")
-                placeholderTextColor: palette.brightText
-                palette.windowText: ColorSelector.iconPalette
+                property Palette textColor: DStyle.Style.button.text
+                placeholderTextColor: ColorSelector.textColor
+                palette.windowText: ColorSelector.textColor
+                ColorSelector.pressed: false
 
                 onTextChanged: {
                     console.log(text)
