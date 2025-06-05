@@ -1,3 +1,12 @@
+dde-launchpad (1.99.16) UNRELEASED; urgency=medium
+
+  * fix: when only one page, hide indicator. 
+  * fix: Dock can overlapping right-click menu 
+  * feat: add Support for acronym matching and others. 
+  * fix: Install new app will start from first page to fill. 
+
+-- Wu Jiangyu <wujiangyu@uniontech.com>  Thu, 05 Jun 2025 16:22:046 +0800
+
 dde-launchpad (1.99.15) unstable; urgency=medium
 
   * fix: The alphabet also closes when the launchpad is shut down
