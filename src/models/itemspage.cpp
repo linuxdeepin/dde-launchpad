@@ -146,9 +146,30 @@ void ItemsPage::insertItem(const QString id, int page, int pos)
 
 void ItemsPage::insertItemToPage(const QString &id, int toPage)
 {
+    if (toPage < 0) {
+        // 从第一页开始查找有空位的页面进行自动补位
+        const int pageCount = m_pages.count();
+        toPage = -1;  // 标记未找到空位
+        
+        for (int page = 0; page < pageCount; page++) {
+            if (m_pages.at(page).size() < m_maxItemCountPerPage) {
+                toPage = page;
+                break;
+            }
+        }
+        
+        // 如果没有找到空位，创建新页面
+        if (toPage == -1) {
+            appendPage({id});
+            return;
+        }
+    }
+    
+    if (m_pages.count() == 0) {
+        appendPage({id});
+        return;
+    }
     Q_ASSERT(toPage < m_pages.count());
-
-    if (toPage < 0) toPage = qMax(m_pages.count() - 1, 0);
 
     insertItem(id, toPage, m_pages[toPage].count());
 }
