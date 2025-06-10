@@ -30,6 +30,7 @@ FocusScope {
     property int paddingRows: Helper.frequentlyUsed.cellPaddingRows
     property real cellHeight: 82
     property real cellWidth: 80
+    property Transition itemMove
 
     readonly property alias currentItem: gridView.currentItem
     readonly property alias gridViewWidth: gridView.width
@@ -83,6 +84,10 @@ FocusScope {
             }
             cellHeight: root.cellHeight + paddingRows
             cellWidth: root.cellWidth + paddingColumns
+
+            displaced: root.itemMove
+            move: root.itemMove
+            moveDisplaced: root.itemMove
 
             highlight: Item {
                 FocusBoxBorder {

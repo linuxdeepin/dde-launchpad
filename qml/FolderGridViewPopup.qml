@@ -274,17 +274,35 @@ Popup {
 
                                     MultipageSortFilterProxyModel {
                                         id: folderProxyModel
+                                        filterOnlyMode: true
                                         sourceModel: ItemArrangementProxyModel
                                         pageId: modelData
                                         folderId: folderLoader.currentFolderId
+                                    }
+                                    
+                                    SortProxyModel {
+                                        id: sortProxyModel
+                                        sourceModel: folderProxyModel
+                                        sortRole: ItemArrangementProxyModel.IndexInPageRole
+                                        Component.onCompleted: {
+                                            sortProxyModel.sort(0)
+                                        }
                                     }
 
                                     //gridViewContainer
                                     Loader {
                                         id: gridViewContainerLoader
                                         anchors.fill: parent
-
                                         sourceComponent: isWindowedMode ? listViewGridViewContainer : fullScreenGridViewContainer
+                                        
+                                        // Define common itemMove transition to avoid duplication
+                                        property Transition itemMove: Transition {
+                                            NumberAnimation {
+                                                properties: "x,y"
+                                                duration: 200
+                                                easing.type: Easing.OutQuad
+                                            }
+                                        }
                                     }
 
                                     Component {
@@ -295,13 +313,13 @@ Popup {
                                             anchors.fill: parent
                                             rows: 3
                                             columns: 4
-                                            model: folderProxyModel
+                                            model: sortProxyModel
                                             padding: 10
                                             interactive: false
                                             focus: true
                                             gridViewClip: false // TODO it maybe a bug for dtk, https://github.com/linuxdeepin/developer-center/issues/8468
                                             activeGridViewFocusOnTab: folderGridViewLoader.SwipeView.isCurrentItem
-                                            itemMove: Transition { NumberAnimation { properties: "x,y"; duration: 250 } }
+                                            itemMove: parent.itemMove
                                             delegate: DelegateDropArea {
                                                 width: folderGridViewContainer.cellWidth
                                                 height: folderGridViewContainer.cellHeight
@@ -316,7 +334,7 @@ Popup {
                                             anchors.fill: parent
                                             rows: 3
                                             columns: 4
-                                            model: folderProxyModel
+                                            model: sortProxyModel
                                             paddingRows: 6
                                             cellHeight: 86
                                             paddingColumns: 2
@@ -324,6 +342,7 @@ Popup {
                                             focus: true
                                             gridViewClip: false
                                             activeGridViewFocusOnTab: folderGridViewLoader.SwipeView.isCurrentItem
+                                            itemMove: parent.itemMove
                                             delegate: DelegateDropArea {
                                                 width: folderGridViewContainer.cellWidth
                                                 height: folderGridViewContainer.cellHeight
@@ -332,7 +351,28 @@ Popup {
                                     }
 
                                     component DelegateDropArea: DropArea {
+                                        onEntered: function(drag) {
+                                            folderDragApplyTimer.dragId = drag.getDataAsString("text/x-dde-launcher-dnd-desktopId")
+                                            folderDragApplyTimer.restart()
+                                        }
+                                        onPositionChanged: function(drag) {
+                                            let dragId = drag.getDataAsString("text/x-dde-launcher-dnd-desktopId")
+                                            if (dragId === model.desktopId) {
+                                                return
+                                            }
+                                            folderDragApplyTimer.dragId = dragId
+                                            folderDragApplyTimer.currentDropX = drag.x
+                                            if (!folderDragApplyTimer.running) {
+                                                folderDragApplyTimer.restart()
+                                            }
+                                        }
+                                        onExited: {
+                                            folderDragApplyTimer.stop()
+                                            folderDragApplyTimer.dragId = ""
+                                        }
                                         onDropped: function(drop) {
+                                            folderDragApplyTimer.stop()
+                                            folderDragApplyTimer.dragId = ""
                                             let dragId = drop.getDataAsString("text/x-dde-launcher-dnd-desktopId")
                                             if (dragId === model.desktopId) {
                                                 return
@@ -345,6 +385,29 @@ Popup {
                                             }
 
                                             dropOnItem(dragId, model.desktopId, op)
+                                            sortProxyModel.sort(0)
+                                        }
+                                        
+                                        Timer {
+                                            id: folderDragApplyTimer
+                                            interval: 500
+                                            property string dragId: ""
+                                            property real currentDropX: 0
+                                            onTriggered: function() {
+                                                if (dragId === "") return
+                                                let op = 0
+                                                let sideOpPadding = parent.width / 4
+                                                if (currentDropX < sideOpPadding) {
+                                                    op = -1
+                                                } else if (currentDropX > (parent.width - sideOpPadding)) {
+                                                    op = 1
+                                                }
+                                                // 只有在需要插入操作时才执行预览移动
+                                                if (op !== 0) {
+                                                    dropOnItem(dragId, model.desktopId, op)
+                                                    sortProxyModel.sort(0)
+                                                }
+                                            }
                                         }
                                         Keys.forwardTo: [innerItem]
 
