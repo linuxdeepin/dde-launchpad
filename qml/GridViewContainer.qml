@@ -68,12 +68,19 @@ FocusScope {
         Rectangle {
             anchors.centerIn: parent
             width: {
-                if (root.objectName === "folderGridViewContainer")
-                    return model.rowCount() > root.columns - 1 ? item.cellWidth * root.columns : model.rowCount() * item.cellWidth
-                else
+                if (root.objectName === "folderGridViewContainer") {
+                    return item.cellWidth * root.columns + root.paddingColumns * Math.max(0, root.columns - 1) + root.paddingColumns
+                } else {
                     return item.cellWidth * root.columns
+                }
             }
-            height: rows == 0 ? parent.height : (item.cellHeight * root.rows)
+            height: {
+                if (root.objectName === "folderGridViewContainer") {
+                    return item.cellHeight * root.rows + root.paddingColumns * Math.max(0, root.rows - 1)
+                } else {
+                    return root.rows == 0 ? parent.height : (item.cellHeight * root.rows)
+                }
+            }
             color: "transparent"
 
             GridView {
