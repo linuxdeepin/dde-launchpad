@@ -380,7 +380,10 @@ InputEventItem {
                                 } else {
                                     gridViewContainer.setPreviousPageSwitch(false)
                                 }
-                                listviewPage.previousIndex = listviewPage.currentIndex
+                                // 延迟更新previousIndex，避免重复处理
+                                Qt.callLater(function() {
+                                    listviewPage.previousIndex = listviewPage.currentIndex
+                                })
                             }
 
                             Keys.onLeftPressed: function(event) {
@@ -394,7 +397,7 @@ InputEventItem {
                             }
                             Keys.onRightPressed: function(event) {
                                 if (listItem.viewIndex === (itemPageModel.rowCount() - 1) && itemPageModel.rowCount() > 1) {
-                                    // is the last page, go to last page
+                                    // is the last page, go to first page
                                     listviewPage.setCurrentIndex(0)
                                 } else {
                                     // not the last page, simply use SwipeView default behavior

@@ -122,7 +122,7 @@ FocusScope {
                     Rectangle {
                         anchors {
                             fill: parent
-                            margins: 5    
+                            margins: 5
                         }
                         radius: 18
                         color: Qt.rgba(0, 0, 0, 0.2)
@@ -135,16 +135,6 @@ FocusScope {
                 // not wroking
                 move: root.itemMove
                 moveDisplaced: root.itemMove
-
-                Keys.onPressed: function (event) {
-                    if (event.key === Qt.Key_Right && currentIndex === gridView.count - 1) {
-                        gridView.currentIndex = 0;
-                        event.accepted = true;
-                    } else if (event.key === Qt.Key_Left && currentIndex === 0) {
-                        currentIndex = gridView.count - 1;
-                        event.accepted = true;
-                    }
-                }
             }
         }
 
