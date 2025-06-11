@@ -31,6 +31,15 @@ Popup {
     width: alphabetCategoryContainer.width + 20
     height: alphabetCategoryContainer.height + 20
 
+    function setCurrentCategory(category) {
+        for (let i = 0; i < alphabetCategoryDelegateModel.model.length; i++) {
+            if (alphabetCategoryDelegateModel.model[i] === category) {
+                alphabetCategoryContainer.currentIndex = i
+                break
+            }
+        }
+    }
+
     DelegateModel {
         id: alphabetCategoryDelegateModel
 
@@ -98,6 +107,18 @@ Popup {
         }
 
        activeFocusOnTab: gridViewFocus
+    }
+
+    Item {
+        focus: root.visible
+        Keys.onPressed: function (event) {
+            if (event.key === Qt.Key_Left ||
+                event.key === Qt.Key_Right ||
+                event.key === Qt.Key_Up ||
+                event.key === Qt.Key_Down) {
+                alphabetCategoryContainer.focus = true
+            }
+        }
     }
 
     background: FloatingPanel {

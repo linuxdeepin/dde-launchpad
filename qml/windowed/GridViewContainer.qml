@@ -36,6 +36,7 @@ FocusScope {
     readonly property alias gridViewWidth: gridView.width
     property alias highlight: gridView.highlight
     property ScrollBar vScrollBar
+    property alias currentIndex: gridView.currentIndex
 
     function positionViewAtBeginning() {
         gridView.positionViewAtBeginning()
