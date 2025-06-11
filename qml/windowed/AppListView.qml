@@ -129,6 +129,7 @@ FocusScope {
                         onClicked: {
                             if (CategorizedSortProxyModel.categoryType === CategorizedSortProxyModel.Alphabetary) {
                                 alphabetCategoryPopup.existingSections = CategorizedSortProxyModel.alphabetarySections()
+                                alphabetCategoryPopup.setCurrentCategory(section.toUpperCase())
                                 var mousePos = mapToItem(listView, mouseX, mouseY)
                                 var y = (mousePos.y + alphabetCategoryPopup.height) < listView.height ? mousePos.y : listView.height - alphabetCategoryPopup.height
                                 alphabetCategoryPopup.y = y
