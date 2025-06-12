@@ -1,3 +1,12 @@
+dde-launchpad (1.99.17) UNRELEASED; urgency=medium
+
+  * fix: app will automatically fill in from the first page of folder
+  * fix: when drag app to another app from folder,add animation and auto-move with folders
+  * feat: Added left and right button switching in full-screen mode
+  * feat: add focus with AlphabetCategory when change to another word
+
+-- Wang Zichong <wangzichong@deepin.org>  Thu, 12 Jun 2025 19:22:00 +0800
+
 dde-launchpad (1.99.16) UNRELEASED; urgency=medium
 
   * fix: when only one page, hide indicator. 
@@ -5,7 +14,7 @@ dde-launchpad (1.99.16) UNRELEASED; urgency=medium
   * feat: add Support for acronym matching and others. 
   * fix: Install new app will start from first page to fill. 
 
--- Wu Jiangyu <wujiangyu@uniontech.com>  Thu, 05 Jun 2025 16:22:046 +0800
+-- Wu Jiangyu <wujiangyu@uniontech.com>  Thu, 05 Jun 2025 16:22:46 +0800
 
 dde-launchpad (1.99.15) unstable; urgency=medium
 
