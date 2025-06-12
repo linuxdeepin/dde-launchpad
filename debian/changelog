@@ -1,3 +1,13 @@
+dde-launchpad (1.99.17) unstable; urgency=medium
+
+  * feat: add focus with AlphabetCategory when change to another word.
+  * feat: Added left and right button switching in full-screen mode.
+  * fix: when drag app to another app from folder,add animation and
+    auto-move with folders.
+  * fix: app will automatically fill in  from the first page of folder
+
+ -- YeShanShan <yeshanshan@uniontech.com>  Thu, 12 Jun 2025 19:14:36 +0800
+
 dde-launchpad (1.99.16) UNRELEASED; urgency=medium
 
   * fix: when only one page, hide indicator. 
