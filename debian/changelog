@@ -1,5 +1,6 @@
-dde-launchpad (1.99.16) UNRELEASED; urgency=medium
+dde-launchpad (1.99.16) unstable; urgency=medium
 
+  [ Wang Zichong ]
   * fix: when only one page, hide indicator. 
   * fix: Dock can overlapping right-click menu 
   * feat: add Support for acronym matching and others. 
@@ -49,7 +50,23 @@ dde-launchpad (1.99.11) UNRELEASED; urgency=medium
   * fix: drag-n-drop create app folder have incorrect app ordering (Bug-288919)
   * Update translations from Transifex
 
- -- Wang Zichong <wangzichong@deepin.org>  Thu, 17 Apr 2025 17:39:00 +0800
+  [ YeShanShan ]
+  * feat: add focus with AlphabetCategory when change to another word.
+  * feat: Added left and right button switching in full-screen mode.
+  * fix: when drag app to another app from folder,add animation and
+    auto-move with folders.
+  * fix: app will automatically fill in  from the first page of folder
+  * chore: release dde-launchpad 1.99.16
+  * feat: add Support for acronym matching and others.
+  * fix: Search adjustments are the same color as other text icons
+  * feat: The newly installed app shows blue dot when it is not running.
+  * fix: Install new app will start from first page to fill.
+  * fix: when debug, delete the warning logs.
+  * fix: Dock can overlapping right-click menu (#566)
+  * fix: when only one page, hide indicator.
+  * i18n: Updates for project Deepin Desktop Environment (#557)
+
+ -- YeShanShan <yeshanshan@uniontech.com>  Thu, 12 Jun 2025 17:55:15 +0800
 
 dde-launchpad (1.99.10) UNRELEASED; urgency=medium
 
