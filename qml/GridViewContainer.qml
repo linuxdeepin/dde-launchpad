@@ -125,7 +125,7 @@ FocusScope {
                             margins: 5
                         }
                         radius: 18
-                        color: Qt.rgba(0, 0, 0, 0.2)
+                        color: Qt.rgba(1, 1, 1, 0.2)
                         visible: alwaysShowHighlighted
                     }
                 }
