@@ -205,13 +205,13 @@
     <message>
         <location filename="../../qml/windowed/SearchResultView.qml" line="37"/>
         <source>All Apps</source>
-        <translation type="unfinished"/>
+        <translation>Tüm Uygulamalar</translation>
     </message>
     <message>
         <location filename="../../qml/FullscreenFrame.qml" line="557"/>
         <location filename="../../qml/windowed/SearchResultView.qml" line="102"/>
         <source>No search results</source>
-        <translation type="unfinished"/>
+        <translation>Hiçbir arama sonucu bulunamadı</translation>
     </message>
 </context>
 <context>
