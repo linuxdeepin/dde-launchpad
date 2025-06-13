@@ -322,7 +322,7 @@
     <message>
         <location filename="../package/launcheritem.qml" line="162"/>
         <source>launchpad</source>
-        <translation type="unfinished"/>
+        <translation>başlatma</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="309"/>
