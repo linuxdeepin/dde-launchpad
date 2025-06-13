@@ -9,7 +9,7 @@
     <message>
         <location filename="../../qml/AppItemMenu.qml" line="46"/>
         <source>Pin to Top</source>
-        <translation type="unfinished"/>
+        <translation>Üste Sabitle</translation>
     </message>
     <message>
         <location filename="../../qml/AppItemMenu.qml" line="55"/>
