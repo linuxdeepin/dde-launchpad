@@ -450,7 +450,7 @@ InputEventItem {
 
                                 Timer {
                                     id: dndDropEnterTimer
-                                    interval: 500
+                                    interval: 400
                                     property string dragId: ""
                                     onTriggered: function() {
                                         if (dragId === "") return
