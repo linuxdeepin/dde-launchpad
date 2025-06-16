@@ -390,7 +390,7 @@ Popup {
                                         
                                         Timer {
                                             id: folderDragApplyTimer
-                                            interval: 500
+                                            interval: 400
                                             property string dragId: ""
                                             property real currentDropX: 0
                                             onTriggered: function() {
