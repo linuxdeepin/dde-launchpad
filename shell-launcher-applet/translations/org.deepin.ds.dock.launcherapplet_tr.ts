@@ -9,12 +9,12 @@
     <message>
         <location filename="../../qml/AppItemMenu.qml" line="46"/>
         <source>Pin to Top</source>
-        <translation type="unfinished"/>
+        <translation>Üste Sabitle</translation>
     </message>
     <message>
         <location filename="../../qml/AppItemMenu.qml" line="55"/>
         <source>Move to Top</source>
-        <translation type="unfinished"/>
+        <translation>Üste Taşı</translation>
     </message>
     <message>
         <location filename="../../qml/AppItemMenu.qml" line="65"/>
@@ -179,7 +179,7 @@
     <message>
         <location filename="../../qml/Main.qml" line="400"/>
         <source>Are you sure you want to uninstall &quot;%1&quot;?</source>
-        <translation type="unfinished"/>
+        <translation>&quot;%1&quot; öğesini kaldırmak istediğinizden emin misiniz?</translation>
     </message>
     <message>
         <location filename="../../qml/Main.qml" line="412"/>
@@ -197,7 +197,7 @@
     <message>
         <location filename="../../qml/windowed/RecentlyInstalledView.qml" line="34"/>
         <source>Recently Installed</source>
-        <translation type="unfinished"/>
+        <translation>Son zamanlarda yüklenen</translation>
     </message>
 </context>
 <context>
@@ -205,13 +205,13 @@
     <message>
         <location filename="../../qml/windowed/SearchResultView.qml" line="37"/>
         <source>All Apps</source>
-        <translation type="unfinished"/>
+        <translation>Tüm Uygulamalar</translation>
     </message>
     <message>
         <location filename="../../qml/FullscreenFrame.qml" line="557"/>
         <location filename="../../qml/windowed/SearchResultView.qml" line="102"/>
         <source>No search results</source>
-        <translation type="unfinished"/>
+        <translation>Hiçbir arama sonucu bulunamadı</translation>
     </message>
 </context>
 <context>
@@ -219,7 +219,7 @@
     <message>
         <location filename="../../qml/windowed/SideBar.qml" line="40"/>
         <source>Free sorting</source>
-        <translation type="unfinished"/>
+        <translation>Serbest sıralama</translation>
     </message>
     <message>
         <location filename="../../qml/windowed/SideBar.qml" line="54"/>
@@ -322,12 +322,12 @@
     <message>
         <location filename="../package/launcheritem.qml" line="162"/>
         <source>launchpad</source>
-        <translation type="unfinished"/>
+        <translation>başlatma</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="309"/>
         <source>Are you sure you want to uninstall &quot;%1&quot;?</source>
-        <translation type="unfinished"/>
+        <translation>&quot;%1&quot; öğesini kaldırmak istediğinizden emin misiniz?</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="321"/>
