@@ -322,7 +322,7 @@
     <message>
         <location filename="../package/launcheritem.qml" line="162"/>
         <source>launchpad</source>
-        <translation>Plataforma de lançamento</translation>
+        <translation>Launchpad</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="309"/>
