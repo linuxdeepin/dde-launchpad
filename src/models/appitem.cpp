@@ -117,6 +117,26 @@ void AppItem::setIsAutoStart(bool autostart)
     setData(autostart, AppItem::IsAutoStartRole);
 }
 
+const QString AppItem::vendor() const
+{
+    return data(AppItem::VendorRole).toString();
+}
+
+void AppItem::setVendor(const QString &vendor)
+{
+    setData(vendor, AppItem::VendorRole);
+}
+
+const QString AppItem::genericName() const
+{
+    return data(AppItem::GenericNameRole).toString();
+}
+
+void AppItem::setGenericName(const QString &genericName)
+{
+    setData(genericName, AppItem::GenericNameRole);
+}
+
 // assign/update data from another AppItem object
 // assume the desktopId is the same, will update other data.
 // doesn't take the ownership of the passed appItem.
@@ -133,5 +153,7 @@ void AppItem::updateData(const AppItem *appItem)
     setData(appItem->data(AppItem::LastLaunchedTimeRole), AppItem::LastLaunchedTimeRole);
     setData(appItem->data(AppItem::LaunchedTimesRole), AppItem::LaunchedTimesRole);
     setData(appItem->data(AppItem::IsAutoStartRole), AppItem::IsAutoStartRole);
+    setData(appItem->data(AppItem::VendorRole), AppItem::VendorRole);
+    setData(appItem->data(AppItem::GenericNameRole), AppItem::GenericNameRole);
 }
 

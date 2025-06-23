@@ -23,6 +23,8 @@ public:
         LastLaunchedTimeRole,
         LaunchedTimesRole,
         IsAutoStartRole,
+        VendorRole,
+        GenericNameRole,
         ModelExtendedRole = 0x1000
     };
     Q_ENUM(Roles)
@@ -70,6 +72,10 @@ public:
     void setLaunchedTimes(qint64 times);
     bool isAutoStart() const;
     void setIsAutoStart(bool autostart);
+    const QString vendor() const;
+    void setVendor(const QString & vendor);
+    const QString genericName() const;
+    void setGenericName(const QString & genericName);
     void updateData(const AppItem * appItem);
 };
 

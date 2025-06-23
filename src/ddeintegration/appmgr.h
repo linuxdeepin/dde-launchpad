@@ -33,6 +33,8 @@ public:
         qint64 launchedTimes = 0;
         bool isAutoStart = false;
         QString appId;
+        QString vendor;
+        QString genericName;
     };
 
     static AppMgr *instance();
