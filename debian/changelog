@@ -1,3 +1,9 @@
+dde-launchpad (2.0.1) unstable; urgency=medium
+
+  * feat: add search for Uppercase and modify deepin-XXX logic.
+
+ -- WuJiangYu <wujiangyu@uniontech.com>  Mon, 23 Jun 2025 16:41:52 +0800
+
 dde-launchpad (2.0.0) unstable; urgency=medium
 
   * i18n: Updates for project Deepin Desktop Environment (#581)
