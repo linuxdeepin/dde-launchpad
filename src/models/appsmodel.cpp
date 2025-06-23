@@ -54,6 +54,8 @@ AppsModel::AppsModel(QObject *parent)
         {AppItem::LastLaunchedTimeRole, QByteArrayLiteral("lastLaunchedTime")},
         {AppItem::LaunchedTimesRole, QByteArrayLiteral("launchedTimes")},
         {AppItem::IsAutoStartRole, QByteArrayLiteral("autoStart")},
+        {AppItem::VendorRole, QByteArrayLiteral("vendor")},
+        {AppItem::GenericNameRole, QByteArrayLiteral("genericName")},
         {AppsModel::TransliteratedRole, QByteArrayLiteral("transliterated")}
     });
     setItemRoleNames(defaultRoleNames);
@@ -239,6 +241,8 @@ QList<AppItem *> AppsModel::allAppInfosShouldBeShown() const
         item->setLastLaunchedTime(appItem->lastLaunchedTime);
         item->setLaunchedTimes(appItem->launchedTimes);
         item->setIsAutoStart(appItem->isAutoStart);
+        item->setVendor(appItem->vendor);
+        item->setGenericName(appItem->genericName);
         items.append(item);
     }
     return items;
