@@ -31,6 +31,11 @@ AppletItem {
         {
             updateLaunchpadPos()
         }
+        function onViewDeactivated() {
+            if (LauncherController.currentFrame === "FullscreenFrame" && LauncherController.visible) {
+                LauncherController.hideWithTimer()
+            }
+        }
     }
 
     property point itemPos: Qt.point(0, 0)
