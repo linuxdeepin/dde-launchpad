@@ -34,7 +34,7 @@
     <message>
         <location filename="../../qml/AppItemMenu.qml" line="80"/>
         <source>Send to desktop</source>
-        <translation>デスクトップへ送る</translation>
+        <translation>デスクトップに追加</translation>
     </message>
     <message>
         <location filename="../../qml/AppItemMenu.qml" line="91"/>
@@ -44,7 +44,7 @@
     <message>
         <location filename="../../qml/AppItemMenu.qml" line="91"/>
         <source>Send to dock</source>
-        <translation>ドックへ送る</translation>
+        <translation>ドックに固定</translation>
     </message>
     <message>
         <location filename="../../qml/AppItemMenu.qml" line="103"/>
@@ -179,7 +179,7 @@
     <message>
         <location filename="../../qml/Main.qml" line="400"/>
         <source>Are you sure you want to uninstall &quot;%1&quot;?</source>
-        <translation type="unfinished"/>
+        <translation>%1 をアンインストールしてもよろしいですか？</translation>
     </message>
     <message>
         <location filename="../../qml/Main.qml" line="412"/>
@@ -327,7 +327,7 @@
     <message>
         <location filename="../package/launcheritem.qml" line="309"/>
         <source>Are you sure you want to uninstall &quot;%1&quot;?</source>
-        <translation type="unfinished"/>
+        <translation>%1 をアンインストールしてもよろしいですか？</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="321"/>
