@@ -44,7 +44,7 @@
     <message>
         <location filename="../../qml/AppItemMenu.qml" line="91"/>
         <source>Send to dock</source>
-        <translation>ドックへ送る</translation>
+        <translation>ドックに固定</translation>
     </message>
     <message>
         <location filename="../../qml/AppItemMenu.qml" line="103"/>
