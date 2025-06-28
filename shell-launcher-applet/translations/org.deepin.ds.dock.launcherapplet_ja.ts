@@ -34,7 +34,7 @@
     <message>
         <location filename="../../qml/AppItemMenu.qml" line="80"/>
         <source>Send to desktop</source>
-        <translation>デスクトップへ送る</translation>
+        <translation>デスクトップに追加</translation>
     </message>
     <message>
         <location filename="../../qml/AppItemMenu.qml" line="91"/>
