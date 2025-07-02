@@ -64,6 +64,7 @@ public:
     Q_INVOKABLE void removeFromDesktop(const QString & desktopId);
     Q_INVOKABLE bool isAutoStart(const QString & desktopId) const;
     Q_INVOKABLE void setAutoStart(const QString & desktopId, bool on = true);
+    Q_INVOKABLE bool shouldSkipConfirmUninstallDialog(const QString & desktopId) const;
     Q_INVOKABLE void uninstallApp(const QString & desktopId);
     qreal opacity() const;
 

@@ -132,16 +132,20 @@ Loader {
                 enabled: !root.desktopId.startsWith("internal/folders/") && !DesktopIntegration.appIsCompulsoryForDesktop(root.desktopId)
                 text: qsTr("Uninstall")
                 onTriggered: {
-                    if(LauncherController.currentFrame !== "FullscreenFrame"){
+                    if (LauncherController.currentFrame !== "FullscreenFrame") {
                         LauncherController.setAvoidHide(true)
                         LauncherController.visible = false
-                    }else{
+                    } else {
                         LauncherController.setAvoidHide(false) 
                     }
-                    confirmUninstallDlg.appName = root.display
-                    confirmUninstallDlg.appId = root.desktopId
-                    confirmUninstallDlg.icon = root.iconName
-                    confirmUninstallDlg.show()
+                    if (!DesktopIntegration.shouldSkipConfirmUninstallDialog(root.desktopId)) {
+                        confirmUninstallDlg.appName = root.display
+                        confirmUninstallDlg.appId = root.desktopId
+                        confirmUninstallDlg.icon = root.iconName
+                        confirmUninstallDlg.show()
+                    } else {
+                        DesktopIntegration.uninstallApp(root.desktopId)
+                    }
                 }
             }
 
