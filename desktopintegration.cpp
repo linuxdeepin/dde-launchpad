@@ -197,6 +197,20 @@ void DesktopIntegration::setAutoStart(const QString &desktopId, bool on)
     return AppMgr::setAutoStart(desktopId, on);
 }
 
+bool DesktopIntegration::shouldSkipConfirmUninstallDialog(const QString &desktopId) const
+{
+    bool result = false;
+    const QString & fullPath = AppInfo::fullPathByDesktopId(desktopId);
+    if (fullPath.isEmpty()) return result;
+
+    DDesktopEntry entry(fullPath);
+    if (!entry.stringValue("X-Deepin-PreUninstall").isEmpty()) {
+        result = true;
+    }
+
+    return result;
+}
+
 void DesktopIntegration::uninstallApp(const QString &desktopId)
 {
     const QString & fullPath = AppInfo::fullPathByDesktopId(desktopId);
