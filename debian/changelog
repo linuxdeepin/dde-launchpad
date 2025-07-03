@@ -1,3 +1,14 @@
+dde-launchpad (2.0.2) unstable; urgency=medium
+
+  * fix: add hardening compiler flags for Debian build
+  * chore: avoid show confirm uninstall dialog when have preuninstall
+    hook
+  * i18n: Updates for project Deepin Desktop Environment (#588)
+  * fix: when fullscreen, click dock, launchpad will not close.
+  * i18n: Translate org.deepin.ds.dock.launcherapplet.ts in pt_BR (#584)
+
+ -- WuJiangYu <wujiangyu@uniontech.com>  Thu, 03 Jul 2025 19:59:52 +0800
+
 dde-launchpad (2.0.1) unstable; urgency=medium
 
   * feat: add search for Uppercase and modify deepin-XXX logic.
