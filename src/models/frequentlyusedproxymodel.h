@@ -10,6 +10,7 @@
 class FrequentlyUsedProxyModel : public QSortFilterProxyModel, public QQmlParserStatus
 {
     Q_OBJECT
+    Q_INTERFACES(QQmlParserStatus)
     Q_PROPERTY(QAbstractItemModel* recentlyInstalledModel READ recentlyInstalledModel WRITE setRecentlyInstalledModel NOTIFY recentlyInstalledModelChanged FINAL)
     Q_PROPERTY(int desktopIdRole MEMBER m_desktopIdRole NOTIFY desktopIdRoleChanged)
     Q_PROPERTY(int launchedTimesRole MEMBER m_launchedTimesRole NOTIFY launchedTimesRoleChanged)
