@@ -29,6 +29,10 @@ public:
     // QSortFilterProxyModel interface
 protected:
     bool filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const override;
+    bool lessThan(const QModelIndex &source_left, const QModelIndex &source_right) const override;
+
 private:
     explicit SearchFilterProxyModel(QObject *parent = nullptr);
+
+    int calculateWeight(const QModelIndex &modelIndex) const;
 };
