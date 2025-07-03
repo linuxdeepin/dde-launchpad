@@ -10,6 +10,7 @@
 class RecentlyInstalledProxyModel : public QSortFilterProxyModel, public QQmlParserStatus
 {
     Q_OBJECT
+    Q_INTERFACES(QQmlParserStatus)
     QML_NAMED_ELEMENT(RecentlyInstalledProxyModel)
     Q_PROPERTY(int lastLaunchedTimeRole MEMBER m_lastLaunchedTimeRole NOTIFY lastLaunchedTimeRoleChanged)
     Q_PROPERTY(int installedTimeRole MEMBER m_installedTimeRole NOTIFY installedTimeRoleChanged)

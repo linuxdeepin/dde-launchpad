@@ -15,7 +15,7 @@ public:
     explicit AppWiz(QObject *parent = nullptr);
     ~AppWiz();
 
-    Q_DECL_DEPRECATED void legacyRequestUninstall(const QString & desktopFileFullPath);
+    void legacyRequestUninstall(const QString & desktopFileFullPath);
 
 private:
     void updateCurrentWallpaperBlurhash();
