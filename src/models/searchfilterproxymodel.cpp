@@ -267,11 +267,10 @@ int SearchFilterProxyModel::calculateWeight(const QModelIndex &modelIndex) const
     }));
 
     // 包名搜索（仅在配置启用时生效）
-    if (m_searchPackageEnabled) {
-        matchTypes.push_back(qMakePair(QString("desktopId"), [&]() -> bool {
-            return desktopIdLower.contains(searchPatternLower);
-        }));
-    }
+    matchTypes.push_back(qMakePair(QString("desktopId"), [&]() -> bool {
+        if (!m_searchPackageEnabled) return false;
+        return desktopIdLower.contains(searchPatternLower);
+    }));
 
     // 计算匹配索引（索引越小优先级越高)
     auto it = std::find_if(matchTypes.begin(), matchTypes.end(),
