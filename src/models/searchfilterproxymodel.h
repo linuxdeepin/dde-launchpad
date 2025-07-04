@@ -7,6 +7,10 @@
 #include <QtQml/qqml.h>
 #include <QSortFilterProxyModel>
 
+namespace Dtk::Core {
+class DConfig;
+}
+
 class SearchFilterProxyModel : public QSortFilterProxyModel
 {
     Q_OBJECT
@@ -35,4 +39,7 @@ private:
     explicit SearchFilterProxyModel(QObject *parent = nullptr);
 
     int calculateWeight(const QModelIndex &modelIndex) const;
+
+    Dtk::Core::DConfig *m_dconfig;
+    bool m_searchPackageEnabled;
 };
