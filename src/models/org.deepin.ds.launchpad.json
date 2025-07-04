@@ -75,6 +75,17 @@
       "description[zh_CN]": "在窗口模式下排序应用列表的类别。0: 首字母分组排序，1: DDE 风格分类，2: 自由排序",
       "permissions": "readwrite",
       "visibility": "private"
+    },
+    "searchByDesktopId": {
+      "value": false,
+      "serial": 0,
+      "flags": [],
+      "name": "searchByDesktopId",
+      "name[zh_CN]": "按桌面条目 ID 搜索",
+      "description": "Whether to allow the search for Desktop ID during the search.",
+      "description[zh_CN]": "在搜索时候是否允许搜索Desktop ID。",
+      "permissions": "readwrite",
+      "visibility": "private"
     }
   }
 }

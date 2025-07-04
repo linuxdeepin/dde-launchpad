@@ -7,6 +7,7 @@
 
 #include <QDebug>
 #include <DPinyin>
+#include <DConfig>
 #include <QMap>
 #include <functional>
 #include <algorithm>
@@ -14,11 +15,25 @@ DCORE_USE_NAMESPACE
 
 SearchFilterProxyModel::SearchFilterProxyModel(QObject *parent)
     : QSortFilterProxyModel(parent)
+    , m_dconfig(DConfig::create("org.deepin.dde.shell", "org.deepin.ds.launchpad"))
+    , m_searchPackageEnabled(false)
 {
     setFilterCaseSensitivity(Qt::CaseInsensitive);
 
     setSourceModel(&AppsModel::instance());
     sort(0, Qt::DescendingOrder);
+
+    Q_ASSERT_X(m_dconfig->isValid(), "DConfig", "DConfig file is missing or invalid");
+
+    m_searchPackageEnabled = m_dconfig->value("searchByDesktopId", false).toBool();
+    QObject::connect(m_dconfig, &DConfig::valueChanged, this, [this](const QString &key) {
+        if (key == "searchByDesktopId") {
+            m_searchPackageEnabled = m_dconfig->value("searchByDesktopId", false).toBool();
+            qDebug() << "searchByDesktopId配置已更新:" << m_searchPackageEnabled;
+            // 触发重新过滤以应用新的搜索配置
+            invalidateFilter();
+        }
+    });
 }
 
 bool SearchFilterProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const
@@ -29,7 +44,6 @@ bool SearchFilterProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex &
     // 计算匹配索引
     int matchIndex = calculateWeight(modelIndex);
 
-    // 如果索引为0，表示不匹配
     return matchIndex >= 0;
 }
 
@@ -70,6 +84,9 @@ int SearchFilterProxyModel::calculateWeight(const QModelIndex &modelIndex) const
     const QString & transliterated = modelIndex.data(AppsModel::AllTransliteratedRole).toString();
     const QString & jianpin = Dtk::Core::firstLetters(displayName).join(',');
 
+    //包名搜索使用
+    const QString & desktopId = modelIndex.data(AppItem::DesktopIdRole).toString();
+
     QString searchPatternDelBlank = searchPattern.pattern().toLower().remove(" ");
 
     // Choose which name to use for matching based on search input and vendor
@@ -105,6 +122,7 @@ int SearchFilterProxyModel::calculateWeight(const QModelIndex &modelIndex) const
     QString transliteratedLower = transliterated.toLower();
     QString jianpinLower = jianpin.toLower();
     QString nameFirstLettersLower = nameFirstLetters.toLower();
+    QString desktopIdLower = desktopId.toLower().remove(" ");
 
     // 使用 QVector 存储匹配类型和对应的函数，按优先级顺序插入
     QVector<QPair<QString, std::function<bool()>>> matchTypes;
@@ -247,6 +265,13 @@ int SearchFilterProxyModel::calculateWeight(const QModelIndex &modelIndex) const
         if (!isEnglishSearch) return false;
         return getCapitalizedWords().contains(searchPatternLower);
     }));
+
+    // 包名搜索（仅在配置启用时生效）
+    if (m_searchPackageEnabled) {
+        matchTypes.push_back(qMakePair(QString("desktopId"), [&]() -> bool {
+            return desktopIdLower.contains(searchPatternLower);
+        }));
+    }
 
     // 计算匹配索引（索引越小优先级越高)
     auto it = std::find_if(matchTypes.begin(), matchTypes.end(),
