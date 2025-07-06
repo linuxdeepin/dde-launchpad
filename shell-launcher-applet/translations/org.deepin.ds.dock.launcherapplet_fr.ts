@@ -14,7 +14,7 @@
     <message>
         <location filename="../../qml/AppItemMenu.qml" line="55"/>
         <source>Move to Top</source>
-        <translation>Déplacer en haut</translation>
+        <translation>Déplacer vers le haut</translation>
     </message>
     <message>
         <location filename="../../qml/AppItemMenu.qml" line="65"/>
