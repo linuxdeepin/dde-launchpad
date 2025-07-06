@@ -9,7 +9,7 @@
     <message>
         <location filename="../../qml/AppItemMenu.qml" line="46"/>
         <source>Pin to Top</source>
-        <translation>Mettre en avant</translation>
+        <translation>Épingler en haut</translation>
     </message>
     <message>
         <location filename="../../qml/AppItemMenu.qml" line="55"/>
