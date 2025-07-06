@@ -44,7 +44,7 @@
     <message>
         <location filename="../../qml/AppItemMenu.qml" line="91"/>
         <source>Send to dock</source>
-        <translation>Épingler au lanceur</translation>
+        <translation>Épingler au dock</translation>
     </message>
     <message>
         <location filename="../../qml/AppItemMenu.qml" line="103"/>
