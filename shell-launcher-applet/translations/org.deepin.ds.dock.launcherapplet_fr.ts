@@ -116,7 +116,7 @@
     <message>
         <location filename="../../qml/FullscreenFrame.qml" line="254"/>
         <source>Window Mode</source>
-        <translation>Mode de fenêtre</translation>
+        <translation>Mode fenêtre</translation>
     </message>
 </context>
 <context>
