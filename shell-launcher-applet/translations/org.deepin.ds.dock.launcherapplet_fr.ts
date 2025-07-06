@@ -144,7 +144,7 @@
     <message>
         <location filename="../../qml/Main.qml" line="30"/>
         <source>Graphics</source>
-        <translation>Graphiques</translation>
+        <translation>Graphisme</translation>
     </message>
     <message>
         <location filename="../../qml/Main.qml" line="32"/>
