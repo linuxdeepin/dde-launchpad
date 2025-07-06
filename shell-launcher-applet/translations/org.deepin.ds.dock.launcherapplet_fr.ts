@@ -337,7 +337,7 @@
     <message>
         <location filename="../package/launcheritem.qml" line="335"/>
         <source>Confirm</source>
-        <translation type="unfinished"/>
+        <translation>Confirmer</translation>
     </message>
 </context>
 </TS>
