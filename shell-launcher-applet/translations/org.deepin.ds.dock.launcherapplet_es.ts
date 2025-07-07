@@ -179,7 +179,7 @@
     <message>
         <location filename="../../qml/Main.qml" line="400"/>
         <source>Are you sure you want to uninstall &quot;%1&quot;?</source>
-        <translation>¿Desea desinstalar &quot;%1&quot;?</translation>
+        <translation>¿Desea desinstalar «%1»?</translation>
     </message>
     <message>
         <location filename="../../qml/Main.qml" line="412"/>
