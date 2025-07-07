@@ -73,6 +73,15 @@ ColumnLayout {
                     CategorizedSortProxyModel.categoryType = CategorizedSortProxyModel.Alphabetary
                 }
             }
+
+            Connections {
+                target: LauncherController
+                function onVisibleChanged(visible) {
+                    if (!visible) {
+                        categorizedMenu.close()
+                    }
+                }
+            }
         }
     }
 
