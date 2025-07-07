@@ -17,6 +17,7 @@ Item {
     signal folderClicked(string folderId, string folderName, point triggerPosition)
 
     property Item keyTabTarget: listView
+    property bool animationEnabled: false
 
     onFocusChanged: () => {
         listView.focus = true
@@ -31,7 +32,10 @@ Item {
         anchors.fill: parent
         highlightFollowsCurrentItem: true
 
-        displaced: Transition { NumberAnimation { properties: "y"; duration: 150 } }
+        displaced: Transition {
+            enabled: root.animationEnabled
+            NumberAnimation { properties: "y"; duration: 150 }
+        }
         move: displaced
         moveDisplaced: displaced
 
@@ -205,6 +209,7 @@ Item {
 
             onEntered: function(drag) {
                 listDelegateDragApplyTimer.startTimer(drag.getDataAsString("text/x-dde-launcher-dnd-desktopId"))   
+                root.animationEnabled = true
                 if (folderGridViewPopup.opened) {
                     folderGridViewPopup.close()
                 }
@@ -217,6 +222,7 @@ Item {
             }
 
             onDropped: function(drop) {
+                root.animationEnabled = false
                 listDelegateDragApplyTimer.stopTimer()
                 drop.accept()
                 let dragId = drop.getDataAsString("text/x-dde-launcher-dnd-desktopId")
