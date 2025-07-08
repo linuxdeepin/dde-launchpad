@@ -140,75 +140,10 @@ FocusScope {
                                 ddeCategoryMenu.existingSections = CategorizedSortProxyModel.DDECategorySections()
                                 listView.opacity = 0.1
                                 root.categoryMenu = ddeCategoryMenu
-                                ddeCategoryMenu.open()
+                                ddeCategoryMenu.popup(headingBtn, 0, 0)
                             }
                         }
 
-                        Menu {
-                            id: ddeCategoryMenu
-                            width: 150
-                            modal: true
-                            closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutsideParent
-
-                            property var existingSections: []
-                            Repeater {
-                                model: ddeCategoryMenu.existingSections
-                                delegate: MenuItem {
-                                    id: menuItem
-                                    text: getCategoryName(modelData)
-                                    textColor: DStyle.Style.menu.itemText
-                                    onTriggered: {
-                                        scrollToDDECategory(modelData)
-                                    }
-                                    contentItem: IconLabel {
-                                        alignment: Qt.AlignCenter
-                                        text: menuItem.text
-                                        color: parent.palette.windowText
-                                    }
-                                    background: BoxPanel {
-                                        anchors.left: parent.left
-                                        anchors.leftMargin: 10
-                                        anchors.right: parent.right
-                                        anchors.rightMargin: 10
-                                        anchors.top: parent.top
-                                        anchors.bottom: parent.bottom
-                                        visible: menuItem.down || menuItem.hovered
-                                        outsideBorderColor: null
-                                        insideBorderColor: null
-                                        radius: 6
-
-                                        property Palette background: Palette {
-                                            normal {
-                                                common: Qt.rgba(0, 0, 0, 0.1)
-                                                crystal: Qt.rgba(0, 0, 0, 0.1)
-                                            }
-                                            normalDark {
-                                                common: Qt.rgba(1, 1, 1, 0.1)
-                                                crystal: Qt.rgba(1, 1, 1, 0.1)
-                                            }
-                                            hovered {
-                                                common: Qt.rgba(16.0 / 255, 16.0 / 255, 16.0 / 255, 0.1)
-                                                crystal: Qt.rgba(16.0 / 255, 16.0 / 255, 16.0 / 255, 0.1)
-                                            }
-                                        }
-                                        color1: background
-                                        color2: background
-                                    }
-                                }
-                            }
-
-                            onVisibleChanged: {
-                                if (!visible) {
-                                    listView.opacity = 1
-                                }
-                            }
-                            background: FloatingPanel {
-                                radius: DStyle.Style.menu.radius
-                                backgroundColor: ddeCategoryMenu.backgroundColor
-                                backgroundNoBlurColor: ddeCategoryMenu.backgroundNoBlurColor
-                                dropShadowColor: null
-                            }
-                        }
                     }
                 }
             }
@@ -341,6 +276,72 @@ FocusScope {
                     launchApp(desktopId)
                 }
             }
+        }
+    }
+
+    Menu {
+        id: ddeCategoryMenu
+        width: 150
+        modal: true
+        closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutsideParent
+
+        property var existingSections: []
+        Repeater {
+            model: ddeCategoryMenu.existingSections
+            delegate: MenuItem {
+                id: menuItem
+                text: getCategoryName(modelData)
+                textColor: DStyle.Style.menu.itemText
+                onTriggered: {
+                    scrollToDDECategory(modelData)
+                }
+                contentItem: IconLabel {
+                    alignment: Qt.AlignCenter
+                    text: menuItem.text
+                    color: parent.palette.windowText
+                }
+                background: BoxPanel {
+                    anchors.left: parent.left
+                    anchors.leftMargin: 10
+                    anchors.right: parent.right
+                    anchors.rightMargin: 10
+                    anchors.top: parent.top
+                    anchors.bottom: parent.bottom
+                    visible: menuItem.down || menuItem.hovered
+                    outsideBorderColor: null
+                    insideBorderColor: null
+                    radius: 6
+
+                    property Palette background: Palette {
+                        normal {
+                            common: Qt.rgba(0, 0, 0, 0.1)
+                            crystal: Qt.rgba(0, 0, 0, 0.1)
+                        }
+                        normalDark {
+                            common: Qt.rgba(1, 1, 1, 0.1)
+                            crystal: Qt.rgba(1, 1, 1, 0.1)
+                        }
+                        hovered {
+                            common: Qt.rgba(16.0 / 255, 16.0 / 255, 16.0 / 255, 0.1)
+                            crystal: Qt.rgba(16.0 / 255, 16.0 / 255, 16.0 / 255, 0.1)
+                        }
+                    }
+                    color1: background
+                    color2: background
+                }
+            }
+        }
+
+        onVisibleChanged: {
+            if (!visible) {
+                listView.opacity = 1
+            }
+        }
+        background: FloatingPanel {
+            radius: DStyle.Style.menu.radius
+            backgroundColor: ddeCategoryMenu.backgroundColor
+            backgroundNoBlurColor: ddeCategoryMenu.backgroundNoBlurColor
+            dropShadowColor: null
         }
     }
 
