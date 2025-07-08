@@ -249,7 +249,7 @@ FocusScope {
                     width: 10
                     height: 10
                     radius: 5
-                    color: DTK.themeType === ApplicationHelper.LightType ? "#1C0560" : "#669DFF"
+                    color: DTK.themeType === ApplicationHelper.LightType ? "#226BEF" : "#669DFF"
                     border.width: 1
                     border.color: DTK.themeType === ApplicationHelper.LightType ?
                                  Qt.rgba(0, 0, 0, 0.1) : Qt.rgba(1, 1, 1, 0.1)
