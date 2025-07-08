@@ -269,9 +269,9 @@ Item {
                     width: 10
                     height: 10
                     radius: 5
-                    color: ApplicationHelper.DarkType === ApplicationHelper.LightType ? "#1C0560" : "#669DFF"
+                    color: DTK.themeType === ApplicationHelper.LightType ? "#1C0560" : "#669DFF"
                     border.width: 1
-                    border.color: ApplicationHelper.DarkType === ApplicationHelper.LightType ?
+                    border.color: DTK.themeType === ApplicationHelper.LightType ?
                                  Qt.rgba(0, 0, 0, 0.1) : Qt.rgba(1, 1, 1, 0.1)
                     visible: model.lastLaunchedTime === 0 && model.installedTime !== 0
                     anchors {
