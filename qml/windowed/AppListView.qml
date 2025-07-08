@@ -246,15 +246,18 @@ FocusScope {
                     z: 1
                 }
                 Rectangle {
-                    width: 8
-                    height: 8
-                    radius: 4
-                    color: "#6CA6FF"
+                    width: 10
+                    height: 10
+                    radius: 5
+                    color: ApplicationHelper.DarkType === ApplicationHelper.LightType ? "#1C0560" : "#669DFF"
+                    border.width: 1
+                    border.color: ApplicationHelper.DarkType === ApplicationHelper.LightType ?
+                                 Qt.rgba(0, 0, 0, 0.1) : Qt.rgba(1, 1, 1, 0.1)
                     visible: model.lastLaunchedTime === 0 && model.installedTime !== 0
                     anchors {
                         right: parent.right
                         verticalCenter: parent.verticalCenter
-                        rightMargin: 4
+                        leftMargin: 6
                     }
                     z: 1
                 }
