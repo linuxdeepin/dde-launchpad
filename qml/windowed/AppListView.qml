@@ -361,6 +361,13 @@ FocusScope {
             }
         }
 
+        Connections {
+            target: CategorizedSortProxyModel
+            function onCategoryTypeChanged() {
+                listView.positionViewAtBeginning()
+            }
+        }
+        
         section.property: CategorizedSortProxyModel.sortRoleName // "transliterated" // "category"
         section.criteria: section.property === "transliterated" ? ViewSection.FirstCharacter : ViewSection.FullString
         section.delegate: sectionHeading

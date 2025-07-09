@@ -15,7 +15,8 @@ DCORE_USE_NAMESPACE
 void CategorizedSortProxyModel::setCategoryType(CategoryType categoryType)
 {
     CategoryType oldCategoryType = this->categoryType();
-
+    
+    beginResetModel();
     isFreeSort = (categoryType == FreeCategory);
     switch (categoryType) {
     case Alphabetary:
@@ -31,10 +32,12 @@ void CategorizedSortProxyModel::setCategoryType(CategoryType categoryType)
     if (oldCategoryType != categoryType) {
         QScopedPointer<DConfig> config(DConfig::create("org.deepin.dde.shell", "org.deepin.ds.launchpad"));
         config->setValue("categoryType", categoryType);
-        emit categoryTypeChanged();
     }
 
     sort(0);
+    endResetModel();
+
+    emit categoryTypeChanged();
 }
 
 CategorizedSortProxyModel::CategoryType CategorizedSortProxyModel::categoryType() const
