@@ -53,7 +53,8 @@ Control {
                 iconSource: iconName
                 width: recentlyInstalledViewContainer.cellWidth
                 height: recentlyInstalledViewContainer.cellHeight
-                dndEnabled: true
+                // 当文件夹打开时禁用拖拽功能
+                dndEnabled: !folderGridViewPopup.visible
                 Drag.mimeData: Helper.generateDragMimeData(model.desktopId, true)
                 onItemClicked: {
                     launchApp(desktopId)

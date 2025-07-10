@@ -234,6 +234,8 @@ FocusScope {
                     target: parent
                     acceptedButtons: Qt.LeftButton
                     dragThreshold: 1
+                    // 当分类菜单打开时，禁用拖拽功能
+                    enabled: !(ddeCategoryMenu.visible || alphabetCategoryPopup.visible)
                     onActiveChanged: {
                         if (active) {
                             // We switch to use the `dndItem` to handle Drag event since that one will always exists.
