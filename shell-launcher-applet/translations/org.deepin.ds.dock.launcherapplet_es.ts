@@ -179,7 +179,7 @@
     <message>
         <location filename="../../qml/Main.qml" line="400"/>
         <source>Are you sure you want to uninstall &quot;%1&quot;?</source>
-        <translation>¿Seguro desea desinstalar &quot;% 1&quot;?</translation>
+        <translation>¿Desea desinstalar «%1»?</translation>
     </message>
     <message>
         <location filename="../../qml/Main.qml" line="412"/>
@@ -327,7 +327,7 @@
     <message>
         <location filename="../package/launcheritem.qml" line="309"/>
         <source>Are you sure you want to uninstall &quot;%1&quot;?</source>
-        <translation>¿Seguro desea desinstalar &quot;% 1&quot;?</translation>
+        <translation>¿Desea desinstalar «%1»?</translation>
     </message>
     <message>
         <location filename="../package/launcheritem.qml" line="321"/>
