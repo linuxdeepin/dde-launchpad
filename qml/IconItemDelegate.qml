@@ -123,6 +123,7 @@ Control {
                         radius: 12
 
                         GridLayout {
+                            id: folderGrid
                             anchors.fill: parent
                             rows: 2
                             columns: 2
@@ -137,6 +138,9 @@ Control {
                                     Layout.fillHeight: true
                                     Layout.fillWidth: true
                                     Layout.alignment: Qt.AlignTop | Qt.AlignLeft
+
+                                    // 添加最大高度限制，确保图标高度一致
+                                    Layout.maximumHeight: Math.max(0, parent.height / 2 - folderGrid.rowSpacing / 2)
 
                                     name: modelData
                                     sourceSize: Qt.size(root.maxIconSizeInFolder, root.maxIconSizeInFolder)
