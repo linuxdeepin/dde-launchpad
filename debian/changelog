@@ -1,3 +1,25 @@
+dde-launchpad (2.0.3) unstable; urgency=medium
+
+  * fix: disable drag when menus or popups are visible
+  * feat: Disable itemMoveTransition when switching to FullscreenFrame
+    (#424)
+  * i18n: Updates for project Deepin Desktop Environment (#596)
+  * fix: adjust folder grid item height consistency
+  * feat: call pre-uninstall hook from launchpad
+  * fix: reset view position on category type change
+  * fix: update color with install dot.
+  * fix: Launchpad crash
+  * fix: update theme with installed dot.
+  * style: update new app indicator styling
+  * fix: disable initial animations in FreeSortListView
+  * fix: handle menu cleanup and visibility in SideBar
+  * fix: update search filter logic and visibility
+  * feat: add package name search configuration
+  * fix: fix build warnings.
+  * feat: Added search priority display.
+
+ -- WuJiangYu <wujiangyu@uniontech.com>  Thu, 10 Jul 2025 20:15:14 +0800
+
 dde-launchpad (2.0.2) unstable; urgency=medium
 
   * fix: add hardening compiler flags for Debian build
