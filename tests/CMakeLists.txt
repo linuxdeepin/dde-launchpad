@@ -17,4 +17,5 @@ endmacro()
 launchpad_add_tests(
     itemspagetest
     gioappinfotest
+    searchfilterproxymodeltest
 )
