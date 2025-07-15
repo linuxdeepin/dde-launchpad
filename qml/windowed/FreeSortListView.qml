@@ -130,11 +130,10 @@ Item {
 
             property bool showDropIndicator: false
             property int op: 0 // DndPrepend = -1,DndJoin = 0, DndAppend = 1
-            readonly property int indicatorDefaultHeight: 1
 
             Timer {
                 id: listDelegateDragApplyTimer
-                interval: 500
+                interval: 300
                 repeat: true
                 running: false
                 property string dragId: ""
@@ -170,22 +169,16 @@ Item {
             function dropPositionCheck(mouseY, isDraggingFolder) {
                 let sideOpPadding = height / 3
                 if (mouseY < sideOpPadding) {
-                    dropIndicator.y = 0
-                    dropIndicator.height = indicatorDefaultHeight
                     op = -1
                 } else if (mouseY > (height - sideOpPadding)) {
-                    dropIndicator.y = itemDelegate.height
-                    dropIndicator.height = indicatorDefaultHeight
                     op = 1
                 } else {
                     if (isDraggingFolder) {
-                        dropIndicator.height = indicatorDefaultHeight
                         showDropIndicator = false
                     } else {
-                        dropIndicator.y = 0
-                        dropIndicator.height = itemDelegate.height
+                        // 保留hover状态，但不显示分割线
+                        showDropIndicator = true
                     }
-
                     op = 0
                 }
             }
@@ -214,7 +207,6 @@ Item {
                     isDraggingFolder = true
                 }
 
-                showDropIndicator = true
                 scrollViewWhenNeeded(drag.y)
                 dropPositionCheck(drag.y, isDraggingFolder)
             }
@@ -243,11 +235,11 @@ Item {
 
             Rectangle {
                 id: dropIndicator
-                x : 10
+                x: 10
                 width: bg.width
-                height: indicatorDefaultHeight
+                height: itemDelegate.height
                 visible: showDropIndicator
-                radius: height > indicatorDefaultHeight ? 8 : 1
+                radius: 8
 
                 property Palette background: Helper.itemBackground
                 color: dropIndicator.ColorSelector.background
