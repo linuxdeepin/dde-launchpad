@@ -35,8 +35,12 @@ QtObject {
             crystal: Qt.rgba(1, 1, 1, 0.1)
         }
         hovered {
-            common: Qt.rgba(16.0 / 255, 16.0 / 255, 16.0 / 255, 0.1)
-            crystal: Qt.rgba(16.0 / 255, 16.0 / 255, 16.0 / 255, 0.1)
+            common: Qt.rgba(0, 0, 0, 0.1)
+            crystal: Qt.rgba(0, 0, 0, 0.1)
+        }
+        hoveredDark {
+            common: Qt.rgba(1, 1, 1, 0.1)
+            crystal: Qt.rgba(1, 1, 1, 0.1)
         }
     }
 
