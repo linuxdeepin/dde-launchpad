@@ -1,3 +1,11 @@
+dde-launchpad (2.0.4) unstable; urgency=medium
+
+  * fix: optimize drag and drop indicator behavior
+  * fix: update hover colors and add dark mode variant
+  * feat: add search filter proxy model tests
+
+ -- WuJiangYu <wujiangyu@uniontech.com>  Wed, 16 Jul 2025 10:47:30 +0800
+
 dde-launchpad (2.0.3) unstable; urgency=medium
 
   * fix: disable drag when menus or popups are visible
