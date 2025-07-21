@@ -233,16 +233,17 @@ Item {
                 listViewDragScroller.stopScroll()
             }
 
-            Rectangle {
+            Control {
                 id: dropIndicator
                 x: 10
-                width: bg.width
-                height: itemDelegate.height
+                property Palette backgroundPalette: Helper.itemBackground
                 visible: showDropIndicator
-                radius: 8
-
-                property Palette background: Helper.itemBackground
-                color: dropIndicator.ColorSelector.background
+                Rectangle {
+                    width: bg.width
+                    height: itemDelegate.height
+                    radius: 8
+                    color: dropIndicator.ColorSelector.backgroundPalette
+                }
             }
 
             ItemDelegate {
