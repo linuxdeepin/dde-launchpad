@@ -304,9 +304,9 @@ FocusScope {
                 }
                 background: BoxPanel {
                     anchors.left: parent.left
-                    anchors.leftMargin: 10
+                    anchors.leftMargin: 2
                     anchors.right: parent.right
-                    anchors.rightMargin: 10
+                    anchors.rightMargin: 2
                     anchors.top: parent.top
                     anchors.bottom: parent.bottom
                     visible: menuItem.down || menuItem.hovered
