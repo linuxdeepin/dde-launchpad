@@ -51,7 +51,8 @@ QtObject {
         if (!dockOnly) {
             mime["text/x-dde-launcher-dnd-desktopId"] = desktopId
         }
-        if (!DesktopIntegration.appIsDummyPackage(desktopId)) {
+        // 检查应用是否为虚拟包以及是否已经在任务栏中存在
+        if (!DesktopIntegration.appIsDummyPackage(desktopId) && !DesktopIntegration.isDockedApp(desktopId)) {
             mime["text/x-dde-dock-dnd-appid"] = desktopId
             mime["text/x-dde-dock-dnd-source"] = "launcher"
         }
