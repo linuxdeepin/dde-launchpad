@@ -94,7 +94,7 @@ AppletItem {
             iconName: model.iconName,
             isFavoriteItem: false,
             hideFavoriteMenu: true,
-            hideDisplayScalingMenu: false,
+            hideDisplayScalingMenu: Math.abs(DesktopIntegration.scaleFactor - 1.0) < 0.0001,
             hideMoveToTopMenu: true
         }, additionalProps));
         menu.closed.connect(menu.destroy)

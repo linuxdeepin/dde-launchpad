@@ -150,3 +150,11 @@ void Appearance::setOpacity(qreal newOpacity)
     m_opacity = newOpacity;
     emit opacityChanged();
 }
+
+double Appearance::scaleFactor() const
+{
+    if (!m_dbusAppearanceIface || !m_dbusAppearanceIface->isValid()) {
+        return 1.0; // 默认返回1.0（100%缩放）
+    }
+    return m_dbusAppearanceIface->GetScaleFactor();
+}

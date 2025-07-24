@@ -21,6 +21,7 @@ class DesktopIntegration : public QObject
     Q_PROPERTY(uint dockSpacing READ dockSpacing NOTIFY dockSpacingChanged)
     Q_PROPERTY(QString backgroundUrl READ backgroundUrl NOTIFY backgroundUrlChanged)
     Q_PROPERTY(qreal opacity READ opacity NOTIFY opacityChanged FINAL)
+    Q_PROPERTY(double scaleFactor READ scaleFactor NOTIFY scaleFactorChanged FINAL)
 
     QML_NAMED_ELEMENT(DesktopIntegration)
     QML_SINGLETON
@@ -66,6 +67,7 @@ public:
     Q_INVOKABLE void setAutoStart(const QString & desktopId, bool on = true);
     Q_INVOKABLE bool shouldSkipConfirmUninstallDialog(const QString & desktopId) const;
     Q_INVOKABLE void uninstallApp(const QString & desktopId);
+    Q_INVOKABLE double scaleFactor() const;
     qreal opacity() const;
 
 signals:
@@ -74,6 +76,7 @@ signals:
     void dockSpacingChanged();
     void backgroundUrlChanged();
     void opacityChanged();
+    void scaleFactorChanged();
 
 private:
     explicit DesktopIntegration(QObject * parent = nullptr);
