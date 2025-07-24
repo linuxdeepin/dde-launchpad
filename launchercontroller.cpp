@@ -11,6 +11,8 @@
 #include <DGuiApplicationHelper>
 #include <QCommandLineParser>
 #include <launcher1adaptor.h>
+#include <QDBusMessage>
+#include <QDBusConnection>
 
 #include <private/qguiapplication_p.h>
 
@@ -188,4 +190,15 @@ void LauncherController::closeAllPopups()
 void LauncherController::setAvoidHide(bool avoidHide)
 {
     m_avoidHide = avoidHide;
+}
+
+void LauncherController::showHelp()
+{
+    // 由于当前只有调用 “启动器”，才能跳转到帮助文档的启动器目录。使用launcher 以及launchpad等字段，无法跳转到启动器目录。
+    QString helpTitle = "启动器";
+    
+    const QString &dmanInterface = "com.deepin.Manual.Open";
+    QDBusMessage message = QDBusMessage::createMethodCall(dmanInterface, "/com/deepin/Manual/Open", dmanInterface, "OpenTitle");
+    message << "dde" << helpTitle;
+    QDBusConnection::sessionBus().asyncCall(message);
 }

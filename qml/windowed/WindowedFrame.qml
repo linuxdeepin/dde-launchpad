@@ -22,6 +22,13 @@ InputEventItem {
 
     KeyNavigation.tab: appGridLoader.item
 
+    Shortcut {
+        context: Qt.ApplicationShortcut
+        sequences: [StandardKey.HelpContents, "F1"]
+        onActivated: LauncherController.showHelp()
+        onActivatedAmbiguously: LauncherController.showHelp()
+    }
+
     function getHorizontalCoordinatesOfSideBar()
     {
         return sideBar.x + sideBar.width / 2
