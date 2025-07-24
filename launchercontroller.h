@@ -52,6 +52,7 @@ public:
     Q_INVOKABLE QFont adjustFontWeight(const QFont& f, QFont::Weight weight);
 
     Q_INVOKABLE void closeAllPopups();
+    Q_INVOKABLE void showHelp();
 
 signals:
     void currentFrameChanged();

@@ -68,6 +68,13 @@ InputEventItem {
         focus: true
         objectName: "FullscreenFrame-BaseLayer"
 
+        Shortcut {
+            context: Qt.ApplicationShortcut
+            sequences: [StandardKey.HelpContents, "F1"]
+            onActivated: LauncherController.showHelp()
+            onActivatedAmbiguously: LauncherController.showHelp()
+        }
+
         readonly property bool isHorizontalDock: DesktopIntegration.dockPosition === Qt.UpArrow || DesktopIntegration.dockPosition === Qt.DownArrow
         readonly property int dockSpacing: (isHorizontalDock ? DesktopIntegration.dockGeometry.height : DesktopIntegration.dockGeometry.width) / Screen.devicePixelRatio
 
