@@ -24,6 +24,8 @@ public:
     qreal opacity() const;
     void setOpacity(qreal newOpacity);
 
+    double scaleFactor() const;
+
 signals:
     void wallpaperBlurhashChanged();
 

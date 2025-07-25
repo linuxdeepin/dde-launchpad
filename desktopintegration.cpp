@@ -249,6 +249,11 @@ DesktopIntegration::DesktopIntegration(QObject *parent)
     connect(m_appearanceIntegration, &Appearance::opacityChanged, this, &DesktopIntegration::opacityChanged);
 }
 
+double DesktopIntegration::scaleFactor() const
+{
+    return m_appearanceIntegration->scaleFactor();
+}
+
 qreal DesktopIntegration::opacity() const
 {
     return m_appearanceIntegration->opacity();
