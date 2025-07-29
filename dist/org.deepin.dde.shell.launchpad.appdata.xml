@@ -8,8 +8,5 @@
   <summary>The "launcher" or "start menu" component for DDE</summary>
   <summary xml:lang="zh-CN">DDE 的“启动器”或称“开始菜单”组件</summary>
   <project_group>DDE</project_group>
-  <provides>
-    <binary>dde-launchpad</binary>
-  </provides>
   <compulsory_for_desktop>DDE</compulsory_for_desktop>
 </component>

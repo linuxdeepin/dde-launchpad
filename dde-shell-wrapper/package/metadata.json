@@ -1,9 +1,0 @@
-{
-    "Plugin": {
-        "Version": "1.0",
-        "Id": "org.deepin.ds.launchpad",
-        "Url": "main.qml",
-        "ContainmentType": "Panel",
-        "Category": "DDE"
-    }
-}
