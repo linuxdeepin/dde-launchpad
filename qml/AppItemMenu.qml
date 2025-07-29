@@ -36,6 +36,10 @@ Loader {
             rightMargin: isFullscreen && DesktopIntegration.dockPosition === Qt.RightArrow ? dockSpacing : 0
             modal: true
 
+            // 在全屏模式下，右键菜单适配系统深浅模式
+            // 通过设置palette来实现主题适配
+            palette: DTK.palette
+
             MenuItem {
                 text: qsTr("Open")
                 enabled: !root.desktopId.startsWith("internal/folders/")
