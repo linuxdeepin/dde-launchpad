@@ -15,8 +15,6 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_INCLUDE_CURRENT_DIR ON) # ensure adapter class can include launchercontroller.h
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
-set(BIN_NAME dde-launchpad)
-
 include(FeatureSummary)
 include(GNUInstallDirs)
 
@@ -28,6 +26,7 @@ find_package(QT NAMES ${QT_NS} REQUIRED COMPONENTS Core)
 find_package(${QT_NS} REQUIRED COMPONENTS Core Gui Concurrent Qml Svg Quick QuickControls2 LinguistTools)
 find_package(${DTK_NS} REQUIRED COMPONENTS Core Gui)
 find_package(${ASQT_NS} 1.0 REQUIRED)
+find_package(ECM NO_MODULE)
 
 set_package_properties(${ASQT_NS} PROPERTIES
     DESCRIPTION "Library that lists Appstream resources"
@@ -37,6 +36,13 @@ set_package_properties(${ASQT_NS} PROPERTIES
 feature_summary(WHAT ALL FATAL_ON_MISSING_REQUIRED_PACKAGES)
 
 set(QML_IMPORT_PATH ${QML_IMPORT_PATH} ${CMAKE_CURRENT_BINARY_DIR}/ CACHE STRING "" FORCE)
+
+if (ECM_FOUND)
+    set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake;${CMAKE_MODULE_PATH};${ECM_MODULE_PATH};${PROJECT_SOURCE_DIR}/cmake")
+
+    include(KDEClangFormat)
+    include(KDEGitCommitHooks)
+endif()
 
 add_subdirectory(src/gioutils)
 add_subdirectory(src/utils)
@@ -94,28 +100,6 @@ set_source_files_properties(${PROJECT_SOURCE_DIR}/qml/Helper.qml
         QT_QML_SINGLETON_TYPE TRUE
 )
 
-set(TRANSLATION_FILES
-    ${PROJECT_SOURCE_DIR}/translations/dde-launchpad.ts
-    ${PROJECT_SOURCE_DIR}/translations/dde-launchpad_az.ts
-    ${PROJECT_SOURCE_DIR}/translations/dde-launchpad_bo.ts
-    ${PROJECT_SOURCE_DIR}/translations/dde-launchpad_ca.ts
-    ${PROJECT_SOURCE_DIR}/translations/dde-launchpad_es.ts
-    ${PROJECT_SOURCE_DIR}/translations/dde-launchpad_fi.ts
-    ${PROJECT_SOURCE_DIR}/translations/dde-launchpad_fr.ts
-    ${PROJECT_SOURCE_DIR}/translations/dde-launchpad_hu.ts
-    ${PROJECT_SOURCE_DIR}/translations/dde-launchpad_it.ts
-    ${PROJECT_SOURCE_DIR}/translations/dde-launchpad_ja.ts
-    ${PROJECT_SOURCE_DIR}/translations/dde-launchpad_ko.ts
-    ${PROJECT_SOURCE_DIR}/translations/dde-launchpad_nb_NO.ts
-    ${PROJECT_SOURCE_DIR}/translations/dde-launchpad_pl.ts
-    ${PROJECT_SOURCE_DIR}/translations/dde-launchpad_pt_BR.ts
-    ${PROJECT_SOURCE_DIR}/translations/dde-launchpad_ru.ts
-    ${PROJECT_SOURCE_DIR}/translations/dde-launchpad_uk.ts
-    ${PROJECT_SOURCE_DIR}/translations/dde-launchpad_zh_CN.ts
-    ${PROJECT_SOURCE_DIR}/translations/dde-launchpad_zh_HK.ts
-    ${PROJECT_SOURCE_DIR}/translations/dde-launchpad_zh_TW.ts
-)
-
 qt_add_dbus_adaptor(DBUS_ADAPTER_FILES dbus/org.deepin.dde.Launcher1.xml launchercontroller.h LauncherController)
 
 qt_add_library(launchpadcommon SHARED
@@ -123,10 +107,6 @@ qt_add_library(launchpadcommon SHARED
     ${DBUS_ADAPTER_FILES}
     ${RESOURCES}
     ${TRANSLATED_FILES}
-)
-
-qt_add_executable(${BIN_NAME}
-    main.cpp
 )
 
 qt_add_qml_module(launchpadcommon
@@ -139,17 +119,6 @@ qt_add_qml_module(launchpadcommon
         ${QML_FILES}
 )
 set_target_properties(launchpadcommon PROPERTIES PREFIX "")
-
-qt_add_translations(${BIN_NAME}
-    TS_FILES ${TRANSLATION_FILES}
-    SOURCES ${QML_FILES_NEED_TRANSLATION} ${SOURCE_FILES} src/models/appitem.cpp
-    QM_FILES_OUTPUT_VARIABLE TRANSLATED_FILES
-)
-
-target_compile_definitions(${BIN_NAME}
-PRIVATE
-    DDE_LAUNCHPAD_VERSION=${CMAKE_PROJECT_VERSION}
-)
 
 target_link_libraries(launchpadcommon PUBLIC
     ${DTK_NS}::Core
@@ -168,12 +137,7 @@ target_link_libraries(launchpadcommon PUBLIC
     treeland-integration
 )
 
-target_link_libraries(${BIN_NAME} PRIVATE
-    launchpadcommon
-)
-
 install(TARGETS launchpadcommon DESTINATION ${CMAKE_INSTALL_LIBDIR})
-install(FILES ${TRANSLATED_FILES} DESTINATION ${CMAKE_INSTALL_DATADIR}/${BIN_NAME}/translations)
 install(
     FILES dist/org.deepin.dde.shell.launchpad.appdata.xml
     DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/metainfo"

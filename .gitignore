@@ -8,6 +8,9 @@
 # Clangd cache folder
 .cache/
 
+# Clang format
+.clang-format
+
 # IDE folders
 .vscode/
 
