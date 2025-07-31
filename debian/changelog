@@ -1,5 +1,21 @@
 dde-launchpad (2.0.4) unstable; urgency=medium
 
+  * chore: switch to use newer REUSE.toml for license check
+  * chore: remove dde-launchpad binary since it's no longer used
+  * feat: add dark mode support for fullscreen context menu
+  * feat: add display scaling support in desktop integration
+  * feat: add F1 key help support for launcher
+  * fix: improve drop indicator implementation in FreeSortListView
+  * fix: adjust menu item margins in AppListView
+  * chore: bump version to 2.0.4
+  * fix: optimize drag and drop indicator behavior
+  * fix: update hover colors and add dark mode variant
+  * feat: add search filter proxy model tests
+
+ -- Wang Zichong <wangzichong@deepin.org>  Thu, 31 Jul 2025 20:24:42 +0800
+
+dde-launchpad (2.0.4) unstable; urgency=medium
+
   * fix: optimize drag and drop indicator behavior
   * fix: update hover colors and add dark mode variant
   * feat: add search filter proxy model tests
