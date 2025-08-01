@@ -65,6 +65,7 @@ Control {
             Layout.preferredHeight: searchResultViewContainer.height
             Layout.preferredWidth: searchResultViewContainer.width
             interactive: true
+            alwaysShowHighlighted: true
 
             model: delegateSearchResultModel
 
