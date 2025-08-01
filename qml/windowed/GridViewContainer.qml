@@ -22,6 +22,7 @@ FocusScope {
     property alias delegate: gridView.delegate
     property alias interactive: gridView.interactive
     property alias gridViewFocus: gridView.focus
+    property bool alwaysShowHighlighted: false
     property alias gridViewClip: gridView.clip
     property bool activeGridViewFocusOnTab: false
     property int columns: 4
@@ -99,6 +100,15 @@ FocusScope {
                     radius: 8
                     color: parent.palette.highlight
                     visible: gridView.activeFocus
+                }
+                Rectangle {
+                    anchors {
+                        fill: parent
+                        margins: 5
+                    }
+                    radius: 8
+                    color: DTK.themeType === ApplicationHelper.DarkType ? Qt.rgba(1, 1, 1, 0.1) : Qt.rgba(0, 0, 0, 0.1)
+                    visible: alwaysShowHighlighted
                 }
             }
 
