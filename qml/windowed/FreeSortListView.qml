@@ -281,6 +281,7 @@ Item {
                         right: parent.right
                         verticalCenter: parent.verticalCenter
                         leftMargin: 6
+                        rightMargin: 3
                     }
                     z: 1
                 }
