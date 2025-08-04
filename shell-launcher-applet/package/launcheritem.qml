@@ -337,7 +337,7 @@ AppletItem {
                 Item {
                     WarningButton {
                         id: confirmButton
-                        text: qsTr("Confirm")
+                        text: qsTr("Uninstall")
                         onClicked: {
                             DesktopIntegration.uninstallApp(confirmUninstallDlg.appId)
                             confirmUninstallDlg.close()
