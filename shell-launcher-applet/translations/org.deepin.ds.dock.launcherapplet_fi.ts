@@ -274,7 +274,7 @@
     </message>
     <message>
         <source>Uninstall</source>
-        <translation type="unfinished"/>
+        <translation>Poista asennus</translation>
     </message>
 </context>
 </TS>
