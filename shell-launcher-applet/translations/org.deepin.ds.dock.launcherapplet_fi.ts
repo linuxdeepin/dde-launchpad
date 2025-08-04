@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="fi">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="fi">
 <context>
     <name>AppItemMenu</name>
     <message>
@@ -276,7 +274,7 @@
     </message>
     <message>
         <source>Uninstall</source>
-        <translation type="unfinished">Poista</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 </TS>
