@@ -1,3 +1,20 @@
+dde-launchpad (2.0.5) unstable; urgency=medium
+
+  * feat: add alwaysShowHighlighted property to GridViewContainer
+  * fix: adjust margins in list views
+  * chore: switch to use newer REUSE.toml for license check
+  * chore: remove dde-launchpad binary since it's no longer used
+  * feat: add dark mode support for fullscreen context menu
+  * feat: add display scaling support in desktop integration
+  * feat: add F1 key help support for launcher
+  * fix: improve drop indicator implementation in FreeSortListView
+  * fix: adjust menu item margins in AppListView
+  * fix: optimize drag and drop indicator behavior
+  * fix: update hover colors and add dark mode variant
+  * feat: add search filter proxy model tests
+
+ -- WuJiangYu <wujiangyu@uniontech.com>  Mon, 04 Aug 2025 16:01:10 +0800
+
 dde-launchpad (2.0.4) unstable; urgency=medium
 
   * chore: switch to use newer REUSE.toml for license check
