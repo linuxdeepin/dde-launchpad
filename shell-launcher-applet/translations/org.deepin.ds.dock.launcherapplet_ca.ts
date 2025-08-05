@@ -274,7 +274,7 @@
     </message>
     <message>
         <source>Uninstall</source>
-        <translation type="unfinished"/>
+        <translation>Desinstal·la</translation>
     </message>
 </context>
 </TS>
