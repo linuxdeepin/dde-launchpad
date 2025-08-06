@@ -202,3 +202,13 @@ void LauncherController::showHelp()
     message << "dde" << helpTitle;
     QDBusConnection::sessionBus().asyncCall(message);
 }
+
+//首次从全屏切换到窗口时候，会出现焦点丢失抖动问题，从而导致启动器窗口不显示，所以采用此方法处理。
+void LauncherController::setCurrentFrameToWindowedFrame()
+{
+    setVisible(false);
+    QTimer::singleShot(1, this, [this]() {
+        setCurrentFrame("WindowedFrame");
+        setVisible(true);
+    });
+}

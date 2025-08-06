@@ -264,7 +264,7 @@ InputEventItem {
                         }
                         onClicked: {
                             searchEdit.text = ""
-                            LauncherController.currentFrame = "WindowedFrame"
+                            LauncherController.setCurrentFrameToWindowedFrame()
                         }
                     }
 
