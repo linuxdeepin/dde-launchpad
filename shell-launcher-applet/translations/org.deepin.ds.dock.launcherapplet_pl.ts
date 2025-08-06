@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="pl">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="pl">
 <context>
     <name>AppItemMenu</name>
     <message>
@@ -276,7 +274,7 @@
     </message>
     <message>
         <source>Uninstall</source>
-        <translation type="unfinished">Odinstaluj</translation>
+        <translation>Odinstaluj</translation>
     </message>
 </context>
 </TS>
