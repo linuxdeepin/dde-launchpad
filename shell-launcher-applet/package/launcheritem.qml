@@ -319,35 +319,27 @@ AppletItem {
                 Layout.margins: 10
             }
             RowLayout {
-                spacing: 0
-                Item {
-                    Button {
-                        id: cancelButton
-                        text: qsTr("Cancel")
-                        onClicked: {
-                            confirmUninstallDlg.close()
-                        }
-                        anchors.centerIn: parent
-                    }
+                spacing: 10
+                Layout.fillWidth: true
+                Layout.topMargin: 20
+                Layout.bottomMargin: 20
+                
+                Button {
+                    id: cancelButton
                     Layout.fillWidth: true
-                    Layout.preferredHeight: cancelButton.implicitHeight
-                    Layout.topMargin: 20
-                    Layout.bottomMargin: 20
-                }
-                Item {
-                    WarningButton {
-                        id: confirmButton
-                        text: qsTr("Uninstall")
-                        onClicked: {
-                            DesktopIntegration.uninstallApp(confirmUninstallDlg.appId)
-                            confirmUninstallDlg.close()
-                        }
-                        anchors.centerIn: parent
+                    text: qsTr("Cancel")
+                    onClicked: {
+                        confirmUninstallDlg.close()
                     }
+                }               
+                WarningButton {
+                    id: confirmButton
                     Layout.fillWidth: true
-                    Layout.preferredHeight: confirmButton.implicitHeight
-                    Layout.topMargin: 20
-                    Layout.bottomMargin: 20
+                    text: qsTr("Confirm")
+                    onClicked: {
+                        DesktopIntegration.uninstallApp(confirmUninstallDlg.appId)
+                        confirmUninstallDlg.close()
+                    }
                 }
             }
         }
