@@ -274,7 +274,7 @@
     </message>
     <message>
         <source>Uninstall</source>
-        <translation type="unfinished"/>
+        <translation>卸 載</translation>
     </message>
 </context>
 </TS>
