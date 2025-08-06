@@ -53,6 +53,7 @@ public:
 
     Q_INVOKABLE void closeAllPopups();
     Q_INVOKABLE void showHelp();
+    Q_INVOKABLE void setCurrentFrameToWindowedFrame();
 
 signals:
     void currentFrameChanged();
