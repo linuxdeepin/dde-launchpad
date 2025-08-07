@@ -1,3 +1,13 @@
+dde-launchpad (2.0.6) unstable; urgency=medium
+
+  * fix: click area keep same with app on dock.
+  * fix: simplify uninstall dialog button layout
+  * fix: resolve focus loss when switching from fullscreen to windowed
+  * i18n: Updates for project Deepin Desktop Environment (#626)
+  * fix: modify confirm to uninstall.
+
+ -- YeShanShan <yeshanshan@uniontech.com>  Thu, 07 Aug 2025 20:01:25 +0800
+
 dde-launchpad (2.0.5) unstable; urgency=medium
 
   * feat: add alwaysShowHighlighted property to GridViewContainer
