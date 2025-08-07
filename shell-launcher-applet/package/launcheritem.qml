@@ -354,39 +354,39 @@ AppletItem {
         sourceSize: Qt.size(Dock.MAX_DOCK_TASKMANAGER_ICON_SIZE, Dock.MAX_DOCK_TASKMANAGER_ICON_SIZE)
         onXChanged: updateLaunchpadPos()
         onYChanged: updateLaunchpadPos()
-        Timer {
-            id: toolTipShowTimer
-            interval: 50
-            onTriggered: {
-                var point = Applet.rootObject.mapToItem(null, Applet.rootObject.width / 2, Applet.rootObject.height / 2)
-                toolTip.DockPanelPositioner.bounding = Qt.rect(point.x, point.y, toolTip.width, toolTip.height)
-                toolTip.open()
+    }
+    Timer {
+        id: toolTipShowTimer
+        interval: 50
+        onTriggered: {
+            var point = Applet.rootObject.mapToItem(null, Applet.rootObject.width / 2, Applet.rootObject.height / 2)
+            toolTip.DockPanelPositioner.bounding = Qt.rect(point.x, point.y, toolTip.width, toolTip.height)
+            toolTip.open()
+        }
+    }
+
+    // FIXME: The TapHandler receives the event after visibleChange, which causes the state to be inverted after synchronization,
+    // causing the launchpad to be displayed again. However, the MouseArea receives the event before visibleChange.
+    MouseArea {
+        id: mouseHandler
+        anchors.fill: parent
+        onClicked: function (mouse) {
+            if (mouse.button === Qt.LeftButton) {
+                LauncherController.visible = !LauncherController.visible
+                toolTip.close()
             }
         }
-
-        // FIXME: The TapHandler receives the event after visibleChange, which causes the state to be inverted after synchronization,
-        // causing the launchpad to be displayed again. However, the MouseArea receives the event before visibleChange.
-        MouseArea {
-            id: mouseHandler
-            anchors.fill: parent
-            onClicked: function (mouse) {
-                if (mouse.button === Qt.LeftButton) {
-                    LauncherController.visible = !LauncherController.visible
-                    toolTip.close()
+    }
+    HoverHandler {
+        onHoveredChanged: {
+            if (hovered) {
+                toolTipShowTimer.start()
+            } else {
+                if (toolTipShowTimer.running) {
+                    toolTipShowTimer.stop()
                 }
-            }
-        }
-        HoverHandler {
-            onHoveredChanged: {
-                if (hovered) {
-                    toolTipShowTimer.start()
-                } else {
-                    if (toolTipShowTimer.running) {
-                        toolTipShowTimer.stop()
-                    }
 
-                    toolTip.close()
-                }
+                toolTip.close()
             }
         }
     }
