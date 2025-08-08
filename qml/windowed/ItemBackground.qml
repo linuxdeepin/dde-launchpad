@@ -19,7 +19,13 @@ D.BoxPanel {
     color2: selectValue(background, DS.Style.checkedButton.background, DS.Style.highlightedButton.background2)
     insideBorderColor: null
     outsideBorderColor: null
-    visible: button.checked || button.highlighted || button.visualFocus || control.D.ColorSelector.controlState === D.DTK.PressedState || control.D.ColorSelector.controlState === D.DTK.HoveredState
+    visible: {
+        // 检查是否有正在进行的拖拽操作
+        if (typeof dndItem !== "undefined" && dndItem.currentlyDraggedId !== "") {
+            return false
+        }
+        return button.checked || button.highlighted || button.visualFocus || control.D.ColorSelector.controlState === D.DTK.PressedState || control.D.ColorSelector.controlState === D.DTK.HoveredState
+    }
 
     function selectValue(normal, checked, highlighted) {
         if (button.checked) {
