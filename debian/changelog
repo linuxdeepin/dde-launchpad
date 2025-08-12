@@ -1,3 +1,10 @@
+dde-launchpad (2.0.7) unstable; urgency=medium
+
+  * i18n: Translate org.deepin.ds.dock.launcherapplet.ts in uk (#628)
+  * fix: improve window transition and drag visibility
+
+ -- wujiangyu <wujiangyu@uniontech.com>  Tue, 12 Aug 2025 10:39:03 +0800
+
 dde-launchpad (2.0.6) unstable; urgency=medium
 
   * fix: click area keep same with app on dock.
