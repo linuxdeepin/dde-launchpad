@@ -1,3 +1,10 @@
+dde-launchpad (2.0.8) unstable; urgency=medium
+
+  * fix: adjust grid view highlight appearance
+  * fix: update sidebar icons use same icons when change themes.
+
+ -- wujiangyu <wujiangyu@uniontech.com>  Thu, 14 Aug 2025 17:23:59 +0800
+
 dde-launchpad (2.0.7) unstable; urgency=medium
 
   * i18n: Translate org.deepin.ds.dock.launcherapplet.ts in uk (#628)
