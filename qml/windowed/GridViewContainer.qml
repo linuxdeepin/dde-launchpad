@@ -102,12 +102,9 @@ FocusScope {
                     visible: gridView.activeFocus
                 }
                 Rectangle {
-                    anchors {
-                        fill: parent
-                        margins: 5
-                    }
+                    anchors.fill: parent
                     radius: 8
-                    color: DTK.themeType === ApplicationHelper.DarkType ? Qt.rgba(1, 1, 1, 0.1) : Qt.rgba(0, 0, 0, 0.1)
+                    color: DTK.themeType === ApplicationHelper.DarkType ? Qt.rgba(1, 1, 1, 0.2) : Qt.rgba(0, 0, 0, 0.15)
                     visible: alwaysShowHighlighted
                 }
             }
