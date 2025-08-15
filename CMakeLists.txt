@@ -137,6 +137,12 @@ target_link_libraries(launchpadcommon PUBLIC
     treeland-integration
 )
 
+target_link_options(launchpadcommon PRIVATE
+    -Wl,--no-undefined
+    -Wl,--build-id=none
+    -Wl,--sort-section=alignment
+)
+
 install(TARGETS launchpadcommon DESTINATION ${CMAKE_INSTALL_LIBDIR})
 install(
     FILES dist/org.deepin.dde.shell.launchpad.appdata.xml
