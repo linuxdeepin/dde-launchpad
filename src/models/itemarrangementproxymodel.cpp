@@ -358,7 +358,7 @@ void ItemArrangementProxyModel::onSourceModelChanged()
     for (int i = 0; i < appsCount; i++) {
         QString desktopId(AppsModel::instance().data(AppsModel::instance().index(i, 0), AppItem::DesktopIdRole).toString());
         appDesktopIdSet.insert(desktopId);
-        int folder, page, idx;
+        int folder;
         std::tie(folder, std::ignore, std::ignore) = findItem(desktopId);
         // add all existing ones if they are not already in
         if (folder == -1) {
