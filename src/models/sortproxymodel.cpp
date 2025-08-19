@@ -1,9 +1,15 @@
 /*
-  This file was part of KDToolBox, modified by deepin to fit their own needs.
+  This file was part of KDToolBox (52611ec, sortproxymodel.{h,cpp}).
+  Modified by deepin to fit their own needs.
+
+  Changes between the original and this version:
+
+  1. QML support.
+  2. Handle `modelReset` as well (still for QML support).
 
   SPDX-FileCopyrightText: 2018 Klarälvdalens Datakonsult AB, a KDAB Group company <info@kdab.com>
   Author: André Somers <andre.somers@kdab.com>
-  SPDX-FileCopyrightText: 2024 UnionTech Software Technology Co., Ltd.
+  SPDX-FileCopyrightText: 2025 UnionTech Software Technology Co., Ltd.
   Author: Wang Zichong <wangzichong@deepin.org>
 
   SPDX-License-Identifier: MIT
@@ -339,6 +345,10 @@ void SortProxyModel::reorder()
                     contents << index(row).data(m_sortRole).toString();
                 }
                 qWarning() << "moving failed. Current contents:" << contents.join(QLatin1String(", "));
+                // if beginMoveRows fails, we cannot continue, skip this move
+                // do not call endMoveRows() and do not modify internal data structure
+                --orderedIt;
+                continue;
             }
             auto rotateEnd = successor(unorderedIt);
             std::rotate(it, it + moveCount, rotateEnd);
@@ -561,16 +571,9 @@ void SortProxyModel::handleModelReset()
     if (!sourceModel())
         return;
 
-    const int sourceModelRowCount = sourceModel()->rowCount();
-    if (sourceModelRowCount > 0)
-    {
-        if (sourceModelRowCount != rowCount())
-            resetInternalData();
-
-        handleDataChanged(sourceModel()->index(0, 0),
-                          sourceModel()->index(sourceModel()->rowCount() - 1, 0),
-                          QList<int>());
-    }
+    beginResetModel();
+    resetInternalData();
+    endResetModel();
 }
 
 /**
