@@ -273,8 +273,8 @@
         <translation>Hủy</translation>
     </message>
     <message>
-        <source>Uninstall</source>
-        <translation type="unfinished"/>
+        <source>Confirm</source>
+        <translation>Xác nhận</translation>
     </message>
 </context>
 </TS>
