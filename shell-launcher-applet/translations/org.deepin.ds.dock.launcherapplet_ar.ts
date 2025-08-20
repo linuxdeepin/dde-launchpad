@@ -273,8 +273,8 @@
         <translation>إلغاء</translation>
     </message>
     <message>
-        <source>Uninstall</source>
-        <translation type="unfinished"/>
+        <source>Confirm</source>
+        <translation>irms</translation>
     </message>
 </context>
 </TS>
