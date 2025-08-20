@@ -11,6 +11,10 @@
 #include <QMap>
 #include <functional>
 #include <algorithm>
+#include <QLoggingCategory>
+
+Q_DECLARE_LOGGING_CATEGORY(logModels)
+
 DCORE_USE_NAMESPACE
 
 SearchFilterProxyModel::SearchFilterProxyModel(QObject *parent)
@@ -29,7 +33,7 @@ SearchFilterProxyModel::SearchFilterProxyModel(QObject *parent)
     QObject::connect(m_dconfig, &DConfig::valueChanged, this, [this](const QString &key) {
         if (key == "searchByDesktopId") {
             m_searchPackageEnabled = m_dconfig->value("searchByDesktopId", false).toBool();
-            qDebug() << "searchByDesktopId配置已更新:" << m_searchPackageEnabled;
+            qCInfo(logModels) << "searchByDesktopId config updated:" << m_searchPackageEnabled;
             // 触发重新过滤以应用新的搜索配置
             invalidateFilter();
         }
@@ -39,6 +43,10 @@ SearchFilterProxyModel::SearchFilterProxyModel(QObject *parent)
 bool SearchFilterProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const
 {
     QModelIndex modelIndex = this->sourceModel()->index(sourceRow, 0, sourceParent);
+    if (!modelIndex.isValid()) {
+        qCWarning(logModels) << "Invalid model index for row" << sourceRow;
+        return false;
+    }
     const QRegularExpression searchPattern = this->filterRegularExpression();
 
     // 计算匹配索引

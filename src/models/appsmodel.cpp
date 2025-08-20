@@ -14,19 +14,23 @@
 #include <appinfo.h>
 #include <QFileInfo>
 #include "appmgr.h"
+#include <QLoggingCategory>
+Q_DECLARE_LOGGING_CATEGORY(logModels)
 
 DCORE_USE_NAMESPACE
+
 
 static void updateAppItemFromAM(AppItem *appItem)
 {
     const QString id(appItem->freedesktopId());
+    qCDebug(logModels) << "Updating AppItem from AppMgr:" << id;
     auto item = AppMgr::instance()->appItem(id);
     if (!item) {
-        qWarning() << "Not existing item in AppMgr for the desktopId" << id;
+        qCWarning(logModels) << "Not existing item in AppMgr for the desktopId" << id;
         return;
     }
 
-    qDebug() << "update AppItem property for the desktopId" << id;
+    qCDebug(logModels) << "Update AppItem property for the desktopId" << id;
     appItem->setName(item->name);
     appItem->setDisplayName(item->displayName);
     appItem->setIconName(item->iconName);
@@ -42,6 +46,7 @@ AppsModel::AppsModel(QObject *parent)
     , m_dconfig(DConfig::create("org.deepin.dde.shell", "org.deepin.ds.launchpad"))
     , m_tmUpdateCache(new QTimer(this))
 {
+    qCDebug(logModels) << "Initializing AppsModel";
     Q_ASSERT_X(m_dconfig->isValid(), "DConfig", "DConfig file is missing or invalid");
     m_excludedAppIdList = m_dconfig->value("excludeAppIdList", QStringList{}).toStringList();
 
@@ -207,10 +212,11 @@ QVariant AppsModel::data(const QModelIndex &index, int role) const
 
 void AppsModel::updateModelData()
 {
+    qCDebug(logModels) << "Updating model data";
     IconUtils::tryUpdateIconCache();
 
     beginResetModel();
-    qDebug() << "reset model.";
+    qCInfo(logModels) << "Resetting model";
 
     QList<AppItem *> items(allAppInfosShouldBeShown());
     cleanUpInvalidApps(items);
@@ -220,6 +226,7 @@ void AppsModel::updateModelData()
     }
 
     endResetModel();
+    qCInfo(logModels) << "Model data updated";
 }
 
 // the caller manage the return values' ownership (i.e. might need to free them)

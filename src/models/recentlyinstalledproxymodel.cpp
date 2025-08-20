@@ -7,10 +7,15 @@
 #include "appsmodel.h"
 
 #include <QDebug>
+#include <QLoggingCategory>
+
+Q_DECLARE_LOGGING_CATEGORY(logModels)
+
 
 RecentlyInstalledProxyModel::RecentlyInstalledProxyModel(QObject *parent)
     : QSortFilterProxyModel(parent)
 {
+    qCDebug(logModels) << "Initializing RecentlyInstalledProxyModel";
 }
 
 bool RecentlyInstalledProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const
@@ -40,6 +45,7 @@ bool RecentlyInstalledProxyModel::lessThan(const QModelIndex &source_left, const
 
 void RecentlyInstalledProxyModel::classBegin()
 {
+    qCDebug(logModels) << "RecentlyInstalledProxyModel class begin";
 }
 
 void RecentlyInstalledProxyModel::componentComplete()

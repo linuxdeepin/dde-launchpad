@@ -4,6 +4,10 @@
 
 #include "countlimitproxymodel.h"
 
+#include <QLoggingCategory>
+
+Q_DECLARE_LOGGING_CATEGORY(logModels)
+
 int CountLimitProxyModel::maxRowCount() const
 {
     return m_maxRowCount;
@@ -11,9 +15,13 @@ int CountLimitProxyModel::maxRowCount() const
 
 void CountLimitProxyModel::setMaxRowCount(int newMaxRowCount)
 {
-    if (m_maxRowCount == newMaxRowCount)
+    if (m_maxRowCount == newMaxRowCount) {
+        qCDebug(logModels) << "Max row count unchanged, skipping update";
         return;
+    }
+    const auto& oldValue = m_maxRowCount;
     m_maxRowCount = newMaxRowCount;
+    qCInfo(logModels) << "Max row count changed from" << oldValue << "to" << newMaxRowCount;
     emit maxRowCountChanged();
     invalidate();
 }

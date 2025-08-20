@@ -7,10 +7,13 @@
 #include <QGuiApplication>
 #include <QScreen>
 #include <QImage>
+#include <QLoggingCategory>
 
 #include "Appearance1.h"
 #include "blurhash.hpp"
 #include "../launchercontroller.h"
+
+Q_LOGGING_CATEGORY(logDdeIntegration, "dde.launchpad.integration")
 
 using Appearance1 = __Appearance1;
 
@@ -33,6 +36,7 @@ Appearance::Appearance(QObject *parent)
 
     if (m_dbusAppearanceIface->isValid()) {
         connect(m_dbusAppearanceIface, &Appearance1::OpacityChanged, this, [this](double value) {
+            qCDebug(logDdeIntegration) << "Opacity changed via DBus:" << value;
             setOpacity(value);
         });
         setOpacity(m_dbusAppearanceIface->opacity());
@@ -51,8 +55,10 @@ QString Appearance::wallpaperBlurhash() const
 
 void Appearance::updateCurrentWallpaperBlurhash()
 {
-    if (!LauncherController::instance().visible() || !LauncherController::instance().isFullScreenFrame())
+    if (!LauncherController::instance().visible() || !LauncherController::instance().isFullScreenFrame()) {
+        qCDebug(logDdeIntegration) << "Launcher not visible or not fullscreen, skipping blurhash update";
         return;
+    }
 
     const QString screenName = qApp->primaryScreen()->name();
     QDBusPendingReply<QString> async = m_dbusAppearanceIface->GetCurrentWorkspaceBackgroundForMonitor(screenName);
@@ -60,14 +66,16 @@ void Appearance::updateCurrentWallpaperBlurhash()
     connect(watcher, &QDBusPendingCallWatcher::finished, this, [this](QDBusPendingCallWatcher* call){
         QDBusPendingReply<QString> reply = *call;
         if (reply.isError()) {
-            qDebug() << "Cannot get wallpaper from dbus:" << reply.error();
+            qCWarning(logDdeIntegration) << "Cannot get wallpaper from dbus:" << reply.error();
         } else {
             QUrl wallpaperUrl(reply.value());
-            qDebug() << "Got wallpaper URL from dbus:" << wallpaperUrl;
+            qCDebug(logDdeIntegration) << "Got wallpaper URL from dbus:" << wallpaperUrl;
+            
             if (m_wallpaperBlurMap.contains(wallpaperUrl)) {
                 m_wallpaperBlurhash = m_wallpaperBlurMap.value(wallpaperUrl);
                 emit wallpaperBlurhashChanged();
             } else {
+                qCDebug(logDdeIntegration) << "No cached blurhash found, updating all wallpapers";
                 // try update new workspace background image
                 updateAllWallpaper();
             }
@@ -81,11 +89,12 @@ void Appearance::updateAllWallpaper()
     QString urls = m_dbusAppearanceIface->wallpaperURls();
     QJsonDocument doc = QJsonDocument::fromJson(urls.toUtf8(), &err);
     if (err.error != QJsonParseError::NoError) {
-        qWarning() << "get wallpapers failed" << err.errorString();
+        qCWarning(logDdeIntegration) << "Get wallpapers failed:" << err.errorString();
         return;
     }
 
     if (!doc.isObject()) {
+        qCWarning(logDdeIntegration) << "Wallpaper document is not a JSON object";
         return;
     }
     int i = 1;
@@ -97,8 +106,10 @@ void Appearance::updateAllWallpaper()
         qDebug() << k << ":" << v;
 #endif
 
-        if (!v.isString())
+        if (!v.isString()) {
+            qCDebug(logDdeIntegration) << "No more wallpapers found at key:" << k;
             break;
+        }
 
         QUrl wallpaperUrl(v.toString());
         if (m_wallpaperBlurMap.contains(wallpaperUrl))
@@ -145,15 +156,19 @@ qreal Appearance::opacity() const
 
 void Appearance::setOpacity(qreal newOpacity)
 {
-    if (qFuzzyCompare(m_opacity, newOpacity))
+    if (qFuzzyCompare(m_opacity, newOpacity)) {
+        qCDebug(logDdeIntegration) << "Opacity unchanged, skipping";
         return;
+    }
     m_opacity = newOpacity;
+    qCInfo(logDdeIntegration) << "Opacity changed to:" << newOpacity;
     emit opacityChanged();
 }
 
 double Appearance::scaleFactor() const
 {
     if (!m_dbusAppearanceIface || !m_dbusAppearanceIface->isValid()) {
+        qCWarning(logDdeIntegration) << "DBus interface invalid, returning default scale 1.0";
         return 1.0; // 默认返回1.0（100%缩放）
     }
     return m_dbusAppearanceIface->GetScaleFactor();

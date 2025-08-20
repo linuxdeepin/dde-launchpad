@@ -8,11 +8,15 @@
 #include <blurhashimageprovider.h>
 
 #include <DDBusSender>
+#include <QLoggingCategory>
 
 #include <applet.h>
 #include <qmlengine.h>
 
 DS_USE_NAMESPACE
+namespace {
+Q_LOGGING_CATEGORY(logApplet, "dde.launchpad.applet")
+}
 
 namespace dock {
 
@@ -20,7 +24,7 @@ LauncherItem::LauncherItem(QObject *parent)
     : DApplet(parent)
     , m_iconName("deepin-launcher")
 {
-
+    qCDebug(logApplet) << "Initializing LauncherItem applet";
 }
 
 bool LauncherItem::init()
@@ -32,9 +36,9 @@ bool LauncherItem::init()
     QDBusConnection connection = QDBusConnection::sessionBus();
     if (!connection.registerService(QStringLiteral("org.deepin.dde.Launcher1")) ||
         !connection.registerObject(QStringLiteral("/org/deepin/dde/Launcher1"), &LauncherController::instance())) {
-        qWarning() << "register dbus service failed";
-    }
-
+        qCWarning(logApplet) << "Register D-Bus service failed";
+    } 
+    qCInfo(logApplet) << "LauncherItem initialization completed";
     return true;
 }
 

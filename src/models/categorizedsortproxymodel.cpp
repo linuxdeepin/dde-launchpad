@@ -7,8 +7,11 @@
 
 #include <QGuiApplication>
 #include <QSet>
+#include <QLoggingCategory>
 
 #include <DConfig>
+
+Q_DECLARE_LOGGING_CATEGORY(logModels)
 
 DCORE_USE_NAMESPACE
 
@@ -37,6 +40,7 @@ void CategorizedSortProxyModel::setCategoryType(CategoryType categoryType)
     sort(0);
     endResetModel();
 
+    qCInfo(logModels) << "Category type changed to:" << categoryType;
     emit categoryTypeChanged();
 }
 
@@ -138,5 +142,5 @@ CategorizedSortProxyModel::CategorizedSortProxyModel(QObject *parent)
     CategoryType categoryType = CategoryType(config->value("categoryType", FreeCategory).toInt());
     isFreeSort = (categoryType == FreeCategory);
     setCategoryType(categoryType);
-    qDebug() << "CategoryType by DConfig:" << categoryType;
+    qCDebug(logModels) << "CategoryType by DConfig:" << categoryType;
 }

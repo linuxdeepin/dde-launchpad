@@ -6,6 +6,10 @@
 
 #include "iconutils.h"
 
+#include <QLoggingCategory>
+
+Q_DECLARE_LOGGING_CATEGORY(logQuick)
+
 LauncherAppIconProvider::LauncherAppIconProvider():
     QQuickImageProvider(QQuickImageProvider::Pixmap)
 {
@@ -36,6 +40,7 @@ QPixmap LauncherAppIconProvider::requestPixmap(const QString &id, QSize *size, c
         iconName = id.mid(iconThemeIndex + 1);
 
     IconUtils::getThemeIcon(result, iconName, preferredSize.width());
+    qCDebug(logQuick) << "App icon pixmap created for:" << iconName;
 
     return result;
 }

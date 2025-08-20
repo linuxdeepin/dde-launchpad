@@ -10,6 +10,10 @@
 #include <QDir>
 #include <QSettings>
 #include <QStandardPaths>
+#include <QLoggingCategory>
+
+Q_DECLARE_LOGGING_CATEGORY(logModels)
+
 
 FavoritedProxyModel::FavoritedProxyModel(QObject *parent)
     : QSortFilterProxyModel(parent)
@@ -23,7 +27,7 @@ FavoritedProxyModel::FavoritedProxyModel(QObject *parent)
 
 bool FavoritedProxyModel::exists(const QString &desktopId)
 {
-    qDebug() << desktopId << m_favoritedAppIds.contains(desktopId);
+    qCDebug(logModels) << desktopId << m_favoritedAppIds.contains(desktopId);
     return m_favoritedAppIds.contains(desktopId);
 }
 
@@ -32,6 +36,7 @@ void FavoritedProxyModel::addFavorite(const QString &desktopId)
     if (m_favoritedAppIds.contains(desktopId)) return;
 
     m_favoritedAppIds.append(desktopId);
+    qCInfo(logModels) << "Favorite added:" << desktopId;
 
     save();
     invalidate();
@@ -40,6 +45,7 @@ void FavoritedProxyModel::addFavorite(const QString &desktopId)
 void FavoritedProxyModel::removeFavorite(const QString &desktopId)
 {
     m_favoritedAppIds.removeOne(desktopId);
+    qCInfo(logModels) << "Favorite removed:" << desktopId;
 
     save();
     invalidate();
@@ -51,6 +57,7 @@ void FavoritedProxyModel::pinToTop(const QString &desktopId)
 
     if (idx != -1) {
         m_favoritedAppIds.move(idx, 0);
+        qCInfo(logModels) << "Pinned to top:" << desktopId;
 
         save();
         invalidate();
@@ -82,6 +89,7 @@ void FavoritedProxyModel::load()
         "deepin-editor.desktop", "deepin-calculator.desktop", "deepin-screen-recorder.desktop", "deepin-terminal.desktop"
     };
     m_favoritedAppIds = favoritedAppsSettings.value("favorited", predefinedFavoritedApps).toStringList();
+    qCInfo(logModels) << "Loaded" << m_favoritedAppIds.size() << "favorited apps";
 }
 
 void FavoritedProxyModel::save()
@@ -91,4 +99,6 @@ void FavoritedProxyModel::save()
     QSettings favoritedAppsSettings(favoriteSettingPath, QSettings::NativeFormat);
 
     favoritedAppsSettings.setValue("favorited", m_favoritedAppIds);
+    
+    qCInfo(logModels) << "Favorited apps saved to:" << favoriteSettingPath;
 }
