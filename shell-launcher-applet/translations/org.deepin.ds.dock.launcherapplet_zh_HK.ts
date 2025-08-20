@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="zh_HK">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="zh_HK">
 <context>
     <name>AppItemMenu</name>
     <message>
@@ -273,8 +275,8 @@
         <translation>取 消</translation>
     </message>
     <message>
-        <source>Uninstall</source>
-        <translation>卸 載</translation>
+        <source>Confirm</source>
+        <translation>確 定</translation>
     </message>
 </context>
 </TS>

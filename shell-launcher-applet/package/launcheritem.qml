@@ -322,7 +322,7 @@ AppletItem {
                 spacing: 10
                 Layout.fillWidth: true
                 Layout.topMargin: 20
-                Layout.bottomMargin: 20
+                Layout.bottomMargin: 10
                 
                 Button {
                     id: cancelButton
