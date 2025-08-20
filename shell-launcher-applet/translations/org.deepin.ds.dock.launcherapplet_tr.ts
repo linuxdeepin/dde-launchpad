@@ -273,8 +273,8 @@
         <translation>İptal</translation>
     </message>
     <message>
-        <source>Uninstall</source>
-        <translation type="unfinished"/>
+        <source>Confirm</source>
+        <translation>Onayla</translation>
     </message>
 </context>
 </TS>
