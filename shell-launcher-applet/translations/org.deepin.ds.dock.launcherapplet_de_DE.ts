@@ -273,8 +273,8 @@
         <translation>Abbrechen</translation>
     </message>
     <message>
-        <source>Uninstall</source>
-        <translation type="unfinished"/>
+        <source>Confirm</source>
+        <translation>Bestätigen</translation>
     </message>
 </context>
 </TS>
