@@ -11,6 +11,7 @@
 #include <DDesktopServices>
 #include <QRect>
 #include <QGuiApplication>
+#include <QLoggingCategory>
 #include <appinfo.h>
 #include <appmgr.h>
 
@@ -21,6 +22,10 @@
 #include "appearance.h"
 
 DCORE_USE_NAMESPACE
+
+namespace {
+Q_LOGGING_CATEGORY(logDesktopIntegration, "dde.launchpad.desktop")
+}
 
 QString DesktopIntegration::currentDE()
 {
@@ -44,7 +49,9 @@ void DesktopIntegration::openSystemSettings()
 
 void DesktopIntegration::launchByDesktopId(const QString &desktopId)
 {
+    qCInfo(logDesktopIntegration) << "Launching app by desktop ID:" << desktopId;
     if (!AppMgr::launchApp(desktopId)) {
+        qCDebug(logDesktopIntegration) << "AppMgr launch failed, trying AppInfo launch";
         AppInfo::launchByDesktopId(desktopId);
     }
 }
@@ -148,12 +155,14 @@ bool DesktopIntegration::isDockedApp(const QString &desktopId) const
 
 void DesktopIntegration::sendToDock(const QString &desktopId)
 {
+    qCInfo(logDesktopIntegration) << "Sending app to dock:" << desktopId;
     const QString & fullPath = AppInfo::fullPathByDesktopId(desktopId);
     return m_dockIntegration->sendToDock(fullPath);
 }
 
 void DesktopIntegration::removeFromDock(const QString &desktopId)
 {
+    qCInfo(logDesktopIntegration) << "Removing app from dock:" << desktopId;
     const QString & fullPath = AppInfo::fullPathByDesktopId(desktopId);
     return m_dockIntegration->removeFromDock(fullPath);
 }
@@ -213,6 +222,7 @@ bool DesktopIntegration::shouldSkipConfirmUninstallDialog(const QString &desktop
 
 void DesktopIntegration::uninstallApp(const QString &desktopId)
 {
+    qCInfo(logDesktopIntegration) << "Uninstalling app:" << desktopId;
     const QString & fullPath = AppInfo::fullPathByDesktopId(desktopId);
     m_appWizIntegration->legacyRequestUninstall(fullPath);
 }
@@ -223,6 +233,7 @@ DesktopIntegration::DesktopIntegration(QObject *parent)
     , m_dockIntegration(new DdeDock(this))
     , m_appearanceIntegration(new Appearance(this))
 {
+    qCDebug(logDesktopIntegration) << "Initializing DesktopIntegration";
     QScopedPointer<DConfig> dconfig(DConfig::create("org.deepin.dde.shell", "org.deepin.ds.launchpad"));
     Q_ASSERT_X(dconfig->isValid(), "DConfig", "DConfig file is missing or invalid");
     // TODO:
@@ -242,6 +253,7 @@ DesktopIntegration::DesktopIntegration(QObject *parent)
         "dde-calendar.desktop"
     };
     m_compulsoryAppIdList = dconfig->value("compulsoryAppIdList", defaultCompulsoryAppIdList).toStringList();
+    qCInfo(logDesktopIntegration) << "Compulsory apps loaded:" << m_compulsoryAppIdList.size() << "apps";
 
     connect(m_dockIntegration, &DdeDock::directionChanged, this, &DesktopIntegration::dockPositionChanged);
     connect(m_dockIntegration, &DdeDock::geometryChanged, this, &DesktopIntegration::dockGeometryChanged);

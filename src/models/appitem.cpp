@@ -5,16 +5,19 @@
 #include "appitem.h"
 
 #include <QFileInfo>
+#include <QLoggingCategory>
+Q_LOGGING_CATEGORY(logModels, "dde.launchpad.models")
 
 AppItem::AppItem(const QString &freedesktopId)
     : QStandardItem()
 {
+    qCDebug(logModels) << "Creating AppItem:" << freedesktopId;
     setData(freedesktopId, AppItem::DesktopIdRole);
 }
 
 AppItem::~AppItem()
 {
-
+    qCDebug(logModels) << "Destroying AppItem";
 }
 
 const QString AppItem::freedesktopId() const
@@ -54,7 +57,9 @@ void AppItem::setIconName(const QString &iconName)
         name = QUrl::fromLocalFile(iconName).toString(); // path ==> file://path
     }
 
-    setData(iconName.isEmpty() ? "application-x-desktop" : name, AppItem::IconNameRole);
+    const auto& finalName = iconName.isEmpty() ? "application-x-desktop" : name;
+    qCDebug(logModels) << "Final icon name:" << finalName;
+    setData(finalName, AppItem::IconNameRole);
 }
 
 const QStringList AppItem::categories() const
@@ -64,6 +69,7 @@ const QStringList AppItem::categories() const
 
 void AppItem::setCategories(const QStringList &categories)
 {
+    qCDebug(logModels) << "Setting categories:" << categories;
     setData(categories, AppItem::Categories);
 }
 
@@ -74,6 +80,7 @@ AppItem::DDECategories AppItem::ddeCategory() const
 
 void AppItem::setDDECategory(DDECategories category)
 {
+    qCDebug(logModels) << "Setting DDE category:" << static_cast<int>(category);
     setData(category, AppItem::DDECategoryRole);
 }
 
@@ -84,6 +91,7 @@ qint64 AppItem::installedTime() const
 
 void AppItem::setInstalledTime(qint64 time)
 {
+    qCDebug(logModels) << "Setting installed time:" << time;
     setData(time, AppItem::InstalledTimeRole);
 }
 
@@ -94,6 +102,7 @@ qint64 AppItem::lastLaunchedTime() const
 
 void AppItem::setLastLaunchedTime(qint64 time)
 {
+    qCDebug(logModels) << "Setting last launched time:" << time;
     setData(time, AppItem::LastLaunchedTimeRole);
 }
 
@@ -104,6 +113,7 @@ qint64 AppItem::launchedTimes() const
 
 void AppItem::setLaunchedTimes(qint64 times)
 {
+    qCDebug(logModels) << "Setting launched times count:" << times;
     setData(times, AppItem::LaunchedTimesRole);
 }
 
@@ -114,6 +124,7 @@ bool AppItem::isAutoStart() const
 
 void AppItem::setIsAutoStart(bool autostart)
 {
+    qCDebug(logModels) << "Setting autostart status:" << autostart;
     setData(autostart, AppItem::IsAutoStartRole);
 }
 
@@ -124,6 +135,7 @@ const QString AppItem::vendor() const
 
 void AppItem::setVendor(const QString &vendor)
 {
+    qCDebug(logModels) << "Setting vendor:" << vendor;
     setData(vendor, AppItem::VendorRole);
 }
 
@@ -134,6 +146,7 @@ const QString AppItem::genericName() const
 
 void AppItem::setGenericName(const QString &genericName)
 {
+    qCDebug(logModels) << "Setting generic name:" << genericName;
     setData(genericName, AppItem::GenericNameRole);
 }
 

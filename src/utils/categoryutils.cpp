@@ -5,6 +5,10 @@
 #include "categoryutils.h"
 
 #include <QMultiMap>
+#include <QLoggingCategory>
+
+Q_LOGGING_CATEGORY(logUtils, "dde.launchpad.utils")
+
 
 CategoryUtils::Categorytype CategoryUtils::parseBestMatchedCategory(QStringList categories)
 {

@@ -5,8 +5,11 @@
 
 #include <QImage>
 #include <QString>
+#include <QLoggingCategory>
 
 #include "blurhash.hpp"
+
+Q_LOGGING_CATEGORY(logQuick, "dde.launchpad.quick")
 
 /*
  * Qt unfortunately re-encodes the base83 string in QML.
@@ -62,6 +65,7 @@ public:
     void run() override
     {
         if (m_id.isEmpty()) {
+            qCWarning(logQuick) << "Empty blurhash id, skipping";
             return;
         }
 

@@ -9,6 +9,10 @@
 
 #include <DConfig>
 #include <DExpected>
+#include <QLoggingCategory>
+
+Q_DECLARE_LOGGING_CATEGORY(logDdeIntegration)
+
 DCORE_USE_NAMESPACE
 
 using AppManager1Application = __AppManager1Application;
@@ -70,6 +74,7 @@ static AppMgr::AppItem *parseDBus2AppItem(const ObjectInterfaceMap &source)
     }
 
     if (!item) {
+        qCWarning(logDdeIntegration) << "Failed to create AppItem";
         return nullptr;
     }
 
@@ -125,6 +130,7 @@ AppMgr::~AppMgr()
 {
     for (auto item : std::as_const(m_appItems)) {
         if (auto handler = item->handler) {
+            qCDebug(logDdeIntegration) << "Deleting handler for app:" << item->id;
             handler->deleteLater();
         }
     }
@@ -137,7 +143,7 @@ AppManager1Application * createAM1AppIfaceByPath(const QString &dbusPath)
                                                                     dbusPath,
                                                                     QDBusConnection::sessionBus());
     if (!amAppIface->isValid()) {
-        qDebug() << "D-Bus interface not exist or failed to connect to" << dbusPath;
+        qCWarning(logDdeIntegration) << "D-Bus interface not exist or failed to connect to" << dbusPath;
         return nullptr;
     }
 
@@ -148,10 +154,10 @@ AppManager1Application * createAM1AppIface(const QString &desktopId)
 {
     auto appItem = AppMgr::instance()->appItem(desktopId);
     if (!appItem) {
-        qWarning() << "Can't find appItem for the desktopId" << desktopId;
+        qCWarning(logDdeIntegration) << "Can't find appItem for the desktopId" << desktopId;
         return nullptr;
     }
-    qDebug() << "Get app interface for the desktopId" << desktopId;
+    qCDebug(logDdeIntegration) << "Get app interface for the desktopId" << desktopId;
     return appItem->handler;
 }
 
@@ -159,28 +165,35 @@ AppManager1Application * createAM1AppIface(const QString &desktopId)
 // if return true, it means we attempted to launch it via AM, but not sure if it's succeed.
 bool AppMgr::launchApp(const QString &desktopId)
 {
+    qCInfo(logDdeIntegration) << "Launching app:" << desktopId;
     AppManager1Application * amAppIface = createAM1AppIface(desktopId);
-    if (!amAppIface) return false;
+    if (!amAppIface) {
+        qCWarning(logDdeIntegration) << "Failed to get interface for desktop ID:" << desktopId;
+        return false;
+    }
 
     const auto path = amAppIface->path();
     QProcess process;
     process.setProcessChannelMode(QProcess::MergedChannels);
     process.start("dde-am", {"--by-user", path});
     if (!process.waitForFinished()) {
-        qWarning() << "Failed to launch the desktopId:" << desktopId << process.errorString();
+        qCWarning(logDdeIntegration) << "Failed to launch the desktopId:" << desktopId << process.errorString();
         return false;
     } else if (process.exitCode() != 0) {
-        qWarning() << "Failed to launch the desktopId:" << desktopId << process.readAll();
+        qCWarning(logDdeIntegration) << "Failed to launch the desktopId:" << desktopId << process.readAll();
         return false;
     }
-    qDebug() << "Launch the desktopId" << desktopId;
+    qCInfo(logDdeIntegration) << "Successfully launched desktop ID:" << desktopId;
     return true;
 }
 
 bool AppMgr::autoStart(const QString &desktopId)
 {
     AppManager1Application * amAppIface = createAM1AppIface(desktopId);
-    if (!amAppIface) return false;
+    if (!amAppIface) {
+        qCWarning(logDdeIntegration) << "Failed to get interface for desktop ID:" << desktopId;
+        return false;
+    }
 
     return amAppIface->autoStart();
 }
@@ -188,9 +201,13 @@ bool AppMgr::autoStart(const QString &desktopId)
 void AppMgr::setAutoStart(const QString &desktopId, bool autoStart)
 {
     AppManager1Application * amAppIface = createAM1AppIface(desktopId);
-    if (!amAppIface) return;
+    if (!amAppIface) {
+        qCWarning(logDdeIntegration) << "Failed to get interface for desktop ID:" << desktopId;
+        return;
+    }
 
     amAppIface->setAutoStart(autoStart);
+    qCDebug(logDdeIntegration) << "Successfully set autoStart for" << desktopId << "to:" << autoStart;
 }
 
 static const QStringList DisabledScaleEnvironments {
@@ -204,7 +221,10 @@ static const QStringList DisabledScaleEnvironments {
 bool AppMgr::disableScale(const QString &desktopId)
 {
     AppManager1Application * amAppIface = createAM1AppIface(desktopId);
-    if (!amAppIface) return 0;
+    if (!amAppIface) {
+        qCWarning(logDdeIntegration) << "Failed to get interface for desktop ID:" << desktopId;
+        return false;
+    }
 
     const auto environ = amAppIface->environ();
     const QStringList envs(environ.split(';'));
@@ -218,10 +238,14 @@ bool AppMgr::disableScale(const QString &desktopId)
 void AppMgr::setDisableScale(const QString &desktopId, bool disableScale)
 {
     AppManager1Application * amAppIface = createAM1AppIface(desktopId);
-    if (!amAppIface) return;
+    if (!amAppIface) {
+        qCWarning(logDdeIntegration) << "Failed to get interface for desktop ID:" << desktopId;
+        return;
+    }
 
     QString environ = amAppIface->environ();
     QStringList envs(environ.split(';', Qt::SkipEmptyParts));
+
     if (disableScale) {
         // remove all ScaleEnvironments, avoid other caller has set it manually.
         envs.removeIf([] (const QString &env) {
@@ -242,14 +266,17 @@ void AppMgr::setDisableScale(const QString &desktopId, bool disableScale)
     }
 
     environ = envs.join(';');
-    qDebug() << "Update environ for the desktopId" << desktopId << ", env:" << environ;
+    qCDebug(logDdeIntegration) << "Update environ for the desktopId" << desktopId << ", env:" << environ;
     amAppIface->setEnviron(environ);
 }
 
 bool AppMgr::isOnDesktop(const QString &desktopId)
 {
     AppManager1Application * amAppIface = createAM1AppIface(desktopId);
-    if (!amAppIface) return false;
+    if (!amAppIface) {
+        qCWarning(logDdeIntegration) << "Failed to get interface for desktop ID:" << desktopId;
+        return false;
+    }
 
     return amAppIface->isOnDesktop();
 }
@@ -257,29 +284,37 @@ bool AppMgr::isOnDesktop(const QString &desktopId)
 bool AppMgr::sendToDesktop(const QString &desktopId)
 {
     AppManager1Application * amAppIface = createAM1AppIface(desktopId);
-    if (!amAppIface) return false;
+    if (!amAppIface) {
+        qCWarning(logDdeIntegration) << "Failed to get interface for desktop ID:" << desktopId;
+        return false;
+    }
 
     QDBusPendingReply<bool> reply = amAppIface->SendToDesktop();
     reply.waitForFinished();
 
     if (reply.isError()) {
-        qDebug() << reply.error();
+        qCWarning(logDdeIntegration) << "SendToDesktop failed:" << reply.error();
         return false;
     }
 
-    return reply.value();
+    const bool result = reply.value();
+    qCInfo(logDdeIntegration) << "SendToDesktop result for" << desktopId << ":" << result;
+    return result;
 }
 
 bool AppMgr::removeFromDesktop(const QString &desktopId)
 {
     AppManager1Application * amAppIface = createAM1AppIface(desktopId);
-    if (!amAppIface) return false;
+    if (!amAppIface) {
+        qCWarning(logDdeIntegration) << "Failed to get interface for desktop ID:" << desktopId;
+        return false;
+    }
 
     QDBusPendingReply<bool> reply = amAppIface->RemoveFromDesktop();
     reply.waitForFinished();
 
     if (reply.isError()) {
-        qDebug() << reply.error();
+        qCWarning(logDdeIntegration) << "RemoveFromDesktop failed:" << reply.error();
         return false;
     }
 
@@ -314,43 +349,43 @@ void AppMgr::watchingAppItemPropertyChanged(const QString &key, AppMgr::AppItem 
     Q_ASSERT(appItem->handler == nullptr);
     appItem->handler = amAppIface;
     connect(amAppIface, &AppManager1Application::CategoriesChanged, this, [this, appItem](const QStringList & value) {
-        qDebug() << "CategoriesChanged by AM, desktopId" << appItem->id;
+        qCDebug(logDdeIntegration) << "CategoriesChanged by AM, desktopId" << appItem->id;
         appItem->categories = value;
         Q_EMIT itemDataChanged(appItem->id);
     });
     connect(amAppIface, &AppManager1Application::IconsChanged, this, [this, appItem](const QStringMap & value) {
-        qDebug() << "IconsChanged by AM, desktopId" << appItem->id;
+        qCDebug(logDdeIntegration) << "IconsChanged by AM, desktopId" << appItem->id;
         appItem->iconName = parseIcon(value);
         Q_EMIT itemDataChanged(appItem->id);
     });
     connect(amAppIface, &AppManager1Application::X_Deepin_VendorChanged, this, [this, appItem, amAppIface](const QString & value) {
-        qDebug() << "X_Deepin_VendorChanged by AM, desktopId" << appItem->id;
+        qCDebug(logDdeIntegration) << "X_Deepin_VendorChanged by AM, desktopId" << appItem->id;
         appItem->displayName = getDisplayName(!value.isEmpty(), amAppIface->name(), amAppIface->genericName());
         Q_EMIT itemDataChanged(appItem->id);
     });
     connect(amAppIface, &AppManager1Application::GenericNameChanged, this, [this, appItem, amAppIface](const QStringMap & value) {
-        qDebug() << "GenericNameChanged by AM, desktopId" << appItem->id;
+        qCDebug(logDdeIntegration) << "GenericNameChanged by AM, desktopId" << appItem->id;
         appItem->displayName = getDisplayName(!amAppIface->x_Deepin_Vendor().isEmpty(), amAppIface->name(), value);
         Q_EMIT itemDataChanged(appItem->id);
     });
     connect(amAppIface, &AppManager1Application::NameChanged, this, [this, appItem, amAppIface](const QStringMap & value) {
-        qDebug() << "NameChanged by AM, desktopId" << appItem->id;
+        qCDebug(logDdeIntegration) << "NameChanged by AM, desktopId" << appItem->id;
         appItem->name = parseName(value);
         appItem->displayName = getDisplayName(!amAppIface->x_Deepin_Vendor().isEmpty(), value, amAppIface->genericName());
         Q_EMIT itemDataChanged(appItem->id);
     });
     connect(amAppIface, &AppManager1Application::InstalledTimeChanged, this, [this, appItem](const qint64 & value) {
-        qDebug() << "InstalledTimeChanged by AM, desktopId" << appItem->id;
+        qCDebug(logDdeIntegration) << "InstalledTimeChanged by AM, desktopId" << appItem->id;
         appItem->installedTime = value;
         Q_EMIT itemDataChanged(appItem->id);
     });
     connect(amAppIface, &AppManager1Application::LastLaunchedTimeChanged, this, [this, appItem](const qint64 & value) {
-        qDebug() << "LastLaunchedTimeChanged by AM, desktopId" << appItem->id;
+        qCDebug(logDdeIntegration) << "LastLaunchedTimeChanged by AM, desktopId" << appItem->id;
         appItem->lastLaunchedTime = value;
         Q_EMIT itemDataChanged(appItem->id);
     });
     connect(amAppIface, &AppManager1Application::AutoStartChanged, this, [this, appItem](bool value) {
-        qDebug() << "AutoStartChanged by AM, desktopId" << appItem->id;
+        qCDebug(logDdeIntegration) << "AutoStartChanged by AM, desktopId" << appItem->id;
         appItem->isAutoStart = value;
         Q_EMIT itemDataChanged(appItem->id);
     });
@@ -368,7 +403,7 @@ void AppMgr::updateAppsLaunchedTimes(const QVariantMap &appsLaunchedTimes)
 
         // including reset and increase times.
         if (item->launchedTimes != times) {
-            qDebug() << "LaunchedTimesChanged by DConfig, desktopId" << item->id;
+            qCDebug(logDdeIntegration) << "LaunchedTimesChanged by DConfig, desktopId" << item->id << "from" << item->launchedTimes << "to" << times;
             item->launchedTimes = times;
             Q_EMIT itemDataChanged(item->id);
         }
@@ -377,19 +412,21 @@ void AppMgr::updateAppsLaunchedTimes(const QVariantMap &appsLaunchedTimes)
 
 void AppMgr::initObjectManager()
 {
-    if (!isValid())
+    if (!isValid()) {
+        qCWarning(logDdeIntegration) << "Object manager is not valid, aborting initialization";
         return;
+    }
 
     connect(m_objectManager, &AppManager1ApplicationObjectManager::InterfacesAdded, this,
             [this](const QDBusObjectPath &objPath, ObjectInterfaceMap interfacesAndProperties) {
                 const QString key(objPath.path());
-                qDebug() << "InterfacesAdded by AM, path:" << key;
+                qCDebug(logDdeIntegration) << "InterfacesAdded by AM, path:" << key;
                 if (m_appItems.contains(objPath.path())) {
                     qWarning() << "App already exists for the path:" << key;
                     return;
                 }
                 if (auto appItem = parseDBus2AppItem(interfacesAndProperties)) {
-                    qDebug() << "App item added, desktopId" << appItem->id;
+                    qCDebug(logDdeIntegration) << "App item added, desktopId" << appItem->id;
                     watchingAppItemAdded(key, appItem);
                 }
             });
@@ -397,7 +434,7 @@ void AppMgr::initObjectManager()
             [this](const QDBusObjectPath &objPath, const QStringList &interfaces) {
                 Q_UNUSED(interfaces)
                 const QString key(objPath.path());
-                qDebug() << "InterfacesRemoved by AM, path:" << key;
+                qCDebug(logDdeIntegration) << "InterfacesRemoved by AM, path:" << key;
                 watchingAppItemRemoved(key);
             });
 
@@ -405,16 +442,18 @@ void AppMgr::initObjectManager()
 
     DConfig *config = DConfig::create("org.deepin.dde.application-manager", "org.deepin.dde.am", "", this);
     if (!config->isValid()) {
-        qWarning() << "DConfig is invalid when getting launched times.";
+        qCWarning(logDdeIntegration) << "DConfig is invalid when getting launched times.";
     } else {
         static const QString AppsLaunchedTimes(u8"appsLaunchedTimes");
         const auto &value = config->value(AppsLaunchedTimes).toMap();
         updateAppsLaunchedTimes(value);
         QObject::connect(config, &DConfig::valueChanged, this, [this, config](const QString &key) {
-            if (key != AppsLaunchedTimes)
+            if (key != AppsLaunchedTimes) {
+                qCDebug(logDdeIntegration) << "Ignoring non-appsLaunchedTimes key:" << key;
                 return;
+            }
 
-            qDebug() << "appsLaunchedTimes of DConfig Changed.";
+            qCInfo(logDdeIntegration) << "appsLaunchedTimes of DConfig changed, updating";
             const auto &value = config->value(AppsLaunchedTimes).toMap();
             updateAppsLaunchedTimes(value);
         });
@@ -423,7 +462,7 @@ void AppMgr::initObjectManager()
 
 void AppMgr::fetchAppItems()
 {
-    qDebug() << "Begin to fetch apps.";
+    qCDebug(logDdeIntegration) << "Begin to fetch apps.";
     const auto reply = m_objectManager->GetManagedObjects();
     QDBusPendingCallWatcher *watcher = new QDBusPendingCallWatcher(reply, this);
     connect(watcher, &QDBusPendingCallWatcher::finished, this, [this](QDBusPendingCallWatcher *call){
@@ -433,7 +472,7 @@ void AppMgr::fetchAppItems()
             call->deleteLater();
             return;
         }
-        qDebug() << "Fetched all AppItem, and start parsing data.";
+        qCDebug(logDdeIntegration) << "Fetched all AppItem, and start parsing data.";
         QMap<QString, AppMgr::AppItem *> items;
         const auto objects = reply.value();
         for (auto iter = objects.cbegin(); iter != objects.cend(); ++iter) {
@@ -448,7 +487,7 @@ void AppMgr::fetchAppItems()
             watchingAppItemPropertyChanged(objPath.path(), appItem);
         }
         call->deleteLater();
-        qDebug() << "Fetched all AppItem, and end up parsing data.";
+        qCDebug(logDdeIntegration) << "Fetched all AppItem, and end up parsing data.";
 
         m_appItems = items;
         Q_EMIT changed();
@@ -467,11 +506,14 @@ void AppMgr::watchingAppItemAdded(const QString &key, AppItem *appItem)
 void AppMgr::watchingAppItemRemoved(const QString &key)
 {
     auto appItem = m_appItems.value(key);
-    if (!appItem)
+    if (!appItem) {
+        qCWarning(logDdeIntegration) << "App item not found for key:" << key;
         return;
+    }
 
-    qDebug() << "App item removed, desktopId" << appItem->id;
+    qCDebug(logDdeIntegration) << "App item removed, desktopId" << appItem->id;
     if (auto handler = appItem->handler) {
+        qCDebug(logDdeIntegration) << "Deleting handler for removed app:" << appItem->id;
         handler->deleteLater();
     }
     m_appItems.remove(key);

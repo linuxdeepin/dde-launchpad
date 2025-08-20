@@ -8,6 +8,9 @@
 
 #include <QPainter>
 #include <QGuiApplication>
+#include <QLoggingCategory>
+
+Q_DECLARE_LOGGING_CATEGORY(logQuick)
 
 LauncherFolderIconProvider::LauncherFolderIconProvider():
     QQuickImageProvider(QQuickImageProvider::Pixmap)
@@ -31,6 +34,7 @@ QPixmap LauncherFolderIconProvider::requestPixmap(const QString &id, QSize *size
                               : ((size && size->isValid()) ? *size : QSize(64, 64));
     const auto [iconSize, padding] = IconUtils::getFolderPerfectIconCell(preferredSize.width(), iconPerRow);
     int iconSpacing = padding;
+    qCDebug(logQuick) << "Calculated icon size:" << iconSize << "padding:" << padding;
     QPixmap result(preferredSize);
     result.fill(Qt::transparent);
 
@@ -65,6 +69,6 @@ QPixmap LauncherFolderIconProvider::requestPixmap(const QString &id, QSize *size
     }
 
     painter.end();
-
+    qCDebug(logQuick) << "Folder icon pixmap created successfully, size:" << result.size();
     return result;
 }

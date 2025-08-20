@@ -6,6 +6,10 @@
 
 #include <QDebug>
 #include <DConfig>
+#include <QLoggingCategory>
+
+Q_DECLARE_LOGGING_CATEGORY(logModels)
+
 DCORE_USE_NAMESPACE
 
 FrequentlyUsedProxyModel::FrequentlyUsedProxyModel(QObject *parent)
@@ -14,12 +18,14 @@ FrequentlyUsedProxyModel::FrequentlyUsedProxyModel(QObject *parent)
     QScopedPointer<DConfig> dconfig(DConfig::create("org.deepin.dde.shell", "org.deepin.ds.launchpad"));
     // lower priority is higher.
     m_frequentlyUsedAppIdList = dconfig->value("frequentlyUsedAppIdList").toStringList();
-    qDebug() << "Fetched frequentlyUsed app list by DConfig" << m_frequentlyUsedAppIdList;
+    qCDebug(logModels) << "Fetched frequentlyUsed app list by DConfig" << m_frequentlyUsedAppIdList;
     std::reverse(m_frequentlyUsedAppIdList.begin(), m_frequentlyUsedAppIdList.end());
 
     connect(this, &QAbstractProxyModel::sourceModelChanged, this, [=](){
         sort(0, Qt::DescendingOrder);
     });
+    
+    qCInfo(logModels) << "FrequentlyUsedProxyModel initialized";
 }
 
 bool FrequentlyUsedProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const
@@ -58,8 +64,10 @@ QAbstractItemModel *FrequentlyUsedProxyModel::recentlyInstalledModel() const
 
 void FrequentlyUsedProxyModel::setRecentlyInstalledModel(QAbstractItemModel *newRecentlyInstalledModel)
 {
-    if (m_recentlyInstalledModel == newRecentlyInstalledModel)
+    if (m_recentlyInstalledModel == newRecentlyInstalledModel) {
+        qCDebug(logModels) << "Same model, skipping";
         return;
+    }
 
     static const struct {
         const char *signalName;
@@ -89,6 +97,7 @@ void FrequentlyUsedProxyModel::setRecentlyInstalledModel(QAbstractItemModel *new
 
 void FrequentlyUsedProxyModel::classBegin()
 {
+    qCDebug(logModels) << "FrequentlyUsedProxyModel class begin";
 }
 
 void FrequentlyUsedProxyModel::componentComplete()
@@ -98,8 +107,10 @@ void FrequentlyUsedProxyModel::componentComplete()
 
 bool FrequentlyUsedProxyModel::inRecentlyInstalledModel(const QModelIndex &index) const
 {
-    if (!m_recentlyInstalledModel)
+    if (!m_recentlyInstalledModel) {
+        qCDebug(logModels) << "No recently installed model, returning false";
         return false;
+    }
 
     const auto desktopId = index.data(m_desktopIdRole).toString();
 
