@@ -273,8 +273,8 @@
         <translation>ຍົກເລີກ</translation>
     </message>
     <message>
-        <source>Uninstall</source>
-        <translation>ລົບໂປແກຼມ</translation>
+        <source>Confirm</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 </TS>
