@@ -8,10 +8,15 @@
 #include <QSortFilterProxyModel>
 #include <QRegularExpression>
 #include <QDebug>
+#include <QLoggingCategory>
 
 #include "../src/models/searchfilterproxymodel.h"
 #include "../src/models/appsmodel.h"
 #include "../src/models/appitem.h"
+
+namespace {
+Q_LOGGING_CATEGORY(logTest, "dde.launchpad.test")
+}
 
 class TestSearchFilterProxyModel : public QObject
 {
@@ -40,19 +45,25 @@ private:
 
 void TestSearchFilterProxyModel::initTestCase()
 {
+    qCInfo(logTest) << "Initializing test case for SearchFilterProxyModel";
     // 初始化测试环境
     setupTestData();
+    qCInfo(logTest) << "Test case initialization completed";
 }
 
 void TestSearchFilterProxyModel::cleanupTestCase()
 {
+    qCInfo(logTest) << "Cleaning up test case for SearchFilterProxyModel";
     // 清理测试环境
+    qCInfo(logTest) << "Test case cleanup completed";
 }
 
 void TestSearchFilterProxyModel::setupTestData()
 {
+    qCDebug(logTest) << "Setting up test data for SearchFilterProxyModel";
     // 清空当前模型数据
     AppsModel::instance().clear();
+    qCDebug(logTest) << "Cleared AppsModel instance";
     
     // 创建测试数据
     QList<AppItem*> testItems;
@@ -88,6 +99,7 @@ void TestSearchFilterProxyModel::setupTestData()
     
     // 添加到模型
     AppsModel::instance().appendRows(testItems);
+    qCInfo(logTest) << "Added" << testItems.size() << "test items to AppsModel";
 }
 
 AppItem* TestSearchFilterProxyModel::createTestAppItem(const QString &desktopId, 
@@ -97,6 +109,7 @@ AppItem* TestSearchFilterProxyModel::createTestAppItem(const QString &desktopId,
                                                      const QString &vendor,
                                                      int launchedTimes)
 {
+    qCDebug(logTest) << "Creating test app item:" << desktopId << "name:" << name << "launched times:" << launchedTimes;
     AppItem *item = new AppItem(desktopId);
     item->setName(name);
     item->setDisplayName(displayName);
@@ -115,138 +128,203 @@ AppItem* TestSearchFilterProxyModel::createTestAppItem(const QString &desktopId,
 
 void TestSearchFilterProxyModel::testBasicSearch()
 {
+    qCInfo(logTest) << "Starting basic search tests";
     SearchFilterProxyModel &model = SearchFilterProxyModel::instance();
     
     // 测试空搜索
+    qCDebug(logTest) << "Testing empty search";
     model.setFilterRegularExpression(QRegularExpression(""));
-    QCOMPARE(model.rowCount(), AppsModel::instance().rowCount());
+    int totalItems = AppsModel::instance().rowCount();
+    qCDebug(logTest) << "Empty search returned" << model.rowCount() << "items, expected" << totalItems;
+    QCOMPARE(model.rowCount(), totalItems);
     
     // 测试基本搜索 - 完全匹配
+    qCDebug(logTest) << "Testing exact match search for 'Calculator'";
     model.setFilterRegularExpression(QRegularExpression("Calculator"));
+    qCDebug(logTest) << "Calculator search returned" << model.rowCount() << "items";
     QCOMPARE(model.rowCount(), 1);
     QCOMPARE(model.data(model.index(0, 0), AppItem::DesktopIdRole).toString(), "org.deepin.calculator");
     
     // 测试基本搜索 - 部分匹配
+    qCDebug(logTest) << "Testing partial match search for 'Text'";
     model.setFilterRegularExpression(QRegularExpression("Text"));
+    qCDebug(logTest) << "Text search returned" << model.rowCount() << "items";
     QCOMPARE(model.rowCount(), 1);
     QCOMPARE(model.data(model.index(0, 0), AppItem::DesktopIdRole).toString(), "org.deepin.editor");
     
     // 测试基本搜索 - 不区分大小写
+    qCDebug(logTest) << "Testing case-insensitive search for 'calculator'";
     model.setFilterRegularExpression(QRegularExpression("calculator"));
+    qCDebug(logTest) << "Case-insensitive search returned" << model.rowCount() << "items";
     QCOMPARE(model.rowCount(), 1);
     QCOMPARE(model.data(model.index(0, 0), AppItem::DesktopIdRole).toString(), "org.deepin.calculator");
     
     // 测试基本搜索 - 多个结果
+    qCDebug(logTest) << "Testing multi-result search for 'e'";
     model.setFilterRegularExpression(QRegularExpression("e"));
+    qCDebug(logTest) << "Multi-result search returned" << model.rowCount() << "items";
     QVERIFY(model.rowCount() > 1);
+    qCInfo(logTest) << "Basic search tests completed successfully";
 }
 
 void TestSearchFilterProxyModel::testChineseSearch()
 {
+    qCInfo(logTest) << "Starting Chinese search tests";
     SearchFilterProxyModel &model = SearchFilterProxyModel::instance();
     
     // 测试中文完全匹配
+    qCDebug(logTest) << "Testing Chinese exact match for '音乐'";
     model.setFilterRegularExpression(QRegularExpression("音乐"));
+    qCDebug(logTest) << "Chinese search for '音乐' returned" << model.rowCount() << "items";
     QCOMPARE(model.rowCount(), 1);
     QCOMPARE(model.data(model.index(0, 0), AppItem::DesktopIdRole).toString(), "org.deepin.music");
     
     // 测试中文部分匹配
+    qCDebug(logTest) << "Testing Chinese partial match for '阅读'";
     model.setFilterRegularExpression(QRegularExpression("阅读"));
+    qCDebug(logTest) << "Chinese search for '阅读' returned" << model.rowCount() << "items";
     QCOMPARE(model.rowCount(), 1);
     QCOMPARE(model.data(model.index(0, 0), AppItem::DesktopIdRole).toString(), "org.deepin.reader");
+    qCInfo(logTest) << "Chinese search tests completed successfully";
 }
 
 void TestSearchFilterProxyModel::testPinyinSearch()
 {
+    qCInfo(logTest) << "Starting Pinyin search tests";
     SearchFilterProxyModel &model = SearchFilterProxyModel::instance();
     
     // 测试拼音搜索
+    qCDebug(logTest) << "Testing Pinyin search for 'yinyue'";
     model.setFilterRegularExpression(QRegularExpression("yinyue"));
+    qCDebug(logTest) << "Pinyin search for 'yinyue' returned" << model.rowCount() << "items";
     QCOMPARE(model.rowCount(), 1);
     QCOMPARE(model.data(model.index(0, 0), AppItem::DesktopIdRole).toString(), "org.deepin.music");
     
     // 测试拼音部分匹配
+    qCDebug(logTest) << "Testing Pinyin partial match for 'yuedu'";
     model.setFilterRegularExpression(QRegularExpression("yuedu"));
+    qCDebug(logTest) << "Pinyin search for 'yuedu' returned" << model.rowCount() << "items";
     QCOMPARE(model.rowCount(), 1);
     QCOMPARE(model.data(model.index(0, 0), AppItem::DesktopIdRole).toString(), "org.deepin.reader");
     
     // 测试拼音首字母匹配
+    qCDebug(logTest) << "Testing Pinyin initials match for 'rl'";
     model.setFilterRegularExpression(QRegularExpression("rl"));
+    qCDebug(logTest) << "Pinyin initials search for 'rl' returned" << model.rowCount() << "items";
     QCOMPARE(model.rowCount(), 1);
     QCOMPARE(model.data(model.index(0, 0), AppItem::DesktopIdRole).toString(), "org.deepin.calendar");
+    qCInfo(logTest) << "Pinyin search tests completed successfully";
 }
 
 void TestSearchFilterProxyModel::testJianpinSearch()
 {
+    qCInfo(logTest) << "Starting Jianpin (abbreviated Pinyin) search tests";
     SearchFilterProxyModel &model = SearchFilterProxyModel::instance();
     
     // 测试简拼搜索
+    qCDebug(logTest) << "Testing Jianpin search for 'yy' (音乐)";
     model.setFilterRegularExpression(QRegularExpression("yy"));
+    qCDebug(logTest) << "Jianpin search for 'yy' returned" << model.rowCount() << "items";
     QCOMPARE(model.rowCount(), 1);
     QCOMPARE(model.data(model.index(0, 0), AppItem::DesktopIdRole).toString(), "org.deepin.music");
     
     // 测试简拼部分匹配
+    qCDebug(logTest) << "Testing Jianpin partial match for 'yd' (阅读)";
     model.setFilterRegularExpression(QRegularExpression("yd"));
+    qCDebug(logTest) << "Jianpin search for 'yd' returned" << model.rowCount() << "items";
     QCOMPARE(model.rowCount(), 1);
     QCOMPARE(model.data(model.index(0, 0), AppItem::DesktopIdRole).toString(), "org.deepin.reader");
+    qCInfo(logTest) << "Jianpin search tests completed successfully";
 }
 
 void TestSearchFilterProxyModel::testSorting()
 {
+    qCInfo(logTest) << "Starting sorting tests";
     SearchFilterProxyModel &model = SearchFilterProxyModel::instance();
     
     // 测试排序 - 根据匹配权重和启动次数
+    qCDebug(logTest) << "Testing sorting with search pattern 'e'";
     model.setFilterRegularExpression(QRegularExpression("e"));
-    QVERIFY(model.rowCount() > 2);
+    int resultCount = model.rowCount();
+    qCDebug(logTest) << "Search for 'e' returned" << resultCount << "items";
+    QVERIFY(resultCount > 2);
     
     // 验证排序结果
+    qCDebug(logTest) << "Verifying sort order based on launch times and match weight";
     // 检查前几个结果是否符合预期的排序规则
     bool foundBrowser = false;
     bool foundEditor = false;
     
-    for (int i = 0; i < qMin(3, model.rowCount()); ++i) {
+    int checkCount = qMin(3, resultCount);
+    qCDebug(logTest) << "Checking first" << checkCount << "results for expected apps";
+    
+    for (int i = 0; i < checkCount; ++i) {
         QString desktopId = model.data(model.index(i, 0), AppItem::DesktopIdRole).toString();
+        qCDebug(logTest) << "Result" << i << ":" << desktopId;
+        
         if (desktopId == "org.deepin.browser") {
+            qCDebug(logTest) << "Found browser at position" << i;
             foundBrowser = true;
         } else if (desktopId == "org.deepin.editor") {
+            qCDebug(logTest) << "Found editor at position" << i;
             foundEditor = true;
         }
     }
     
     // 由于浏览器的启动次数更高，它应该排在编辑器前面
+    qCDebug(logTest) << "Browser found:" << foundBrowser << "Editor found:" << foundEditor;
     QVERIFY(foundBrowser);
+    qCInfo(logTest) << "Sorting tests completed successfully";
 }
 
 void TestSearchFilterProxyModel::testSpecialCharacters()
 {
+    qCInfo(logTest) << "Starting special characters search tests";
     SearchFilterProxyModel &model = SearchFilterProxyModel::instance();
     
     // 测试普通字符搜索 - 确保基本功能正常
+    qCDebug(logTest) << "Testing basic 'App' search";
     model.setFilterRegularExpression(QRegularExpression("App"));
-    QVERIFY(model.rowCount() >= 14);
+    int appCount = model.rowCount();
+    qCDebug(logTest) << "Basic 'App' search returned" << appCount << "items";
+    QVERIFY(appCount >= 14);
     
-    
+    // 测试特殊字符搜索
+    qCDebug(logTest) << "Testing search with hyphen 'App-'";
     model.setFilterRegularExpression(QRegularExpression("App-"));
-    QVERIFY(model.rowCount() > 0);
+    int hyphenCount = model.rowCount();
+    qCDebug(logTest) << "'App-' search returned" << hyphenCount << "items";
+    QVERIFY(hyphenCount > 0);
     
+    qCDebug(logTest) << "Testing search with underscore 'App_'";
     model.setFilterRegularExpression(QRegularExpression("App_"));
-    QVERIFY(model.rowCount() > 0);
+    int underscoreCount = model.rowCount();
+    qCDebug(logTest) << "'App_' search returned" << underscoreCount << "items";
+    QVERIFY(underscoreCount > 0);
     
-    
+    // 验证特殊应用存在
+    qCDebug(logTest) << "Verifying special apps are found in general 'App' search";
     bool foundSpecialApp = false;
     
     model.setFilterRegularExpression(QRegularExpression("App"));
-    QVERIFY(model.rowCount() > 0);
+    int totalAppCount = model.rowCount();
+    qCDebug(logTest) << "Searching through" << totalAppCount << "apps for special apps";
+    QVERIFY(totalAppCount > 0);
     
-    for (int i = 0; i < model.rowCount(); ++i) {
+    for (int i = 0; i < totalAppCount; ++i) {
         QString desktopId = model.data(model.index(i, 0), AppItem::DesktopIdRole).toString();
+        qCDebug(logTest) << "Checking app at index" << i << ":" << desktopId;
+        
         if (desktopId.startsWith("org.special.app")) {
+            qCDebug(logTest) << "Found special app:" << desktopId;
             foundSpecialApp = true;
             break;
         }
     }
     
+    qCDebug(logTest) << "Special app found:" << foundSpecialApp;
     QVERIFY(foundSpecialApp);
+    qCInfo(logTest) << "Special characters search tests completed successfully";
 }
 
 QTEST_MAIN(TestSearchFilterProxyModel)

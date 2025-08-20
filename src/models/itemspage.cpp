@@ -6,12 +6,16 @@
 
 #include <QSet>
 #include <QDebug>
+#include <QLoggingCategory>
+
+Q_DECLARE_LOGGING_CATEGORY(logModels)
 
 ItemsPage::ItemsPage(const QString &name, int maxItemCountPerPage, QObject *parent)
     : QObject(parent)
     , m_maxItemCountPerPage(maxItemCountPerPage)
     , m_displayName(name)
 {
+    qCDebug(logModels) << "Creating ItemsPage:" << name << "maxItems:" << maxItemCountPerPage;
     Q_ASSERT(m_maxItemCountPerPage >= 1);
 }
 
@@ -23,7 +27,7 @@ ItemsPage::ItemsPage(int maxItemCountPerPage, QObject *parent)
 
 ItemsPage::~ItemsPage()
 {
-
+    qCDebug(logModels) << "Destroying ItemsPage:" << m_displayName;
 }
 
 QString ItemsPage::name() const
@@ -33,6 +37,7 @@ QString ItemsPage::name() const
 
 void ItemsPage::setName(const QString &name)
 {
+    qCDebug(logModels) << "Setting ItemsPage name from" << m_displayName << "to" << name;
     m_displayName = name;
     emit nameChanged();
 }
@@ -102,6 +107,7 @@ void ItemsPage::appendPage(const QStringList items)
         m_pages.append(newList);
     }
 
+    qCInfo(logModels) << "Appended pages from" << first << "to" << (m_pages.count() - 1) << "total pages:" << m_pages.count();
     emit pageCountChanged();
     emit sigPageAdded(first, m_pages.count() - 1);
 }
@@ -120,8 +126,10 @@ void ItemsPage::appendItem(const QString id, int page)
     }
 
     if (page == pageCount) {
+        qCDebug(logModels) << "Need new page for item:" << id;
         appendPage({id});
     } else {
+        qCDebug(logModels) << "Added item to existing page" << page;
         m_pages[page].append(id);
     }
 }
@@ -137,8 +145,10 @@ void ItemsPage::insertItem(const QString id, int page, int pos)
     if (m_pages[page].size() > m_maxItemCountPerPage) {
         QString last = m_pages[page].takeLast();
         if (page + 1 == m_pages.size()) {
+            qCDebug(logModels) << "Creating new page for overflow item";
             appendPage({last});
         } else {
+            qCDebug(logModels) << "Moving overflow item to next page";
             insertItem(last, page + 1, 0);
         }
     }
@@ -146,6 +156,7 @@ void ItemsPage::insertItem(const QString id, int page, int pos)
 
 void ItemsPage::insertItemToPage(const QString &id, int toPage)
 {
+    qCDebug(logModels) << "Inserting item to page:" << id << "target page:" << toPage;
     if (toPage < 0) {
         // 从第一页开始查找有空位的页面进行自动补位
         const int pageCount = m_pages.count();
@@ -160,12 +171,14 @@ void ItemsPage::insertItemToPage(const QString &id, int toPage)
         
         // 如果没有找到空位，创建新页面
         if (toPage == -1) {
+            qCDebug(logModels) << "No available space found, creating new page for item:" << id;
             appendPage({id});
             return;
         }
     }
     
     if (m_pages.count() == 0) {
+        qCDebug(logModels) << "No pages exist, creating first page for item:" << id;
         appendPage({id});
         return;
     }
@@ -176,9 +189,11 @@ void ItemsPage::insertItemToPage(const QString &id, int toPage)
 
 void ItemsPage::moveItemPosition(int fromPage, int fromIndex, int toPage, int toIndex, bool appendToIndexItem)
 {
+    qCDebug(logModels) << "Moving item from page" << fromPage << "index" << fromIndex << "to page" << toPage << "index" << toIndex << "append:" << appendToIndexItem;
     if (fromPage == toPage && fromIndex > toIndex && appendToIndexItem) {
         if (fromIndex == (toIndex+1)) {
             // same page, append operate, do nothing
+            qCDebug(logModels) << "Adjacent positions on same page, no move needed";
             return;
         }
 
@@ -188,6 +203,7 @@ void ItemsPage::moveItemPosition(int fromPage, int fromIndex, int toPage, int to
     bool needRemoveEmptyPage = false;
     if (m_pages[fromPage].count() == 1) {
         needRemoveEmptyPage = true;
+        qCDebug(logModels) << "Source page will be empty after move, will remove it";
     }
 
     moveItem(fromPage, fromIndex, toPage, toIndex);
@@ -206,6 +222,7 @@ bool ItemsPage::removeItem(const QString id, bool removePageIfPageIsEmpty)
         m_pages[page].removeAt(idx);
 
         if (removePageIfPageIsEmpty && m_pages.at(page).isEmpty()) {
+            qCDebug(logModels) << "Removing empty page:" << page;
             m_pages.removeAt(page);
             emit pageCountChanged();
             emit sigPageRemoved(m_pages.count() - 1, m_pages.count() - 1);
@@ -214,6 +231,7 @@ bool ItemsPage::removeItem(const QString id, bool removePageIfPageIsEmpty)
         return true;
     }
 
+    qCDebug(logModels) << "Item not found:" << id;
     return false;
 }
 
@@ -235,6 +253,8 @@ void ItemsPage::removeEmptyPages()
     int count = m_pages.size();
     m_pages.removeAll({});
     if (count != m_pages.size()) {
+        int removed = count - m_pages.size();
+        qCInfo(logModels) << "Removed" << removed << "empty pages, new count:" << m_pages.size();
         emit pageCountChanged();
         emit sigPageRemoved(m_pages.count() - 1, m_pages.count() - 1);
     }
@@ -295,6 +315,7 @@ void ItemsPage::moveItem(int fromPage, int fromIndex, int toPage, int toIndex)
         m_pages[fromPage].insert(toIndex, toIndexItem);
     } else {
         QString id = m_pages[fromPage].takeAt(fromIndex);
+        qCDebug(logModels) << "Moving item:" << id << "to different page";
         insertItem(id, toPage, toIndex);
     }
 }
