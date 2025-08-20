@@ -273,8 +273,8 @@
         <translation>Annuleren</translation>
     </message>
     <message>
-        <source>Uninstall</source>
-        <translation>Deïnstalleren</translation>
+        <source>Confirm</source>
+        <translation>Oké</translation>
     </message>
 </context>
 </TS>
