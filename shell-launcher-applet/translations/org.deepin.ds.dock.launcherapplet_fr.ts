@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="fr">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="fr">
 <context>
     <name>AppItemMenu</name>
     <message>
@@ -276,7 +274,7 @@
     </message>
     <message>
         <source>Confirm</source>
-        <translation type="unfinished">Confirmer</translation>
+        <translation>Confirmer</translation>
     </message>
 </context>
 </TS>
