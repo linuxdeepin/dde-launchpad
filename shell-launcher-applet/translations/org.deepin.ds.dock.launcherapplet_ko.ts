@@ -275,8 +275,8 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Uninstall</source>
-        <translation type="unfinished">제거</translation>
+        <source>Confirm</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

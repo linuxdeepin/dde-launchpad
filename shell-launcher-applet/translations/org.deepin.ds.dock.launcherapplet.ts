@@ -275,7 +275,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Uninstall</source>
+        <source>Confirm</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
