@@ -1,3 +1,13 @@
+dde-launchpad (2.0.9) unstable; urgency=medium
+
+  * i18n: Updates for project Deepin Desktop Environment (#642)
+  * fix: update confirmation dialog button text and layout
+  * i18n: Translate org.deepin.ds.dock.launcherapplet.ts in pt_BR (#637)
+  * fix: avoid calling endMoveRows() if beginMoveRows() is failed
+  * fix: fix building warnings.
+
+ -- wujiangyu <wujiangyu@uniontech.com>  Thu, 21 Aug 2025 16:57:31 +0800
+
 dde-launchpad (2.0.8) unstable; urgency=medium
 
   * fix: adjust grid view highlight appearance
