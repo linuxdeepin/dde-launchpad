@@ -273,8 +273,8 @@
         <translation>Loetelu lõpetamine</translation>
     </message>
     <message>
-        <source>Uninstall</source>
-        <translation type="unfinished"/>
+        <source>Confirm</source>
+        <translation>Kinnita</translation>
     </message>
 </context>
 </TS>

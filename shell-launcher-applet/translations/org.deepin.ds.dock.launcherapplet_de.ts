@@ -273,7 +273,7 @@
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Uninstall</source>
+        <source>Confirm</source>
         <translation type="unfinished"/>
     </message>
 </context>

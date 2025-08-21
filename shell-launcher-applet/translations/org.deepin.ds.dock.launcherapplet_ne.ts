@@ -273,8 +273,8 @@
         <translation>रद्द गर्नुहोस्</translation>
     </message>
     <message>
-        <source>Uninstall</source>
-        <translation type="unfinished"/>
+        <source>Confirm</source>
+        <translation>सिर्जन गर्नुहोस्</translation>
     </message>
 </context>
 </TS>

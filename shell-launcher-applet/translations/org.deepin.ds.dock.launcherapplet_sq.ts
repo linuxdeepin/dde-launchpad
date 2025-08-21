@@ -273,8 +273,8 @@
         <translation>Anuloje</translation>
     </message>
     <message>
-        <source>Uninstall</source>
-        <translation type="unfinished"/>
+        <source>Confirm</source>
+        <translation>Ripohojeni</translation>
     </message>
 </context>
 </TS>

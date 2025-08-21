@@ -273,8 +273,8 @@
         <translation>বন্ধ করুন</translation>
     </message>
     <message>
-        <source>Uninstall</source>
-        <translation type="unfinished"/>
+        <source>Confirm</source>
+        <translation>প্রত্যাশা করুন</translation>
     </message>
 </context>
 </TS>

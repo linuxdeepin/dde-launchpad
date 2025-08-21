@@ -273,8 +273,8 @@
         <translation>Cansil</translation>
     </message>
     <message>
-        <source>Uninstall</source>
-        <translation type="unfinished"/>
+        <source>Confirm</source>
+        <translation>Tafirmit</translation>
     </message>
 </context>
 </TS>

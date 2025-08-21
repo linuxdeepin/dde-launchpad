@@ -273,8 +273,8 @@
         <translation>בטל</translation>
     </message>
     <message>
-        <source>Uninstall</source>
-        <translation type="unfinished"/>
+        <source>Confirm</source>
+        <translation>확인</translation>
     </message>
 </context>
 </TS>
