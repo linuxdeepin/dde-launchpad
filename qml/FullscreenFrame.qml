@@ -734,8 +734,11 @@ InputEventItem {
                 if (folderGridViewPopup.visible) folderGridViewPopup.close()
                 // reset(remove) keyboard focus
                 baseLayer.focus = true
-                // reset page to the first page
-                listviewPage.setCurrentIndex(0)
+            }
+            function onCurrentFrameChanged() {
+                if (LauncherController.currentFrame === "FullscreenFrame") {
+                    listviewPage.setCurrentIndex(0)
+                }
             }
         }
     }
