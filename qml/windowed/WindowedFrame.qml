@@ -138,7 +138,7 @@ InputEventItem {
                 }
             }
             Layout.fillHeight: true
-            Layout.preferredWidth: 362
+            Layout.preferredWidth: 365
             Layout.alignment: Qt.AlignRight | Qt.AlignTop
             Layout.leftMargin: Helper.frequentlyUsed.leftMargin
             Layout.rightMargin: Helper.frequentlyUsed.rightMargin
