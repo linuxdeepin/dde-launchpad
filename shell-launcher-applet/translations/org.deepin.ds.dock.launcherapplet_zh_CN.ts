@@ -62,7 +62,7 @@
     <name>BottomBar</name>
     <message>
         <source>Power</source>
-        <translation>电源</translation>
+        <translation>关机</translation>
     </message>
     <message>
         <source>Search</source>
