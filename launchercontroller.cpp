@@ -13,10 +13,15 @@
 #include <launcher1adaptor.h>
 #include <QDBusMessage>
 #include <QDBusConnection>
+#include <QLoggingCategory>
 
 #include <private/qguiapplication_p.h>
 
 DGUI_USE_NAMESPACE
+
+namespace {
+Q_LOGGING_CATEGORY(logController, "dde.launchpad.controller")
+}
 
 LauncherController::LauncherController(QObject *parent)
     : QObject(parent)
@@ -32,6 +37,7 @@ LauncherController::LauncherController(QObject *parent)
     QSettings settings(settingPath, QSettings::NativeFormat);
 
     m_currentFrame = settings.value("current_frame", "WindowedFrame").toString();
+    qCInfo(logController) << "Current frame mode:" << m_currentFrame;
 
     // Interval set to 500=>1000ms for issue https://github.com/linuxdeepin/developer-center/issues/8137
     m_timer->setInterval(1000);

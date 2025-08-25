@@ -9,8 +9,12 @@
 
 #include <QGuiApplication>
 #include <QWindow>
+#include <QLoggingCategory>
 
 #include <private/qwaylandwindow_p.h>
+
+Q_LOGGING_CATEGORY(logTreeland, "dde.launchpad.treeland")
+
 
 class PersonalizationManagerPrivate : public QWaylandClientExtensionTemplate<PersonalizationManagerPrivate>,
                                       public QtWayland::treeland_personalization_manager_v1
@@ -62,9 +66,13 @@ bool PersonalizationManagerPrivate::doPersonalizeWindow(QWindow * window, Person
             PersonalizationWindow *context =
                 new PersonalizationWindow(get_window_context(surface));
             context->set_background_type(state);
-            qDebug() << "Applied background type" << state << "to window" << window;
+            qCInfo(logTreeland) << "Applied background type" << state << "to window" << window;
             return true;
+        } else {
+            qCWarning(logTreeland) << "No Wayland surface available for window" << window;
         }
+    } else {
+        qCWarning(logTreeland) << "Invalid window or handle for personalization";
     }
     return false;
 }
@@ -72,7 +80,7 @@ bool PersonalizationManagerPrivate::doPersonalizeWindow(QWindow * window, Person
 // ----------------------------------------------------
 
 PersonalizationManager::PersonalizationManager(QObject * parent)
-    : QObject(parent)
+    : QObject(parent), m_dptr(nullptr)
 {
     if (QGuiApplication::platformName() == "wayland") {
         m_dptr = new PersonalizationManagerPrivate;
@@ -81,12 +89,16 @@ PersonalizationManager::PersonalizationManager(QObject * parent)
 
 PersonalizationManager::~PersonalizationManager()
 {
-    if (m_dptr) delete m_dptr;
+    if (m_dptr) {
+        qCDebug(logTreeland) << "Cleaning up PersonalizationManagerPrivate";
+        delete m_dptr;
+    }
 }
 
 // return if the window is "personalized" right away.
 bool PersonalizationManager::personalizeWindow(QWindow * window, PersonalizationManager::BgState state)
 {
+    qCDebug(logTreeland) << "PersonalizationManager::personalizeWindow called for" << window << "state:" << state;
     Q_UNUSED(window)
     Q_UNUSED(state)
     // temporary do nothing for now, since TreeLand plans to update the related protocol

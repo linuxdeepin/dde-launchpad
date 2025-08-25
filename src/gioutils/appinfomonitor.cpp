@@ -7,26 +7,40 @@
 #include <gio/gdesktopappinfo.h>
 
 #include <QHash>
+#include <QLoggingCategory>
+
+namespace {
+Q_LOGGING_CATEGORY(logGioUtilsMonitor, "dde.launchpad.gioutils.monitor")
+}
 
 AppInfoMonitor::AppInfoMonitor(QObject *parent)
     : QObject(parent)
     , m_appInfoMonitor(g_app_info_monitor_get())
 {
+    qCDebug(logGioUtilsMonitor) << "Initializing AppInfoMonitor";
     g_signal_connect(m_appInfoMonitor, "changed", G_CALLBACK(slot_onAppInfoMonitorChanged), this);
+    qCInfo(logGioUtilsMonitor) << "AppInfoMonitor initialized and signal connected";
 }
 
 AppInfoMonitor::~AppInfoMonitor()
 {
+    qCDebug(logGioUtilsMonitor) << "Destroying AppInfoMonitor";
     g_object_unref(m_appInfoMonitor);
 }
 
 QStringList fromGStrV(const char * const * gstr_array)
 {    
+    qCDebug(logGioUtilsMonitor) << "Converting GStrV to QStringList";
     QStringList result;
 
-    if (gstr_array == NULL) return result;
+    if (gstr_array == NULL) {
+        qCDebug(logGioUtilsMonitor) << "GStrV array is NULL, returning empty list";
+        return result;
+    }
 
-    for (unsigned long i = 0; i < g_strv_length((char**)gstr_array); i++) {
+    const auto& length = g_strv_length((char**)gstr_array);
+    qCDebug(logGioUtilsMonitor) << "Converting" << length << "strings from GStrV";
+    for (unsigned long i = 0; i < length; i++) {
         result.append(QString(gstr_array[i]));
     }
 
@@ -35,8 +49,14 @@ QStringList fromGStrV(const char * const * gstr_array)
 
 QList<QHash<QString, QString> > AppInfoMonitor::allAppInfosShouldBeShown()
 {
+    qCDebug(logGioUtilsMonitor) << "Getting all app infos that should be shown";
     QList<QHash<QString, QString> > results;
     GList * app_infos = g_app_info_get_all();
+    
+    if (!app_infos) {
+        qCWarning(logGioUtilsMonitor) << "Failed to get app infos from GIO";
+        return results;
+    }
     g_list_foreach(
         app_infos,
         [](gpointer data, gpointer user_data) {
@@ -74,18 +94,21 @@ QList<QHash<QString, QString> > AppInfoMonitor::allAppInfosShouldBeShown()
     );
     g_list_free(app_infos);
 
+    qCInfo(logGioUtilsMonitor) << "Found" << results.size() << "app infos to be shown";
     return results;
 }
 
 void AppInfoMonitor::onAppInfoMonitorChanged(GAppInfoMonitor *gappinfomonitor)
 {
     Q_UNUSED(gappinfomonitor)
-
+    
+    qCDebug(logGioUtilsMonitor) << "App info monitor changed, emitting signal";
     Q_EMIT changed();
 }
 
 void AppInfoMonitor::slot_onAppInfoMonitorChanged(GAppInfoMonitor *gappinfomonitor, gpointer user_data)
 {
+    qCDebug(logGioUtilsMonitor) << "App info monitor slot triggered";
     AppInfoMonitor * that = reinterpret_cast<AppInfoMonitor*>(user_data);
     that->onAppInfoMonitorChanged(gappinfomonitor);
 }

@@ -18,9 +18,11 @@
 #include "sortproxymodel.h"
 #include <QDebug>
 #include <QVariant>
+#include <QLoggingCategory>
 
 #include <private/qabstractitemmodel_p.h>
 
+Q_DECLARE_LOGGING_CATEGORY(logModels)
 namespace
 {
 void buildReverseMap(const std::vector<int> &aToB, std::vector<int> &bToA)
@@ -38,6 +40,7 @@ SortProxyModel::SortProxyModel(QObject *parent)
     : QAbstractProxyModel(parent)
     , m_invalidatedRows(make_pair(m_proxyToSourceMap.end(), m_proxyToSourceMap.end()))
 {
+    qCDebug(logModels) << "Initializing SortProxyModel";
 }
 
 QModelIndex SortProxyModel::index(int row, int column, const QModelIndex &parent) const
@@ -45,12 +48,18 @@ QModelIndex SortProxyModel::index(int row, int column, const QModelIndex &parent
     Q_ASSERT(!parent.isValid()); // we do not support tree models
     Q_UNUSED(parent)
 
-    if (!sourceModel())
+    if (!sourceModel()) {
+        qCWarning(logModels) << "No source model available";
         return {};
-    if (row >= static_cast<int>(m_proxyToSourceMap.size()))
+    }
+    if (row >= static_cast<int>(m_proxyToSourceMap.size())) {
+        qCWarning(logModels) << "Row out of range:" << row;
         return {};
-    if (column < 0 || column >= sourceModel()->columnCount())
+    }
+    if (column < 0 || column >= sourceModel()->columnCount()) {
+        qCWarning(logModels) << "Column out of range:" << column;
         return {};
+    }
 
     return createIndex(row, column, static_cast<quintptr>(m_proxyToSourceMap[static_cast<ulong>(row)]));
 }
@@ -64,12 +73,9 @@ QModelIndex SortProxyModel::parent(const QModelIndex &child) const
 int SortProxyModel::rowCount(const QModelIndex &parent) const
 {
     Q_UNUSED(parent)
-    if (sourceModel())
-    {
+    if (sourceModel()) {
         return static_cast<int>(m_proxyToSourceMap.size());
-    }
-    else
-    {
+    } else {
         return 0;
     }
 }
@@ -80,10 +86,13 @@ int SortProxyModel::columnCount(const QModelIndex &parent) const
     const auto source = sourceModel();
     if (source)
     {
-        return source->columnCount();
+        const int count = source->columnCount();
+        qCDebug(logModels) << "Column count from source:" << count;
+        return count;
     }
     else
     {
+        qCDebug(logModels) << "No source model, returning 0";
         return 0;
     }
 }
@@ -159,13 +168,17 @@ QModelIndex SortProxyModel::mapToSource(const QModelIndex &proxyIndex) const
 
 QModelIndex SortProxyModel::mapFromSource(const QModelIndex &sourceIndex) const
 {
-    if (!sourceIndex.isValid())
+    if (!sourceIndex.isValid()) {
+        qCDebug(logModels) << "Invalid source index, returning empty";
         return {};
+    }
 
     Q_ASSERT(sourceIndex.model() == sourceModel());
 
-    if (sourceIndex.parent().isValid())
+    if (sourceIndex.parent().isValid()) {
+        qCDebug(logModels) << "Source index has parent, returning empty (flat model)";
         return {};
+    }
 
     // no further bounds checking, out of bounds indices are a breach of contract
     const auto proxyRow = mapToProxyRow(sourceIndex.row());
@@ -177,6 +190,7 @@ void SortProxyModel::setSortRole(int role)
     if (m_sortRole != role)
     {
         m_sortRole = role;
+        qCInfo(logModels) << "Sort role changed to" << role << ", reordering";
         Q_EMIT sortRoleChanged();
         reorder();
     }
@@ -298,10 +312,12 @@ void SortProxyModel::reorder()
 
     if (m_sortColumn == -1)
     {
+        qCDebug(logModels) << "No sort column set, using natural order";
         std::iota(newOrder.begin(), newOrder.end(), 0);
     }
     else
     {
+        qCDebug(logModels) << "Sorting container for column" << m_sortColumn;
         sortMappingContainer(newOrder);
     }
     // during a reorder, we don't try to keep the reverse map in order. We clear and rebuild later.

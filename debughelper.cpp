@@ -7,6 +7,11 @@
 #include <QDir>
 #include <QSettings>
 #include <QStandardPaths>
+#include <QLoggingCategory>
+
+namespace {
+Q_LOGGING_CATEGORY(logDebugHelper, "dde.launchpad.debug")
+}
 
 DebugHelper::DebugHelper(QObject *parent)
     : QObject(parent)
@@ -19,6 +24,10 @@ DebugHelper::DebugHelper(QObject *parent)
     m_avoidLaunchApp = m_debugSettings->value("avoidLaunchApp", false).toBool();
     m_avoidHideWindow = m_debugSettings->value("avoidHideWindow", false).toBool();
     m_itemBoundingEnabled = m_debugSettings->value("enabledItemBounding", false).toBool();
+    qCInfo(logDebugHelper) << "Debug settings loaded - useRegularWindow:" << m_useRegularWindow 
+                          << "avoidLaunchApp:" << m_avoidLaunchApp 
+                          << "avoidHideWindow:" << m_avoidHideWindow 
+                          << "itemBoundingEnabled:" << m_itemBoundingEnabled;
 
     connect(this, &DebugHelper::onUseRegularWindowChanged, this, [=](bool val){
         m_debugSettings->setValue("useRegularWindow", val);
@@ -39,7 +48,7 @@ DebugHelper::DebugHelper(QObject *parent)
 
 DebugHelper::~DebugHelper()
 {
-
+    qCDebug(logDebugHelper) << "Destroying DebugHelper";
 }
 
 // check if QT_DEBUG is defined
@@ -61,6 +70,7 @@ DebugQuickItem::DebugQuickItem(QObject *parent)
     gray.setGreen((gray.green() + gOffset) % 255);
     gray.setBlue((gray.blue() + gOffset) % 255);
     setColor(gray);
+    qCDebug(logDebugHelper) << "DebugQuickItem color set to:" << gray;
 }
 
 DebugQuickItem *DebugQuickItem::qmlAttachedProperties(QObject *object)

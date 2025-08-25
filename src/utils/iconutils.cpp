@@ -18,8 +18,13 @@
 
 DGUI_USE_NAMESPACE
 
+#include <QLoggingCategory>
+
+Q_DECLARE_LOGGING_CATEGORY(logUtils)
+
 bool IconUtils::getThemeIcon(QPixmap &pixmap, const QString &iconName, const int size)
 {
+    qCDebug(logUtils) << "Getting theme icon:" << iconName << "size:" << size;
     QString actualIconName;
     QIcon icon;
     bool findIcon = true;
@@ -29,11 +34,14 @@ bool IconUtils::getThemeIcon(QPixmap &pixmap, const QString &iconName, const int
                        +  QString::number(QDate::currentDate().year())
                        + "_" + QString::number(QDate::currentDate().dayOfYear()) + ".svg";
 
-        if (!createCalendarIcon(name))
+        if (!createCalendarIcon(name)) {
+            qCDebug(logUtils) << "Failed to create calendar icon, using default";
             actualIconName = iconName;
-        else
+        } else {
             actualIconName = name;
+        }
     } else {
+        qCDebug(logUtils) << "Using regular icon name:" << iconName;
         actualIconName = iconName;
     }
 
@@ -41,8 +49,10 @@ bool IconUtils::getThemeIcon(QPixmap &pixmap, const QString &iconName, const int
     const int iconSize = perfectIconSize(size);
 
     do {
-        if (actualIconName.isEmpty())
+        if (actualIconName.isEmpty()) {
+            qCWarning(logUtils) << "Empty icon name, returning";
             return findIcon;
+        }
 
         if (actualIconName.startsWith("data:image/")) {
             const QStringList strs = actualIconName.split("base64,");
@@ -88,21 +98,28 @@ static const QVector<int> sizes { 16, 18, 24, 32, 64, 96, 128, 256 };
 int IconUtils::perfectIconSize(const int size)
 {
     auto iter = std::lower_bound(sizes.begin(), sizes.end(), size);
-    if (iter != sizes.end())
+    if (iter != sizes.end()) {
+        qCDebug(logUtils) << "Perfect icon size found:" << *iter;
         return *iter;
+    }
+    qCDebug(logUtils) << "Using default icon size:" << sizes[0];
     return sizes[0];
 }
 
 int IconUtils::perfectIconSizeReverse(const int size)
 {
     auto iter = std::lower_bound(sizes.rbegin(), sizes.rend(), size, std::greater<int>());
-    if (iter != sizes.rend())
+    if (iter != sizes.rend()) {
+        qCDebug(logUtils) << "Perfect icon size reverse found:" << *iter;
         return *iter;
+    }
+    qCDebug(logUtils) << "Using default icon size:" << sizes[0];
     return sizes[0];
 }
 
 bool IconUtils::createCalendarIcon(const QString &fileName)
 {
+    qCDebug(logUtils) << "Creating calendar icon:" << fileName;
     static const QByteArrayList &dayList= {  "<polygon id=\"path-5\" points=\"50.2401631 67.0997814 50.2401631 37.9113049 46.0560811 37.9113049 41.9120381 40.9342541 41.9120381 45.37859 46.0560811 42.3356213 46.0560811 67.0997814\"></polygon>\n"
         , "<path d=\"M56.0328614,66.8683044 L56.0328614,62.6842223 L44.8819825,62.6842223 L54.2711427,50.912738 C55.4456218,49.4179463 56.0328614,47.709613 56.0328614,45.787738 C56.0061687,43.3853942 55.1987143,41.4034606 53.6104981,39.8419372 C52.0489747,38.2670674 50.0136557,37.4662861 47.5045411,37.4395934 C45.2623536,37.4662861 43.3738445,38.253721 41.8390138,39.8018981 C40.3175294,41.3901143 39.5034018,43.3987406 39.3966309,45.827777 L43.5606934,45.827777 C43.7075033,44.4931416 44.1746257,43.4587992 44.9620606,42.7247497 C45.7228028,41.9907002 46.6770671,41.6236755 47.8248536,41.6236755 C49.11945,41.6503682 50.1204265,42.0707783 50.8277833,42.8849059 C51.5084473,43.6990335 51.8487794,44.6532979 51.8487794,45.7476989 C51.8487794,46.1614359 51.795394,46.6018656 51.6886231,47.068988 C51.5284669,47.5628031 51.2281739,48.0966572 50.7877442,48.6705505 L39.3966309,62.9244567 L39.3966309,66.8683044 L56.0328614,66.8683044 Z\" id=\"path-5\"></path>\n"
         , "<path d=\"M46.9058157,67.1812035 C49.481662,67.1545108 51.590386,66.3337101 53.2319875,64.7188012 C54.9002818,63.1439314 55.7477753,60.9884952 55.774468,58.2524926 C55.774468,57.024628 55.5142141,55.8501489 54.9937063,54.7290551 C54.4465058,53.6079614 53.5589732,52.6470239 52.3311086,51.8462426 C53.5322805,51.032115 54.3664276,50.1045434 54.83355,49.0635278 C55.2339407,48.0225121 55.434136,46.9414575 55.434136,45.8203637 C55.4074433,43.6048689 54.6467011,41.6829939 53.1519094,40.0547387 C51.590386,38.3864444 49.481662,37.5389509 46.8257375,37.5122582 C44.7303599,37.5389509 42.9286021,38.2863468 41.4204641,39.7544457 C39.8856334,41.235891 39.0114472,43.0576684 38.7979055,45.2197778 L42.9819875,45.2197778 C43.2489146,44.0186059 43.7694224,43.1310733 44.543511,42.5571801 C45.2775605,41.9832869 46.0916881,41.6963403 46.9858938,41.6963403 C48.2271047,41.723033 49.2414276,42.1167504 50.0288625,42.8774926 C50.8162974,43.6649275 51.2233612,44.6725772 51.250054,45.9004418 C51.250054,47.1149601 50.8563365,48.1025903 50.0689016,48.8633325 C49.2814667,49.6507674 48.1737193,50.0444848 46.7456594,50.0444848 L45.3042532,50.0444848 L45.3042532,53.7480981 L47.0659719,53.7480981 C48.3605683,53.7480981 49.4282766,54.1418155 50.2690969,54.9292504 C51.1232636,55.743378 51.5636933,56.8911645 51.590386,58.3726098 C51.5636933,59.8273624 51.1232636,60.9484562 50.2690969,61.735891 C49.4282766,62.5767114 48.3939342,62.9971215 47.1660696,62.9971215 C46.0182831,62.9971215 45.0973847,62.6834822 44.4033743,62.0562035 C43.7227102,61.4556176 43.1955292,60.6681827 42.8218313,59.6938989 L38.6377493,59.6938989 C39.0915253,62.1229353 40.0858287,63.9780785 41.6206594,65.2593285 C43.1554901,66.5405785 44.9172089,67.1812035 46.9058157,67.1812035 Z\" id=\"path-5\"></path>\n"
@@ -226,20 +243,27 @@ bool IconUtils::createCalendarIcon(const QString &fileName)
 
 const QPixmap IconUtils::loadSvg(const QString &fileName, int size)
 {
+    qCDebug(logUtils) << "Loading SVG file:" << fileName << "size:" << size;
     return loadSvg(fileName, QSize(size, size));
 }
 
 const QPixmap IconUtils::loadSvg(const QString &fileName, const QSize &size)
 {
-    if (!QFileInfo::exists(fileName))
+    if (!QFileInfo::exists(fileName)) {
+        qCWarning(logUtils) << "SVG file does not exist:" << fileName;
         return QPixmap();
+    }
 
     QPixmap pixmap(size);
     DSvgRenderer renderer(fileName);
     pixmap.fill(Qt::transparent);
 
     QPainter painter;
-    painter.begin(&pixmap);
+    if (!painter.begin(&pixmap)) {
+        qCWarning(logUtils) << "Failed to begin painting on pixmap";
+        return QPixmap();
+    }
+    
     painter.setRenderHint(QPainter::Antialiasing, true);
     renderer.render(&painter);
     painter.end();
@@ -249,7 +273,7 @@ const QPixmap IconUtils::loadSvg(const QString &fileName, const QSize &size)
 
 void IconUtils::tryUpdateIconCache()
 {
-    qInfo() << "Update theme cache manually.";
+    qCInfo(logUtils) << "Update theme cache manually.";
     // TODO release icon's cache.
     QIcon::setThemeSearchPaths(QIcon::themeSearchPaths());
 }
@@ -265,11 +289,21 @@ std::pair<int, int> IconUtils::getFolderPerfectIconCell(const int size, const in
         int padding = size * paddingPercent;
         int icon = (size - (iconPerRow + 1) * padding) / iconPerRow;
         int perSize = perfectIconSizeReverse(icon);
+        
+        qCDebug(logUtils) << "Padding percent:" << paddingPercent 
+                          << "padding:" << padding 
+                          << "calculated icon size:" << icon
+                          << "perfect size:" << perSize;
+        
         if (perSize > maxSize) {
             res.first = perSize;
             res.second = (size - iconPerRow * perSize) / (iconPerRow + 1);
             maxSize = perSize;
+            qCDebug(logUtils) << "Updated result - iconSize:" << res.first << "padding:" << res.second;
         }
     }
+    
+    qCDebug(logUtils) << "Folder icon cell result - iconSize:" << res.first 
+                      << "padding:" << res.second;
     return res;
 }

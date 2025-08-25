@@ -11,10 +11,13 @@
 #include <QDir>
 #include <QSettings>
 #include <QStandardPaths>
+#include <QLoggingCategory>
+
+Q_DECLARE_LOGGING_CATEGORY(logModels)
 
 ItemArrangementProxyModel::~ItemArrangementProxyModel()
 {
-
+    qCDebug(logModels) << "Destroying ItemArrangementProxyModel";
 }
 
 int ItemArrangementProxyModel::pageCount(int folderId) const
@@ -34,6 +37,7 @@ int ItemArrangementProxyModel::pageCount(int folderId) const
 
 void ItemArrangementProxyModel::updateFolderName(int folderId, const QString &name)
 {
+    qCInfo(logModels) << "Updating folder name:" << folderId << "to" << name;
     ItemsPage * folder = folderById(folderId);
     folder->setName(name);
 
@@ -66,15 +70,19 @@ void ItemArrangementProxyModel::bringToFront(const QString & id)
 
 void ItemArrangementProxyModel::commitDndOperation(const QString &dragId, const QString &dropId, const DndOperation op, int pageHint)
 {
-    if (dragId == dropId) return;
+    
+    if (dragId == dropId) {
+        qCDebug(logModels) << "Drag and drop IDs are the same, returning early";
+        return;
+    }
 
     std::tuple<int, int, int> dragOrigPos = findItem(dragId);
     std::tuple<int, int, int> dropOrigPos = findItem(dropId);
-
+    qCDebug(logModels) << "Drop position:" << std::get<0>(dropOrigPos) << std::get<1>(dropOrigPos) << std::get<2>(dropOrigPos);
 
     Q_ASSERT(std::get<0>(dragOrigPos) != -1);
     if (std::get<0>(dragOrigPos) == -1) {
-        qWarning() << "Cannot found" << dragId << "in current item arrangement.";
+        qCWarning(logModels) << "Cannot find drag item" << dragId << "in current item arrangement";
         return;
     }
 
@@ -87,14 +95,18 @@ void ItemArrangementProxyModel::commitDndOperation(const QString &dragId, const 
             const int dropOrigPage = std::get<1>(dropOrigPos);
             const int fromIndex = std::get<2>(dragOrigPos);
             const int toIndex = std::get<2>(dropOrigPos);
-            qDebug() << "dragOrigPage" << dragOrigPage << "dropOrigPage" << dropOrigPage << "fromIndex" << fromIndex << "toIndex" << toIndex << "op" << (op == DndOperation::DndAppend);
-            folder->moveItemPosition(dragOrigPage, fromIndex, dropOrigPage, toIndex, op == DndOperation::DndAppend);
+            bool isAppend = (op == DndOperation::DndAppend);
+            qCDebug(logModels) << "dragOrigPage" << dragOrigPage << "dropOrigPage" << dropOrigPage 
+                              << "fromIndex" << fromIndex << "toIndex" << toIndex << "isAppend" << isAppend;
+            folder->moveItemPosition(dragOrigPage, fromIndex, dropOrigPage, toIndex, isAppend);
         } else {
             // different folder item arrangement
             ItemsPage * srcFolder = folderById(std::get<0>(dragOrigPos));
             ItemsPage * dstFolder = folderById(std::get<0>(dropOrigPos));
+            qCDebug(logModels) << "Removing item from source folder";
             srcFolder->removeItem(dragId);
             if (srcFolder->pageCount() == 0 && srcFolder != dstFolder) {
+                qCDebug(logModels) << "Source folder is empty and different from destination, removing it";
                 removeFolder(QString::number(std::get<0>(dragOrigPos)));
             }
             dstFolder->insertItem(dragId, std::get<1>(dropOrigPos), std::get<2>(dropOrigPos));
@@ -106,37 +118,56 @@ void ItemArrangementProxyModel::commitDndOperation(const QString &dragId, const 
         // the source item will be inside a new folder anyway.
         const int srcFolderId = std::get<0>(dragOrigPos);
         ItemsPage * srcFolder = folderById(srcFolderId);
+        qCDebug(logModels) << "Source folder ID:" << srcFolderId;
 
         if (dropId.startsWith("internal/folders/")) {
+            qCDebug(logModels) << "Drop into existing folder:" << dropId;
             // drop into existing folder
             const int dropOrigFolder = QStringView{dropId}.mid(17).toInt();
             ItemsPage * dstFolder = folderById(dropOrigFolder);
             const int fromPage = std::get<1>(dragOrigPos);
             const int &toPage = pageHint;
-            if (srcFolder == dstFolder)
-                if (srcFolder->itemCount() == 1 ||
-                    (fromPage == toPage && srcFolder->itemCount(fromPage) == 1))// dnd the only item to the same page
+            qCDebug(logModels) << "From page:" << fromPage << "to page:" << toPage;
+            
+            if (srcFolder == dstFolder) {
+                bool isSingleItem = (srcFolder->itemCount() == 1);
+                bool isSingleItemOnSamePage = (fromPage == toPage && srcFolder->itemCount(fromPage) == 1);
+                qCDebug(logModels) << "Same folder check - isSingleItem:" << isSingleItem 
+                                  << "isSingleItemOnSamePage:" << isSingleItemOnSamePage;
+                
+                if (isSingleItem || isSingleItemOnSamePage) {
+                    qCDebug(logModels) << "DnD the only item to the same page, returning";
                     return;
+                }
+            }
 
             // hold the empty page avoid access out of page range !
             srcFolder->removeItem(dragId, false);
             if (srcFolder->itemCount() == 0 && srcFolder != dstFolder) {
+                qCDebug(logModels) << "Source folder is empty and different, removing folder";
                 removeFolder(QString::number(srcFolderId));
             }
             dstFolder->insertItemToPage(dragId, pageHint);
 
             // clear empty page
+            qCDebug(logModels) << "Clearing empty pages from source folder";
             srcFolder->removeEmptyPages();
         } else {
             srcFolder->removeItem(dragId);
             // make a new folder, move two items into the folder
             QString dstFolderId = findAvailableFolderId();
             ItemsPage * dstFolder = createFolder(dstFolderId);
+            qCDebug(logModels) << "Appending items to new folder page:" << dropId << dragId;
             dstFolder->appendPage({dropId, dragId});
             AppItem * dropItem = AppsModel::instance().itemFromDesktopId(dropId);
-            AppItem::DDECategories dropCategories = AppItem::DDECategories(CategoryUtils::parseBestMatchedCategory(dropItem->categories()));
-            dstFolder->setName("internal/category/" + QString::number(dropCategories));
+            if (dropItem) {
+                AppItem::DDECategories dropCategories = AppItem::DDECategories(CategoryUtils::parseBestMatchedCategory(dropItem->categories()));
+                QString folderName = "internal/category/" + QString::number(dropCategories);
+                qCDebug(logModels) << "New folder name:" << folderName;
+                dstFolder->setName(folderName);
+            }
             if (srcFolder->pageCount() == 0 && srcFolder != m_topLevel) {
+                qCDebug(logModels) << "Source folder is empty and not top level, removing it";
                 removeFolder(QString::number(srcFolderId));
             }
             m_topLevel->insertItem(dstFolderId, std::get<1>(dropOrigPos), std::get<2>(dropOrigPos));
@@ -164,9 +195,11 @@ int ItemArrangementProxyModel::creatEmptyPage(int folderId) const
 
     if (auto itemPage = m_folders.value(fullId); itemPage) {
         itemPage->appendEmptyPage();
-        return itemPage->pageCount() - 1;
+        const auto& result = itemPage->pageCount() - 1;
+        qCInfo(logModels) << "Created empty page at index:" << result << "for folder:" << fullId;
+        return result;
     } else {
-        qWarning() << "itemPage create empty page false, return 0. fullId is" << fullId;
+        qCWarning(logModels) << "itemPage create empty page false, return 0. fullId is" << fullId;
         return 0;
     }
 }
@@ -185,7 +218,7 @@ QVariant ItemArrangementProxyModel::data(const QModelIndex &index, int role) con
         // regular applications, not a folder
         QString id(data(index, AppItem::DesktopIdRole).toString());
         if (id.isEmpty() || id.contains("internal")) {
-            qDebug() << id << index << index.row() << AppsModel::instance().rowCount() << role;
+            qCWarning(logModels) << "Invalid or internal ID:" << id << "index:" << index << "row:" << index.row() << "role:" << role;
         }
         int folder, page, idx;
         std::tie(folder, page, idx) = findItem(id);
@@ -286,7 +319,7 @@ void ItemArrangementProxyModel::loadItemArrangementFromUserData()
         int pageCount = itemArrangementSettings.value("pageCount", 0).toInt();
         bool isTopLevel = groupName == "toplevel";
 
-        qDebug() << groupName << folderName << pageCount;
+        qCDebug(logModels) << "Group details - name:" << groupName << "folder name:" << folderName << "page count:" << pageCount << "isTopLevel:" << isTopLevel;
 
         ItemsPage * page = isTopLevel ? m_topLevel : createFolder(groupName);
         page->setName(folderName);
@@ -379,9 +412,11 @@ void ItemArrangementProxyModel::onSourceModelChanged()
             
             if (targetPage != -1) {
                 // Add to first available page with space
+                qCDebug(logModels) << "Adding item to existing page" << targetPage << "at index" << targetIndex;
                 m_topLevel->insertItem(desktopId, targetPage, targetIndex);
             } else {
                 // All pages are full, append to new page
+                qCDebug(logModels) << "All pages full, appending item to new page";
                 m_topLevel->appendItem(desktopId);
             }
         }
@@ -425,6 +460,7 @@ QString ItemArrangementProxyModel::findAvailableFolderId()
     } while (m_folders.contains(fullId));
 
     Q_ASSERT(idNumber != 0); // 0 is reserved for top level.
+    qCDebug(logModels) << "Found available folder ID:" << fullId;
     return fullId;
 }
 
