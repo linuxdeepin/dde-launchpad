@@ -250,6 +250,13 @@ Popup {
                         anchors.fill: parent
 
                         currentIndex: folderPageIndicator.currentIndex
+                        activeFocusOnTab: false
+                        
+                        // 处理页面切换时的焦点传递
+                        onCurrentIndexChanged: {
+                            if (currentItem)
+                                currentItem.resetCurrentIndex()
+                        }
 
                         Connections {
                             target: ItemArrangementProxyModel
@@ -268,9 +275,21 @@ Popup {
                                 id: folderGridViewLoader
                                 objectName: "Folder GridView Loader"
 
+                                function resetCurrentIndex() {
+                                    if (item && item.resetGridFocus)
+                                        item.resetGridFocus()
+                                }
+
                                 sourceComponent: Rectangle {
                                     anchors.fill: parent
                                     color: "transparent"
+                                    
+                                    function resetGridFocus() {
+                                        if (gridViewContainerLoader && gridViewContainerLoader.item) {
+                                            gridViewContainerLoader.item.currentIndex = 0
+                                            gridViewContainerLoader.item.forceActiveFocus()
+                                        } 
+                                    }
 
                                     MultipageSortFilterProxyModel {
                                         id: folderProxyModel
@@ -320,6 +339,11 @@ Popup {
                                             gridViewClip: false // TODO it maybe a bug for dtk, https://github.com/linuxdeepin/developer-center/issues/8468
                                             activeGridViewFocusOnTab: folderGridViewLoader.SwipeView.isCurrentItem
                                             itemMove: parent.itemMove
+                                            onActiveFocusChanged: {
+                                                if (activeFocus) {
+                                                    currentIndex = 0
+                                                }
+                                            }
                                             delegate: DelegateDropArea {
                                                 width: folderGridViewContainer.cellWidth
                                                 height: folderGridViewContainer.cellHeight
@@ -343,6 +367,12 @@ Popup {
                                             gridViewClip: false
                                             activeGridViewFocusOnTab: folderGridViewLoader.SwipeView.isCurrentItem
                                             itemMove: parent.itemMove
+
+                                            onActiveFocusChanged: {
+                                                if (activeFocus) {
+                                                    currentIndex = 0
+                                                }
+                                            }
                                             delegate: DelegateDropArea {
                                                 width: folderGridViewContainer.cellWidth
                                                 height: folderGridViewContainer.cellHeight
