@@ -1,3 +1,14 @@
+dde-launchpad (2.0.10) unstable; urgency=medium
+
+  * feat: add logs with dlogcover.
+  * [skip CI] Translate org.deepin.ds.dock.launcherapplet.ts in zh_HK
+  * [skip CI] Translate org.deepin.ds.dock.launcherapplet.ts in zh_CN
+  * [skip CI] Translate org.deepin.ds.dock.launcherapplet.ts in zh_TW
+  * fix: adjust WindowedFrame layout width
+  * fix: reset page index on frame change
+
+ -- wujiangyu <wujiangyu@uniontech.com>  Thu, 28 Aug 2025 17:52:37 +0800
+
 dde-launchpad (2.0.9) unstable; urgency=medium
 
   * i18n: Updates for project Deepin Desktop Environment (#642)
