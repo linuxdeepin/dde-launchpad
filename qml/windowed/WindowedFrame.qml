@@ -111,6 +111,7 @@ InputEventItem {
         anchors.bottom: bottomBar.top
         anchors.topMargin: 10
         anchors.leftMargin: 10
+        anchors.rightMargin: 1
         spacing: 0
         Behavior on opacity {
             NumberAnimation { duration: 200; easing.type: Easing.OutQuad }
