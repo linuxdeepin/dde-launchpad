@@ -250,7 +250,7 @@
     </message>
     <message>
         <source>Development</source>
-        <translation type="unfinished"/>
+        <translation>Разработка</translation>
     </message>
     <message>
         <source>System</source>
