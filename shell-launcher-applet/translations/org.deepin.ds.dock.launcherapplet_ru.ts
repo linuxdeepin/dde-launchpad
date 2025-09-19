@@ -31,7 +31,7 @@
     </message>
     <message>
         <source>Remove from dock</source>
-        <translation>Убрать из дока</translation>
+        <translation>Удалить из дока</translation>
     </message>
     <message>
         <source>Send to dock</source>
