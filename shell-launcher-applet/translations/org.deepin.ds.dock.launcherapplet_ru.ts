@@ -122,7 +122,7 @@
     </message>
     <message>
         <source>Games</source>
-        <translation type="unfinished"/>
+        <translation>Игры</translation>
     </message>
     <message>
         <source>Office</source>
@@ -238,7 +238,7 @@
     </message>
     <message>
         <source>Games</source>
-        <translation type="unfinished"/>
+        <translation>Игры</translation>
     </message>
     <message>
         <source>Office</source>
