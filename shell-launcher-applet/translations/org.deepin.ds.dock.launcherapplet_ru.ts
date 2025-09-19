@@ -51,7 +51,7 @@
     </message>
     <message>
         <source>Disable display scaling</source>
-        <translation>Отключить маштабирование дисплея</translation>
+        <translation>Отключить маштабирование экрана</translation>
     </message>
     <message>
         <source>Uninstall</source>
