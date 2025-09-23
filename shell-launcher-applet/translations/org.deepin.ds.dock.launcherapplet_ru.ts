@@ -77,7 +77,7 @@
     <name>DummyAppItemMenu</name>
     <message>
         <source>Install</source>
-        <translation type="unfinished"/>
+        <translation>Установить</translation>
     </message>
     <message>
         <source>Remove</source>
