@@ -246,7 +246,7 @@
     </message>
     <message>
         <source>Reading</source>
-        <translation type="unfinished"/>
+        <translation>Чтение</translation>
     </message>
     <message>
         <source>Development</source>
@@ -254,7 +254,7 @@
     </message>
     <message>
         <source>System</source>
-        <translation type="unfinished"/>
+        <translation>Система</translation>
     </message>
     <message>
         <source>Others</source>
