@@ -161,7 +161,7 @@
     <name>RecentlyInstalledView</name>
     <message>
         <source>Recently Installed</source>
-        <translation>Недавно установленное</translation>
+        <translation>Недавно установленные</translation>
     </message>
 </context>
 <context>
