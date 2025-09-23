@@ -191,7 +191,7 @@
     </message>
     <message>
         <source>Sorting Mode</source>
-        <translation>Оконный режим</translation>
+        <translation>Вид сортировки</translation>
     </message>
     <message>
         <source>Computer</source>
