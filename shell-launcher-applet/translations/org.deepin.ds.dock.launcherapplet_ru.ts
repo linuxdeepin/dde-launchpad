@@ -258,7 +258,7 @@
     </message>
     <message>
         <source>Others</source>
-        <translation type="unfinished"/>
+        <translation>Прочее</translation>
     </message>
     <message>
         <source>launchpad</source>
