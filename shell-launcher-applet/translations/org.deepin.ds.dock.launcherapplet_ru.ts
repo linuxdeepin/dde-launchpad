@@ -218,11 +218,11 @@
     <name>launcheritem</name>
     <message>
         <source>Internet</source>
-        <translation type="unfinished"/>
+        <translation>Интернет</translation>
     </message>
     <message>
         <source>Chat</source>
-        <translation type="unfinished"/>
+        <translation>Чат</translation>
     </message>
     <message>
         <source>Music</source>
