@@ -262,11 +262,11 @@
     </message>
     <message>
         <source>launchpad</source>
-        <translation type="unfinished"/>
+        <translation>Лаунчпад</translation>
     </message>
     <message>
         <source>Are you sure you want to uninstall &quot;%1&quot;?</source>
-        <translation type="unfinished"/>
+        <translation>Вы уверены, что хотите удалить &quot;%1&quot;?</translation>
     </message>
     <message>
         <source>Cancel</source>
