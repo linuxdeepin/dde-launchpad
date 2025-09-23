@@ -95,7 +95,7 @@
     <name>FullscreenFrame</name>
     <message>
         <source>Window Mode</source>
-        <translation type="unfinished"/>
+        <translation>Оконный режим</translation>
     </message>
 </context>
 <context>
