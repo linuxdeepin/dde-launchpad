@@ -86,6 +86,17 @@
       "description[zh_CN]": "在搜索时候是否允许搜索Desktop ID。",
       "permissions": "readwrite",
       "visibility": "public"
+    },
+    "iconScaleFactor": {
+      "value": 1.0,
+      "serial": 0,
+      "flags": [],
+      "name": "Icon Scale Factor",
+      "name[zh_CN]": "图标缩放比例",
+      "description": "The scale factor for application icons in fullscreen mode.",
+      "description[zh_CN]": "全屏模式下应用图标的缩放比例。",
+      "permissions": "readwrite",
+      "visibility": "private"
     }
   }
 }
