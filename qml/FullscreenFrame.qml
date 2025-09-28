@@ -67,12 +67,41 @@ InputEventItem {
         anchors.fill: parent
         focus: true
         objectName: "FullscreenFrame-BaseLayer"
+        
+        property real iconScaleFactor: DesktopIntegration.iconScaleFactor
+        
+        Behavior on iconScaleFactor {
+            NumberAnimation {
+                duration: 200
+                easing.type: Easing.OutQuad
+            }
+        }
 
         Shortcut {
             context: Qt.ApplicationShortcut
             sequences: [StandardKey.HelpContents, "F1"]
             onActivated: LauncherController.showHelp()
             onActivatedAmbiguously: LauncherController.showHelp()
+        }
+
+        Shortcut {
+            context: Qt.ApplicationShortcut
+            sequences: ["Ctrl++", "Ctrl+="]
+            onActivated: {
+                if (DesktopIntegration.iconScaleFactor < 1.0) {
+                    DesktopIntegration.iconScaleFactor = Math.min(DesktopIntegration.iconScaleFactor + 0.1, 1.0)
+                }
+            }
+        }
+
+        Shortcut {
+            context: Qt.ApplicationShortcut
+            sequences: ["Ctrl+-"]
+            onActivated: {
+                if (DesktopIntegration.iconScaleFactor > 0.5) {
+                    DesktopIntegration.iconScaleFactor = Math.max(DesktopIntegration.iconScaleFactor - 0.1, 0.5)
+                }
+            }
         }
 
         readonly property bool isHorizontalDock: DesktopIntegration.dockPosition === Qt.UpArrow || DesktopIntegration.dockPosition === Qt.DownArrow
@@ -490,6 +519,8 @@ InputEventItem {
                                     visible: dndItem.currentlyDraggedId !== model.desktopId
                                     iconSource: (iconName && iconName !== "") ? iconName : "application-x-desktop"
                                     icons: folderIcons
+                                    iconScaleFactor: baseLayer.iconScaleFactor
+                                    transformOrigin: Item.Center
                                     onItemClicked: {
                                         launchApp(desktopId)
                                     }
@@ -562,6 +593,8 @@ InputEventItem {
                         width: searchResultGridViewContainer.cellWidth
                         height: searchResultGridViewContainer.cellHeight
                         padding: 5
+                        iconScaleFactor: baseLayer.iconScaleFactor
+                        transformOrigin: Item.Center
                         onItemClicked: {
                             launchApp(desktopId)
                         }

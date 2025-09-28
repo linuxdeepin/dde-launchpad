@@ -22,6 +22,7 @@ class DesktopIntegration : public QObject
     Q_PROPERTY(QString backgroundUrl READ backgroundUrl NOTIFY backgroundUrlChanged)
     Q_PROPERTY(qreal opacity READ opacity NOTIFY opacityChanged FINAL)
     Q_PROPERTY(double scaleFactor READ scaleFactor NOTIFY scaleFactorChanged FINAL)
+    Q_PROPERTY(qreal iconScaleFactor READ iconScaleFactor WRITE setIconScaleFactor NOTIFY iconScaleFactorChanged FINAL)
 
     QML_NAMED_ELEMENT(DesktopIntegration)
     QML_SINGLETON
@@ -69,6 +70,8 @@ public:
     Q_INVOKABLE void uninstallApp(const QString & desktopId);
     Q_INVOKABLE double scaleFactor() const;
     qreal opacity() const;
+    qreal iconScaleFactor() const;
+    void setIconScaleFactor(qreal factor);
 
 signals:
     void dockPositionChanged();
@@ -77,6 +80,7 @@ signals:
     void backgroundUrlChanged();
     void opacityChanged();
     void scaleFactorChanged();
+    void iconScaleFactorChanged();
 
 private:
     explicit DesktopIntegration(QObject * parent = nullptr);
@@ -85,4 +89,5 @@ private:
     AppWiz * m_appWizIntegration;
     DdeDock * m_dockIntegration;
     Appearance * m_appearanceIntegration;
+    qreal m_iconScaleFactor;
 };

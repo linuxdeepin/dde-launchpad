@@ -232,6 +232,7 @@ DesktopIntegration::DesktopIntegration(QObject *parent)
     , m_appWizIntegration(new AppWiz(this))
     , m_dockIntegration(new DdeDock(this))
     , m_appearanceIntegration(new Appearance(this))
+    , m_iconScaleFactor(1.0)
 {
     qCDebug(logDesktopIntegration) << "Initializing DesktopIntegration";
     QScopedPointer<DConfig> dconfig(DConfig::create("org.deepin.dde.shell", "org.deepin.ds.launchpad"));
@@ -254,6 +255,9 @@ DesktopIntegration::DesktopIntegration(QObject *parent)
     };
     m_compulsoryAppIdList = dconfig->value("compulsoryAppIdList", defaultCompulsoryAppIdList).toStringList();
     qCInfo(logDesktopIntegration) << "Compulsory apps loaded:" << m_compulsoryAppIdList.size() << "apps";
+    
+    m_iconScaleFactor = dconfig->value("iconScaleFactor", 1.0).toReal();
+    qCInfo(logDesktopIntegration) << "Icon scale factor loaded:" << m_iconScaleFactor;
 
     connect(m_dockIntegration, &DdeDock::directionChanged, this, &DesktopIntegration::dockPositionChanged);
     connect(m_dockIntegration, &DdeDock::geometryChanged, this, &DesktopIntegration::dockGeometryChanged);
@@ -269,4 +273,27 @@ double DesktopIntegration::scaleFactor() const
 qreal DesktopIntegration::opacity() const
 {
     return m_appearanceIntegration->opacity();
+}
+
+qreal DesktopIntegration::iconScaleFactor() const
+{
+    return m_iconScaleFactor;
+}
+
+void DesktopIntegration::setIconScaleFactor(qreal factor)
+{
+    if (qFuzzyCompare(m_iconScaleFactor, factor)) {
+        return;
+    }
+    
+    m_iconScaleFactor = factor;
+    
+    // 保存到 dconfig
+    QScopedPointer<DConfig> dconfig(DConfig::create("org.deepin.dde.shell", "org.deepin.ds.launchpad"));
+    if (dconfig->isValid()) {
+        dconfig->setValue("iconScaleFactor", factor);
+        qCInfo(logDesktopIntegration) << "Icon scale factor saved:" << factor;
+    }
+    
+    emit iconScaleFactorChanged();
 }

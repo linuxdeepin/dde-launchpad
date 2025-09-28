@@ -30,6 +30,7 @@ Control {
     property bool dndEnabled: false
     readonly property bool isWindowedMode: LauncherController.currentFrame === "WindowedFrame"
     property alias displayFont: iconItemLabel.font
+    property real iconScaleFactor: 1.0
 
     Accessible.name: iconItemLabel.text
 
@@ -144,7 +145,7 @@ Control {
 
                                     name: modelData
                                     sourceSize: Qt.size(root.maxIconSizeInFolder, root.maxIconSizeInFolder)
-                                    scale: parent.width / 2 / root.maxIconSizeInFolder
+                                    scale: (parent.width / 2 / root.maxIconSizeInFolder) * root.iconScaleFactor
                                     palette: DTK.makeIconPalette(root.palette)
                                     theme: ApplicationHelper.DarkType
                                 }
@@ -174,7 +175,7 @@ Control {
                         anchors.fill: parent
                         name: iconSource
                         sourceSize: Qt.size(root.maxIconSize, root.maxIconSize)
-                        scale: parent.width / root.maxIconSize
+                        scale: (parent.width / root.maxIconSize) * root.iconScaleFactor
                         palette: DTK.makeIconPalette(root.palette)
                         theme: ApplicationHelper.DarkType
                     }
