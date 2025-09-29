@@ -39,6 +39,10 @@ Item {
         listView.positionViewAtBeginning()
     }
 
+    function resetViewState() {
+        positionViewAtBeginning()
+    }
+
     ListView {
         id: listView
         anchors.fill: parent
