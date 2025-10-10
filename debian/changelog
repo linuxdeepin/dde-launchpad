@@ -1,3 +1,12 @@
+dde-launchpad (2.0.13) unstable; urgency=medium
+
+  * refactor: replace DragHandler with MouseArea for app dragging
+  * fix: ensure remove tone for pinyin first letter search
+  * fix: remove category check from resetViewState
+  * feat: add icon scaling with keyboard shortcuts
+
+ -- YeShanShan <yeshanshan@uniontech.com>  Fri, 10 Oct 2025 17:32:35 +0800
+
 dde-launchpad (2.0.12) unstable; urgency=medium
 
   * fix: add right margin to windowed frame layout
