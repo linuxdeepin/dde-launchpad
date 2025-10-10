@@ -15,8 +15,8 @@ D.BoxPanel {
 
     implicitWidth: DS.Style.toolButton.width
     implicitHeight: DS.Style.toolButton.height
-    color1: selectValue(background, DS.Style.checkedButton.background, DS.Style.highlightedButton.background1)
-    color2: selectValue(background, DS.Style.checkedButton.background, DS.Style.highlightedButton.background2)
+    color1: background
+    color2: background
     insideBorderColor: null
     outsideBorderColor: null
     visible: {

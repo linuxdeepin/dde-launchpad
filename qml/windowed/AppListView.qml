@@ -165,7 +165,7 @@ FocusScope {
                     leftMargin: 10
                     rightMargin: 10
                 }
-                visible: !dragHandler.active
+                visible: !Drag.active
                 text: model.display
                 checkable: false
                 icon.name: (iconName && iconName !== "") ? iconName : "application-x-desktop"
@@ -206,69 +206,40 @@ FocusScope {
                 ToolTip.visible: hovered && contentItem.implicitWidth > contentItem.width
 
                 Drag.dragType: Drag.Automatic
+                Drag.active: mouseArea.drag.active
                 Drag.mimeData: Helper.generateDragMimeData(model.desktopId, true)
                 Drag.hotSpot.y: height / 2
                 Drag.hotSpot.x: width / 2
 
-                states: State {
-                    name: "dragged";
-                    when: dragHandler.active
-                    // FIXME: When dragging finished, the position of the item is changed for unknown reason,
-                    //        so we use the state to reset the x and y here.
-                    PropertyChanges {
-                        target: dragHandler.target
-                        x: x
-                        y: y
-                    }
-                }
-
-                TapHandler {
-                    acceptedButtons: Qt.RightButton
-                    onTapped: {
-                        showContextMenu(itemDelegate, model)
-                        baseLayer.focus = true
-                    }
-                }
-
-                DragHandler {
-                    id: dragHandler
-                    target: parent
-                    acceptedButtons: Qt.LeftButton
-                    dragThreshold: 1
+                MouseArea {
+                    id: mouseArea
+                    anchors.fill: parent
+                    
+                    acceptedButtons: Qt.LeftButton | Qt.RightButton
+                    drag.target: itemDelegate
                     // 当分类菜单打开时，禁用拖拽功能
                     enabled: !(ddeCategoryMenu.visible || alphabetCategoryPopup.visible)
-                    onActiveChanged: {
-                        if (active) {
-                            // We switch to use the `dndItem` to handle Drag event since that one will always exists.
-                            // If we use the current item, then if the item that provides the drag attached property
-                            // get destoryed (e.g. switch page or folder close caused destory), dropping at that moment
-                            // will cause a crash.
-                            dndItem.Drag.hotSpot = target.Drag.hotSpot
-                            dndItem.Drag.mimeData = target.Drag.mimeData
 
-                            parent.grabToImage(function(result) {
-                                dndItem.Drag.imageSource = result.url;
-                                dndItem.Drag.active = true
-                                dndItem.Drag.startDrag()
+                    onPressed: function (mouse) {
+                        if (mouse.button === Qt.LeftButton) {
+                            itemDelegate.contentItem.grabToImage(function(result) {
+                                itemDelegate.Drag.imageSource = result.url
                             })
                         }
                     }
-                }
-
-                background: Loader {
-                    active: !dragHandler.active
-                    sourceComponent: ItemBackground {
-                        focusPolicy: Qt.NoFocus
-                        implicitWidth: DStyle.Style.itemDelegate.width
-                        implicitHeight: Helper.windowed.listItemHeight
-                        button: itemDelegate
+                    onClicked: function (mouse) {
+                        if (mouse.button === Qt.RightButton) {
+                            showContextMenu(itemDelegate, model)
+                            baseLayer.focus = true
+                        } else {
+                            launchApp(desktopId)
+                        }
                     }
                 }
-
-                TapHandler {
-                    onTapped: {
-                        launchApp(desktopId)
-                    }
+                background: ItemBackground {
+                    implicitWidth: DStyle.Style.itemDelegate.width
+                    implicitHeight: Helper.windowed.listItemHeight
+                    button: itemDelegate
                 }
 
                 Keys.onReturnPressed: {
