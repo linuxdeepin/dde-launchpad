@@ -90,7 +90,7 @@ int SearchFilterProxyModel::calculateWeight(const QModelIndex &modelIndex) const
     const QString & vendor = modelIndex.data(AppItem::VendorRole).toString();
     const QString & genericName = modelIndex.data(AppItem::GenericNameRole).toString();
     const QString & transliterated = modelIndex.data(AppsModel::AllTransliteratedRole).toString();
-    const QString & jianpin = Dtk::Core::firstLetters(displayName).join(',');
+    const QString & jianpin = Dtk::Core::firstLetters(displayName, TS_NoneTone).join(',');
 
     //包名搜索使用
     const QString & desktopId = modelIndex.data(AppItem::DesktopIdRole).toString();

@@ -80,6 +80,7 @@ void TestSearchFilterProxyModel::setupTestData()
     testItems.append(createTestAppItem("org.deepin.music", "音乐", "音乐播放器", "音乐", "deepin", 12));
     testItems.append(createTestAppItem("org.deepin.reader", "阅读器", "文档阅读器", "阅读", "deepin", 7));
     testItems.append(createTestAppItem("org.deepin.calendar", "日历", "日历", "日历", "deepin", 4));
+    testItems.append(createTestAppItem("org.deepin.defender", "安全中心", "安全中心", "安全中心", "deepin", 4));
     
     // 包含特殊符号的应用
     testItems.append(createTestAppItem("org.special.app1", "App@Name", "App@Name", "", "special", 1));
@@ -213,6 +214,11 @@ void TestSearchFilterProxyModel::testPinyinSearch()
     qCDebug(logTest) << "Pinyin initials search for 'rl' returned" << model.rowCount() << "items";
     QCOMPARE(model.rowCount(), 1);
     QCOMPARE(model.data(model.index(0, 0), AppItem::DesktopIdRole).toString(), "org.deepin.calendar");
+    qCDebug(logTest) << "Testing Pinyin initials match for 'aqzx'";
+    model.setFilterRegularExpression(QRegularExpression("aqzx"));
+    qCDebug(logTest) << "Pinyin initials search for 'aqzx' returned" << model.rowCount() << "items";
+    QCOMPARE(model.rowCount(), 1);
+    QCOMPARE(model.data(model.index(0, 0), AppItem::DesktopIdRole).toString(), "org.deepin.defender");
     qCInfo(logTest) << "Pinyin search tests completed successfully";
 }
 
