@@ -27,12 +27,8 @@ QtObject {
 
     property D.Palette itemBackground: D.Palette {
         normal {
-            common: Qt.rgba(0, 0, 0, 0.1)
-            crystal: Qt.rgba(0, 0, 0, 0.1)
-        }
-        normalDark {
-            common: Qt.rgba(1, 1, 1, 0.1)
-            crystal: Qt.rgba(1, 1, 1, 0.1)
+            common: ("transparent")
+            crystal: ("transparent")
         }
         hovered {
             common: Qt.rgba(0, 0, 0, 0.1)
