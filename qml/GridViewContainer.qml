@@ -108,6 +108,10 @@ FocusScope {
                 }
                 cellHeight: item.cellHeight
                 cellWidth: item.cellWidth
+                TapHandler {
+                    onTapped:
+                        LauncherController.visible = false
+                }
 
                 highlight: Item {
                     FocusBoxBorder {
