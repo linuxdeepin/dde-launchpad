@@ -241,14 +241,13 @@ FocusScope {
                     implicitHeight: Helper.windowed.listItemHeight
                     button: itemDelegate
                 }
+            }
+            Keys.onReturnPressed: {
+                launchApp(desktopId)
+            }
 
-                Keys.onReturnPressed: {
-                    launchApp(desktopId)
-                }
-
-                Keys.onSpacePressed: {
-                    launchApp(desktopId)
-                }
+            Keys.onSpacePressed: {
+                launchApp(desktopId)
             }
         }
     }
@@ -281,7 +280,7 @@ FocusScope {
                     anchors.rightMargin: 2
                     anchors.top: parent.top
                     anchors.bottom: parent.bottom
-                    visible: menuItem.down || menuItem.hovered
+                    visible: menuItem.highlighted
                     outsideBorderColor: null
                     insideBorderColor: null
                     radius: 6
@@ -332,13 +331,15 @@ FocusScope {
             if (activeFocus) {
                 // When focus in, we always scroll to the highlight
                 scrollToIndex(listView.currentIndex, 0)
+                if(currentItem)
+                    currentItem.forceActiveFocus()
             }
         }
 
         Connections {
             target: CategorizedSortProxyModel
             function onCategoryTypeChanged() {
-                listView.positionViewAtBeginning()
+                listView.currentIndex = 0
             }
         }
         
