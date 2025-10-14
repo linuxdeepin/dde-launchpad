@@ -27,6 +27,9 @@ find_package(${QT_NS} REQUIRED COMPONENTS Core Gui Concurrent Qml Svg Quick Quic
 find_package(${DTK_NS} REQUIRED COMPONENTS Core Gui)
 find_package(${ASQT_NS} 1.0 REQUIRED)
 find_package(ECM NO_MODULE)
+if(Qt6_VERSION VERSION_GREATER_EQUAL 6.10)
+  find_package(Qt6 COMPONENTS GuiPrivate REQUIRED)
+endif()
 
 set_package_properties(${ASQT_NS} PROPERTIES
     DESCRIPTION "Library that lists Appstream resources"
