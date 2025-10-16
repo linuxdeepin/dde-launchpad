@@ -1,3 +1,11 @@
+dde-launchpad (2.0.14) unstable; urgency=medium
+
+  * fix: compatibility with Qt 6.10
+  * feat: improve app list focus behavior and styling
+  * feat: add tap handler to hide launcher
+
+ -- zhangkun <zhangkun2@uniontech.com>  Thu, 16 Oct 2025 21:17:01 +0800
+
 dde-launchpad (2.0.13) unstable; urgency=medium
 
   * refactor: replace DragHandler with MouseArea for app dragging
