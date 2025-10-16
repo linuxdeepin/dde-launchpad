@@ -31,7 +31,7 @@
     </message>
     <message>
         <source>Remove from dock</source>
-        <translation>Убрать из дока</translation>
+        <translation>Удалить из дока</translation>
     </message>
     <message>
         <source>Send to dock</source>
@@ -51,7 +51,7 @@
     </message>
     <message>
         <source>Disable display scaling</source>
-        <translation>Отключить маштабирование дисплея</translation>
+        <translation>Отключить маштабирование экрана</translation>
     </message>
     <message>
         <source>Uninstall</source>
@@ -77,7 +77,7 @@
     <name>DummyAppItemMenu</name>
     <message>
         <source>Install</source>
-        <translation type="unfinished"/>
+        <translation>Установить</translation>
     </message>
     <message>
         <source>Remove</source>
@@ -95,7 +95,7 @@
     <name>FullscreenFrame</name>
     <message>
         <source>Window Mode</source>
-        <translation type="unfinished"/>
+        <translation>Оконный режим</translation>
     </message>
 </context>
 <context>
@@ -122,7 +122,7 @@
     </message>
     <message>
         <source>Games</source>
-        <translation type="unfinished"/>
+        <translation>Игры</translation>
     </message>
     <message>
         <source>Office</source>
@@ -146,7 +146,7 @@
     </message>
     <message>
         <source>Are you sure you want to uninstall &quot;%1&quot;?</source>
-        <translation type="unfinished"/>
+        <translation>Вы уверены, что хотите удалить &quot;%1&quot;?</translation>
     </message>
     <message>
         <source>Cancel</source>
@@ -161,7 +161,7 @@
     <name>RecentlyInstalledView</name>
     <message>
         <source>Recently Installed</source>
-        <translation>Недавно установленное</translation>
+        <translation>Недавно установленные</translation>
     </message>
 </context>
 <context>
@@ -191,7 +191,7 @@
     </message>
     <message>
         <source>Sorting Mode</source>
-        <translation>Оконный режим</translation>
+        <translation>Вид сортировки</translation>
     </message>
     <message>
         <source>Computer</source>
@@ -218,63 +218,63 @@
     <name>launcheritem</name>
     <message>
         <source>Internet</source>
-        <translation type="unfinished"/>
+        <translation>Интернет</translation>
     </message>
     <message>
         <source>Chat</source>
-        <translation type="unfinished"/>
+        <translation>Чат</translation>
     </message>
     <message>
         <source>Music</source>
-        <translation type="unfinished"/>
+        <translation>Музыка</translation>
     </message>
     <message>
         <source>Video</source>
-        <translation type="unfinished"/>
+        <translation>Видео</translation>
     </message>
     <message>
         <source>Graphics</source>
-        <translation type="unfinished"/>
+        <translation>Графика</translation>
     </message>
     <message>
         <source>Games</source>
-        <translation type="unfinished"/>
+        <translation>Игры</translation>
     </message>
     <message>
         <source>Office</source>
-        <translation type="unfinished"/>
+        <translation>Офис</translation>
     </message>
     <message>
         <source>Reading</source>
-        <translation type="unfinished"/>
+        <translation>Чтение</translation>
     </message>
     <message>
         <source>Development</source>
-        <translation type="unfinished"/>
+        <translation>Разработка</translation>
     </message>
     <message>
         <source>System</source>
-        <translation type="unfinished"/>
+        <translation>Система</translation>
     </message>
     <message>
         <source>Others</source>
-        <translation type="unfinished"/>
+        <translation>Прочее</translation>
     </message>
     <message>
         <source>launchpad</source>
-        <translation type="unfinished"/>
+        <translation>Лаунчпад</translation>
     </message>
     <message>
         <source>Are you sure you want to uninstall &quot;%1&quot;?</source>
-        <translation type="unfinished"/>
+        <translation>Вы уверены, что хотите удалить &quot;%1&quot;?</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished"/>
+        <translation>Отмена</translation>
     </message>
     <message>
         <source>Confirm</source>
-        <translation type="unfinished"/>
+        <translation>Подтвердить</translation>
     </message>
 </context>
 </TS>
