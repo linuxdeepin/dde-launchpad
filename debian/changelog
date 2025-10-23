@@ -1,3 +1,9 @@
+dde-launchpad (2.0.15) unstable; urgency=medium
+
+  * i18n: Updates for project Deepin Desktop Environment (#652)
+
+ -- wujiangyu <wujiangyu@uniontech.com>  Thu, 23 Oct 2025 16:00:36 +0800
+
 dde-launchpad (2.0.14) unstable; urgency=medium
 
   * fix: compatibility with Qt 6.10
