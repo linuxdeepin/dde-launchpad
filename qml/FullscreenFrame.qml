@@ -364,7 +364,7 @@ InputEventItem {
                         height: listviewPage.height
 
                         property int viewIndex: index
-
+                        property alias gridViewIndex: gridViewContainer.currentIndex
                         SortProxyModel {
                             id: proxyModel
                             sourceModel: MultipageSortFilterProxyModel {
@@ -763,6 +763,9 @@ InputEventItem {
                 if (LauncherController.visible) return
                 // clear searchEdit text
                 searchEdit.text = ""
+                if (listviewPage.currentItem) {
+                    listviewPage.currentItem.gridViewIndex = 0
+                }
                 // close folder popup
                 if (folderGridViewPopup.visible) folderGridViewPopup.close()
                 // reset(remove) keyboard focus
