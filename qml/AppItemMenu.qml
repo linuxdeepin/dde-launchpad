@@ -61,6 +61,7 @@ Loader {
             MenuItem {
                 id: moveToTopMenu
                 visible: !hideMoveToTopMenu
+                enabled: visible
                 height: visible ? implicitHeight : 0
                 text: qsTr("Move to Top")
                 onTriggered: {
@@ -140,7 +141,7 @@ Loader {
                         LauncherController.setAvoidHide(true)
                         LauncherController.visible = false
                     } else {
-                        LauncherController.setAvoidHide(false) 
+                        LauncherController.setAvoidHide(false)
                     }
                     if (!DesktopIntegration.shouldSkipConfirmUninstallDialog(root.desktopId)) {
                         confirmUninstallDlg.appName = root.display
