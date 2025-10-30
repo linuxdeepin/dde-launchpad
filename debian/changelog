@@ -1,3 +1,10 @@
+dde-launchpad (2.0.16) unstable; urgency=medium
+
+  * fix: reset grid view index when hiding launcher
+  * fix: avoid keyboard focus on menu that not visible
+
+ -- Robertkill <lvpeilong@uniontech.com>  Thu, 30 Oct 2025 20:02:06 +0800
+
 dde-launchpad (2.0.15) unstable; urgency=medium
 
   * i18n: Updates for project Deepin Desktop Environment (#652)
