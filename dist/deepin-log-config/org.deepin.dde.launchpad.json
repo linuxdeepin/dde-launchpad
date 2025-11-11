@@ -1,0 +1,74 @@
+{
+    "name": "dde-launchpad",
+    "group": "dde",
+    "submodules": [
+        {
+            "name": "launchpad.debug",
+            "filter": "org.deepin.dde.launchpad.debug",
+            "exec": "/usr/bin/dde-shell",
+            "logType": "journal"
+        },
+        {
+            "name": "launchpad.desktop",
+            "filter": "org.deepin.dde.launchpad.desktop",
+            "exec": "/usr/bin/dde-shell",
+            "logType": "journal"
+        },
+        {
+            "name": "launchpad.input",
+            "filter": "org.deepin.dde.launchpad.input",
+            "exec": "/usr/bin/dde-shell",
+            "logType": "journal"
+        },
+        {
+            "name": "launchpad.controller",
+            "filter": "org.deepin.dde.launchpad.controller",
+            "exec": "/usr/bin/dde-shell",
+            "logType": "journal"
+        },
+        {
+            "name": "launchpad.applet",
+            "filter": "org.deepin.dde.launchpad.applet",
+            "exec": "/usr/bin/dde-shell",
+            "logType": "journal"
+        },
+        {
+            "name": "launchpad.integration",
+            "filter": "org.deepin.dde.launchpad.integration",
+            "exec": "/usr/bin/dde-shell",
+            "logType": "journal"
+        },
+        {
+            "name": "launchpad.gioutils",
+            "filter": "org.deepin.dde.launchpad.gioutils",
+            "exec": "/usr/bin/dde-shell",
+            "logType": "journal"
+        },
+        {
+            "name": "launchpad.models",
+            "filter": "org.deepin.dde.launchpad.models",
+            "exec": "/usr/bin/dde-shell",
+            "logType": "journal"
+        },
+        {
+            "name": "launchpad.quick",
+            "filter": "org.deepin.dde.launchpad.quick",
+            "exec": "/usr/bin/dde-shell",
+            "logType": "journal"
+        },
+        {
+            "name": "launchpad.treeland",
+            "filter": "org.deepin.dde.launchpad.treeland",
+            "exec": "/usr/bin/dde-shell",
+            "logType": "journal"
+        },
+        {
+            "name": "launchpad.utils",
+            "filter": "org.deepin.dde.launchpad.utils",
+            "exec": "/usr/bin/dde-shell",
+            "logType": "journal"
+        }
+    ],
+    "visible": 1,
+    "version": "V1.0"
+}

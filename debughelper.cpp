@@ -10,7 +10,7 @@
 #include <QLoggingCategory>
 
 namespace {
-Q_LOGGING_CATEGORY(logDebugHelper, "dde.launchpad.debug")
+Q_LOGGING_CATEGORY(logDebugHelper, "org.deepin.dde.launchpad.debug")
 }
 
 DebugHelper::DebugHelper(QObject *parent)

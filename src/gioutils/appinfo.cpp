@@ -10,7 +10,7 @@
 
 #include <QLoggingCategory>
 namespace {
-Q_LOGGING_CATEGORY(logGioUtils, "dde.launchpad.gioutils")
+Q_LOGGING_CATEGORY(logGioUtils, "org.deepin.dde.launchpad.gioutils")
 }
 
 

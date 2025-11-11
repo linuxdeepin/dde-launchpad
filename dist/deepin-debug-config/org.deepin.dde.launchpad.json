@@ -1,0 +1,11 @@
+{
+    "name": "dde-launchpad",
+    "group": "dde",
+    "submodules": [
+        {
+            "name": "org.deepin.dde.launchpad",
+            "exec": "org.deepin.dde.launchpad.sh"
+        }
+    ],
+    "version": "V1.0"
+}

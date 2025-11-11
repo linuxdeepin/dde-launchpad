@@ -15,7 +15,7 @@
 
 DS_USE_NAMESPACE
 namespace {
-Q_LOGGING_CATEGORY(logApplet, "dde.launchpad.applet")
+Q_LOGGING_CATEGORY(logApplet, "org.deepin.dde.launchpad.applet")
 }
 
 namespace dock {

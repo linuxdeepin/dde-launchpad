@@ -24,7 +24,7 @@
 DCORE_USE_NAMESPACE
 
 namespace {
-Q_LOGGING_CATEGORY(logDesktopIntegration, "dde.launchpad.desktop")
+Q_LOGGING_CATEGORY(logDesktopIntegration, "org.deepin.dde.launchpad.desktop")
 }
 
 QString DesktopIntegration::currentDE()
