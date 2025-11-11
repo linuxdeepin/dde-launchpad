@@ -8,6 +8,9 @@ export DEB_CFLAGS_MAINT_APPEND = -Wall
 export DEB_CXXFLAGS_MAINT_APPEND = -Wall
 export DEB_LDFLAGS_MAINT_APPEND = -Wl,--as-needed -Wl,-z,relro -Wl,-z,now -Wl,-z,noexecstack -Wl,-E
 
+# reproducible编译参数
+DEB_CMAKE_EXTRA_FLAGS += -DCMAKE_SKIP_BUILD_RPATH=ON
+
 # see ENVIRONMENT in dpkg-buildflags(1)
 # package maintainers to append CFLAGS
 #export DEB_CFLAGS_MAINT_APPEND  = -Wall -pedantic
@@ -19,5 +22,6 @@ export DEB_LDFLAGS_MAINT_APPEND = -Wl,--as-needed -Wl,-z,relro -Wl,-z,now -Wl,-z
 
 override_dh_auto_configure:
 		dh_auto_configure -- \
+			$(DEB_CMAKE_EXTRA_FLAGS) \
 			-DVERSION=$(DEB_VERSION_UPSTREAM) \
 			-DPREFER_QT_5=OFF
