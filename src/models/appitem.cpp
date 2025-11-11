@@ -6,7 +6,7 @@
 
 #include <QFileInfo>
 #include <QLoggingCategory>
-Q_LOGGING_CATEGORY(logModels, "dde.launchpad.models")
+Q_LOGGING_CATEGORY(logModels, "org.deepin.dde.launchpad.models")
 
 AppItem::AppItem(const QString &freedesktopId)
     : QStandardItem()

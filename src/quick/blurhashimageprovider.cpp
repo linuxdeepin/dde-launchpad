@@ -9,7 +9,7 @@
 
 #include "blurhash.hpp"
 
-Q_LOGGING_CATEGORY(logQuick, "dde.launchpad.quick")
+Q_LOGGING_CATEGORY(logQuick, "org.deepin.dde.launchpad.quick")
 
 /*
  * Qt unfortunately re-encodes the base83 string in QML.

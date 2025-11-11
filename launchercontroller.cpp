@@ -20,7 +20,7 @@
 DGUI_USE_NAMESPACE
 
 namespace {
-Q_LOGGING_CATEGORY(logController, "dde.launchpad.controller")
+Q_LOGGING_CATEGORY(logController, "org.deepin.dde.launchpad.controller")
 }
 
 LauncherController::LauncherController(QObject *parent)

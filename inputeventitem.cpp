@@ -4,7 +4,7 @@
 #include "inputeventitem.h"
 #include <QLoggingCategory>
 namespace {
-Q_LOGGING_CATEGORY(logInputEvent, "dde.launchpad.input")
+Q_LOGGING_CATEGORY(logInputEvent, "org.deepin.dde.launchpad.input")
 }
 
 InputEventItem::InputEventItem()

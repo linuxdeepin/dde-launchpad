@@ -7,7 +7,7 @@
 #include <QMultiMap>
 #include <QLoggingCategory>
 
-Q_LOGGING_CATEGORY(logUtils, "dde.launchpad.utils")
+Q_LOGGING_CATEGORY(logUtils, "org.deepin.dde.launchpad.utils")
 
 
 CategoryUtils::Categorytype CategoryUtils::parseBestMatchedCategory(QStringList categories)

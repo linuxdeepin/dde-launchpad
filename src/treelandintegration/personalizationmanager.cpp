@@ -13,7 +13,7 @@
 
 #include <private/qwaylandwindow_p.h>
 
-Q_LOGGING_CATEGORY(logTreeland, "dde.launchpad.treeland")
+Q_LOGGING_CATEGORY(logTreeland, "org.deepin.dde.launchpad.treeland")
 
 
 class PersonalizationManagerPrivate : public QWaylandClientExtensionTemplate<PersonalizationManagerPrivate>,

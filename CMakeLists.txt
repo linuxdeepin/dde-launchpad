@@ -145,5 +145,10 @@ install(
     FILES dist/org.deepin.dde.shell.launchpad.appdata.xml
     DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/metainfo"
 )
+# debug config file
+install(FILES ${CMAKE_SOURCE_DIR}/dist/deepin-debug-config/org.deepin.dde.launchpad.json
+    DESTINATION ${CMAKE_INSTALL_DATADIR}/deepin-debug-config/deepin-debug-config.d)
+install(FILES ${CMAKE_SOURCE_DIR}/dist/deepin-log-config/org.deepin.dde.launchpad.json
+    DESTINATION ${CMAKE_INSTALL_DATADIR}/deepin-log-viewer/deepin-log.conf.d)
 
 add_subdirectory(shell-launcher-applet)

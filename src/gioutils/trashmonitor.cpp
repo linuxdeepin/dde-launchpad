@@ -7,7 +7,7 @@
 #include <QLoggingCategory>
 
 namespace {
-Q_LOGGING_CATEGORY(logGioUtilsTrash, "dde.launchpad.gioutils.trash")
+Q_LOGGING_CATEGORY(logGioUtilsTrash, "org.deepin.dde.launchpad.gioutils.trash")
 }
 
 TrashMonitor::TrashMonitor(QObject *parent)

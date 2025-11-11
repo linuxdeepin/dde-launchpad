@@ -13,7 +13,7 @@
 #include "blurhash.hpp"
 #include "../launchercontroller.h"
 
-Q_LOGGING_CATEGORY(logDdeIntegration, "dde.launchpad.integration")
+Q_LOGGING_CATEGORY(logDdeIntegration, "org.deepin.dde.launchpad.integration")
 
 using Appearance1 = __Appearance1;
 

@@ -10,7 +10,7 @@
 #include <QLoggingCategory>
 
 namespace {
-Q_LOGGING_CATEGORY(logGioUtilsMonitor, "dde.launchpad.gioutils.monitor")
+Q_LOGGING_CATEGORY(logGioUtilsMonitor, "org.deepin.dde.launchpad.gioutils.monitor")
 }
 
 AppInfoMonitor::AppInfoMonitor(QObject *parent)
