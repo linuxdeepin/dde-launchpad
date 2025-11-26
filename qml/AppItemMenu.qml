@@ -124,7 +124,7 @@ Loader {
             }
             MenuItem {
                 visible: !hideDisplayScalingMenu
-                enabled: !root.desktopId.startsWith("internal/folders/")
+                enabled: visible && !root.desktopId.startsWith("internal/folders/")
                 height: visible ? implicitHeight : 0 // FIXME: same as above
                 checkable: true
                 checked: DesktopIntegration.disableScale(root.desktopId)
