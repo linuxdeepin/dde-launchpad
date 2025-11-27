@@ -146,7 +146,7 @@
     </message>
     <message>
         <source>Are you sure you want to uninstall &quot;%1&quot;?</source>
-        <translation type="unfinished"/>
+        <translation>Bạn có chắc chắn muốn gỡ cài đặt &quot;%1&quot; không?</translation>
     </message>
     <message>
         <source>Cancel</source>
