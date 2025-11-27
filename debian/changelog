@@ -1,3 +1,10 @@
+dde-launchpad (2.0.18) unstable; urgency=medium
+
+  * fix: fix display scaling menu visibility logic
+  * i18n: remove de_DE translation resources
+
+ -- zhaoyingzhen <zhaoyingzhen@uniontech.com>  Thu, 27 Nov 2025 17:38:04 +0800
+
 dde-launchpad (2.0.17) unstable; urgency=medium
 
   * chore: adapt debugging settings function
