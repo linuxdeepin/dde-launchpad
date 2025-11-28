@@ -421,23 +421,65 @@ InputEventItem {
                                     listviewPage.previousIndex = listviewPage.currentIndex
                                 })
                             }
-
                             Keys.onLeftPressed: function(event) {
-                                if (listItem.viewIndex === 0 && itemPageModel.rowCount() > 1) {
+                                event.accepted = true
+
+                                let count = proxyModel.count
+                                if (count === 0) {
+                                    return
+                                }
+
+                                let current = gridViewContainer.currentIndex
+                                if (current > 0) {
+                                    gridViewContainer.currentIndex = current - 1
+                                    return
+                                }
+
+                                let pageCount = itemPageModel.rowCount()
+                                if (pageCount <= 1) {
+                                    gridViewContainer.currentIndex = count - 1
+                                    return
+                                }
+
+                                if (listItem.viewIndex === 0) {
                                     // is the 1st page, go to last page
-                                    listviewPage.setCurrentIndex(itemPageModel.rowCount() - 1)
+                                    listviewPage.setCurrentIndex(pageCount - 1)
                                 } else {
                                     // not the 1st page, simply use SwipeView default behavior
-                                    event.accepted = false
+                                    listviewPage.setCurrentIndex(listItem.viewIndex - 1)
                                 }
                             }
                             Keys.onRightPressed: function(event) {
-                                if (listItem.viewIndex === (itemPageModel.rowCount() - 1) && itemPageModel.rowCount() > 1) {
+                                event.accepted = true
+
+                                let count = proxyModel.count
+                                if (count === 0) {
+                                    return
+                                }
+
+                                let current = gridViewContainer.currentIndex
+                                if (current < count - 1) {
+                                    gridViewContainer.currentIndex = current + 1
+                                    return
+                                }
+
+                                let pageCount = itemPageModel.rowCount()
+                                if (pageCount <= 1) {
+                                    gridViewContainer.currentIndex = 0
+                                    return
+                                }
+
+                                if (listItem.viewIndex === (pageCount - 1) && pageCount > 1) {
                                     // is the last page, go to first page
+                                    // mark this as a "next page" switch so that checkPageSwitchState
+                                    // will select the first item on the target page
+                                    listviewPage.previousIndex = 0
                                     listviewPage.setCurrentIndex(0)
                                 } else {
-                                    // not the last page, simply use SwipeView default behavior
-                                    event.accepted = false
+                                    // switch to the next page in order and also treat it as "next page"
+                                    let nextPageIndex = listItem.viewIndex + 1
+                                    listviewPage.previousIndex = nextPageIndex
+                                    listviewPage.setCurrentIndex(nextPageIndex)
                                 }
                             }
                             opacity: folderGridViewPopup.visible ? 0.2 : 1
