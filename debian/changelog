@@ -1,3 +1,9 @@
+dde-launchpad (2.0.19) unstable; urgency=medium
+
+  * feat: improve grid navigation with circular behavior
+
+ -- fuleyi <fuleyi@uniontech.com>  Thu, 04 Dec 2025 19:12:44 +0800
+
 dde-launchpad (2.0.18) unstable; urgency=medium
 
   * fix: fix display scaling menu visibility logic
