@@ -16,7 +16,26 @@ Popup {
     id: root
 
     property alias currentFolderId: folderLoader.currentFolderId
+    property alias innerItem: folderLoader.item
     property alias folderName: folderLoader.folderName
+    property var currentDragItem: null
+
+
+
+    function onDragEnter(item) {
+        currentDragItem = item
+    }
+
+    function onDragExit(item) {
+        if (currentDragItem === item) {
+            currentDragItem = null
+            Qt.callLater(function() {
+                if (currentDragItem === null) {
+                    root.close()
+                }
+            })
+        }
+    }
     property var folderNameFont: DTK.fontManager.t2
     required property point centerPosition
     readonly property bool isWindowedMode: LauncherController.currentFrame === "WindowedFrame"
@@ -40,6 +59,7 @@ Popup {
     onClosed: {
         // reset folder view
         folderLoader.currentFolderId = -1
+        currentDragItem = null
     }
 
     Loader {
@@ -61,17 +81,26 @@ Popup {
                 }
             }
 
-            contentItem: ColumnLayout {
-                id: contentRoot
-                spacing: isWindowedMode ? 0 : 5
+            contentItem: Item {
                 anchors.fill: parent
-                property bool nameEditing: false
-                property int titleMargin: isWindowedMode ? 20 : 30
 
-                Item {
-                    visible: !isWindowedMode
-                    Layout.preferredHeight: 15
+                DropArea {
+                    anchors.fill: parent
+                    keys: ["text/x-dde-launcher-dnd-desktopId"]
+                    onEntered: root.onDragEnter(this)
+                    onExited: root.onDragExit(this)
                 }
+
+                ColumnLayout {
+                    id: contentRoot
+                    anchors.fill: parent
+                    spacing: isWindowedMode ? 0 : 5
+
+                    property bool nameEditing: false
+                    property alias folderName: folderNameEdit.text
+                    property int titleMargin: isWindowedMode ? 20 : 30
+
+                    signal closeFolder()
 
                 property Palette titleTextColor: Palette {
                     normal {
@@ -153,6 +182,14 @@ Popup {
                         anchors.fill: parent
                         property bool createdEmptyPage: false
 
+                        onEntered: root.onDragEnter(this)
+
+                        onExited: {
+                            root.onDragExit(this)
+                            pageIntent = 0
+                            createdEmptyPage = false
+                        }
+
                         function checkDragMove() {
                             if (drag.x < horizontalPadding) {
                                 pageIntent = -1
@@ -183,10 +220,6 @@ Popup {
                             pageIntent = 0
                             createdEmptyPage = false
                         }
-                        onExited: {
-                            pageIntent = 0
-                            createdEmptyPage = false
-                        }
                         onPageIntentChanged: {
                             if (pageIntent !== 0) {
                                 folderDndMovePageTimer.restart()
@@ -207,7 +240,7 @@ Popup {
                                         folderPagesView.setCurrentIndex(newPageIndex)
                                         parent.pageIntent = 0
                                         return
-                                    }else{
+                                    } else {
                                         incrementPageIndex(folderPagesView)
                                     }
                                 } else if (parent.pageIntent < 0) {
@@ -382,6 +415,7 @@ Popup {
 
                                     component DelegateDropArea: DropArea {
                                         onEntered: function(drag) {
+                                            root.onDragEnter(this)
                                             folderDragApplyTimer.dragId = drag.getDataAsString("text/x-dde-launcher-dnd-desktopId")
                                             folderDragApplyTimer.restart()
                                         }
@@ -397,13 +431,26 @@ Popup {
                                             }
                                         }
                                         onExited: {
+                                            root.onDragExit(this)
                                             folderDragApplyTimer.stop()
                                             folderDragApplyTimer.dragId = ""
                                         }
+                                        Component.onDestruction: {
+                                            root.onDragExit(this)
+                                        }
                                         onDropped: function(drop) {
+                                            let dragId = drop.getDataAsString("text/x-dde-launcher-dnd-desktopId")
+                                            if (dragId === "") {
+                                                return
+                                            }
+                                            if (folderDragApplyTimer.running) {
+                                                folderDragApplyTimer.stop()
+                                                root.itemDropped(dragId) // This seems to be a new call for general item drop handling
+                                            }
+
                                             folderDragApplyTimer.stop()
                                             folderDragApplyTimer.dragId = ""
-                                            let dragId = drop.getDataAsString("text/x-dde-launcher-dnd-desktopId")
+                                            // The following logic is for dropping onto an item specifically
                                             if (dragId === model.desktopId) {
                                                 return
                                             }
@@ -505,16 +552,27 @@ Popup {
             }
         }
     }
-    background: FloatingPanel {
-        radius: isWindowedMode ? 12 : 36
-        blurMultiplier: 5.0
-        backgroundColor: Palette {
-            normal: Qt.rgba(1.0, 1.0, 1.0, 0.2)
-            normalDark: isWindowedMode ? Qt.rgba(20/255, 20/255, 20/255, 0.4) : Qt.rgba(1.0, 1.0, 1.0, 0.2)
+    }
+    background: Item {
+        FloatingPanel {
+            anchors.fill: parent
+            radius: isWindowedMode ? 12 : 36
+            blurMultiplier: 5.0
+            backgroundColor: Palette {
+                normal: Qt.rgba(1.0, 1.0, 1.0, 0.2)
+                normalDark: isWindowedMode ? Qt.rgba(20/255, 20/255, 20/255, 0.4) : Qt.rgba(1.0, 1.0, 1.0, 0.2)
+            }
+            dropShadowColor: null
+            outsideBorderColor: isWindowedMode ? windowedOutBorderPalette : null
+            insideBorderColor: isWindowedMode ? DStyle.Style.floatingPanel.insideBorder : null
         }
-        dropShadowColor: null
-        outsideBorderColor: isWindowedMode ? windowedOutBorderPalette : null
-        insideBorderColor: isWindowedMode ? DStyle.Style.floatingPanel.insideBorder : null
+
+        DropArea {
+            anchors.fill: parent
+            keys: ["text/x-dde-launcher-dnd-desktopId"]
+            onEntered: root.onDragEnter(this)
+            onExited: root.onDragExit(this)
+        }
     }
 
     Palette {
