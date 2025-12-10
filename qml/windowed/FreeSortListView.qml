@@ -293,7 +293,7 @@ Item {
                 ColorSelector.pressed: false
                 property Palette textColor: DStyle.Style.button.text
                 palette.windowText: ColorSelector.textColor
-                visible: !Drag.active
+                visible: !Drag.active && (typeof dndItem === "undefined" || dndItem.currentlyDraggedId !== model.desktopId)
 
                 ToolTip.text: text
                 ToolTip.delay: 500
