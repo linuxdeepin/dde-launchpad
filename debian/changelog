@@ -1,3 +1,9 @@
+dde-launchpad (2.0.20) unstable; urgency=medium
+
+  * fix: enhance folder popup drag-and-drop behavior
+
+ -- YeShanShan <yeshanshan@uniontech.com>  Thu, 11 Dec 2025 20:32:47 +0800
+
 dde-launchpad (2.0.19) unstable; urgency=medium
 
   * feat: improve grid navigation with circular behavior
