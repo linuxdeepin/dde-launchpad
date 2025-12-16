@@ -230,6 +230,7 @@ InputEventItem {
                 MouseArea {
                     anchors.fill: parent
                     scrollGestureEnabled: false
+                    enabled: !folderGridViewPopup.visible
                     onClicked: {
                         if (!DebugHelper.avoidHideWindow) {
                             LauncherController.visible = false
@@ -348,6 +349,7 @@ InputEventItem {
                     activeFocusOnTab: true
                     focus: true
                     visible: searchEdit.text === ""
+                    interactive: !folderGridViewPopup.visible
 
                     currentIndex: indicator.currentIndex
                     function setCurrentIndex(index) {
@@ -382,6 +384,7 @@ InputEventItem {
                         MouseArea {
                             anchors.fill: parent
                             acceptedButtons: Qt.RightButton | Qt.LeftButton
+                            enabled: !folderGridViewPopup.visible
                             onClicked: function(mouse) {
                                 // FIXME: prevent the bug:https://bugreports.qt.io/browse/QTBUG-125139;
                                 if (mouse.button === Qt.RightButton) {
@@ -556,6 +559,7 @@ InputEventItem {
                                         fill: parent
                                         margins: 5
                                     }
+                                    enabled: !folderGridViewPopup.visible
                                     dndEnabled: !folderGridViewPopup.opened
                                     Drag.mimeData: Helper.generateDragMimeData(model.desktopId)
                                     visible: dndItem.currentlyDraggedId !== model.desktopId
