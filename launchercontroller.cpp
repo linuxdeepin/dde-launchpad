@@ -156,6 +156,20 @@ void LauncherController::setCurrentFrame(const QString &frame)
     emit currentFrameChanged();
 }
 
+QString LauncherController::currentScreen() const
+{
+    return m_currentScreen;
+}
+
+void LauncherController::setCurrentScreen(const QString &screen)
+{
+    if (m_currentScreen == screen) return;
+
+    m_currentScreen = screen;
+    qCInfo(logController) << "Current screen changed to:" << m_currentScreen;
+    emit currentScreenChanged();
+}
+
 // We need to hide the launcher when it lost focus, but clicking the launcher icon on the taskbar/dock will also trigger
 // `Toggle()`, which will show the launcher even if it just get hid caused by losting focus. Thus, we added a timer to
 // mark it as we just hide it, and check if the timer is running while calling `Toggle()`. This function will do nothing
