@@ -17,6 +17,7 @@ class LauncherController : public QObject
 
     Q_PROPERTY(bool visible READ visible WRITE setVisible NOTIFY visibleChanged)
     Q_PROPERTY(QString currentFrame READ currentFrame WRITE setCurrentFrame NOTIFY currentFrameChanged)
+    Q_PROPERTY(QString currentScreen READ currentScreen WRITE setCurrentScreen NOTIFY currentScreenChanged)
 
     QML_NAMED_ELEMENT(LauncherController)
     QML_SINGLETON
@@ -45,6 +46,8 @@ public:
     bool isFullScreenFrame() const;
     QString currentFrame() const;
     void setCurrentFrame(const QString & frame);
+    QString currentScreen() const;
+    void setCurrentScreen(const QString & screen);
 
     Q_INVOKABLE void hideWithTimer();
     Q_INVOKABLE void setAvoidHide(bool avoidHide);
@@ -57,6 +60,7 @@ public:
 
 signals:
     void currentFrameChanged();
+    void currentScreenChanged();
     void visibleChanged(bool visible);
 
 public:
@@ -83,6 +87,7 @@ private:
     Launcher1Adaptor * m_launcher1Adaptor;
     bool m_visible;
     QString m_currentFrame;
+    QString m_currentScreen;
     bool m_pendingHide = false;
     bool m_avoidHide = true; 
 };

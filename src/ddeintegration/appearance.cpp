@@ -8,10 +8,12 @@
 #include <QScreen>
 #include <QImage>
 #include <QLoggingCategory>
+#include <QCursor>
 
 #include "Appearance1.h"
 #include "blurhash.hpp"
 #include "../launchercontroller.h"
+#include "../desktopintegration.h"
 
 Q_LOGGING_CATEGORY(logDdeIntegration, "org.deepin.dde.launchpad.integration")
 
@@ -31,7 +33,10 @@ Appearance::Appearance(QObject *parent)
 
     connect(&(LauncherController::instance()), &LauncherController::currentFrameChanged,
             this, &Appearance::updateCurrentWallpaperBlurhash);
+    // Use a delayed call to wait for screen info to be ready after visible changes
     connect(&(LauncherController::instance()), &LauncherController::visibleChanged,
+            this, &Appearance::updateCurrentWallpaperBlurhash);
+    connect(&(LauncherController::instance()), &LauncherController::currentScreenChanged,
             this, &Appearance::updateCurrentWallpaperBlurhash);
 
     if (m_dbusAppearanceIface->isValid()) {
@@ -60,7 +65,21 @@ void Appearance::updateCurrentWallpaperBlurhash()
         return;
     }
 
-    const QString screenName = qApp->primaryScreen()->name();
+    // Use the current screen where the launcher is displayed
+    // Priority: 1. LauncherController.currentScreen, 2. Dock position, 3. Cursor position, 4. Primary screen
+    QString screenName = LauncherController::instance().currentScreen();
+    if (screenName.isEmpty()) {
+        // Try to get screen from dock position (launcher opens on the same screen as dock)
+        QRect dockGeometry = DesktopIntegration::instance().dockGeometry();
+        if (dockGeometry.isValid() && dockGeometry.x() >= 0) {
+            QPoint dockCenter = dockGeometry.center();
+            QScreen *screenAtDock = qApp->screenAt(dockCenter);
+            if (screenAtDock) {
+                screenName = screenAtDock->name();
+            }
+        }
+    }
+    qCDebug(logDdeIntegration) << "Getting wallpaper for screen:" << screenName;
     QDBusPendingReply<QString> async = m_dbusAppearanceIface->GetCurrentWorkspaceBackgroundForMonitor(screenName);
     QDBusPendingCallWatcher *watcher = new QDBusPendingCallWatcher(async, this);
     connect(watcher, &QDBusPendingCallWatcher::finished, this, [this](QDBusPendingCallWatcher* call){
@@ -72,14 +91,18 @@ void Appearance::updateCurrentWallpaperBlurhash()
             qCDebug(logDdeIntegration) << "Got wallpaper URL from dbus:" << wallpaperUrl;
             
             if (m_wallpaperBlurMap.contains(wallpaperUrl)) {
-                m_wallpaperBlurhash = m_wallpaperBlurMap.value(wallpaperUrl);
-                emit wallpaperBlurhashChanged();
+                QString newBlurhash = m_wallpaperBlurMap.value(wallpaperUrl);
+                if (m_wallpaperBlurhash != newBlurhash) {
+                    m_wallpaperBlurhash = newBlurhash;
+                    emit wallpaperBlurhashChanged();
+                }
             } else {
                 qCDebug(logDdeIntegration) << "No cached blurhash found, updating all wallpapers";
                 // try update new workspace background image
                 updateAllWallpaper();
             }
         }
+        call->deleteLater();
     });
 }
 
@@ -97,18 +120,15 @@ void Appearance::updateAllWallpaper()
         qCWarning(logDdeIntegration) << "Wallpaper document is not a JSON object";
         return;
     }
-    int i = 1;
-    do {
-        const QString k = QString("Primary&&%1").arg(i++);
-        QJsonValue v = doc[k];
 
-#ifdef QT_DEBUG
-        qDebug() << k << ":" << v;
-#endif
-
+    QJsonObject jsonObj = doc.object();
+    
+    // Iterate through all keys in the JSON object to get wallpapers for all screens
+    // Keys are in format "ScreenName&&WorkspaceIndex" (e.g., "eDP-1&&1", "HDMI-1&&1")
+    for (auto it = jsonObj.begin(); it != jsonObj.end(); ++it) {
+        QJsonValue v = it.value();
         if (!v.isString()) {
-            qCDebug(logDdeIntegration) << "No more wallpapers found at key:" << k;
-            break;
+            continue;
         }
 
         QUrl wallpaperUrl(v.toString());
@@ -146,7 +166,7 @@ void Appearance::updateAllWallpaper()
         });
 
         m_blurhashWatchers << watcher;
-    } while(1);
+    }
 }
 
 qreal Appearance::opacity() const

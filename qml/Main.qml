@@ -143,6 +143,11 @@ QtObject {
             windowedFrame.requestActivate()
         } else {
             fullscreenFrame.requestActivate()
+            // Update current screen for wallpaper blur based on the screen where launcher is displayed
+            var currentScreen = fullscreenFrame.screen
+            if (currentScreen) {
+                LauncherController.currentScreen = currentScreen.name
+            }
         }
     }
 
@@ -315,7 +320,14 @@ QtObject {
 
         onVisibleChanged: {
             if (visible) {
-                requestActivate()
+                updateWindowVisibilityAndPosition()
+            }
+        }
+
+        onScreenChanged: {
+            // Update current screen when the window moves to a different screen
+            if (screen) {
+                LauncherController.currentScreen = screen.name
             }
         }
 
