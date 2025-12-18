@@ -1,3 +1,14 @@
+dde-launchpad (2.0.21) unstable; urgency=medium
+
+  * i18n: Updates for project Deepin Desktop Environment (#672)
+  * fix: Fix the issue of sliding beyond the screen
+  * fix: Fix the issue where the launcher fullscreen background doesn't
+    change
+  * fix: Fix launcher folder sliding issue
+  * feat: add reproducible build parameter
+
+ -- zhangkun <zhangkun2@uniontech.com>  Thu, 18 Dec 2025 19:50:41 +0800
+
 dde-launchpad (2.0.20) unstable; urgency=medium
 
   * fix: enhance folder popup drag-and-drop behavior
