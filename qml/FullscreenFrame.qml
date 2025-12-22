@@ -229,7 +229,7 @@ InputEventItem {
 
                 MouseArea {
                     anchors.fill: parent
-                    scrollGestureEnabled: false
+                    scrollGestureEnabled: true
                     enabled: !folderGridViewPopup.visible
                     onClicked: {
                         if (!DebugHelper.avoidHideWindow) {
@@ -247,13 +247,14 @@ InputEventItem {
                         } else if (xDelta !== 0) {
                             toPage = (xDelta > 0) ? 1 : -1
                         }
-                        if (toPage < 0) {
+                        // Check boundary before triggering page switch to avoid animation jitter
+                        if (toPage < 0 && listviewPage.currentIndex > 0) {
                             flipPageDelay.start()
                             if (!searchEdit.focus) { // reset keyboard focus when using mouse to flip page, but keep searchEdit focus
                                 baseLayer.focus = true
                             }
                             decrementPageIndex(listviewPage)
-                        } else if (toPage > 0) {
+                        } else if (toPage > 0 && listviewPage.currentIndex < listviewPage.count - 1) {
                             flipPageDelay.start()
                             if (!searchEdit.focus) { // reset keyboard focus when using mouse to flip page, but keep searchEdit focus
                                 baseLayer.focus = true
@@ -350,7 +351,7 @@ InputEventItem {
                     activeFocusOnTab: true
                     focus: true
                     visible: searchEdit.text === ""
-                    interactive: !folderGridViewPopup.visible
+                    interactive: false
 
                     currentIndex: indicator.currentIndex
                     function setCurrentIndex(index) {
