@@ -209,12 +209,7 @@ Popup {
                             checkDragMove()
                         }
                         onDropped: (drop) => {
-                            // drop over the left or right boundary of the page, do nothing
-                            if (pageIntent !== 0) {
-                                pageIntent = 0
-                                return
-                            }
-                            // drop into current page
+                            // Boundary release requires responsive movement, BUG-344221
                             let dragId = drop.getDataAsString("text/x-dde-launcher-dnd-desktopId")
                             dropOnPage(dragId, "internal/folders/" + folderLoader.currentFolderId, folderPagesView.currentIndex)
                             pageIntent = 0
