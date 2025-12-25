@@ -1,3 +1,9 @@
+dde-launchpad (2.0.22) unstable; urgency=medium
+
+  * fix: Fix issue with icon drag-and-drop release failure
+
+ -- zhangkun <zhangkun2@uniontech.com>  Thu, 25 Dec 2025 19:32:10 +0800
+
 dde-launchpad (2.0.21) unstable; urgency=medium
 
   * i18n: Updates for project Deepin Desktop Environment (#672)
