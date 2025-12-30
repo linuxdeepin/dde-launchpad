@@ -76,7 +76,7 @@ AppsModel::AppsModel(QObject *parent)
     if (AppMgr::instance()->isValid()) {
         connect(AppMgr::instance(), &AppMgr::changed, m_tmUpdateCache, qOverload<>(&QTimer::start));
         connect(AppMgr::instance(), &AppMgr::itemDataChanged, this, [this](const QString &id) {
-            const auto appItem = this->appItem(id);
+            const auto appItem = this->itemFromDesktopId(id);
             if (!appItem) {
                 qWarning() << "Not existing item in AppsModel for the desktopId" << id;
                 return;
@@ -98,27 +98,6 @@ AppsModel::AppsModel(QObject *parent)
     connect(m_tmUpdateCache, &QTimer::timeout, this, &AppsModel::updateModelData);
 }
 
-QList<AppItem *> AppsModel::appItems() const
-{
-    QList<AppItem *> items;
-    for (int i = 0; i < rowCount(); i++) {
-        if (auto appItem = dynamic_cast<AppItem*>(item(i))) {
-            items.append(appItem);
-        }
-    }
-
-    return items;
-}
-
-AppItem *AppsModel::appItem(const QString &desktopId) const
-{
-    const auto items = appItems();
-    auto iter = std::find_if(items.begin(), items.end(), [desktopId](AppItem *item) {
-        return item->freedesktopId() == desktopId;
-    });
-    return iter != items.end() ? *iter : nullptr;
-}
-
 void AppsModel::appendRows(const QList<AppItem *> items)
 {
     // TODO: preformance improvement?
@@ -127,7 +106,7 @@ void AppsModel::appendRows(const QList<AppItem *> items)
     }
 }
 
-AppItem *AppsModel::itemFromDesktopId(const QString freedesktopId)
+AppItem *AppsModel::itemFromDesktopId(const QString freedesktopId) const
 {
     QModelIndexList indexes = match(index(0, 0, QModelIndex()),
                                     AppItem::DesktopIdRole, freedesktopId, 1, Qt::MatchExactly);
