@@ -35,6 +35,10 @@ ColumnLayout {
         } else {
             loader.sourceComponent = categoryListView
         }
+        // 切换排序模式后立即重置视图到顶部，无动画
+        if (loader.item) {
+            loader.item.resetViewState()
+        }
     }
 
     Loader {
@@ -80,3 +84,4 @@ ColumnLayout {
         }
     }
 }
+
