@@ -20,7 +20,12 @@ FocusScope {
     property var categoryMenu: null
 
     function resetViewState() {
-        listView.positionViewAtBeginning()
+        // 临时禁用highlightFollowsCurrentItem以避免动画
+        let wasFollowing = listView.highlightFollowsCurrentItem
+        listView.highlightFollowsCurrentItem = false
+        listView.currentIndex = 0
+        listView.contentY = 0
+        listView.highlightFollowsCurrentItem = wasFollowing
         if (!LauncherController.visible) {
             alphabetCategoryPopup.close()
             if (categoryMenu) categoryMenu.close()
