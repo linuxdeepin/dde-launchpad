@@ -353,6 +353,22 @@ InputEventItem {
                     interactive: !folderGridViewPopup.visible
 
                     currentIndex: indicator.currentIndex
+
+                    property bool isDragging: false
+
+                    onFlickStarted: {
+                        if (!isDragging) {
+                            cancelFlick()
+                            contentX = currentIndex * width
+                        }
+                    }
+                    onDragStarted: {
+                        isDragging = true
+                    }
+                    onMovementEnded: {
+                        isDragging = false
+                    }
+                    
                     function setCurrentIndex(index) {
                         listviewPage.currentIndex = index
                         listviewPage.currentIndex = Qt.binding(function() { return indicator.currentIndex })
