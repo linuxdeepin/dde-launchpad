@@ -1,3 +1,12 @@
+dde-launchpad (2.0.23) unstable; urgency=medium
+
+  * fix: Fix abnormal animation for two-finger swipe
+  * fix: reset view state when switching sort modes
+  * chore: remove AppsModel::appItem(desktopId)
+  * fix: improve resetViewState to avoid animation glitches
+
+ -- zhangkun <zhangkun2@uniontech.com>  Thu, 15 Jan 2026 19:33:55 +0800
+
 dde-launchpad (2.0.22) unstable; urgency=medium
 
   * fix: Fix issue with icon drag-and-drop release failure
