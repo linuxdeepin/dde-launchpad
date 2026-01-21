@@ -193,7 +193,7 @@ Control {
                 property bool isNewlyInstalled: model.lastLaunchedTime === 0 && model.installedTime !== 0
                 id: iconItemLabel
                 text: isNewlyInstalled ? ("<font color='#669DFF' size='1' style='text-shadow: 0 0 1px rgba(255,255,255,0.1)'>●</font>&nbsp;&nbsp;" + root.text) : root.text
-                textFormat: isNewlyInstalled ? Text.RichText : Text.PlainText
+                textFormat: isNewlyInstalled ? Text.StyledText : Text.PlainText
                 width: parent.width
                 leftPadding: 2
                 rightPadding: 2
