@@ -1,3 +1,9 @@
+dde-launchpad (2.0.24) unstable; urgency=medium
+
+  * fix: app name text might overlap if it's a newly installed app
+
+ -- zhangkun <zhangkun2@uniontech.com>  Fri, 23 Jan 2026 09:35:50 +0800
+
 dde-launchpad (2.0.23) unstable; urgency=medium
 
   * fix: Fix abnormal animation for two-finger swipe
