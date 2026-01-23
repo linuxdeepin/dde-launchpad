@@ -514,6 +514,7 @@ void AppMgr::watchingAppItemRemoved(const QString &key)
     qCDebug(logDdeIntegration) << "App item removed, desktopId" << appItem->id;
     if (auto handler = appItem->handler) {
         qCDebug(logDdeIntegration) << "Deleting handler for removed app:" << appItem->id;
+        handler->disconnect(this);
         handler->deleteLater();
     }
     m_appItems.remove(key);
