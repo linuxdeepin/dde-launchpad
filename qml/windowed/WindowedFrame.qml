@@ -287,16 +287,18 @@ InputEventItem {
     Connections {
         target: LauncherController
         function onVisibleChanged() {
-            // only do these clean-up steps on launcher get hide
-            if (LauncherController.visible) return
-
-            // clear searchEdit text
-            bottomBar.searchEdit.text = ""
-            // reset(remove) keyboard focus
-            baseLayer.focus = true
-            // reset scroll area position and state
-            appList.resetViewState()
-            folderGridViewPopup.close()
+            if (LauncherController.visible) {
+                appList.resetViewState()
+            } else {
+                // only do these clean-up steps on launcher get hide
+                // clear searchEdit text
+                bottomBar.searchEdit.text = ""
+                // reset(remove) keyboard focus
+                baseLayer.focus = true
+                // reset scroll area position and state
+                appList.resetViewState()
+                folderGridViewPopup.close()
+            }
         }
     }
 

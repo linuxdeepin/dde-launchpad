@@ -26,9 +26,22 @@ Item {
             root.animationEnabled = true
         }
     }
+    
+    Timer {
+        id: delayedResetTimer
+        interval: 50
+        repeat: true
+        onTriggered: {
+            if (listView.model.count > 0) {
+                delayedResetTimer.stop()
+                resetViewState()
+            }
+        }
+    }
 
     Component.onCompleted: {
         enableAnimationTimer.start()
+        resetViewState()
     }
 
     onFocusChanged: () => {
@@ -40,11 +53,16 @@ Item {
     }
 
     function resetViewState() {
+        if (listView.model.count === 0) {
+            delayedResetTimer.start()
+            return
+        }
         // 临时禁用highlightFollowsCurrentItem以避免动画
         let wasFollowing = listView.highlightFollowsCurrentItem
         listView.highlightFollowsCurrentItem = false
         listView.currentIndex = 0
         listView.contentY = 0
+        listView.positionViewAtIndex(0, ListView.Beginning)
         listView.highlightFollowsCurrentItem = wasFollowing
     }
 
