@@ -284,6 +284,12 @@ InputEventItem {
         }
     }
 
+    Component.onCompleted: {
+        // Since LauncherController onVisibleChanged only reset state on visible === false,
+        // we also need to do it to ensure initial state also get its listview's state reset
+        appList.resetViewState()
+    }
+
     Connections {
         target: LauncherController
         function onVisibleChanged() {
