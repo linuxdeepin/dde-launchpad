@@ -1,3 +1,10 @@
+dde-launchpad (2.0.25) unstable; urgency=medium
+
+  * fix: freefrom sort listview position is not positioned at beginning
+  * chore: disconnect right away in watchingAppItemRemoved()
+
+ -- zhangkun <zhangkun2@uniontech.com>  Thu, 29 Jan 2026 21:25:27 +0800
+
 dde-launchpad (2.0.24) unstable; urgency=medium
 
   * fix: app name text might overlap if it's a newly installed app
