@@ -171,7 +171,7 @@ AppletItem {
 
     property var fullscreenFrame: ApplicationWindow {
         objectName: "FullscreenFrameApplicationWindow"
-        title: "Fullscreen Launchpad"
+        title: "org.deepin.ds.launchpad.fullscreen"
         visible: LauncherController.visible && (LauncherController.currentFrame !== "WindowedFrame")
         // Set transparent on kwin will cause abnormal rounded corners in FolderPopup, Bug: 10219
         color: DesktopIntegration.isTreeLand() ? "transparent" : palette.window
