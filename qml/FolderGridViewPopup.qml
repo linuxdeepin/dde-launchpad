@@ -279,11 +279,13 @@ Popup {
 
                         currentIndex: folderPageIndicator.currentIndex
                         activeFocusOnTab: false
-                        
-                        // 处理页面切换时的焦点传递
-                        onCurrentIndexChanged: {
+                        //达到起始和末尾应用按下左右键时进行标志，-1往左翻页(标志前一页的最后一个应用），0代表往右翻页（标志后一页的第一个应用）
+                        property int pendingFocusIndex: 0
+                        //这里不能使用onCurrentIndexChanged 
+                        //由于如果目标页的 Loader/GridViewContainer 还没加载完成，这次设置焦点会被跳过 则默认焦点给到的页面本身而不是应用
+                        onCurrentItemChanged: {
                             if (currentItem)
-                                currentItem.resetCurrentIndex()
+                                currentItem.resetCurrentIndex(pendingFocusIndex)
                         }
 
                         Connections {
@@ -303,19 +305,41 @@ Popup {
                                 id: folderGridViewLoader
                                 objectName: "Folder GridView Loader"
 
-                                function resetCurrentIndex() {
+                                function resetCurrentIndex(focusIndex) {
                                     if (item && item.resetGridFocus)
-                                        item.resetGridFocus()
+                                        item.resetGridFocus(focusIndex)
                                 }
 
                                 sourceComponent: Rectangle {
                                     anchors.fill: parent
                                     color: "transparent"
                                     
-                                    function resetGridFocus() {
+                                    function resetGridFocus(focusIndex) {
                                         if (gridViewContainerLoader && gridViewContainerLoader.item) {
-                                            gridViewContainerLoader.item.currentIndex = 0
                                             gridViewContainerLoader.item.forceActiveFocus()
+                                            Qt.callLater(function() {
+                                                if (!gridViewContainerLoader || !gridViewContainerLoader.item)
+                                                    return
+
+                                                let count = 0
+                                                if (gridViewContainerLoader.item.model) {
+                                                    if (gridViewContainerLoader.item.model.count !== undefined) {
+                                                        count = gridViewContainerLoader.item.model.count
+                                                    } else if (gridViewContainerLoader.item.model.rowCount) {
+                                                        count = gridViewContainerLoader.item.model.rowCount()
+                                                    }
+                                                }
+                                                let targetIndex = 0
+                                                if (count > 0) {
+                                                    if (focusIndex < 0) {
+                                                        targetIndex = count - 1
+                                                    } else {
+                                                        targetIndex = Math.min(focusIndex, count - 1)
+                                                    }
+                                                }
+                                                gridViewContainerLoader.item.currentIndex = targetIndex
+                                                folderPagesView.pendingFocusIndex = 0
+                                            })
                                         } 
                                     }
 
@@ -372,6 +396,60 @@ Popup {
                                                     currentIndex = 0
                                                 }
                                             }
+                                            Keys.onLeftPressed: function(event) {
+                                                event.accepted = true
+
+                                                let count = sortProxyModel.count !== undefined ? sortProxyModel.count : (sortProxyModel.rowCount ? sortProxyModel.rowCount() : 0)
+                                                if (count === 0) {
+                                                    return
+                                                }
+
+                                                let current = folderGridViewContainer.currentIndex
+                                                if (current > 0) {
+                                                    folderGridViewContainer.currentIndex = current - 1
+                                                    return
+                                                }
+
+                                                let pageCount = folderPagesView.count
+                                                if (pageCount <= 1) {
+                                                    folderGridViewContainer.currentIndex = count - 1
+                                                    return
+                                                }
+
+                                                folderPagesView.pendingFocusIndex = -1
+                                                if (folderPagesView.currentIndex === 0) {
+                                                    folderPagesView.setCurrentIndex(pageCount - 1)
+                                                } else {
+                                                    folderPagesView.setCurrentIndex(folderPagesView.currentIndex - 1)
+                                                }
+                                            }
+                                            Keys.onRightPressed: function(event) {
+                                                event.accepted = true
+
+                                                let count = sortProxyModel.count !== undefined ? sortProxyModel.count : (sortProxyModel.rowCount ? sortProxyModel.rowCount() : 0)
+                                                if (count === 0) {
+                                                    return
+                                                }
+
+                                                let current = folderGridViewContainer.currentIndex
+                                                if (current < count - 1) {
+                                                    folderGridViewContainer.currentIndex = current + 1
+                                                    return
+                                                }
+
+                                                let pageCount = folderPagesView.count
+                                                if (pageCount <= 1) {
+                                                    folderGridViewContainer.currentIndex = 0
+                                                    return
+                                                }
+
+                                                folderPagesView.pendingFocusIndex = 0
+                                                if (folderPagesView.currentIndex === (pageCount - 1)) {
+                                                    folderPagesView.setCurrentIndex(0)
+                                                } else {
+                                                    folderPagesView.setCurrentIndex(folderPagesView.currentIndex + 1)
+                                                }
+                                            }
                                             delegate: DelegateDropArea {
                                                 width: folderGridViewContainer.cellWidth
                                                 height: folderGridViewContainer.cellHeight
@@ -399,6 +477,60 @@ Popup {
                                             onActiveFocusChanged: {
                                                 if (activeFocus) {
                                                     currentIndex = 0
+                                                }
+                                            }
+                                            Keys.onLeftPressed: function(event) {
+                                                event.accepted = true
+
+                                                let count = sortProxyModel.count !== undefined ? sortProxyModel.count : (sortProxyModel.rowCount ? sortProxyModel.rowCount() : 0)
+                                                if (count === 0) {
+                                                    return
+                                                }
+
+                                                let current = folderGridViewContainer.currentIndex
+                                                if (current > 0) {
+                                                    folderGridViewContainer.currentIndex = current - 1
+                                                    return
+                                                }
+
+                                                let pageCount = folderPagesView.count
+                                                if (pageCount <= 1) {
+                                                    folderGridViewContainer.currentIndex = count - 1
+                                                    return
+                                                }
+
+                                                folderPagesView.pendingFocusIndex = -1
+                                                if (folderPagesView.currentIndex === 0) {
+                                                    folderPagesView.setCurrentIndex(pageCount - 1)
+                                                } else {
+                                                    folderPagesView.setCurrentIndex(folderPagesView.currentIndex - 1)
+                                                }
+                                            }
+                                            Keys.onRightPressed: function(event) {
+                                                event.accepted = true
+
+                                                let count = sortProxyModel.count !== undefined ? sortProxyModel.count : (sortProxyModel.rowCount ? sortProxyModel.rowCount() : 0)
+                                                if (count === 0) {
+                                                    return
+                                                }
+
+                                                let current = folderGridViewContainer.currentIndex
+                                                if (current < count - 1) {
+                                                    folderGridViewContainer.currentIndex = current + 1
+                                                    return
+                                                }
+
+                                                let pageCount = folderPagesView.count
+                                                if (pageCount <= 1) {
+                                                    folderGridViewContainer.currentIndex = 0
+                                                    return
+                                                }
+
+                                                folderPagesView.pendingFocusIndex = 0
+                                                if (folderPagesView.currentIndex === (pageCount - 1)) {
+                                                    folderPagesView.setCurrentIndex(0)
+                                                } else {
+                                                    folderPagesView.setCurrentIndex(folderPagesView.currentIndex + 1)
                                                 }
                                             }
                                             delegate: DelegateDropArea {
