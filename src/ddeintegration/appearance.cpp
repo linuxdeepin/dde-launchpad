@@ -65,20 +65,32 @@ void Appearance::updateCurrentWallpaperBlurhash()
         return;
     }
 
-    // Use the current screen where the launcher is displayed
-    // Priority: 1. LauncherController.currentScreen, 2. Dock position, 3. Cursor position, 4. Primary screen
-    QString screenName = LauncherController::instance().currentScreen();
-    if (screenName.isEmpty()) {
-        // Try to get screen from dock position (launcher opens on the same screen as dock)
-        QRect dockGeometry = DesktopIntegration::instance().dockGeometry();
-        if (dockGeometry.isValid() && dockGeometry.x() >= 0) {
-            QPoint dockCenter = dockGeometry.center();
-            QScreen *screenAtDock = qApp->screenAt(dockCenter);
-            if (screenAtDock) {
-                screenName = screenAtDock->name();
-            }
+    // TODO: LauncherController.currentScreen is sometimes empty when read here (QML sets it from dock later),
+    // so we fallback to dock geometry / cursor / primary. In practice we always hit dockGeometry; currentScreen
+    // and dock are the same logical source. Could simplify to use only dock geometry first if desired.
+    auto screenByName = [](const QString &name) -> QScreen * {
+        if (name.isEmpty())
+            return nullptr;
+        for (QScreen *s : qApp->screens()) {
+            if (s && s->name() == name)
+                return s;
         }
+        return nullptr;
+    };
+    QString requestedScreenName = LauncherController::instance().currentScreen();
+    QScreen *targetScreen = screenByName(requestedScreenName);
+    if (!targetScreen) {
+        QRect dockGeometry = DesktopIntegration::instance().dockGeometry();
+        if (dockGeometry.isValid() && dockGeometry.width() > 0 && dockGeometry.height() > 0)
+            targetScreen = qApp->screenAt(dockGeometry.center());
     }
+    if (!targetScreen)
+        targetScreen = qApp->screenAt(QCursor::pos());
+    if (!targetScreen)
+        targetScreen = QGuiApplication::primaryScreen();
+    QString screenName = targetScreen ? targetScreen->name() : QString();
+    if (screenName.isEmpty() || !m_dbusAppearanceIface->isValid())
+        return;
     qCDebug(logDdeIntegration) << "Getting wallpaper for screen:" << screenName;
     QDBusPendingReply<QString> async = m_dbusAppearanceIface->GetCurrentWorkspaceBackgroundForMonitor(screenName);
     QDBusPendingCallWatcher *watcher = new QDBusPendingCallWatcher(async, this);
