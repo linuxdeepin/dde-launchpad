@@ -252,14 +252,14 @@ InputEventItem {
                             if (!searchEdit.focus) { // reset keyboard focus when using mouse to flip page, but keep searchEdit focus
                                 baseLayer.focus = true
                             }
-                            listviewPage.scrolledByWheel = true
+                            listviewPage.changedByNonKeyboard = true
                             decrementPageIndex(listviewPage)
                         } else if (toPage > 0) {
                             flipPageDelay.start()
                             if (!searchEdit.focus) { // reset keyboard focus when using mouse to flip page, but keep searchEdit focus
                                 baseLayer.focus = true
                             }
-                            listviewPage.scrolledByWheel = true
+                            listviewPage.changedByNonKeyboard = true
                             incrementPageIndex(listviewPage)
                         }
                     }
@@ -323,6 +323,11 @@ InputEventItem {
                                 color: Qt.rgba(0, 0, 0, 0.1)
                             }
                         }
+                        onCurrentIndexChanged: {
+                            if (listviewPage.currentIndex !== currentIndex) {
+                                listviewPage.changedByNonKeyboard = true
+                            }
+                        }
                     }
                 }
             }
@@ -377,7 +382,7 @@ InputEventItem {
                     }
 
                     property int previousIndex: -1
-                    property bool scrolledByWheel: false
+                    property bool changedByNonKeyboard: false
                     model: itemPageModel
 
                     delegate: FocusScope {
@@ -434,10 +439,10 @@ InputEventItem {
                                     listviewPage.previousIndex = listviewPage.currentIndex
                                     return
                                 }
-                                // 如果是通过滚轮翻页，始终将焦点设置到第一个应用
-                                if (listviewPage.scrolledByWheel) {
+                                // 如果是通过非键盘方式(滚轮/indicator)翻页，始终将焦点设置到第一个应用
+                                if (listviewPage.changedByNonKeyboard) {
                                     gridViewContainer.setPreviousPageSwitch(false)
-                                    listviewPage.scrolledByWheel = false
+                                    listviewPage.changedByNonKeyboard = false
                                 } else if (listviewPage.currentIndex + 1 === listviewPage.previousIndex || (listviewPage.previousIndex === 0 && listviewPage.currentIndex === listviewPage.count - 1)) {
                                     gridViewContainer.setPreviousPageSwitch(true)
                                 } else {
