@@ -252,12 +252,14 @@ InputEventItem {
                             if (!searchEdit.focus) { // reset keyboard focus when using mouse to flip page, but keep searchEdit focus
                                 baseLayer.focus = true
                             }
+                            listviewPage.scrolledByWheel = true
                             decrementPageIndex(listviewPage)
                         } else if (toPage > 0) {
                             flipPageDelay.start()
                             if (!searchEdit.focus) { // reset keyboard focus when using mouse to flip page, but keep searchEdit focus
                                 baseLayer.focus = true
                             }
+                            listviewPage.scrolledByWheel = true
                             incrementPageIndex(listviewPage)
                         }
                     }
@@ -375,6 +377,7 @@ InputEventItem {
                     }
 
                     property int previousIndex: -1
+                    property bool scrolledByWheel: false
                     model: itemPageModel
 
                     delegate: FocusScope {
@@ -431,7 +434,11 @@ InputEventItem {
                                     listviewPage.previousIndex = listviewPage.currentIndex
                                     return
                                 }
-                                if (listviewPage.currentIndex + 1 === listviewPage.previousIndex || (listviewPage.previousIndex === 0 && listviewPage.currentIndex === listviewPage.count - 1)) {
+                                // 如果是通过滚轮翻页，始终将焦点设置到第一个应用
+                                if (listviewPage.scrolledByWheel) {
+                                    gridViewContainer.setPreviousPageSwitch(false)
+                                    listviewPage.scrolledByWheel = false
+                                } else if (listviewPage.currentIndex + 1 === listviewPage.previousIndex || (listviewPage.previousIndex === 0 && listviewPage.currentIndex === listviewPage.count - 1)) {
                                     gridViewContainer.setPreviousPageSwitch(true)
                                 } else {
                                     gridViewContainer.setPreviousPageSwitch(false)
