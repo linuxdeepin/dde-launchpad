@@ -87,21 +87,13 @@ InputEventItem {
         Shortcut {
             context: Qt.ApplicationShortcut
             sequences: ["Ctrl++", "Ctrl+="]
-            onActivated: {
-                if (DesktopIntegration.iconScaleFactor < 1.0) {
-                    DesktopIntegration.iconScaleFactor = Math.min(DesktopIntegration.iconScaleFactor + 0.1, 1.0)
-                }
-            }
+            onActivated: baseLayer.increaseIconScale()
         }
 
         Shortcut {
             context: Qt.ApplicationShortcut
             sequences: ["Ctrl+-"]
-            onActivated: {
-                if (DesktopIntegration.iconScaleFactor > 0.5) {
-                    DesktopIntegration.iconScaleFactor = Math.max(DesktopIntegration.iconScaleFactor - 0.1, 0.5)
-                }
-            }
+            onActivated: baseLayer.decreaseIconScale()
         }
 
         readonly property bool isHorizontalDock: DesktopIntegration.dockPosition === Qt.UpArrow || DesktopIntegration.dockPosition === Qt.DownArrow
@@ -114,6 +106,18 @@ InputEventItem {
 
         property Palette textColor: appTextColor
         palette.windowText: ColorSelector.textColor
+
+        function increaseIconScale() {
+            if (DesktopIntegration.iconScaleFactor < 1.0) {
+                DesktopIntegration.iconScaleFactor = Math.min(DesktopIntegration.iconScaleFactor + 0.1, 1.0)
+            }
+        }
+
+        function decreaseIconScale() {
+            if (DesktopIntegration.iconScaleFactor > 0.5) {
+                DesktopIntegration.iconScaleFactor = Math.max(DesktopIntegration.iconScaleFactor - 0.1, 0.5)
+            }
+        }
 
         function tryToRemoveEmptyPage() {
             ItemArrangementProxyModel.removeEmptyPage()
@@ -238,6 +242,20 @@ InputEventItem {
                     }
                     // TODO: this might not be the correct way to handle wheel
                     onWheel: function(wheel) {
+                        // Handle Ctrl+Wheel for icon scaling
+                        if (wheel.modifiers & Qt.ControlModifier) {
+                            let yDelta = wheel.angleDelta.y / 8
+                            if (yDelta > 0) {
+                                // Scroll up with Ctrl: increase icon size
+                                baseLayer.increaseIconScale()
+                            } else if (yDelta < 0) {
+                                // Scroll down with Ctrl: decrease icon size
+                                baseLayer.decreaseIconScale()
+                            }
+                            return
+                        }
+                        
+                        // Normal wheel behavior: page switching
                         if (flipPageDelay.running) return
                         let xDelta = wheel.angleDelta.x / 8
                         let yDelta = wheel.angleDelta.y / 8
