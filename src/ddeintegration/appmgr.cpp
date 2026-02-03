@@ -94,6 +94,11 @@ static AppMgr::AppItem *parseDBus2AppItem(const ObjectInterfaceMap &source)
                                        parseDBusField<QStringMap>(appInfo, u8"Name").value(),
                                        parseDBusField<QStringMap>(appInfo, u8"GenericName").value());
 
+    // just in case the entry is ill-formed, doesn't have a valid display name, fallback to use its desktop-id instead.
+    if (item->displayName.isEmpty()) {
+        item->displayName = item->id;
+    }
+
     if (auto value = parseDBusField<QStringMap>(appInfo, u8"Name")) {
         item->name = parseName(value.value());
     }
