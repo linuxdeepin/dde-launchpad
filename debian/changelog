@@ -1,3 +1,16 @@
+dde-launchpad (2.0.26) unstable; urgency=medium
+
+  * fix: use desktop-id as fallback name for ill-formed desktop entries
+  * feat: add Ctrl+wheel icon scaling support
+  * fix: improve folder grid view navigation and focus handling
+  * fix: Multi-screen launcher display anomaly
+  * fix: 将鼠标操作进行页面切换时，重新处理焦点给到第一个应用
+  * fix: improve focus management for wheel scrolling in fullscreen
+  * feat: set fullscreen launcher window title for window manager
+    identification
+
+ -- zhangkun <zhangkun2@uniontech.com>  Thu, 05 Feb 2026 19:24:48 +0800
+
 dde-launchpad (2.0.25) unstable; urgency=medium
 
   * fix: freefrom sort listview position is not positioned at beginning
