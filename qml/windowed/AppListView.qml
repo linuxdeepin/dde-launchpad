@@ -270,6 +270,7 @@ FocusScope {
                 id: menuItem
                 text: getCategoryName(modelData)
                 textColor: DStyle.Style.menu.itemText
+                font: DTK.fontManager.t6
                 onTriggered: {
                     scrollToDDECategory(modelData)
                 }
@@ -277,6 +278,7 @@ FocusScope {
                     alignment: Qt.AlignCenter
                     text: menuItem.text
                     color: parent.palette.windowText
+                    font: menuItem.font
                 }
                 background: BoxPanel {
                     anchors.left: parent.left
