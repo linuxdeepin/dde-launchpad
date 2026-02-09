@@ -25,6 +25,11 @@ AppletItem {
     implicitWidth: useColumnLayout ? Panel.rootObject.dockSize : Panel.rootObject.dockItemMaxSize * 0.8
     implicitHeight: useColumnLayout ? Panel.rootObject.dockItemMaxSize * 0.8 : Panel.rootObject.dockSize
 
+   function toggleLauncher() {
+        LauncherController.visible = !LauncherController.visible
+        toolTip.close()
+    }
+
     Connections {
         target: Panel.rootObject
         function onDockCenterPartPosChanged()
@@ -34,6 +39,15 @@ AppletItem {
         function onViewDeactivated() {
             if (LauncherController.currentFrame === "FullscreenFrame" && LauncherController.visible) {
                 LauncherController.hideWithTimer()
+            }
+        }
+    }
+
+    Connections {
+        target: Panel
+        function onLeftEdgeClicked(minOrder) {
+            if (launcher.dockOrder == minOrder) {
+                toggleLauncher()
             }
         }
     }
@@ -372,8 +386,7 @@ AppletItem {
         anchors.fill: parent
         onClicked: function (mouse) {
             if (mouse.button === Qt.LeftButton) {
-                LauncherController.visible = !LauncherController.visible
-                toolTip.close()
+                toggleLauncher()
             }
         }
     }
