@@ -35,6 +35,7 @@ ColumnLayout {
         id: categorizedCom
         D.Menu {
             id: categorizedMenu
+            font: D.DTK.fontManager.t6
 
             D.MenuItem {
                 text: qsTr("Free sorting")

@@ -53,6 +53,8 @@ Control {
                 id: searchEdit
                 padding: 1
                 placeholder: qsTr("Search")
+                font: DTK.fontManager.t6
+                
                 property Palette textColor: DStyle.Style.button.text
                 placeholderTextColor: ColorSelector.textColor
                 palette.windowText: ColorSelector.textColor
