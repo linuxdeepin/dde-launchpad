@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2023 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2023 - 2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -170,7 +170,7 @@ FocusScope {
                     leftMargin: 10
                     rightMargin: 10
                 }
-                visible: !Drag.active
+                opacity: !Drag.active ? 1 : 0
                 text: model.display
                 checkable: false
                 icon.name: (iconName && iconName !== "") ? iconName : "application-x-desktop"
