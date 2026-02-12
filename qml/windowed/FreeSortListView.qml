@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2024 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2024 - 2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -298,7 +298,7 @@ Item {
                 ColorSelector.pressed: false
                 property Palette textColor: DStyle.Style.button.text
                 palette.windowText: ColorSelector.textColor
-                visible: !Drag.active && (typeof dndItem === "undefined" || dndItem.currentlyDraggedId !== model.desktopId)
+                opacity: !Drag.active && (typeof dndItem === "undefined" || dndItem.currentlyDraggedId !== model.desktopId) ? 1 : 0
 
                 ToolTip.text: text
                 ToolTip.delay: 500
