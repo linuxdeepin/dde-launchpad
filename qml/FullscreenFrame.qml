@@ -375,7 +375,7 @@ InputEventItem {
                     activeFocusOnTab: true
                     focus: true
                     visible: searchEdit.text === ""
-                    interactive: !folderGridViewPopup.visible
+                    interactive: !folderGridViewPopup.visible && dndItem.currentlyDraggedId === ""
 
                     currentIndex: indicator.currentIndex
 
