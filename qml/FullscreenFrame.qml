@@ -419,9 +419,7 @@ InputEventItem {
                                 folderId: 0
                             }
                             sortRole: ItemArrangementProxyModel.IndexInPageRole
-                            Component.onCompleted: {
-                                proxyModel.sort(0)
-                            }
+                            sortColumn: 0
                         }
 
                         MouseArea {
@@ -666,6 +664,9 @@ InputEventItem {
                                 }
                             }
                             Component.onCompleted: {
+                                if (LauncherController.currentFrame === "FullscreenFrame") {
+                                    itemMoveTransition.enabled = true
+                                }
                                 gridViewContainer.checkPageSwitchState()
                             }
                             Component.onDestruction: {

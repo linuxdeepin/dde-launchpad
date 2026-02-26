@@ -30,12 +30,14 @@ class SortProxyModelTest;
  * of the API, so if you used QSortFilterProxyModel only for sorting it
  * should be a drop-in replacement.
  *
- * @note BLumia: Currently, sort() needs to be called manually
+ * @note sortColumn can be set declaratively in QML to enable
+ * initial sorting during model reset (no move signals emitted).
  */
 class SortProxyModel : public QAbstractProxyModel
 {
     Q_OBJECT
     Q_PROPERTY(int sortRole READ sortRole WRITE setSortRole NOTIFY sortRoleChanged)
+    Q_PROPERTY(int sortColumn READ sortColumn WRITE setSortColumn NOTIFY sortColumnChanged)
     QML_ELEMENT
 
 public:
@@ -60,6 +62,7 @@ public:
 public:
     void setSortRole(int role);
     int sortRole() const;
+    void setSortColumn(int column);
     void setSortCaseSensitivity(Qt::CaseSensitivity sensitivity);
     Qt::CaseSensitivity sortCaseSensitivity() const;
     int sortColumn() const;

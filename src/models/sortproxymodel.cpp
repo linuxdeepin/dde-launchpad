@@ -196,6 +196,24 @@ void SortProxyModel::setSortRole(int role)
     }
 }
 
+void SortProxyModel::setSortColumn(int column)
+{
+    if (m_sortColumn != column)
+    {
+        int oldColumn = m_sortColumn;
+        m_sortColumn = column;
+        Q_EMIT sortColumnChanged();
+
+        // If source model is already set, reorder to apply the new sort column
+        if (sourceModel() && !m_proxyToSourceMap.empty())
+        {
+            reorder();
+        }
+
+        Q_UNUSED(oldColumn)
+    }
+}
+
 int SortProxyModel::sortRole() const
 {
     return m_sortRole;
