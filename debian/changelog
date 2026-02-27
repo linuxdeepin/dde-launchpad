@@ -1,3 +1,16 @@
+dde-launchpad (2.0.27) unstable; urgency=medium
+
+  * fix: prevent focus issues during mouse wheel page navigation
+  * fix: when drag  just one app in folder to launchpad quickly will
+    coredump.
+  * fix: add wait mechanism for app icons
+  * chore: update DTK dependency and fix icon display
+  * fix: optimize fullscreen launcher item sorting initialization
+  * fix: prevent search field interaction during drag operations
+  * fix: handle left edge click to toggle launcher visibility
+
+ -- zhangkun <zhangkun2@uniontech.com>  Fri, 27 Feb 2026 17:02:30 +0800
+
 dde-launchpad (2.0.26) unstable; urgency=medium
 
   * fix: use desktop-id as fallback name for ill-formed desktop entries
