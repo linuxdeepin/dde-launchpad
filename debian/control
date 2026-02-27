@@ -23,7 +23,7 @@ Build-Depends:
  libdtk6core-bin,
 # v-- provides DHiDPIHelper
  libdtk6gui-dev (>= 6.0.19),
- libdtk6declarative-dev (>= 6.0.19),
+ libdtk6declarative-dev (>> 6.7.33),
  libdde-shell-dev (>= 0.0.10),
  libappstreamqt-dev (>= 1.0.0)
 Standards-Version: 4.6.0
