@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2023 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2023-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -127,7 +127,11 @@ AppMgr::AppMgr(QObject *parent)
     , m_objectManager(new AppManager1ApplicationObjectManager("org.desktopspec.ApplicationManager1",
                                                               "/org/desktopspec/ApplicationManager1",
                                                               QDBusConnection::sessionBus(), this))
+    , m_checkTimer(new QTimer(this))
+    , m_checkCount(0)
 {
+    m_checkTimer->setInterval(3000); // 3 second interval
+    connect(m_checkTimer, &QTimer::timeout, this, &AppMgr::checkPendingAppItems);
     initObjectManager();
 }
 
@@ -430,6 +434,8 @@ void AppMgr::initObjectManager()
                     qWarning() << "App already exists for the path:" << key;
                     return;
                 }
+                // Reset check count when new app is added
+                m_checkCount = 0;
                 if (auto appItem = parseDBus2AppItem(interfacesAndProperties)) {
                     qCDebug(logDdeIntegration) << "App item added, desktopId" << appItem->id;
                     watchingAppItemAdded(key, appItem);
@@ -503,6 +509,22 @@ void AppMgr::fetchAppItems()
 
 void AppMgr::watchingAppItemAdded(const QString &key, AppItem *appItem)
 {
+    // Check if iconName is an absolute path and if the file exists
+    if (isAbsolutePathIcon(appItem->iconName)) {
+        QFileInfo fileInfo(appItem->iconName);
+        if (!fileInfo.exists()) {
+            // File doesn't exist, add to pending container
+            m_pendingAppItems[key] = appItem;
+            
+            // Start timer if not already running
+            if (!m_checkTimer->isActive()) {
+                m_checkTimer->start();
+            }
+            return;
+        }
+    }
+    
+    // Icon exists or is a system icon, proceed with normal logic
     m_appItems[key] = appItem;
     watchingAppItemPropertyChanged(key, appItem);
     Q_EMIT changed();
@@ -525,6 +547,69 @@ void AppMgr::watchingAppItemRemoved(const QString &key)
     m_appItems.remove(key);
     delete appItem;
     Q_EMIT changed();
+}
+
+void AppMgr::checkPendingAppItems()
+{
+    m_checkCount++;
+    if (m_pendingAppItems.isEmpty()) {
+        m_checkTimer->stop();
+        return;
+    }
+    
+    QList<QPair<QString, AppItem *>> itemsToProcess;
+    
+    // Check all pending items
+    for (auto it = m_pendingAppItems.begin(); it != m_pendingAppItems.end(); ) {
+        const QString &key = it.key();
+        AppItem *appItem = it.value();
+        
+        if (isAbsolutePathIcon(appItem->iconName)) {
+            QFileInfo fileInfo(appItem->iconName);
+            if (fileInfo.exists()) {
+                // File now exists, add to main container
+                itemsToProcess.append(qMakePair(key, appItem));
+                it = m_pendingAppItems.erase(it);
+                continue;
+            }
+        }
+        ++it;
+    }
+    
+    // Process items whose icons now exist
+    for (const auto &itemPair : itemsToProcess) {
+        const QString &key = itemPair.first;
+        AppItem *appItem = itemPair.second;
+        
+        m_appItems[key] = appItem;
+        watchingAppItemPropertyChanged(key, appItem);
+        Q_EMIT changed();
+    }
+    
+    // Check if timeout reached (60 seconds)
+    if (m_checkCount >= 20 && !m_pendingAppItems.isEmpty()) {        
+        // Force process all remaining pending items
+        for (auto it = m_pendingAppItems.begin(); it != m_pendingAppItems.end(); ) {
+            const QString &key = it.key();
+            AppItem *appItem = it.value();
+            
+            m_appItems[key] = appItem;
+            watchingAppItemPropertyChanged(key, appItem);
+            Q_EMIT changed();
+            
+            it = m_pendingAppItems.erase(it);
+        }
+        
+        m_checkTimer->stop();
+    } else if (m_pendingAppItems.isEmpty()) {
+        m_checkTimer->stop();
+    }
+}
+
+bool AppMgr::isAbsolutePathIcon(const QString &iconName) const
+{
+    // Check if the icon name is an absolute path (starts with /)
+    return iconName.startsWith('/');
 }
 
 AppMgr *AppMgr::instance() {
