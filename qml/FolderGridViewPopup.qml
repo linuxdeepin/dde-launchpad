@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2024 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2024-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -174,6 +174,13 @@ Popup {
                     Layout.fillHeight: true
                     color: "transparent"
 
+                    // 用于鼠标滚轮滚动时接收焦点，使 GridView 失去 activeFocus
+                    Item {
+                        id: wheelFocusSink
+                        width: 0
+                        height: 0
+                    }
+
                     DropArea {
                         id: folderPageDropArea
                         property int pageIntent: 0
@@ -255,6 +262,8 @@ Popup {
 
                         // TODO: this might not be the correct way to handle wheel
                         onWheel: function (wheel) {
+                            // 鼠标滚轮翻页时将焦点转移到 wheelFocusSink，使 GridView 失去 activeFocus
+                            wheelFocusSink.forceActiveFocus()
                             let xDelta = wheel.angleDelta.x / 8
                             let yDelta = wheel.angleDelta.y / 8
                             let toPage = 0; // -1 prev, +1 next, 0 don't change
@@ -281,11 +290,15 @@ Popup {
                         activeFocusOnTab: false
                         //达到起始和末尾应用按下左右键时进行标志，-1往左翻页(标志前一页的最后一个应用），0代表往右翻页（标志后一页的第一个应用）
                         property int pendingFocusIndex: 0
-                        //这里不能使用onCurrentIndexChanged 
+                        // 标记翻页是否由键盘操作触发，鼠标滚轮翻页时不应设置选中焦点
+                        property bool pageChangedByKeyboard: false
+                        //这里不能使用onCurrentIndexChanged
                         //由于如果目标页的 Loader/GridViewContainer 还没加载完成，这次设置焦点会被跳过 则默认焦点给到的页面本身而不是应用
                         onCurrentItemChanged: {
-                            if (currentItem)
+                            if (currentItem && pageChangedByKeyboard) {
                                 currentItem.resetCurrentIndex(pendingFocusIndex)
+                                pageChangedByKeyboard = false
+                            }
                         }
 
                         Connections {
@@ -417,6 +430,7 @@ Popup {
                                                 }
 
                                                 folderPagesView.pendingFocusIndex = -1
+                                                folderPagesView.pageChangedByKeyboard = true
                                                 if (folderPagesView.currentIndex === 0) {
                                                     folderPagesView.setCurrentIndex(pageCount - 1)
                                                 } else {
@@ -444,6 +458,7 @@ Popup {
                                                 }
 
                                                 folderPagesView.pendingFocusIndex = 0
+                                                folderPagesView.pageChangedByKeyboard = true
                                                 if (folderPagesView.currentIndex === (pageCount - 1)) {
                                                     folderPagesView.setCurrentIndex(0)
                                                 } else {
@@ -500,6 +515,7 @@ Popup {
                                                 }
 
                                                 folderPagesView.pendingFocusIndex = -1
+                                                folderPagesView.pageChangedByKeyboard = true
                                                 if (folderPagesView.currentIndex === 0) {
                                                     folderPagesView.setCurrentIndex(pageCount - 1)
                                                 } else {
@@ -527,6 +543,7 @@ Popup {
                                                 }
 
                                                 folderPagesView.pendingFocusIndex = 0
+                                                folderPagesView.pageChangedByKeyboard = true
                                                 if (folderPagesView.currentIndex === (pageCount - 1)) {
                                                     folderPagesView.setCurrentIndex(0)
                                                 } else {
