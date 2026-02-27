@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2023 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2023-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -489,10 +489,14 @@ void ItemArrangementProxyModel::removeFolder(const QString &idNumber)
     QString fullId("internal/folders/" + idNumber);
     Q_ASSERT(m_folders.contains(fullId));
 
-    m_folders.remove(fullId);
+    auto *page = m_folders.take(fullId);
+    page->disconnect(this);
+
     m_topLevel->removeItem(fullId);
     QList<QStandardItem*> result = m_folderModel.findItems(fullId);
     m_folderModel.removeRows(result.first()->row(), 1);
+
+    m_folders.remove(fullId);
 }
 
 // get folder by id. 0 is top level, >=1 is folder
