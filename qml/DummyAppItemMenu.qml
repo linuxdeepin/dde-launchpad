@@ -29,6 +29,8 @@ Loader {
             rightMargin: isFullscreen && DesktopIntegration.dockPosition === Qt.RightArrow ? dockSpacing : 0
             modal: true
 
+            font: DTK.fontManager.t6
+
             MenuItem {
                 text: qsTr("Install")
                 onTriggered: {
