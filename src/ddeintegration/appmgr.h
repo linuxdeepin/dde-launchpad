@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2023 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2023-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -7,6 +7,8 @@
 #include <QMap>
 #include <QObject>
 #include <QPointer>
+#include <QTimer>
+#include <QFileInfo>
 #include <dtkcore_global.h>
 
 DCORE_BEGIN_NAMESPACE
@@ -56,6 +58,9 @@ Q_SIGNALS:
     void changed();
     void itemDataChanged(const QString &id);
 
+private slots:
+    void checkPendingAppItems();
+
 private:
     void initObjectManager();
     void fetchAppItems();
@@ -63,8 +68,12 @@ private:
     void watchingAppItemRemoved(const QString &key);
     void watchingAppItemPropertyChanged(const QString &key, AppMgr::AppItem *appItem);
     void updateAppsLaunchedTimes(const QVariantMap &appsLaunchedTimes);
+    bool isAbsolutePathIcon(const QString &iconName) const;
 
 private:
     __AppManager1ApplicationObjectManager *m_objectManager;
     QMap<QString, AppMgr::AppItem *> m_appItems;
+    QMap<QString, AppMgr::AppItem *> m_pendingAppItems;
+    QTimer *m_checkTimer;
+    int m_checkCount;
 };
