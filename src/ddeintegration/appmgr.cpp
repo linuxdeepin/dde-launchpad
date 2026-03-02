@@ -532,6 +532,15 @@ void AppMgr::watchingAppItemAdded(const QString &key, AppItem *appItem)
 
 void AppMgr::watchingAppItemRemoved(const QString &key)
 {
+    // Check if the item is in pending container
+    if (m_pendingAppItems.contains(key)) {
+        auto pendingAppItem = m_pendingAppItems.value(key);
+        qCDebug(logDdeIntegration) << "Removing pending app item, desktopId" << pendingAppItem->id;
+        m_pendingAppItems.remove(key);
+        delete pendingAppItem;
+        return;
+    }
+    
     auto appItem = m_appItems.value(key);
     if (!appItem) {
         qCWarning(logDdeIntegration) << "App item not found for key:" << key;
