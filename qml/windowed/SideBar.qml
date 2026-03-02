@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2024 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2024 - 2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -15,7 +15,7 @@ import org.deepin.launchpad 1.0
 import org.deepin.launchpad.models 1.0
 
 ColumnLayout {
-    spacing: 10
+    spacing: Helper.pixelAligned(10, Screen.devicePixelRatio)
 
     property bool isFreeSort: CategorizedSortProxyModel.categoryType === CategorizedSortProxyModel.FreeCategory
     property Item keyTabTarget: title
@@ -92,8 +92,8 @@ ColumnLayout {
         KeyNavigation.down: computer
         KeyNavigation.up: setting
         KeyNavigation.tab: nextKeyTabTarget
-        topPadding: 7
-        bottomPadding: 5
+        topPadding: Helper.pixelAligned(7, Screen.devicePixelRatio)
+        bottomPadding: Helper.pixelAligned(5, Screen.devicePixelRatio)
         ToolTip.visible: hovered
         ToolTip.delay: 500
         ToolTip.text: qsTr("Sorting Mode")
@@ -209,6 +209,6 @@ ColumnLayout {
 
     Item {
         height: title.height
-        Layout.bottomMargin: 10
+        Layout.bottomMargin: Helper.pixelAligned(10, Screen.devicePixelRatio)
     }
 }

@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2024 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2024 - 2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -38,6 +38,12 @@ QtObject {
             common: Qt.rgba(1, 1, 1, 0.1)
             crystal: Qt.rgba(1, 1, 1, 0.1)
         }
+    }
+
+    // Snap a logical pixel value so that value * DPR lands on an integer
+    // physical pixel, avoiding sub-pixel texture sampling blur in Scene Graph.
+    function pixelAligned(value, dpr) {
+        return Math.round(value * dpr) / dpr
     }
 
     function generateDragMimeData(desktopId, dockOnly = false) {

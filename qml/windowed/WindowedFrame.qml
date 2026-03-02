@@ -84,8 +84,8 @@ InputEventItem {
         anchors.left: parent.left
         anchors.top: parent.top
         anchors.bottom: parent.bottom
-        anchors.topMargin: 10
-        anchors.leftMargin: 10
+        anchors.topMargin: Helper.pixelAligned(10, Screen.devicePixelRatio)
+        anchors.leftMargin: Helper.pixelAligned(10, Screen.devicePixelRatio)
         nextKeyTabTarget: bottomBar.keyTabTarget
     }
 
@@ -95,7 +95,7 @@ InputEventItem {
         anchors.left: sideBar.right
         anchors.top: baseLayer.top
         anchors.bottom: bottomBar.top
-        anchors.leftMargin: 10
+        anchors.leftMargin: Helper.pixelAligned(10, Screen.devicePixelRatio)
 
         property Palette backgroundColor: Palette {
             normal {
