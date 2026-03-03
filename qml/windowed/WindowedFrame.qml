@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2023 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2023-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -44,6 +44,15 @@ InputEventItem {
     // ----------- Drag and Drop related functions START -----------
     Label {
         property string currentlyDraggedId
+        property string currentlyDraggedIconName
+
+        property bool mergeAnimPending: false
+        property string mergeAnimTargetIcon: ""
+        property string mergeAnimTargetIcon2: ""
+        property real mergeAnimStartX: 0
+        property real mergeAnimStartY: 0
+
+        property real mergeSize: 0
 
         id: dndItem
         visible: DebugHelper.qtDebugEnabled
@@ -54,6 +63,7 @@ InputEventItem {
                 text = "Dragging " + currentlyDraggedId
             } else {
                 currentlyDraggedId = ""
+                currentlyDraggedIconName = ""
             }
         }
     }

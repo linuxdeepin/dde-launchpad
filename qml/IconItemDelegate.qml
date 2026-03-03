@@ -28,9 +28,11 @@ Control {
 
     property string iconSource
     property bool dndEnabled: false
+    property bool isDragHover: false
     readonly property bool isWindowedMode: LauncherController.currentFrame === "WindowedFrame"
     property alias displayFont: iconItemLabel.font
     property real iconScaleFactor: 1.0
+    property bool iconIntroAnimRunning: false
 
     Accessible.name: iconItemLabel.text
 
@@ -53,6 +55,7 @@ Control {
     }
 
     contentItem: Button {
+        hoverEnabled: !root.iconIntroAnimRunning
         focusPolicy: Qt.NoFocus
         ColorSelector.pressed: false
         ColorSelector.family: D.Palette.CrystalColor
@@ -67,9 +70,41 @@ Control {
             }
 
             Item {
+                id: iconContainer
                 width: parent.width / 2
                 height: width
                 anchors.horizontalCenter: parent.horizontalCenter
+
+                Rectangle {
+                    id: dragAndfolderBackground
+                    visible: root.icons !== undefined || (root.isDragHover && !isWindowedMode)
+                    opacity: root.icons !== undefined || (root.isDragHover && !isWindowedMode) ? 1 : 0
+                    scale:  (root.isDragHover && !isWindowedMode) ? 1.2 : 1
+                    color: "#26FFFFFF"
+                    Behavior on opacity {
+                        NumberAnimation { duration: 200; easing.type: Easing.OutQuad }
+                    }
+                    Behavior on scale {
+                        NumberAnimation { duration: 200; easing.type: Easing.OutCubic }
+                    }
+                    anchors.fill: parent
+                    radius: 12
+
+                    NumberAnimation on scale {
+                        id: ininAni
+                        running: false
+                        from: 1.2
+                        to: 1
+                        duration: 200
+                        easing.type: Easing.OutCubic
+                    }
+
+                    Component.onCompleted: {
+                        if (root.icons !== undefined && dndItem.mergeAnimTargetIcon && dndItem.mergeAnimTargetIcon2) {
+                            ininAni.start()
+                        }
+                    }
+                }
 
                 Loader {
                     id: iconLoader
@@ -91,8 +126,10 @@ Control {
                                 // Item will be hidden by checking the dndItem.currentlyDraggedId property. We assign the value
                                 // to that property here
                                 dndItem.currentlyDraggedId = target.Drag.mimeData["text/x-dde-launcher-dnd-desktopId"]
+                                dndItem.currentlyDraggedIconName = root.iconSource
                                 dndItem.Drag.hotSpot = target.Drag.hotSpot
                                 dndItem.Drag.mimeData = target.Drag.mimeData
+                                dndItem.mergeSize = Math.min(iconLoader.width, iconLoader.height)
 
                                 iconLoader.grabToImage(function(result) {
                                     dndItem.Drag.imageSource = result.url;
@@ -118,50 +155,120 @@ Control {
                 Component {
                     id: folderComponent
 
-                    Rectangle {
+                    Item {
+                        id: iconItem
                         anchors.fill: parent
-                        color: "#26FFFFFF"
-                        radius: 12
+                        property real maxIconCount: 2
+                        property real spacing: 8
+                        property real itemWidth: (width - ((maxIconCount + 1) * spacing)) / 2
+                        property real itemHeight: (height - ((maxIconCount + 1) * spacing)) / maxIconCount
 
-                        GridLayout {
-                            id: folderGrid
-                            anchors.fill: parent
-                            rows: 2
-                            columns: 2
-                            anchors.margins: 8
-                            columnSpacing: 8
-                            rowSpacing: 8
+                        function getItemX(index) {
+                            let col = index % maxIconCount
+                            let ItemX = (col + 1) * spacing + col * itemWidth
 
-                            Repeater {
-                                model: icons
+                            return ItemX
+                        }
 
-                                DciIcon {
-                                    Layout.fillHeight: true
-                                    Layout.fillWidth: true
-                                    Layout.alignment: Qt.AlignTop | Qt.AlignLeft
+                        function getItemY(index) {
+                            let row = Math.floor(index / maxIconCount)
+                            let ItemY = (row + 1) * spacing + row * itemHeight
+                            return ItemY
+                        }
+                        Repeater {
+                            model: icons
 
-                                    // 添加最大高度限制，确保图标高度一致
-                                    Layout.maximumHeight: Math.max(0, parent.height / 2 - folderGrid.rowSpacing / 2)
+                            DciIcon {
+                                id: folderIcon
+                                x: iconItem.getItemX(index)
+                                y: iconItem.getItemY(index)
 
-                                    name: modelData
-                                    sourceSize: Qt.size(root.maxIconSizeInFolder, root.maxIconSizeInFolder)
-                                    scale: (parent.width / 2 / root.maxIconSizeInFolder) * root.iconScaleFactor
-                                    palette: DTK.makeIconPalette(root.palette)
-                                    theme: ApplicationHelper.DarkType
+                                width: iconItem.itemWidth
+                                height: iconItem.itemHeight
+
+                                name: modelData
+                                sourceSize: Qt.size(root.maxIconSizeInFolder, root.maxIconSizeInFolder)
+                                scale: (itemWidth / root.maxIconSizeInFolder) * root.iconScaleFactor
+
+                                property real introScale: 1.0
+
+                                palette: DTK.makeIconPalette(root.palette)
+                                theme: ApplicationHelper.DarkType
+
+                                // 位移动画属性
+                                property real iconCenterX: 0
+                                property real iconCenterY: 0
+                                ParallelAnimation {
+                                    id: iconIntroAnim
+                                    onStarted: root.iconIntroAnimRunning = true
+
+                                    NumberAnimation {
+                                        target: folderIcon
+                                        property: "scale"
+                                        from: folderIcon.introScale
+                                        to: (itemWidth / root.maxIconSizeInFolder) * root.iconScaleFactor
+                                        duration: 400
+                                        easing.type: Easing.OutExpo
+                                    }
+                                    NumberAnimation {
+                                        target: folderIcon
+                                        property: "x"
+                                        from: folderIcon.iconCenterX; to: iconItem.getItemX(index)
+                                        duration: 400
+                                        easing.type: Easing.OutExpo
+                                    }
+                                    NumberAnimation {
+                                        target: folderIcon
+                                        property: "y"
+                                        from: folderIcon.iconCenterY; to: iconItem.getItemY(index)
+                                        duration: 400
+                                        easing.type: Easing.OutExpo
+                                    }
+
+                                    onFinished: {
+                                        root.iconIntroAnimRunning = false
+                                        dndItem.mergeAnimPending = false
+                                        dndItem.mergeAnimTargetIcon = ""
+                                        dndItem.mergeAnimTargetIcon2 = ""
+                                    }
+                                }
+
+                                Component.onCompleted: {
+                                    if (dndItem.mergeAnimPending
+                                        && modelData === dndItem.mergeAnimTargetIcon) {
+                                        folderIcon.visible = false
+                                        Qt.callLater(function() {
+                                            let localPos = iconItem.mapFromItem(null,
+                                                dndItem.mergeAnimStartX, dndItem.mergeAnimStartY)
+                                            folderIcon.iconCenterX = localPos.x - folderIcon.width / 2
+                                            folderIcon.iconCenterY = localPos.y - folderIcon.height / 2
+                                            folderIcon.introScale = (iconContainer.width / root.maxIconSizeInFolder) * root.iconScaleFactor
+                                            folderIcon.visible = true
+                                            iconIntroAnim.start()
+                                        })
+                                    } else if (dndItem.mergeAnimPending
+                                        && modelData === dndItem.mergeAnimTargetIcon2) {
+                                        Qt.callLater(function() {
+                                            folderIcon.iconCenterX = iconContainer.width / 2 - folderIcon.width / 2
+                                            folderIcon.iconCenterY = iconContainer.height / 2 - folderIcon.height / 2
+                                            folderIcon.introScale = (iconContainer.width / root.maxIconSizeInFolder) * root.iconScaleFactor
+                                            iconIntroAnim.start()
+                                        })
+                                    }
                                 }
                             }
+                        }
 
-                            Repeater {
-                                model: 4 - icons.length
+                        Repeater {
+                            model: 4 - icons.length
 
-                                Item {
-                                    Layout.fillHeight: true
-                                    Layout.fillWidth: true
-                                    Layout.alignment: Qt.AlignTop | Qt.AlignLeft
+                            Item {
+                                Layout.fillHeight: true
+                                Layout.fillWidth: true
+                                Layout.alignment: Qt.AlignTop | Qt.AlignLeft
 
-                                    width: parent.width / 2
-                                    height: parent.height / 2
-                                }
+                                width: parent.width / 2
+                                height: parent.height / 2
                             }
                         }
                     }
@@ -175,7 +282,7 @@ Control {
                         anchors.fill: parent
                         name: iconSource
                         sourceSize: Qt.size(root.maxIconSize, root.maxIconSize)
-                        scale: (parent.width / root.maxIconSize) * root.iconScaleFactor
+                        scale: (iconContainer.width / root.maxIconSize) * root.iconScaleFactor
                         palette: DTK.makeIconPalette(root.palette)
                         theme: ApplicationHelper.DarkType
                         fillMode: Image.PreserveAspectFit
@@ -193,6 +300,7 @@ Control {
                 property bool singleRow: font.pixelSize > (isWindowedMode ? Helper.windowed.doubleRowMaxFontSize : Helper.fullscreen.doubleRowMaxFontSize)
                 property bool isNewlyInstalled: model.lastLaunchedTime === 0 && model.installedTime !== 0
                 id: iconItemLabel
+                visible: !root.isDragHover
                 text: isNewlyInstalled ? ("<font color='#669DFF' size='1' style='text-shadow: 0 0 1px rgba(255,255,255,0.1)'>●</font>&nbsp;&nbsp;" + root.text) : root.text
                 textFormat: isNewlyInstalled ? Text.StyledText : Text.PlainText
                 width: parent.width

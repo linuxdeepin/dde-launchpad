@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2024 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2024-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -541,9 +541,15 @@ Popup {
                                     }
 
                                     component DelegateDropArea: DropArea {
+                                        property bool isDragHover: false
+
                                         onEntered: function(drag) {
                                             root.onDragEnter(this)
-                                            folderDragApplyTimer.dragId = drag.getDataAsString("text/x-dde-launcher-dnd-desktopId")
+                                            let dragId = drag.getDataAsString("text/x-dde-launcher-dnd-desktopId")
+                                            if (dragId !== model.desktopId) {
+                                                isDragHover = true
+                                            }
+                                            folderDragApplyTimer.dragId = dragId
                                             folderDragApplyTimer.restart()
                                         }
                                         onPositionChanged: function(drag) {
@@ -558,6 +564,7 @@ Popup {
                                             }
                                         }
                                         onExited: {
+                                            isDragHover = false
                                             root.onDragExit(this)
                                             folderDragApplyTimer.stop()
                                             folderDragApplyTimer.dragId = ""
@@ -566,6 +573,7 @@ Popup {
                                             root.onDragExit(this)
                                         }
                                         onDropped: function(drop) {
+                                            isDragHover = false
                                             let dragId = drop.getDataAsString("text/x-dde-launcher-dnd-desktopId")
                                             if (dragId === "") {
                                                 return
@@ -619,6 +627,7 @@ Popup {
                                             id: innerItem
                                             anchors.fill: parent
                                             dndEnabled: true
+                                            isDragHover: false
                                             displayFont: isWindowedMode ? DTK.fontManager.t9 : DTK.fontManager.t6
                                             Drag.mimeData: Helper.generateDragMimeData(model.desktopId)
                                             visible: dndItem.currentlyDraggedId !== model.desktopId
