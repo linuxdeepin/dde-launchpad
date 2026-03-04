@@ -100,19 +100,21 @@ ColumnLayout {
 
         contentItem: ColumnLayout {
             spacing: 2
-            D.DciIcon {
+            PaintedDciIcon {
                 sourceSize: Qt.size(16, 16)
+                width: 16
+                height: 16
                 name: isFreeSort ? categorizedIcon("freeSort") : categorizedIcon(CategorizedSortProxyModel.categoryType)
-                palette: D.DTK.makeIconPalette(title.palette)
-                theme: D.DTK.toColorType(title.palette.window)
+                foreground: title.palette.windowText
                 Layout.alignment: Qt.AlignHCenter
             }
 
-            D.DciIcon {
+            PaintedDciIcon {
                 name: "arrow"
                 sourceSize: Qt.size(12, 12)
-                palette: D.DTK.makeIconPalette(title.palette)
-                theme: D.DTK.toColorType(title.palette.window)
+                width: 12
+                height: 12
+                foreground: title.palette.windowText
                 Layout.alignment: Qt.AlignHCenter
             }
         }
@@ -133,15 +135,19 @@ ColumnLayout {
 
     component SideBarButton: D.ActionButton {
         id: btn
+        property alias iconSource: paintedIcon.name
         ToolTip.visible: hovered
         ToolTip.delay: 500
         Layout.alignment: Qt.AlignCenter
         focusPolicy: Qt.NoFocus
         // don't inherit window's windowText (it's has opacity of 0.7 in dtkgui.)
         palette.windowText: D.ColorSelector.textColor
-        icon {
+        contentItem: PaintedDciIcon {
+            id: paintedIcon
             width: 16
             height: 16
+            sourceSize: Qt.size(16, 16)
+            foreground: D.ColorSelector.textColor
         }
         background: ItemBackground {
             button: btn
@@ -150,7 +156,7 @@ ColumnLayout {
 
     SideBarButton {
         id: computer
-        icon.name: "computer-symbolic"
+        iconSource: "computer-symbolic"
         ToolTip.text: qsTr("Computer")
         KeyNavigation.down: images
         KeyNavigation.up: title
@@ -161,7 +167,7 @@ ColumnLayout {
 
     SideBarButton {
         id: images
-        icon.name: "folder-pictures-symbolic"
+        iconSource: "folder-pictures-symbolic"
         ToolTip.text: qsTr("Pictures")
         KeyNavigation.down: documents
         KeyNavigation.up: computer
@@ -172,7 +178,7 @@ ColumnLayout {
 
     SideBarButton {
         id: documents
-        icon.name: "folder-documents-symbolic"
+        iconSource: "folder-documents-symbolic"
         ToolTip.text: qsTr("Documents")
         KeyNavigation.down: desktop
         KeyNavigation.up: images
@@ -183,7 +189,7 @@ ColumnLayout {
 
     SideBarButton {
         id: desktop
-        icon.name: "user-desktop-symbolic"
+        iconSource: "user-desktop-symbolic"
         ToolTip.text: qsTr("Desktop")
         KeyNavigation.down: setting
         KeyNavigation.up: documents
@@ -194,7 +200,7 @@ ColumnLayout {
 
     SideBarButton {
         id: setting
-        icon.name: "setting"
+        iconSource: "setting"
         ToolTip.text: qsTr("Control Center")
         KeyNavigation.down: title
         KeyNavigation.up: desktop

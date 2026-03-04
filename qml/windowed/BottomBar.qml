@@ -26,7 +26,12 @@ Control {
     contentItem: RowLayout {
         ToolButton {
             id: shutdownBtn
-            icon.name: "shutdown"
+            contentItem: PaintedDciIcon {
+                name: "shutdown"
+                sourceSize: Qt.size(16, 16)
+                width: 16
+                height: 16
+            }
             background: ItemBackground {
                button: shutdownBtn
             }
@@ -96,7 +101,12 @@ Control {
 
         ToolButton {
             id: fullscreenBtn
-            icon.name: "launcher_fullscreen"
+            contentItem: PaintedDciIcon {
+                name: "launcher_fullscreen"
+                sourceSize: Qt.size(16, 16)
+                width: 16
+                height: 16
+            }
             background: ItemBackground {
                 button: fullscreenBtn
             }
