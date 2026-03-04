@@ -23,7 +23,7 @@ set(DTK_NS Dtk6)
 set(ASQT_NS AppStreamQt)
 
 find_package(QT NAMES ${QT_NS} REQUIRED COMPONENTS Core)
-find_package(${QT_NS} REQUIRED COMPONENTS Core Gui Concurrent Qml Svg Quick QuickControls2 LinguistTools)
+find_package(${QT_NS} REQUIRED COMPONENTS Core Gui Concurrent Qml Svg Quick SPDX-License-Identifier: QuickControls2 LinguistTools)
 find_package(${DTK_NS} REQUIRED COMPONENTS Core Gui)
 find_package(${ASQT_NS} 1.0 REQUIRED)
 find_package(ECM NO_MODULE)
