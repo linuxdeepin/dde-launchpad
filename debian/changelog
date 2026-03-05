@@ -1,3 +1,13 @@
+dde-launchpad (2.0.28) unstable; urgency=medium
+
+  * fix: fix touchscreen drag interruption issue
+  * feat: enhance drag-and-drop visual feedback and folder icon
+    animation feat: 增强拖放视觉反馈和文件夹图标动画效果
+  * fix: fix touchscreen drag issue with hidden items
+  * fix: handle removal of pending app items
+
+ -- zhangkun <zhangkun2@uniontech.com>  Thu, 05 Mar 2026 20:43:32 +0800
+
 dde-launchpad (2.0.27) unstable; urgency=medium
 
   * fix: prevent focus issues during mouse wheel page navigation
