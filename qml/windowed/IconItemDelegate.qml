@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2024 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2024 - 2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -12,7 +12,7 @@ import org.deepin.launchpad 1.0
 
 Control {
     id: root
-    visible: !dragHandler.active
+    opacity: Drag.active ? 0 : 1
 
     property string text: display.startsWith("internal/category/") ? getCategoryName(display.substring(18)) : display
 
@@ -25,10 +25,11 @@ Control {
     signal menuTriggered()
 
     Drag.dragType: Drag.Automatic
+    Drag.active: mouseArea.drag.active
 
     states: State {
         name: "dragged";
-        when: dragHandler.active
+        when: mouseArea.drag.active
         // FIXME: When dragging finished, the position of the item is changed for unknown reason,
         //        so we use the state to reset the x and y here.
         PropertyChanges {
@@ -73,25 +74,17 @@ Control {
                     theme: ApplicationHelper.DarkType
                 }
 
-                DragHandler {
-                    id: dragHandler
-                    target: root
+                MouseArea {
+                    id: mouseArea
+                    anchors.fill: parent
+                    hoverEnabled: false
                     acceptedButtons: Qt.LeftButton
                     enabled: root.dndEnabled
-                    dragThreshold: 1
-                    onActiveChanged: {
-                        if (active) {
-                            // We switch to use the `dndItem` to handle Drag event since that one will always exists.
-                            // If we use the current item, then if the item that provides the drag attached property
-                            // get destoryed (e.g. switch page or folder close caused destory), dropping at that moment
-                            // will cause a crash.
-                            dndItem.Drag.hotSpot = target.Drag.hotSpot
-                            dndItem.Drag.mimeData = target.Drag.mimeData
-
+                    drag.target: root
+                    onPressed: function (mouse) {
+                        if (mouse.button === Qt.LeftButton && root.dndEnabled) {
                             appIcon.grabToImage(function(result) {
-                                dndItem.Drag.imageSource = result.url;
-                                dndItem.Drag.active = true
-                                dndItem.Drag.startDrag()
+                                root.Drag.imageSource = result.url;
                             })
                         }
                     }
