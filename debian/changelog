@@ -1,3 +1,9 @@
+dde-launchpad (2.0.30) unstable; urgency=medium
+
+  * fix: correct mouse event handling area for icon items
+
+ -- YeShanShan <yeshanshan@uniontech.com>  Fri, 06 Mar 2026 16:16:24 +0800
+
 dde-launchpad (2.0.29) unstable; urgency=medium
 
   * fix: fix font weight property assignment
