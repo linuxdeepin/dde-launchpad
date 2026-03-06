@@ -263,6 +263,8 @@ FocusScope {
         modal: true
         closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutsideParent
 
+        font: DTK.fontManager.t6
+
         property var existingSections: []
         Repeater {
             model: ddeCategoryMenu.existingSections
@@ -277,6 +279,7 @@ FocusScope {
                     alignment: Qt.AlignCenter
                     text: menuItem.text
                     color: parent.palette.windowText
+                    font: ddeCategoryMenu.font
                 }
                 background: BoxPanel {
                     anchors.left: parent.left
