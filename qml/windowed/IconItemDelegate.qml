@@ -45,6 +45,26 @@ Control {
         ColorSelector.pressed: false
         ColorSelector.family: Palette.CrystalColor
         flat: true
+        MouseArea {
+            id: mouseArea
+            anchors.fill: parent
+            hoverEnabled: false
+            acceptedButtons: Qt.LeftButton
+            enabled: root.dndEnabled
+            drag.target: root
+            onPressed: function (mouse) {
+                if (mouse.button === Qt.LeftButton && root.dndEnabled) {
+                    appIcon.grabToImage(function(result) {
+                        root.Drag.imageSource = result.url;
+                    })
+                }
+            }
+            onClicked: {
+                if (!drag.active) {
+                    root.itemClicked()
+                }
+            }
+        }
         contentItem: Column {
             anchors.fill: parent
 
@@ -72,27 +92,6 @@ Control {
                     sourceSize: Qt.size(12, 12)
                     palette: DTK.makeIconPalette(root.palette)
                     theme: ApplicationHelper.DarkType
-                }
-
-                MouseArea {
-                    id: mouseArea
-                    anchors.fill: parent
-                    hoverEnabled: false
-                    acceptedButtons: Qt.LeftButton
-                    enabled: root.dndEnabled
-                    drag.target: root
-                    onPressed: function (mouse) {
-                        if (mouse.button === Qt.LeftButton && root.dndEnabled) {
-                            appIcon.grabToImage(function(result) {
-                                root.Drag.imageSource = result.url;
-                            })
-                        }
-                    }
-                    onClicked: {
-                        if (!drag.active) {
-                            root.itemClicked()
-                        }
-                    }
                 }
             }
 
