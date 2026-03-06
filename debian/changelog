@@ -1,3 +1,10 @@
+dde-launchpad (2.0.29) unstable; urgency=medium
+
+  * fix: fix font weight property assignment
+  * fix: prevent mouse drag from blocking icon clicks
+
+ -- YeShanShan <yeshanshan@uniontech.com>  Fri, 06 Mar 2026 15:22:12 +0800
+
 dde-launchpad (2.0.28) unstable; urgency=medium
 
   * fix: fix touchscreen drag interruption issue
