@@ -65,6 +65,7 @@ set(SOURCE_FILES
     launchercontroller.cpp launchercontroller.h
     debughelper.cpp debughelper.h
     inputeventitem.h inputeventitem.cpp
+    src/quick/painteddciicon.h src/quick/painteddciicon.cpp
 )
 
 set(QML_FILES

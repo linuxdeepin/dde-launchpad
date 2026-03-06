@@ -1,10 +1,11 @@
-// SPDX-FileCopyrightText: 2024 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2024 - 2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 import QtQuick 2.15
 import QtQuick.Layouts 1.15
 import QtQuick.Controls 2.15
+import QtQuick.Window 2.15
 import org.deepin.dtk 1.0
 import org.deepin.ds 1.0
 import org.deepin.dtk.style 1.0 as DStyle
@@ -20,12 +21,17 @@ Control {
     property Item nextKeyTabTarget
     property alias searchEdit: searchEdit
 
-    padding: 10
+    padding: Helper.pixelAligned(10, Screen.devicePixelRatio)
 
     contentItem: RowLayout {
         ToolButton {
             id: shutdownBtn
-            icon.name: "shutdown"
+            contentItem: PaintedDciIcon {
+                name: "shutdown"
+                sourceSize: Qt.size(16, 16)
+                width: 16
+                height: 16
+            }
             background: ItemBackground {
                button: shutdownBtn
             }
@@ -95,7 +101,12 @@ Control {
 
         ToolButton {
             id: fullscreenBtn
-            icon.name: "launcher_fullscreen"
+            contentItem: PaintedDciIcon {
+                name: "launcher_fullscreen"
+                sourceSize: Qt.size(16, 16)
+                width: 16
+                height: 16
+            }
             background: ItemBackground {
                 button: fullscreenBtn
             }
