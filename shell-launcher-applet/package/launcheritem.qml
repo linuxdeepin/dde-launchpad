@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2023 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2023 - 2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -200,16 +200,10 @@ AppletItem {
         }
 
         DLayerShellWindow.anchors: DLayerShellWindow.AnchorBottom | DLayerShellWindow.AnchorTop | DLayerShellWindow.AnchorLeft | DLayerShellWindow.AnchorRight
-        DLayerShellWindow.layer: DLayerShellWindow.LayerTop
+        DLayerShellWindow.layer: DLayerShellWindow.LayerOverlay
         DLayerShellWindow.keyboardInteractivity: DLayerShellWindow.KeyboardInteractivityOnDemand
         DLayerShellWindow.exclusionZone: -1
         DLayerShellWindow.scope: "dde-shell/launchpad"
-
-        // visibility: Window.FullScreen
-        flags: {
-            if (DebugHelper.useRegularWindow) return Qt.Window
-            return (Qt.FramelessWindowHint | Qt.Tool)
-        }
 
         DWindow.enabled: !DebugHelper.useRegularWindow
         DWindow.windowRadius: 0
