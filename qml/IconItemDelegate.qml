@@ -109,6 +109,7 @@ Control {
                 Loader {
                     id: iconLoader
                     anchors.fill: parent
+                    asynchronous: true
                     sourceComponent: root.icons !== undefined ? folderComponent : imageComponent
                     DragHandler {
                         id: dragHandler
