@@ -50,8 +50,8 @@ Control {
             anchors.fill: parent
             hoverEnabled: false
             acceptedButtons: Qt.LeftButton
-            enabled: root.dndEnabled
-            drag.target: root
+            enabled: true
+            drag.target: root.dndEnabled ? root : null
             onPressed: function (mouse) {
                 if (mouse.button === Qt.LeftButton && root.dndEnabled) {
                     appIcon.grabToImage(function(result) {
