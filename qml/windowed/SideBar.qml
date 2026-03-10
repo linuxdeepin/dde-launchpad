@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2024 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2024 - 2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -106,6 +106,7 @@ ColumnLayout {
                 palette: D.DTK.makeIconPalette(title.palette)
                 theme: D.DTK.toColorType(title.palette.window)
                 Layout.alignment: Qt.AlignHCenter
+                smooth: false
             }
 
             D.DciIcon {
@@ -114,6 +115,7 @@ ColumnLayout {
                 palette: D.DTK.makeIconPalette(title.palette)
                 theme: D.DTK.toColorType(title.palette.window)
                 Layout.alignment: Qt.AlignHCenter
+                smooth: false
             }
         }
 
@@ -142,6 +144,11 @@ ColumnLayout {
         icon {
             width: 16
             height: 16
+        }
+        Component.onCompleted: {
+            if (contentItem) {
+                contentItem.smooth = false
+            }
         }
         background: ItemBackground {
             button: btn
