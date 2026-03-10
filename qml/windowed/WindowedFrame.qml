@@ -303,9 +303,12 @@ InputEventItem {
     Connections {
         target: LauncherController
         function onVisibleChanged() {
-            // only do these clean-up steps on launcher get hide
-            if (LauncherController.visible) return
+            if (LauncherController.visible) {
+                bottomBar.searchEdit.forceActiveFocus()
+                return
+            }
 
+            // only do these clean-up steps on launcher get hide
             // clear searchEdit text
             bottomBar.searchEdit.text = ""
             // reset(remove) keyboard focus
