@@ -883,8 +883,12 @@ InputEventItem {
         Connections {
             target: LauncherController
             function onVisibleChanged() {
+                if (LauncherController.visible) {
+                    searchEdit.forceActiveFocus()
+                    return
+                }
+
                 // only do these clean-up steps on launcher get hide
-                if (LauncherController.visible) return
                 // clear searchEdit text
                 searchEdit.text = ""
                 if (listviewPage.currentItem) {
