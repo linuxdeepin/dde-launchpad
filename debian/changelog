@@ -1,3 +1,18 @@
+dde-launchpad (2.0.31) unstable; urgency=medium
+
+  * revert: remove automatic focus setting on launcher visibility
+  * fix(launcher): change window layer from Top to Overlay
+  * fix: set focus to search edit when launcher becomes visible
+  * fix: disable icon smooth to icon blur
+  * fix(launcher): fix search result items not responding to mouse
+    clicks in windowed mode
+  * refactor(launcher): remove redundant window flags configuration
+  * fix: reduce fullscreen page flip stutter by async icon loading
+  * fix: The font size of the category jump menu does not adjust with
+    the system font size when sorting by category
+
+ -- zhangkun <zhangkun2@uniontech.com>  Thu, 12 Mar 2026 21:21:55 +0800
+
 dde-launchpad (2.0.30) unstable; urgency=medium
 
   * fix: correct mouse event handling area for icon items
