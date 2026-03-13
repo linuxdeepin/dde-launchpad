@@ -16,6 +16,7 @@ import "."
 InputEventItem {
     id: baseLayer
     objectName: "WindowedFrame-BaseLayer"
+    inputMethodSource: bottomBar.searchEdit
 
     visible: true
     focus: true

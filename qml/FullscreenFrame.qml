@@ -18,6 +18,8 @@ import 'windowed' as WindowedLaunchpad
 InputEventItem {
     anchors.fill: parent
     objectName: "FullscreenFrame-InputEventItem"
+    inputMethodSource: searchEdit
+    focus: true
 
     property Palette appTextColor: Palette {
         normal {
