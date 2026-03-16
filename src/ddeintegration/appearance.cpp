@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2023 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2023 - 2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -168,7 +168,6 @@ void Appearance::updateAllWallpaper()
 
             QString result(watcher->result());
             if (!result.isEmpty() && !m_wallpaperBlurMap.contains(wallpaperUrl)) {
-                m_wallpaperBlurhash = result;
                 m_wallpaperBlurMap[wallpaperUrl] = result;
                 updateCurrentWallpaperBlurhash();
             }
