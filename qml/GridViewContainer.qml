@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2023 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2023 - 2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -42,10 +42,6 @@ FocusScope {
             gridView.currentIndex = gridView.count - 1
         else
             gridView.currentIndex = 0
-    }
-
-    function positionViewAtBeginning() {
-        gridView.positionViewAtBeginning()
     }
 
     function itemAt(x, y) {

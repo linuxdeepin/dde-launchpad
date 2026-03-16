@@ -35,8 +35,11 @@ Item {
         listView.focus = true
     }
 
-    function positionViewAtBeginning() {
-        listView.positionViewAtBeginning()
+    Connections {
+        target: ItemArrangementProxyModel
+        function onItemBroughtToFront() {
+            listView.positionViewAtBeginning()
+        }
     }
 
     function resetViewState() {

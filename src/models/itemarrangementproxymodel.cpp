@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2023-2026 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2023 - 2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -66,6 +66,8 @@ void ItemArrangementProxyModel::bringToFront(const QString & id)
     emit dataChanged(index(0, 0), index(rowCount() - 1, 0), {
         PageRole, IndexInPageRole, FolderIdNumberRole, IconsNameRole
     });
+
+    emit itemBroughtToFront();    
 }
 
 void ItemArrangementProxyModel::commitDndOperation(const QString &dragId, const QString &dropId, const DndOperation op, int pageHint)
