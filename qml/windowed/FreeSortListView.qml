@@ -350,6 +350,16 @@ Item {
                             launchItem()
                         }
                     }
+
+                    // touchscreen long press.
+                    onPressAndHold: function (mouse) {
+                        if (mouse.button === Qt.NoButton) {
+                            showContextMenu(itemDelegate, model, {
+                                hideMoveToTopMenu: index === 0
+                            })
+                            baseLayer.focus = true
+                        }
+                    }
                 }
             }
 

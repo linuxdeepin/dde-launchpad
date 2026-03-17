@@ -64,6 +64,12 @@ Control {
                     root.itemClicked()
                 }
             }
+            // touchscreen long press.
+            onPressAndHold: function (mouse) {
+                if (mouse.button === Qt.NoButton) {
+                    root.menuTriggered()
+                }
+            }
         }
         contentItem: Column {
             anchors.fill: parent
