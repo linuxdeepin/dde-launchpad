@@ -208,21 +208,21 @@ Control {
                                         property: "scale"
                                         from: folderIcon.introScale
                                         to: (itemWidth / root.maxIconSizeInFolder) * root.iconScaleFactor
-                                        duration: 400
+                                        duration: 600
                                         easing.type: Easing.OutExpo
                                     }
                                     NumberAnimation {
                                         target: folderIcon
                                         property: "x"
                                         from: folderIcon.iconCenterX; to: iconItem.getItemX(index)
-                                        duration: 400
+                                        duration: 800
                                         easing.type: Easing.OutExpo
                                     }
                                     NumberAnimation {
                                         target: folderIcon
                                         property: "y"
                                         from: folderIcon.iconCenterY; to: iconItem.getItemY(index)
-                                        duration: 400
+                                        duration: 800
                                         easing.type: Easing.OutExpo
                                     }
 
