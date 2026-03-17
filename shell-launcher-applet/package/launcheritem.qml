@@ -200,10 +200,15 @@ AppletItem {
         }
 
         DLayerShellWindow.anchors: DLayerShellWindow.AnchorBottom | DLayerShellWindow.AnchorTop | DLayerShellWindow.AnchorLeft | DLayerShellWindow.AnchorRight
-        DLayerShellWindow.layer: DLayerShellWindow.LayerOverlay
+        DLayerShellWindow.layer: DLayerShellWindow.LayerTop
         DLayerShellWindow.keyboardInteractivity: DLayerShellWindow.KeyboardInteractivityOnDemand
         DLayerShellWindow.exclusionZone: -1
         DLayerShellWindow.scope: "dde-shell/launchpad"
+
+        flags: {
+            if (DebugHelper.useRegularWindow) return Qt.Window
+            return (Qt.FramelessWindowHint | Qt.Tool)
+        }
 
         DWindow.enabled: !DebugHelper.useRegularWindow
         DWindow.windowRadius: 0
