@@ -240,6 +240,12 @@ FocusScope {
                             launchApp(desktopId)
                         }
                     }
+                    // touchscreen long press.
+                    onPressAndHold: function (mouse) {
+                        if (mouse.button === Qt.NoButton) {
+                            showContextMenu(itemDelegate, model)
+                        }
+                    }
                 }
                 background: ItemBackground {
                     implicitWidth: DStyle.Style.itemDelegate.width
