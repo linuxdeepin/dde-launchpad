@@ -647,7 +647,7 @@ Popup {
                                             isDragHover: false
                                             displayFont: isWindowedMode ? DTK.fontManager.t9 : DTK.fontManager.t6
                                             Drag.mimeData: Helper.generateDragMimeData(model.desktopId)
-                                            visible: dndItem.currentlyDraggedId !== model.desktopId
+                                            opacity: dndItem.currentlyDraggedId !== model.desktopId ? 1 : 0
                                             iconSource: iconName
 
                                             padding: isWindowedMode ? 0 : 5

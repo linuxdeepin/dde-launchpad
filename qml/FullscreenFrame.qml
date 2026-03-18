@@ -639,7 +639,7 @@ InputEventItem {
                                     dndEnabled: !folderGridViewPopup.opened
                                     isDragHover: parent.isDragHover
                                     Drag.mimeData: Helper.generateDragMimeData(model.desktopId)
-                                    visible: dndItem.currentlyDraggedId !== model.desktopId
+                                    opacity: dndItem.currentlyDraggedId !== model.desktopId ? 1 : 0
                                     iconSource: (iconName && iconName !== "") ? iconName : "application-x-desktop"
                                     icons: folderIcons
                                     iconScaleFactor: baseLayer.iconScaleFactor
