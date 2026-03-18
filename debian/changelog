@@ -1,3 +1,15 @@
+dde-launchpad (2.0.32) unstable; urgency=medium
+
+  * style: adjust folder icon animation durations
+  * fix: add touchscreen long press support for app launcher
+  * fix(launcher): adjust window layer and flags for proper display
+  * fix: forward InputMethodQuery to searchEdit for correct IME
+    candidate window positioning
+  * refactor: remove redundant positionViewAtBeginning functions
+  * fix: remove duplicate wallpaper blurhash assignment
+
+ -- zhangkun <zhangkun2@uniontech.com>  Wed, 18 Mar 2026 14:13:35 +0800
+
 dde-launchpad (2.0.31) unstable; urgency=medium
 
   * revert: remove automatic focus setting on launcher visibility
