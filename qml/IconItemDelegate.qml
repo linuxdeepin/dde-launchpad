@@ -44,11 +44,11 @@ Control {
 
     states: State {
         name: "dragged";
-        when: dragHandler.active
+        when: mouseArea.drag.active
         // FIXME: When dragging finished, the position of the item is changed for unknown reason,
         //        so we use the state to reset the x and y here.
         PropertyChanges {
-            target: dragHandler.target
+            target: mouseArea.drag.target
             x: x
             y: y
         }
@@ -111,32 +111,55 @@ Control {
                     anchors.fill: parent
                     asynchronous: true
                     sourceComponent: root.icons !== undefined ? folderComponent : imageComponent
-                    DragHandler {
-                        id: dragHandler
-                        target: root
-                        acceptedButtons: Qt.LeftButton
-                        enabled: root.dndEnabled
-                        dragThreshold: 1
-                        onActiveChanged: {
-                            if (active) {
-                                // We switch to use the `dndItem` to handle Drag event since that one will always exists.
-                                // If we use the current item, then if the item that provides the drag attached property
-                                // get destoryed (e.g. switch page or folder close caused destory), dropping at that moment
-                                // will cause a crash.
 
-                                // Item will be hidden by checking the dndItem.currentlyDraggedId property. We assign the value
-                                // to that property here
-                                dndItem.currentlyDraggedId = target.Drag.mimeData["text/x-dde-launcher-dnd-desktopId"]
-                                dndItem.currentlyDraggedIconName = root.iconSource
-                                dndItem.Drag.hotSpot = target.Drag.hotSpot
-                                dndItem.Drag.mimeData = target.Drag.mimeData
-                                dndItem.mergeSize = Math.min(iconLoader.width, iconLoader.height)
-
+                    MouseArea {
+                        id: mouseArea
+                        anchors.fill: parent
+                        hoverEnabled: false
+                        drag.target: root.dndEnabled ? root : null
+                        drag.threshold: 1
+                        onPressed: function (mouse) {
+                            if (mouse.button === Qt.LeftButton && root.dndEnabled) {
+                                root.Drag.hotSpot = mapToItem(iconLoader, Qt.point(mouse.x, mouse.y))
                                 iconLoader.grabToImage(function(result) {
-                                    dndItem.Drag.imageSource = result.url;
-                                    dndItem.Drag.active = true
-                                    dndItem.Drag.startDrag()
+                                    root.Drag.imageSource = result.url;
                                 })
+                            }
+                        }
+                        drag.onActiveChanged: function() {
+                            if (drag.active) {
+                                dndItem.currentlyDraggedId = root.Drag.mimeData["text/x-dde-launcher-dnd-desktopId"]
+                                dndItem.currentlyDraggedIconName = root.iconSource
+                                dndItem.Drag.hotSpot = root.Drag.hotSpot
+                                dndItem.Drag.mimeData = root.Drag.mimeData
+                                dndItem.mergeSize = Math.min(iconLoader.width, iconLoader.height)
+                                dndItem.Drag.imageSource = root.Drag.imageSource
+                                dndItem.Drag.dragType = root.Drag.Automatic
+                                // Defer the drag start to avoid running a nested event loop
+                                // (QDrag::exec) inside this signal handler. If the delegate
+                                // gets destroyed during the drag (page switch / folder close),
+                                // Qt would otherwise abort because the MouseArea's handler is
+                                // still on the call stack.
+                                Qt.callLater(function() {
+                                    dndItem.Drag.active = true
+                                })
+                            }
+                        }
+                        onClicked: function(mouse) {
+                            if (mouse.button === Qt.LeftButton) {
+                                if (model.itemType === ItemArrangementProxyModel.FolderItemType) {
+                                    root.folderClicked()
+                                } else {
+                                    root.itemClicked()
+                                }
+                            } else if (mouse.button === Qt.RightButton) {
+                                root.menuTriggered()
+                            }
+                        }
+                        // touchscreen long press.
+                        onPressAndHold: function (mouse) {
+                            if (mouse.button === Qt.NoButton) {
+                                root.menuTriggered()
                             }
                         }
                     }
