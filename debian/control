@@ -38,6 +38,7 @@ Depends:
  dde-application-wizard-daemon-compat,
  libdtk6gui(>= 6.0.19),
  libdtk6declarative(>= 6.0.19),
+ dde-shell(>> 2.0.33),
  qml6-module-qtquick-layouts,
  qml6-module-qtquick-window,
  qml6-module-qtquick-controls,
