@@ -270,6 +270,7 @@ AppletItem {
 
         width: 610
         height: 480
+        windowTitle: "dde-shell/launchpad"
         popupX: DockPanelPositioner.x
         popupY: DockPanelPositioner.y
         DockPanelPositioner.bounding: Qt.rect(launcher.itemPos.x + width / 2 * ((Panel.position + 1) % 2),
