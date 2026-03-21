@@ -211,7 +211,7 @@
     </message>
     <message>
         <source>Control Center</source>
-        <translation>Central de Controle</translation>
+        <translation>Configurações</translation>
     </message>
 </context>
 <context>
