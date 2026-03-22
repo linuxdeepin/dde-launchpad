@@ -70,7 +70,7 @@
     </message>
     <message>
         <source>Full-screen Mode</source>
-        <translation>Modo tela cheia</translation>
+        <translation>Moderno</translation>
     </message>
 </context>
 <context>
