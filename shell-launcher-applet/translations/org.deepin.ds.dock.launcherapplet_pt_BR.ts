@@ -88,7 +88,7 @@
     <name>FrequentlyUsedView</name>
     <message>
         <source>Frequently Used</source>
-        <translation>Usado frequentemente</translation>
+        <translation>Mais usados</translation>
     </message>
 </context>
 <context>
