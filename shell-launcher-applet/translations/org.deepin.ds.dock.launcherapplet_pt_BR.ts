@@ -95,7 +95,7 @@
     <name>FullscreenFrame</name>
     <message>
         <source>Window Mode</source>
-        <translation>Modo janela</translation>
+        <translation>Clássico</translation>
     </message>
 </context>
 <context>
