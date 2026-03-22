@@ -179,7 +179,7 @@
     <name>SideBar</name>
     <message>
         <source>Free sorting</source>
-        <translation>Classificação livre</translation>
+        <translation>Livre</translation>
     </message>
     <message>
         <source>Sort by category</source>
