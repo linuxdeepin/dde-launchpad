@@ -62,7 +62,7 @@
     <name>BottomBar</name>
     <message>
         <source>Power</source>
-        <translation>Menu de energia</translation>
+        <translation>Energia</translation>
     </message>
     <message>
         <source>Search</source>
