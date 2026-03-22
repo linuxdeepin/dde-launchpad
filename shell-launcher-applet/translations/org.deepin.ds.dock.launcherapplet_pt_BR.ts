@@ -187,11 +187,11 @@
     </message>
     <message>
         <source>Sort by name</source>
-        <translation>Nome</translation>
+        <translation>Por nome</translation>
     </message>
     <message>
         <source>Sorting Mode</source>
-        <translation>Classificação</translation>
+        <translation>Ordenação</translation>
     </message>
     <message>
         <source>Computer</source>
