@@ -1,3 +1,10 @@
+dde-launchpad (2.0.33) unstable; urgency=medium
+
+  * feat: set window title for launcher popup
+  * fix: fix touchscreen long press and drag issues
+
+ -- zhangkun <zhangkun2@uniontech.com>  Wed, 25 Mar 2026 17:14:13 +0800
+
 dde-launchpad (2.0.32) unstable; urgency=medium
 
   * style: adjust folder icon animation durations
