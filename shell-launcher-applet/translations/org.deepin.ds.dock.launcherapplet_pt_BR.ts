@@ -62,7 +62,7 @@
     <name>BottomBar</name>
     <message>
         <source>Power</source>
-        <translation>Energia</translation>
+        <translation>Menu de energia</translation>
     </message>
     <message>
         <source>Search</source>
@@ -70,7 +70,7 @@
     </message>
     <message>
         <source>Full-screen Mode</source>
-        <translation>Modo tela cheia</translation>
+        <translation>Moderno</translation>
     </message>
 </context>
 <context>
@@ -88,14 +88,14 @@
     <name>FrequentlyUsedView</name>
     <message>
         <source>Frequently Used</source>
-        <translation>Usado frequentemente</translation>
+        <translation>Mais usados</translation>
     </message>
 </context>
 <context>
     <name>FullscreenFrame</name>
     <message>
         <source>Window Mode</source>
-        <translation>Modo janela</translation>
+        <translation>Clássico</translation>
     </message>
 </context>
 <context>
@@ -179,19 +179,19 @@
     <name>SideBar</name>
     <message>
         <source>Free sorting</source>
-        <translation>Classificação livre</translation>
+        <translation>Livre</translation>
     </message>
     <message>
         <source>Sort by category</source>
-        <translation>Classificar por categoria</translation>
+        <translation>Por categoria</translation>
     </message>
     <message>
         <source>Sort by name</source>
-        <translation>Classificar por nome</translation>
+        <translation>Por nome</translation>
     </message>
     <message>
         <source>Sorting Mode</source>
-        <translation>Modo de classificação</translation>
+        <translation>Ordenação</translation>
     </message>
     <message>
         <source>Computer</source>
@@ -211,7 +211,7 @@
     </message>
     <message>
         <source>Control Center</source>
-        <translation>Central de Controle</translation>
+        <translation>Configurações</translation>
     </message>
 </context>
 <context>
