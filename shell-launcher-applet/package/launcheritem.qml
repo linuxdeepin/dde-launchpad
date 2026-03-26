@@ -265,6 +265,7 @@ AppletItem {
 
     PanelPopup {
         id: windowedModeLauncher
+        closeOnInactive: false
 
         property bool visibility: LauncherController.visible && (LauncherController.currentFrame === "WindowedFrame")
 
@@ -278,6 +279,7 @@ AppletItem {
                                               width, height)
 
         WindowedFrame {
+            id: windowedFrameContent
             anchors.fill: parent
         }
 
@@ -295,6 +297,22 @@ AppletItem {
             if (popupVisible !== visibility) {
                 LauncherController.visible = popupVisible
             }
+            if (!popupVisible) {
+                LauncherController.cancelHide()
+            }
+        }
+    }
+
+    Connections {
+        target: windowedModeLauncher.popupWindow
+        function onActiveChanged() {
+            if (LauncherController.currentFrame !== "WindowedFrame") return
+            if (!windowedModeLauncher.popupVisible) return
+            if (!windowedModeLauncher.popupWindow.active) {
+                LauncherController.hideWithTimer()
+                return
+            }
+            LauncherController.cancelHide()
         }
     }
 
