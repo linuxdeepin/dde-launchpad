@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2023 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2023 - 2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -21,13 +21,16 @@ DGUI_USE_NAMESPACE
 
 namespace {
 Q_LOGGING_CATEGORY(logController, "org.deepin.dde.launchpad.controller")
+constexpr int kToggleGuardIntervalMs = 1000;
+constexpr int kHideDelayIntervalMs = 80;
 }
 
 LauncherController::LauncherController(QObject *parent)
     : QObject(parent)
     , optShow(QStringList{"s", "show"}, tr("Show launcher (hidden by default)"))
     , optToggle(QStringList{"t", "toggle"}, tr("Toggle launcher visibility"))
-    , m_timer(new QTimer(this))
+    , m_toggleGuardTimer(new QTimer(this))
+    , m_hideDelayTimer(new QTimer(this))
     , m_launcher1Adaptor(new Launcher1Adaptor(this))
     , m_visible(false)
 {
@@ -40,12 +43,18 @@ LauncherController::LauncherController(QObject *parent)
     qCInfo(logController) << "Current frame mode:" << m_currentFrame;
 
     // Interval set to 500=>1000ms for issue https://github.com/linuxdeepin/developer-center/issues/8137
-    m_timer->setInterval(1000);
-    m_timer->setSingleShot(true);
-    connect(m_timer, &QTimer::timeout, this, [this] {
+    m_toggleGuardTimer->setInterval(kToggleGuardIntervalMs);
+    m_toggleGuardTimer->setSingleShot(true);
+
+    m_hideDelayTimer->setInterval(kHideDelayIntervalMs);
+    m_hideDelayTimer->setSingleShot(true);
+    connect(m_hideDelayTimer, &QTimer::timeout, this, [this] {
         if (m_pendingHide) {
             m_pendingHide = false;
-            setVisible(false);
+            if (visible() && m_avoidHide) {
+                setVisible(false);
+                m_toggleGuardTimer->start();
+            }
         }
     });
 
@@ -101,12 +110,20 @@ void LauncherController::ShowByMode(qlonglong in0)
 
 void LauncherController::Toggle()
 {
-    if (m_timer->isActive()) {
+    if (m_toggleGuardTimer->isActive()) {
         qDebug() << "hit";
         m_pendingHide = false;
-        m_timer->stop();
+        m_hideDelayTimer->stop();
         return;
     }
+
+    // If user toggles during delayed-hide window, treat it as explicit intent
+    // instead of swallowing the action.
+    if (m_hideDelayTimer->isActive()) {
+        m_pendingHide = false;
+        m_hideDelayTimer->stop();
+    }
+
     setVisible(!visible());
 }
 
@@ -152,7 +169,8 @@ void LauncherController::setCurrentFrame(const QString &frame)
     m_currentFrame = frame;
     qDebug() << "set current frame:" << m_currentFrame;
     m_pendingHide = false;
-    m_timer->start();
+    m_hideDelayTimer->stop();
+    m_toggleGuardTimer->start();
     emit currentFrameChanged();
 }
 
@@ -176,21 +194,20 @@ void LauncherController::setCurrentScreen(const QString &screen)
 // if it's already hidden (`Toggle()` get triggered before `hideWithTimer()` get called).
 void LauncherController::hideWithTimer()
 {
-    if (visible()) {
-        if (m_timer->isActive()) {
-            m_pendingHide = true;
-            return;
-        }
-        if (m_avoidHide) {
-            qDebug() << "hide with timer";
-            setVisible(false);
-        }
+    if (!visible() || !m_avoidHide) return;
+
+    m_pendingHide = true;
+    if (!m_hideDelayTimer->isActive()) {
+        m_hideDelayTimer->start();
     }
 }
 
 void LauncherController::cancelHide()
 {
     m_pendingHide = false;
+    if (m_hideDelayTimer->isActive()) {
+        m_hideDelayTimer->stop();
+    }
 }
 
 QFont LauncherController::adjustFontWeight(const QFont &f, QFont::Weight weight)

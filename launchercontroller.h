@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2023 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2023 - 2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -83,7 +83,8 @@ signals:
 private:
     explicit LauncherController(QObject *parent=nullptr);
 
-    QTimer *m_timer;
+    QTimer *m_toggleGuardTimer;
+    QTimer *m_hideDelayTimer;
     Launcher1Adaptor * m_launcher1Adaptor;
     bool m_visible;
     QString m_currentFrame;
