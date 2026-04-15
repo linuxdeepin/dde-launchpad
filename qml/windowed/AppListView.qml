@@ -24,7 +24,7 @@ FocusScope {
         let wasFollowing = listView.highlightFollowsCurrentItem
         listView.highlightFollowsCurrentItem = false
         listView.currentIndex = 0
-        listView.contentY = 0
+        listView.positionViewAtBeginning()
         listView.highlightFollowsCurrentItem = wasFollowing
         if (!LauncherController.visible) {
             alphabetCategoryPopup.close()
