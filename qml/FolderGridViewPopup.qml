@@ -5,6 +5,7 @@
 import QtQuick 2.15
 import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.15
+import QtQuick.Window 2.15
 import org.deepin.dtk 1.0
 import org.deepin.dtk.style 1.0 as DStyle
 
@@ -53,8 +54,11 @@ Popup {
     // TODO: 经验证发现：Poppu窗口高度为奇数时，会多显示一个像素的外边框；为偶数时不会显示
     // 因此，这里需要保证高度是偶数来确保Popup窗口没有外边框
     height: ((cs * 3) % 2 === 0 ? (cs * 3) : (cs * 3 + 1)) + 130 /* title height*/
-    x: centerPosition.x - (width / 2)
-    y: centerPosition.y - (height / 2)
+    // 获取当前屏幕的 DPR，用于物理像素对齐
+    property real dpr: Screen.devicePixelRatio
+
+    x: Math.round((centerPosition.x - (width / 2)) * dpr) / dpr
+    y: Math.round((centerPosition.y - (height / 2)) * dpr) / dpr
 
     onClosed: {
         // reset folder view
