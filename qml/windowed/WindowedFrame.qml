@@ -192,8 +192,9 @@ InputEventItem {
 
     FolderGridViewPopup {
         id: folderGridViewPopup
-        width: 370
-        height: 330
+        // 物理像素对齐，确保在各种缩放比例下边缘都能对齐到整数物理像素
+        width: Math.round(370 * Screen.devicePixelRatio) / Screen.devicePixelRatio
+        height: Math.round(330 * Screen.devicePixelRatio) / Screen.devicePixelRatio
         folderNameFont: LauncherController.adjustFontWeight(DTK.fontManager.t6, Font.Bold)
         centerPosition: Qt.point(curPointX, curPointY)
 
