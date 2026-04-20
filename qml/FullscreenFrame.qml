@@ -384,7 +384,6 @@ InputEventItem {
                     highlightFollowsCurrentItem: true
                     highlightMoveDuration: 200
                     highlightMoveVelocity: -1
-                    boundsBehavior: Flickable.StopAtBounds
                     cacheBuffer: width * 2
 
                     activeFocusOnTab: true
