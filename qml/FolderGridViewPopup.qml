@@ -692,8 +692,8 @@ Popup {
                     spacing: isWindowedMode ? 5 : 10
 
                     delegate: Rectangle {
-                        implicitWidth: isWindowedMode ? 5 : 10
-                        implicitHeight: isWindowedMode ? 5 : 10
+                        implicitWidth: isWindowedMode ? 5 : 8
+                        implicitHeight: isWindowedMode ? 5 : 8
 
                         radius: width / 2
                         color: Qt.rgba(255, 255, 255, index === folderPageIndicator.currentIndex ? 0.9 : pressed ? 0.5 : 0.2)
