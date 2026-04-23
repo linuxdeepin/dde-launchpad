@@ -1,3 +1,12 @@
+dde-launchpad (2.0.35) unstable; urgency=medium
+
+  * style: adjust page indicator dot size in fullscreen mode
+  * fix: temporarily disable flickable bounds behavior
+  * fix: align folder popup to physical pixels for sharp 1px borders
+  * fix: use positionViewAtBeginning instead of set contentY
+
+ -- zhangkun <zhangkun2@uniontech.com>  Thu, 23 Apr 2026 21:46:17 +0800
+
 dde-launchpad (2.0.34) unstable; urgency=medium
 
   * fix: increase flickable cache buffer for better performance
