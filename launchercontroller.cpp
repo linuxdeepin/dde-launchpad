@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2023 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2023 - 2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -15,12 +15,29 @@
 #include <QDBusConnection>
 #include <QLoggingCategory>
 
+#ifdef HAVE_DDE_API_EVENTLOGGER
+#include <dde-api/eventlogger.hpp>
+#endif
+
 #include <private/qguiapplication_p.h>
 
 DGUI_USE_NAMESPACE
 
 namespace {
 Q_LOGGING_CATEGORY(logController, "org.deepin.dde.launchpad.controller")
+
+constexpr qint64 EVENT_LOGGER_LAUNCHPAD_MODE = 1000610012;
+
+void logLaunchpadMode(const QString &mode, const char *description)
+{
+#ifdef HAVE_DDE_API_EVENTLOGGER
+    DDE_EventLogger::EventLogger::instance().writeEventLog(
+        DDE_EventLogger::EventLoggerData(EVENT_LOGGER_LAUNCHPAD_MODE, QStringLiteral("launchpad_config"), {
+            {QStringLiteral("launchpad_mode"), mode}
+        }));
+#endif
+    qCInfo(logController) << "EventLogger: launchpad mode" << description << ":" << mode;
+}
 }
 
 LauncherController::LauncherController(QObject *parent)
@@ -38,6 +55,8 @@ LauncherController::LauncherController(QObject *parent)
 
     m_currentFrame = settings.value("current_frame", "WindowedFrame").toString();
     qCInfo(logController) << "Current frame mode:" << m_currentFrame;
+
+    logLaunchpadMode(m_currentFrame, "on startup");
 
     // Interval set to 500=>1000ms for issue https://github.com/linuxdeepin/developer-center/issues/8137
     m_timer->setInterval(1000);
@@ -151,6 +170,9 @@ void LauncherController::setCurrentFrame(const QString &frame)
 
     m_currentFrame = frame;
     qDebug() << "set current frame:" << m_currentFrame;
+
+    logLaunchpadMode(m_currentFrame, "changed to");
+
     m_pendingHide = false;
     m_timer->start();
     emit currentFrameChanged();

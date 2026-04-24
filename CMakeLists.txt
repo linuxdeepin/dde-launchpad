@@ -1,4 +1,4 @@
-# SPDX-FileCopyrightText: 2023 UnionTech Software Technology Co., Ltd.
+# SPDX-FileCopyrightText: 2023 - 2026 UnionTech Software Technology Co., Ltd.
 #
 # SPDX-License-Identifier: CC0-1.0
 
@@ -29,6 +29,15 @@ find_package(${ASQT_NS} 1.0 REQUIRED)
 find_package(ECM NO_MODULE)
 if(Qt6_VERSION VERSION_GREATER_EQUAL 6.10)
   find_package(Qt6 COMPONENTS GuiPrivate REQUIRED)
+endif()
+
+# Check if dde-api provides EventLogger (header-only)
+find_package(DDEAPI QUIET)
+if(DDEAPI_FOUND)
+    set(HAVE_DDE_API_EVENTLOGGER ON)
+    message(STATUS "Found DDEAPI: EventLogger available")
+else()
+    message(STATUS "DDEAPI not found, event logging will be disabled")
 endif()
 
 set_package_properties(${ASQT_NS} PROPERTIES
@@ -139,6 +148,11 @@ target_link_libraries(launchpadcommon PUBLIC
     dde-integration-dbus
     treeland-integration
 )
+
+if (HAVE_DDE_API_EVENTLOGGER)
+    target_compile_definitions(launchpadcommon PRIVATE HAVE_DDE_API_EVENTLOGGER)
+    target_link_libraries(launchpadcommon PRIVATE DDEAPI::EventLogger)
+endif()
 
 install(TARGETS launchpadcommon DESTINATION ${CMAKE_INSTALL_LIBDIR})
 install(
