@@ -9,7 +9,7 @@ import QtQuick.Layouts 1.15
 import QtQuick.Controls 2.15
 import QtQuick.Window 2.15
 import org.deepin.dtk 1.0
-import org.deepin.dtk.style 1.0 as DS
+import org.deepin.ds 1.0
 
 import org.deepin.launchpad 1.0
 import org.deepin.launchpad.models 1.0
@@ -760,6 +760,11 @@ InputEventItem {
                 id: searchEdit
 
                 Layout.alignment: Qt.AlignHCenter
+                Layout.bottomMargin: {
+                    var dock = DS.applet("org.deepin.ds.dock")
+                    var dockHeight = (dock && dock.rootObject) ? dock.rootObject.height : 0
+                    return Qt.platform.pluginName === "wayland" ? dockHeight + 10 : 0
+                }
                 implicitWidth: (parent.width / 2) > 280 ? 280 : (parent.width / 2)
                 opacity: folderGridViewPopup.visible ? 0.4 : 1
 
