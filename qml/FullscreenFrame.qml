@@ -9,7 +9,7 @@ import QtQuick.Layouts 1.15
 import QtQuick.Controls 2.15
 import QtQuick.Window 2.15
 import org.deepin.dtk 1.0
-import org.deepin.dtk.style 1.0 as DS
+import org.deepin.ds 1.0
 
 import org.deepin.launchpad 1.0
 import org.deepin.launchpad.models 1.0
@@ -111,8 +111,10 @@ InputEventItem {
         }
 
         readonly property bool isHorizontalDock: DesktopIntegration.dockPosition === Qt.UpArrow || DesktopIntegration.dockPosition === Qt.DownArrow
-        readonly property int dockSpacing: (isHorizontalDock ? DesktopIntegration.dockGeometry.height : DesktopIntegration.dockGeometry.width) / Screen.devicePixelRatio
-
+        readonly property int dockSpacing: {
+            var dock = DS.applet("org.deepin.ds.dock")
+            return isHorizontalDock ? dock.rootObject.height : dock.rootObject.width 
+        }
         leftPadding: (DesktopIntegration.dockPosition === Qt.LeftArrow ? dockSpacing : 0)
         rightPadding: (DesktopIntegration.dockPosition === Qt.RightArrow ? dockSpacing : 0)
         topPadding: (DesktopIntegration.dockPosition === Qt.UpArrow ? dockSpacing : 0) + 20
