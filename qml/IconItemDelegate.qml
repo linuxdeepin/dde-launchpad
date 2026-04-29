@@ -158,7 +158,7 @@ Control {
                         }
                         // touchscreen long press.
                         onPressAndHold: function (mouse) {
-                            if (mouse.button === Qt.NoButton) {
+                            if (mouse.button === Qt.NoButton ||| mouse.button === Qt.RightButton) {
                                 root.menuTriggered()
                             }
                         }

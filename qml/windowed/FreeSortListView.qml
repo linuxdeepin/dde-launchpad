@@ -353,7 +353,7 @@ Item {
 
                     // touchscreen long press.
                     onPressAndHold: function (mouse) {
-                        if (mouse.button === Qt.NoButton) {
+                        if (mouse.button === Qt.NoButton || mouse.button === Qt.RightButton) {
                             showContextMenu(itemDelegate, model, {
                                 hideMoveToTopMenu: index === 0
                             })
