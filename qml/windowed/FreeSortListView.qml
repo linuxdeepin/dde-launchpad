@@ -329,8 +329,11 @@ Item {
                     id: mouseArea
                     anchors.fill: parent
 
+                    // Use a dummy Item as drag.target so Wayland dnd doesn't break the original ItemDelegate layout
+                    Item { id: dndTarget }
+
                     acceptedButtons: Qt.LeftButton | Qt.RightButton
-                    drag.target: itemDelegate
+                    drag.target: dndTarget
 
                     // 记录是否是触摸长按导致的，防止在 onClicked 中重复处理
                     property bool isTouchLongPressed: false
