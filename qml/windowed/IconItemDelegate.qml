@@ -52,7 +52,21 @@ Control {
             acceptedButtons: Qt.LeftButton
             enabled: true
             drag.target: root.dndEnabled ? root : null
+
+            // 记录是否是触摸长按导致的，防止在 onClicked 中重复处理
+            property bool isTouchLongPressed: false
+
+            TapHandler {
+                acceptedDevices: PointerDevice.TouchScreen
+                gesturePolicy: TapHandler.DragThreshold
+                onLongPressed: {
+                    mouseArea.isTouchLongPressed = true
+                    root.menuTriggered()
+                }
+            }
+
             onPressed: function (mouse) {
+                isTouchLongPressed = false
                 if (mouse.button === Qt.LeftButton && root.dndEnabled) {
                     appIcon.grabToImage(function(result) {
                         root.Drag.imageSource = result.url;
@@ -60,14 +74,13 @@ Control {
                 }
             }
             onClicked: {
+                if (isTouchLongPressed) {
+                    isTouchLongPressed = false
+                    return
+                }
+
                 if (!drag.active) {
                     root.itemClicked()
-                }
-            }
-            // touchscreen long press.
-            onPressAndHold: function (mouse) {
-                if (mouse.button === Qt.NoButton) {
-                    root.menuTriggered()
                 }
             }
         }
