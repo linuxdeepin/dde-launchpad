@@ -118,7 +118,21 @@ Control {
                         hoverEnabled: false
                         drag.target: root.dndEnabled ? root : null
                         drag.threshold: 1
+
+                        // 记录是否是触摸长按导致的，防止在 onClicked 中重复处理
+                        property bool isTouchLongPressed: false
+
+                        TapHandler {
+                            acceptedDevices: PointerDevice.TouchScreen
+                            gesturePolicy: TapHandler.DragThreshold
+                            onLongPressed: {
+                                mouseArea.isTouchLongPressed = true
+                                root.menuTriggered()
+                            }
+                        }
+
                         onPressed: function (mouse) {
+                            isTouchLongPressed = false
                             if (mouse.button === Qt.LeftButton && root.dndEnabled) {
                                 root.Drag.hotSpot = mapToItem(iconLoader, Qt.point(mouse.x, mouse.y))
                                 iconLoader.grabToImage(function(result) {
@@ -146,6 +160,11 @@ Control {
                             }
                         }
                         onClicked: function(mouse) {
+                            if (isTouchLongPressed) {
+                                isTouchLongPressed = false
+                                return
+                            }
+
                             if (mouse.button === Qt.LeftButton) {
                                 if (model.itemType === ItemArrangementProxyModel.FolderItemType) {
                                     root.folderClicked()
@@ -153,12 +172,6 @@ Control {
                                     root.itemClicked()
                                 }
                             } else if (mouse.button === Qt.RightButton) {
-                                root.menuTriggered()
-                            }
-                        }
-                        // touchscreen long press.
-                        onPressAndHold: function (mouse) {
-                            if (mouse.button === Qt.NoButton) {
                                 root.menuTriggered()
                             }
                         }

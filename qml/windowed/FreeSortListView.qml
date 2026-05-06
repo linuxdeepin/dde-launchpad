@@ -332,7 +332,23 @@ Item {
                     acceptedButtons: Qt.LeftButton | Qt.RightButton
                     drag.target: itemDelegate
 
+                    // 记录是否是触摸长按导致的，防止在 onClicked 中重复处理
+                    property bool isTouchLongPressed: false
+
+                    TapHandler {
+                        acceptedDevices: PointerDevice.TouchScreen
+                        gesturePolicy: TapHandler.DragThreshold
+                        onLongPressed: {
+                            mouseArea.isTouchLongPressed = true
+                            showContextMenu(itemDelegate, model, {
+                                hideMoveToTopMenu: index === 0
+                            })
+                            baseLayer.focus = true
+                        }
+                    }
+
                     onPressed: function (mouse) {
+                        isTouchLongPressed = false
                         if (mouse.button === Qt.LeftButton) {
                             itemDelegate.contentItem.grabToImage(function(result) {
                                 itemDelegate.Drag.imageSource = result.url
@@ -341,6 +357,11 @@ Item {
                     }
 
                     onClicked: function (mouse) {
+                        if (isTouchLongPressed) {
+                            isTouchLongPressed = false
+                            return
+                        }
+
                         if (mouse.button === Qt.RightButton) {
                             showContextMenu(itemDelegate, model, {
                                 hideMoveToTopMenu: index === 0
@@ -348,16 +369,6 @@ Item {
                             baseLayer.focus = true
                         } else {
                             launchItem()
-                        }
-                    }
-
-                    // touchscreen long press.
-                    onPressAndHold: function (mouse) {
-                        if (mouse.button === Qt.NoButton) {
-                            showContextMenu(itemDelegate, model, {
-                                hideMoveToTopMenu: index === 0
-                            })
-                            baseLayer.focus = true
                         }
                     }
                 }
