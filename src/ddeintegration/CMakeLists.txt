@@ -145,3 +145,8 @@ PUBLIC
     Qt::Concurrent
 PRIVATE
     Qt::Core Qt::Gui ${DTK_NS}::Core ${ASQT_NS} launcher-utils)
+
+if (HAVE_DDE_API_EVENTLOGGER)
+    target_compile_definitions(dde-integration-dbus PRIVATE HAVE_DDE_API_EVENTLOGGER)
+    target_link_libraries(dde-integration-dbus PRIVATE DDEAPI::EventLogger)
+endif()

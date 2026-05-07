@@ -184,7 +184,11 @@ bool AppMgr::launchApp(const QString &desktopId)
     const auto path = amAppIface->path();
     QProcess process;
     process.setProcessChannelMode(QProcess::MergedChannels);
+#ifdef HAVE_DDE_API_EVENTLOGGER
+    process.start("dde-am", {"--by-user", "--launch-type", "dde-launchpad", path});
+#else
     process.start("dde-am", {"--by-user", path});
+#endif
     if (!process.waitForFinished()) {
         qCWarning(logDdeIntegration) << "Failed to launch the desktopId:" << desktopId << process.errorString();
         return false;
