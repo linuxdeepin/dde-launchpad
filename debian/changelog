@@ -1,3 +1,9 @@
+dde-launchpad (2.0.36) unstable; urgency=medium
+
+  * feat: pass launch_type when launching apps from launcher
+
+ -- zhangkun <zhangkun2@uniontech.com>  Sat, 09 May 2026 09:31:25 +0800
+
 dde-launchpad (2.0.35) unstable; urgency=medium
 
   * style: adjust page indicator dot size in fullscreen mode
