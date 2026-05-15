@@ -66,16 +66,24 @@ Control {
             }
 
             onPressed: function (mouse) {
+                if (mouse.button !== Qt.LeftButton) {
+                    mouse.accepted = false
+                    return
+                }
                 isTouchLongPressed = false
-                if (mouse.button === Qt.LeftButton && root.dndEnabled) {
+                if (root.dndEnabled) {
                     appIcon.grabToImage(function(result) {
                         root.Drag.imageSource = result.url;
                     })
                 }
             }
-            onClicked: {
+            onClicked: function(mouse) {
                 if (isTouchLongPressed) {
                     isTouchLongPressed = false
+                    return
+                }
+
+                if (mouse.button !== Qt.LeftButton) {
                     return
                 }
 
