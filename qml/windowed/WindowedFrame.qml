@@ -305,8 +305,15 @@ InputEventItem {
     Connections {
         target: LauncherController
         function onVisibleChanged() {
-            // only do these clean-up steps on launcher get hide
-            if (LauncherController.visible) return
+            if (LauncherController.visible) {
+                baseLayer.forceActiveFocus()
+                Qt.callLater(() => {
+                    if (!baseLayer.activeFocus) {
+                        console.warn("[LaunchpadFocus] WindowedFrame: BUG_WARNING - baseLayer failed to acquire activeFocus after forceActiveFocus()!")
+                    }
+                })
+                return
+            }
 
             // clear searchEdit text
             bottomBar.searchEdit.text = ""
