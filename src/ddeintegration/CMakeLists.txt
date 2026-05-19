@@ -1,4 +1,4 @@
-# SPDX-FileCopyrightText: 2023 UnionTech Software Technology Co., Ltd.
+# SPDX-FileCopyrightText: 2023 - 2026 UnionTech Software Technology Co., Ltd.
 #
 # SPDX-License-Identifier: CC0-1.0
 
@@ -149,4 +149,56 @@ PRIVATE
 if (HAVE_DDE_API_EVENTLOGGER)
     target_compile_definitions(dde-integration-dbus PRIVATE HAVE_DDE_API_EVENTLOGGER)
     target_link_libraries(dde-integration-dbus PRIVATE DDEAPI::EventLogger)
+endif()
+
+# Optional Wayland XDG activation support: request a token from the compositor
+# before launching applications so they can raise their window on first map.
+# Requires Qt6WaylandClient and wayland-protocols (for xdg-activation-v1.xml).
+find_package(Qt6 COMPONENTS WaylandClient QUIET)
+find_package(PkgConfig QUIET)
+if(Qt6WaylandClient_FOUND AND PkgConfig_FOUND)
+    pkg_check_modules(WaylandProtocols QUIET wayland-protocols)
+    if(WaylandProtocols_FOUND)
+        pkg_get_variable(WAYLAND_PROTOCOLS_DATADIR wayland-protocols pkgdatadir)
+        set(XDG_ACTIVATION_XML
+            "${WAYLAND_PROTOCOLS_DATADIR}/staging/xdg-activation/xdg-activation-v1.xml")
+    endif()
+endif()
+
+if(Qt6WaylandClient_FOUND AND DEFINED XDG_ACTIVATION_XML AND EXISTS "${XDG_ACTIVATION_XML}")
+    if(Qt6_VERSION VERSION_GREATER_EQUAL 6.10)
+        find_package(Qt6 COMPONENTS WaylandClientPrivate QUIET)
+    endif()
+
+    qt_generate_wayland_protocol_client_sources(dde-integration-dbus
+        FILES
+            ${XDG_ACTIVATION_XML}
+    )
+
+    target_sources(dde-integration-dbus PRIVATE
+        xdgactivation.cpp
+    )
+
+    target_sources(dde-integration-dbus PUBLIC
+        FILE_SET HEADERS FILES xdgactivation.h
+    )
+
+    # The Wayland protocol generator emits headers into the binary dir;
+    # expose it publicly so consumers (e.g. launchpadcommon) can find them.
+    target_include_directories(dde-integration-dbus PUBLIC
+        ${CMAKE_CURRENT_BINARY_DIR}
+    )
+
+    target_link_libraries(dde-integration-dbus PUBLIC
+        Qt6::WaylandClient
+        Qt6::WaylandClientPrivate
+        ${DTK_NS}::Gui
+    )
+
+    target_compile_definitions(dde-integration-dbus PUBLIC
+        HAVE_WAYLAND_XDG_ACTIVATION
+    )
+    message(STATUS "XDG activation support enabled (${XDG_ACTIVATION_XML})")
+else()
+    message(STATUS "XDG activation support disabled (Qt6WaylandClient or wayland-protocols not found)")
 endif()

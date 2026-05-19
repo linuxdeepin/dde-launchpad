@@ -17,6 +17,7 @@ Build-Depends:
  qt6-tools-dev-tools,
  qt6-wayland-dev,
  qt6-wayland-private-dev,
+ wayland-protocols,
  libdtkcommon-dev,
  libdtk6core-dev (>= 6.0.43),
 # v-- provides qdbusxml2cpp-fix binary
