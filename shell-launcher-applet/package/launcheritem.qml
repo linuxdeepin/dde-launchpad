@@ -379,15 +379,23 @@ AppletItem {
         }
     }
 
-    // FIXME: The TapHandler receives the event after visibleChange, which causes the state to be inverted after synchronization,
-    // causing the launchpad to be displayed again. However, the MouseArea receives the event before visibleChange.
-    MouseArea {
-        id: mouseHandler
-        anchors.fill: parent
-        onClicked: function (mouse) {
-            if (mouse.button === Qt.LeftButton) {
+    TapHandler {
+        id: tapHandler
+        acceptedButtons: Qt.LeftButton | Qt.RightButton
+        gesturePolicy: TapHandler.WithinBounds
+        onTapped: function (eventPoint, buttons) {
+            if (buttons === Qt.LeftButton) {
                 toggleLauncher()
             }
+        }
+    }
+
+    TapHandler {
+        acceptedButtons: Qt.NoButton
+        acceptedDevices: PointerDevice.TouchScreen
+        gesturePolicy: TapHandler.WithinBounds
+        onTapped: function (eventPoint, buttons) {
+            toggleLauncher()
         }
     }
     HoverHandler {

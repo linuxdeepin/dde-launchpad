@@ -49,48 +49,27 @@ Control {
             id: mouseArea
             anchors.fill: parent
             hoverEnabled: false
-            acceptedButtons: Qt.LeftButton
             enabled: true
+            acceptedButtons: Qt.LeftButton | Qt.RightButton
             drag.target: root.dndEnabled ? root : null
-
-            // 记录是否是触摸长按导致的，防止在 onClicked 中重复处理
-            property bool isTouchLongPressed: false
-
-            TapHandler {
-                acceptedDevices: PointerDevice.TouchScreen
-                gesturePolicy: TapHandler.DragThreshold
-                onLongPressed: {
-                    mouseArea.isTouchLongPressed = true
-                    root.menuTriggered()
-                }
-            }
-
             onPressed: function (mouse) {
-                if (mouse.button !== Qt.LeftButton) {
-                    mouse.accepted = false
-                    return
-                }
-                isTouchLongPressed = false
-                if (root.dndEnabled) {
+                if (mouse.button === Qt.LeftButton && root.dndEnabled) {
                     appIcon.grabToImage(function(result) {
                         root.Drag.imageSource = result.url;
                     })
                 }
             }
-            onClicked: function(mouse) {
-                if (isTouchLongPressed) {
-                    isTouchLongPressed = false
-                    return
-                }
-
-                if (mouse.button !== Qt.LeftButton) {
-                    return
-                }
-
-                if (!drag.active) {
+            onPressAndHold: function (mouse) {
+                root.menuTriggered()
+            }
+            onClicked: function (mouse) {
+                if (mouse.button === Qt.LeftButton) {
                     root.itemClicked()
+                } else if (mouse.button === Qt.RightButton) {
+                    root.menuTriggered()
                 }
             }
+
         }
         contentItem: Column {
             anchors.fill: parent
@@ -153,21 +132,6 @@ Control {
         }
     }
     background: DebugBounding { }
-
-    TapHandler {
-        acceptedButtons: Qt.RightButton
-        onTapped: {
-            root.menuTriggered()
-        }
-    }
-
-    TapHandler {
-        acceptedButtons: Qt.LeftButton
-        gesturePolicy: TapHandler.WithinBounds
-        onTapped: {
-            root.itemClicked()
-        }
-    }
 
     Keys.onSpacePressed: {
         root.itemClicked()
