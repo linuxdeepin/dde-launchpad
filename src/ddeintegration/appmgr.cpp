@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2023-2026 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2023 - 2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -172,7 +172,7 @@ AppManager1Application * createAM1AppIface(const QString &desktopId)
 
 // if return false, it means the launch is not even started.
 // if return true, it means we attempted to launch it via AM, but not sure if it's succeed.
-bool AppMgr::launchApp(const QString &desktopId)
+bool AppMgr::launchApp(const QString &desktopId, const QString &activationToken)
 {
     qCInfo(logDdeIntegration) << "Launching app:" << desktopId;
     AppManager1Application * amAppIface = createAM1AppIface(desktopId);
@@ -184,11 +184,18 @@ bool AppMgr::launchApp(const QString &desktopId)
     const auto path = amAppIface->path();
     QProcess process;
     process.setProcessChannelMode(QProcess::MergedChannels);
+
+    QStringList args = {"--by-user", path};
 #ifdef HAVE_DDE_API_EVENTLOGGER
-    process.start("dde-am", {"--by-user", "--launch-type", "dde-launchpad", path});
-#else
-    process.start("dde-am", {"--by-user", path});
+    args << "--launch-type" << "dde-launchpad";
 #endif
+
+    if (!activationToken.isEmpty()) {
+        qCDebug(logDdeIntegration) << "Passing XDG_ACTIVATION_TOKEN to dde-am for:" << desktopId;
+        args << "--env" << (QLatin1String("XDG_ACTIVATION_TOKEN=") + activationToken);
+    }
+
+    process.start("dde-am", args);
     if (!process.waitForFinished()) {
         qCWarning(logDdeIntegration) << "Failed to launch the desktopId:" << desktopId << process.errorString();
         return false;

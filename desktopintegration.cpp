@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2023 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2023 - 2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -14,6 +14,11 @@
 #include <QLoggingCategory>
 #include <appinfo.h>
 #include <appmgr.h>
+
+#ifdef HAVE_WAYLAND_XDG_ACTIVATION
+#include <xdgactivation.h>
+#include <DGuiApplicationHelper>
+#endif
 
 #include <AppStreamQt/pool.h>
 
@@ -50,7 +55,13 @@ void DesktopIntegration::openSystemSettings()
 void DesktopIntegration::launchByDesktopId(const QString &desktopId)
 {
     qCInfo(logDesktopIntegration) << "Launching app by desktop ID:" << desktopId;
-    if (!AppMgr::launchApp(desktopId)) {
+    QString token;
+#ifdef HAVE_WAYLAND_XDG_ACTIVATION
+    auto xdgActivation = DDEIntegration::XdgActivationV1::instance();
+    if (xdgActivation->isActive())
+        token = xdgActivation->requestToken(QGuiApplication::focusWindow(), desktopId);
+#endif
+    if (!AppMgr::launchApp(desktopId, token)) {
         qCDebug(logDesktopIntegration) << "AppMgr launch failed, trying AppInfo launch";
         AppInfo::launchByDesktopId(desktopId);
     }
@@ -258,6 +269,19 @@ DesktopIntegration::DesktopIntegration(QObject *parent)
     
     m_iconScaleFactor = dconfig->value("iconScaleFactor", 1.0).toReal();
     qCInfo(logDesktopIntegration) << "Icon scale factor loaded:" << m_iconScaleFactor;
+
+#ifdef HAVE_WAYLAND_XDG_ACTIVATION
+    if (DTK_GUI_NAMESPACE::DGuiApplicationHelper::testAttribute(
+            DTK_GUI_NAMESPACE::DGuiApplicationHelper::IsWaylandPlatform)) {
+        auto *xdgActivation = DDEIntegration::XdgActivationV1::instance();
+        connect(xdgActivation, &DDEIntegration::XdgActivationV1::activeChanged, this, []() {
+            if (DDEIntegration::XdgActivationV1::instance()->isActive())
+                qCInfo(logDesktopIntegration) << "XdgActivationV1: ready, XDG activation token support enabled";
+            else
+                qCWarning(logDesktopIntegration) << "XdgActivationV1: compositor did not advertise xdg_activation_v1, token requests will be skipped";
+        });
+    }
+#endif
 
     connect(m_dockIntegration, &DdeDock::directionChanged, this, &DesktopIntegration::dockPositionChanged);
     connect(m_dockIntegration, &DdeDock::geometryChanged, this, &DesktopIntegration::dockGeometryChanged);
