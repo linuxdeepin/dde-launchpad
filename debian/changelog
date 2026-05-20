@@ -1,3 +1,10 @@
+dde-launchpad (2.0.37) unstable; urgency=medium
+
+  * feat: add Wayland XDG activation token support for app launch
+  * fix: disable context menu on right click
+
+ -- zhangkun <zhangkun2@uniontech.com>  Wed, 20 May 2026 15:16:51 +0800
+
 dde-launchpad (2.0.36) unstable; urgency=medium
 
   * feat: pass launch_type when launching apps from launcher
