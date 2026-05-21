@@ -225,20 +225,23 @@ FocusScope {
                     // 当分类菜单打开时，禁用拖拽功能
                     enabled: !(ddeCategoryMenu.visible || alphabetCategoryPopup.visible)
 
-                    // 记录是否是触摸长按导致的，防止在 onClicked 中重复处理
-                    property bool isTouchLongPressed: false
-
                     TapHandler {
                         acceptedDevices: PointerDevice.TouchScreen
                         gesturePolicy: TapHandler.DragThreshold
+                        onTapped: function(eventPoint, buttons) {
+                            launchApp(desktopId)
+                        }
                         onLongPressed: {
-                            mouseArea.isTouchLongPressed = true
                             showContextMenu(itemDelegate, model)
                         }
                     }
 
                     onPressed: function (mouse) {
-                        isTouchLongPressed = false
+                        // 触屏合成的鼠标事件不接受，交给 Flickable 处理滚动
+                        if (mouse.source !== undefined && mouse.source !== Qt.MouseEventNotSynthesized) {
+                            mouse.accepted = false
+                            return
+                        }
                         if (mouse.button === Qt.LeftButton) {
                             itemDelegate.contentItem.grabToImage(function(result) {
                                 itemDelegate.Drag.imageSource = result.url
@@ -246,11 +249,6 @@ FocusScope {
                         }
                     }
                     onClicked: function (mouse) {
-                        if (isTouchLongPressed) {
-                            isTouchLongPressed = false
-                            return
-                        }
-
                         if (mouse.button === Qt.RightButton) {
                             showContextMenu(itemDelegate, model)
                             baseLayer.focus = true
