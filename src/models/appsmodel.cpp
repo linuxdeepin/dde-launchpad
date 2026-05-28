@@ -73,17 +73,15 @@ AppsModel::AppsModel(QObject *parent)
     m_tmUpdateCache->setInterval(1000);
     m_tmUpdateCache->setSingleShot(true);
 
-    if (AppMgr::instance()->isValid()) {
-        connect(AppMgr::instance(), &AppMgr::changed, m_tmUpdateCache, qOverload<>(&QTimer::start));
-        connect(AppMgr::instance(), &AppMgr::itemDataChanged, this, [this](const QString &id) {
-            const auto appItem = this->itemFromDesktopId(id);
-            if (!appItem) {
-                qWarning() << "Not existing item in AppsModel for the desktopId" << id;
-                return;
-            }
-            updateAppItemFromAM(appItem);
-        });
-    }
+    connect(AppMgr::instance(), &AppMgr::changed, m_tmUpdateCache, qOverload<>(&QTimer::start));
+    connect(AppMgr::instance(), &AppMgr::itemDataChanged, this, [this](const QString &id) {
+        const auto appItem = this->itemFromDesktopId(id);
+        if (!appItem) {
+            qWarning() << "Not existing item in AppsModel for the desktopId" << id;
+            return;
+        }
+        updateAppItemFromAM(appItem);
+    });
 
     m_fwIconCache = new DFileWatcherManager(this);
     const QStringList paths = QStandardPaths::standardLocations(QStandardPaths::GenericDataLocation);

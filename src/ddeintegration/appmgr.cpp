@@ -132,7 +132,60 @@ AppMgr::AppMgr(QObject *parent)
 {
     m_checkTimer->setInterval(3000); // 3 second interval
     connect(m_checkTimer, &QTimer::timeout, this, &AppMgr::checkPendingAppItems);
-    initObjectManager();
+
+    connect(m_objectManager, &AppManager1ApplicationObjectManager::InterfacesAdded, this,
+            [this](const QDBusObjectPath &objPath, ObjectInterfaceMap interfacesAndProperties) {
+                const QString key(objPath.path());
+                qCDebug(logDdeIntegration) << "InterfacesAdded by AM, path:" << key;
+                if (m_appItems.contains(objPath.path())) {
+                    qWarning() << "App already exists for the path:" << key;
+                    return;
+                }
+                m_checkCount = 0;
+                if (auto appItem = parseDBus2AppItem(interfacesAndProperties)) {
+                    qCDebug(logDdeIntegration) << "App item added, desktopId" << appItem->id;
+                    watchingAppItemAdded(key, appItem);
+                }
+            });
+    connect(m_objectManager, &AppManager1ApplicationObjectManager::InterfacesRemoved, this,
+            [this](const QDBusObjectPath &objPath, const QStringList &interfaces) {
+                Q_UNUSED(interfaces)
+                const QString key(objPath.path());
+                qCDebug(logDdeIntegration) << "InterfacesRemoved by AM, path:" << key;
+                watchingAppItemRemoved(key);
+            });
+
+    DConfig *config = DConfig::create("org.deepin.dde.application-manager", "org.deepin.dde.am", "", this);
+    if (!config->isValid()) {
+        qCWarning(logDdeIntegration) << "DConfig is invalid when getting launched times.";
+    } else {
+        static const QString AppsLaunchedTimes(u8"appsLaunchedTimes");
+        const auto &value = config->value(AppsLaunchedTimes).toMap();
+        updateAppsLaunchedTimes(value);
+        QObject::connect(config, &DConfig::valueChanged, this, [this, config](const QString &key) {
+            if (key != AppsLaunchedTimes) {
+                qCDebug(logDdeIntegration) << "Ignoring non-appsLaunchedTimes key:" << key;
+                return;
+            }
+
+            qCInfo(logDdeIntegration) << "appsLaunchedTimes of DConfig changed, updating";
+            const auto &value = config->value(AppsLaunchedTimes).toMap();
+            updateAppsLaunchedTimes(value);
+        });
+    }
+
+    if (isValid()) {
+        fetchAppItems();
+    }
+
+    m_serviceWatcher = new QDBusServiceWatcher(QStringLiteral("org.desktopspec.ApplicationManager1"),
+                                               QDBusConnection::sessionBus(),
+                                               QDBusServiceWatcher::WatchForRegistration,
+                                               this);
+    connect(m_serviceWatcher, &QDBusServiceWatcher::serviceRegistered, this, [this]() {
+        qCInfo(logDdeIntegration) << "AppManager1 service registered on bus, fetching app items";
+        fetchAppItems();
+    });
 }
 
 AppMgr::~AppMgr()
@@ -427,58 +480,6 @@ void AppMgr::updateAppsLaunchedTimes(const QVariantMap &appsLaunchedTimes)
             item->launchedTimes = times;
             Q_EMIT itemDataChanged(item->id);
         }
-    }
-}
-
-void AppMgr::initObjectManager()
-{
-    if (!isValid()) {
-        qCWarning(logDdeIntegration) << "Object manager is not valid, aborting initialization";
-        return;
-    }
-
-    connect(m_objectManager, &AppManager1ApplicationObjectManager::InterfacesAdded, this,
-            [this](const QDBusObjectPath &objPath, ObjectInterfaceMap interfacesAndProperties) {
-                const QString key(objPath.path());
-                qCDebug(logDdeIntegration) << "InterfacesAdded by AM, path:" << key;
-                if (m_appItems.contains(objPath.path())) {
-                    qWarning() << "App already exists for the path:" << key;
-                    return;
-                }
-                // Reset check count when new app is added
-                m_checkCount = 0;
-                if (auto appItem = parseDBus2AppItem(interfacesAndProperties)) {
-                    qCDebug(logDdeIntegration) << "App item added, desktopId" << appItem->id;
-                    watchingAppItemAdded(key, appItem);
-                }
-            });
-    connect(m_objectManager, &AppManager1ApplicationObjectManager::InterfacesRemoved, this,
-            [this](const QDBusObjectPath &objPath, const QStringList &interfaces) {
-                Q_UNUSED(interfaces)
-                const QString key(objPath.path());
-                qCDebug(logDdeIntegration) << "InterfacesRemoved by AM, path:" << key;
-                watchingAppItemRemoved(key);
-            });
-
-    fetchAppItems();
-
-    DConfig *config = DConfig::create("org.deepin.dde.application-manager", "org.deepin.dde.am", "", this);
-    if (!config->isValid()) {
-        qCWarning(logDdeIntegration) << "DConfig is invalid when getting launched times.";
-    } else {
-        static const QString AppsLaunchedTimes(u8"appsLaunchedTimes");
-        const auto &value = config->value(AppsLaunchedTimes).toMap();
-        updateAppsLaunchedTimes(value);
-        QObject::connect(config, &DConfig::valueChanged, this, [this, config](const QString &key) {
-            if (key != AppsLaunchedTimes) {
-                qCDebug(logDdeIntegration) << "Ignoring non-appsLaunchedTimes key:" << key;
-                return;
-            }
-
-            qCInfo(logDdeIntegration) << "appsLaunchedTimes of DConfig changed, updating";
-            const auto &value = config->value(AppsLaunchedTimes).toMap();
-            updateAppsLaunchedTimes(value);
-        });
     }
 }
 
