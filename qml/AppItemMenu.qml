@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2023 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2023 - 2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -34,7 +34,6 @@ Loader {
             bottomMargin: isFullscreen && DesktopIntegration.dockPosition === Qt.DownArrow ? dockSpacing : 0
             leftMargin: isFullscreen && DesktopIntegration.dockPosition === Qt.LeftArrow ? dockSpacing : 0
             rightMargin: isFullscreen && DesktopIntegration.dockPosition === Qt.RightArrow ? dockSpacing : 0
-            modal: true
 
             // 在全屏模式下，右键菜单适配系统深浅模式
             // 通过设置palette来实现主题适配
