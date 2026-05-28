@@ -1,3 +1,10 @@
+dde-launchpad (2.0.38) unstable; urgency=medium
+
+  * fix: remove modal from app menu
+  * fix: enable touch scrolling in launcher
+
+ -- zhangkun <zhangkun2@uniontech.com>  Thu, 28 May 2026 15:42:09 +0800
+
 dde-launchpad (2.0.37) unstable; urgency=medium
 
   * feat: add Wayland XDG activation token support for app launch
