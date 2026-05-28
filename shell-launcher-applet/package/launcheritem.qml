@@ -298,6 +298,9 @@ AppletItem {
         property string appId: ""
         property string appName: ""
 
+        color: "transparent"
+        DWindow.themeType: DTK.themeType
+        DWindow.enableBlurWindow: false
         DLayerShellWindow.anchors: DLayerShellWindow.AnchorNone
 
         minimumWidth: layout.implicitWidth + 2 * DStyle.Style.dialogWindow.contentHMargin
