@@ -9,6 +9,7 @@
 #include <QPointer>
 #include <QTimer>
 #include <QFileInfo>
+#include <QDBusServiceWatcher>
 #include <dtkcore_global.h>
 
 DCORE_BEGIN_NAMESPACE
@@ -62,7 +63,6 @@ private slots:
     void checkPendingAppItems();
 
 private:
-    void initObjectManager();
     void fetchAppItems();
     void watchingAppItemAdded(const QString &key, AppMgr::AppItem *appItem);
     void watchingAppItemRemoved(const QString &key);
@@ -72,6 +72,7 @@ private:
 
 private:
     __AppManager1ApplicationObjectManager *m_objectManager;
+    QDBusServiceWatcher *m_serviceWatcher = nullptr;
     QMap<QString, AppMgr::AppItem *> m_appItems;
     QMap<QString, AppMgr::AppItem *> m_pendingAppItems;
     QTimer *m_checkTimer;
