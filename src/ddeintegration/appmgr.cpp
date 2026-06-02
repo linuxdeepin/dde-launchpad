@@ -155,37 +155,22 @@ AppMgr::AppMgr(QObject *parent)
                 watchingAppItemRemoved(key);
             });
 
-    DConfig *config = DConfig::create("org.deepin.dde.application-manager", "org.deepin.dde.am", "", this);
-    if (!config->isValid()) {
-        qCWarning(logDdeIntegration) << "DConfig is invalid when getting launched times.";
-    } else {
-        static const QString AppsLaunchedTimes(u8"appsLaunchedTimes");
-        const auto &value = config->value(AppsLaunchedTimes).toMap();
-        updateAppsLaunchedTimes(value);
-        QObject::connect(config, &DConfig::valueChanged, this, [this, config](const QString &key) {
-            if (key != AppsLaunchedTimes) {
-                qCDebug(logDdeIntegration) << "Ignoring non-appsLaunchedTimes key:" << key;
-                return;
-            }
-
-            qCInfo(logDdeIntegration) << "appsLaunchedTimes of DConfig changed, updating";
-            const auto &value = config->value(AppsLaunchedTimes).toMap();
-            updateAppsLaunchedTimes(value);
-        });
-    }
-
     if (isValid()) {
+        qCInfo(logDdeIntegration) << "AppManager1 service already ready, fetching app items right away";
         fetchAppItems();
-    }
-
-    m_serviceWatcher = new QDBusServiceWatcher(QStringLiteral("org.desktopspec.ApplicationManager1"),
+        loadAppsLaunchedTimes();
+    } else {
+        auto serviceWatcher = new QDBusServiceWatcher(QStringLiteral("org.desktopspec.ApplicationManager1"),
                                                QDBusConnection::sessionBus(),
                                                QDBusServiceWatcher::WatchForRegistration,
                                                this);
-    connect(m_serviceWatcher, &QDBusServiceWatcher::serviceRegistered, this, [this]() {
-        qCInfo(logDdeIntegration) << "AppManager1 service registered on bus, fetching app items";
-        fetchAppItems();
-    });
+        connect(serviceWatcher, &QDBusServiceWatcher::serviceRegistered, this, [this, serviceWatcher]() {
+            qCInfo(logDdeIntegration) << "AppManager1 service registered on bus, fetching app items";
+            fetchAppItems();
+            loadAppsLaunchedTimes();
+            serviceWatcher->disconnect();
+        });
+    }
 }
 
 AppMgr::~AppMgr()
@@ -480,6 +465,28 @@ void AppMgr::updateAppsLaunchedTimes(const QVariantMap &appsLaunchedTimes)
             item->launchedTimes = times;
             Q_EMIT itemDataChanged(item->id);
         }
+    }
+}
+
+void AppMgr::loadAppsLaunchedTimes()
+{
+    DConfig *config = DConfig::create("org.deepin.dde.application-manager", "org.deepin.dde.am", "", this);
+    if (!config->isValid()) {
+        qCWarning(logDdeIntegration) << "DConfig is invalid when getting launched times.";
+    } else {
+        static const QString AppsLaunchedTimes(u8"appsLaunchedTimes");
+        const auto &value = config->value(AppsLaunchedTimes).toMap();
+        updateAppsLaunchedTimes(value);
+        QObject::connect(config, &DConfig::valueChanged, this, [this, config](const QString &key) {
+            if (key != AppsLaunchedTimes) {
+                qCDebug(logDdeIntegration) << "Ignoring non-appsLaunchedTimes key:" << key;
+                return;
+            }
+
+            qCInfo(logDdeIntegration) << "appsLaunchedTimes of DConfig changed, updating";
+            const auto &value = config->value(AppsLaunchedTimes).toMap();
+            updateAppsLaunchedTimes(value);
+        });
     }
 }
 

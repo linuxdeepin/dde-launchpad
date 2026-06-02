@@ -64,6 +64,7 @@ private slots:
 
 private:
     void fetchAppItems();
+    void loadAppsLaunchedTimes();
     void watchingAppItemAdded(const QString &key, AppMgr::AppItem *appItem);
     void watchingAppItemRemoved(const QString &key);
     void watchingAppItemPropertyChanged(const QString &key, AppMgr::AppItem *appItem);
@@ -72,7 +73,6 @@ private:
 
 private:
     __AppManager1ApplicationObjectManager *m_objectManager;
-    QDBusServiceWatcher *m_serviceWatcher = nullptr;
     QMap<QString, AppMgr::AppItem *> m_appItems;
     QMap<QString, AppMgr::AppItem *> m_pendingAppItems;
     QTimer *m_checkTimer;
