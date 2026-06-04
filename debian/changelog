@@ -1,3 +1,11 @@
+dde-launchpad (2.0.39) unstable; urgency=medium
+
+  * fix: app hang a few seconds when launch app for the first time
+  * fix: launchpad might be blank when starting a new treeland dde
+    session
+
+ -- zhangkun <zhangkun2@uniontech.com>  Thu, 04 Jun 2026 20:07:12 +0800
+
 dde-launchpad (2.0.38) unstable; urgency=medium
 
   * fix: remove modal from app menu
