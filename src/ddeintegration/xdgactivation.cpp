@@ -4,7 +4,9 @@
 
 #include "xdgactivation.h"
 
+#include <QCoreApplication>
 #include <QEventLoop>
+#include <QPointer>
 #include <QTimer>
 #include <QWindow>
 #include <QLoggingCategory>
@@ -37,8 +39,16 @@ void XdgActivationTokenV1::xdg_activation_token_v1_done(const QString &token)
 
 XdgActivationV1 *XdgActivationV1::instance()
 {
-    static XdgActivationV1 s_instance;
-    return &s_instance;
+    // Not a function-local static: a static is destroyed at process exit, after
+    // ~QGuiApplication has dropped the Wayland connection, so destroy() in the
+    // destructor would marshal onto a freed wl_proxy and crash. Parent to qApp so
+    // it's torn down with the Qt object tree instead.
+    static QPointer<XdgActivationV1> s_instance;
+    if (!s_instance) {
+        s_instance = new XdgActivationV1;
+        s_instance->setParent(qApp);
+    }
+    return s_instance;
 }
 
 XdgActivationV1::XdgActivationV1()
@@ -48,7 +58,9 @@ XdgActivationV1::XdgActivationV1()
 
 XdgActivationV1::~XdgActivationV1()
 {
-    if (isInitialized())
+    // Runs only at shutdown, when qApp and the Wayland connection may already be
+    // gone; guard so we never send destroy() onto a dead wl_display.
+    if (qApp && isInitialized())
         destroy();
 }
 
