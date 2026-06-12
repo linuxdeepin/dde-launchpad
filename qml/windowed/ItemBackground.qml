@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2024 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2024 - 2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -12,6 +12,8 @@ D.BoxPanel {
     id: control
     property Item button
     property D.Palette background: Helper.itemBackground
+    property bool interactionPressed: control.D.ColorSelector.controlState === D.DTK.PressedState
+    property bool interactionHovered: control.D.ColorSelector.controlState === D.DTK.HoveredState
 
     implicitWidth: DS.Style.toolButton.width
     implicitHeight: DS.Style.toolButton.height
@@ -24,7 +26,7 @@ D.BoxPanel {
         if (typeof dndItem !== "undefined" && dndItem.currentlyDraggedId !== "") {
             return false
         }
-        return button.checked || button.highlighted || button.visualFocus || control.D.ColorSelector.controlState === D.DTK.PressedState || control.D.ColorSelector.controlState === D.DTK.HoveredState
+        return button.checked || button.highlighted || button.visualFocus || interactionPressed || interactionHovered
     }
 
     function selectValue(normal, checked, highlighted) {

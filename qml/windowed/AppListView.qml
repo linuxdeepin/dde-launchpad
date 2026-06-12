@@ -206,6 +206,12 @@ FocusScope {
                 ColorSelector.pressed: false
                 property Palette textColor: DStyle.Style.button.text
                 palette.windowText: ColorSelector.textColor
+                ColorSelector.hovered: itemHoverHandler.hovered
+
+                HoverHandler {
+                    id: itemHoverHandler
+                }
+
                 ToolTip.text: text
                 ToolTip.delay: 500
                 ToolTip.visible: hovered && contentItem.implicitWidth > contentItem.width
@@ -261,6 +267,8 @@ FocusScope {
                     implicitWidth: DStyle.Style.itemDelegate.width
                     implicitHeight: Helper.windowed.listItemHeight
                     button: itemDelegate
+                    interactionPressed: mouseArea.pressed
+                    interactionHovered: itemHoverHandler.hovered
                 }
             }
             Keys.onReturnPressed: {
