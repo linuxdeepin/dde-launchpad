@@ -44,12 +44,8 @@ bool DesktopIntegration::isTreeLand()
 
 void DesktopIntegration::openSystemSettings()
 {
-    DDBusSender()
-        .service("org.deepin.dde.ControlCenter1")
-        .interface("org.deepin.dde.ControlCenter1")
-        .path("/org/deepin/dde/ControlCenter1")
-        .method(QString("Show"))
-        .call();
+    qCInfo(logDesktopIntegration) << "Opening system settings";
+    launchByDesktopId("org.deepin.dde.control-center.desktop");
 }
 
 void DesktopIntegration::launchByDesktopId(const QString &desktopId)
