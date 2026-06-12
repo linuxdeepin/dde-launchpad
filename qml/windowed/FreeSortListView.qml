@@ -302,6 +302,11 @@ Item {
                 property Palette textColor: DStyle.Style.button.text
                 palette.windowText: ColorSelector.textColor
                 opacity: !Drag.active && (typeof dndItem === "undefined" || dndItem.currentlyDraggedId !== model.desktopId) ? 1 : 0
+                ColorSelector.hovered: itemHoverHandler.hovered
+
+                HoverHandler {
+                    id: itemHoverHandler
+                }
 
                 ToolTip.text: text
                 ToolTip.delay: 500
@@ -323,6 +328,8 @@ Item {
                     implicitWidth: DStyle.Style.itemDelegate.width
                     implicitHeight: Helper.windowed.listItemHeight
                     button: itemDelegate
+                    interactionPressed: mouseArea.pressed
+                    interactionHovered: itemHoverHandler.hovered
                 }
 
                 MouseArea {
