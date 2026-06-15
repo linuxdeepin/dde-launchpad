@@ -225,9 +225,12 @@ FocusScope {
                 MouseArea {
                     id: mouseArea
                     anchors.fill: parent
+
+                    // Use a dummy Item as drag.target so Wayland dnd doesn't break the original ItemDelegate layout
+                    Item { id: dndTarget }
                     
                     acceptedButtons: Qt.LeftButton | Qt.RightButton
-                    drag.target: itemDelegate
+                    drag.target: dndTarget
                     // 当分类菜单打开时，禁用拖拽功能
                     enabled: !(ddeCategoryMenu.visible || alphabetCategoryPopup.visible)
 
