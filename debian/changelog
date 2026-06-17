@@ -1,3 +1,10 @@
+dde-launchpad (2.0.41) unstable; urgency=medium
+
+  * fix: prevent app list item overlap after drag on Wayland
+  * refactor: move XdgActivation to pluginitem and simplify dock plugins
+
+ -- zhangkun <zhangkun2@uniontech.com>  Wed, 17 Jun 2026 16:17:46 +0800
+
 dde-launchpad (2.0.40) unstable; urgency=medium
 
   * fix: avoid xdg_activation_v1 destroy on a torn-down display at exit
