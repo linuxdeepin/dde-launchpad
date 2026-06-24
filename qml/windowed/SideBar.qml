@@ -94,9 +94,13 @@ ColumnLayout {
         KeyNavigation.tab: nextKeyTabTarget
         topPadding: 7
         bottomPadding: 5
-        ToolTip.visible: hovered
+        ToolTip.visible: sortModeHoverHandler.hovered
         ToolTip.delay: 500
         ToolTip.text: qsTr("Sorting Mode")
+
+        HoverHandler {
+            id: sortModeHoverHandler
+        }
 
         contentItem: ColumnLayout {
             spacing: 2
