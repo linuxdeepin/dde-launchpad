@@ -1,3 +1,12 @@
+dde-launchpad (2.0.42) unstable; urgency=medium
+
+  * fix(sidebar): prevent ToolTip on touch tap for sort button
+  * chore: Sync by
+    https://github.com/linuxdeepin/.github/commit/88706fa723e3771211cb07
+    81d3d97fd4a6cd2a68
+
+ -- zhangkun <zhangkun2@uniontech.com>  Wed, 24 Jun 2026 15:35:11 +0800
+
 dde-launchpad (2.0.41) unstable; urgency=medium
 
   * fix: prevent app list item overlap after drag on Wayland
