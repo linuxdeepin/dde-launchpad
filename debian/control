@@ -17,7 +17,6 @@ Build-Depends:
  qt6-tools-dev-tools,
  qt6-wayland-dev,
  qt6-wayland-private-dev,
- wayland-protocols,
  libdtkcommon-dev,
  libdtk6core-dev (>= 6.0.43),
 # v-- provides qdbusxml2cpp-fix binary
@@ -26,7 +25,7 @@ Build-Depends:
  libdtk6gui-dev (>= 6.0.19),
  libdtk6declarative-dev (>> 6.7.33),
  dde-api-dev (>> 6.0.39),
- libdde-shell-dev (>= 0.0.10),
+ libdde-shell-dev (>= 2.0.45),
  libappstreamqt-dev (>= 1.0.0)
 Standards-Version: 4.6.0
 Rules-Requires-Root: no

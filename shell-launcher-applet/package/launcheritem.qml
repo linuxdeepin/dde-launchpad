@@ -152,8 +152,8 @@ AppletItem {
     }
 
     function launchApp(desktopId) {
-        LauncherController.visible = false;
         DesktopIntegration.launchByDesktopId(desktopId);
+        LauncherController.visible = false;
     }
 
     function assignFullscreenFrameScreen() {

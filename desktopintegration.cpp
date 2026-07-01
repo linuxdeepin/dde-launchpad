@@ -15,10 +15,7 @@
 #include <appinfo.h>
 #include <appmgr.h>
 
-#ifdef HAVE_WAYLAND_XDG_ACTIVATION
 #include <xdgactivation.h>
-#include <DGuiApplicationHelper>
-#endif
 
 #include <AppStreamQt/pool.h>
 
@@ -51,16 +48,15 @@ void DesktopIntegration::openSystemSettings()
 void DesktopIntegration::launchByDesktopId(const QString &desktopId)
 {
     qCInfo(logDesktopIntegration) << "Launching app by desktop ID:" << desktopId;
-    QString token;
-#ifdef HAVE_WAYLAND_XDG_ACTIVATION
-    auto xdgActivation = DDEIntegration::XdgActivationV1::instance();
-    if (xdgActivation->isActive())
-        token = xdgActivation->requestToken(QGuiApplication::focusWindow(), desktopId);
-#endif
-    if (!AppMgr::launchApp(desktopId, token)) {
-        qCDebug(logDesktopIntegration) << "AppMgr launch failed, trying AppInfo launch";
-        AppInfo::launchByDesktopId(desktopId);
-    }
+    auto *activation = new ds::XdgActivation(&instance());
+    connect(activation, &ds::XdgActivation::tokenReady, &instance(), [desktopId, activation](const QString &token) {
+        if (!AppMgr::launchApp(desktopId, token)) {
+            qCDebug(logDesktopIntegration) << "AppMgr launch failed, trying AppInfo launch";
+            AppInfo::launchByDesktopId(desktopId);
+        }
+        activation->deleteLater();
+    });
+    activation->requestToken();
 }
 
 QString DesktopIntegration::environmentVariable(const QString &env)
@@ -265,19 +261,6 @@ DesktopIntegration::DesktopIntegration(QObject *parent)
     
     m_iconScaleFactor = dconfig->value("iconScaleFactor", 1.0).toReal();
     qCInfo(logDesktopIntegration) << "Icon scale factor loaded:" << m_iconScaleFactor;
-
-#ifdef HAVE_WAYLAND_XDG_ACTIVATION
-    if (DTK_GUI_NAMESPACE::DGuiApplicationHelper::testAttribute(
-            DTK_GUI_NAMESPACE::DGuiApplicationHelper::IsWaylandPlatform)) {
-        auto *xdgActivation = DDEIntegration::XdgActivationV1::instance();
-        connect(xdgActivation, &DDEIntegration::XdgActivationV1::activeChanged, this, []() {
-            if (DDEIntegration::XdgActivationV1::instance()->isActive())
-                qCInfo(logDesktopIntegration) << "XdgActivationV1: ready, XDG activation token support enabled";
-            else
-                qCWarning(logDesktopIntegration) << "XdgActivationV1: compositor did not advertise xdg_activation_v1, token requests will be skipped";
-        });
-    }
-#endif
 
     connect(m_dockIntegration, &DdeDock::directionChanged, this, &DesktopIntegration::dockPositionChanged);
     connect(m_dockIntegration, &DdeDock::geometryChanged, this, &DesktopIntegration::dockGeometryChanged);
