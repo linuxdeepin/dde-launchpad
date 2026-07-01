@@ -207,7 +207,7 @@ AppletItem {
 
         flags: {
             if (DebugHelper.useRegularWindow) return Qt.Window
-            return (Qt.FramelessWindowHint | Qt.Tool)
+            return Qt.FramelessWindowHint
         }
 
         DWindow.enabled: !DebugHelper.useRegularWindow
