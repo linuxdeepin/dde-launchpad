@@ -1,3 +1,9 @@
+dde-launchpad (2.0.43) unstable; urgency=medium
+
+  * fix(launcher): remove Qt.Tool flag to fix window stacking
+
+ -- zhangkun <zhangkun2@uniontech.com>  Thu, 02 Jul 2026 13:26:40 +0800
+
 dde-launchpad (2.0.42) unstable; urgency=medium
 
   * fix(sidebar): prevent ToolTip on touch tap for sort button
