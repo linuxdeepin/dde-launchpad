@@ -908,6 +908,7 @@ InputEventItem {
             }
             function onCurrentFrameChanged() {
                 if (LauncherController.currentFrame === "FullscreenFrame") {
+                    listviewPage.changedByNonKeyboard = true
                     listviewPage.setCurrentIndex(0)
                 }
             }
