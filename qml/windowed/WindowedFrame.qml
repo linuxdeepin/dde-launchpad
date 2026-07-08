@@ -326,13 +326,6 @@ InputEventItem {
     }
 
     Connections {
-        target: sideBar
-        function onSwitchToFreeSort(isFreeSort) {
-            appList.switchToFreeSort(isFreeSort)
-        }
-    }
-
-    Connections {
         target: appList
         function onFreeSortViewFolderClicked(folderId, folderName, triggerPosition) {
             let point = mapFromItem(appList, triggerPosition)

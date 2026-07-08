@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2023 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2023 - 2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -18,8 +18,13 @@ DCORE_USE_NAMESPACE
 void CategorizedSortProxyModel::setCategoryType(CategoryType categoryType)
 {
     CategoryType oldCategoryType = this->categoryType();
-    
-    beginResetModel();
+
+    // Temporarily disable dynamic sort to prevent setSortRole from triggering
+    // a redundant sort. We trigger a single sort below via setDynamicSortFilter,
+    // which uses layoutAboutToBeChanged/layoutChanged instead of modelReset,
+    // preserving delegates.
+    const bool wasDynamic = dynamicSortFilter();
+    setDynamicSortFilter(false);
     isFreeSort = (categoryType == FreeCategory);
     switch (categoryType) {
     case Alphabetary:
@@ -37,8 +42,14 @@ void CategorizedSortProxyModel::setCategoryType(CategoryType categoryType)
         config->setValue("categoryType", categoryType);
     }
 
-    sort(0);
-    endResetModel();
+    // Re-enable dynamic sort filter to trigger a single d->sort() internally,
+    // then restore the original setting. d->sort() emits
+    // layoutAboutToBeChanged/layoutChanged (not modelReset), so the view moves
+    // existing delegates instead of destroying and recreating them.
+    setDynamicSortFilter(true);
+    if (!wasDynamic) {
+        setDynamicSortFilter(false);
+    }
 
     qCInfo(logModels) << "Category type changed to:" << categoryType;
     emit categoryTypeChanged();
