@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2024 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2024 - 2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -18,50 +18,45 @@ ColumnLayout {
 
     signal freeSortViewFolderClicked(string folderId, string folderName, point triggerPosition)
 
-    property Item keyTabTarget: loader.item
+    property bool isFreeSort: CategorizedSortProxyModel.categoryType === CategorizedSortProxyModel.FreeCategory
+    property Item keyTabTarget: isFreeSort ? freeSortView.keyTabTarget : categoryView.keyTabTarget
     property Item nextKeyTabTarget
 
     onFocusChanged: () => {
-        loader.item.focus = true
+        (isFreeSort ? freeSortView : categoryView).focus = true
+    }
+
+    onIsFreeSortChanged: {
+        (isFreeSort ? freeSortView : categoryView).resetViewState()
     }
 
     function resetViewState() {
-        loader.item.resetViewState()
+        (isFreeSort ? freeSortView : categoryView).resetViewState()
     }
 
-    function switchToFreeSort(freeSort) {
-        if (freeSort) {
-            loader.sourceComponent = freeSortListView
-        } else {
-            loader.sourceComponent = categoryListView
-        }
-        // 切换排序模式后立即重置视图到顶部，无动画
-        if (loader.item) {
-            loader.item.resetViewState()
-        }
-    }
-
-    Loader {
-        id: loader
-        sourceComponent: CategorizedSortProxyModel.categoryType === CategorizedSortProxyModel.FreeCategory ? freeSortListView : categoryListView
+    // Both views are always instantiated; switching is done via `visible`
+    // to avoid the costly Loader component destruction/creation (~120ms -> ~0ms).
+    // The hidden view's ListView retains its delegates because it keeps a valid
+    // size from anchors.fill, so re-showing is instant.
+    // Extra memory: ~60-80KB for hidden view delegates (measured).
+    Item {
+        id: viewContainer
         Layout.fillWidth: true
         Layout.fillHeight: true
-    }
 
-    Component {
-        id: categoryListView
         AppListView {
-            id: appCategoryListView
+            id: categoryView
+            anchors.fill: viewContainer
+            visible: !isFreeSort
 
             MouseAreaCom {}
             KeyNavigation.tab: nextKeyTabTarget
         }
-    }
 
-    Component {
-        id: freeSortListView
         FreeSortListView {
-            id: appFreeSortListView
+            id: freeSortView
+            anchors.fill: viewContainer
+            visible: isFreeSort
 
             onFolderClicked: {
                 freeSortViewFolderClicked(folderId, folderName, triggerPosition)
@@ -84,4 +79,3 @@ ColumnLayout {
         }
     }
 }
-
