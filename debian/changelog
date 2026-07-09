@@ -1,3 +1,11 @@
+dde-launchpad (2.0.44) unstable; urgency=medium
+
+  * feat: replace custom XDG activation with Dde::Shell integration
+  * fix: reset fullscreen app list view position on frame switch
+  * fix(windowed): optimize sort mode switch performance
+
+ -- zhangkun <zhangkun2@uniontech.com>  Thu, 09 Jul 2026 19:29:25 +0800
+
 dde-launchpad (2.0.43) unstable; urgency=medium
 
   * fix(launcher): remove Qt.Tool flag to fix window stacking
