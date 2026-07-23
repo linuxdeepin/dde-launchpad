@@ -1,3 +1,10 @@
+dde-launchpad (2.0.45) unstable; urgency=medium
+
+  * fix(CI): broken cppcheck
+  * fix: section sort no longer works
+
+ -- zhangkun <zhangkun2@uniontech.com>  Thu, 23 Jul 2026 21:46:55 +0800
+
 dde-launchpad (2.0.44) unstable; urgency=medium
 
   * feat: replace custom XDG activation with Dde::Shell integration
