@@ -20,7 +20,7 @@ void CategorizedSortProxyModel::setCategoryType(CategoryType categoryType)
     CategoryType oldCategoryType = this->categoryType();
 
     // Temporarily disable dynamic sort to prevent setSortRole from triggering
-    // a redundant sort. We trigger a single sort below via setDynamicSortFilter,
+    // a redundant sort. We trigger a single sort below via sort(0),
     // which uses layoutAboutToBeChanged/layoutChanged instead of modelReset,
     // preserving delegates.
     const bool wasDynamic = dynamicSortFilter();
@@ -42,14 +42,22 @@ void CategorizedSortProxyModel::setCategoryType(CategoryType categoryType)
         config->setValue("categoryType", categoryType);
     }
 
-    // Re-enable dynamic sort filter to trigger a single d->sort() internally,
-    // then restore the original setting. d->sort() emits
-    // layoutAboutToBeChanged/layoutChanged (not modelReset), so the view moves
-    // existing delegates instead of destroying and recreating them.
-    setDynamicSortFilter(true);
-    if (!wasDynamic) {
-        setDynamicSortFilter(false);
-    }
+    // Use sort(0) instead of setDynamicSortFilter(true) because the latter
+    // calls d->sort() without setting proxy_sort_column, leaving it at -1
+    // (the Qt 6 default). When source_sort_column is -1,
+    // QSortFilterProxyModelPrivate::sort_source_rows falls through to
+    // std::less{} (a no-op), so no sorting actually occurs.
+    // sort(0) properly sets proxy_sort_column = 0 and calls
+    // update_source_sort_column(), then d->sort() emits
+    // layoutAboutToBeChanged/layoutChanged so the view moves existing
+    // delegates instead of destroying and recreating them.
+    sort(0);
+    setDynamicSortFilter(wasDynamic);
+
+    // Must update sectionRoleName after the sort so that the QML ListView
+    // evaluates section structure with the correct (already sorted) item order.
+    m_sectionRoleName = sortRoleName();
+    emit sectionRoleNameChanged();
 
     qCInfo(logModels) << "Category type changed to:" << categoryType;
     emit categoryTypeChanged();
