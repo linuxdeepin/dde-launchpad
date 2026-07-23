@@ -377,7 +377,7 @@ FocusScope {
             }
         }
         
-        section.property: CategorizedSortProxyModel.sortRoleName // "transliterated" // "category"
+        section.property: CategorizedSortProxyModel.sectionRoleName // "transliterated" // "category"
         section.criteria: section.property === "transliterated" ? ViewSection.FirstCharacter : ViewSection.FullString
         section.delegate: sectionHeading
         section.labelPositioning: ViewSection.InlineLabels // | ViewSection.CurrentLabelAtStart
