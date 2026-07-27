@@ -15,6 +15,8 @@
 #include <QDBusConnection>
 #include <QLoggingCategory>
 
+#include <DConfig>
+
 #ifdef HAVE_DDE_API_EVENTLOGGER
 #include <dde-api/eventlogger.hpp>
 #endif
@@ -27,6 +29,7 @@ namespace {
 Q_LOGGING_CATEGORY(logController, "org.deepin.dde.launchpad.controller")
 
 constexpr qint64 EVENT_LOGGER_LAUNCHPAD_MODE = 1000610012;
+constexpr auto EnableLaunchpadKey = "enableLaunchpad";
 
 void logLaunchpadMode(const QString &mode, const char *description)
 {
@@ -46,8 +49,24 @@ LauncherController::LauncherController(QObject *parent)
     , optToggle(QStringList{"t", "toggle"}, tr("Toggle launcher visibility"))
     , m_timer(new QTimer(this))
     , m_launcher1Adaptor(new Launcher1Adaptor(this))
+    , m_launchpadConfig(Dtk::Core::DConfig::create(QStringLiteral("org.deepin.dde.shell"),
+                                                   QStringLiteral("org.deepin.ds.launchpad"),
+                                                   QString(),
+                                                   this))
     , m_visible(false)
+    , m_enabled(true)
 {
+    if (m_launchpadConfig) {
+        connect(m_launchpadConfig, &Dtk::Core::DConfig::valueChanged, this, [this](const QString &key) {
+            if (key == QLatin1String(EnableLaunchpadKey)) {
+                updateEnabled();
+            }
+        });
+        updateEnabled();
+    } else {
+        qCWarning(logController) << "Failed to create launchpad DConfig; launchpad remains enabled";
+    }
+
     // TODO: settings should be managed in somewhere else.
     const QString settingBasePath(QStandardPaths::writableLocation(QStandardPaths::AppConfigLocation));
     const QString settingPath(QDir(settingBasePath).absoluteFilePath("settings.ini"));
@@ -141,11 +160,42 @@ bool LauncherController::visible() const
 
 void LauncherController::setVisible(bool visible)
 {
+    if (visible && !m_enabled) {
+        qCDebug(logController) << "Ignoring launchpad show request because it is disabled by DConfig";
+        return;
+    }
+
     if (visible == m_visible) return;
 
     m_visible = visible;
 
     emit visibleChanged(m_visible);
+}
+
+bool LauncherController::enabled() const
+{
+    return m_enabled;
+}
+
+void LauncherController::updateEnabled()
+{
+    if (!m_launchpadConfig->isValid()) {
+        qCWarning(logController) << "Launchpad DConfig is invalid; launchpad remains enabled";
+        return;
+    }
+
+    const bool enabled = m_launchpadConfig->value(QLatin1String(EnableLaunchpadKey), true).toBool();
+    if (enabled == m_enabled) {
+        return;
+    }
+
+    m_enabled = enabled;
+    if (!m_enabled) {
+        setVisible(false);
+    }
+
+    qCInfo(logController) << "Launchpad enabled state changed:" << m_enabled;
+    emit enabledChanged(m_enabled);
 }
 
 bool LauncherController::isFullScreenFrame() const

@@ -39,6 +39,16 @@ The base configuration template is **usually** located at `/usr/share/dsg/config
 
 ### org.deepin.ds.launchpad
 
+#### `enableLaunchpad`
+
+Controls whether the launchpad is available. Setting it to `false` hides the launchpad entry from the dock, closes an open launchpad, and ignores subsequent show/toggle requests. Changes take effect immediately through DConfig notifications. The default value is `true`.
+
+For example:
+
+```bash
+dde-dconfig set -a org.deepin.dde.shell -r org.deepin.ds.launchpad -k enableLaunchpad -v false
+```
+
 #### `excludeAppIdList` (readonly)
 
 The application id list that shouldn't be displayed in dde-launchpad. The application id is its freedeskop.org [`desktop-entry-spec` desktop file id](https://specifications.freedesktop.org/desktop-entry-spec/latest/ar01s02.html#desktop-file-id).

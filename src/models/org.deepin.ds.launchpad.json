@@ -76,6 +76,17 @@
       "permissions": "readwrite",
       "visibility": "private"
     },
+    "enableLaunchpad": {
+      "value": true,
+      "serial": 0,
+      "flags": [],
+      "name": "Enable Launchpad",
+      "name[zh_CN]": "启用启动器",
+      "description": "Show or hide the launchpad entry on the dock and enable or disable launchpad activation.",
+      "description[zh_CN]": "显示或隐藏任务栏上的启动器入口，并启用或禁用启动器唤起。",
+      "permissions": "readwrite",
+      "visibility": "private"
+    },
     "searchByDesktopId": {
       "value": false,
       "serial": 0,

@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2023 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2023 - 2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -9,6 +9,10 @@
 #include <QFont>
 #include <QObject>
 
+namespace Dtk::Core {
+class DConfig;
+}
+
 class QTimer;
 class Launcher1Adaptor;
 class LauncherController : public QObject
@@ -16,6 +20,7 @@ class LauncherController : public QObject
     Q_OBJECT
 
     Q_PROPERTY(bool visible READ visible WRITE setVisible NOTIFY visibleChanged)
+    Q_PROPERTY(bool enabled READ enabled NOTIFY enabledChanged)
     Q_PROPERTY(QString currentFrame READ currentFrame WRITE setCurrentFrame NOTIFY currentFrameChanged)
     Q_PROPERTY(QString currentScreen READ currentScreen WRITE setCurrentScreen NOTIFY currentScreenChanged)
 
@@ -43,6 +48,7 @@ public:
 
     bool visible() const;
     void setVisible(bool visible);
+    bool enabled() const;
     bool isFullScreenFrame() const;
     QString currentFrame() const;
     void setCurrentFrame(const QString & frame);
@@ -59,6 +65,7 @@ public:
     Q_INVOKABLE void setCurrentFrameToWindowedFrame();
 
 signals:
+    void enabledChanged(bool enabled);
     void currentFrameChanged();
     void currentScreenChanged();
     void visibleChanged(bool visible);
@@ -82,10 +89,13 @@ signals:
 
 private:
     explicit LauncherController(QObject *parent=nullptr);
+    void updateEnabled();
 
     QTimer *m_timer;
     Launcher1Adaptor * m_launcher1Adaptor;
+    Dtk::Core::DConfig *m_launchpadConfig;
     bool m_visible;
+    bool m_enabled;
     QString m_currentFrame;
     QString m_currentScreen;
     bool m_pendingHide = false;

@@ -21,6 +21,7 @@ AppletItem {
     id: launcher
     property bool useColumnLayout: Panel.position % 2
     property int dockOrder: 12
+    property bool shouldVisible: LauncherController.enabled
     // 1:4 the distance between app : dock height; get width/height≈0.8
     implicitWidth: useColumnLayout ? Panel.rootObject.dockSize : Panel.rootObject.dockItemMaxSize * 0.8
     implicitHeight: useColumnLayout ? Panel.rootObject.dockItemMaxSize * 0.8 : Panel.rootObject.dockSize
