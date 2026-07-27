@@ -14,7 +14,7 @@ Control {
     id: root
     opacity: Drag.active ? 0 : 1
 
-    property string text: display.startsWith("internal/category/") ? getCategoryName(display.substring(18)) : display
+    property string text: display
 
     property string iconSource
     property bool dndEnabled: false
