@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2023 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2023 - 2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -13,9 +13,19 @@ Q_LOGGING_CATEGORY(logGioUtilsTrash, "org.deepin.dde.launchpad.gioutils.trash")
 TrashMonitor::TrashMonitor(QObject *parent)
     : QObject(parent)
     , m_trash(g_file_new_for_uri("trash:///"))
-    , m_trashMonitor(g_file_monitor_file(m_trash, G_FILE_MONITOR_NONE, NULL, NULL))
+    , m_trashMonitor(nullptr)
 {
     qCDebug(logGioUtilsTrash) << "Initializing TrashMonitor";
+
+    GError *error = nullptr;
+    m_trashMonitor = g_file_monitor_file(m_trash, G_FILE_MONITOR_NONE, nullptr, &error);
+    if (!m_trashMonitor) {
+        qCWarning(logGioUtilsTrash) << "Failed to monitor trash:"
+                                    << (error ? error->message : "unknown error");
+        g_clear_error(&error);
+        return;
+    }
+
     g_signal_connect(m_trashMonitor, "changed", G_CALLBACK(slot_onTrashMonitorChanged), this);
     qCInfo(logGioUtilsTrash) << "TrashMonitor initialized and signal connected";
 }
@@ -23,7 +33,9 @@ TrashMonitor::TrashMonitor(QObject *parent)
 TrashMonitor::~TrashMonitor()
 {
     qCDebug(logGioUtilsTrash) << "Destroying TrashMonitor";
-    g_object_unref(m_trashMonitor);
+    if (m_trashMonitor) {
+        g_object_unref(m_trashMonitor);
+    }
     g_object_unref(m_trash);
 }
 

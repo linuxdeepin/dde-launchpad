@@ -1,10 +1,11 @@
-// SPDX-FileCopyrightText: 2023 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2023 - 2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 #include "appsmodel.h"
 #include "categoryutils.h"
 #include "iconutils.h"
+#include "trashmonitor.h"
 
 #include <QDebug>
 #include <QStandardPaths>
@@ -45,6 +46,7 @@ AppsModel::AppsModel(QObject *parent)
     : QStandardItemModel(parent)
     , m_dconfig(DConfig::create("org.deepin.dde.shell", "org.deepin.ds.launchpad"))
     , m_tmUpdateCache(new QTimer(this))
+    , m_trashMonitor(new TrashMonitor(this))
 {
     qCDebug(logModels) << "Initializing AppsModel";
     Q_ASSERT_X(m_dconfig->isValid(), "DConfig", "DConfig file is missing or invalid");
@@ -69,6 +71,8 @@ AppsModel::AppsModel(QObject *parent)
     QList<AppItem *> duplicatedItems = addItems(items);
     Q_ASSERT(duplicatedItems.isEmpty());
     qDebug() << rowCount();
+
+    connect(m_trashMonitor, &TrashMonitor::trashAttributeChanged, this, &AppsModel::updateTrashIcon);
 
     m_tmUpdateCache->setInterval(1000);
     m_tmUpdateCache->setSingleShot(true);
@@ -204,6 +208,25 @@ void AppsModel::updateModelData()
 
     endResetModel();
     qCInfo(logModels) << "Model data updated";
+}
+
+void AppsModel::updateTrashIcon()
+{
+    auto *trashItem = itemFromDesktopId(QStringLiteral("dde-trash.desktop"));
+    if (!trashItem) {
+        qCDebug(logModels) << "Trash item is not present in AppsModel";
+        return;
+    }
+
+    const QString iconName = m_trashMonitor->trashItemCount() > 0
+        ? QStringLiteral("user-trash-full")
+        : QStringLiteral("user-trash");
+    if (trashItem->iconName() == iconName) {
+        return;
+    }
+
+    qCInfo(logModels) << "Updating trash icon to:" << iconName;
+    trashItem->setIconName(iconName);
 }
 
 // the caller manage the return values' ownership (i.e. might need to free them)

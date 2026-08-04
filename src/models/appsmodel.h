@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2023 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2023 - 2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -14,6 +14,8 @@ namespace Dtk::Core {
 class DConfig;
 class DFileWatcherManager;
 }
+
+class TrashMonitor;
 
 // List of applications and nothing else.
 // Always in a single column so it's a one dimension model.
@@ -60,9 +62,11 @@ private:
 
     QList<AppItem *> allAppInfosShouldBeShown() const;
     void cleanUpInvalidApps(const QList<AppItem *> knownExistedApps);
+    void updateTrashIcon();
 
     Dtk::Core::DConfig * m_dconfig;
     QStringList m_excludedAppIdList;
     Dtk::Core::DFileWatcherManager *m_fwIconCache = nullptr;
     QTimer *m_tmUpdateCache = nullptr;
+    TrashMonitor *m_trashMonitor = nullptr;
 };
