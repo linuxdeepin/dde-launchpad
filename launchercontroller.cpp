@@ -141,7 +141,29 @@ bool LauncherController::visible() const
 
 void LauncherController::setVisible(bool visible)
 {
-    if (visible == m_visible) return;
+    if (!visible && m_showPending) {
+        m_showPending = false;
+        return;
+    }
+
+    if (visible == m_visible || (visible && m_showPending)) return;
+
+    if (visible && QGuiApplicationPrivate::popupCount() > 0) {
+        m_showPending = true;
+        closeAllPopups();
+
+        // Let Qt finish hiding the current popup and release the Wayland
+        // popup grab before the launcher window is mapped.
+        QTimer::singleShot(0, this, [this] {
+            if (!m_showPending) {
+                return;
+            }
+
+            m_showPending = false;
+            setVisible(true);
+        });
+        return;
+    }
 
     m_visible = visible;
 
