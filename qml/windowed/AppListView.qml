@@ -34,7 +34,10 @@ FocusScope {
 
     function scrollToAlphabetCategory(character) {
         for (let i = 0; i < model.count; i++) {
-            let transliterated1st = model.model.data(model.modelIndex(i), AppsModel.TransliteratedRole)[0].toUpperCase()
+            let transliterated = model.model.data(model.modelIndex(i), AppsModel.TransliteratedRole)
+            if (!transliterated || transliterated.length === 0)
+                continue
+            let transliterated1st = transliterated[0].toUpperCase()
             if (character === transliterated1st) {
                 listView.currentIndex = i
                 scrollToIndex(listView.currentIndex, 35) // the height of a section heading
@@ -45,7 +48,7 @@ FocusScope {
 
     function scrollToDDECategory(category) {
         for (let i = 0; i < model.count; i++) {
-            let value = model.model.data(model.modelIndex(i), AppItem.DDECategoryRole)
+            let value = model.model.data(model.modelIndex(i), AppsModel.DDECategoryRole)
             if (category === value) {
                 listView.currentIndex = i
                 scrollToIndex(listView.currentIndex, 35) // the height of a section heading
@@ -81,6 +84,8 @@ FocusScope {
                     } else if (CategorizedSortProxyModel.categoryType === CategorizedSortProxyModel.DDECategory) {
                         sections = CategorizedSortProxyModel.DDECategorySections()
                     }
+                    if (!sections || sections.length === 0)
+                        return false
                     if (String(sections[0]) === section.toUpperCase())
                         return false
                     else
@@ -373,7 +378,7 @@ FocusScope {
         Connections {
             target: CategorizedSortProxyModel
             function onCategoryTypeChanged() {
-                listView.currentIndex = 0
+                root.resetViewState()
             }
         }
         

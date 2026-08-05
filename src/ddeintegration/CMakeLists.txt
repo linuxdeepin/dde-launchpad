@@ -86,22 +86,6 @@ PROPERTIES
     NO_NAMESPACE ON
 )
 
-set_source_files_properties(
-    ${CMAKE_CURRENT_LIST_DIR}/xml/org.desktopspec.ApplicationManager1.Application.xml
-PROPERTIES
-    CLASSNAME AppManager1Application
-    INCLUDE types/amglobaltypes.h
-    NO_NAMESPACE ON
-)
-
-set_source_files_properties(
-    ${CMAKE_CURRENT_LIST_DIR}/xml/org.desktopspec.ObjectManager1.xml
-PROPERTIES
-    CLASSNAME AppManager1ApplicationObjectManager
-    INCLUDE types/amglobaltypes.h
-    NO_NAMESPACE ON
-)
-
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 set(DBusCPP_SRC "")
@@ -109,16 +93,11 @@ set(DBusCPP_SRC "")
 dtk_add_dbus_interface(DBusCPP_SRC ${CMAKE_CURRENT_LIST_DIR}/xml/org.deepin.dde.daemon.Dock1.xml DaemonDock1)
 dtk_add_dbus_interface(DBusCPP_SRC ${CMAKE_CURRENT_LIST_DIR}/xml/org.deepin.dde.daemon.Launcher1.xml DaemonLauncher1)
 dtk_add_dbus_interface(DBusCPP_SRC ${CMAKE_CURRENT_LIST_DIR}/xml/org.deepin.dde.Appearance1.xml Appearance1)
-dtk_add_dbus_interface(DBusCPP_SRC ${CMAKE_CURRENT_LIST_DIR}/xml/org.desktopspec.ApplicationManager1.Application.xml AppManager1Application)
-dtk_add_dbus_interface(DBusCPP_SRC ${CMAKE_CURRENT_LIST_DIR}/xml/org.desktopspec.ObjectManager1.xml AppManager1ApplicationObjectManager)
-
 message(INFO ${DBusCPP_SRC})
 
 add_library(dde-integration-dbus OBJECT
     ${DBusCPP_SRC}
     types/qrect.h
-    types/objectmap.h
-    types/amglobaltypes.h
 
     appwiz.cpp
     ddedock.cpp
@@ -142,11 +121,10 @@ PUBLIC
 )
 target_link_libraries(dde-integration-dbus
 PUBLIC
-    Qt::Concurrent
+    Qt::Concurrent Qt::DBus
 PRIVATE
     Qt::Core Qt::Gui ${DTK_NS}::Core ${ASQT_NS} launcher-utils)
 
 if (HAVE_DDE_API_EVENTLOGGER)
     target_compile_definitions(dde-integration-dbus PRIVATE HAVE_DDE_API_EVENTLOGGER)
-    target_link_libraries(dde-integration-dbus PRIVATE DDEAPI::EventLogger)
 endif()

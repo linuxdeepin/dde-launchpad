@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2023 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2023 - 2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -15,6 +15,7 @@ class LauncherItem : public DS_NAMESPACE::DApplet
     Q_PROPERTY(QString iconName MEMBER m_iconName NOTIFY iconNameChanged FINAL)
 public:
     explicit LauncherItem(QObject *parent = nullptr);
+    bool load() override;
     virtual bool init() override;
 
 Q_SIGNALS:

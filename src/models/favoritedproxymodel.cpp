@@ -1,9 +1,8 @@
-// SPDX-FileCopyrightText: 2023 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2023 - 2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 #include "favoritedproxymodel.h"
-#include "appitem.h"
 #include "appsmodel.h"
 
 #include <QDebug>
@@ -68,13 +67,13 @@ bool FavoritedProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex &sou
 {
     QModelIndex modelIndex = this->sourceModel()->index(sourceRow, 0, sourceParent);
 
-    return m_favoritedAppIds.contains(modelIndex.data(AppItem::DesktopIdRole).toString());
+    return m_favoritedAppIds.contains(modelIndex.data(AppsModel::DesktopIdRole).toString());
 }
 
 bool FavoritedProxyModel::lessThan(const QModelIndex &source_left, const QModelIndex &source_right) const
 {
-    const int leftIndex = m_favoritedAppIds.indexOf(source_left.data(AppItem::DesktopIdRole).toString());
-    const int rightIndex = m_favoritedAppIds.indexOf(source_right.data(AppItem::DesktopIdRole).toString());
+    const int leftIndex = m_favoritedAppIds.indexOf(source_left.data(AppsModel::DesktopIdRole).toString());
+    const int rightIndex = m_favoritedAppIds.indexOf(source_right.data(AppsModel::DesktopIdRole).toString());
 
     return leftIndex < rightIndex;
 }
