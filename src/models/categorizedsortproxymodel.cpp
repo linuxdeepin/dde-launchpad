@@ -19,19 +19,14 @@ void CategorizedSortProxyModel::setCategoryType(CategoryType categoryType)
 {
     CategoryType oldCategoryType = this->categoryType();
 
-    // Temporarily disable dynamic sort to prevent setSortRole from triggering
-    // a redundant sort. We trigger a single sort below via sort(0),
-    // which uses layoutAboutToBeChanged/layoutChanged instead of modelReset,
-    // preserving delegates.
-    const bool wasDynamic = dynamicSortFilter();
-    setDynamicSortFilter(false);
     isFreeSort = (categoryType == FreeCategory);
+    int targetSortRole = sortRole();
     switch (categoryType) {
     case Alphabetary:
-        setSortRole(AppsModel::TransliteratedRole);
+        targetSortRole = AppsModel::TransliteratedRole;
         break;
     case DDECategory:
-        setSortRole(AppItem::DDECategoryRole);
+        targetSortRole = AppsModel::DDECategoryRole;
         break;
     default:
         break;
@@ -42,22 +37,23 @@ void CategorizedSortProxyModel::setCategoryType(CategoryType categoryType)
         config->setValue("categoryType", categoryType);
     }
 
-    // Use sort(0) instead of setDynamicSortFilter(true) because the latter
-    // calls d->sort() without setting proxy_sort_column, leaving it at -1
-    // (the Qt 6 default). When source_sort_column is -1,
-    // QSortFilterProxyModelPrivate::sort_source_rows falls through to
-    // std::less{} (a no-op), so no sorting actually occurs.
-    // sort(0) properly sets proxy_sort_column = 0 and calls
-    // update_source_sort_column(), then d->sort() emits
-    // layoutAboutToBeChanged/layoutChanged so the view moves existing
-    // delegates instead of destroying and recreating them.
-    sort(0);
-    setDynamicSortFilter(wasDynamic);
+    // Update the section criteria before sorting. QQuickListView recalculates
+    // sections synchronously, while layout changes are applied during polish.
+    // Publishing the role first avoids recalculating sections against pending
+    // layout changes.
+    const QString targetSectionRoleName = QString(sourceModel()->roleNames().value(targetSortRole));
+    if (m_sectionRoleName != targetSectionRoleName) {
+        m_sectionRoleName = targetSectionRoleName;
+        emit sectionRoleNameChanged();
+    }
 
-    // Must update sectionRoleName after the sort so that the QML ListView
-    // evaluates section structure with the correct (already sorted) item order.
-    m_sectionRoleName = sortRoleName();
-    emit sectionRoleNameChanged();
+    if (sortRole() != targetSortRole)
+        setSortRole(targetSortRole);
+
+    // The proxy starts with no sort column. Establish it once; subsequent
+    // setSortRole() calls perform the single required layout update.
+    if (sortColumn() < 0)
+        sort(0);
 
     qCInfo(logModels) << "Category type changed to:" << categoryType;
     emit categoryTypeChanged();
@@ -106,7 +102,7 @@ QList<int> CategorizedSortProxyModel::DDECategorySections() const
     QSet<int> ddeCategorySet;
 
     for (int i = 0; i < rowCount(); i++) {
-        auto value = data(index(i, 0), AppItem::DDECategoryRole);
+        auto value = data(index(i, 0), AppsModel::DDECategoryRole);
         if (value.isValid()) {
             ddeCategorySet.insert(value.toInt());
         }

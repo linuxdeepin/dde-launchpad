@@ -10,6 +10,7 @@
 #include "appsmodel.h"
 
 #include <QConcatenateTablesProxyModel>
+#include <QStandardItemModel>
 
 class ItemArrangementProxyModel : public QConcatenateTablesProxyModel
 {

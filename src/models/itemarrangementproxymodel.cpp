@@ -5,7 +5,6 @@
 #include "itemarrangementproxymodel.h"
 
 #include "appsmodel.h"
-#include "categoryutils.h"
 
 #include <QDebug>
 #include <QDir>
@@ -41,7 +40,7 @@ void ItemArrangementProxyModel::updateFolderName(int folderId, const QString &na
     ItemsPage * folder = folderById(folderId);
     folder->setName(name);
 
-    QModelIndexList matched = match(mapFromSource(m_folderModel.index(0, 0)), AppItem::DesktopIdRole, QString("internal/folders/%1").arg(folderId));
+    QModelIndexList matched = match(mapFromSource(m_folderModel.index(0, 0)), AppsModel::DesktopIdRole, QString("internal/folders/%1").arg(folderId));
     Q_ASSERT(!matched.isEmpty());
     emit dataChanged(matched.constFirst(), matched.constFirst(), { Qt::DisplayRole });
 
@@ -161,10 +160,10 @@ void ItemArrangementProxyModel::commitDndOperation(const QString &dragId, const 
             ItemsPage * dstFolder = createFolder(dstFolderId);
             qCDebug(logModels) << "Appending items to new folder page:" << dropId << dragId;
             dstFolder->appendPage({dropId, dragId});
-            AppItem * dropItem = AppsModel::instance().itemFromDesktopId(dropId);
-            if (dropItem) {
-                AppItem::DDECategories dropCategories = AppItem::DDECategories(CategoryUtils::parseBestMatchedCategory(dropItem->categories()));
-                QString folderName = "internal/category/" + QString::number(dropCategories);
+            const QModelIndex dropItem = AppsModel::instance().indexFromDesktopId(dropId);
+            if (dropItem.isValid()) {
+                const int dropCategory = dropItem.data(AppsModel::DDECategoryRole).toInt();
+                QString folderName = "internal/category/" + QString::number(dropCategory);
                 qCDebug(logModels) << "New folder name:" << folderName;
                 dstFolder->setName(folderName);
             }
@@ -218,7 +217,7 @@ QVariant ItemArrangementProxyModel::data(const QModelIndex &index, int role) con
 
     if (idx < 0) {
         // regular applications, not a folder
-        QString id(data(index, AppItem::DesktopIdRole).toString());
+        QString id(data(index, AppsModel::DesktopIdRole).toString());
         if (id.isEmpty() || id.contains("internal")) {
             qCWarning(logModels) << "Invalid or internal ID:" << id << "index:" << index << "row:" << index.row() << "role:" << role;
         }
@@ -240,7 +239,7 @@ QVariant ItemArrangementProxyModel::data(const QModelIndex &index, int role) con
     } else {
         // a folder
         QModelIndex srcIdx = mapToSource(index);
-        QString id = m_folderModel.itemFromIndex(srcIdx)->data(AppItem::DesktopIdRole).toString();
+        QString id = m_folderModel.itemFromIndex(srcIdx)->data(AppsModel::DesktopIdRole).toString();
         int folder, page, pos;
         if (role >= AppsModel::ProxyModelExtendedRole && role != IconsNameRole) {
             std::tie(folder, page, pos) = findItem(id, true);
@@ -249,9 +248,9 @@ QVariant ItemArrangementProxyModel::data(const QModelIndex &index, int role) con
         switch (role) {
             case Qt::DisplayRole:
                 return m_folders.value(id)->name();
-            case AppItem::DesktopIdRole:
+            case AppsModel::DesktopIdRole:
                 return id;
-            case AppItem::IsAutoStartRole:
+            case AppsModel::IsAutoStartRole:
                 return false;
             case PageRole:
                 return page;
@@ -263,10 +262,9 @@ QVariant ItemArrangementProxyModel::data(const QModelIndex &index, int role) con
                 const QStringList desktopIds = m_folders.value(id)->firstNItems(4);
                 QStringList icons;
                 for (const QString & id : desktopIds) {
-                    AppItem * item = AppsModel::instance().itemFromDesktopId(id);
-                    if (item) {
-                        icons.append(item->iconName());
-                    }
+                    const QModelIndex item = AppsModel::instance().indexFromDesktopId(id);
+                    if (item.isValid())
+                        icons.append(item.data(AppsModel::IconNameRole).toString());
                 }
                 return icons;//QStringList({"deepin-music"});
             }
@@ -299,6 +297,11 @@ ItemArrangementProxyModel::ItemArrangementProxyModel(QObject *parent)
 
     connect(&AppsModel::instance(), &AppsModel::rowsInserted, this, &ItemArrangementProxyModel::onSourceModelChanged);
     connect(&AppsModel::instance(), &AppsModel::rowsRemoved, this, &ItemArrangementProxyModel::onSourceModelChanged);
+    connect(&AppsModel::instance(), &AppsModel::modelReset, this, &ItemArrangementProxyModel::onSourceModelChanged);
+    connect(&AppsModel::instance(), &AppsModel::readyChanged, this, [this](bool ready) {
+        if (ready)
+            onSourceModelChanged();
+    });
 
     connect(&m_folderModel, &QStandardItemModel::rowsInserted, this, &ItemArrangementProxyModel::onFolderModelChanged);
     connect(&m_folderModel, &QStandardItemModel::rowsRemoved, this, &ItemArrangementProxyModel::onFolderModelChanged);
@@ -351,7 +354,7 @@ void ItemArrangementProxyModel::saveItemArrangementToUserData()
     itemArrangementSettings.endGroup();
 
     for (int i = 0; i < m_folderModel.rowCount(); i++) {
-        const QString & id = m_folderModel.index(i, 0).data(AppItem::DesktopIdRole).toString();
+        const QString & id = m_folderModel.index(i, 0).data(AppsModel::DesktopIdRole).toString();
         itemArrangementSettings.beginGroup("fullscreen/" + id.mid(17));
         ItemsPage * page = m_folders.value(id);
         int pageCount = page->pageCount();
@@ -375,7 +378,7 @@ std::tuple<int, int, int> ItemArrangementProxyModel::findItem(const QString &id,
 
     if (!searchTopLevelOnly) {
         for (int i = 0; i < m_folderModel.rowCount(); i++) {
-            const QString & folderId = m_folderModel.index(i, 0).data(AppItem::DesktopIdRole).toString();
+            const QString & folderId = m_folderModel.index(i, 0).data(AppsModel::DesktopIdRole).toString();
             std::tie(page, idx) = m_folders[folderId]->findItem(id);
             if (page != -1) {
                 return std::make_tuple(QStringView{folderId}.mid(17).toInt(), page, idx);
@@ -388,10 +391,13 @@ std::tuple<int, int, int> ItemArrangementProxyModel::findItem(const QString &id,
 
 void ItemArrangementProxyModel::onSourceModelChanged()
 {
+    if (!AppsModel::instance().ready())
+        return;
+
     QSet<QString> appDesktopIdSet;
     int appsCount = AppsModel::instance().rowCount();
     for (int i = 0; i < appsCount; i++) {
-        QString desktopId(AppsModel::instance().data(AppsModel::instance().index(i, 0), AppItem::DesktopIdRole).toString());
+        QString desktopId(AppsModel::instance().data(AppsModel::instance().index(i, 0), AppsModel::DesktopIdRole).toString());
         appDesktopIdSet.insert(desktopId);
         int folder;
         std::tie(folder, std::ignore, std::ignore) = findItem(desktopId);
@@ -426,7 +432,7 @@ void ItemArrangementProxyModel::onSourceModelChanged()
 
     m_topLevel->removeItemsNotIn(appDesktopIdSet);
     for (int i = m_folderModel.rowCount() - 1; i >= 0 ; i--) {
-        const QString & folderId = m_folderModel.index(i, 0).data(AppItem::DesktopIdRole).toString();
+        const QString & folderId = m_folderModel.index(i, 0).data(AppsModel::DesktopIdRole).toString();
         m_folders.value(folderId)->removeItemsNotIn(appDesktopIdSet);
         if (m_folders.value(folderId)->pageCount() == 0) {
             removeFolder(QString(folderId).remove("internal/folders/"));
@@ -475,7 +481,7 @@ ItemsPage *ItemArrangementProxyModel::createFolder(const QString &id)
     ItemsPage * page = new ItemsPage(4 * 3, this);
     m_folders.insert(fullId, page);
     QStandardItem * folder = new QStandardItem(fullId);
-    folder->setData(fullId, AppItem::DesktopIdRole);
+    folder->setData(fullId, AppsModel::DesktopIdRole);
     m_folderModel.appendRow(folder);
 
     connect(page, &ItemsPage::pageCountChanged, this, [this, fullId]() {
