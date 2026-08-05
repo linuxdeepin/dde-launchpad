@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2023 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2023 - 2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -66,8 +66,8 @@ bool SearchFilterProxyModel::lessThan(const QModelIndex &source_left, const QMod
     }
 
     // 索引相同时，按启动次数排序：高频使用 > 低频使用
-    int leftLaunchedTimes = source_left.data(AppItem::LaunchedTimesRole).toInt();
-    int rightLaunchedTimes = source_right.data(AppItem::LaunchedTimesRole).toInt();
+    int leftLaunchedTimes = source_left.data(AppsModel::LaunchedTimesRole).toInt();
+    int rightLaunchedTimes = source_right.data(AppsModel::LaunchedTimesRole).toInt();
 
     if (leftLaunchedTimes != rightLaunchedTimes) {
         bool result = leftLaunchedTimes < rightLaunchedTimes;
@@ -87,13 +87,13 @@ int SearchFilterProxyModel::calculateWeight(const QModelIndex &modelIndex) const
 
     const QString & displayName = modelIndex.data(Qt::DisplayRole).toString();
     const QString & name = modelIndex.data(AppsModel::NameRole).toString();
-    const QString & vendor = modelIndex.data(AppItem::VendorRole).toString();
-    const QString & genericName = modelIndex.data(AppItem::GenericNameRole).toString();
+    const QString & vendor = modelIndex.data(AppsModel::VendorRole).toString();
+    const QString & genericName = modelIndex.data(AppsModel::GenericNameRole).toString();
     const QString & transliterated = modelIndex.data(AppsModel::AllTransliteratedRole).toString();
     const QString & jianpin = Dtk::Core::firstLetters(displayName, TS_NoneTone).join(',');
 
     //包名搜索使用
-    const QString & desktopId = modelIndex.data(AppItem::DesktopIdRole).toString();
+    const QString & desktopId = modelIndex.data(AppsModel::DesktopIdRole).toString();
 
     QString searchPatternDelBlank = searchPattern.pattern().toLower().remove(" ");
 

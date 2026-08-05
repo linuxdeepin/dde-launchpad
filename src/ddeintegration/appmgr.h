@@ -1,80 +1,50 @@
-// SPDX-FileCopyrightText: 2023-2026 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2023 - 2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 #pragma once
 
-#include <QMap>
+#include <QHash>
 #include <QObject>
-#include <QPointer>
-#include <QTimer>
-#include <QFileInfo>
-#include <QDBusServiceWatcher>
-#include <dtkcore_global.h>
+#include <QString>
+#include <QVariant>
 
-DCORE_BEGIN_NAMESPACE
-class DConfig;
-DCORE_END_NAMESPACE
-class __AppManager1Application;
-class __AppManager1ApplicationObjectManager;
-class AppMgr : public QObject
+class QTimer;
+
+class AppMgr final : public QObject
 {
     Q_OBJECT
-public:
-    explicit AppMgr(QObject *parent = nullptr);
-    ~AppMgr();
-    struct AppItem
-    {
-        QPointer<__AppManager1Application> handler;
-        QString id;
-        QString name;
-        QString displayName;
-        QString iconName;
-        QStringList categories;
-        qint64 installedTime = 0;
-        qint64 lastLaunchedTime = 0;
-        qint64 launchedTimes = 0;
-        bool isAutoStart = false;
-        QString appId;
-        QString vendor;
-        QString genericName;
-    };
 
+public:
     static AppMgr *instance();
 
-    static bool launchApp(const QString & desktopId, const QString & activationToken = {});
-    static bool autoStart(const QString & desktopId);
-    static void setAutoStart(const QString & desktopId, bool autoStart);
-    static bool disableScale(const QString & desktopId);
-    static void setDisableScale(const QString & desktopId, bool disableScale);
-    static bool isOnDesktop(const QString & desktopId);
-    static bool sendToDesktop(const QString & desktopId);
-    static bool removeFromDesktop(const QString & desktopId);
+    static bool launchApp(const QString &desktopId, const QString &activationToken = {});
+    static bool autoStart(const QString &desktopId);
+    static void setAutoStart(const QString &desktopId, bool enabled);
+    static bool disableScale(const QString &desktopId);
+    static void setDisableScale(const QString &desktopId, bool disabled);
+    static bool sendToDesktop(const QString &desktopId);
+    static bool removeFromDesktop(const QString &desktopId);
 
-    bool isValid() const;
-    QList<AppMgr::AppItem *> allAppInfosShouldBeShown() const;
-    AppMgr::AppItem * appItem(const QString &id) const;
+    bool waitForIcon(const QString &desktopId, const QString &iconName);
+    void cancelPendingAppItem(const QString &desktopId);
+    void clearPendingAppItems();
+    bool isPendingAppItem(const QString &desktopId) const;
 
 Q_SIGNALS:
-    void changed();
-    void itemDataChanged(const QString &id);
+    void pendingAppItemReady(const QString &desktopId);
 
-private slots:
+private Q_SLOTS:
     void checkPendingAppItems();
 
 private:
-    void fetchAppItems();
-    void loadAppsLaunchedTimes();
-    void watchingAppItemAdded(const QString &key, AppMgr::AppItem *appItem);
-    void watchingAppItemRemoved(const QString &key);
-    void watchingAppItemPropertyChanged(const QString &key, AppMgr::AppItem *appItem);
-    void updateAppsLaunchedTimes(const QVariantMap &appsLaunchedTimes);
-    bool isAbsolutePathIcon(const QString &iconName) const;
+    explicit AppMgr(QObject *parent = nullptr);
 
-private:
-    __AppManager1ApplicationObjectManager *m_objectManager;
-    QMap<QString, AppMgr::AppItem *> m_appItems;
-    QMap<QString, AppMgr::AppItem *> m_pendingAppItems;
+    QVariant readProperty(const QString &desktopId, const QString &property) const;
+    bool setProperty(const QString &desktopId, const QString &property, const QVariant &value);
+    bool callBoolMethod(const QString &desktopId, const QString &method) const;
+
+    QHash<QString, QString> m_pendingAppItems;
     QTimer *m_checkTimer;
-    int m_checkCount;
+    int m_checkCount = 0;
 };

@@ -126,25 +126,25 @@ AppletItem {
 
     function getCategoryName(section) {
         switch (Number(section)) {
-        case AppItem.Internet:
+        case AppsModel.ddeCategories.Internet:
             return qsTr("Internet");
-        case AppItem.Chat:
+        case AppsModel.ddeCategories.Chat:
             return qsTr("Chat");
-        case AppItem.Music:
+        case AppsModel.ddeCategories.Music:
             return qsTr("Music");
-        case AppItem.Video:
+        case AppsModel.ddeCategories.Video:
             return qsTr("Video");
-        case AppItem.Graphics:
+        case AppsModel.ddeCategories.Graphics:
             return qsTr("Graphics");
-        case AppItem.Game:
+        case AppsModel.ddeCategories.Game:
             return qsTr("Games");
-        case AppItem.Office:
+        case AppsModel.ddeCategories.Office:
             return qsTr("Office");
-        case AppItem.Reading:
+        case AppsModel.ddeCategories.Reading:
             return qsTr("Reading");
-        case AppItem.Development:
+        case AppsModel.ddeCategories.Development:
             return qsTr("Development");
-        case AppItem.System:
+        case AppsModel.ddeCategories.System:
             return qsTr("System");
         default:
             return qsTr("Others");

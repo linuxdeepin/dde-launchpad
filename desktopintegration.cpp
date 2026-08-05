@@ -3,17 +3,18 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 #include "desktopintegration.h"
+#include "appmgr.h"
 
 #include <DConfig>
-#include <DDBusSender>
 #include <DDesktopEntry>
 #include <DStandardPaths>
 #include <DDesktopServices>
+#include <QDir>
+#include <QFileInfo>
 #include <QRect>
 #include <QGuiApplication>
 #include <QLoggingCategory>
 #include <appinfo.h>
-#include <appmgr.h>
 
 #include <xdgactivation.h>
 
@@ -27,6 +28,7 @@ DCORE_USE_NAMESPACE
 
 namespace {
 Q_LOGGING_CATEGORY(logDesktopIntegration, "org.deepin.dde.launchpad.desktop")
+
 }
 
 QString DesktopIntegration::currentDE()
@@ -71,7 +73,7 @@ double DesktopIntegration::disableScale(const QString &desktopId)
 
 void DesktopIntegration::setDisableScale(const QString &desktopId, double disableScale)
 {
-    return AppMgr::setDisableScale(desktopId, disableScale);
+    AppMgr::setDisableScale(desktopId, disableScale);
 }
 
 void DesktopIntegration::showFolder(QStandardPaths::StandardLocation location)
@@ -206,7 +208,7 @@ bool DesktopIntegration::isAutoStart(const QString &desktopId) const
 // only affect the one in XDG_CONFIG_HOME, don't care about the system one (even if there is one).
 void DesktopIntegration::setAutoStart(const QString &desktopId, bool on)
 {
-    return AppMgr::setAutoStart(desktopId, on);
+    AppMgr::setAutoStart(desktopId, on);
 }
 
 bool DesktopIntegration::shouldSkipConfirmUninstallDialog(const QString &desktopId) const

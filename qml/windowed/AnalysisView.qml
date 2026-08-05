@@ -27,9 +27,9 @@ Control {
         FrequentlyUsedProxyModel {
             id: freqUsedModel
             sourceModel: AppsModel
-            desktopIdRole: AppItem.DesktopIdRole
-            launchedTimesRole: AppItem.LaunchedTimesRole
-            lastLaunchedTimeRole: AppItem.LastLaunchedTimeRole
+            desktopIdRole: AppsModel.DesktopIdRole
+            launchedTimesRole: AppsModel.LaunchedTimesRole
+            lastLaunchedTimeRole: AppsModel.LastLaunchedTimeRole
         }
 
         FrequentlyUsedView {
@@ -44,8 +44,8 @@ Control {
             id: recentlyInstalledView
             model: RecentlyInstalledProxyModel {
                 sourceModel: AppsModel
-                installedTimeRole: AppItem.InstalledTimeRole
-                lastLaunchedTimeRole: AppItem.LastLaunchedTimeRole
+                installedTimeRole: AppsModel.InstalledTimeRole
+                lastLaunchedTimeRole: AppsModel.LastLaunchedTimeRole
             }
             visible: count > 0
             Layout.topMargin: -(Helper.frequentlyUsed.cellPaddingRows / 2)
