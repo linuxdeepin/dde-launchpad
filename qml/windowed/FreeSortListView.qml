@@ -200,7 +200,7 @@ Item {
                     console.log("freesort view folder clicked:", desktopId);
                     let idStr = model.desktopId
                     let strFolderId = Number(idStr.replace("internal/folders/", ""))
-                    let strFolderName = model.display.startsWith("internal/category/") ? getCategoryName(model.display.substring(18)) : model.display
+                    let strFolderName = model.display
                     let offset = height / 2
                     folderClicked(strFolderId, strFolderName, mapToItem(listView, offset, offset))
                 } else {
@@ -260,7 +260,7 @@ Item {
 
             ItemDelegate {
                 id: itemDelegate
-                text: model.display.startsWith("internal/category/") ? getCategoryName(model.display.substring(18)) : model.display
+                text: model.display
                 checkable: false
                 icon.name: itemType === ItemArrangementProxyModel.FolderItemType ? "folder" : iconName
                 DciIcon.mode: DTK.NormalState

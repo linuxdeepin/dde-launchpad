@@ -657,7 +657,7 @@ InputEventItem {
                                         folderGridViewPopup.startPointX = itemPos.x + width / 2
                                         folderGridViewPopup.startPointY = itemPos.y + height / 2
                                         folderGridViewPopup.open()
-                                        folderGridViewPopup.folderName = model.display.startsWith("internal/category/") ? getCategoryName(model.display.substring(18)) : model.display
+                                        folderGridViewPopup.folderName = model.display
                                         console.log("open folder id:" + idNum)
                                     }
                                     onMenuTriggered: {

@@ -20,4 +20,7 @@ PACKAGE org.deepin.ds.dock.launcherapplet
 QML_FILES
     ${QML_FILES_NEED_TRANSLATION}
     ${CMAKE_CURRENT_LIST_DIR}/package/launcheritem.qml
+SOURCE_FILES
+    ${CMAKE_CURRENT_LIST_DIR}/launcheritem.cpp
+    ${PROJECT_SOURCE_DIR}/src/models/itemarrangementproxymodel.cpp
 )
