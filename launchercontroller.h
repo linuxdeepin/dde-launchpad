@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2023 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2023 - 2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -86,6 +86,7 @@ private:
     QTimer *m_timer;
     Launcher1Adaptor * m_launcher1Adaptor;
     bool m_visible;
+    bool m_showPending = false;
     QString m_currentFrame;
     QString m_currentScreen;
     bool m_pendingHide = false;
