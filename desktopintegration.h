@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2023 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2023 - 2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -8,6 +8,7 @@
 #include <QRect>
 #include <QStandardPaths>
 #include <QtQml/qqml.h>
+#include <AppStreamQt/pool.h>
 
 class AppWiz;
 class DdeDock;
@@ -23,6 +24,7 @@ class DesktopIntegration : public QObject
     Q_PROPERTY(qreal opacity READ opacity NOTIFY opacityChanged FINAL)
     Q_PROPERTY(double scaleFactor READ scaleFactor NOTIFY scaleFactorChanged FINAL)
     Q_PROPERTY(qreal iconScaleFactor READ iconScaleFactor WRITE setIconScaleFactor NOTIFY iconScaleFactorChanged FINAL)
+    Q_PROPERTY(uint dummyPackagesRevision READ dummyPackagesRevision NOTIFY dummyPackagesChanged FINAL)
 
     QML_NAMED_ELEMENT(DesktopIntegration)
     QML_SINGLETON
@@ -57,6 +59,7 @@ public:
     QRect dockGeometry() const;
     uint dockSpacing() const;
     QString backgroundUrl() const;
+    uint dummyPackagesRevision() const;
 
     Q_INVOKABLE bool isDockedApp(const QString & desktopId) const;
     Q_INVOKABLE void sendToDock(const QString & desktopId);
@@ -81,11 +84,14 @@ signals:
     void opacityChanged();
     void scaleFactorChanged();
     void iconScaleFactorChanged();
+    void dummyPackagesChanged();
 
 private:
     explicit DesktopIntegration(QObject * parent = nullptr);
 
     QStringList m_compulsoryAppIdList;
+    AppStream::Pool m_appStreamPool;
+    uint m_dummyPackagesRevision = 0;
     AppWiz * m_appWizIntegration;
     DdeDock * m_dockIntegration;
     Appearance * m_appearanceIntegration;
