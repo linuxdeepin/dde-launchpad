@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2024 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2024 - 2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -41,6 +41,8 @@ QtObject {
     }
 
     function generateDragMimeData(desktopId, dockOnly = false) {
+        // Re-evaluate this binding when monitored AppStream metadata changes.
+        DesktopIntegration.dummyPackagesRevision
         // In some cases an app is not allowed to be pinned onto dock via drag-n-drop;
         // We only insert the MIME data for dde-dock in those allowed cases.
         let mime = {}

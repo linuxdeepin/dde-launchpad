@@ -17,8 +17,6 @@
 
 #include <xdgactivation.h>
 
-#include <AppStreamQt/pool.h>
-
 #include "appwiz.h"
 #include "ddedock.h"
 #include "appearance.h"
@@ -91,38 +89,22 @@ bool DesktopIntegration::appIsCompulsoryForDesktop(const QString &desktopId)
 {
     if (m_compulsoryAppIdList.contains(desktopId)) return true;
 
-#ifdef NO_APPSTREAM_QT
-    Q_UNUSED(desktopId)
-#else
     const QString currentDE(DesktopIntegration::currentDE());
 
-    AppStream::Pool pool;
-    // qDebug() << pool.flags() << currentDE;
-    pool.load();
-
-    const AppStream::ComponentBox components = pool.componentsByLaunchable(AppStream::Launchable::KindDesktopId, desktopId);
+    const AppStream::ComponentBox components = m_appStreamPool.componentsByLaunchable(AppStream::Launchable::KindDesktopId, desktopId);
     for (const AppStream::Component & component : components) {
         return component.compulsoryForDesktops().contains(currentDE);
     }
-#endif
 
     return false;
 }
 
 bool DesktopIntegration::appIsDummyPackage(const QString &desktopId)
 {
-#ifdef NO_APPSTREAM_QT
-    Q_UNUSED(desktopId)
-#else
-    AppStream::Pool pool;
-    // qDebug() << pool.flags();
-    pool.load();
-
-    const AppStream::ComponentBox components = pool.componentsByLaunchable(AppStream::Launchable::KindDesktopId, desktopId);
+    const AppStream::ComponentBox components = m_appStreamPool.componentsByLaunchable(AppStream::Launchable::KindDesktopId, desktopId);
     for (const AppStream::Component & component : components) {
         return component.customValue("DDE::is_dummy_package") == "true";
     }
-#endif
 
     return false;
 }
@@ -232,12 +214,22 @@ void DesktopIntegration::uninstallApp(const QString &desktopId)
 
 DesktopIntegration::DesktopIntegration(QObject *parent)
     : QObject(parent)
+    , m_appStreamPool(this)
     , m_appWizIntegration(new AppWiz(this))
     , m_dockIntegration(new DdeDock(this))
     , m_appearanceIntegration(new Appearance(this))
     , m_iconScaleFactor(1.0)
 {
     qCDebug(logDesktopIntegration) << "Initializing DesktopIntegration";
+    m_appStreamPool.addFlags(AppStream::Pool::FlagMonitor);
+    if (!m_appStreamPool.load()) {
+        qCWarning(logDesktopIntegration) << "Failed to load AppStream metadata:" << m_appStreamPool.lastError();
+    }
+    connect(&m_appStreamPool, &AppStream::Pool::changed, this, [this] {
+        ++m_dummyPackagesRevision;
+        Q_EMIT dummyPackagesChanged();
+    });
+
     QScopedPointer<DConfig> dconfig(DConfig::create("org.deepin.dde.shell", "org.deepin.ds.launchpad"));
     Q_ASSERT_X(dconfig->isValid(), "DConfig", "DConfig file is missing or invalid");
     // TODO:
@@ -266,6 +258,11 @@ DesktopIntegration::DesktopIntegration(QObject *parent)
     connect(m_dockIntegration, &DdeDock::geometryChanged, this, &DesktopIntegration::dockGeometryChanged);
     connect(m_appearanceIntegration, &Appearance::wallpaperBlurhashChanged, this, &DesktopIntegration::backgroundUrlChanged);
     connect(m_appearanceIntegration, &Appearance::opacityChanged, this, &DesktopIntegration::opacityChanged);
+}
+
+uint DesktopIntegration::dummyPackagesRevision() const
+{
+    return m_dummyPackagesRevision;
 }
 
 double DesktopIntegration::scaleFactor() const
