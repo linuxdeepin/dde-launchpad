@@ -1,4 +1,4 @@
-# SPDX-FileCopyrightText: 2023 UnionTech Software Technology Co., Ltd.
+# SPDX-FileCopyrightText: 2023 - 2026 UnionTech Software Technology Co., Ltd.
 #
 # SPDX-License-Identifier: CC0-1.0
 
@@ -32,7 +32,6 @@ FILES
 target_sources(launcher-models
 PRIVATE
     appsmodel.cpp
-    appitem.cpp appitem.h
     sortproxymodel.cpp
     searchfilterproxymodel.cpp
     categorizedsortproxymodel.cpp
@@ -54,7 +53,6 @@ target_link_libraries(launcher-models PRIVATE
     ${DTK_NS}::Core
 
     gio-utils
-    dde-integration-dbus
     launcher-utils
 )
 
