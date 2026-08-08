@@ -172,7 +172,7 @@
     </message>
     <message>
         <source>No search results</source>
-        <translation type="unfinished"/>
+        <translation>Sem resultados de pesquisa</translation>
     </message>
 </context>
 <context>
