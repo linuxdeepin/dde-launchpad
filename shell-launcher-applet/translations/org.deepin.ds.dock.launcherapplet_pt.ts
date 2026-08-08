@@ -187,7 +187,7 @@
     </message>
     <message>
         <source>Sort by name</source>
-        <translation type="unfinished"/>
+        <translation>Ordenação por nome</translation>
     </message>
     <message>
         <source>Sorting Mode</source>
