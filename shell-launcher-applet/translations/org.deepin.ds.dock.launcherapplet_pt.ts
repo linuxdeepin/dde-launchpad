@@ -230,19 +230,19 @@
     </message>
     <message>
         <source>Video</source>
-        <translation type="unfinished"/>
+        <translation>Vídeo</translation>
     </message>
     <message>
         <source>Graphics</source>
-        <translation type="unfinished"/>
+        <translation>Gráficos</translation>
     </message>
     <message>
         <source>Games</source>
-        <translation type="unfinished"/>
+        <translation>Jogos</translation>
     </message>
     <message>
         <source>Office</source>
-        <translation type="unfinished"/>
+        <translation>Escritório</translation>
     </message>
     <message>
         <source>Reading</source>
