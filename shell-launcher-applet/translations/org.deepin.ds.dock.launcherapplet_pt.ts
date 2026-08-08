@@ -183,7 +183,7 @@
     </message>
     <message>
         <source>Sort by category</source>
-        <translation type="unfinished"/>
+        <translation>Ordenação por categoria</translation>
     </message>
     <message>
         <source>Sort by name</source>
