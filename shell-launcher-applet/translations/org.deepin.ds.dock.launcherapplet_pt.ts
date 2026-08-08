@@ -191,11 +191,11 @@
     </message>
     <message>
         <source>Sorting Mode</source>
-        <translation type="unfinished"/>
+        <translation>Modo de Ordenação</translation>
     </message>
     <message>
         <source>Computer</source>
-        <translation type="unfinished"/>
+        <translation>Computador</translation>
     </message>
     <message>
         <source>Pictures</source>
