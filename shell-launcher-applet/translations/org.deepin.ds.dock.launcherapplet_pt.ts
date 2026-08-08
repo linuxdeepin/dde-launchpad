@@ -161,7 +161,7 @@
     <name>RecentlyInstalledView</name>
     <message>
         <source>Recently Installed</source>
-        <translation type="unfinished"/>
+        <translation>Instalado Recentemente</translation>
     </message>
 </context>
 <context>
