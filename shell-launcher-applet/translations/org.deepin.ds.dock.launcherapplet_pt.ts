@@ -246,15 +246,15 @@
     </message>
     <message>
         <source>Reading</source>
-        <translation type="unfinished"/>
+        <translation>Leitura</translation>
     </message>
     <message>
         <source>Development</source>
-        <translation type="unfinished"/>
+        <translation>Desenvolvimento</translation>
     </message>
     <message>
         <source>System</source>
-        <translation type="unfinished"/>
+        <translation>Sistema</translation>
     </message>
     <message>
         <source>Others</source>
