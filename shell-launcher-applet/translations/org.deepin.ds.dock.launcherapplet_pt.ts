@@ -207,11 +207,11 @@
     </message>
     <message>
         <source>Desktop</source>
-        <translation type="unfinished"/>
+        <translation>Ambiente de Trabalho</translation>
     </message>
     <message>
         <source>Control Center</source>
-        <translation type="unfinished"/>
+        <translation>Centro de Controlo</translation>
     </message>
 </context>
 <context>
