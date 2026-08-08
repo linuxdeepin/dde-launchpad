@@ -262,7 +262,7 @@
     </message>
     <message>
         <source>launchpad</source>
-        <translation type="unfinished"/>
+        <translation>launchpad</translation>
     </message>
     <message>
         <source>Are you sure you want to uninstall &quot;%1&quot;?</source>
