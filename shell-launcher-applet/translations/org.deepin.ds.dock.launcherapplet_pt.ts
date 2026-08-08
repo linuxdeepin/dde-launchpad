@@ -168,7 +168,7 @@
     <name>SearchResultView</name>
     <message>
         <source>All Apps</source>
-        <translation type="unfinished"/>
+        <translation>Todas as Applicações</translation>
     </message>
     <message>
         <source>No search results</source>
