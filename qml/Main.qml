@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2023 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2023 - 2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -16,33 +16,6 @@ import org.deepin.launchpad.models 1.0
 import org.deepin.launchpad.windowed 1.0
 
 QtObject {
-    function getCategoryName(section) {
-        switch (Number(section)) {
-        case AppItem.Internet:
-            return qsTr("Internet");
-        case AppItem.Chat:
-            return qsTr("Chat");
-        case AppItem.Music:
-            return qsTr("Music");
-        case AppItem.Video:
-            return qsTr("Video");
-        case AppItem.Graphics:
-            return qsTr("Graphics");
-        case AppItem.Game:
-            return qsTr("Games");
-        case AppItem.Office:
-            return qsTr("Office");
-        case AppItem.Reading:
-            return qsTr("Reading");
-        case AppItem.Development:
-            return qsTr("Development");
-        case AppItem.System:
-            return qsTr("System");
-        default:
-            return qsTr("Others");
-        }
-    }
-
     function launchApp(desktopId) {
         if (DebugHelper.avoidLaunchApp) {
             DTK.sendSystemMessage("dde-launchpad (debug)",

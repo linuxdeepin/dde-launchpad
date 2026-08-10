@@ -106,7 +106,7 @@ FocusScope {
                         if (CategorizedSortProxyModel.categoryType === CategorizedSortProxyModel.Alphabetary) {
                             return section.toUpperCase();
                         } else {
-                            return getCategoryName(section)
+                            return ItemArrangementProxyModel.categoryDisplayName(section)
                         }
                     }
 
@@ -295,7 +295,7 @@ FocusScope {
             model: ddeCategoryMenu.existingSections
             delegate: MenuItem {
                 id: menuItem
-                text: getCategoryName(modelData)
+                text: ItemArrangementProxyModel.categoryDisplayName(modelData)
                 textColor: DStyle.Style.menu.itemText
                 font: DTK.fontManager.t6
                 onTriggered: {

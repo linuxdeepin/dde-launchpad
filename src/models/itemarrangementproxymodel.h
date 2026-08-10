@@ -60,8 +60,10 @@ public:
     Q_INVOKABLE void commitDndOperation(const QString & dragId, const QString & dropId, const DndOperation op, int pageHint = -1);
     Q_INVOKABLE int creatEmptyPage(int folderId = 0) const;
     Q_INVOKABLE void removeEmptyPage() const;
+    Q_INVOKABLE QString categoryDisplayName(int category) const;
 
     ItemsPage *itemsPage() { return m_topLevel; }
+    QStringList folderItems(int folderId) const;
 
     // QAbstractItemModel interface
 public:
@@ -85,7 +87,8 @@ private:
     QString findAvailableFolderId();
     ItemsPage * createFolder(const QString & id);
     void removeFolder(const QString & idNumber);
-    ItemsPage * folderById(int id);
+    QString localizedFolderName(const QString &folderName) const;
+    ItemsPage * folderById(int id) const;
     QStringList allArrangedItems() const;
 
     // <folder-id, items-arrangement-data> folder-id: internal/folder/<id number>

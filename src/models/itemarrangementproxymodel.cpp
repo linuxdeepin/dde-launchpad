@@ -7,6 +7,7 @@
 #include "appsmodel.h"
 #include "categoryutils.h"
 
+#include <QCoreApplication>
 #include <QDebug>
 #include <QDir>
 #include <QSettings>
@@ -15,9 +16,51 @@
 
 Q_DECLARE_LOGGING_CATEGORY(logModels)
 
+namespace {
+constexpr QLatin1StringView categoryNamePrefix("internal/category/");
+}
+
 ItemArrangementProxyModel::~ItemArrangementProxyModel()
 {
     qCDebug(logModels) << "Destroying ItemArrangementProxyModel";
+}
+
+QString ItemArrangementProxyModel::categoryDisplayName(int category) const
+{
+    switch (category) {
+    case AppItem::Internet:
+        return QCoreApplication::translate("launcheritem", "Internet");
+    case AppItem::Chat:
+        return QCoreApplication::translate("launcheritem", "Chat");
+    case AppItem::Music:
+        return QCoreApplication::translate("launcheritem", "Music");
+    case AppItem::Video:
+        return QCoreApplication::translate("launcheritem", "Video");
+    case AppItem::Graphics:
+        return QCoreApplication::translate("launcheritem", "Graphics");
+    case AppItem::Game:
+        return QCoreApplication::translate("launcheritem", "Games");
+    case AppItem::Office:
+        return QCoreApplication::translate("launcheritem", "Office");
+    case AppItem::Reading:
+        return QCoreApplication::translate("launcheritem", "Reading");
+    case AppItem::Development:
+        return QCoreApplication::translate("launcheritem", "Development");
+    case AppItem::System:
+        return QCoreApplication::translate("launcheritem", "System");
+    default:
+        return QCoreApplication::translate("launcheritem", "Others");
+    }
+}
+
+QString ItemArrangementProxyModel::localizedFolderName(const QString &folderName) const
+{
+    if (!folderName.startsWith(categoryNamePrefix))
+        return folderName;
+
+    bool ok = false;
+    const int category = QStringView(folderName).sliced(categoryNamePrefix.size()).toInt(&ok);
+    return categoryDisplayName(ok ? category : AppItem::Others);
 }
 
 int ItemArrangementProxyModel::pageCount(int folderId) const
@@ -248,7 +291,7 @@ QVariant ItemArrangementProxyModel::data(const QModelIndex &index, int role) con
 
         switch (role) {
             case Qt::DisplayRole:
-                return m_folders.value(id)->name();
+                return localizedFolderName(m_folders.value(id)->name());
             case AppItem::DesktopIdRole:
                 return id;
             case AppItem::IsAutoStartRole:
@@ -502,11 +545,17 @@ void ItemArrangementProxyModel::removeFolder(const QString &idNumber)
 }
 
 // get folder by id. 0 is top level, >=1 is folder
-ItemsPage *ItemArrangementProxyModel::folderById(int id)
+ItemsPage *ItemArrangementProxyModel::folderById(int id) const
 {
     if (id == 0) return m_topLevel;
     const QString folderId("internal/folders/" + QString::number(id));
     return m_folders.value(folderId);
+}
+
+QStringList ItemArrangementProxyModel::folderItems(int folderId) const
+{
+    const auto page = folderById(folderId);
+    return page ? page->allArrangedItems() : QStringList{};
 }
 
 QStringList ItemArrangementProxyModel::allArrangedItems() const
