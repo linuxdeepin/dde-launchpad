@@ -1,3 +1,14 @@
+dde-launchpad (2.0.46) unstable; urgency=medium
+
+  * perf(appstream): reuse metadata pool
+  * fix: prevent launcher popup blocking when hiding taskbar menus
+  * refactor: migrate to shared dde-shell app model
+  * chore: update libdde-shell-dev version requirement in control
+  * i18n: Updates for project Deepin Desktop Environment (#793)
+  * fix(appmgr): defer apps until theme icon resolves
+
+ -- zhangkun <zhangkun2@uniontech.com>  Tue, 18 Aug 2026 13:26:01 +0800
+
 dde-launchpad (2.0.45) unstable; urgency=medium
 
   * fix(CI): broken cppcheck
