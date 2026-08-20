@@ -1,0 +1,35 @@
+# Maintainer: justforlxz <justforlxz@gmail.com>
+pkgname=deepin-launchpad-git
+pkgver=0.5.0
+pkgrel=1
+sourcename=dde-launchpad
+sourcetars=("$sourcename"_"$pkgver".tar.xz)
+sourcedir="$sourcename"
+pkgdesc='Deepin desktop-environment - Launchpad module'
+arch=('x86_64' 'aarch64')
+url="https://github.com/linuxdeepin/dde-launchpad"
+license=('GPL3')
+depends=('qt6-svg' 'qt6-declarative' 'appstream-qt'
+         'dtk6declarative-git' 'dtk6gui-git' 'dtk6widget-git' 'dtk6core-git'
+         'qt6-base' 'qt6-svg' 'qt6-wayland')
+makedepends=('git' 'cmake' 'ninja' 'qt6-tools' 'dtkcommon' )
+conflicts=('deepin-launcher')
+provides=('deepin-launchpad')
+groups=('deepin-git')
+source=("${sourcetars[@]}")
+sha512sums=('SKIP')
+
+prepare() {
+    cd $sourcedir
+}
+
+build() {
+  cd $sourcedir
+  cmake . -GNinja -DCMAKE_INSTALL_PREFIX=/usr
+  ninja
+}
+
+package() {
+  cd $sourcedir
+  DESTDIR="$pkgdir" ninja install
+}

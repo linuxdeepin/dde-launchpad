@@ -1,0 +1,8 @@
+[main]
+host = https://www.transifex.com
+
+[o:linuxdeepin:p:deepin-desktop-environment:r:0c481cb63f3e4ee955e3ebfbcd2209de]
+file_filter = shell-launcher-applet/translations/org.deepin.ds.dock.launcherapplet_<lang>.ts
+source_file = shell-launcher-applet/translations/org.deepin.ds.dock.launcherapplet.ts
+source_lang = en_US
+type = QT

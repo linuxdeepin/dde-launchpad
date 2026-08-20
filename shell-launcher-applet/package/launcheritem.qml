@@ -1,0 +1,495 @@
+// SPDX-FileCopyrightText: 2023 - 2026 UnionTech Software Technology Co., Ltd.
+//
+// SPDX-License-Identifier: GPL-3.0-or-later
+
+import QtQuick 2.15
+import QtQuick.Controls 2.15
+import QtQuick.Layouts 1.15
+
+import org.deepin.dtk 1.0
+import org.deepin.dtk.style 1.0 as DStyle
+
+import org.deepin.ds 1.0
+import org.deepin.dtk 1.0 as D
+import org.deepin.ds.dock 1.0
+
+import org.deepin.launchpad 1.0
+import org.deepin.launchpad.models 1.0
+import org.deepin.launchpad.windowed 1.0
+
+AppletItem {
+    id: launcher
+    property bool useColumnLayout: Panel.position % 2
+    property int dockOrder: 12
+    // 1:4 the distance between app : dock height; get width/height≈0.8
+    implicitWidth: useColumnLayout ? Panel.rootObject.dockSize : Panel.rootObject.dockItemMaxSize * 0.8
+    implicitHeight: useColumnLayout ? Panel.rootObject.dockItemMaxSize * 0.8 : Panel.rootObject.dockSize
+
+   function toggleLauncher() {
+        LauncherController.visible = !LauncherController.visible
+        toolTip.close()
+    }
+
+    Connections {
+        target: Panel.rootObject
+        function onDockCenterPartPosChanged()
+        {
+            updateLaunchpadPos()
+        }
+        function onViewDeactivated() {
+            if (LauncherController.visible) {
+                LauncherController.hideWithTimer()
+            }
+        }
+    }
+
+    Connections {
+        target: Panel
+        function onLeftEdgeClicked(minOrder) {
+            if (launcher.dockOrder == minOrder) {
+                toggleLauncher()
+            }
+        }
+    }
+
+    property point itemPos: Qt.point(0, 0)
+    function updateItemPos()
+    {
+        var lX = icon.mapToItem(null, 0, 0).x
+        var lY = icon.mapToItem(null, 0, 0).y
+        launcher.itemPos = Qt.point(lX, lY)
+    }
+    function updateLaunchpadPos()
+    {
+        updateItemPos()
+        var launchpad = DS.applet("org.deepin.ds.launchpad")
+        if (!launchpad || !launchpad.rootObject)
+            return
+
+        launchpad.rootObject.windowedPos = launcher.itemPos
+    }
+    Component.onCompleted: {
+        updateLaunchpadPos()
+        assignDockScreen(launcher.fullscreenFrame)
+    }
+
+    function decrementPageIndex(pages) {
+        if (pages.currentIndex === 0 && pages.count > 1) {
+            // pages.setCurrentIndex(pages.count - 1)
+        } else {
+            pages.decrementCurrentIndex()
+        }
+
+        closeContextMenu()
+    }
+
+    function incrementPageIndex(pages) {
+        if (pages.currentIndex === pages.count - 1 && pages.count > 1) {
+            // pages.setCurrentIndex(0)
+        } else {
+            pages.incrementCurrentIndex()
+        }
+
+        closeContextMenu()
+    }
+
+    property var activeMenu: null
+    property Component appContextMenuCom: AppItemMenu { }
+    function showContextMenu(obj, model, additionalProps = {}) {
+        if (!obj || !obj.Window.window) {
+            console.log("obj or obj.Window.window is null")
+            return
+        }
+        closeContextMenu()
+
+        const menu = appContextMenuCom.createObject(obj.Window.window.contentItem, Object.assign({
+            display: model.display,
+            desktopId: model.desktopId,
+            iconName: model.iconName,
+            isFavoriteItem: false,
+            hideFavoriteMenu: true,
+            hideDisplayScalingMenu: Math.abs(DesktopIntegration.scaleFactor - 1.0) < 0.0001,
+            hideMoveToTopMenu: true
+        }, additionalProps));
+        menu.closed.connect(menu.destroy)
+        menu.popup();
+
+        activeMenu = menu
+    }
+
+    function closeContextMenu() {
+        if (activeMenu) {
+            activeMenu.close()
+            activeMenu = null
+        }
+    }
+
+    function getCategoryName(section) {
+        switch (Number(section)) {
+        case AppsModel.ddeCategories.Internet:
+            return qsTr("Internet");
+        case AppsModel.ddeCategories.Chat:
+            return qsTr("Chat");
+        case AppsModel.ddeCategories.Music:
+            return qsTr("Music");
+        case AppsModel.ddeCategories.Video:
+            return qsTr("Video");
+        case AppsModel.ddeCategories.Graphics:
+            return qsTr("Graphics");
+        case AppsModel.ddeCategories.Game:
+            return qsTr("Games");
+        case AppsModel.ddeCategories.Office:
+            return qsTr("Office");
+        case AppsModel.ddeCategories.Reading:
+            return qsTr("Reading");
+        case AppsModel.ddeCategories.Development:
+            return qsTr("Development");
+        case AppsModel.ddeCategories.System:
+            return qsTr("System");
+        default:
+            return qsTr("Others");
+        }
+    }
+
+    function launchApp(desktopId) {
+        DesktopIntegration.launchByDesktopId(desktopId);
+        LauncherController.visible = false;
+    }
+
+    function dockScreen() {
+        const dock = DS.applet("org.deepin.ds.dock")
+        if (!dock)
+            return null
+
+        for (const scr of Qt.application.screens) {
+            if (scr.name === dock.screenName)
+                return scr
+        }
+        return null
+    }
+
+    function assignDockScreen(window) {
+        if (!window)
+            return
+
+        const scr = dockScreen()
+        if (scr && window.screen !== scr)
+            window.screen = scr
+    }
+
+    // A singleshot timer
+    Timer {
+        id: reassignFullscreenFrameScreenTimer
+        interval: 100
+        repeat: false
+        onTriggered: {
+            assignDockScreen(launcher.fullscreenFrame)
+        }
+    }
+
+    PanelToolTip {
+        id: toolTip
+        text: qsTr("launchpad")
+        toolTipX: DockPanelPositioner.x
+        toolTipY: DockPanelPositioner.y
+    }
+
+    property var fullscreenFrame: ApplicationWindow {
+        objectName: "FullscreenFrameApplicationWindow"
+        title: "org.deepin.ds.launchpad.fullscreen"
+        visible: LauncherController.visible && (LauncherController.currentFrame !== "WindowedFrame")
+        // Set transparent on kwin will cause abnormal rounded corners in FolderPopup, Bug: 10219
+        color: DesktopIntegration.isTreeLand() ? "transparent" : palette.window
+        transientParent: null
+
+        Connections {
+            target: DS.applet("org.deepin.ds.dock")
+            function onScreenNameChanged() {
+                LauncherController.visible = false
+                reassignFullscreenFrameScreenTimer.start()
+            }
+        }
+
+        DLayerShellWindow.anchors: DLayerShellWindow.AnchorBottom | DLayerShellWindow.AnchorTop | DLayerShellWindow.AnchorLeft | DLayerShellWindow.AnchorRight
+        DLayerShellWindow.layer: DLayerShellWindow.LayerTop
+        DLayerShellWindow.keyboardInteractivity: DLayerShellWindow.KeyboardInteractivityOnDemand
+        DLayerShellWindow.exclusionZone: -1
+        DLayerShellWindow.scope: "dde-shell/launchpad"
+
+        flags: {
+            if (DebugHelper.useRegularWindow) return Qt.Window
+            return Qt.FramelessWindowHint
+        }
+
+        DWindow.enabled: !DebugHelper.useRegularWindow
+        DWindow.windowRadius: 0
+        DWindow.enableSystemResize: false
+        DWindow.enableSystemMove: false
+        // Fullscreen mode: always assume dark theme
+        DWindow.themeType: ApplicationHelper.DarkType
+        DWindow.windowStartUpEffect: PlatformHandle.EffectOut
+
+        onVisibleChanged: {
+            if (visible) {
+                requestActivate()
+                LauncherController.closeAllPopups()
+            }
+        }
+
+        onActiveChanged: {
+            if (LauncherController.currentFrame !== "FullscreenFrame") {
+                return
+            }
+            if (active) {
+                LauncherController.cancelHide()
+                return;
+            }
+            if (!active && !DebugHelper.avoidHideWindow) {
+                LauncherController.hideWithTimer()
+            }
+        }
+
+        Loader {
+            anchors.fill: parent
+            focus: true
+            sourceComponent: FullscreenFrame {}
+
+            Label {
+                visible: DebugHelper.qtDebugEnabled
+                z: 999
+
+                anchors.right: parent.right
+                anchors.bottom: parent.bottom
+                text: "/ / Under Construction / /"
+
+                background: Rectangle {
+                    color: Qt.rgba(1, 1, 0, 0.5)
+                }
+
+                MouseArea {
+                    anchors.fill: parent
+                    onClicked: { debugDialog.open() }
+                }
+            }
+        }
+    }
+
+    Window {
+        id: windowedModeLauncher
+
+        objectName: "WindowedFrameApplicationWindow"
+        title: "dde-shell/launchpad"
+        visible: LauncherController.visible && (LauncherController.currentFrame === "WindowedFrame")
+        width: 610
+        height: 480
+        transientParent: null
+        color: "transparent"
+
+        readonly property int dockPosition: DesktopIntegration.dockPosition
+        readonly property bool dockIsHorizontal: dockPosition === Qt.UpArrow || dockPosition === Qt.DownArrow
+        readonly property bool isDarkTheme: D.DTK.themeType === D.ApplicationHelper.DarkType
+        readonly property int dockThickness: dockIsHorizontal ? Panel.rootObject.height
+                                                             : Panel.rootObject.width
+        readonly property int dockReservedZone: DesktopIntegration.isTreeLand() ? Panel.rootObject.DLayerShellWindow.exclusionZone : 0
+        
+        readonly property int dockExclusion: DesktopIntegration.dockSpacing
+                                              + Math.max(0, dockThickness - dockReservedZone)
+        readonly property int iconAlignOffset: Math.max(dockIsHorizontal ? itemPos.x : itemPos.y,
+                                                       DesktopIntegration.dockSpacing)
+
+        DLayerShellWindow.anchors: {
+            switch (dockPosition) {
+            case Qt.RightArrow:
+                return DLayerShellWindow.AnchorRight | DLayerShellWindow.AnchorTop
+            case Qt.DownArrow:
+                return DLayerShellWindow.AnchorBottom | DLayerShellWindow.AnchorLeft
+            case Qt.UpArrow:
+            case Qt.LeftArrow:
+            default:
+                return DLayerShellWindow.AnchorTop | DLayerShellWindow.AnchorLeft
+            }
+        }
+        DLayerShellWindow.topMargin: dockPosition === Qt.UpArrow ? dockExclusion
+                                                                 : (dockIsHorizontal ? 0 : iconAlignOffset)
+        DLayerShellWindow.leftMargin: dockPosition === Qt.LeftArrow ? dockExclusion
+                                                                   : (dockIsHorizontal ? iconAlignOffset : 0)
+        DLayerShellWindow.rightMargin: dockPosition === Qt.RightArrow ? dockExclusion : 0
+        DLayerShellWindow.bottomMargin: dockPosition === Qt.DownArrow ? dockExclusion : 0
+        DLayerShellWindow.keyboardInteractivity: DLayerShellWindow.KeyboardInteractivityOnDemand
+        DLayerShellWindow.scope: "dde-shell/quick-launchpad"
+
+        flags: Qt.Window | Qt.FramelessWindowHint
+        DWindow.enabled: true
+        DWindow.windowRadius: D.DTK.platformTheme.windowRadius < 0 ? 12 : D.DTK.platformTheme.windowRadius
+        DWindow.enableSystemResize: false
+        DWindow.enableSystemMove: false
+        DWindow.enableBlurWindow: true
+        DWindow.shadowOffset: Qt.point(0, 25)
+        DWindow.shadowColor: isDarkTheme ? Qt.rgba(0, 0, 0, 0.5) : Qt.rgba(0, 0, 0, 0.2)
+        D.ColorSelector.family: D.Palette.CrystalColor
+
+        StyledBehindWindowBlur {
+            control: parent
+            anchors.fill: parent
+            blendColor: {
+                const appearance = DS.applet("org.deepin.ds.dde-appearance")
+                const alpha = appearance && appearance.opacity >= 0 ? appearance.opacity : 0.6
+                if (valid) {
+                    return DStyle.Style.control.selectColor(undefined,
+                        Qt.rgba(235 / 255.0, 235 / 255.0, 235 / 255.0, alpha),
+                        Qt.rgba(0, 0, 0, 85 / 255))
+                }
+                return DStyle.Style.control.selectColor(undefined,
+                    DStyle.Style.behindWindowBlur.lightNoBlurColor,
+                    DStyle.Style.behindWindowBlur.darkNoBlurColor)
+            }
+        }
+
+        D.InsideBoxBorder {
+            anchors.fill: parent
+            radius: WindowManagerHelper.hasComposite ? windowedModeLauncher.DWindow.windowRadius : 0
+            color: windowedModeLauncher.isDarkTheme ? Qt.rgba(1, 1, 1, 0.15) : Qt.rgba(1, 1, 1, 0.55)
+        }
+
+        WindowedFrame {
+            anchors.fill: parent
+        }
+
+        onVisibleChanged: {
+            if (visible) {
+                assignDockScreen(windowedModeLauncher)
+                requestActivate()
+                LauncherController.closeAllPopups()
+            }
+        }
+
+        onActiveChanged: {
+            if (LauncherController.currentFrame !== "WindowedFrame")
+                return
+            if (active) {
+                LauncherController.cancelHide()
+            } else if (!DebugHelper.avoidHideWindow) {
+                LauncherController.hideWithTimer()
+            }
+        }
+
+        onClosing: {
+            if (LauncherController.currentFrame === "WindowedFrame")
+                LauncherController.visible = false
+        }
+    }
+
+    DialogWindow {
+        id: confirmUninstallDlg
+
+        property string appId: ""
+        property string appName: ""
+
+        DLayerShellWindow.anchors: DLayerShellWindow.AnchorNone
+
+        minimumWidth: layout.implicitWidth + 2 * DStyle.Style.dialogWindow.contentHMargin
+        minimumHeight: layout.implicitHeight + DStyle.Style.dialogWindow.titleBarHeight
+        maximumWidth: minimumWidth
+        maximumHeight: minimumHeight
+
+        onVisibleChanged: {
+            if (!visible) {
+                LauncherController.setAvoidHide(true)
+                if (LauncherController.currentFrame === "FullscreenFrame") {
+                    fullscreenFrame.requestActivate() 
+                } 
+            }
+        }
+
+        ColumnLayout {
+            id: layout
+            spacing: 0
+            Label {
+                font: DTK.fontManager.t5
+                text: qsTr("Are you sure you want to uninstall \"%1\"?").arg(confirmUninstallDlg.appName)
+                wrapMode: Text.Wrap
+                horizontalAlignment: Text.AlignHCenter
+                Layout.preferredWidth: 400
+                Layout.alignment: Qt.AlignCenter
+                Layout.margins: 10
+            }
+            RowLayout {
+                spacing: 10
+                Layout.fillWidth: true
+                Layout.topMargin: 20
+                Layout.bottomMargin: 10
+                
+                Button {
+                    id: cancelButton
+                    Layout.fillWidth: true
+                    text: qsTr("Cancel")
+                    onClicked: {
+                        confirmUninstallDlg.close()
+                    }
+                }               
+                WarningButton {
+                    id: confirmButton
+                    Layout.fillWidth: true
+                    text: qsTr("Confirm")
+                    onClicked: {
+                        DesktopIntegration.uninstallApp(confirmUninstallDlg.appId)
+                        confirmUninstallDlg.close()
+                    }
+                }
+            }
+        }
+    }
+
+    D.DciIcon {
+        id: icon
+        anchors.centerIn: parent
+        name: Applet.iconName
+        scale: Panel.rootObject.dockItemMaxSize * 9 / 14 / Dock.MAX_DOCK_TASKMANAGER_ICON_SIZE
+        // 9:14 (iconSize/dockHeight)
+        sourceSize: Qt.size(Dock.MAX_DOCK_TASKMANAGER_ICON_SIZE, Dock.MAX_DOCK_TASKMANAGER_ICON_SIZE)
+        onXChanged: updateLaunchpadPos()
+        onYChanged: updateLaunchpadPos()
+    }
+    Timer {
+        id: toolTipShowTimer
+        interval: 50
+        onTriggered: {
+            var point = Applet.rootObject.mapToItem(null, Applet.rootObject.width / 2, Applet.rootObject.height / 2)
+            toolTip.DockPanelPositioner.bounding = Qt.rect(point.x, point.y, toolTip.width, toolTip.height)
+            toolTip.open()
+        }
+    }
+
+    TapHandler {
+        id: tapHandler
+        acceptedButtons: Qt.LeftButton | Qt.RightButton
+        gesturePolicy: TapHandler.WithinBounds
+        onTapped: function (eventPoint, buttons) {
+            if (buttons === Qt.LeftButton) {
+                toggleLauncher()
+            }
+        }
+    }
+
+    TapHandler {
+        acceptedButtons: Qt.NoButton
+        acceptedDevices: PointerDevice.TouchScreen
+        gesturePolicy: TapHandler.WithinBounds
+        onTapped: function (eventPoint, buttons) {
+            toggleLauncher()
+        }
+    }
+    HoverHandler {
+        onHoveredChanged: {
+            if (hovered) {
+                toolTipShowTimer.start()
+            } else {
+                if (toolTipShowTimer.running) {
+                    toolTipShowTimer.stop()
+                }
+
+                toolTip.close()
+            }
+        }
+    }
+}

@@ -1,0 +1,15 @@
+  <interface name="org.deepin.dde.Launcher1">
+    <property name="Visible" type="b" access="read"/>
+    <method name="Exit"/>
+    <method name="Show"/>
+    <method name="Hide"/>
+    <method name="Toggle"/>
+    <method name="ShowByMode">
+      <arg direction="in" type="x"/>
+    </method>
+    <signal name="Closed"/>
+    <signal name="Shown"/>
+    <signal name="VisibleChanged">
+      <arg name="visible" type="b" direction="out"/>
+    </signal>
+  </interface>

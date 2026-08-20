@@ -1,0 +1,53 @@
+Source: dde-launchpad
+Section: DDE
+Priority: optional
+Maintainer: Gary Wang <wangzichong@deepin.org>
+Build-Depends:
+ debhelper-compat (= 13),
+ cmake,
+ pkg-config,
+ libglib2.0-dev,
+# v-- to get systemduserunitdir from its pkg-config data
+ systemd,
+ qt6-base-dev,
+ qt6-base-private-dev,
+ qt6-svg-dev,
+ qt6-declarative-dev,
+ qt6-tools-dev,
+ qt6-tools-dev-tools,
+ qt6-wayland-dev,
+ qt6-wayland-private-dev,
+ libdtkcommon-dev,
+ libdtk6core-dev (>= 6.0.43),
+# v-- provides qdbusxml2cpp-fix binary
+ libdtk6core-bin,
+# v-- provides DHiDPIHelper
+ libdtk6gui-dev (>= 6.0.19),
+ libdtk6declarative-dev (>> 6.7.33),
+ dde-api-dev (>> 6.0.39),
+ libdde-shell-dev (>> 2.0.52),
+ libappstreamqt-dev (>= 1.0.0)
+Standards-Version: 4.6.0
+Rules-Requires-Root: no
+
+Package: dde-launchpad
+Architecture: any
+Depends:
+ ${shlibs:Depends},
+ ${misc:Depends},
+ dde-application-manager (>> 1.2.51),
+ dde-application-wizard-daemon-compat,
+ libdtk6gui(>= 6.0.19),
+ libdtk6declarative(>= 6.0.19),
+ dde-shell(>> 2.0.33),
+ qml6-module-qtquick-layouts,
+ qml6-module-qtquick-window,
+ qml6-module-qtquick-controls,
+ qml6-module-qtquick-controls2-styles-chameleon,
+ qml6-module-qt-labs-platform,
+# v-- actually should be depended by qqc2-styles-chameleon
+ qml6-module-qt5compat-graphicaleffects
+Conflicts: dde-launcher
+Replaces: dde-launcher
+Description: The "launcher" or "start menu" component for DDE
+ Display all installed applications and allow user to launch applications, which is convenient for users to operate quickly

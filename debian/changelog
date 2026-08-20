@@ -1,0 +1,1054 @@
+dde-launchpad (2.0.46) unstable; urgency=medium
+
+  * perf(appstream): reuse metadata pool
+  * fix: prevent launcher popup blocking when hiding taskbar menus
+  * refactor: migrate to shared dde-shell app model
+  * chore: update libdde-shell-dev version requirement in control
+  * i18n: Updates for project Deepin Desktop Environment (#793)
+  * fix(appmgr): defer apps until theme icon resolves
+
+ -- zhangkun <zhangkun2@uniontech.com>  Tue, 18 Aug 2026 13:26:01 +0800
+
+dde-launchpad (2.0.45) unstable; urgency=medium
+
+  * fix(CI): broken cppcheck
+  * fix: section sort no longer works
+
+ -- zhangkun <zhangkun2@uniontech.com>  Thu, 23 Jul 2026 21:46:55 +0800
+
+dde-launchpad (2.0.44) unstable; urgency=medium
+
+  * feat: replace custom XDG activation with Dde::Shell integration
+  * fix: reset fullscreen app list view position on frame switch
+  * fix(windowed): optimize sort mode switch performance
+
+ -- zhangkun <zhangkun2@uniontech.com>  Thu, 09 Jul 2026 19:29:25 +0800
+
+dde-launchpad (2.0.43) unstable; urgency=medium
+
+  * fix(launcher): remove Qt.Tool flag to fix window stacking
+
+ -- zhangkun <zhangkun2@uniontech.com>  Thu, 02 Jul 2026 13:26:40 +0800
+
+dde-launchpad (2.0.42) unstable; urgency=medium
+
+  * fix(sidebar): prevent ToolTip on touch tap for sort button
+  * chore: Sync by
+    https://github.com/linuxdeepin/.github/commit/88706fa723e3771211cb07
+    81d3d97fd4a6cd2a68
+
+ -- zhangkun <zhangkun2@uniontech.com>  Wed, 24 Jun 2026 15:35:11 +0800
+
+dde-launchpad (2.0.41) unstable; urgency=medium
+
+  * fix: prevent app list item overlap after drag on Wayland
+  * refactor: move XdgActivation to pluginitem and simplify dock plugins
+
+ -- zhangkun <zhangkun2@uniontech.com>  Wed, 17 Jun 2026 16:17:46 +0800
+
+dde-launchpad (2.0.40) unstable; urgency=medium
+
+  * fix: avoid xdg_activation_v1 destroy on a torn-down display at exit
+
+ -- zhangkun <zhangkun2@uniontech.com>  Thu, 11 Jun 2026 19:50:34 +0800
+
+dde-launchpad (2.0.39) unstable; urgency=medium
+
+  * fix: app hang a few seconds when launch app for the first time
+  * fix: launchpad might be blank when starting a new treeland dde
+    session
+
+ -- zhangkun <zhangkun2@uniontech.com>  Thu, 04 Jun 2026 20:07:12 +0800
+
+dde-launchpad (2.0.38) unstable; urgency=medium
+
+  * fix: remove modal from app menu
+  * fix: enable touch scrolling in launcher
+
+ -- zhangkun <zhangkun2@uniontech.com>  Thu, 28 May 2026 15:42:09 +0800
+
+dde-launchpad (2.0.37) unstable; urgency=medium
+
+  * feat: add Wayland XDG activation token support for app launch
+  * fix: disable context menu on right click
+
+ -- zhangkun <zhangkun2@uniontech.com>  Wed, 20 May 2026 15:16:51 +0800
+
+dde-launchpad (2.0.36) unstable; urgency=medium
+
+  * feat: pass launch_type when launching apps from launcher
+
+ -- zhangkun <zhangkun2@uniontech.com>  Sat, 09 May 2026 09:31:25 +0800
+
+dde-launchpad (2.0.35) unstable; urgency=medium
+
+  * style: adjust page indicator dot size in fullscreen mode
+  * fix: temporarily disable flickable bounds behavior
+  * fix: align folder popup to physical pixels for sharp 1px borders
+  * fix: use positionViewAtBeginning instead of set contentY
+
+ -- zhangkun <zhangkun2@uniontech.com>  Thu, 23 Apr 2026 21:46:17 +0800
+
+dde-launchpad (2.0.34) unstable; urgency=medium
+
+  * fix: increase flickable cache buffer for better performance
+
+ -- zhangkun <zhangkun2@uniontech.com>  Thu, 09 Apr 2026 20:29:10 +0800
+
+dde-launchpad (2.0.33) unstable; urgency=medium
+
+  * feat: set window title for launcher popup
+  * fix: fix touchscreen long press and drag issues
+
+ -- zhangkun <zhangkun2@uniontech.com>  Wed, 25 Mar 2026 17:14:13 +0800
+
+dde-launchpad (2.0.32) unstable; urgency=medium
+
+  * style: adjust folder icon animation durations
+  * fix: add touchscreen long press support for app launcher
+  * fix(launcher): adjust window layer and flags for proper display
+  * fix: forward InputMethodQuery to searchEdit for correct IME
+    candidate window positioning
+  * refactor: remove redundant positionViewAtBeginning functions
+  * fix: remove duplicate wallpaper blurhash assignment
+
+ -- zhangkun <zhangkun2@uniontech.com>  Wed, 18 Mar 2026 14:13:35 +0800
+
+dde-launchpad (2.0.31) unstable; urgency=medium
+
+  * revert: remove automatic focus setting on launcher visibility
+  * fix(launcher): change window layer from Top to Overlay
+  * fix: set focus to search edit when launcher becomes visible
+  * fix: disable icon smooth to icon blur
+  * fix(launcher): fix search result items not responding to mouse
+    clicks in windowed mode
+  * refactor(launcher): remove redundant window flags configuration
+  * fix: reduce fullscreen page flip stutter by async icon loading
+  * fix: The font size of the category jump menu does not adjust with
+    the system font size when sorting by category
+
+ -- zhangkun <zhangkun2@uniontech.com>  Thu, 12 Mar 2026 21:21:55 +0800
+
+dde-launchpad (2.0.30) unstable; urgency=medium
+
+  * fix: correct mouse event handling area for icon items
+
+ -- YeShanShan <yeshanshan@uniontech.com>  Fri, 06 Mar 2026 16:16:24 +0800
+
+dde-launchpad (2.0.29) unstable; urgency=medium
+
+  * fix: fix font weight property assignment
+  * fix: prevent mouse drag from blocking icon clicks
+
+ -- YeShanShan <yeshanshan@uniontech.com>  Fri, 06 Mar 2026 15:22:12 +0800
+
+dde-launchpad (2.0.28) unstable; urgency=medium
+
+  * fix: fix touchscreen drag interruption issue
+  * feat: enhance drag-and-drop visual feedback and folder icon
+    animation feat: 增强拖放视觉反馈和文件夹图标动画效果
+  * fix: fix touchscreen drag issue with hidden items
+  * fix: handle removal of pending app items
+
+ -- zhangkun <zhangkun2@uniontech.com>  Thu, 05 Mar 2026 20:43:32 +0800
+
+dde-launchpad (2.0.27) unstable; urgency=medium
+
+  * fix: prevent focus issues during mouse wheel page navigation
+  * fix: when drag  just one app in folder to launchpad quickly will
+    coredump.
+  * fix: add wait mechanism for app icons
+  * chore: update DTK dependency and fix icon display
+  * fix: optimize fullscreen launcher item sorting initialization
+  * fix: prevent search field interaction during drag operations
+  * fix: handle left edge click to toggle launcher visibility
+
+ -- zhangkun <zhangkun2@uniontech.com>  Fri, 27 Feb 2026 17:02:30 +0800
+
+dde-launchpad (2.0.26) unstable; urgency=medium
+
+  * fix: use desktop-id as fallback name for ill-formed desktop entries
+  * feat: add Ctrl+wheel icon scaling support
+  * fix: improve folder grid view navigation and focus handling
+  * fix: Multi-screen launcher display anomaly
+  * fix: 将鼠标操作进行页面切换时，重新处理焦点给到第一个应用
+  * fix: improve focus management for wheel scrolling in fullscreen
+  * feat: set fullscreen launcher window title for window manager
+    identification
+
+ -- zhangkun <zhangkun2@uniontech.com>  Thu, 05 Feb 2026 19:24:48 +0800
+
+dde-launchpad (2.0.25) unstable; urgency=medium
+
+  * fix: freefrom sort listview position is not positioned at beginning
+  * chore: disconnect right away in watchingAppItemRemoved()
+
+ -- zhangkun <zhangkun2@uniontech.com>  Thu, 29 Jan 2026 21:25:27 +0800
+
+dde-launchpad (2.0.24) unstable; urgency=medium
+
+  * fix: app name text might overlap if it's a newly installed app
+
+ -- zhangkun <zhangkun2@uniontech.com>  Fri, 23 Jan 2026 09:35:50 +0800
+
+dde-launchpad (2.0.23) unstable; urgency=medium
+
+  * fix: Fix abnormal animation for two-finger swipe
+  * fix: reset view state when switching sort modes
+  * chore: remove AppsModel::appItem(desktopId)
+  * fix: improve resetViewState to avoid animation glitches
+
+ -- zhangkun <zhangkun2@uniontech.com>  Thu, 15 Jan 2026 19:33:55 +0800
+
+dde-launchpad (2.0.22) unstable; urgency=medium
+
+  * fix: Fix issue with icon drag-and-drop release failure
+
+ -- zhangkun <zhangkun2@uniontech.com>  Thu, 25 Dec 2025 19:32:10 +0800
+
+dde-launchpad (2.0.21) unstable; urgency=medium
+
+  * i18n: Updates for project Deepin Desktop Environment (#672)
+  * fix: Fix the issue of sliding beyond the screen
+  * fix: Fix the issue where the launcher fullscreen background doesn't
+    change
+  * fix: Fix launcher folder sliding issue
+  * feat: add reproducible build parameter
+
+ -- zhangkun <zhangkun2@uniontech.com>  Thu, 18 Dec 2025 19:50:41 +0800
+
+dde-launchpad (2.0.20) unstable; urgency=medium
+
+  * fix: enhance folder popup drag-and-drop behavior
+
+ -- YeShanShan <yeshanshan@uniontech.com>  Thu, 11 Dec 2025 20:32:47 +0800
+
+dde-launchpad (2.0.19) unstable; urgency=medium
+
+  * feat: improve grid navigation with circular behavior
+
+ -- fuleyi <fuleyi@uniontech.com>  Thu, 04 Dec 2025 19:12:44 +0800
+
+dde-launchpad (2.0.18) unstable; urgency=medium
+
+  * fix: fix display scaling menu visibility logic
+  * i18n: remove de_DE translation resources
+
+ -- zhaoyingzhen <zhaoyingzhen@uniontech.com>  Thu, 27 Nov 2025 17:38:04 +0800
+
+dde-launchpad (2.0.17) unstable; urgency=medium
+
+  * chore: adapt debugging settings function
+
+ -- xionglinlin <xionglinlin@uniontech.com>  Thu, 13 Nov 2025 19:48:43 +0800
+
+dde-launchpad (2.0.16) unstable; urgency=medium
+
+  * fix: reset grid view index when hiding launcher
+  * fix: avoid keyboard focus on menu that not visible
+
+ -- Robertkill <lvpeilong@uniontech.com>  Thu, 30 Oct 2025 20:02:06 +0800
+
+dde-launchpad (2.0.15) unstable; urgency=medium
+
+  * i18n: Updates for project Deepin Desktop Environment (#652)
+
+ -- wujiangyu <wujiangyu@uniontech.com>  Thu, 23 Oct 2025 16:00:36 +0800
+
+dde-launchpad (2.0.14) unstable; urgency=medium
+
+  * fix: compatibility with Qt 6.10
+  * feat: improve app list focus behavior and styling
+  * feat: add tap handler to hide launcher
+
+ -- zhangkun <zhangkun2@uniontech.com>  Thu, 16 Oct 2025 21:17:01 +0800
+
+dde-launchpad (2.0.13) unstable; urgency=medium
+
+  * refactor: replace DragHandler with MouseArea for app dragging
+  * fix: ensure remove tone for pinyin first letter search
+  * fix: remove category check from resetViewState
+  * feat: add icon scaling with keyboard shortcuts
+
+ -- YeShanShan <yeshanshan@uniontech.com>  Fri, 10 Oct 2025 17:32:35 +0800
+
+dde-launchpad (2.0.12) unstable; urgency=medium
+
+  * fix: add right margin to windowed frame layout
+
+ -- YeShanShan <yeshanshan@uniontech.com>  Thu, 18 Sep 2025 20:44:37 +0800
+
+dde-launchpad (2.0.11) unstable; urgency=medium
+
+  * fix: improve focus management in folder grid view
+
+ -- wujiangyu <wujiangyu@uniontech.com>  Thu, 04 Sep 2025 17:34:40 +0800
+
+dde-launchpad (2.0.10) unstable; urgency=medium
+
+  * feat: add logs with dlogcover.
+  * [skip CI] Translate org.deepin.ds.dock.launcherapplet.ts in zh_HK
+  * [skip CI] Translate org.deepin.ds.dock.launcherapplet.ts in zh_CN
+  * [skip CI] Translate org.deepin.ds.dock.launcherapplet.ts in zh_TW
+  * fix: adjust WindowedFrame layout width
+  * fix: reset page index on frame change
+
+ -- wujiangyu <wujiangyu@uniontech.com>  Thu, 28 Aug 2025 17:52:37 +0800
+
+dde-launchpad (2.0.9) unstable; urgency=medium
+
+  * i18n: Updates for project Deepin Desktop Environment (#642)
+  * fix: update confirmation dialog button text and layout
+  * i18n: Translate org.deepin.ds.dock.launcherapplet.ts in pt_BR (#637)
+  * fix: avoid calling endMoveRows() if beginMoveRows() is failed
+  * fix: fix building warnings.
+
+ -- wujiangyu <wujiangyu@uniontech.com>  Thu, 21 Aug 2025 16:57:31 +0800
+
+dde-launchpad (2.0.8) unstable; urgency=medium
+
+  * fix: adjust grid view highlight appearance
+  * fix: update sidebar icons use same icons when change themes.
+
+ -- wujiangyu <wujiangyu@uniontech.com>  Thu, 14 Aug 2025 17:23:59 +0800
+
+dde-launchpad (2.0.7) unstable; urgency=medium
+
+  * i18n: Translate org.deepin.ds.dock.launcherapplet.ts in uk (#628)
+  * fix: improve window transition and drag visibility
+
+ -- wujiangyu <wujiangyu@uniontech.com>  Tue, 12 Aug 2025 10:39:03 +0800
+
+dde-launchpad (2.0.6) unstable; urgency=medium
+
+  * fix: click area keep same with app on dock.
+  * fix: simplify uninstall dialog button layout
+  * fix: resolve focus loss when switching from fullscreen to windowed
+  * i18n: Updates for project Deepin Desktop Environment (#626)
+  * fix: modify confirm to uninstall.
+
+ -- YeShanShan <yeshanshan@uniontech.com>  Thu, 07 Aug 2025 20:01:25 +0800
+
+dde-launchpad (2.0.5) unstable; urgency=medium
+
+  * feat: add alwaysShowHighlighted property to GridViewContainer
+  * fix: adjust margins in list views
+  * chore: switch to use newer REUSE.toml for license check
+  * chore: remove dde-launchpad binary since it's no longer used
+  * feat: add dark mode support for fullscreen context menu
+  * feat: add display scaling support in desktop integration
+  * feat: add F1 key help support for launcher
+  * fix: improve drop indicator implementation in FreeSortListView
+  * fix: adjust menu item margins in AppListView
+  * fix: optimize drag and drop indicator behavior
+  * fix: update hover colors and add dark mode variant
+  * feat: add search filter proxy model tests
+
+ -- WuJiangYu <wujiangyu@uniontech.com>  Mon, 04 Aug 2025 16:01:10 +0800
+
+dde-launchpad (2.0.4) unstable; urgency=medium
+
+  * chore: switch to use newer REUSE.toml for license check
+  * chore: remove dde-launchpad binary since it's no longer used
+  * feat: add dark mode support for fullscreen context menu
+  * feat: add display scaling support in desktop integration
+  * feat: add F1 key help support for launcher
+  * fix: improve drop indicator implementation in FreeSortListView
+  * fix: adjust menu item margins in AppListView
+  * chore: bump version to 2.0.4
+  * fix: optimize drag and drop indicator behavior
+  * fix: update hover colors and add dark mode variant
+  * feat: add search filter proxy model tests
+
+ -- Wang Zichong <wangzichong@deepin.org>  Thu, 31 Jul 2025 20:24:42 +0800
+
+dde-launchpad (2.0.4) unstable; urgency=medium
+
+  * fix: optimize drag and drop indicator behavior
+  * fix: update hover colors and add dark mode variant
+  * feat: add search filter proxy model tests
+
+ -- WuJiangYu <wujiangyu@uniontech.com>  Wed, 16 Jul 2025 10:47:30 +0800
+
+dde-launchpad (2.0.3) unstable; urgency=medium
+
+  * fix: disable drag when menus or popups are visible
+  * feat: Disable itemMoveTransition when switching to FullscreenFrame
+    (#424)
+  * i18n: Updates for project Deepin Desktop Environment (#596)
+  * fix: adjust folder grid item height consistency
+  * feat: call pre-uninstall hook from launchpad
+  * fix: reset view position on category type change
+  * fix: update color with install dot.
+  * fix: Launchpad crash
+  * fix: update theme with installed dot.
+  * style: update new app indicator styling
+  * fix: disable initial animations in FreeSortListView
+  * fix: handle menu cleanup and visibility in SideBar
+  * fix: update search filter logic and visibility
+  * feat: add package name search configuration
+  * fix: fix build warnings.
+  * feat: Added search priority display.
+
+ -- WuJiangYu <wujiangyu@uniontech.com>  Thu, 10 Jul 2025 20:15:14 +0800
+
+dde-launchpad (2.0.2) unstable; urgency=medium
+
+  * fix: add hardening compiler flags for Debian build
+  * chore: avoid show confirm uninstall dialog when have preuninstall
+    hook
+  * i18n: Updates for project Deepin Desktop Environment (#588)
+  * fix: when fullscreen, click dock, launchpad will not close.
+  * i18n: Translate org.deepin.ds.dock.launcherapplet.ts in pt_BR (#584)
+
+ -- WuJiangYu <wujiangyu@uniontech.com>  Thu, 03 Jul 2025 19:59:52 +0800
+
+dde-launchpad (2.0.1) unstable; urgency=medium
+
+  * feat: add search for Uppercase and modify deepin-XXX logic.
+
+ -- WuJiangYu <wujiangyu@uniontech.com>  Mon, 23 Jun 2025 16:41:52 +0800
+
+dde-launchpad (2.0.0) unstable; urgency=medium
+
+  * i18n: Updates for project Deepin Desktop Environment (#581)
+  * fix: when drag app for move to anthoer area,add speed with change position.
+  * fix: when search item, modify select color.
+
+-- yeshanshan <yeshanshan@deepin.org>  Thu, 18 Jun 2025 19:22:00 +0800
+
+dde-launchpad (1.99.17) UNRELEASED; urgency=medium
+
+  * fix: app will automatically fill in from the first page of folder
+  * fix: when drag app to another app from folder,add animation and auto-move with folders
+  * feat: Added left and right button switching in full-screen mode
+  * feat: add focus with AlphabetCategory when change to another word
+
+-- Wang Zichong <wangzichong@deepin.org>  Thu, 12 Jun 2025 19:22:00 +0800
+
+dde-launchpad (1.99.16) UNRELEASED; urgency=medium
+
+  * fix: when only one page, hide indicator. 
+  * fix: Dock can overlapping right-click menu 
+  * feat: add Support for acronym matching and others. 
+  * fix: Install new app will start from first page to fill. 
+
+-- Wu Jiangyu <wujiangyu@uniontech.com>  Thu, 05 Jun 2025 16:22:46 +0800
+
+dde-launchpad (1.99.15) unstable; urgency=medium
+
+  * fix: The alphabet also closes when the launchpad is shut down
+  * fix: Lack of diagonal operation functionality.
+  * fix: search app when use blank can not find app.
+  * Revert "feat: Add fuzzy search support for applications"
+
+-- YeShanShan <yeshanshan@uniontech.com>  Thu, 15 May 2025 21:14:56 +0800
+
+dde-launchpad (1.99.14) UNRELEASED; urgency=medium
+
+  * fix: Dragging applications in application folder cannot create a new page (Bug-288839)
+  * fix: add x-dde-dock-dnd-source for dde-dock.
+  * fix: cancel hovered state after move mouse in the categorized display. (Bug-271375)
+
+-- Wu Jiangyu <wujiangyu@uniontech.com>  Tue, 13 May 2025 17:17:000 +0800
+
+dde-launchpad (1.99.13) UNRELEASED; urgency=medium
+
+  * fix: The four corners can't be dragged properly in full-screen mode (Bug-310813)
+  * feat: add Apps winthin folder are dragged across pages. (Bug-288691)
+  * fix: Clicking tab multiple times to switch focus appear to switch back and forth (Bug-315227)
+  * fix: Uninstalling app in fullscreen doesn't close launcher (Bug-315255)
+  * fix: Add quotation marks to the app name in the uninstall dialog (Bug-315259)
+  * Update translations from Transifex
+
+-- Wu Jiangyu <wujiangyu@uniontech.com>  Fri, 29 May 2025 08:36:000 +0800
+
+dde-launchpad (1.99.12) UNRELEASED; urgency=medium
+
+  * fix: clicking the left and right keys no response in fullscreen.
+  * fix: The title text of launcher application group fontbold
+  * Update translations from Transifex
+
+-- Wu Jiangyu <wujiangyu@uniontech.com>  Tue, 29 Apr 2025 11:14:000 +0800
+
+dde-launchpad (1.99.11) UNRELEASED; urgency=medium
+
+  * fix: add base locale as fallback for app display name (Bug-310179)
+  * fix: drag-n-drop create app folder have incorrect app ordering (Bug-288919)
+  * Update translations from Transifex
+
+ -- Wang Zichong <wangzichong@deepin.org>  Thu, 17 Apr 2025 17:39:00 +0800
+
+dde-launchpad (1.99.10) UNRELEASED; urgency=medium
+
+  * fix: incorrect selectedTextColor for folderPopup (Bug-301103)
+  * fix: correct category name for Games (Bug-289127)
+
+ -- Wang Zichong <wangzichong@deepin.org>  Fri, 21 Mar 2025 9:10:00 +0800
+
+dde-launchpad (1.99.9) UNRELEASED; urgency=medium
+
+  * fix: assign fullscreen frame screen on init completed (Bug-300309)
+
+ -- Wang Zichong <wangzichong@deepin.org>  Wed, 12 Mar 2025 10:22:00 +0800
+
+dde-launchpad (1.99.8) UNRELEASED; urgency=medium
+
+  * i18n: Updates for project Deepin Desktop Environment
+  * fix: item delegate margin not working in AppListView (Bug-300939)
+  * fix: cannot stop scrolling after drop in some cases (Bug-303553)
+
+ -- Wang Zichong <wangzichong@deepin.org>  Thu, 06 Mar 2025 20:17:00 +0800
+
+dde-launchpad (1.99.7) UNRELEASED; urgency=medium
+
+  * fix: fullscreen launcher should follow dock screen (Bug-300309)
+
+ -- Wang Zichong <wangzichong@deepin.org>  Thu, 27 Feb 2025 13:37:00 +0800
+
+dde-launchpad (1.99.6) UNRELEASED; urgency=medium
+
+  * fix(UI): add a footer for windowed mode list view for padding
+  * feat: apply drop while dragging for freeform sort view
+  * i18n: Updates for project Deepin Desktop Environment (#505)
+    Thanks to transifex-integration[bot]
+  * fix: can't search polyphonic characters
+  * chore: remove warning
+
+ -- Yeshanshan <yeshanshan@deepin.org>  Thu, 13 Feb 2025 21:58:29 +0800
+
+dde-launchpad (1.99.5) UNRELEASED; urgency=medium
+
+  * fix: incorrect FocusBorder for Windowed
+  * fix: siderBar icons display error icons under dark theme (#502)
+
+ -- Deepin Packages Builder <packages@deepin.org>  Thu, 09 Jan 2025 20:23:24 +0800
+
+dde-launchpad (1.99.4) UNRELEASED; urgency=medium
+
+  * fix: Hide launchpad window as soon as launching Apps (#492)
+  * [skip CI] Translate dde-launchpad.ts in ar
+  * [skip CI] Translate dde-launchpad.ts in ar
+  * fix: Close folder popup in windowed mode
+  * fix: hover background for category list view items
+  * chore: update section to DDE in debian/control
+  * fix: quick panel still show while launchpad show
+  * fix: the search results are displayed in the middle (#495)
+
+ -- xionglinlin <xionglinlin@uniontech.com>  Tue, 24 Dec 2024 19:44:07 +0800
+
+dde-launchpad (1.99.3) UNRELEASED; urgency=medium
+
+  * Show autostart icons for items in freeform-sort view
+  * Fix icons in some view are not clickable
+  * Add missing translation for launchpad icon on taskbar area
+  * Stop scrolling when freeform-sort view item drag finished
+  * Update tooltip delay time
+  * Fix x11 launchpad cannot hide
+
+ -- Wang Zichong <wangzichong@deepin.org>  Fri, 06 Dec 2024 16:13:00 +0800
+
+dde-launchpad (1.99.2) UNRELEASED; urgency=medium
+
+  * support most areas apps drop to dock (PMS-285139)
+  * fix some strings on windowed launcher mode not translated
+    (PMS-287975, PMS-287083, PMS-289493)
+  * update translations
+
+ -- Wang Zichong <wangzichong@deepin.org>  Sat, 30 Nov 2024 14:20:00 +0800
+
+dde-launchpad (1.99.1) UNRELEASED; urgency=medium
+
+  * update tr
+  * i18n: update ts files for launcher applet
+  * chore: update current unit test
+  * fix: hide the power button in treeland
+  * fix: modify the way of request shutdown (#466)
+
+ -- Zhang Kun <zhangkun2@uniontech.com>  Fri, 22 Nov 2024 11:39:37 +0800
+
+dde-launchpad (1.99.0) UNRELEASED; urgency=medium
+
+  * Support freeform sort area drag-to-scroll in windowed mode launcher
+  * Move launcheritem applet from dde-shell to dde-launchpad
+  * Support dummy (placeholder) package
+  * Display autostart badge for autostart items
+  * fix failed to switch pages by clicking page indicator (PMS-272715)
+  * Add tooltip for some icon-only buttons
+  * Fix incorrect alignment windowed mode search result view on Qt 6.8
+
+ -- Wang Zichong <wangzichong@deepin.org>  Mon, 28 Oct 2024 19:14:00 +0800
+
+dde-launchpad (1.0.0) unstable; urgency=medium
+
+  * Update translation from Transifex
+
+ -- Wang Zichong <wangzichong@deepin.org>  Mon, 02 Sep 2024 16:11:00 +0800
+
+dde-launchpad (0.8.7) unstable; urgency=medium
+
+  * fix: gridView tab switched too quickly(Issue: https://github.com/linuxdeepin/developer-center/issues/10481)
+
+ -- Zhang Kun <zhangkun2@uniontech.com>  Thu, 29 Aug 2024 10:19:01 +0800
+
+dde-launchpad (0.8.6) unstable; urgency=medium
+
+  * fix: modify the fullscreen launcher window opening and closing animation(Issue: 10322)
+
+ -- Deepin Packages Builder <packages@deepin.org>  Wed, 21 Aug 2024 17:46:40 +0800
+
+dde-launchpad (0.8.5) unstable; urgency=medium
+
+  * bump version to 0.8.5
+
+ -- Deepin Packages Builder <packages@deepin.org>  Wed, 14 Aug 2024 14:32:05 +0800
+
+dde-launchpad (0.8.4) unstable; urgency=medium
+
+  * fix: fullscreen frame can't get keyboard focus(Issue: 10224)
+  * fix: the full screen window has rounded corners(Issue: 9994)
+
+ -- xionglinlin <xionglinlin@uniontech.com>  Thu, 08 Aug 2024 15:10:38 +0800
+
+dde-launchpad (0.8.3) unstable; urgency=medium
+
+  * fix: display issues with fullscreen frame(Issue: 9996)
+  * fix: personalize fullscreen mode instead of windowed mode
+  * fix: windowed mode folder animation incorrect start point
+  * fix: fullscreen frame follows the dock(Issue: 7188)
+
+ -- xionglinlin <xionglinlin@uniontech.com>  Tue, 06 Aug 2024 15:47:58 +0800
+
+dde-launchpad (0.8.2) unstable; urgency=medium
+
+  * fix: Cannot open apps inside folders with keyboard(Issue: 9930)
+  * fix: Insufficient background opacity when opening folder(Issue: 10037)
+
+ -- zyz <zhaoyingzhen@uniontech.com>  Wed, 31 Jul 2024 14:56:03 +0800
+
+dde-launchpad (0.8.1) unstable; urgency=medium
+
+  * fix: mini launcher can't open the appGroup by space or return key(Issue: 9737)
+  * fix: Frequently used app items will overlap search bar splitline(Issue: 9748)
+  * chore(i18n): update translations(Issue: 9898)
+
+ -- zyz <zhaoyingzhen@uniontech.com>  Wed, 24 Jul 2024 13:49:48 +0800
+
+dde-launchpad (0.8.0) unstable; urgency=medium
+
+  * Insufficient transparency of the outer border (linuxdeepin/developer-center#8342)
+  * Can't input Chinese when opening the launcher (linuxdeepin/developer-center#8469)
+  * Cherry-pick fixes from 0.7.x maintenance branch
+
+ -- Wang Zichong <wangzichong@deepin.org>  Wed, 17 Jul 2024 14:04:00 +0800
+
+dde-launchpad (0.7.6) unstable; urgency=medium
+
+  * Fix: #8807
+  * Fix: #9067
+  * Fix: #9446
+  * Fix: #8060
+  * Fix: #9450
+  * Fix: #9449
+  * Fix: #9578
+  * Fix: #9567
+  * Fix: #9615
+
+ -- xionglinlin <xionglinlin@uniontech.com>  Fri, 05 Jul 2024 14:47:36 +0800
+
+dde-launchpad (0.7.5) unstable; urgency=medium
+
+  * Fix #6818
+  * Fix #8807
+  * Fix #9374
+
+ -- xionglinlin <xionglinlin@uniontech.com>  Thu, 27 Jun 2024 10:55:50 +0800
+
+dde-launchpad (0.7.4) unstable; urgency=medium
+
+  * release 0.7.4
+
+ -- Mike Chen <chenke@deepin.org>  Mon, 24 Jun 2024 13:57:42 +0800
+
+dde-launchpad (0.7.3) unstable; urgency=medium
+
+  * Fix #8694
+  * Fix #8805
+  * Fix #8980
+  * Fix #8495
+  * Fix #8828
+  * Fix #7949
+  * Fix #8577
+  * Fix #8824
+  * Fix #8674
+  * Fix #8655
+  * Fix #9009
+  * Fix #8832
+  * Fix #8972
+  * Fix #8342
+  * release 0.7.3
+
+ -- Mike Chen <chenke@deepin.org>  Mon, 17 Jun 2024 10:34:07 +0800
+
+dde-launchpad (0.7.2) unstable; urgency=medium
+
+  * release 0.7.2
+
+ -- Mike Chen <chenke@deepin.org>  Thu, 13 Jun 2024 10:26:10 +0800
+
+dde-launchpad (0.7.1) unstable; urgency=medium
+
+  * fix: folder did not remove without item (linuxdeepin/developer-center#8947)
+  * Fix #8577
+  * Fix #8862
+  * Fix #8376
+  * Fix #8689
+  * Fix #8244
+  * Fix #8384
+  * release 0.7.1
+
+ -- zsien <quezhiyong@deepin.org>  Fri, 07 Jun 2024 15:11:35 +0800
+
+dde-launchpad (0.7.0) unstable; urgency=medium
+
+  * Fix missing border in popup (linuxdeepin/developer-center#8409)
+  * Now requires AppStreamQt 1.0
+  * App group round corner (linuxdeepin/developer-center#8336)
+  * Update built-in compulsory app list (linuxdeepin/developer-center#8674)
+  * Show highlighted item all the time in fullscreen mode
+  * Add menu entry to bring item to front in freeform sort mode
+  * Update translations
+  * Fix Enter and Space key not able to launch app (linuxdeepin/developer-center#8584)
+  * PageIndicator styling fix (linuxdeepin/developer-center#8688)
+  * Fix menu popup focus (linuxdeepin/developer-center#7629)
+  * Fix incorrect X-Deepin-Vendor check
+
+ -- Wang Zichong <wangzichong@deepin.org>  Wed, 29 May 2024 13:37:00 +0800
+
+dde-launchpad (0.6.12) unstable; urgency=medium
+
+  * fix: dde-control-center can be uninstalled
+  * fix: missing blur for Menu when it's parent is clip(Issue: https://github.com/linuxdeepin/developer-center/issues/8468)
+
+ -- YeShanShan <yeshanshan@deepin.org>  Tue, 14 May 2024 18:26:49 +0800
+
+dde-launchpad (0.6.11) unstable; urgency=medium
+
+  * Fix search result overflow
+  * Ensure AppItemMenu is modal (linuxdeepin/developer-center#8477)
+  * Fix numpad quick search not working (linuxdeepin/developer-center#8495)
+
+ -- Wang Zichong <wangzichong@deepin.org>  Fri, 10 May 2024 18:35:00 +0800
+
+dde-launchpad (0.6.10) unstable; urgency=medium
+
+  * Fix missing blur (linuxdeepin/developer-center#8468)
+  * Workaround QTBUG-125139 (linuxdeepin/developer-center#8475)
+  * Fix blank page after drag (linuxdeepin/developer-center#8358) (linuxdeepin/developer-center#8363)
+  * Check Ctrl key before accepting quick search (linuxdeepin/developer-center#8463)
+  * Avoid hang when drop to last item in page (linuxdeepin/developer-center#8457)
+  * Avoid two apps launched when click in folder (linuxdeepin/developer-center#8462)
+  * Ensure scrollbar visible for search result (linuxdeepin/developer-center#7833)
+  * Fix thumbnail not shown when folder name too long (linuxdeepin/developer-center#8336)
+  * Allow continue search when search edit is not focused (linuxdeepin/developer-center#7627)
+  * Fix enter to launch current app (linuxdeepin/developer-center#8060)
+  * Only show tooltip when truncated (linuxdeepin/developer-center#8409)
+  * Fix icon not clear (linuxdeepin/developer-center#8409)
+  * Various UI fixes (linuxdeepin/developer-center#8409)
+  * Update translations
+
+ -- Wang Zichong <wangzichong@deepin.org>  Thu, 09 May 2024 14:18:00 +0800
+
+dde-launchpad (0.6.9) unstable; urgency=medium
+
+  * fix: padding error in large font(Issue: https://github.com/linuxdeepin/developer-center/issues/8295)
+  * fix: List's item is not centered(Issue: https://github.com/linuxdeepin/developer-center/issues/8361)
+  * i18n: Translated using Weblate (Finnish) (#245)
+    Thanks to Weblate (bot)
+  * fix: There are empty application groups.(issue: 8367)
+  * fix: The size of the rounded corners in the small window folder is incorrect(Issue: https://github.com/linuxdeepin/developer-center/issues/8338)
+  * fix: folder icon not change with theme(Issue: https://github.com/linuxdeepin/developer-center/issues/8343)
+  * fix: still can resize when effects closed(Issue: https://github.com/linuxdeepin/developer-center/issues/7647)
+  * fix: Launchpad crashes.(issue: 8384)
+  * fix: The full-screen configuration is reset.(issue: 8370)
+  * fix: The folder has a context menu.(issue: 8403)
+  * fix: two popup when right folder's popup item(Issue: https://github.com/linuxdeepin/developer-center/issues/8368)
+  * feat: Application group name TextInput supports mouse selection
+  * fix: application groups can set empty name(Issue: https://github.com/linuxdeepin/developer-center/issues/8334)
+  * fix: appItem without icon field clicking to start causing crash(Issue: https://github.com/linuxdeepin/developer-center/issues/8396)
+
+ -- Yixue Wang <wangyixue@deepin.org>  Tue, 07 May 2024 15:53:08 +0800
+
+dde-launchpad (0.6.8) unstable; urgency=medium
+
+  * Fix keyboard focus navigation (linuxdeepin/developer-center#8135)
+  * Fix search icon color in fullscreen (linuxdeepin/developer-center#8182)
+  * Fix swipe and drag conflict, take two.
+  * Disable page wrap in fullscreen
+  * Fix text overflow when font size is too large (linuxdeepin/developer-center#8239)
+  * Various UI fixes
+
+ -- Wang Zichong <wangzichong@deepin.org>  Mon, 29 Apr 2024 16:51:00 +0800
+
+dde-launchpad (0.6.7) unstable; urgency=medium
+
+  * Check MIME before accepting drop and avoid related crash
+  * Various UI fixes (linuxdeepin/developer-center#8182)
+  * Ensure text elide when necessary (linuxdeepin/developer-center#8183)
+  * Allow same-folder drop (linuxdeepin/developer-center#7640)
+
+ -- Gary Wang <wangzichong@deepin.org>  Thu, 25 Apr 2024 18:42:00 +0800
+
+dde-launchpad (0.6.6) unstable; urgency=medium
+
+  * Fix missing focus box border for some items
+  * Fix the first attempt to switch from windowed mode to fullscreen mode failed
+
+ -- rewine <luhongxu@deepin.org>  Tue, 23 Apr 2024 16:23:34 +0800
+
+dde-launchpad (0.6.5) unstable; urgency=medium
+
+  * fix config file location (linuxdeepin/developer-center#8096)
+  * hide "add to favorite" menu (linuxdeepin/developer-center#8086)
+
+ -- Gary Wang <wangzichong@deepin.org>  Tue, 23 Apr 2024 14:07:00 +0800
+
+dde-launchpad (0.6.4) unstable; urgency=medium
+
+  * Fix incorrect window mode launcher window position (linuxdeepin/developer-center#8072)
+  * Update DConfig documentation
+  * Only use normal state for DciIcon (linuxdeepin/developer-center#8050)
+  * Add API to allow dde-shell hide launcher window (linuxdeepin/developer-center#7943)
+
+ -- Gary Wang <wangzichong@deepin.org>  Mon, 22 Apr 2024 20:12:00 +0800
+
+dde-launchpad (0.6.3) unstable; urgency=medium
+
+  * Avoid necessary icon reload (linuxdeepin/developer-center#7826)
+  * Add missing background for two buttons (linuxdeepin/developer-center#7935)
+  * Fix bind loop warnings
+  * Fix glitch icons when icon name is blank/empty
+  * Category type default to freeform sort type (linuxdeepin/developer-center#8022)
+  * Various UI fixes
+
+ -- Gary Wang <wangzichong@deepin.org>  Fri, 19 Apr 2024 15:05:00 +0800
+
+dde-launchpad (0.6.2) unstable; urgency=medium
+
+  * Drag operation now requires 300ms press-n-hold (linuxdeepin/developer-center#6359)
+  * Don't show hover background when dragging (linuxdeepin/developer-center#7944)
+  * Adjust item name color (linuxdeepin/developer-center#7940)
+  * Fix splitter line styling (linuxdeepin/developer-center#7930)
+  * Adjust fullscreen grid item count (linuxdeepin/developer-center#7938)
+  * Adjust item background color (linuxdeepin/developer-center#7935)
+  * Various UI fixes
+
+ -- Gary Wang <wangzichong@deepin.org>  Thu, 18 Apr 2024 20:51:00 +0800
+
+dde-launchpad (0.6.1) unstable; urgency=medium
+
+  * Remember app list sort type (linuxdeepin/developer-center#7652)
+  * Fix icon overlap on HiDPI (linuxdeepin/developer-center#7634)
+  * Fix focus rect (linuxdeepin/developer-center#7624)
+  * Disable "Send to Dock" menu for app group
+  * Clip folder name text (linuxdeepin/developer-center#7949)
+  * Disable invisible menu items to avoid tab focus
+  * Fix FTBFS caused by CMP0071 CMake policy
+  * Update style when edit folder title (linuxdeepin/developer-center#7953)
+  * Fix category mode section title spacing (linuxdeepin/developer-center#7938)
+  * Full Screen Grid is now 4x8 (linuxdeepin/developer-center#7987)
+  * Various UI fixes
+
+ -- Gary Wang <wangzichong@deepin.org>  Wed, 17 Apr 2024 19:33:00 +0800
+
+dde-launchpad (0.6.0) unstable; urgency=medium
+
+  * Adapt to dde-shell (linuxdeepin/developer-center#5810)
+  * Support drag item to create new page (linuxdeepin/developer-center#7633)
+  * Remove empty page caused by item rearrangement
+  * Fix list position while switching tab focus (linuxdeepin/developer-center#7684)
+  * Set default tab focus to the app area
+  * Add fallback icon for apps that have no icon (linuxdeepin/developer-center#5608) (linuxdeepin/developer-center#7742)
+  * Hide fullscreen launchpad when lost focus (linuxdeepin/developer-center#7635)
+  * UI tweaks
+  * Support disable scale for app (linuxdeepin/developer-center#7733)
+  * Support press Enter to open first search result
+
+ -- Gary Wang <wangzichong@deepin.org>  Wed, 10 Apr 2024 10:03:00 +0800
+
+dde-launchpad (0.5.0) unstable; urgency=medium
+
+  * Adapt post-beta-3 UI changes according to designer
+  * Drop Qt 5 and DTK 5 build support
+  * Switch to use AM API to manage apps, shortcut and autostart
+  * Quick-search-related shortcuts and key navigation tweaks
+  * Hide the 'use proxy' placeholder menu entry
+  * Remove invalid empty pages when app uninstalled
+  * Remove bookmark section, add recently installed section to UI
+  * Add search rule to match untranslated desktop 'Name'
+  * Add recently installed apps section to UI
+  * Add 'free sort' mode to windowed mode app list
+  * Introduce new debug option for developer
+  * Add window title for kwin to match correct window on x11
+  * Wrap between first and last page when using key navigation
+  * Add an unit test for 'ItemPage'
+  * Update translation from Hosted Weblate
+
+ -- Gary Wang <wangzichong@deepin.org>  Tue, 26 Mar 2024 16:24:00 +0800
+
+dde-launchpad (0.4.6) unstable; urgency=medium
+
+  * Adapt UI changes according to designer
+  * Fix tab and space and trigger quick search
+  * Add pre-defined apps to launchpad favorited app list
+
+ -- Gary Wang <wangzichong@deepin.org>  Wed, 31 Jan 2024 18:53:00 +0800
+
+dde-launchpad (0.4.5) unstable; urgency=medium
+
+  * Ensure icon change when theme change
+  * Show scrollbar for window mode app gridview (linuxdeepin/developer-center#6202)
+  * Ensure numkey to trigger quick search (linuxdeepin/developer-center#6373)
+  * Add horizontal spacing for windowed mode grid view (linuxdeepin/developer-center#6372)
+  * Ensure return to main view when press key on alphabet view (linuxdeepin/developer-center#6156)
+  * Add window blur for windowed mode (linuxdeepin/developer-center#7125)
+  * Adapt UI changes according to designer
+
+ -- Gary Wang <wangzichong@deepin.org>  Tue, 30 Jan 2024 22:03:00 +0800
+
+dde-launchpad (0.4.4) unstable; urgency=medium
+
+  * Ensure uninstall dialog can be shown (linuxdeepin/developer-center#6945)
+    (linuxdeepin/developer-center#6961)
+  * Adjust systemd service
+  * Some special care for TreeLand
+  * Tweak uninstall dialog layout
+
+ -- Gary Wang <wangzichong@deepin.org>  Thu, 18 Jan 2024 11:17:00 +0800
+
+dde-launchpad (0.4.3) unstable; urgency=medium
+
+  * Fix window mode position jitter (linuxdeepin/developer-center#6733)
+  * Fix icon missing (linuxdeepin/developer-center#6860)
+  * Provide a built-in compulsory-for-DDE app list
+    (linuxdeepin/developer-center#6883)
+  * Enable clipping for app folder page view
+  * Fix scroll failed in some case (linuxdeepin/developer-center#6897)
+  * Avoid window mode hide caused by activeChanged
+    (linuxdeepin/developer-center#6818)
+
+ -- Gary Wang <wangzichong@deepin.org>  Tue, 16 Jan 2024 16:45:00 +0800
+
+dde-launchpad (0.4.2) unstable; urgency=medium
+
+  * Adjust section title font size in WindowedFrame (https://github.com/linuxdeepin/developer-center/issues/6208)
+  * Fix context menu did not get hide (https://github.com/linuxdeepin/developer-center/issues/6716)
+  * Make icon DnD in FullscreenFrame easier (https://github.com/linuxdeepin/developer-center/issues/6286)
+  * Allow Shift+Alphabetic key to quick search (https://github.com/linuxdeepin/developer-center/issues/6859)
+  * Fix missing icon for uninstall (https://github.com/linuxdeepin/developer-center/issues/6686)
+  * Update page indicator when page count changed (https://github.com/linuxdeepin/developer-center/issues/6861)
+
+ -- Gary Wang <wangzichong@deepin.org>  Fri, 12 Jan 2024 13:43:00 +0800
+
+dde-launchpad (0.4.1) unstable; urgency=medium
+
+  * Ensure dxcb plugin can be loaded properly (https://github.com/linuxdeepin/developer-center/issues/6686)
+  * Reset scrollview/swipeview position when launchpad hide (https://github.com/linuxdeepin/developer-center/issues/6402)
+  * Fix double focus box in AppListView (https://github.com/linuxdeepin/developer-center/issues/6401)
+  * Fix highlight range in AppListView (https://github.com/linuxdeepin/developer-center/issues/6151)
+  * Fix the height of the uninstallation confirm dialog (https://github.com/linuxdeepin/developer-center/issues/6687)
+  * Avoid scroll mouse to reset the search edit input focus (https://github.com/linuxdeepin/developer-center/issues/6398)
+
+ -- Gary Wang <wangzichong@deepin.org>  Wed, 10 Jan 2024 13:43:00 +0800
+
+dde-launchpad (0.4.0) unstable; urgency=medium
+
+  * Rename "Settings" to "Control Center"
+  * Play sfx when send to desktop
+  * Support use Enter to launch app in Windowed mode (https://github.com/linuxdeepin/developer-center/issues/6395)
+  * Support AppStreamQt 1.0
+  * Change DnD mimetype to text/x-dde-launcher-dnd-desktopId
+  * Enable cross-page item drag in FullscreenFrame
+  * Avoid right click launch app in window mode (https://github.com/linuxdeepin/developer-center/issues/6290)
+  * Support "Pin to top" for favorited items (https://github.com/linuxdeepin/developer-center/issues/6399)
+  * Fix missing translation in alphabet category view (https://github.com/linuxdeepin/developer-center/issues/6520)
+  * Use two window for different mode to avoid lagging when switching between modes
+  * Add dde-application-wizard as dependency
+  * Clean up invalid apps after app list changed (https://github.com/linuxdeepin/developer-center/issues/6116)
+  * Hide menu when launcher is hidden (https://github.com/linuxdeepin/developer-center/issues/6716)
+  * Launchpad cannot get foucus when get shown in second time (https://github.com/linuxdeepin/developer-center/issues/6517)
+  * Support OEM config to hide app form be shown in launchpad
+  * Fix highlight not visible when focus in (https://github.com/linuxdeepin/developer-center/issues/6397)
+
+ -- Gary Wang <wangzichong@deepin.org>  Fri, 05 Jan 2024 10:38:00 +0800
+
+dde-launchpad (0.3.0) unstable; urgency=medium
+
+  * Support drag and drop in fullscreen launcher
+  * Fix fullscreen to launch app (https://github.com/linuxdeepin/developer-center/issues/6364)
+  * Remove highlight animation (https://github.com/linuxdeepin/developer-center/issues/6368)
+  * Reset folder popup state when hidding launchpad (https://github.com/linuxdeepin/developer-center/issues/6369)
+  * Reset keyboard focus when using mouse wheel (https://github.com/linuxdeepin/developer-center/issues/6361)
+  * Add tooltip for Control Center button (https://github.com/linuxdeepin/developer-center/issues/6365)
+
+ -- Gary Wang <wangzichong@deepin.org>  Wed, 06 Dec 2023 18:06:00 +0800
+
+dde-launchpad (0.2.2) unstable; urgency=medium
+
+  * add hover state for AppListView items
+    (https://github.com/linuxdeepin/developer-center/issues/6205)
+  * fix incorrect icon size when using HiDPI (https://github.com/linuxdeepin/developer-center/issues/6137)
+
+ -- Gary Wang <wangzichong@deepin.org>  Thu, 23 Nov 2023 19:41:00 +0800
+
+dde-launchpad (0.2.1) unstable; urgency=medium
+
+  * Adjust icon hover effect (https://github.com/linuxdeepin/developer-center/issues/6140)
+  * Ascii item should appears first (https://github.com/linuxdeepin/developer-center/issues/6152)
+  * Lower-case word should appears first (https://github.com/linuxdeepin/developer-center/issues/6159)
+  * Reset focus and search state when hide fullscreen frame (https://github.com/linuxdeepin/developer-center/issues/6162)
+  * Support Enter key to select category in alphabet category view (https://github.com/linuxdeepin/developer-center/issues/6154)
+
+ -- Gary Wang <wangzichong@deepin.org>  Tue, 14 Nov 2023 13:03:00 +0800
+
+dde-launchpad (0.2.0) unstable; urgency=medium
+
+  * Initial implementation of the redesigned UI
+  * Add a new alphabet category screen
+  * For windowed launcher, always reset searching/focus state when hidding launcher frame
+  * initial support to build with Qt 6
+  * remove DRegionMonitor to avoid massive log
+
+ -- Gary Wang <wangzichong@deepin.org>  Thu, 09 Nov 2023 15:21:00 +0800
+
+dde-launchpad (0.1.0) unstable; urgency=medium
+
+  * Hide launcher window right after it lost focus
+  * Allow using arrow key to change selected app item (https://github.com/linuxdeepin/developer-center/issues/5462)
+  * Reworked keyboard/Tab-key navigation
+  * Support ESC key to hide launcher window
+  * Support using Jianpin to search application (https://github.com/linuxdeepin/developer-center/issues/5461)
+
+ -- Gary Wang <wangzichong@deepin.org>  Wed, 11 Oct 2023 10:42:00 +0800
+
+dde-launchpad (0.0.2) unstable; urgency=medium
+
+  * Use the new application-manager to launch app when possible
+  * Disable window resizing for window mode launcher
+  * Support scroll between pages via mouse wheel in fullscreen mode launcher
+  * Use Qt5's Quick Compiler to pre-compile QML files to C++
+
+ -- Gary Wang <wangzichong@deepin.org>  Tue, 12 Sep 2023 10:32:00 +0800
+
+dde-launchpad (0.0.1) unstable; urgency=medium
+
+  * Initial tag release
+  * Implement basic features that required by the launcher component
+
+ -- Gary Wang <wangzichong@deepin.org>  Mon, 04 Sep 2023 14:03:00 +0800
+
+dde-launchpad (0.0.0) UNRELEASED; urgency=medium
+
+  * Initial release
+
+ -- Gary Wang <wangzichong@deepin.org>  Tue, 25 Jul 2023 15:40:19 +0800
