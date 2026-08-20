@@ -265,6 +265,7 @@ AppletItem {
 
     PanelPopup {
         id: windowedModeLauncher
+        useX11BypassWindowManagerHint: false
 
         property bool visibility: LauncherController.visible && (LauncherController.currentFrame === "WindowedFrame")
 
