@@ -146,7 +146,7 @@
     </message>
     <message>
         <source>Are you sure you want to uninstall &quot;%1&quot;?</source>
-        <translation type="unfinished"/>
+        <translation>هل أنت متأكد من إلغاء تثبيت &quot;%1&quot;؟</translation>
     </message>
     <message>
         <source>Cancel</source>
@@ -266,7 +266,7 @@
     </message>
     <message>
         <source>Are you sure you want to uninstall &quot;%1&quot;?</source>
-        <translation type="unfinished"/>
+        <translation>هل أنت متأكد من إلغاء تثبيت &quot;%1&quot;؟</translation>
     </message>
     <message>
         <source>Cancel</source>
