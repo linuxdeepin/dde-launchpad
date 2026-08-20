@@ -49,6 +49,9 @@ private slots:
     void testSpecialCharacters();
     void testSharedModelAdapter();
     void testCategorySortSignalOrder();
+    void testCategorizedSortAlphabetarySections();
+    void testCategorizedSortDDECategorySections();
+    void testCategorizedSortRoleNameAndCategoryType();
 
 private:
     void setupTestData();
@@ -430,6 +433,65 @@ void TestSearchFilterProxyModel::testCategorySortSignalOrder()
                                         QStringLiteral("layoutAboutToChange"),
                                         QStringLiteral("layoutChanged"),
                                         QStringLiteral("category") }));
+}
+
+void TestSearchFilterProxyModel::testCategorizedSortAlphabetarySections()
+{
+    // Exercise alphabetarySections(): collect uppercased first chars of transliterated names.
+    auto &model = CategorizedSortProxyModel::instance();
+    model.setCategoryType(CategorizedSortProxyModel::Alphabetary);
+
+    const auto sections = model.alphabetarySections();
+    // The test data contains English apps (Calculator, Editor, Browser, etc.)
+    // and Chinese apps (音乐, etc.). Each transliterated name starts with a
+    // letter; the set should be non-empty and sorted (with &/# at front if present).
+    QVERIFY(!sections.isEmpty());
+    // Verify the returned list is sorted by the custom comparator (& < # < letters)
+    for (int i = 1; i < sections.size(); ++i) {
+        const QString &prev = sections[i - 1];
+        const QString &curr = sections[i];
+        // customLessThan: & < #, then normal <
+        if (prev == "&" && curr == "#")
+            continue; // & before # is valid
+        QVERIFY(prev != "#" || curr != "&"); // # before & would be wrong order
+        QVERIFY(curr >= prev || (prev == "&" && curr == "#"));
+    }
+}
+
+void TestSearchFilterProxyModel::testCategorizedSortDDECategorySections()
+{
+    // Exercise DDECategorySections(): collect distinct DDECategory values.
+    auto &model = CategorizedSortProxyModel::instance();
+    model.setCategoryType(CategorizedSortProxyModel::DDECategory);
+
+    const auto sections = model.DDECategorySections();
+    // The test data has items with DDECategoryRole set (via SourceDDECategoryRole % 11)
+    // so the section list should be non-empty and sorted ascending.
+    QVERIFY(!sections.isEmpty());
+    // Verify sorted ascending
+    for (int i = 1; i < sections.size(); ++i)
+        QVERIFY(sections[i] >= sections[i - 1]);
+}
+
+void TestSearchFilterProxyModel::testCategorizedSortRoleNameAndCategoryType()
+{
+    // Exercise sortRoleName() and categoryType() getter — all 3 branches.
+    auto &model = CategorizedSortProxyModel::instance();
+
+    // Set to DDECategory and verify getter returns DDECategory
+    model.setCategoryType(CategorizedSortProxyModel::DDECategory);
+    QCOMPARE(int(model.categoryType()), int(CategorizedSortProxyModel::DDECategory));
+    // sortRoleName should return the name of the DDECategoryRole
+    QCOMPARE(model.sortRoleName(), QStringLiteral("category"));
+
+    // Set to Alphabetary and verify getter returns Alphabetary
+    model.setCategoryType(CategorizedSortProxyModel::Alphabetary);
+    QCOMPARE(int(model.categoryType()), int(CategorizedSortProxyModel::Alphabetary));
+    QCOMPARE(model.sortRoleName(), QStringLiteral("transliterated"));
+
+    // FreeCategory branch: when categoryType is FreeCategory, isFreeSort=true
+    model.setCategoryType(CategorizedSortProxyModel::FreeCategory);
+    QCOMPARE(int(model.categoryType()), int(CategorizedSortProxyModel::FreeCategory));
 }
 
 QTEST_MAIN(TestSearchFilterProxyModel)
