@@ -37,7 +37,7 @@ AppletItem {
             updateLaunchpadPos()
         }
         function onViewDeactivated() {
-            if (LauncherController.currentFrame === "FullscreenFrame" && LauncherController.visible) {
+            if (LauncherController.visible) {
                 LauncherController.hideWithTimer()
             }
         }
@@ -70,7 +70,7 @@ AppletItem {
     }
     Component.onCompleted: {
         updateLaunchpadPos()
-        assignFullscreenFrameScreen()
+        assignDockScreen(launcher.fullscreenFrame)
     }
 
     function decrementPageIndex(pages) {
@@ -156,14 +156,25 @@ AppletItem {
         LauncherController.visible = false;
     }
 
-    function assignFullscreenFrameScreen() {
-        const newScreenName = DS.applet("org.deepin.ds.dock").screenName
+    function dockScreen() {
+        const dock = DS.applet("org.deepin.ds.dock")
+        if (!dock)
+            return null
+
         for (const scr of Qt.application.screens) {
-            if (scr.name === newScreenName) {
-                launcher.fullscreenFrame.screen = scr
-                return
-            }
+            if (scr.name === dock.screenName)
+                return scr
         }
+        return null
+    }
+
+    function assignDockScreen(window) {
+        if (!window)
+            return
+
+        const scr = dockScreen()
+        if (scr && window.screen !== scr)
+            window.screen = scr
     }
 
     // A singleshot timer
@@ -172,7 +183,7 @@ AppletItem {
         interval: 100
         repeat: false
         onTriggered: {
-            assignFullscreenFrameScreen()
+            assignDockScreen(launcher.fullscreenFrame)
         }
     }
 
@@ -263,38 +274,104 @@ AppletItem {
         }
     }
 
-    PanelPopup {
+    Window {
         id: windowedModeLauncher
 
-        property bool visibility: LauncherController.visible && (LauncherController.currentFrame === "WindowedFrame")
-
+        objectName: "WindowedFrameApplicationWindow"
+        title: "dde-shell/launchpad"
+        visible: LauncherController.visible && (LauncherController.currentFrame === "WindowedFrame")
         width: 610
         height: 480
-        windowTitle: "dde-shell/launchpad"
-        popupX: DockPanelPositioner.x
-        popupY: DockPanelPositioner.y
-        DockPanelPositioner.bounding: Qt.rect(launcher.itemPos.x + width / 2 * ((Panel.position + 1) % 2),
-                                              launcher.itemPos.y + height / 2 * (Panel.position % 2),
-                                              width, height)
+        transientParent: null
+        color: "transparent"
+
+        readonly property int dockPosition: DesktopIntegration.dockPosition
+        readonly property bool dockIsHorizontal: dockPosition === Qt.UpArrow || dockPosition === Qt.DownArrow
+        readonly property bool isDarkTheme: D.DTK.themeType === D.ApplicationHelper.DarkType
+        readonly property int dockThickness: dockIsHorizontal ? Panel.rootObject.height
+                                                             : Panel.rootObject.width
+        readonly property int dockExclusion: dockThickness + DesktopIntegration.dockSpacing
+        readonly property int iconAlignOffset: Math.max(dockIsHorizontal ? itemPos.x : itemPos.y,
+                                                       DesktopIntegration.dockSpacing)
+
+        DLayerShellWindow.anchors: {
+            switch (dockPosition) {
+            case Qt.RightArrow:
+                return DLayerShellWindow.AnchorRight | DLayerShellWindow.AnchorTop
+            case Qt.DownArrow:
+                return DLayerShellWindow.AnchorBottom | DLayerShellWindow.AnchorLeft
+            case Qt.UpArrow:
+            case Qt.LeftArrow:
+            default:
+                return DLayerShellWindow.AnchorTop | DLayerShellWindow.AnchorLeft
+            }
+        }
+        DLayerShellWindow.topMargin: dockPosition === Qt.UpArrow ? dockExclusion
+                                                                 : (dockIsHorizontal ? 0 : iconAlignOffset)
+        DLayerShellWindow.leftMargin: dockPosition === Qt.LeftArrow ? dockExclusion
+                                                                   : (dockIsHorizontal ? iconAlignOffset : 0)
+        DLayerShellWindow.rightMargin: dockPosition === Qt.RightArrow ? dockExclusion : 0
+        DLayerShellWindow.bottomMargin: dockPosition === Qt.DownArrow ? dockExclusion : 0
+        DLayerShellWindow.keyboardInteractivity: DLayerShellWindow.KeyboardInteractivityOnDemand
+
+        flags: Qt.Window | Qt.FramelessWindowHint
+        DWindow.enabled: true
+        DWindow.windowRadius: D.DTK.platformTheme.windowRadius < 0 ? 12 : D.DTK.platformTheme.windowRadius
+        DWindow.enableSystemResize: false
+        DWindow.enableSystemMove: false
+        DWindow.enableBlurWindow: true
+        DWindow.shadowOffset: Qt.point(0, 25)
+        DWindow.shadowColor: isDarkTheme ? Qt.rgba(0, 0, 0, 0.5) : Qt.rgba(0, 0, 0, 0.2)
+        D.ColorSelector.family: D.Palette.CrystalColor
+
+        StyledBehindWindowBlur {
+            control: parent
+            anchors.fill: parent
+            blendColor: {
+                const appearance = DS.applet("org.deepin.ds.dde-appearance")
+                const alpha = appearance && appearance.opacity >= 0 ? appearance.opacity : 0.6
+                if (valid) {
+                    return DStyle.Style.control.selectColor(undefined,
+                        Qt.rgba(235 / 255.0, 235 / 255.0, 235 / 255.0, alpha),
+                        Qt.rgba(0, 0, 0, 85 / 255))
+                }
+                return DStyle.Style.control.selectColor(undefined,
+                    DStyle.Style.behindWindowBlur.lightNoBlurColor,
+                    DStyle.Style.behindWindowBlur.darkNoBlurColor)
+            }
+        }
+
+        D.InsideBoxBorder {
+            anchors.fill: parent
+            radius: WindowManagerHelper.hasComposite ? windowedModeLauncher.DWindow.windowRadius : 0
+            color: windowedModeLauncher.isDarkTheme ? Qt.rgba(1, 1, 1, 0.15) : Qt.rgba(1, 1, 1, 0.55)
+        }
 
         WindowedFrame {
             anchors.fill: parent
         }
 
-        onVisibilityChanged: function() {
-            if (visibility) {
-                if (!windowedModeLauncher.visible) {
-                    windowedModeLauncher.open()
-                }
-            } else {
-                windowedModeLauncher.close()
+        onVisibleChanged: {
+            if (visible) {
+                assignDockScreen(windowedModeLauncher)
+                requestActivate()
+                LauncherController.closeAllPopups()
             }
         }
-        onPopupVisibleChanged: function() {
-            if (LauncherController.currentFrame !== "WindowedFrame") return
-            if (popupVisible !== visibility) {
-                LauncherController.visible = popupVisible
+
+        onActiveChanged: {
+            if (LauncherController.currentFrame !== "WindowedFrame")
+                return
+            if (active) {
+                LauncherController.cancelHide()
+            } else if (!DebugHelper.avoidHideWindow) {
+                LauncherController.hideWithTimer()
             }
+        }
+
+        onClosing: {
+            if (LauncherController.currentFrame === "WindowedFrame")
+                LauncherController.visible = false
         }
     }
 
