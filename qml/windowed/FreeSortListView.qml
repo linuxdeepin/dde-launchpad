@@ -315,7 +315,10 @@ Item {
                 Drag.hotSpot.x: width / 3
                 Drag.hotSpot.y: height / 2
                 Drag.dragType: Drag.Automatic
-                Drag.active: mouseArea.drag.active
+                // Binding Drag.active to mouseArea.drag.active would make Drag.active
+                // read back the very property it drives (opacity/delayRemove/onActiveChanged),
+                // causing a QML binding loop. Set it imperatively from the MouseArea instead.
+                Drag.active: false
                 Drag.mimeData: Helper.generateDragMimeData(model.desktopId)
                 Drag.onActiveChanged: function() {
                     if (!Drag.active) {
@@ -341,6 +344,9 @@ Item {
 
                     acceptedButtons: Qt.LeftButton | Qt.RightButton
                     drag.target: dndTarget
+                    drag.onActiveChanged: function () {
+                        itemDelegate.Drag.active = drag.active
+                    }
 
                     TapHandler {
                         acceptedDevices: PointerDevice.TouchScreen

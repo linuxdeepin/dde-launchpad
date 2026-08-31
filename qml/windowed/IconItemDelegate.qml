@@ -25,7 +25,11 @@ Control {
     signal menuTriggered()
 
     Drag.dragType: Drag.Automatic
-    Drag.active: mouseArea.drag.active
+    // Binding Drag.active to mouseArea.drag.active would make Drag.active read
+    // back the very property it drives (used in opacity/states below), causing a
+    // QML binding loop. Set it imperatively from the MouseArea's drag handler
+    // instead.
+    Drag.active: false
 
     states: State {
         name: "dragged";
@@ -52,6 +56,9 @@ Control {
             enabled: true
             acceptedButtons: Qt.LeftButton | Qt.RightButton
             drag.target: root.dndEnabled ? root : null
+            drag.onActiveChanged: function () {
+                root.Drag.active = drag.active
+            }
             onPressed: function (mouse) {
                 if (mouse.button === Qt.LeftButton && root.dndEnabled) {
                     appIcon.grabToImage(function(result) {
