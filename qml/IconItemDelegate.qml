@@ -378,11 +378,14 @@ Control {
         ToolTip.delay: 500
         ToolTip.visible: hovered && iconItemLabel.truncated
         background: ItemBackground {
+            Accessible.ignored: true
             radius: isWindowedMode ? 8 : 18
             button: parent
         }
     }
-    background: DebugBounding { }
+    background: DebugBounding {
+        Accessible.ignored: true
+    }
 
     Keys.onSpacePressed: {
         if (model.itemType === ItemArrangementProxyModel.FolderItemType) {

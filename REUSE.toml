@@ -62,3 +62,9 @@ path = "toolGenerate/**/**"
 precedence = "aggregate"
 SPDX-FileCopyrightText = "None"
 SPDX-License-Identifier = "CC0-1.0"
+
+[[annotations]]
+path = "tests/at/spi/expected_names.yaml"
+precedence = "aggregate"
+SPDX-FileCopyrightText = "UnionTech Software Technology Co., Ltd."
+SPDX-License-Identifier = "CC0-1.0"
