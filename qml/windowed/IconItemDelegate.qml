@@ -127,11 +127,14 @@ Control {
         ToolTip.delay: 500
         ToolTip.visible: hovered && iconItemLabel.truncated
         background: ItemBackground {
+            Accessible.ignored: true
             radius: 8
             button: iconButton
         }
     }
-    background: DebugBounding { }
+    background: DebugBounding {
+        Accessible.ignored: true
+    }
 
     Keys.onSpacePressed: {
         root.itemClicked()

@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2024 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2024 - 2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -23,6 +23,7 @@ Loader {
 
         Menu {
             id: contextMenu
+            objectName: "ContextMenu_2"
             topMargin: isFullscreen && DesktopIntegration.dockPosition === Qt.UpArrow ? dockSpacing : 0
             bottomMargin: isFullscreen && DesktopIntegration.dockPosition === Qt.DownArrow ? dockSpacing : 0
             leftMargin: isFullscreen && DesktopIntegration.dockPosition === Qt.LeftArrow ? dockSpacing : 0
@@ -31,6 +32,7 @@ Loader {
 
             MenuItem {
                 text: qsTr("Install")
+                objectName: "Install"
                 onTriggered: {
                     launchApp(root.desktopId)
                 }
@@ -38,6 +40,7 @@ Loader {
 
             MenuItem {
                 text: qsTr("Remove")
+                objectName: "Remove"
                 onTriggered: {
                     DesktopIntegration.uninstallApp(root.desktopId)
                 }

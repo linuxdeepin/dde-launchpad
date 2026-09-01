@@ -81,6 +81,7 @@ FocusScope {
 
             GridView {
                 id: gridView
+                objectName: "GridView"
 
                 ScrollBar.vertical: root.vScrollBar
 
