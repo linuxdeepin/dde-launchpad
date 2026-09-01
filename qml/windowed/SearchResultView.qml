@@ -53,6 +53,8 @@ Control {
 
         GridViewContainer {
             id: searchResultViewContainer
+            objectName: "SearchResultViewContainer"
+            Accessible.role: Accessible.Pane
 
             KeyNavigation.tab: nextKeyTabTarget
             Layout.alignment: Qt.AlignRight
@@ -69,6 +71,7 @@ Control {
 
             vScrollBar: ScrollBar {
                 id: vScrollBar
+                objectName: "VScrollBar"
                 visible: parent.model.count > 4 * 4
                 active: parent.model.count > 4 * 4
             }
@@ -100,5 +103,7 @@ Control {
         }
     }
 
-    background: DebugBounding { }
+    background: DebugBounding {
+        Accessible.ignored: true
+    }
 }

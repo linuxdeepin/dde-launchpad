@@ -252,7 +252,10 @@ AppletItem {
         Loader {
             anchors.fill: parent
             focus: true
-            sourceComponent: FullscreenFrame {}
+            sourceComponent: FullscreenFrame {
+                objectName: "Loader_FullscreenFrame"
+                Accessible.role: Accessible.Pane
+            }
 
             Label {
                 visible: DebugHelper.qtDebugEnabled
@@ -352,6 +355,8 @@ AppletItem {
         }
 
         WindowedFrame {
+            objectName: "Launcheritem_WindowedFrame"
+            Accessible.role: Accessible.Pane
             anchors.fill: parent
         }
 
@@ -421,6 +426,7 @@ AppletItem {
                 
                 Button {
                     id: cancelButton
+                    objectName: "CancelButton_2"
                     Layout.fillWidth: true
                     text: qsTr("Cancel")
                     onClicked: {
@@ -429,6 +435,7 @@ AppletItem {
                 }               
                 WarningButton {
                     id: confirmButton
+                    objectName: "ConfirmButton_2"
                     Layout.fillWidth: true
                     text: qsTr("Confirm")
                     onClicked: {

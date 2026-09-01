@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2023 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2023 - 2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -269,7 +269,10 @@ QtObject {
             id: windowedFrameImpl
             anchors.fill: parent
             focus: true
-            sourceComponent: WindowedFrame { }
+            sourceComponent: WindowedFrame {
+                objectName: "Loader_WindowedFrame"
+                Accessible.role: Accessible.Pane
+            }
 
             Label {
                 visible: DebugHelper.qtDebugEnabled
@@ -421,6 +424,7 @@ QtObject {
                 Item {
                     Button {
                         id: cancelButton
+                        objectName: "CancelButton"
                         text: qsTr("Cancel")
                         onClicked: {
                             confirmUninstallDlg.close()
@@ -435,6 +439,7 @@ QtObject {
                 Item {
                     WarningButton {
                         id: confirmButton
+                        objectName: "ConfirmButton"
                         text: qsTr("Confirm")
                         onClicked: {
                             DesktopIntegration.uninstallApp(confirmUninstallDlg.appId)

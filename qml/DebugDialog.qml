@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2023 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2023 - 2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -18,6 +18,7 @@ Column {
 
     Switch {
         text: "Use regular window (need restart)"
+        objectName: "UseRegularWindowNeedRestart"
         checked: DebugHelper.useRegularWindow
         onCheckedChanged: {
             DebugHelper.useRegularWindow = checked
@@ -26,6 +27,7 @@ Column {
 
     Switch {
         text: "Avoid launch application"
+        objectName: "AvoidLaunchApplication"
         checked: DebugHelper.avoidLaunchApp
         onCheckedChanged: {
             DebugHelper.avoidLaunchApp = checked
@@ -34,6 +36,7 @@ Column {
 
     Switch {
         text: "Avoid hide launchpad window"
+        objectName: "AvoidHideLaunchpadWindow"
         checked: DebugHelper.avoidHideWindow
         onCheckedChanged: {
             DebugHelper.avoidHideWindow = checked
@@ -42,6 +45,7 @@ Column {
 
     Switch {
         text: "Display item's bounding rectangle"
+        objectName: "DisplayItemSBoundingRectangle"
         checked: DebugHelper.itemBoundingEnabled
         onCheckedChanged: {
             DebugHelper.itemBoundingEnabled = checked
@@ -50,6 +54,7 @@ Column {
 
     ToolButton {
         text: "Close launchpad application"
+        objectName: "CloseLaunchpadApplication"
         onClicked: {
             Qt.quit()
         }

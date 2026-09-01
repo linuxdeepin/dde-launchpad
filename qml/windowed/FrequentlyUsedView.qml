@@ -35,6 +35,8 @@ Control {
 
         GridViewContainer {
             id: frequentlyUsedViewContainer
+            objectName: "FrequentlyUsedViewContainer"
+            Accessible.role: Accessible.Pane
 
             KeyNavigation.tab: control.nextKeyTabTarget
             Layout.alignment: Qt.AlignRight
@@ -68,5 +70,7 @@ Control {
         }
     }
 
-    background: DebugBounding { }
+    background: DebugBounding {
+        Accessible.ignored: true
+    }
 }
