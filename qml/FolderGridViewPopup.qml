@@ -119,6 +119,7 @@ Popup {
 
                 TextInput {
                     id: folderNameEdit
+                    objectName: "FolderNameEdit"
                     Layout.fillWidth: true
                     Layout.leftMargin: contentRoot.titleMargin - root.padding
                     Layout.rightMargin: contentRoot.titleMargin - root.padding
@@ -286,6 +287,7 @@ Popup {
 
                     SwipeView {
                         id: folderPagesView
+                        objectName: "FolderPagesView"
                         clip: gridViews.count > 1
 
                         anchors.fill: parent
@@ -397,6 +399,7 @@ Popup {
                                         id: fullScreenGridViewContainer
                                         GridViewContainer {
                                             id: folderGridViewContainer
+                                            Accessible.role: Accessible.Pane
                                             objectName: "folderGridViewContainer"
                                             anchors.fill: parent
                                             rows: 3
@@ -480,6 +483,8 @@ Popup {
                                         id: listViewGridViewContainer
                                         Windowed.GridViewContainer {
                                             id: folderGridViewContainer
+                                            objectName: "FolderGridViewContainer_2"
+                                            Accessible.role: Accessible.Pane
                                             anchors.fill: parent
                                             rows: 3
                                             columns: 4
@@ -685,6 +690,7 @@ Popup {
                     Layout.alignment: Qt.AlignHCenter
                     visible: folderPagesView.count > 1 ? true : false
                     id: folderPageIndicator
+                    objectName: "FolderPageIndicator"
                     implicitHeight: isWindowedMode ? 13 : folderPageIndicator.implicitWidth
                     count: folderPagesView.count
                     currentIndex: folderPagesView.currentIndex

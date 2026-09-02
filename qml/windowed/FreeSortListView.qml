@@ -53,6 +53,7 @@ Item {
 
     ListView {
         id: listView
+        objectName: "ListView"
         anchors.fill: parent
         highlightFollowsCurrentItem: true
 
@@ -88,7 +89,9 @@ Item {
             }
         }
 
-        ScrollBar.vertical: ScrollBar { }
+        ScrollBar.vertical: ScrollBar {
+            objectName: "ListView_ScrollBar"
+        }
 
         Timer {
             id: listViewDragScroller
@@ -260,6 +263,7 @@ Item {
 
             ItemDelegate {
                 id: itemDelegate
+                objectName: "ItemDelegate_" + index
                 text: model.display.startsWith("internal/category/") ? getCategoryName(model.display.substring(18)) : model.display
                 checkable: false
                 icon.name: itemType === ItemArrangementProxyModel.FolderItemType ? "folder" : iconName
@@ -328,6 +332,7 @@ Item {
 
                 background: ItemBackground {
                     id: bg
+                    Accessible.ignored: true
                     implicitWidth: DStyle.Style.itemDelegate.width
                     implicitHeight: Helper.windowed.listItemHeight
                     button: itemDelegate

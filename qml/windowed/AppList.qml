@@ -46,6 +46,8 @@ ColumnLayout {
 
         AppListView {
             id: categoryView
+            objectName: "CategoryListView"
+            Accessible.role: Accessible.Pane
             anchors.fill: viewContainer
             visible: !isFreeSort
 
@@ -55,6 +57,8 @@ ColumnLayout {
 
         FreeSortListView {
             id: freeSortView
+            objectName: "FreeSortListView"
+            Accessible.role: Accessible.Pane
             anchors.fill: viewContainer
             visible: isFreeSort
 

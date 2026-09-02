@@ -35,9 +35,11 @@ ColumnLayout {
         id: categorizedCom
         D.Menu {
             id: categorizedMenu
+            objectName: "CategorizedMenu"
 
             D.MenuItem {
                 text: qsTr("Free sorting")
+                objectName: "FreeSorting"
                 icon.name: categorizedIcon("freeSort")
                 display: D.IconLabel.IconBesideText
                 checked: isFreeSort
@@ -52,6 +54,7 @@ ColumnLayout {
 
             D.MenuItem {
                 text: qsTr("Sort by category")
+                objectName: "SortByCategory"
                 icon.name: categorizedIcon(CategorizedSortProxyModel.DDECategory)
                 display: D.IconLabel.IconBesideText
                 checked: CategorizedSortProxyModel.categoryType === CategorizedSortProxyModel.DDECategory
@@ -64,6 +67,7 @@ ColumnLayout {
 
             D.MenuItem {
                 text: qsTr("Sort by name")
+                objectName: "SortByName"
                 icon.name: categorizedIcon(CategorizedSortProxyModel.Alphabetary)
                 display: D.IconLabel.IconBesideText
                 checked: CategorizedSortProxyModel.categoryType === CategorizedSortProxyModel.Alphabetary
@@ -87,6 +91,7 @@ ColumnLayout {
 
     D.ToolButton {
         id: title
+        objectName: "Title"
 
         Layout.alignment: Qt.AlignCenter
         KeyNavigation.down: computer
@@ -124,6 +129,7 @@ ColumnLayout {
         }
 
         background: ItemBackground {
+            Accessible.ignored: true
             button: title
         }
 
@@ -155,6 +161,7 @@ ColumnLayout {
             }
         }
         background: ItemBackground {
+            Accessible.ignored: true
             button: btn
         }
     }

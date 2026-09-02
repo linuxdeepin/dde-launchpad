@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2024 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2024 - 2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -25,8 +25,10 @@ Control {
     contentItem: RowLayout {
         ToolButton {
             id: shutdownBtn
+            objectName: "ShutdownBtn"
             icon.name: "shutdown"
             background: ItemBackground {
+               Accessible.ignored: true
                button: shutdownBtn
             }
             ToolTip.visible: hovered
@@ -51,6 +53,7 @@ Control {
 
             contentItem: SearchEdit {
                 id: searchEdit
+                objectName: "WindowedSearchEdit"
                 padding: 1
                 placeholder: qsTr("Search")
                 property Palette textColor: DStyle.Style.button.text
@@ -95,8 +98,10 @@ Control {
 
         ToolButton {
             id: fullscreenBtn
+            objectName: "FullscreenBtn"
             icon.name: "launcher_fullscreen"
             background: ItemBackground {
+                Accessible.ignored: true
                 button: fullscreenBtn
             }
             ToolTip.visible: hovered
@@ -112,5 +117,7 @@ Control {
         }
     }
 
-    background: DebugBounding { }
+    background: DebugBounding {
+        Accessible.ignored: true
+    }
 }

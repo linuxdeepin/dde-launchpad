@@ -318,6 +318,7 @@ InputEventItem {
 
                     ToolButton {
                         id: exitFullscreenBtn
+                        objectName: "ExitFullscreenBtn"
                         Accessible.name: "Exit fullscreen"
                         anchors.right: fullscreenHeader.right
                         ColorSelector.family: Palette.CrystalColor
@@ -326,6 +327,7 @@ InputEventItem {
                         ToolTip.delay: 500
                         ToolTip.text: qsTr("Window Mode")
                         background: WindowedLaunchpad.ItemBackground {
+                            Accessible.ignored: true
                             button: exitFullscreenBtn
                         }
                         onClicked: {
@@ -336,6 +338,7 @@ InputEventItem {
 
                     PageIndicator {
                         id: indicator
+                        objectName: "Indicator"
 
                         anchors.horizontalCenter: parent.horizontalCenter
                         anchors.verticalCenter: parent.verticalCenter
@@ -378,6 +381,7 @@ InputEventItem {
 
                 ListView {
                     id: listviewPage
+                    objectName: "ListviewPage"
 
                     anchors.fill: parent
                     snapMode: ListView.SnapOneItem
@@ -454,6 +458,7 @@ InputEventItem {
 
                         GridViewContainer {
                             id: gridViewContainer
+                            Accessible.role: Accessible.Pane
                             objectName: "gridViewContainer"
                             anchors.fill: parent
                             rows: 4
@@ -734,6 +739,8 @@ InputEventItem {
 
                 GridViewContainer {
                     id: searchResultGridViewContainer
+                    objectName: "SearchResultGridViewContainer"
+                    Accessible.role: Accessible.Pane
 
                     anchors.fill: parent
                     visible: searchEdit.text !== ""
@@ -751,6 +758,7 @@ InputEventItem {
                     padding: 10
                     interactive: true
                     vScrollBar: ScrollBar {
+                        objectName: "GridViewContainer_ScrollBar"
                         visible: parent.model.count > 4 * 8
                         active: parent.model.count > 4 * 8
                     }
@@ -760,6 +768,7 @@ InputEventItem {
 
             SearchEdit {
                 id: searchEdit
+                objectName: "FullscreenSearchEdit"
 
                 Layout.alignment: Qt.AlignHCenter
                 implicitWidth: (parent.width / 2) > 280 ? 280 : (parent.width / 2)
@@ -800,6 +809,8 @@ InputEventItem {
 
         FolderGridViewPopup {
             id: folderGridViewPopup
+            objectName: "FolderGridViewPopup"
+            Accessible.role: Accessible.Dialog
             cs: searchResultGridViewContainer.cellHeight
             centerPosition: Qt.point(curPointX, curPointY)
 
