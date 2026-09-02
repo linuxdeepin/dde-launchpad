@@ -290,7 +290,10 @@ AppletItem {
         readonly property bool isDarkTheme: D.DTK.themeType === D.ApplicationHelper.DarkType
         readonly property int dockThickness: dockIsHorizontal ? Panel.rootObject.height
                                                              : Panel.rootObject.width
-        readonly property int dockExclusion: dockThickness + DesktopIntegration.dockSpacing
+        readonly property int dockReservedZone: DesktopIntegration.isTreeLand() ? Panel.rootObject.DLayerShellWindow.exclusionZone : 0
+        
+        readonly property int dockExclusion: DesktopIntegration.dockSpacing
+                                              + Math.max(0, dockThickness - dockReservedZone)
         readonly property int iconAlignOffset: Math.max(dockIsHorizontal ? itemPos.x : itemPos.y,
                                                        DesktopIntegration.dockSpacing)
 
