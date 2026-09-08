@@ -316,6 +316,7 @@ AppletItem {
         DLayerShellWindow.rightMargin: dockPosition === Qt.RightArrow ? dockExclusion : 0
         DLayerShellWindow.bottomMargin: dockPosition === Qt.DownArrow ? dockExclusion : 0
         DLayerShellWindow.keyboardInteractivity: DLayerShellWindow.KeyboardInteractivityOnDemand
+        DLayerShellWindow.scope: "dde-shell/quick-launchpad"
 
         flags: Qt.Window | Qt.FramelessWindowHint
         DWindow.enabled: true
