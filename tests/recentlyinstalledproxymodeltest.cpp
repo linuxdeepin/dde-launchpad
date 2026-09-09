@@ -5,12 +5,10 @@
 #include <QTest>
 #include <QStandardItem>
 #include <QStandardItemModel>
-#include <QLoggingCategory>
 
-#include "../src/models/recentlyinstalledproxymodel.h"
+#include "recentlyinstalledproxymodel.h"
 
 namespace {
-Q_LOGGING_CATEGORY(logTest, "dde.launchpad.test")
 
 constexpr int NameRole = Qt::UserRole + 1;
 constexpr int InstalledTimeRole = Qt::UserRole + 2;
@@ -59,7 +57,6 @@ static void configureProxy(RecentlyInstalledProxyModel &proxy, QStandardItemMode
 
 void TestRecentlyInstalledProxyModel::filtersAndSortsByInstalledTime()
 {
-    qCInfo(logTest) << "Only never-launched, installed apps should be kept, newest first";
     QStandardItemModel source;
     populateSource(source);
 
@@ -74,7 +71,6 @@ void TestRecentlyInstalledProxyModel::filtersAndSortsByInstalledTime()
 
 void TestRecentlyInstalledProxyModel::ascendingOrder()
 {
-    qCInfo(logTest) << "Ascending sort should order by installed time ascending";
     QStandardItemModel source;
     populateSource(source);
 
@@ -89,7 +85,6 @@ void TestRecentlyInstalledProxyModel::ascendingOrder()
 
 void TestRecentlyInstalledProxyModel::componentCompleteSortsDescending()
 {
-    qCInfo(logTest) << "componentComplete() should sort by installed time descending (newest first)";
     QStandardItemModel source;
     populateSource(source);
 

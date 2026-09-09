@@ -6,14 +6,12 @@
 #include <QSignalSpy>
 #include <QStandardItem>
 #include <QStandardItemModel>
-#include <QLoggingCategory>
 
-#include "../src/models/itemspagemodel.h"
-#include "../src/models/itemarrangementproxymodel.h"
-#include "../src/models/appsmodel.h"
+#include "itemspagemodel.h"
+#include "itemarrangementproxymodel.h"
+#include "appsmodel.h"
 
 namespace {
-Q_LOGGING_CATEGORY(logTest, "dde.launchpad.test")
 
 enum SourceRoles {
     SrcDesktopIdRole = Qt::UserRole + 1,

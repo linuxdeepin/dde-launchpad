@@ -5,13 +5,11 @@
 #include <QTest>
 #include <QStandardItem>
 #include <QStandardItemModel>
-#include <QLoggingCategory>
 
-#include "../src/models/multipagesortfilterproxymodel.h"
-#include "../src/models/itemarrangementproxymodel.h"
+#include "multipagesortfilterproxymodel.h"
+#include "itemarrangementproxymodel.h"
 
 namespace {
-Q_LOGGING_CATEGORY(logTest, "dde.launchpad.test")
 
 constexpr int NameRole = Qt::UserRole + 10;
 }
@@ -47,7 +45,6 @@ static void populateSource(QStandardItemModel &source)
 
 void TestMultipageSortFilterProxyModel::filtersByFolderAndPage()
 {
-    qCInfo(logTest) << "Filter by folderId and pageId, sorted by page then index-in-page";
     QStandardItemModel source;
     populateSource(source);
 
@@ -91,7 +88,6 @@ void TestMultipageSortFilterProxyModel::filtersByFolderAndPage()
 
 void TestMultipageSortFilterProxyModel::noMatchYieldsEmpty()
 {
-    qCInfo(logTest) << "A folderId matching no source row should yield an empty proxy";
     QStandardItemModel source;
     populateSource(source);
 
@@ -106,7 +102,6 @@ void TestMultipageSortFilterProxyModel::noMatchYieldsEmpty()
 
 void TestMultipageSortFilterProxyModel::filterOnlyModeChangesSorting()
 {
-    qCInfo(logTest) << "filterOnlyMode=true, after a forced re-sort, should fall back to sortRole-only ordering";
     QStandardItemModel source;
     populateSource(source);
 
@@ -145,7 +140,6 @@ void TestMultipageSortFilterProxyModel::filterOnlyModeChangesSorting()
 
 void TestMultipageSortFilterProxyModel::filterOnlyModeToggleDoesNotAutoResort()
 {
-    qCInfo(logTest) << "Toggling filterOnlyMode alone must not re-sort (signal is not wired in source)";
     QStandardItemModel source;
     populateSource(source);
 

@@ -8,6 +8,15 @@ find_package(Qt6Core CONFIG REQUIRED Private)      # sortproxymodel.cpp uses QAb
 
 qt_standard_project_setup()
 
+# Coverage instrumentation (on by default so `coverage` produces a report).
+# Only the test-directory targets (OBJECT libs + test executables) are affected;
+# the production `launchpadcommon` shared library is left untouched.
+option(ENABLE_COVERAGE "Enable coverage instrumentation for tests" ON)
+if(ENABLE_COVERAGE)
+    add_compile_options(--coverage)
+    add_link_options(--coverage)
+endif()
+
 # ---------------------------------------------------------------------------
 # Tested-source OBJECT libraries
 #
@@ -72,6 +81,14 @@ target_link_libraries(launchpad-test-utils PUBLIC
 macro(launchpad_add_tests)
     foreach(_testname ${ARGN})
         qt_add_executable(launchpad-${_testname} ${_testname}.cpp)
+        # Test sources include the headers under test by bare name (e.g.
+        # `#include "categoryutils.h"`), matching how src/ includes its own
+        # headers — no `../src/...` relative paths.
+        target_include_directories(launchpad-${_testname} PRIVATE
+            ${CMAKE_SOURCE_DIR}/src/models
+            ${CMAKE_SOURCE_DIR}/src/utils
+            ${CMAKE_SOURCE_DIR}/src/gioutils
+        )
         # OBJECT libs first: their symbols take precedence over launchpadcommon.so,
         # so the gcov-instrumented copies are the ones that execute at test time.
         target_link_libraries(launchpad-${_testname} PRIVATE
@@ -83,6 +100,7 @@ macro(launchpad_add_tests)
             launchpadcommon
         )
         add_test(NAME launchpad-${_testname} COMMAND launchpad-${_testname})
+        list(APPEND LAUNCHPAD_TEST_TARGETS launchpad-${_testname})
     endforeach()
 endmacro()
 
@@ -102,4 +120,32 @@ launchpad_add_tests(
     itemarrangementproxymodeltest
     iconutilstest
     itemspagemodeltest
+)
+
+# ---- coverage: execute all tests and generate a coverage report ----
+# Produces: ${CMAKE_BINARY_DIR}/coverage_report/index.html
+find_program(LCOV_BIN lcov)
+find_program(GENHTML_BIN genhtml)
+set(_run_test_coverage "")
+if(LCOV_BIN AND GENHTML_BIN)
+    set(_run_test_coverage
+        COMMAND ${LCOV_BIN} --capture --directory ${CMAKE_BINARY_DIR}
+                --rc lcov_branch_coverage=1 --output-file ${CMAKE_BINARY_DIR}/coverage.info
+        COMMAND ${LCOV_BIN} --extract ${CMAKE_BINARY_DIR}/coverage.info
+                --rc lcov_branch_coverage=1
+                "${CMAKE_SOURCE_DIR}/src/models/*"
+                "${CMAKE_SOURCE_DIR}/src/utils/*"
+                "${CMAKE_SOURCE_DIR}/src/gioutils/*"
+                --output-file ${CMAKE_BINARY_DIR}/coverage_filtered.info
+        COMMAND ${GENHTML_BIN} ${CMAKE_BINARY_DIR}/coverage_filtered.info
+                --branch-coverage --output-directory ${CMAKE_BINARY_DIR}/coverage_report
+    )
+endif()
+add_custom_target(coverage
+    COMMAND ${CMAKE_CTEST_COMMAND} --output-on-failure
+    ${_run_test_coverage}
+    DEPENDS ${LAUNCHPAD_TEST_TARGETS}
+    WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+    COMMENT "Run all tests and generate coverage report"
+    VERBATIM
 )

@@ -6,12 +6,10 @@
 #include <QSignalSpy>
 #include <QStandardItem>
 #include <QStandardItemModel>
-#include <QLoggingCategory>
 
-#include "../src/models/countlimitproxymodel.h"
+#include "countlimitproxymodel.h"
 
 namespace {
-Q_LOGGING_CATEGORY(logTest, "dde.launchpad.test")
 }
 
 class TestCountLimitProxyModel : public QObject
@@ -32,7 +30,6 @@ private slots:
 
 void TestCountLimitProxyModel::noLimitByDefault()
 {
-    qCInfo(logTest) << "CountLimitProxyModel should not limit rows when maxRowCount is unset";
     QStandardItemModel source;
     CountLimitProxyModel proxy;
     QCOMPARE(proxy.maxRowCount(), -1);
@@ -47,7 +44,6 @@ void TestCountLimitProxyModel::noLimitByDefault()
 
 void TestCountLimitProxyModel::maxRowCountLimitsVisibleRows()
 {
-    qCInfo(logTest) << "Setting maxRowCount should cap the visible rows and keep the first ones";
     QStandardItemModel source;
     for (int i = 0; i < 5; ++i)
         source.appendRow(new QStandardItem(QStringLiteral("item-%1").arg(i)));
@@ -68,7 +64,6 @@ void TestCountLimitProxyModel::maxRowCountLimitsVisibleRows()
 
 void TestCountLimitProxyModel::maxRowCountChangeEmitsSignal()
 {
-    qCInfo(logTest) << "Changing maxRowCount should emit maxRowCountChanged";
     QStandardItemModel source;
     source.appendRow(new QStandardItem(QStringLiteral("a")));
     CountLimitProxyModel proxy;
@@ -86,7 +81,6 @@ void TestCountLimitProxyModel::maxRowCountChangeEmitsSignal()
 
 void TestCountLimitProxyModel::unchangedMaxRowCountDoesNotEmit()
 {
-    qCInfo(logTest) << "Setting the same maxRowCount should not emit the signal";
     QStandardItemModel source;
     source.appendRow(new QStandardItem(QStringLiteral("a")));
     CountLimitProxyModel proxy;
@@ -100,7 +94,6 @@ void TestCountLimitProxyModel::unchangedMaxRowCountDoesNotEmit()
 
 void TestCountLimitProxyModel::sourceRowInsertionReevaluates()
 {
-    qCInfo(logTest) << "Inserting source rows should re-evaluate the limit";
     QStandardItemModel source;
     CountLimitProxyModel proxy;
     proxy.setSourceModel(&source);
@@ -117,7 +110,6 @@ void TestCountLimitProxyModel::sourceRowInsertionReevaluates()
 
 void TestCountLimitProxyModel::sourceRowRemovalReevaluates()
 {
-    qCInfo(logTest) << "Removing source rows should re-evaluate the limit and keep the first surviving rows";
     QStandardItemModel source;
     for (int i = 0; i < 4; ++i)
         source.appendRow(new QStandardItem(QStringLiteral("item-%1").arg(i)));
@@ -139,7 +131,6 @@ void TestCountLimitProxyModel::sourceRowRemovalReevaluates()
 
 void TestCountLimitProxyModel::maxRowCountEqualsSourceCount()
 {
-    qCInfo(logTest) << "maxRowCount == source row count should show all rows";
     QStandardItemModel source;
     for (int i = 0; i < 3; ++i)
         source.appendRow(new QStandardItem(QStringLiteral("item-%1").arg(i)));
@@ -154,7 +145,6 @@ void TestCountLimitProxyModel::maxRowCountEqualsSourceCount()
 
 void TestCountLimitProxyModel::maxRowCountExceedsSourceCount()
 {
-    qCInfo(logTest) << "maxRowCount > source row count should show all rows";
     QStandardItemModel source;
     for (int i = 0; i < 2; ++i)
         source.appendRow(new QStandardItem(QStringLiteral("item-%1").arg(i)));
@@ -167,7 +157,6 @@ void TestCountLimitProxyModel::maxRowCountExceedsSourceCount()
 
 void TestCountLimitProxyModel::setSourceModelWithNullDisconnects()
 {
-    qCInfo(logTest) << "setSourceModel(null) should disconnect from old model";
     QStandardItemModel source;
     source.appendRow(new QStandardItem(QStringLiteral("a")));
 
@@ -187,7 +176,6 @@ void TestCountLimitProxyModel::setSourceModelWithNullDisconnects()
 
 void TestCountLimitProxyModel::setSameSourceModelIsNoop()
 {
-    qCInfo(logTest) << "setSourceModel with the same model should be a noop";
     QStandardItemModel source;
     source.appendRow(new QStandardItem(QStringLiteral("a")));
 

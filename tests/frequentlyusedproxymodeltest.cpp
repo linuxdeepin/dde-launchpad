@@ -6,12 +6,10 @@
 #include <QSignalSpy>
 #include <QStandardItem>
 #include <QStandardItemModel>
-#include <QLoggingCategory>
 
-#include "../src/models/frequentlyusedproxymodel.h"
+#include "frequentlyusedproxymodel.h"
 
 namespace {
-Q_LOGGING_CATEGORY(logTest, "dde.launchpad.test")
 
 constexpr int NameRole = Qt::UserRole + 1;
 constexpr int DesktopIdRole = Qt::UserRole + 2;

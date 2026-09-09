@@ -6,12 +6,10 @@
 #include <QSignalSpy>
 #include <QStandardItem>
 #include <QStandardItemModel>
-#include <QLoggingCategory>
 
-#include "../src/models/sortproxymodel.h"
+#include "sortproxymodel.h"
 
 namespace {
-Q_LOGGING_CATEGORY(logTest, "dde.launchpad.test")
 
 // A minimal list model that allows changing data WITHOUT auto-emitting dataChanged,
 // so we can control exactly which roles trigger handleDataChanged. This isolates
@@ -69,7 +67,6 @@ private slots:
 
 void TestSortProxyModel::ascendingAndDescendingOrder()
 {
-    qCInfo(logTest) << "SortProxyModel should sort ascending and descending by the display role";
     QStandardItemModel source;
     source.appendRow(new QStandardItem(QStringLiteral("cherry")));
     source.appendRow(new QStandardItem(QStringLiteral("apple")));
@@ -92,7 +89,6 @@ void TestSortProxyModel::ascendingAndDescendingOrder()
 
 void TestSortProxyModel::mappingBetweenSourceAndProxy()
 {
-    qCInfo(logTest) << "mapFromSource/mapToSource should be consistent with the sort order";
     QStandardItemModel source;
     source.appendRow(new QStandardItem(QStringLiteral("cherry"))); // source row 0
     source.appendRow(new QStandardItem(QStringLiteral("apple")));  // source row 1
@@ -112,7 +108,6 @@ void TestSortProxyModel::mappingBetweenSourceAndProxy()
 
 void TestSortProxyModel::caseSensitivity()
 {
-    qCInfo(logTest) << "SortProxyModel should honor sortCaseSensitivity";
     QStandardItemModel source;
     source.appendRow(new QStandardItem(QStringLiteral("apple")));
     source.appendRow(new QStandardItem(QStringLiteral("Banana")));
@@ -133,7 +128,6 @@ void TestSortProxyModel::caseSensitivity()
 
 void TestSortProxyModel::sortByCustomRole()
 {
-    qCInfo(logTest) << "SortProxyModel should sort by a custom sortRole";
     constexpr int WeightRole = Qt::UserRole + 1;
     QStandardItemModel source;
     source.setItemRoleNames({{Qt::DisplayRole, QByteArrayLiteral("display")},
@@ -160,7 +154,6 @@ void TestSortProxyModel::sortByCustomRole()
 
 void TestSortProxyModel::rowsInsertedKeepsOrder()
 {
-    qCInfo(logTest) << "Inserted source rows should appear at their sorted position";
     QStandardItemModel source;
     source.appendRow(new QStandardItem(QStringLiteral("apple")));
     source.appendRow(new QStandardItem(QStringLiteral("cherry")));
@@ -181,7 +174,6 @@ void TestSortProxyModel::rowsInsertedKeepsOrder()
 
 void TestSortProxyModel::rowsRemovedKeepsOrder()
 {
-    qCInfo(logTest) << "Removed source rows should disappear while keeping the rest sorted";
     QStandardItemModel source;
     source.appendRow(new QStandardItem(QStringLiteral("apple")));
     source.appendRow(new QStandardItem(QStringLiteral("banana")));
@@ -201,7 +193,6 @@ void TestSortProxyModel::rowsRemovedKeepsOrder()
 
 void TestSortProxyModel::dataChangedReorders()
 {
-    qCInfo(logTest) << "Changing source data should reorder the proxy";
     QStandardItemModel source;
     source.appendRow(new QStandardItem(QStringLiteral("apple")));
     source.appendRow(new QStandardItem(QStringLiteral("banana")));
@@ -221,7 +212,6 @@ void TestSortProxyModel::dataChangedReorders()
 
 void TestSortProxyModel::replaceSourceModelResets()
 {
-    qCInfo(logTest) << "Replacing the source model should reset to the new rows";
     QStandardItemModel sourceA;
     sourceA.appendRow(new QStandardItem(QStringLiteral("zeta")));
     sourceA.appendRow(new QStandardItem(QStringLiteral("alpha")));
@@ -246,7 +236,6 @@ void TestSortProxyModel::replaceSourceModelResets()
 
 void TestSortProxyModel::sortColumnMinusOneRestoresNaturalOrder()
 {
-    qCInfo(logTest) << "sort(-1) should disable sorting and restore natural source order";
     QStandardItemModel source;
     source.appendRow(new QStandardItem(QStringLiteral("cherry"))); // source row 0
     source.appendRow(new QStandardItem(QStringLiteral("apple")));  // source row 1
@@ -269,7 +258,6 @@ void TestSortProxyModel::sortColumnMinusOneRestoresNaturalOrder()
 
 void TestSortProxyModel::setSortColumnToSameIsNoop()
 {
-    qCInfo(logTest) << "setSortColumn to the same column should be a noop (no signal, no reorder)";
     QStandardItemModel source;
     source.appendRow(new QStandardItem(QStringLiteral("cherry")));
     source.appendRow(new QStandardItem(QStringLiteral("apple")));
@@ -293,7 +281,6 @@ void TestSortProxyModel::setSortColumnToSameIsNoop()
 
 void TestSortProxyModel::indexWithNoSourceModel()
 {
-    qCInfo(logTest) << "index() with no source model should return invalid";
     SortProxyModel proxy;
     QVERIFY(!proxy.index(0, 0).isValid());
     QCOMPARE(proxy.rowCount(), 0);
@@ -301,7 +288,6 @@ void TestSortProxyModel::indexWithNoSourceModel()
 
 void TestSortProxyModel::indexWithOutOfRangeColumn()
 {
-    qCInfo(logTest) << "index() with out-of-range column should return invalid";
     QStandardItemModel source;
     source.appendRow(new QStandardItem(QStringLiteral("a")));
 
@@ -313,7 +299,6 @@ void TestSortProxyModel::indexWithOutOfRangeColumn()
 
 void TestSortProxyModel::dataWithInvalidProxyIndex()
 {
-    qCInfo(logTest) << "data() with invalid proxy index should return empty QVariant";
     QStandardItemModel source;
     source.appendRow(new QStandardItem(QStringLiteral("a")));
 
@@ -324,7 +309,6 @@ void TestSortProxyModel::dataWithInvalidProxyIndex()
 
 void TestSortProxyModel::mapToSourceWithInvalidIndex()
 {
-    qCInfo(logTest) << "mapToSource() with invalid index should return invalid";
     QStandardItemModel source;
     source.appendRow(new QStandardItem(QStringLiteral("a")));
 
@@ -335,7 +319,6 @@ void TestSortProxyModel::mapToSourceWithInvalidIndex()
 
 void TestSortProxyModel::mapFromSourceWithInvalidIndex()
 {
-    qCInfo(logTest) << "mapFromSource() with invalid index should return invalid";
     QStandardItemModel source;
     source.appendRow(new QStandardItem(QStringLiteral("a")));
 
@@ -346,7 +329,6 @@ void TestSortProxyModel::mapFromSourceWithInvalidIndex()
 
 void TestSortProxyModel::mapFromSourceWithParentReturnsEmpty()
 {
-    qCInfo(logTest) << "mapFromSource() with a parent index should return empty (flat model)";
     QStandardItemModel source;
     source.appendRow(new QStandardItem(QStringLiteral("a")));
 
@@ -361,7 +343,6 @@ void TestSortProxyModel::mapFromSourceWithParentReturnsEmpty()
 
 void TestSortProxyModel::handleModelReset()
 {
-    qCInfo(logTest) << "source model reset should reset the proxy";
     QStandardItemModel source;
     source.appendRow(new QStandardItem(QStringLiteral("cherry")));
     source.appendRow(new QStandardItem(QStringLiteral("apple")));
@@ -384,7 +365,6 @@ void TestSortProxyModel::handleModelReset()
 
 void TestSortProxyModel::removeMultipleConsecutiveRows()
 {
-    qCInfo(logTest) << "removing multiple consecutive source rows should keep proxy sorted";
     QStandardItemModel source;
     source.appendRow(new QStandardItem(QStringLiteral("a")));
     source.appendRow(new QStandardItem(QStringLiteral("b")));
@@ -407,7 +387,6 @@ void TestSortProxyModel::removeMultipleConsecutiveRows()
 
 void TestSortProxyModel::dataChangedWithEmptyRolesReorders()
 {
-    qCInfo(logTest) << "dataChanged with empty roles should trigger reorder (isolated from sort-role path)";
     // Use ControllableStringListModel to change data WITHOUT auto-emitting dataChanged,
     // then emit dataChanged with empty roles to trigger the empty-roles reorder path.
     ControllableStringListModel source({QStringLiteral("apple"),
@@ -436,7 +415,6 @@ void TestSortProxyModel::dataChangedWithEmptyRolesReorders()
 
 void TestSortProxyModel::dataChangedWithNonSortRoleDoesNotReorder()
 {
-    qCInfo(logTest) << "dataChanged with non-sort role should not reorder";
     constexpr int UserRole1 = Qt::UserRole + 1;
     QStandardItemModel source;
     source.appendRow(new QStandardItem(QStringLiteral("apple")));
@@ -458,7 +436,6 @@ void TestSortProxyModel::dataChangedWithNonSortRoleDoesNotReorder()
 
 void TestSortProxyModel::columnCountWithAndWithoutSource()
 {
-    qCInfo(logTest) << "columnCount should return source column count or 0";
     SortProxyModel proxy;
     QCOMPARE(proxy.columnCount(), 0);
 
@@ -470,7 +447,6 @@ void TestSortProxyModel::columnCountWithAndWithoutSource()
 
 void TestSortProxyModel::sortColumnAndSortOrderGetters()
 {
-    qCInfo(logTest) << "sortColumn and sortOrder getters should return current values";
     QStandardItemModel source;
     source.appendRow(new QStandardItem(QStringLiteral("a")));
 

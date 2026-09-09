@@ -3,14 +3,12 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 #include <QTest>
-#include <QLoggingCategory>
 
-#include "../src/utils/iconutils.h"
+#include "iconutils.h"
 
 #include <utility>
 
 namespace {
-Q_LOGGING_CATEGORY(logTest, "dde.launchpad.test")
 }
 
 class TestIconUtils : public QObject

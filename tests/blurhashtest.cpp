@@ -3,14 +3,12 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 #include <QTest>
-#include <QLoggingCategory>
 
-#include "../src/utils/blurhash.hpp"
+#include "blurhash.hpp"
 
 #include <vector>
 
 namespace {
-Q_LOGGING_CATEGORY(logTest, "dde.launchpad.test")
 
 std::vector<unsigned char> solidImage(size_t width, size_t height,
                                       unsigned char r, unsigned char g, unsigned char b)
@@ -48,7 +46,6 @@ private slots:
 
 void TestBlurhash::decodeEmptyStringReturnsEmpty()
 {
-    qCInfo(logTest) << "Decoding an empty hash should return an empty image";
     const auto img = blurhash::decode(std::string_view{}, 8, 8);
     QVERIFY(img.image.empty());
     QCOMPARE(img.width, size_t(0));
@@ -57,14 +54,12 @@ void TestBlurhash::decodeEmptyStringReturnsEmpty()
 
 void TestBlurhash::decodeInvalidHashReturnsEmpty()
 {
-    qCInfo(logTest) << "Decoding a hash with invalid characters should return an empty image";
     const auto img = blurhash::decode(std::string_view("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"), 8, 8);
     QVERIFY(img.image.empty());
 }
 
 void TestBlurhash::encodeRejectsInvalidInput()
 {
-    qCInfo(logTest) << "encode should return an empty string for invalid parameters";
     std::vector<unsigned char> image = solidImage(4, 4, 255, 0, 0);
     QVERIFY(blurhash::encode(image.data(), 0, 4, 1, 1).empty());   // width 0
     QVERIFY(blurhash::encode(nullptr, 4, 4, 1, 1).empty());        // null image
@@ -74,7 +69,6 @@ void TestBlurhash::encodeRejectsInvalidInput()
 
 void TestBlurhash::encodedHashHasExpectedLength()
 {
-    qCInfo(logTest) << "encode should produce a hash of the documented length";
     std::vector<unsigned char> image = solidImage(8, 8, 128, 64, 200);
     QCOMPARE(blurhash::encode(image.data(), 8, 8, 1, 1).size(), size_t(6));                // no AC components
     QCOMPARE(blurhash::encode(image.data(), 8, 8, 1, 3).size(), expectedHashLength(1, 3)); // 10
@@ -84,7 +78,6 @@ void TestBlurhash::encodedHashHasExpectedLength()
 
 void TestBlurhash::decodedImageHasExpectedDimensions()
 {
-    qCInfo(logTest) << "decode should produce an image matching the requested dimensions";
     constexpr size_t width = 16, height = 16;
     std::vector<unsigned char> image = solidImage(width, height, 128, 64, 200);
     const std::string hash = blurhash::encode(image.data(), width, height, 2, 2);
@@ -98,7 +91,6 @@ void TestBlurhash::decodedImageHasExpectedDimensions()
 
 void TestBlurhash::roundTripPreservesAverageColor()
 {
-    qCInfo(logTest) << "Round-trip should preserve the average color (DC component)";
     constexpr size_t width = 16, height = 16;
     const unsigned char r = 128, g = 64, b = 200;
     std::vector<unsigned char> image = solidImage(width, height, r, g, b);
@@ -125,7 +117,6 @@ void TestBlurhash::roundTripPreservesAverageColor()
 
 void TestBlurhash::decodeWithFourBytesPerPixel()
 {
-    qCInfo(logTest) << "decode with bytesPerPixel=4 should produce a larger buffer";
     constexpr size_t width = 16, height = 16;
     std::vector<unsigned char> image = solidImage(width, height, 128, 64, 200);
     const std::string hash = blurhash::encode(image.data(), width, height, 3, 3);
@@ -142,7 +133,6 @@ void TestBlurhash::decodeWithFourBytesPerPixel()
 
 void TestBlurhash::decodeTooShortHashReturnsEmpty()
 {
-    qCInfo(logTest) << "decode with a hash shorter than 10 chars should return empty";
     // hash must be >= 10 chars (1 + 1 + 4 + at least 4 for 2x2 components - 1 AC = 2 bytes -> 8, but 10 is the minimum check)
     const auto img = blurhash::decode(std::string_view("short"), 8, 8);
     QVERIFY(img.image.empty());
@@ -150,7 +140,6 @@ void TestBlurhash::decodeTooShortHashReturnsEmpty()
 
 void TestBlurhash::decodeWrongSizeForComponentsReturnsEmpty()
 {
-    qCInfo(logTest) << "decode with a hash whose length doesn't match the component count should return empty";
     // 1 component char says 4x4 = 16 components -> needs 1+1+4+(16-1)*2 = 36 chars
     // but we'll give only 12 chars
     const auto img = blurhash::decode(std::string_view("LFE.}?a]a]a]a]a]a]a]"), 8, 8);

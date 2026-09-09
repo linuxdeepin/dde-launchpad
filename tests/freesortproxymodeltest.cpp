@@ -5,13 +5,11 @@
 #include <QTest>
 #include <QStandardItem>
 #include <QStandardItemModel>
-#include <QLoggingCategory>
 
-#include "../src/models/freesortproxymodel.h"
-#include "../src/models/itemarrangementproxymodel.h"
+#include "freesortproxymodel.h"
+#include "itemarrangementproxymodel.h"
 
 namespace {
-Q_LOGGING_CATEGORY(logTest, "dde.launchpad.test")
 }
 
 class TestFreeSortProxyModel : public QObject
@@ -33,7 +31,6 @@ static QStandardItem *makeArrangedItem(const QString &name, int page, int indexI
 
 void TestFreeSortProxyModel::sortByPageThenIndex()
 {
-    qCInfo(logTest) << "FreeSortProxyModel should sort by page then by index-in-page";
     QStandardItemModel source;
     // intentionally appended out of order so the proxy actually has to sort
     source.appendRow(makeArrangedItem(QStringLiteral("A"), 1, 0));
@@ -55,7 +52,6 @@ void TestFreeSortProxyModel::sortByPageThenIndex()
 
 void TestFreeSortProxyModel::descendingOrder()
 {
-    qCInfo(logTest) << "FreeSortProxyModel should honor descending sort order";
     QStandardItemModel source;
     source.appendRow(makeArrangedItem(QStringLiteral("A"), 1, 0));
     source.appendRow(makeArrangedItem(QStringLiteral("B"), 0, 1));
@@ -75,7 +71,6 @@ void TestFreeSortProxyModel::descendingOrder()
 
 void TestFreeSortProxyModel::missingRolesDefaultToZero()
 {
-    qCInfo(logTest) << "Items without PageRole/IndexInPageRole should default to 0";
     QStandardItemModel source;
     // items without PageRole or IndexInPageRole data -> toInt() returns 0 for both
     source.appendRow(new QStandardItem(QStringLiteral("X")));
