@@ -98,6 +98,7 @@ FocusScope {
                 height: headingBtn.height
                 ToolButton {
                     id: headingBtn
+                    objectName: "HeadingBtn"
 
                     enabled: true
                     ColorSelector.disabled: false
@@ -129,6 +130,7 @@ FocusScope {
                     }
 
                     background: ItemBackground {
+                        Accessible.ignored: true
                         button: headingBtn
                     }
 
@@ -169,6 +171,7 @@ FocusScope {
             height: itemDelegate.height
             ItemDelegate {
                 id: itemDelegate
+                objectName: "ItemDelegate_2_" + index
                 anchors {
                     left: parent.left
                     right: parent.right
@@ -272,6 +275,7 @@ FocusScope {
                     }
                 }
                 background: ItemBackground {
+                    Accessible.ignored: true
                     implicitWidth: DStyle.Style.itemDelegate.width
                     implicitHeight: Helper.windowed.listItemHeight
                     button: itemDelegate
@@ -291,6 +295,7 @@ FocusScope {
 
     Menu {
         id: ddeCategoryMenu
+        objectName: "DdeCategoryMenu"
         width: 150
         modal: true
         closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutsideParent
@@ -300,6 +305,7 @@ FocusScope {
             model: ddeCategoryMenu.existingSections
             delegate: MenuItem {
                 id: menuItem
+                objectName: "MenuItem_" + index
                 text: getCategoryName(modelData)
                 textColor: DStyle.Style.menu.itemText
                 font: DTK.fontManager.t6
@@ -359,6 +365,7 @@ FocusScope {
 
     ListView {
         id: listView
+        objectName: "ListView_2"
 
         anchors.fill: parent
         highlightFollowsCurrentItem: true
@@ -407,7 +414,9 @@ FocusScope {
 
         model: delegateCategorizedModel
 
-        ScrollBar.vertical: ScrollBar { }
+        ScrollBar.vertical: ScrollBar {
+            objectName: "ListView_ScrollBar_2"
+        }
 
         Keys.onPressed: {
             if (CategorizedSortProxyModel.categoryType === CategorizedSortProxyModel.Alphabetary
@@ -419,6 +428,8 @@ FocusScope {
 
         AlphabetCategoryPopup {
             id: alphabetCategoryPopup
+            objectName: "AlphabetCategoryPopup"
+            Accessible.role: Accessible.Dialog
 
             onCategoryClicked: {
                 scrollToAlphabetCategory(character)

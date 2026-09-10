@@ -34,6 +34,8 @@ Control {
 
         FrequentlyUsedView {
             id: frequentlyUsedView
+            objectName: "FrequentlyUsedView"
+            Accessible.role: Accessible.Pane
             model: freqUsedModel
             visible: count > 0
             maxCount: recentlyInstalledView.visible ? 12 : 16
@@ -42,6 +44,8 @@ Control {
 
         RecentlyInstalledView {
             id: recentlyInstalledView
+            objectName: "RecentlyInstalledView"
+            Accessible.role: Accessible.Pane
             model: RecentlyInstalledProxyModel {
                 sourceModel: AppsModel
                 installedTimeRole: AppsModel.InstalledTimeRole
@@ -58,5 +62,7 @@ Control {
         }
     }
 
-    background: DebugBounding { }
+    background: DebugBounding {
+        Accessible.ignored: true
+    }
 }

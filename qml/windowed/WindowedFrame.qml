@@ -82,6 +82,8 @@ InputEventItem {
 
     SideBar {
         id: sideBar
+        objectName: "SideBar"
+        Accessible.role: Accessible.Pane
         anchors.left: parent.left
         anchors.top: parent.top
         anchors.bottom: parent.bottom
@@ -129,6 +131,8 @@ InputEventItem {
         }
         AppList {
             id: appList
+            objectName: "AppList"
+            Accessible.role: Accessible.Pane
             Layout.preferredWidth: 220
             Layout.fillHeight: true
             nextKeyTabTarget: sideBar.keyTabTarget
@@ -140,12 +144,16 @@ InputEventItem {
             Component {
                 id: analysisViewCom
                 AnalysisView {
+                    objectName: "Component_AnalysisView"
+                    Accessible.role: Accessible.Pane
                     nextKeyTabTarget: appList.keyTabTarget
                 }
             }
             Component {
                 id: searchResultViewCom
                 SearchResultView {
+                    objectName: "Component_SearchResultView"
+                    Accessible.role: Accessible.Pane
                     nextKeyTabTarget: appList.keyTabTarget
                 }
             }
@@ -161,6 +169,8 @@ InputEventItem {
 
     BottomBar {
         id: bottomBar
+        objectName: "BottomBar"
+        Accessible.role: Accessible.ToolBar
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.bottom: parent.bottom
@@ -192,6 +202,8 @@ InputEventItem {
 
     FolderGridViewPopup {
         id: folderGridViewPopup
+        objectName: "FolderGridViewPopup_2"
+        Accessible.role: Accessible.Dialog
         // 物理像素对齐，确保在各种缩放比例下边缘都能对齐到整数物理像素
         width: Math.round(370 * Screen.devicePixelRatio) / Screen.devicePixelRatio
         height: Math.round(330 * Screen.devicePixelRatio) / Screen.devicePixelRatio

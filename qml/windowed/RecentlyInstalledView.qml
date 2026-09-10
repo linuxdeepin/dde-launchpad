@@ -33,6 +33,8 @@ Control {
 
         GridViewContainer {
             id: recentlyInstalledViewContainer
+            objectName: "RecentlyInstalledViewContainer"
+            Accessible.role: Accessible.Pane
 
             KeyNavigation.tab: nextKeyTabTarget
             Layout.alignment: Qt.AlignRight
@@ -64,5 +66,7 @@ Control {
         }
     }
 
-    background: DebugBounding { }
+    background: DebugBounding {
+        Accessible.ignored: true
+    }
 }
