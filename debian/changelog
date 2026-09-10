@@ -1,3 +1,14 @@
+dde-launchpad (2.0.47) unstable; urgency=medium
+
+  * i18n: Translate org.deepin.ds.dock.launcherapplet.ts in ar (#799)
+  * refactor: replace PanelPopup with ApplicationWindow for windowed
+  * fix: resolve QML Drag.active binding loop warnings in windowed
+    launcher
+  * docs: fix launcheritem dock size calculation
+  * fix: add layer shell scope to quick launchpad window
+
+ -- zhangkun <zhangkun2@uniontech.com>  Thu, 10 Sep 2026 20:29:00 +0800
+
 dde-launchpad (2.0.46) unstable; urgency=medium
 
   * perf(appstream): reuse metadata pool
