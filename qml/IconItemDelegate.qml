@@ -314,12 +314,18 @@ Control {
                 Component {
                     id: imageComponent
 
+                    // Non-DCI icons (file:/// URLs from absolute paths) lack the
+                    // built-in padding that DCI format provides, causing them to
+                    // appear visually larger than DCI icons at the same sourceSize.
+                    // Apply a conservative scale factor to compensate.
+                    readonly property real nonDciScaleFactor: 0.85
+
                     DciIcon {
                         objectName: "appIcon"
                         anchors.fill: parent
                         name: iconSource
                         sourceSize: Qt.size(root.maxIconSize, root.maxIconSize)
-                        scale: (iconContainer.width / root.maxIconSize) * root.iconScaleFactor
+                        scale: (iconContainer.width / root.maxIconSize) * root.iconScaleFactor * (iconSource.startsWith("file:///") ? imageComponent.nonDciScaleFactor : 1.0)
                         palette: DTK.makeIconPalette(root.palette)
                         theme: ApplicationHelper.DarkType
                         fillMode: Image.PreserveAspectFit
