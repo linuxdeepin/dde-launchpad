@@ -192,6 +192,7 @@ Popup {
                         readonly property int horizontalPadding: contentRoot.width * paddingColumns
                         anchors.fill: parent
                         property bool createdEmptyPage: false
+                        property real lastDragX: 0
 
                         onEntered: root.onDragEnter(this)
 
@@ -201,10 +202,14 @@ Popup {
                             createdEmptyPage = false
                         }
 
-                        function checkDragMove() {
-                            if (drag.x < horizontalPadding) {
+                        function checkDragMove(dragX) {
+                            if (dragX === undefined) {
+                                dragX = drag.x
+                            }
+                            lastDragX = dragX
+                            if (dragX < horizontalPadding) {
                                 pageIntent = -1
-                            } else if (drag.x > (width - horizontalPadding)) {
+                            } else if (dragX > (width - horizontalPadding)) {
                                 let isLastPage = folderPagesView.currentIndex === folderPagesView.count - 1
                                 if (isLastPage && folderPageDropArea.createdEmptyPage) {
                                     return
@@ -254,7 +259,7 @@ Popup {
                                 }
                                 parent.pageIntent = 0
                                 if (folderPagesView.currentIndex !== 0) {
-                                    parent.checkDragMove()
+                                    parent.checkDragMove(parent.lastDragX)
                                 }
                             }
                         }
@@ -570,6 +575,13 @@ Popup {
                                             if (dragId !== model.desktopId) {
                                                 isDragHover = true
                                             }
+                                            let mappedX = mapToItem(folderPageDropArea, drag.x, 0).x
+                                            if (mappedX < folderPageDropArea.horizontalPadding || mappedX > (folderPageDropArea.width - folderPageDropArea.horizontalPadding)) {
+                                                folderDragApplyTimer.stop()
+                                                folderPageDropArea.checkDragMove(mappedX)
+                                                return
+                                            }
+                                            folderPageDropArea.pageIntent = 0
                                             folderDragApplyTimer.dragId = dragId
                                             folderDragApplyTimer.restart()
                                         }
@@ -578,6 +590,13 @@ Popup {
                                             if (dragId === model.desktopId) {
                                                 return
                                             }
+                                            let mappedX = mapToItem(folderPageDropArea, drag.x, 0).x
+                                            if (mappedX < folderPageDropArea.horizontalPadding || mappedX > (folderPageDropArea.width - folderPageDropArea.horizontalPadding)) {
+                                                folderDragApplyTimer.stop()
+                                                folderPageDropArea.checkDragMove(mappedX)
+                                                return
+                                            }
+                                            folderPageDropArea.pageIntent = 0
                                             folderDragApplyTimer.dragId = dragId
                                             folderDragApplyTimer.currentDropX = drag.x
                                             if (!folderDragApplyTimer.running) {
@@ -589,6 +608,7 @@ Popup {
                                             root.onDragExit(this)
                                             folderDragApplyTimer.stop()
                                             folderDragApplyTimer.dragId = ""
+                                            folderPageDropArea.pageIntent = 0
                                         }
                                         Component.onDestruction: {
                                             root.onDragExit(this)
