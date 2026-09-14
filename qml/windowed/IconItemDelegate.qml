@@ -130,9 +130,14 @@ Control {
                 font: DTK.fontManager.t9
             }
         }
+        HoverHandler {
+            id: toolTipHoverHandler
+        }
         ToolTip.text: root.text
         ToolTip.delay: 500
         ToolTip.visible: hovered && iconItemLabel.truncated
+        ToolTip.toolTip.x: toolTipHoverHandler.point.position.x
+        ToolTip.toolTip.y: toolTipHoverHandler.point.position.y
         background: ItemBackground {
             radius: 8
             button: iconButton

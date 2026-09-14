@@ -220,6 +220,8 @@ FocusScope {
                 ToolTip.text: text
                 ToolTip.delay: 500
                 ToolTip.visible: hovered && contentItem.implicitWidth > contentItem.width
+                ToolTip.toolTip.x: itemHoverHandler.point.position.x
+                ToolTip.toolTip.y: itemHoverHandler.point.position.y
 
                 Drag.dragType: Drag.Automatic
                 Drag.active: mouseArea.drag.active
