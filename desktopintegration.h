@@ -51,6 +51,7 @@ public:
     Q_INVOKABLE static void setDisableScale(const QString & desktopId, double disableScale);
     Q_INVOKABLE static void showFolder(enum QStandardPaths::StandardLocation location);
     Q_INVOKABLE static void showUrl(const QString & url);
+    Q_INVOKABLE static bool isDciIcon(const QString &iconName);
     Q_INVOKABLE bool appIsCompulsoryForDesktop(const QString & desktopId);
     Q_INVOKABLE bool appIsDummyPackage(const QString & desktopId);
     // TODO: async get wallpaper?

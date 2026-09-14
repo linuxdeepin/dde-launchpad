@@ -7,6 +7,7 @@
 #include "../launchercontroller.h"
 #include <appsmodel.h>
 #include <blurhashimageprovider.h>
+#include <launcherappiconprovider.h>
 
 #include <QLoggingCategory>
 #include <QDBusConnection>
@@ -59,6 +60,7 @@ bool LauncherItem::init()
     DApplet::init();
 
     DQmlEngine().engine()->addImageProvider(QLatin1String("blurhash"), new BlurhashImageProvider);
+    DQmlEngine().engine()->addImageProvider(QLatin1String("appicon"), new LauncherAppIconProvider);
 
     QDBusConnection connection = QDBusConnection::sessionBus();
     if (!connection.registerService(QStringLiteral("org.deepin.dde.Launcher1")) ||

@@ -7,6 +7,8 @@
 
 #include <DConfig>
 #include <DDesktopEntry>
+#include <DGuiApplicationHelper>
+#include <DIconTheme>
 #include <DStandardPaths>
 #include <DDesktopServices>
 #include <QDir>
@@ -62,6 +64,13 @@ void DesktopIntegration::launchByDesktopId(const QString &desktopId)
 QString DesktopIntegration::environmentVariable(const QString &env)
 {
     return qEnvironmentVariable(env.toStdString().c_str());
+}
+
+bool DesktopIntegration::isDciIcon(const QString &iconName)
+{
+    QByteArray themeName = Dtk::Gui::DGuiApplicationHelper::instance()->applicationTheme()->iconThemeName();
+    QString dciFile = Dtk::Gui::DIconTheme::findDciIconFile(iconName, QString::fromLatin1(themeName));
+    return !dciFile.isEmpty();
 }
 
 double DesktopIntegration::disableScale(const QString &desktopId)

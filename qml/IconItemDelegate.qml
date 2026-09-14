@@ -314,6 +314,15 @@ Control {
                 Component {
                     id: imageComponent
 
+                    Loader {
+                        anchors.fill: parent
+                        sourceComponent: DesktopIntegration.isDciIcon(iconSource) ? dciIconComponent : imageIconComponent
+                    }
+                }
+
+                Component {
+                    id: dciIconComponent
+
                     DciIcon {
                         objectName: "appIcon"
                         anchors.fill: parent
@@ -323,6 +332,19 @@ Control {
                         palette: DTK.makeIconPalette(root.palette)
                         theme: ApplicationHelper.DarkType
                         fillMode: Image.PreserveAspectFit
+                    }
+                }
+
+                Component {
+                    id: imageIconComponent
+
+                    Image {
+                        objectName: "appIcon"
+                        anchors.fill: parent
+                        source: "image://appicon/" + iconSource
+                        fillMode: Image.PreserveAspectFit
+                        sourceSize: Qt.size(root.maxIconSize, root.maxIconSize)
+                        scale: (iconContainer.width / root.maxIconSize) * root.iconScaleFactor
                     }
                 }
             }
