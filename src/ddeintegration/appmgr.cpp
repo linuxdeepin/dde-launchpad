@@ -3,7 +3,6 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 #include "appmgr.h"
-#include "iconutils.h"
 
 #include <DUtil>
 #include <QDBusConnection>
@@ -11,7 +10,6 @@
 #include <QDBusReply>
 #include <QDBusVariant>
 #include <QFileInfo>
-#include <QIcon>
 #include <QLoggingCategory>
 #include <QProcess>
 #include <QTimer>
@@ -224,13 +222,7 @@ bool AppMgr::removeFromDesktop(const QString &desktopId)
  // For: bug-347859
 bool AppMgr::waitForIcon(const QString &desktopId, const QString &iconName)
 {
-    // Defer the row until its icon is resolvable: an absolute path that does
-    // not exist yet, or a theme-name icon QIcon cannot resolve yet (theme not
-    // initialized at startup). For: bug-347859, bug-371833.
-    const bool resolvable = QFileInfo(iconName).isAbsolute()
-            ? QFileInfo::exists(iconName)
-            : iconName.isEmpty() || !QIcon::fromTheme(iconName).isNull();
-    if (desktopId.isEmpty() || resolvable) {
+    if (desktopId.isEmpty() || !QFileInfo(iconName).isAbsolute() || QFileInfo::exists(iconName)) {
         cancelPendingAppItem(desktopId);
         return false;
     }
@@ -269,15 +261,9 @@ void AppMgr::checkPendingAppItems()
 {
     ++m_checkCount;
 
-    // Reload theme search paths so icons appearing after startup become visible.
-    IconUtils::tryUpdateIconCache();
     QStringList readyItems;
     for (auto it = m_pendingAppItems.begin(); it != m_pendingAppItems.end();) {
-        const QString &iconName = it.value();
-        const bool ready = QFileInfo(iconName).isAbsolute()
-                ? QFileInfo::exists(iconName)
-                : !QIcon::fromTheme(iconName).isNull();
-        if (ready) {
+        if (QFileInfo::exists(it.value())) {
             readyItems.append(it.key());
             it = m_pendingAppItems.erase(it);
         } else {
@@ -285,8 +271,7 @@ void AppMgr::checkPendingAppItems()
         }
     }
 
-    // 120s timeout (3s interval): cover slow theme initialization.
-    if (m_checkCount >= 40) {
+    if (m_checkCount >= 20) {
         readyItems.append(m_pendingAppItems.keys());
         m_pendingAppItems.clear();
     }
