@@ -271,7 +271,7 @@ void LauncherController::showHelp()
 void LauncherController::setCurrentFrameToWindowedFrame()
 {
     setVisible(false);
-    QTimer::singleShot(100, this, [this]() {
+    QTimer::singleShot(0, this, [this]() {
         setCurrentFrame("WindowedFrame");
         setVisible(true);
     });

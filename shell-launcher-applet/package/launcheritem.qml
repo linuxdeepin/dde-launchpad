@@ -227,7 +227,7 @@ AppletItem {
         DWindow.enableSystemMove: false
         // Fullscreen mode: always assume dark theme
         DWindow.themeType: ApplicationHelper.DarkType
-        DWindow.windowStartUpEffect: PlatformHandle.EffectOut
+        DWindow.windowStartUpEffect: PlatformHandle.EffectNone
 
         onVisibleChanged: {
             if (visible) {
