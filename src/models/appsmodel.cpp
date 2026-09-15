@@ -6,6 +6,7 @@
 
 #include "../ddeintegration/appmgr.h"
 #include "iconutils.h"
+#include "trashmonitor.h"
 
 #include <DConfig>
 #include <DFileWatcherManager>
@@ -57,6 +58,8 @@ AppsModel::AppsModel(QObject *parent)
     connect(m_iconCacheWatcher, &DFileWatcherManager::fileModified, m_iconUpdateTimer, qOverload<>(&QTimer::start));
     connect(m_iconCacheWatcher, &DFileWatcherManager::fileAttributeChanged, m_iconUpdateTimer, qOverload<>(&QTimer::start));
     connect(m_iconUpdateTimer, &QTimer::timeout, this, &AppsModel::updateIconData);
+    m_trashMonitor = new TrashMonitor(this);
+    connect(m_trashMonitor, &TrashMonitor::trashAttributeChanged, this, &AppsModel::onTrashAttributeChanged);
     connect(AppMgr::instance(), &AppMgr::pendingAppItemReady, this, [this](const QString &desktopId) {
         if (!m_sourceModel)
             return;
@@ -175,6 +178,12 @@ QVariant AppsModel::data(const QModelIndex &index, int role) const
     case AppsModel::DDECategoryRole:
         return sourceData(sourceIndex, DDECategoryRoleName);
     case AppsModel::IconNameRole: {
+        const QString desktopId = normalizedDesktopId(sourceData(sourceIndex, DesktopIdRoleName).toString());
+        if (desktopId == QStringLiteral("dde-trash.desktop") && m_trashMonitor) {
+            return m_trashMonitor->trashItemCount() > 0
+                ? QStringLiteral("user-trash-full")
+                : QStringLiteral("user-trash");
+        }
         const QString iconName = sourceData(sourceIndex, IconNameRoleName).toString();
         if (iconName.isEmpty())
             return QStringLiteral("application-x-desktop");
@@ -425,4 +434,11 @@ void AppsModel::updateIconData()
     IconUtils::tryUpdateIconCache();
     if (rowCount() > 0)
         Q_EMIT dataChanged(index(0, 0), index(rowCount() - 1, 0), { AppsModel::IconNameRole });
+}
+
+void AppsModel::onTrashAttributeChanged()
+{
+    const QModelIndex trashIndex = indexFromDesktopId(QStringLiteral("dde-trash"));
+    if (trashIndex.isValid())
+        Q_EMIT dataChanged(trashIndex, trashIndex, { AppsModel::IconNameRole });
 }

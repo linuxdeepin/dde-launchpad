@@ -16,6 +16,7 @@ class DFileWatcherManager;
 }
 
 class QTimer;
+class TrashMonitor;
 
 // Adapts dde-shell's application model to the roles and desktop IDs expected by launchpad.
 class AppsModel : public QAbstractListModel
@@ -91,10 +92,12 @@ private:
     bool acceptsSourceIndex(const QModelIndex &sourceIndex) const;
     bool shouldDelaySourceIndex(const QModelIndex &sourceIndex) const;
     void updateIconData();
+    void onTrashAttributeChanged();
 
     QStringList m_excludedAppIdList;
     Dtk::Core::DFileWatcherManager *m_iconCacheWatcher = nullptr;
     QTimer *m_iconUpdateTimer = nullptr;
+    TrashMonitor *m_trashMonitor = nullptr;
     QPointer<QAbstractItemModel> m_sourceModel;
     QList<QPersistentModelIndex> m_rows;
     QList<QMetaObject::Connection> m_sourceConnections;
