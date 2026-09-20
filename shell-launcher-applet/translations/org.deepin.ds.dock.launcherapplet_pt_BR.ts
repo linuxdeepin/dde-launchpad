@@ -183,11 +183,11 @@
     </message>
     <message>
         <source>Sort by category</source>
-        <translation>Categoria</translation>
+        <translation>Categorias</translation>
     </message>
     <message>
         <source>Sort by name</source>
-        <translation>Por nome</translation>
+        <translation>Alfabética</translation>
     </message>
     <message>
         <source>Sorting Mode</source>
