@@ -191,7 +191,7 @@
     </message>
     <message>
         <source>Sorting Mode</source>
-        <translation>Ordenação</translation>
+        <translation>Organização</translation>
     </message>
     <message>
         <source>Computer</source>
