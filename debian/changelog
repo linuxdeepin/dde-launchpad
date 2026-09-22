@@ -1,3 +1,9 @@
+dde-launchpad (2.0.48) unstable; urgency=medium
+
+  * feat(at-spi): add objectName locators for QML interactive controls
+
+ -- zhangkun <zhangkun2@uniontech.com>  Tue, 22 Sep 2026 20:45:52 +0800
+
 dde-launchpad (2.0.47) unstable; urgency=medium
 
   * i18n: Translate org.deepin.ds.dock.launcherapplet.ts in ar (#799)
