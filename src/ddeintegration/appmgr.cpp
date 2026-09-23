@@ -41,8 +41,6 @@ const QStringList &disabledScaleEnvironments()
 
 QString applicationObjectPath(QString desktopId)
 {
-    if (desktopId.endsWith(QLatin1String(".desktop")))
-        desktopId.chop(8);
     if (desktopId.isEmpty() || desktopId.startsWith(QLatin1String("internal/")))
         return {};
     return ApplicationObjectPathPrefix + DUtil::escapeToObjectPath(desktopId);
