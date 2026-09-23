@@ -1,8 +1,9 @@
-// SPDX-FileCopyrightText: 2024 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2024-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 #include "frequentlyusedproxymodel.h"
+#include "appsmodel.h"
 
 #include <QDebug>
 #include <DConfig>
@@ -125,8 +126,8 @@ bool FrequentlyUsedProxyModel::inRecentlyInstalledModel(const QModelIndex &index
 
 bool FrequentlyUsedProxyModel::lessThenByFrequentlyUsed(const QModelIndex &sourceLeft, const QModelIndex &sourceRight) const
 {
-    const auto leftId = sourceLeft.data(m_desktopIdRole).toString();
-    const auto rightId = sourceRight.data(m_desktopIdRole).toString();
+    const auto leftId = AppsModel::normalizedDesktopId(sourceLeft.data(m_desktopIdRole).toString());
+    const auto rightId = AppsModel::normalizedDesktopId(sourceRight.data(m_desktopIdRole).toString());
     const auto leftInFrequentlyUsed = m_frequentlyUsedAppIdList.indexOf(leftId);
     const auto rightInFrequentlyUsed = m_frequentlyUsedAppIdList.indexOf(rightId);
     return leftInFrequentlyUsed < rightInFrequentlyUsed;

@@ -63,6 +63,8 @@ public:
     bool ready() const;
     QVariantMap ddeCategories() const;
 
+    static QString normalizedDesktopId(const QString &sourceId);
+
     int rowCount(const QModelIndex &parent = QModelIndex()) const override;
     QVariant data(const QModelIndex &index, int role) const override;
     QHash<int, QByteArray> roleNames() const override;
@@ -81,7 +83,6 @@ private:
     int sourceRole(const QByteArray &name) const;
     QVariant sourceData(const QModelIndex &sourceIndex, const QByteArray &roleName) const;
     QList<int> mappedRoles(const QList<int> &sourceRoles) const;
-    QString normalizedDesktopId(const QString &sourceId) const;
     int adapterRowForSourceRow(int sourceRow) const;
     void insertSourceRows(const QModelIndex &parent, int first, int last);
     void beginRemoveSourceRows(const QModelIndex &parent, int first, int last);
