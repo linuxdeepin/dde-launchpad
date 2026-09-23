@@ -63,7 +63,7 @@ AppsModel::AppsModel(QObject *parent)
 
         for (int sourceRow = 0; sourceRow < m_sourceModel->rowCount(); ++sourceRow) {
             const QModelIndex sourceIndex = m_sourceModel->index(sourceRow, 0);
-            if (normalizedDesktopId(sourceData(sourceIndex, DesktopIdRoleName).toString()) != desktopId)
+            if (AppsModel::normalizedDesktopId(sourceData(sourceIndex, DesktopIdRoleName).toString()) != desktopId)
                 continue;
             if (!acceptsSourceIndex(sourceIndex))
                 return;
@@ -117,9 +117,11 @@ QModelIndex AppsModel::indexFromDesktopId(const QString &desktopId) const
 {
     if (rowCount() == 0)
         return {};
-    const auto matches = match(index(0, 0), AppsModel::DesktopIdRole,
-                               normalizedDesktopId(desktopId), 1, Qt::MatchExactly);
-    return matches.value(0);
+    for (int i = 0; i < rowCount(); ++i) {
+        if (AppsModel::normalizedDesktopId(desktopId) == AppsModel::normalizedDesktopId(data(index(i, 0), DesktopIdRole).toString()))
+            return index(i, 0);
+    }
+    return {};
 }
 
 bool AppsModel::ready() const
@@ -169,7 +171,7 @@ QVariant AppsModel::data(const QModelIndex &index, int role) const
     case AppsModel::NameRole:
         return sourceData(sourceIndex, NameRoleName);
     case AppsModel::DesktopIdRole:
-        return normalizedDesktopId(sourceData(sourceIndex, DesktopIdRoleName).toString());
+        return sourceData(sourceIndex, DesktopIdRoleName).toString();
     case AppsModel::CategoriesRole:
         return sourceData(sourceIndex, CategoriesRoleName);
     case AppsModel::DDECategoryRole:
@@ -238,7 +240,7 @@ bool AppsModel::acceptsSourceIndex(const QModelIndex &sourceIndex) const
     if (!sourceIndex.isValid())
         return false;
 
-    const QString desktopId = normalizedDesktopId(sourceData(sourceIndex, DesktopIdRoleName).toString());
+    const QString desktopId = AppsModel::normalizedDesktopId(sourceData(sourceIndex, DesktopIdRoleName).toString());
     if (desktopId.isEmpty() || m_excludedAppIdList.contains(desktopId))
         return false;
 
@@ -289,7 +291,7 @@ QList<int> AppsModel::mappedRoles(const QList<int> &sourceRoles) const
     return uniqueRoles;
 }
 
-QString AppsModel::normalizedDesktopId(const QString &sourceId) const
+QString AppsModel::normalizedDesktopId(const QString &sourceId)
 {
     if (sourceId.isEmpty() || sourceId.endsWith(QLatin1String(".desktop")) || sourceId.startsWith(QLatin1String("internal/")))
         return sourceId;
@@ -333,7 +335,7 @@ void AppsModel::beginRemoveSourceRows(const QModelIndex &parent, int first, int 
     for (int sourceRow = first; sourceRow <= last; ++sourceRow) {
         const QModelIndex sourceIndex = m_sourceModel->index(sourceRow, 0);
         AppMgr::instance()->cancelPendingAppItem(
-                normalizedDesktopId(sourceData(sourceIndex, DesktopIdRoleName).toString()));
+                AppsModel::normalizedDesktopId(sourceData(sourceIndex, DesktopIdRoleName).toString()));
     }
 
     const int adapterFirst = adapterRowForSourceRow(first);
@@ -376,7 +378,7 @@ void AppsModel::updateSourceRows(const QModelIndex &topLeft, const QModelIndex &
         const int currentRow = m_rows.indexOf(persistentSourceIndex);
         const bool accepted = acceptsSourceIndex(sourceIndex);
 
-        const QString desktopId = normalizedDesktopId(sourceData(sourceIndex, DesktopIdRoleName).toString());
+        const QString desktopId = AppsModel::normalizedDesktopId(sourceData(sourceIndex, DesktopIdRoleName).toString());
         const bool pending = AppMgr::instance()->isPendingAppItem(desktopId);
         if ((mayChangeMembership || pending) && accepted && currentRow < 0) {
             if (shouldDelaySourceIndex(sourceIndex))
@@ -405,7 +407,7 @@ void AppsModel::rebuildRows()
     if (m_sourceModel) {
         for (int row = 0; row < m_sourceModel->rowCount(); ++row) {
             const QModelIndex sourceIndex = m_sourceModel->index(row, 0);
-            const QString desktopId = normalizedDesktopId(sourceData(sourceIndex, DesktopIdRoleName).toString());
+            const QString desktopId = AppsModel::normalizedDesktopId(sourceData(sourceIndex, DesktopIdRoleName).toString());
             if (acceptsSourceIndex(sourceIndex) && !AppMgr::instance()->isPendingAppItem(desktopId))
                 m_rows.append(sourceIndex);
         }
@@ -415,7 +417,7 @@ void AppsModel::rebuildRows()
 
 bool AppsModel::shouldDelaySourceIndex(const QModelIndex &sourceIndex) const
 {
-    const QString desktopId = normalizedDesktopId(sourceData(sourceIndex, DesktopIdRoleName).toString());
+    const QString desktopId = AppsModel::normalizedDesktopId(sourceData(sourceIndex, DesktopIdRoleName).toString());
     const QString iconName = sourceData(sourceIndex, IconNameRoleName).toString();
     return AppMgr::instance()->waitForIcon(desktopId, iconName);
 }

@@ -26,15 +26,15 @@ FavoritedProxyModel::FavoritedProxyModel(QObject *parent)
 
 bool FavoritedProxyModel::exists(const QString &desktopId)
 {
-    qCDebug(logModels) << desktopId << m_favoritedAppIds.contains(desktopId);
-    return m_favoritedAppIds.contains(desktopId);
+    qCDebug(logModels) << desktopId << m_favoritedAppIds.contains(AppsModel::normalizedDesktopId(desktopId));
+    return m_favoritedAppIds.contains(AppsModel::normalizedDesktopId(desktopId));
 }
 
 void FavoritedProxyModel::addFavorite(const QString &desktopId)
 {
-    if (m_favoritedAppIds.contains(desktopId)) return;
+    if (m_favoritedAppIds.contains(AppsModel::normalizedDesktopId(desktopId))) return;
 
-    m_favoritedAppIds.append(desktopId);
+    m_favoritedAppIds.append(AppsModel::normalizedDesktopId(desktopId));
     qCInfo(logModels) << "Favorite added:" << desktopId;
 
     save();
@@ -43,7 +43,7 @@ void FavoritedProxyModel::addFavorite(const QString &desktopId)
 
 void FavoritedProxyModel::removeFavorite(const QString &desktopId)
 {
-    m_favoritedAppIds.removeOne(desktopId);
+    m_favoritedAppIds.removeOne(AppsModel::normalizedDesktopId(desktopId));
     qCInfo(logModels) << "Favorite removed:" << desktopId;
 
     save();
@@ -52,7 +52,7 @@ void FavoritedProxyModel::removeFavorite(const QString &desktopId)
 
 void FavoritedProxyModel::pinToTop(const QString &desktopId)
 {
-    int idx = m_favoritedAppIds.indexOf(desktopId);
+    int idx = m_favoritedAppIds.indexOf(AppsModel::normalizedDesktopId(desktopId));
 
     if (idx != -1) {
         m_favoritedAppIds.move(idx, 0);
@@ -67,13 +67,13 @@ bool FavoritedProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex &sou
 {
     QModelIndex modelIndex = this->sourceModel()->index(sourceRow, 0, sourceParent);
 
-    return m_favoritedAppIds.contains(modelIndex.data(AppsModel::DesktopIdRole).toString());
+    return m_favoritedAppIds.contains(AppsModel::normalizedDesktopId(modelIndex.data(AppsModel::DesktopIdRole).toString()));
 }
 
 bool FavoritedProxyModel::lessThan(const QModelIndex &source_left, const QModelIndex &source_right) const
 {
-    const int leftIndex = m_favoritedAppIds.indexOf(source_left.data(AppsModel::DesktopIdRole).toString());
-    const int rightIndex = m_favoritedAppIds.indexOf(source_right.data(AppsModel::DesktopIdRole).toString());
+    const int leftIndex = m_favoritedAppIds.indexOf(AppsModel::normalizedDesktopId(source_left.data(AppsModel::DesktopIdRole).toString()));
+    const int rightIndex = m_favoritedAppIds.indexOf(AppsModel::normalizedDesktopId(source_right.data(AppsModel::DesktopIdRole).toString()));
 
     return leftIndex < rightIndex;
 }

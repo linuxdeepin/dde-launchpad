@@ -4,6 +4,7 @@
 
 #include "desktopintegration.h"
 #include "appmgr.h"
+#include "appsmodel.h"
 
 #include <DConfig>
 #include <DDesktopEntry>
@@ -42,7 +43,7 @@ bool DesktopIntegration::isTreeLand()
 void DesktopIntegration::openSystemSettings()
 {
     qCInfo(logDesktopIntegration) << "Opening system settings";
-    launchByDesktopId("org.deepin.dde.control-center.desktop");
+    launchByDesktopId("org.deepin.dde.control-center");
 }
 
 void DesktopIntegration::launchByDesktopId(const QString &desktopId)
@@ -52,7 +53,7 @@ void DesktopIntegration::launchByDesktopId(const QString &desktopId)
     connect(activation, &ds::XdgActivation::tokenReady, &instance(), [desktopId, activation](const QString &token) {
         if (!AppMgr::launchApp(desktopId, token)) {
             qCDebug(logDesktopIntegration) << "AppMgr launch failed, trying AppInfo launch";
-            AppInfo::launchByDesktopId(desktopId);
+            AppInfo::launchByDesktopId(AppsModel::normalizedDesktopId(desktopId));
         }
         activation->deleteLater();
     });
@@ -89,11 +90,11 @@ void DesktopIntegration::showUrl(const QString &url)
 
 bool DesktopIntegration::appIsCompulsoryForDesktop(const QString &desktopId)
 {
-    if (m_compulsoryAppIdList.contains(desktopId)) return true;
+    if (m_compulsoryAppIdList.contains(AppsModel::normalizedDesktopId(desktopId))) return true;
 
     const QString currentDE(DesktopIntegration::currentDE());
 
-    const AppStream::ComponentBox components = m_appStreamPool.componentsByLaunchable(AppStream::Launchable::KindDesktopId, desktopId);
+    const AppStream::ComponentBox components = m_appStreamPool.componentsByLaunchable(AppStream::Launchable::KindDesktopId, AppsModel::normalizedDesktopId(desktopId));
     for (const AppStream::Component & component : components) {
         return component.compulsoryForDesktops().contains(currentDE);
     }
@@ -103,7 +104,7 @@ bool DesktopIntegration::appIsCompulsoryForDesktop(const QString &desktopId)
 
 bool DesktopIntegration::appIsDummyPackage(const QString &desktopId)
 {
-    const AppStream::ComponentBox components = m_appStreamPool.componentsByLaunchable(AppStream::Launchable::KindDesktopId, desktopId);
+    const AppStream::ComponentBox components = m_appStreamPool.componentsByLaunchable(AppStream::Launchable::KindDesktopId, AppsModel::normalizedDesktopId(desktopId));
     for (const AppStream::Component & component : components) {
         return component.customValue("DDE::is_dummy_package") == "true";
     }
@@ -135,7 +136,7 @@ QString DesktopIntegration::backgroundUrl() const
 bool DesktopIntegration::isDockedApp(const QString &desktopId) const
 {
     // This is something we shouldn't do but anyway...
-    const QString & fullPath = AppInfo::fullPathByDesktopId(desktopId);
+    const QString & fullPath = AppInfo::fullPathByDesktopId(AppsModel::normalizedDesktopId(desktopId));
     // Seems QML's list type doesn't have a contains() method...
     return m_dockIntegration->isDocked(fullPath);
 }
@@ -143,14 +144,14 @@ bool DesktopIntegration::isDockedApp(const QString &desktopId) const
 void DesktopIntegration::sendToDock(const QString &desktopId)
 {
     qCInfo(logDesktopIntegration) << "Sending app to dock:" << desktopId;
-    const QString & fullPath = AppInfo::fullPathByDesktopId(desktopId);
+    const QString & fullPath = AppInfo::fullPathByDesktopId(AppsModel::normalizedDesktopId(desktopId));
     return m_dockIntegration->sendToDock(fullPath);
 }
 
 void DesktopIntegration::removeFromDock(const QString &desktopId)
 {
     qCInfo(logDesktopIntegration) << "Removing app from dock:" << desktopId;
-    const QString & fullPath = AppInfo::fullPathByDesktopId(desktopId);
+    const QString & fullPath = AppInfo::fullPathByDesktopId(AppsModel::normalizedDesktopId(desktopId));
     return m_dockIntegration->removeFromDock(fullPath);
 }
 
@@ -165,7 +166,7 @@ inline QString desktopItemFilePath(const QString &desktopId)
 
 bool DesktopIntegration::isOnDesktop(const QString &desktopId) const
 {
-    QString desktopItemPath = desktopItemFilePath(desktopId);
+    QString desktopItemPath = desktopItemFilePath(AppsModel::normalizedDesktopId(desktopId));
     if (desktopItemPath.isEmpty()) return false;
     return QFileInfo::exists(desktopItemPath);
 }
@@ -196,7 +197,7 @@ void DesktopIntegration::setAutoStart(const QString &desktopId, bool on)
 bool DesktopIntegration::shouldSkipConfirmUninstallDialog(const QString &desktopId) const
 {
     bool result = false;
-    const QString & fullPath = AppInfo::fullPathByDesktopId(desktopId);
+    const QString & fullPath = AppInfo::fullPathByDesktopId(AppsModel::normalizedDesktopId(desktopId));
     if (fullPath.isEmpty()) return result;
 
     DDesktopEntry entry(fullPath);
@@ -210,7 +211,7 @@ bool DesktopIntegration::shouldSkipConfirmUninstallDialog(const QString &desktop
 void DesktopIntegration::uninstallApp(const QString &desktopId)
 {
     qCInfo(logDesktopIntegration) << "Uninstalling app:" << desktopId;
-    const QString & fullPath = AppInfo::fullPathByDesktopId(desktopId);
+    const QString & fullPath = AppInfo::fullPathByDesktopId(AppsModel::normalizedDesktopId(desktopId));
     m_appWizIntegration->legacyRequestUninstall(fullPath);
 }
 

@@ -173,21 +173,21 @@ void TestSearchFilterProxyModel::testBasicSearch()
     model.setFilterRegularExpression(QRegularExpression("Calculator"));
     qCDebug(logTest) << "Calculator search returned" << model.rowCount() << "items";
     QCOMPARE(model.rowCount(), 1);
-    QCOMPARE(model.data(model.index(0, 0), AppsModel::DesktopIdRole).toString(), "org.deepin.calculator.desktop");
+    QCOMPARE(model.data(model.index(0, 0), AppsModel::DesktopIdRole).toString(), "org.deepin.calculator");
     
     // 测试基本搜索 - 部分匹配
     qCDebug(logTest) << "Testing partial match search for 'Text'";
     model.setFilterRegularExpression(QRegularExpression("Text"));
     qCDebug(logTest) << "Text search returned" << model.rowCount() << "items";
     QCOMPARE(model.rowCount(), 1);
-    QCOMPARE(model.data(model.index(0, 0), AppsModel::DesktopIdRole).toString(), "org.deepin.editor.desktop");
+    QCOMPARE(model.data(model.index(0, 0), AppsModel::DesktopIdRole).toString(), "org.deepin.editor");
     
     // 测试基本搜索 - 不区分大小写
     qCDebug(logTest) << "Testing case-insensitive search for 'calculator'";
     model.setFilterRegularExpression(QRegularExpression("calculator"));
     qCDebug(logTest) << "Case-insensitive search returned" << model.rowCount() << "items";
     QCOMPARE(model.rowCount(), 1);
-    QCOMPARE(model.data(model.index(0, 0), AppsModel::DesktopIdRole).toString(), "org.deepin.calculator.desktop");
+    QCOMPARE(model.data(model.index(0, 0), AppsModel::DesktopIdRole).toString(), "org.deepin.calculator");
     
     // 测试基本搜索 - 多个结果
     qCDebug(logTest) << "Testing multi-result search for 'e'";
@@ -207,14 +207,14 @@ void TestSearchFilterProxyModel::testChineseSearch()
     model.setFilterRegularExpression(QRegularExpression("音乐"));
     qCDebug(logTest) << "Chinese search for '音乐' returned" << model.rowCount() << "items";
     QCOMPARE(model.rowCount(), 1);
-    QCOMPARE(model.data(model.index(0, 0), AppsModel::DesktopIdRole).toString(), "org.deepin.music.desktop");
+    QCOMPARE(model.data(model.index(0, 0), AppsModel::DesktopIdRole).toString(), "org.deepin.music");
     
     // 测试中文部分匹配
     qCDebug(logTest) << "Testing Chinese partial match for '阅读'";
     model.setFilterRegularExpression(QRegularExpression("阅读"));
     qCDebug(logTest) << "Chinese search for '阅读' returned" << model.rowCount() << "items";
     QCOMPARE(model.rowCount(), 1);
-    QCOMPARE(model.data(model.index(0, 0), AppsModel::DesktopIdRole).toString(), "org.deepin.reader.desktop");
+    QCOMPARE(model.data(model.index(0, 0), AppsModel::DesktopIdRole).toString(), "org.deepin.reader");
     qCInfo(logTest) << "Chinese search tests completed successfully";
 }
 
@@ -228,26 +228,26 @@ void TestSearchFilterProxyModel::testPinyinSearch()
     model.setFilterRegularExpression(QRegularExpression("yinyue"));
     qCDebug(logTest) << "Pinyin search for 'yinyue' returned" << model.rowCount() << "items";
     QCOMPARE(model.rowCount(), 1);
-    QCOMPARE(model.data(model.index(0, 0), AppsModel::DesktopIdRole).toString(), "org.deepin.music.desktop");
+    QCOMPARE(model.data(model.index(0, 0), AppsModel::DesktopIdRole).toString(), "org.deepin.music");
     
     // 测试拼音部分匹配
     qCDebug(logTest) << "Testing Pinyin partial match for 'yuedu'";
     model.setFilterRegularExpression(QRegularExpression("yuedu"));
     qCDebug(logTest) << "Pinyin search for 'yuedu' returned" << model.rowCount() << "items";
     QCOMPARE(model.rowCount(), 1);
-    QCOMPARE(model.data(model.index(0, 0), AppsModel::DesktopIdRole).toString(), "org.deepin.reader.desktop");
+    QCOMPARE(model.data(model.index(0, 0), AppsModel::DesktopIdRole).toString(), "org.deepin.reader");
     
     // 测试拼音首字母匹配
     qCDebug(logTest) << "Testing Pinyin initials match for 'rl'";
     model.setFilterRegularExpression(QRegularExpression("rl"));
     qCDebug(logTest) << "Pinyin initials search for 'rl' returned" << model.rowCount() << "items";
     QCOMPARE(model.rowCount(), 1);
-    QCOMPARE(model.data(model.index(0, 0), AppsModel::DesktopIdRole).toString(), "org.deepin.calendar.desktop");
+    QCOMPARE(model.data(model.index(0, 0), AppsModel::DesktopIdRole).toString(), "org.deepin.calendar");
     qCDebug(logTest) << "Testing Pinyin initials match for 'aqzx'";
     model.setFilterRegularExpression(QRegularExpression("aqzx"));
     qCDebug(logTest) << "Pinyin initials search for 'aqzx' returned" << model.rowCount() << "items";
     QCOMPARE(model.rowCount(), 1);
-    QCOMPARE(model.data(model.index(0, 0), AppsModel::DesktopIdRole).toString(), "org.deepin.defender.desktop");
+    QCOMPARE(model.data(model.index(0, 0), AppsModel::DesktopIdRole).toString(), "org.deepin.defender");
     qCInfo(logTest) << "Pinyin search tests completed successfully";
 }
 
@@ -261,14 +261,14 @@ void TestSearchFilterProxyModel::testJianpinSearch()
     model.setFilterRegularExpression(QRegularExpression("yy"));
     qCDebug(logTest) << "Jianpin search for 'yy' returned" << model.rowCount() << "items";
     QCOMPARE(model.rowCount(), 1);
-    QCOMPARE(model.data(model.index(0, 0), AppsModel::DesktopIdRole).toString(), "org.deepin.music.desktop");
+    QCOMPARE(model.data(model.index(0, 0), AppsModel::DesktopIdRole).toString(), "org.deepin.music");
     
     // 测试简拼部分匹配
     qCDebug(logTest) << "Testing Jianpin partial match for 'yd' (阅读)";
     model.setFilterRegularExpression(QRegularExpression("yd"));
     qCDebug(logTest) << "Jianpin search for 'yd' returned" << model.rowCount() << "items";
     QCOMPARE(model.rowCount(), 1);
-    QCOMPARE(model.data(model.index(0, 0), AppsModel::DesktopIdRole).toString(), "org.deepin.reader.desktop");
+    QCOMPARE(model.data(model.index(0, 0), AppsModel::DesktopIdRole).toString(), "org.deepin.reader");
     qCInfo(logTest) << "Jianpin search tests completed successfully";
 }
 
@@ -297,10 +297,10 @@ void TestSearchFilterProxyModel::testSorting()
         QString desktopId = model.data(model.index(i, 0), AppsModel::DesktopIdRole).toString();
         qCDebug(logTest) << "Result" << i << ":" << desktopId;
         
-        if (desktopId == "org.deepin.browser.desktop") {
+        if (desktopId == "org.deepin.browser") {
             qCDebug(logTest) << "Found browser at position" << i;
             foundBrowser = true;
-        } else if (desktopId == "org.deepin.editor.desktop") {
+        } else if (desktopId == "org.deepin.editor") {
             qCDebug(logTest) << "Found editor at position" << i;
             foundEditor = true;
         }
@@ -380,7 +380,7 @@ void TestSearchFilterProxyModel::testSharedModelAdapter()
     QCOMPARE(appsModel.rowCount(), initialRowCount + 1);
     QCOMPARE(rowsInsertedSpy.count(), 1);
     QCOMPARE(appsModel.indexFromDesktopId("org.test.hidden.desktop").data(AppsModel::DesktopIdRole).toString(),
-             QStringLiteral("org.test.hidden.desktop"));
+             QStringLiteral("org.test.hidden"));
 
     auto suffixedItem = createTestAppItem("org.test.suffixed.desktop", "Suffixed", "Suffixed");
     m_sourceModel.appendRow(suffixedItem);
