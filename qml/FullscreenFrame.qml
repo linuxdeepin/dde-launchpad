@@ -510,6 +510,9 @@ InputEventItem {
                                     return
                                 }
 
+                                listviewPage.changedByNonKeyboard = false
+                                listviewPage.previousIndex = listItem.viewIndex
+
                                 if (listItem.viewIndex === 0) {
                                     // is the 1st page, go to last page
                                     listviewPage.setCurrentIndex(pageCount - 1)
@@ -537,6 +540,8 @@ InputEventItem {
                                     gridViewContainer.currentIndex = 0
                                     return
                                 }
+
+                                listviewPage.changedByNonKeyboard = false
 
                                 if (listItem.viewIndex === (pageCount - 1) && pageCount > 1) {
                                     // is the last page, go to first page
