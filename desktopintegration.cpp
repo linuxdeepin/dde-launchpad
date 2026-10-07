@@ -183,11 +183,6 @@ void DesktopIntegration::removeFromDesktop(const QString &desktopId)
     AppMgr::removeFromDesktop(desktopId);
 }
 
-bool DesktopIntegration::isAutoStart(const QString &desktopId) const
-{
-    return AppMgr::autoStart(desktopId);
-}
-
 // only affect the one in XDG_CONFIG_HOME, don't care about the system one (even if there is one).
 void DesktopIntegration::setAutoStart(const QString &desktopId, bool on)
 {

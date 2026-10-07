@@ -109,7 +109,8 @@ AppletItem {
             isFavoriteItem: false,
             hideFavoriteMenu: true,
             hideDisplayScalingMenu: Math.abs(DesktopIntegration.scaleFactor - 1.0) < 0.0001,
-            hideMoveToTopMenu: true
+            hideMoveToTopMenu: true,
+            autoStart: model.autoStart
         }, additionalProps));
         menu.closed.connect(menu.destroy)
         menu.popup();
