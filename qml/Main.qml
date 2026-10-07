@@ -76,7 +76,8 @@ QtObject {
                 isFavoriteItem: false,
                 hideFavoriteMenu: true,
                 hideDisplayScalingMenu: false,
-                hideMoveToTopMenu: true
+                hideMoveToTopMenu: true,
+                autoStart: model.autoStart
             }, additionalProps));
             menu.closed.connect(menu.destroy)
             menu.popup();

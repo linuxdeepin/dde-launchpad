@@ -9,6 +9,7 @@
 #include <QImage>
 #include <QLoggingCategory>
 #include <QCursor>
+#include <QDBusServiceWatcher>
 
 #include "Appearance1.h"
 #include "blurhash.hpp"
@@ -46,6 +47,16 @@ Appearance::Appearance(QObject *parent)
         });
         setOpacity(m_dbusAppearanceIface->opacity());
     }
+
+    // The appearance service may not be ready when the launcher starts
+    // (startup race); retry the wallpaper update once it registers.
+    auto serviceWatcher = new QDBusServiceWatcher(QStringLiteral("org.deepin.dde.Appearance1"),
+                                                  QDBusConnection::sessionBus(),
+                                                  QDBusServiceWatcher::WatchForRegistration, this);
+    connect(serviceWatcher, &QDBusServiceWatcher::serviceRegistered, this, [this](const QString &) {
+        qCDebug(logDdeIntegration) << "Appearance service registered, retrying wallpaper update";
+        updateAllWallpaper();
+    });
 }
 
 Appearance::~Appearance()
@@ -120,8 +131,17 @@ void Appearance::updateCurrentWallpaperBlurhash()
 
 void Appearance::updateAllWallpaper()
 {
-    QJsonParseError err;
     QString urls = m_dbusAppearanceIface->wallpaperURls();
+    if (urls.trimmed().isEmpty()) {
+        // Startup race: the appearance service is not ready yet and returns
+        // an empty string. Not an error; the service watcher retries once
+        // the service registers, and the allwallpaperuris change
+        // notification covers a service that is up but not populated.
+        qCDebug(logDdeIntegration) << "wallpaperURls returned empty, appearance service not ready";
+        return;
+    }
+
+    QJsonParseError err;
     QJsonDocument doc = QJsonDocument::fromJson(urls.toUtf8(), &err);
     if (err.error != QJsonParseError::NoError) {
         qCWarning(logDdeIntegration) << "Get wallpapers failed:" << err.errorString();

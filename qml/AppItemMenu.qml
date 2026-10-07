@@ -19,6 +19,7 @@ Loader {
     property bool hideFavoriteMenu
     property bool hideMoveToTopMenu
     property bool hideDisplayScalingMenu
+    property bool autoStart
     readonly property bool isFullscreen: LauncherController.currentFrame === "FullscreenFrame"
     readonly property bool isHorizontalDock: DesktopIntegration.dockPosition === Qt.UpArrow || DesktopIntegration.dockPosition === Qt.DownArrow
     readonly property int dockSpacing: (isHorizontalDock ? DesktopIntegration.dockGeometry.height : DesktopIntegration.dockGeometry.width) / Screen.devicePixelRatio
@@ -118,9 +119,9 @@ Loader {
             MenuItem {
                 objectName: "RemoveFromStartup"
                 enabled: !root.desktopId.startsWith("internal/folders/")
-                text: DesktopIntegration.isAutoStart(root.desktopId) ? qsTr("Remove from startup") : qsTr("Add to startup")
+                text: root.autoStart ? qsTr("Remove from startup") : qsTr("Add to startup")
                 onTriggered: {
-                    DesktopIntegration.setAutoStart(root.desktopId, !DesktopIntegration.isAutoStart(root.desktopId))
+                    DesktopIntegration.setAutoStart(root.desktopId, !root.autoStart)
                 }
             }
             MenuItem {
