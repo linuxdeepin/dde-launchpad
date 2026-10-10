@@ -22,8 +22,8 @@ AppletItem {
     property bool useColumnLayout: Panel.position % 2
     property int dockOrder: 12
     // 1:4 the distance between app : dock height; get width/height≈0.8
-    implicitWidth: useColumnLayout ? Panel.rootObject.dockSize : Panel.rootObject.dockItemMaxSize * 0.8
-    implicitHeight: useColumnLayout ? Panel.rootObject.dockItemMaxSize * 0.8 : Panel.rootObject.dockSize
+    implicitWidth: useColumnLayout ? (Panel.rootObject ? Panel.rootObject.dockSize : 0) : (Panel.rootObject ? Panel.rootObject.dockItemMaxSize * 0.8 : 0)
+    implicitHeight: useColumnLayout ? (Panel.rootObject ? Panel.rootObject.dockItemMaxSize * 0.8 : 0) : (Panel.rootObject ? Panel.rootObject.dockSize : 0)
 
    function toggleLauncher() {
         LauncherController.visible = !LauncherController.visible
@@ -43,11 +43,14 @@ AppletItem {
         }
     }
 
-    Connections {
-        target: Panel
-        function onLeftEdgeClicked(minOrder) {
-            if (launcher.dockOrder == minOrder) {
-                toggleLauncher()
+    Loader {
+        active: Panel.rootObject !== null
+        sourceComponent: Connections {
+            target: Panel
+            function onLeftEdgeClicked(minOrder) {
+                if (launcher.dockOrder == minOrder) {
+                    toggleLauncher()
+                }
             }
         }
     }
@@ -291,9 +294,9 @@ AppletItem {
         readonly property int dockPosition: DesktopIntegration.dockPosition
         readonly property bool dockIsHorizontal: dockPosition === Qt.UpArrow || dockPosition === Qt.DownArrow
         readonly property bool isDarkTheme: D.DTK.themeType === D.ApplicationHelper.DarkType
-        readonly property int dockThickness: dockIsHorizontal ? Panel.rootObject.height
-                                                             : Panel.rootObject.width
-        readonly property int dockReservedZone: DesktopIntegration.isTreeLand() ? Panel.rootObject.DLayerShellWindow.exclusionZone : 0
+        readonly property int dockThickness: dockIsHorizontal ? (Panel.rootObject ? Panel.rootObject.height : 0)
+                                                             : (Panel.rootObject ? Panel.rootObject.width : 0)
+        readonly property int dockReservedZone: DesktopIntegration.isTreeLand() && Panel.rootObject ? Panel.rootObject.DLayerShellWindow.exclusionZone : 0
         
         readonly property int dockExclusion: DesktopIntegration.dockSpacing
                                               + Math.max(0, dockThickness - dockReservedZone)
@@ -451,7 +454,7 @@ AppletItem {
         id: icon
         anchors.centerIn: parent
         name: Applet.iconName
-        scale: Panel.rootObject.dockItemMaxSize * 9 / 14 / Dock.MAX_DOCK_TASKMANAGER_ICON_SIZE
+        scale: (Panel.rootObject ? Panel.rootObject.dockItemMaxSize : 0) * 9 / 14 / Dock.MAX_DOCK_TASKMANAGER_ICON_SIZE
         // 9:14 (iconSize/dockHeight)
         sourceSize: Qt.size(Dock.MAX_DOCK_TASKMANAGER_ICON_SIZE, Dock.MAX_DOCK_TASKMANAGER_ICON_SIZE)
         onXChanged: updateLaunchpadPos()
