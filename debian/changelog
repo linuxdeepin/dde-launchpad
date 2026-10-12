@@ -1,3 +1,11 @@
+dde-launchpad (2.0.49) unstable; urgency=medium
+
+  * fix: fix apps with .desktop suffix cannot launch
+  * feat: track non-keyboard page navigation state
+  * i18n: Updates for project Deepin Desktop Environment (#815)
+
+ -- zhangkun <zhangkun2@uniontech.com>  Mon, 12 Oct 2026 18:18:12 +0800
+
 dde-launchpad (2.0.48) unstable; urgency=medium
 
   * feat(at-spi): add objectName locators for QML interactive controls
