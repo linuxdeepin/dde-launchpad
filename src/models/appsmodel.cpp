@@ -293,7 +293,7 @@ QList<int> AppsModel::mappedRoles(const QList<int> &sourceRoles) const
 
 QString AppsModel::normalizedDesktopId(const QString &sourceId)
 {
-    if (sourceId.isEmpty() || sourceId.endsWith(QLatin1String(".desktop")) || sourceId.startsWith(QLatin1String("internal/")))
+    if (sourceId.isEmpty() || sourceId.startsWith(QLatin1String("internal/")))
         return sourceId;
     return sourceId + QStringLiteral(".desktop");
 }
