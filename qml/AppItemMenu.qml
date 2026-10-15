@@ -30,6 +30,7 @@ Loader {
         Menu {
             id: contextMenu
             objectName: "ContextMenu"
+            popupType: Popup.Window
 
             topMargin: isFullscreen && DesktopIntegration.dockPosition === Qt.UpArrow ? dockSpacing : 0
             bottomMargin: isFullscreen && DesktopIntegration.dockPosition === Qt.DownArrow ? dockSpacing : 0
