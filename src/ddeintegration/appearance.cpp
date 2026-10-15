@@ -9,6 +9,7 @@
 #include <QImage>
 #include <QLoggingCategory>
 #include <QCursor>
+#include <QDBusServiceWatcher>
 
 #include "Appearance1.h"
 #include "blurhash.hpp"
@@ -39,18 +40,45 @@ Appearance::Appearance(QObject *parent)
     connect(&(LauncherController::instance()), &LauncherController::currentScreenChanged,
             this, &Appearance::updateCurrentWallpaperBlurhash);
 
-    if (m_dbusAppearanceIface->isValid()) {
-        connect(m_dbusAppearanceIface, &Appearance1::OpacityChanged, this, [this](double value) {
-            qCDebug(logDdeIntegration) << "Opacity changed via DBus:" << value;
-            setOpacity(value);
-        });
-        setOpacity(m_dbusAppearanceIface->opacity());
-    }
+    // The appearance service may not be ready when the launcher starts
+    // (startup race): while the service name has no owner, the proxy's
+    // getters fall back to cached default values if the call fails or times
+    // out (empty wallpaper list, zero opacity), and no signal can come from
+    // a service that does not exist yet. Apply the initial values and retry
+    // once the service registers.
+    auto serviceWatcher = new QDBusServiceWatcher(QStringLiteral("org.deepin.dde.Appearance1"),
+                                                  QDBusConnection::sessionBus(),
+                                                  QDBusServiceWatcher::WatchForRegistration, this);
+    connect(serviceWatcher, &QDBusServiceWatcher::serviceRegistered, this, [this](const QString &) {
+        qCDebug(logDdeIntegration) << "Appearance service registered, applying appearance values";
+        initAppearanceValues();
+        updateAllWallpaper();
+    });
+
+    initAppearanceValues();
 }
 
 Appearance::~Appearance()
 {
 
+}
+
+void Appearance::initAppearanceValues()
+{
+    if (!m_dbusAppearanceIface->isValid()) {
+        // Startup race: the service has no owner yet; the watcher retries.
+        qCDebug(logDdeIntegration) << "Appearance service not ready, deferring appearance values";
+        return;
+    }
+
+    if (!m_opacitySignalConnected) {
+        connect(m_dbusAppearanceIface, &Appearance1::OpacityChanged, this, [this](double value) {
+            qCDebug(logDdeIntegration) << "Opacity changed via DBus:" << value;
+            setOpacity(value);
+        });
+        m_opacitySignalConnected = true;
+    }
+    setOpacity(m_dbusAppearanceIface->opacity());
 }
 
 QString Appearance::wallpaperBlurhash() const
@@ -120,8 +148,17 @@ void Appearance::updateCurrentWallpaperBlurhash()
 
 void Appearance::updateAllWallpaper()
 {
-    QJsonParseError err;
     QString urls = m_dbusAppearanceIface->wallpaperURls();
+    if (urls.trimmed().isEmpty()) {
+        // Startup race: the appearance service is not ready yet and returns
+        // an empty string. Not an error; the service watcher retries once
+        // the service registers, and the allwallpaperuris change
+        // notification covers a service that is up but not populated.
+        qCDebug(logDdeIntegration) << "wallpaperURls returned empty, appearance service not ready";
+        return;
+    }
+
+    QJsonParseError err;
     QJsonDocument doc = QJsonDocument::fromJson(urls.toUtf8(), &err);
     if (err.error != QJsonParseError::NoError) {
         qCWarning(logDdeIntegration) << "Get wallpapers failed:" << err.errorString();

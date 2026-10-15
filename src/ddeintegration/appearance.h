@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2023 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2023 - 2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -32,6 +32,7 @@ signals:
     void opacityChanged();
 
 private:
+    void initAppearanceValues();
     void updateCurrentWallpaperBlurhash();
     void updateAllWallpaper();
 
@@ -41,5 +42,6 @@ private:
     QList<QFutureWatcher<QString> *> m_blurhashWatchers;
     QMap<QUrl, QString> m_wallpaperBlurMap; // { file:blurhash }
     qreal m_opacity = -1;
+    bool m_opacitySignalConnected = false;
 
 };
