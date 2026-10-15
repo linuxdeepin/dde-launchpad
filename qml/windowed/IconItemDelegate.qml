@@ -59,7 +59,24 @@ Control {
             drag.onActiveChanged: function () {
                 root.Drag.active = drag.active
             }
+
+            TapHandler {
+                acceptedDevices: PointerDevice.TouchScreen
+                gesturePolicy: TapHandler.DragThreshold
+                onTapped: function(eventPoint, buttons) {
+                    root.itemClicked()
+                }
+                onLongPressed: {
+                    root.menuTriggered()
+                }
+            }
+
             onPressed: function (mouse) {
+                // 触屏合成的鼠标事件不接受，交给 Flickable 处理滚动
+                if (mouse.source !== undefined && mouse.source !== Qt.MouseEventNotSynthesized) {
+                    mouse.accepted = false
+                    return
+                }
                 if (mouse.button === Qt.LeftButton && root.dndEnabled) {
                     appIcon.grabToImage(function(result) {
                         root.Drag.imageSource = result.url;
