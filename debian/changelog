@@ -1,3 +1,10 @@
+dde-launchpad (2.0.50) unstable; urgency=medium
+
+  * i18n: Translate org.deepin.ds.dock.launcherapplet.ts in mn (#822)
+  * fix: remove endsWith(.desktop) heuristic in normalizedDesktopId
+
+ -- zhangkun <zhangkun2@uniontech.com>  Thu, 15 Oct 2026 21:33:59 +0800
+
 dde-launchpad (2.0.49) unstable; urgency=medium
 
   * fix: fix apps with .desktop suffix cannot launch
