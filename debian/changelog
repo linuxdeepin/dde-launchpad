@@ -1,3 +1,9 @@
+dde-launchpad (2.0.51) unstable; urgency=medium
+
+  * fix: read auto-start state from app model in context menu
+
+ -- zhangkun <zhangkun2@uniontech.com>  Tue, 20 Oct 2026 21:31:07 +0800
+
 dde-launchpad (2.0.50) unstable; urgency=medium
 
   * i18n: Translate org.deepin.ds.dock.launcherapplet.ts in mn (#822)
