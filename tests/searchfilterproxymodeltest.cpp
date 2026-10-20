@@ -30,6 +30,7 @@ enum SourceRoles {
     SourceCategoriesRole,
     SourceVendorRole,
     SourceGenericNameRole,
+    SourceKeywordsRole,
 };
 }
 
@@ -47,6 +48,7 @@ private slots:
     void testJianpinSearch();
     void testSorting();
     void testSpecialCharacters();
+    void testGenericNameAndKeywords();
     void testSharedModelAdapter();
     void testCategorySortSignalOrder();
 
@@ -57,7 +59,8 @@ private:
                                      const QString &displayName,
                                      const QString &genericName = QString(),
                                      const QString &vendor = QString(),
-                                     int launchedTimes = 0);
+                                     int launchedTimes = 0,
+                                     const QStringList &keywords = {});
 
     QStandardItemModel m_sourceModel;
 };
@@ -94,6 +97,7 @@ void TestSearchFilterProxyModel::setupTestData()
         { SourceCategoriesRole, QByteArrayLiteral("categories") },
         { SourceVendorRole, QByteArrayLiteral("vendor") },
         { SourceGenericNameRole, QByteArrayLiteral("genericName") },
+        { SourceKeywordsRole, QByteArrayLiteral("keywords") },
     });
     
     // 创建测试数据
@@ -112,7 +116,17 @@ void TestSearchFilterProxyModel::setupTestData()
     testItems.append(createTestAppItem("org.deepin.reader", "阅读器", "文档阅读器", "阅读", "deepin", 7));
     testItems.append(createTestAppItem("org.deepin.calendar", "日历", "日历", "日历", "deepin", 4));
     testItems.append(createTestAppItem("org.deepin.defender", "安全中心", "安全中心", "安全中心", "deepin", 4));
-    
+
+    // GenericName 与 Keywords 的检索样本
+    testItems.append(createTestAppItem("org.gnome.eog",
+                                       "Image Viewer",
+                                       "Image Viewer",
+                                       QString::fromUtf8("图像查看器"),
+                                       "gnome",
+                                       0,
+                                       { QString::fromUtf8("图片"),
+                                         QString::fromUtf8("幻灯片") }));
+
     // 包含特殊符号的应用
     testItems.append(createTestAppItem("org.special.app1", "App@Name", "App@Name", "", "special", 1));
     testItems.append(createTestAppItem("org.special.app2", "App-Name", "App-Name", "", "special", 2));
@@ -142,7 +156,8 @@ QStandardItem *TestSearchFilterProxyModel::createTestAppItem(const QString &desk
                                                              const QString &displayName,
                                                              const QString &genericName,
                                                              const QString &vendor,
-                                                             int launchedTimes)
+                                                             int launchedTimes,
+                                                             const QStringList &keywords)
 {
     qCDebug(logTest) << "Creating test app item:" << desktopId << "name:" << name << "launched times:" << launchedTimes;
     auto item = new QStandardItem;
@@ -150,6 +165,7 @@ QStandardItem *TestSearchFilterProxyModel::createTestAppItem(const QString &desk
     item->setData(displayName.isEmpty() ? name : displayName, SourceNameRole);
     item->setData(QStringLiteral("application-default-icon"), SourceIconNameRole);
     item->setData(genericName, SourceGenericNameRole);
+    item->setData(keywords, SourceKeywordsRole);
     item->setData(vendor, SourceVendorRole);
     item->setData(launchedTimes, SourceLaunchedTimesRole);
     item->setData(launchedTimes % 11, SourceDDECategoryRole);
@@ -360,6 +376,36 @@ void TestSearchFilterProxyModel::testSpecialCharacters()
     qCDebug(logTest) << "Special app found:" << foundSpecialApp;
     QVERIFY(foundSpecialApp);
     qCInfo(logTest) << "Special characters search tests completed successfully";
+}
+
+void TestSearchFilterProxyModel::testGenericNameAndKeywords()
+{
+    qCInfo(logTest) << "Starting GenericName and Keywords search tests";
+    auto &model = SearchFilterProxyModel::instance();
+
+    const auto search = [&model](const QString &query) {
+        model.setFilterRegularExpression(QRegularExpression(query));
+        return model.rowCount();
+    };
+
+    QCOMPARE(search(QStringLiteral("Slideshow")), 0);
+    QCOMPARE(search(QStringLiteral("Picture")), 0);
+    QCOMPARE(search(QStringLiteral("DefaultOnlyGeneric")), 0);
+    QCOMPARE(search(QStringLiteral("Image Viewer")), 1); // Existing Name search is unchanged.
+    QCOMPARE(search(QString::fromUtf8("幻灯片")), 1);
+    QCOMPARE(search(QString::fromUtf8("图像查看器")), 1);
+    QCOMPARE(search(QString::fromUtf8("查看器")), 1); // Scalar GenericName substring.
+    QCOMPARE(search(QStringLiteral("Bildwerkzeug")), 0);
+
+    const QModelIndex index = AppsModel::instance().indexFromDesktopId("org.gnome.eog");
+    QVERIFY(index.isValid());
+    QCOMPARE(index.data(AppsModel::KeywordsRole).toStringList(),
+             QStringList({ QString::fromUtf8("图片"),
+                           QString::fromUtf8("幻灯片") }));
+    QCOMPARE(index.data(AppsModel::GenericNameRole).toString(),
+             QString::fromUtf8("图像查看器"));
+
+    qCInfo(logTest) << "GenericName and Keywords search tests completed successfully";
 }
 
 void TestSearchFilterProxyModel::testSharedModelAdapter()
