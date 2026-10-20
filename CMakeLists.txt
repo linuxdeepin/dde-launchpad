@@ -6,7 +6,7 @@ cmake_minimum_required(VERSION 3.10)
 
 project(dde-launchpad VERSION 0.7.0)
 
-option(BUILD_TEST "Whether or not to build the tests" OFF)
+option(BUILD_TESTING "Whether or not to build the tests" OFF)
 option(CMAKE_EXPORT_COMPILE_COMMANDS "clangd support" ON)
 
 set(CMAKE_CXX_STANDARD 17) # blurhash requires 17, otherwish we can still use 14
@@ -65,7 +65,7 @@ add_subdirectory(src/treelandintegration)
 add_subdirectory(src/models)
 add_subdirectory(qml/windowed)
 
-if(BUILD_TEST)
+if(BUILD_TESTING)
     enable_testing()
     add_subdirectory(tests)
 endif()
