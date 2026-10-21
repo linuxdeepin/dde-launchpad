@@ -323,6 +323,7 @@ AppletItem {
         DLayerShellWindow.scope: "dde-shell/quick-launchpad"
 
         flags: Qt.Window | Qt.FramelessWindowHint
+        DWindow.themeType: D.DTK.themeType
         DWindow.enabled: true
         DWindow.windowRadius: D.DTK.platformTheme.windowRadius < 0 ? 12 : D.DTK.platformTheme.windowRadius
         DWindow.enableSystemResize: false
