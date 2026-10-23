@@ -113,12 +113,17 @@ void AppsModel::setSourceModel(QAbstractItemModel *model)
     rebuildRows();
 }
 
-QModelIndex AppsModel::indexFromDesktopId(const QString &desktopId) const
+QModelIndex AppsModel::indexFromAppId(const QString &appId) const
 {
     if (rowCount() == 0)
         return {};
+    return match(index(0, 0), DesktopIdRole, appId, 1, Qt::MatchExactly).value(0);
+}
+
+QModelIndex AppsModel::indexFromDesktopId(const QString &desktopId) const
+{
     for (int i = 0; i < rowCount(); ++i) {
-        if (AppsModel::normalizedDesktopId(desktopId) == AppsModel::normalizedDesktopId(data(index(i, 0), DesktopIdRole).toString()))
+        if (desktopId == normalizedDesktopId(data(index(i, 0), DesktopIdRole).toString()))
             return index(i, 0);
     }
     return {};

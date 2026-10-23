@@ -163,7 +163,7 @@ void ItemArrangementProxyModel::commitDndOperation(const QString &dragId, const 
             ItemsPage * dstFolder = createFolder(dstFolderId);
             qCDebug(logModels) << "Appending items to new folder page:" << dropId << dragId;
             dstFolder->appendPage({normDropId, normDragId});
-            const QModelIndex dropItem = AppsModel::instance().indexFromDesktopId(dropId);
+            const QModelIndex dropItem = AppsModel::instance().indexFromAppId(dropId);
             if (dropItem.isValid()) {
                 const int dropCategory = dropItem.data(AppsModel::DDECategoryRole).toInt();
                 QString folderName = "internal/category/" + QString::number(dropCategory);
