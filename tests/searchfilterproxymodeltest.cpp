@@ -382,16 +382,18 @@ void TestSearchFilterProxyModel::testSharedModelAdapter()
     QCOMPARE(appsModel.indexFromDesktopId("org.test.hidden.desktop").data(AppsModel::DesktopIdRole).toString(),
              QStringLiteral("org.test.hidden"));
 
-    auto suffixedItem = createTestAppItem("org.test.suffixed", "Suffixed", "Suffixed");
+    auto suffixedItem = createTestAppItem("org.test.suffixed.desktop", "Suffixed", "Suffixed");
     m_sourceModel.appendRow(suffixedItem);
     QCOMPARE(rowsInsertedSpy.count(), 2);
-    const QModelIndex suffixedIndex = appsModel.indexFromDesktopId("org.test.suffixed");
+    const QModelIndex suffixedIndex = appsModel.indexFromAppId("org.test.suffixed.desktop");
     QCOMPARE(suffixedIndex.data(AppsModel::DesktopIdRole).toString(),
-             QStringLiteral("org.test.suffixed"));
+             QStringLiteral("org.test.suffixed.desktop"));
+    QCOMPARE(AppsModel::normalizedDesktopId("org.test.suffixed.desktop"),
+             QStringLiteral("org.test.suffixed.desktop.desktop"));
 
     QSignalSpy dataChangedSpy(&appsModel, &QAbstractItemModel::dataChanged);
     suffixedItem->setData(QStringLiteral("Renamed"), SourceNameRole);
-    QCOMPARE(appsModel.indexFromDesktopId("org.test.suffixed").data(Qt::DisplayRole).toString(),
+    QCOMPARE(appsModel.indexFromDesktopId("org.test.suffixed.desktop.desktop").data(Qt::DisplayRole).toString(),
              QStringLiteral("Renamed"));
     QVERIFY(!dataChangedSpy.isEmpty());
     const auto changedRoles = dataChangedSpy.constLast().at(2).value<QList<int>>();

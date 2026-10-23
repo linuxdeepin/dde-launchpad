@@ -59,10 +59,13 @@ public:
     }
 
     void setSourceModel(QAbstractItemModel *sourceModel);
+    // Raw app IDs come from dde-shell; desktop file IDs include one extra .desktop suffix.
+    QModelIndex indexFromAppId(const QString &appId) const;
     QModelIndex indexFromDesktopId(const QString &desktopId) const;
     bool ready() const;
     QVariantMap ddeCategories() const;
 
+    // Convert a raw app ID to a desktop file ID, even when the app ID ends in .desktop.
     static QString normalizedDesktopId(const QString &sourceId);
 
     int rowCount(const QModelIndex &parent = QModelIndex()) const override;
