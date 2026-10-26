@@ -1,3 +1,11 @@
+dde-launchpad (2.0.52) unstable; urgency=medium
+
+  * fix: set DWindow themeType for windowed launcher
+  * fix: handle raw app IDs ending in .desktop correctly
+  * test: resolve conflicts with upstream master (rebase onto f7f8c96)
+
+ -- zhangkun <zhangkun2@uniontech.com>  Mon, 26 Oct 2026 11:07:10 +0800
+
 dde-launchpad (2.0.51) unstable; urgency=medium
 
   * fix: read auto-start state from app model in context menu
