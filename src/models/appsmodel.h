@@ -39,6 +39,7 @@ public:
         IsAutoStartRole,
         VendorRole,
         GenericNameRole,
+        KeywordsRole,     // Forward shell's selected Keywords so search needs no desktop-file reader.
         TransliteratedRole = 0x1000,
         AllTransliteratedRole,
         ProxyModelExtendedRole = 0x10000

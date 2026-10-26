@@ -33,6 +33,7 @@ constexpr auto LaunchedTimesRoleName = "launchedTimes";
 constexpr auto AutoStartRoleName = "autoStart";
 constexpr auto VendorRoleName = "vendor";
 constexpr auto GenericNameRoleName = "genericName";
+constexpr auto KeywordsRoleName = "keywords";
 }
 
 AppsModel::AppsModel(QObject *parent)
@@ -199,6 +200,8 @@ QVariant AppsModel::data(const QModelIndex &index, int role) const
         return sourceData(sourceIndex, VendorRoleName);
     case AppsModel::GenericNameRole:
         return sourceData(sourceIndex, GenericNameRoleName);
+    case AppsModel::KeywordsRole:
+        return sourceData(sourceIndex, KeywordsRoleName);
     case AppsModel::TransliteratedRole: {
         const auto decodedDisplay = Dtk::Core::pinyin(data(index, Qt::DisplayRole).toString(), Dtk::Core::TS_NoneTone);
         if (decodedDisplay.isEmpty())
@@ -235,6 +238,7 @@ QHash<int, QByteArray> AppsModel::roleNames() const
         { AppsModel::IsAutoStartRole, QByteArrayLiteral("autoStart") },
         { AppsModel::VendorRole, QByteArrayLiteral("vendor") },
         { AppsModel::GenericNameRole, QByteArrayLiteral("genericName") },
+        { AppsModel::KeywordsRole, QByteArrayLiteral("keywords") },
         { AppsModel::TransliteratedRole, QByteArrayLiteral("transliterated") },
         { AppsModel::AllTransliteratedRole, QByteArrayLiteral("allTransliterated") },
     };
@@ -284,6 +288,7 @@ QList<int> AppsModel::mappedRoles(const QList<int> &sourceRoles) const
     appendIfChanged(AppsModel::IsAutoStartRole, AutoStartRoleName);
     appendIfChanged(AppsModel::VendorRole, VendorRoleName);
     appendIfChanged(AppsModel::GenericNameRole, GenericNameRoleName);
+    appendIfChanged(AppsModel::KeywordsRole, KeywordsRoleName);
 
     if (sourceRoles.contains(sourceRole(NameRoleName))) {
         result << Qt::DisplayRole << AppsModel::NameRole << AppsModel::TransliteratedRole << AppsModel::AllTransliteratedRole;
