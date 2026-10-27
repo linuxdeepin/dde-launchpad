@@ -19,6 +19,7 @@ public:
     static AppMgr *instance();
 
     static bool launchApp(const QString &desktopId, const QString &activationToken = {});
+    static bool isAutoStart(const QString &desktopId);
     static void setAutoStart(const QString &desktopId, bool enabled);
     static bool disableScale(const QString &desktopId);
     static void setDisableScale(const QString &desktopId, bool disabled);

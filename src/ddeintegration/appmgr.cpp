@@ -124,6 +124,11 @@ bool AppMgr::launchApp(const QString &desktopId, const QString &activationToken)
     return true;
 }
 
+bool AppMgr::isAutoStart(const QString &desktopId)
+{
+    return instance()->readProperty(desktopId, QStringLiteral("AutoStart")).toBool();
+}
+
 void AppMgr::setAutoStart(const QString &desktopId, bool enabled)
 {
     instance()->setProperty(desktopId, QStringLiteral("AutoStart"), enabled);
