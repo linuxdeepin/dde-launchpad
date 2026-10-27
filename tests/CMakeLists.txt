@@ -106,6 +106,7 @@ endmacro()
 
 launchpad_add_tests(
     itemspagetest
+    itemarrangementproxytest
     gioappinfotest
     searchfilterproxymodeltest
     countlimitproxymodeltest
@@ -149,3 +150,6 @@ add_custom_target(coverage
     COMMENT "Run all tests and generate coverage report"
     VERBATIM
 )
+
+# Legacy ItemsPage tests; production uses the dde-shell shared folder model.
+target_sources(launchpad-itemspagetest PRIVATE ../src/models/itemspage.cpp ../src/models/itemspage.h)

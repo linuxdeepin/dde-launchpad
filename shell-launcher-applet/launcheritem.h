@@ -12,9 +12,11 @@ namespace dock {
 class LauncherItem : public DS_NAMESPACE::DApplet
 {
     Q_OBJECT
+    Q_PROPERTY(QObject *folderApplicationBackend READ folderApplicationBackend CONSTANT)
     Q_PROPERTY(QString iconName MEMBER m_iconName NOTIFY iconNameChanged FINAL)
 public:
     explicit LauncherItem(QObject *parent = nullptr);
+    QObject *folderApplicationBackend() const;
     bool load() override;
     virtual bool init() override;
 
