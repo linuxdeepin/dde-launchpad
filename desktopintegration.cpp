@@ -135,6 +135,8 @@ QString DesktopIntegration::backgroundUrl() const
 
 bool DesktopIntegration::isDockedApp(const QString &desktopId) const
 {
+    if (desktopId.startsWith("internal/folders/")) return m_dockIntegration->isDocked(desktopId);
+
     // This is something we shouldn't do but anyway...
     const QString & fullPath = AppInfo::fullPathByDesktopId(AppsModel::normalizedDesktopId(desktopId));
     // Seems QML's list type doesn't have a contains() method...
@@ -143,6 +145,8 @@ bool DesktopIntegration::isDockedApp(const QString &desktopId) const
 
 void DesktopIntegration::sendToDock(const QString &desktopId)
 {
+    if (desktopId.startsWith("internal/folders/")) return m_dockIntegration->sendToDock(desktopId);
+
     qCInfo(logDesktopIntegration) << "Sending app to dock:" << desktopId;
     const QString & fullPath = AppInfo::fullPathByDesktopId(AppsModel::normalizedDesktopId(desktopId));
     return m_dockIntegration->sendToDock(fullPath);
@@ -150,6 +154,8 @@ void DesktopIntegration::sendToDock(const QString &desktopId)
 
 void DesktopIntegration::removeFromDock(const QString &desktopId)
 {
+    if (desktopId.startsWith("internal/folders/")) return m_dockIntegration->removeFromDock(desktopId);
+
     qCInfo(logDesktopIntegration) << "Removing app from dock:" << desktopId;
     const QString & fullPath = AppInfo::fullPathByDesktopId(AppsModel::normalizedDesktopId(desktopId));
     return m_dockIntegration->removeFromDock(fullPath);
@@ -181,6 +187,11 @@ void DesktopIntegration::sendToDesktop(const QString &desktopId)
 void DesktopIntegration::removeFromDesktop(const QString &desktopId)
 {
     AppMgr::removeFromDesktop(desktopId);
+}
+
+bool DesktopIntegration::isAutoStart(const QString &desktopId) const
+{
+    return AppMgr::isAutoStart(desktopId);
 }
 
 // only affect the one in XDG_CONFIG_HOME, don't care about the system one (even if there is one).

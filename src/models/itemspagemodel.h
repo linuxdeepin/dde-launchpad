@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2024 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2024-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -8,7 +8,7 @@
 #include <QtQml/qqml.h>
 #include <QAbstractListModel>
 
-#include "itemspage.h"
+#include <QPointer>
 
 class ItemsPageModel : public QAbstractListModel
 {
@@ -30,8 +30,8 @@ signals:
     void sourceModelChanged(QObject *);
 
 private:
-    QPointer<ItemsPage> m_topLevel;
-    QAbstractItemModel *m_sourceModel;
+    int m_count = 0;
+    QPointer<QAbstractItemModel> m_sourceModel;
 };
 
 #endif // ITEMSPAGEMODEL_H

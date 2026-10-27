@@ -36,7 +36,6 @@ PRIVATE
     searchfilterproxymodel.cpp
     categorizedsortproxymodel.cpp
     favoritedproxymodel.cpp
-    itemspage.cpp itemspage.h
     itemarrangementproxymodel.cpp
     multipagesortfilterproxymodel.cpp
     recentlyinstalledproxymodel.cpp
