@@ -26,7 +26,7 @@ public:
 
     double scaleFactor() const;
 
-signals:
+Q_SIGNALS:
     void wallpaperBlurhashChanged();
 
     void opacityChanged();

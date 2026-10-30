@@ -106,7 +106,7 @@ void Appearance::updateCurrentWallpaperBlurhash()
                 QString newBlurhash = m_wallpaperBlurMap.value(wallpaperUrl);
                 if (m_wallpaperBlurhash != newBlurhash) {
                     m_wallpaperBlurhash = newBlurhash;
-                    emit wallpaperBlurhashChanged();
+                    Q_EMIT wallpaperBlurhashChanged();
                 }
             } else {
                 qCDebug(logDdeIntegration) << "No cached blurhash found, updating all wallpapers";
@@ -193,7 +193,7 @@ void Appearance::setOpacity(qreal newOpacity)
     }
     m_opacity = newOpacity;
     qCInfo(logDdeIntegration) << "Opacity changed to:" << newOpacity;
-    emit opacityChanged();
+    Q_EMIT opacityChanged();
 }
 
 double Appearance::scaleFactor() const

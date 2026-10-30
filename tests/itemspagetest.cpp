@@ -12,7 +12,7 @@ namespace {
 class TestItemsPage: public QObject
 {
     Q_OBJECT
-private slots:
+private Q_SLOTS:
     void insertAndRemove();
     void autoRemoveEmptyPage();
     void dragItemToFolder();

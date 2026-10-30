@@ -14,7 +14,7 @@ namespace {
 class TestIconUtils : public QObject
 {
     Q_OBJECT
-private slots:
+private Q_SLOTS:
     void perfectIconSizeRoundsUp();
     void perfectIconSizeReturnsFirstForSmallInput();
     void perfectIconSizeReturnsLastForLargeInput();

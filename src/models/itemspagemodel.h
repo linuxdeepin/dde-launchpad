@@ -26,7 +26,7 @@ public:
     QAbstractItemModel *sourceModel() { return m_sourceModel; }
     void setSourceModel(QAbstractItemModel *model);
 
-signals:
+Q_SIGNALS:
     void sourceModelChanged(QObject *);
 
 private:

@@ -20,7 +20,7 @@ constexpr int LastLaunchedTimeRole = Qt::UserRole + 4;
 class TestFrequentlyUsedProxyModel : public QObject
 {
     Q_OBJECT
-private slots:
+private Q_SLOTS:
     void filterAcceptsAllWhenNoRecentlyInstalled();
     void filterRejectsItemsInRecentlyInstalled();
     void lessThanByLaunchedTimes();

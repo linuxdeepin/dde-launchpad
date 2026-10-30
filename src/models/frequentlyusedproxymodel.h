@@ -24,7 +24,7 @@ public:
     void classBegin() override;
     void componentComplete() override;
 
-signals:
+Q_SIGNALS:
     void recentlyInstalledModelChanged();
     void desktopIdRoleChanged(int);
     void launchedTimesRoleChanged(int);

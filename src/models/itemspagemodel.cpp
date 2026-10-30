@@ -51,7 +51,7 @@ void ItemsPageModel::setSourceModel(QAbstractItemModel *model)
 
     m_sourceModel = model;
     qCInfo(logModels) << "Source model changed, emitting signal";
-    emit sourceModelChanged(model);
+    Q_EMIT sourceModelChanged(model);
 
     ItemsPage *topLevel = qobject_cast<ItemArrangementProxyModel*>(m_sourceModel)->itemsPage();
     qCDebug(logModels) << "Got top level items page:" << topLevel;

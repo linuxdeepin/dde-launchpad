@@ -27,7 +27,7 @@ protected:
     bool filterAcceptsRow(int source_row, const QModelIndex &source_parent) const override;
     bool lessThan(const QModelIndex &source_left, const QModelIndex &source_right) const override;
 
-signals:
+Q_SIGNALS:
     void onFolderIdChanged(int);
     void onPageIdChanged(int);
     void sourceModelChanged(QObject *);

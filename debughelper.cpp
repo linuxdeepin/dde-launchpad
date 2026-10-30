@@ -88,5 +88,5 @@ void DebugQuickItem::setColor(const QColor &newColor)
     if (m_color == newColor)
         return;
     m_color = newColor;
-    emit colorChanged();
+    Q_EMIT colorChanged();
 }

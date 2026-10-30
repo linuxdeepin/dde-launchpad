@@ -48,7 +48,7 @@ public:
     Q_INVOKABLE QList<QString> alphabetarySections() const;
     Q_INVOKABLE QList<int> DDECategorySections() const;
 
-signals:
+Q_SIGNALS:
     void categoryTypeChanged();
     void sectionRoleNameChanged();
 

@@ -20,7 +20,7 @@ public:
 
     QColor color() const;
     void setColor(const QColor &newColor);
-signals:
+Q_SIGNALS:
     void colorChanged();
 private:
     QColor m_color;
@@ -55,7 +55,7 @@ public:
 
     bool qtDebugEnabled() const;
 
-signals:
+Q_SIGNALS:
     void onUseRegularWindowChanged(bool);
     void onAvoidLaunchAppChanged(bool);
     void onAvoidHideWindowChanged(bool);

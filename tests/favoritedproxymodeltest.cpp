@@ -45,7 +45,7 @@ QStandardItem *makeApp(const QString &desktopId, const QString &name)
 class TestFavoritedProxyModel : public QObject
 {
     Q_OBJECT
-private slots:
+private Q_SLOTS:
     void initTestCase();
     void cleanupTestCase();
     void existsReturnsTrueForAddedFavorite();

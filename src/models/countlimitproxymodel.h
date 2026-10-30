@@ -21,7 +21,7 @@ public:
     // QSortFilterProxyModel interface
 protected:
     bool filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const override;
-signals:
+Q_SIGNALS:
     void maxRowCountChanged();
 private:
     int m_maxRowCount = -1;

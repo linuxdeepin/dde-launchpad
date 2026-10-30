@@ -26,7 +26,7 @@ public:
     void sendToDock(const QString & desktop, int idx = -1);
     void removeFromDock(const QString & desktop);
 
-signals:
+Q_SIGNALS:
     void directionChanged();
     void geometryChanged();
 

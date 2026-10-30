@@ -48,7 +48,7 @@ public:
 private:
     void moveItem(int fromPage, int fromIndex, int toPage, int toIndex);
 
-signals:
+Q_SIGNALS:
     void nameChanged();
     void pageCountChanged();
     void sigPageAdded(int first, int last);

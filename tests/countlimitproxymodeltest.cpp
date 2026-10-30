@@ -15,7 +15,7 @@ namespace {
 class TestCountLimitProxyModel : public QObject
 {
     Q_OBJECT
-private slots:
+private Q_SLOTS:
     void noLimitByDefault();
     void maxRowCountLimitsVisibleRows();
     void maxRowCountChangeEmitsSignal();

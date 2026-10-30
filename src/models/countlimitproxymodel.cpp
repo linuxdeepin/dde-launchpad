@@ -22,7 +22,7 @@ void CountLimitProxyModel::setMaxRowCount(int newMaxRowCount)
     const auto& oldValue = m_maxRowCount;
     m_maxRowCount = newMaxRowCount;
     qCInfo(logModels) << "Max row count changed from" << oldValue << "to" << newMaxRowCount;
-    emit maxRowCountChanged();
+    Q_EMIT maxRowCountChanged();
     invalidate();
 }
 

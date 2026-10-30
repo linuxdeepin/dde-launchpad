@@ -44,7 +44,7 @@ void CategorizedSortProxyModel::setCategoryType(CategoryType categoryType)
     const QString targetSectionRoleName = QString(sourceModel()->roleNames().value(targetSortRole));
     if (m_sectionRoleName != targetSectionRoleName) {
         m_sectionRoleName = targetSectionRoleName;
-        emit sectionRoleNameChanged();
+        Q_EMIT sectionRoleNameChanged();
     }
 
     if (sortRole() != targetSortRole)
@@ -56,7 +56,7 @@ void CategorizedSortProxyModel::setCategoryType(CategoryType categoryType)
         sort(0);
 
     qCInfo(logModels) << "Category type changed to:" << categoryType;
-    emit categoryTypeChanged();
+    Q_EMIT categoryTypeChanged();
 }
 
 CategorizedSortProxyModel::CategoryType CategorizedSortProxyModel::categoryType() const

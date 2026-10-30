@@ -45,7 +45,7 @@ QStandardItem *makeApp(const QString &desktopId, const QString &name, int catego
 class TestItemArrangementProxyModel : public QObject
 {
     Q_OBJECT
-private slots:
+private Q_SLOTS:
     void initTestCase();
     void cleanupTestCase();
     void pageCountIsPositiveAfterSetup();

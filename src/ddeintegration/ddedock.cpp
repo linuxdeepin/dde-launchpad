@@ -108,7 +108,7 @@ void DdeDock::updateDockPositionFromDBus()
     if (newDirection != m_direction) {
         qCInfo(logDdeIntegration) << "Dock direction changed from" << static_cast<int>(m_direction) << "to" << static_cast<int>(newDirection);
         m_direction = newDirection;
-        emit directionChanged();
+        Q_EMIT directionChanged();
     }
 }
 
@@ -116,5 +116,5 @@ void DdeDock::updateDockRectFromDBus()
 {
     m_rect = m_dbusDaemonDockIface->frontendWindowRect();
     qCInfo(logDdeIntegration) << "Updated dock rect from D-Bus:" << m_rect;
-    emit geometryChanged();
+    Q_EMIT geometryChanged();
 }

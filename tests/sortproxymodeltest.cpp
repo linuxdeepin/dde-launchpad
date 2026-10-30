@@ -30,7 +30,7 @@ public:
     void emitDataChanged(int row, const QVector<int> &roles = {})
     {
         const QModelIndex idx = index(row, 0);
-        emit dataChanged(idx, idx, roles);
+        Q_EMIT dataChanged(idx, idx, roles);
     }
 private:
     QStringList m_items;
@@ -40,7 +40,7 @@ private:
 class TestSortProxyModel : public QObject
 {
     Q_OBJECT
-private slots:
+private Q_SLOTS:
     void ascendingAndDescendingOrder();
     void mappingBetweenSourceAndProxy();
     void caseSensitivity();
@@ -427,7 +427,7 @@ void TestSortProxyModel::dataChangedWithNonSortRoleDoesNotReorder()
 
     // change a non-sort role on apple -> should NOT reorder
     source.item(0)->setData(42, UserRole1);
-    emit source.dataChanged(source.index(0, 0), source.index(0, 0), { UserRole1 });
+    Q_EMIT source.dataChanged(source.index(0, 0), source.index(0, 0), { UserRole1 });
 
     // order unchanged
     QCOMPARE(proxy.data(proxy.index(0, 0), Qt::DisplayRole).toString(), QStringLiteral("apple"));

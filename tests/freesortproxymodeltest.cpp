@@ -15,7 +15,7 @@ namespace {
 class TestFreeSortProxyModel : public QObject
 {
     Q_OBJECT
-private slots:
+private Q_SLOTS:
     void sortByPageThenIndex();
     void descendingOrder();
     void missingRolesDefaultToZero();

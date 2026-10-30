@@ -93,7 +93,7 @@ void FrequentlyUsedProxyModel::setRecentlyInstalledModel(QAbstractItemModel *new
     }
     invalidate();
 
-    emit recentlyInstalledModelChanged();
+    Q_EMIT recentlyInstalledModelChanged();
 }
 
 void FrequentlyUsedProxyModel::classBegin()

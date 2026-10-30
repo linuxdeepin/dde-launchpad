@@ -69,7 +69,7 @@ public:
     QVariant data(const QModelIndex &index, int role) const override;
     QHash<int, QByteArray> roleNames() const override;
 
-signals:
+Q_SIGNALS:
     void topLevelPageCountChanged();
     void folderPageCountChanged(int folderId);
     void itemBroughtToFront();

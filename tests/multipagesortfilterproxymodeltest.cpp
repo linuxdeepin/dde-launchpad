@@ -17,7 +17,7 @@ constexpr int NameRole = Qt::UserRole + 10;
 class TestMultipageSortFilterProxyModel : public QObject
 {
     Q_OBJECT
-private slots:
+private Q_SLOTS:
     void filtersByFolderAndPage();
     void noMatchYieldsEmpty();
     void filterOnlyModeChangesSorting();
