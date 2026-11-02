@@ -88,11 +88,11 @@ LauncherController::LauncherController(QObject *parent)
     // for dbus adapter signals.
     connect(this, &LauncherController::visibleChanged, this, [this](bool isVisible){
         if (isVisible) {
-            emit Shown();
+            Q_EMIT Shown();
         } else {
-            emit Closed();
+            Q_EMIT Closed();
         }
-        emit VisibleChanged(isVisible);
+        Q_EMIT VisibleChanged(isVisible);
     });
 }
 
@@ -167,7 +167,7 @@ void LauncherController::setVisible(bool visible)
 
     m_visible = visible;
 
-    emit visibleChanged(m_visible);
+    Q_EMIT visibleChanged(m_visible);
 }
 
 bool LauncherController::isFullScreenFrame() const
@@ -197,7 +197,7 @@ void LauncherController::setCurrentFrame(const QString &frame)
 
     m_pendingHide = false;
     m_timer->start();
-    emit currentFrameChanged();
+    Q_EMIT currentFrameChanged();
 }
 
 QString LauncherController::currentScreen() const
@@ -211,7 +211,7 @@ void LauncherController::setCurrentScreen(const QString &screen)
 
     m_currentScreen = screen;
     qCInfo(logController) << "Current screen changed to:" << m_currentScreen;
-    emit currentScreenChanged();
+    Q_EMIT currentScreenChanged();
 }
 
 // We need to hide the launcher when it lost focus, but clicking the launcher icon on the taskbar/dock will also trigger

@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2024 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2024-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -22,7 +22,7 @@ void CountLimitProxyModel::setMaxRowCount(int newMaxRowCount)
     const auto& oldValue = m_maxRowCount;
     m_maxRowCount = newMaxRowCount;
     qCInfo(logModels) << "Max row count changed from" << oldValue << "to" << newMaxRowCount;
-    emit maxRowCountChanged();
+    Q_EMIT maxRowCountChanged();
     invalidate();
 }
 

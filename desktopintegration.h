@@ -75,7 +75,7 @@ public:
     qreal iconScaleFactor() const;
     void setIconScaleFactor(qreal factor);
 
-signals:
+Q_SIGNALS:
     void dockPositionChanged();
     void dockGeometryChanged();
     void dockSpacingChanged();

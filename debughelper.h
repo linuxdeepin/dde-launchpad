@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2023 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2023-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -20,7 +20,7 @@ public:
 
     QColor color() const;
     void setColor(const QColor &newColor);
-signals:
+Q_SIGNALS:
     void colorChanged();
 private:
     QColor m_color;
@@ -55,7 +55,7 @@ public:
 
     bool qtDebugEnabled() const;
 
-signals:
+Q_SIGNALS:
     void onUseRegularWindowChanged(bool);
     void onAvoidLaunchAppChanged(bool);
     void onAvoidHideWindowChanged(bool);

@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2023 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2023-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -26,7 +26,7 @@ public:
     void sendToDock(const QString & desktop, int idx = -1);
     void removeFromDock(const QString & desktop);
 
-signals:
+Q_SIGNALS:
     void directionChanged();
     void geometryChanged();
 

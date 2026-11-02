@@ -42,7 +42,7 @@ void ItemArrangementProxyModel::updateFolderName(int folderId, const QString &na
 
     QModelIndexList matched = match(mapFromSource(m_folderModel.index(0, 0)), AppsModel::DesktopIdRole, QString("internal/folders/%1").arg(folderId));
     Q_ASSERT(!matched.isEmpty());
-    emit dataChanged(matched.constFirst(), matched.constFirst(), { Qt::DisplayRole });
+    Q_EMIT dataChanged(matched.constFirst(), matched.constFirst(), { Qt::DisplayRole });
 
     saveItemArrangementToUserData();
 }
@@ -62,11 +62,11 @@ void ItemArrangementProxyModel::bringToFront(const QString & id)
     saveItemArrangementToUserData();
 
     // Lazy solution, just notify the view that all rows and its roles are changed so they need to be updated.
-    emit dataChanged(index(0, 0), index(rowCount() - 1, 0), {
+    Q_EMIT dataChanged(index(0, 0), index(rowCount() - 1, 0), {
         PageRole, IndexInPageRole, FolderIdNumberRole, IconsNameRole
     });
 
-    emit itemBroughtToFront();    
+    Q_EMIT itemBroughtToFront();    
 }
 
 void ItemArrangementProxyModel::commitDndOperation(const QString &dragId, const QString &dropId, const DndOperation op, int pageHint)
@@ -182,7 +182,7 @@ void ItemArrangementProxyModel::commitDndOperation(const QString &dragId, const 
     saveItemArrangementToUserData();
 
     // Lazy solution, just notify the view that all rows and its roles are changed so they need to be updated.
-    emit dataChanged(index(0, 0), index(rowCount() - 1, 0), {
+    Q_EMIT dataChanged(index(0, 0), index(rowCount() - 1, 0), {
         PageRole, IndexInPageRole, FolderIdNumberRole, IconsNameRole
     });
 }
@@ -443,7 +443,7 @@ void ItemArrangementProxyModel::onSourceModelChanged()
         }
     }
 
-    emit dataChanged(index(0, 0), index(rowCount() - 1, 0), {
+    Q_EMIT dataChanged(index(0, 0), index(rowCount() - 1, 0), {
         PageRole, IndexInPageRole, FolderIdNumberRole, IconsNameRole
     });
 
@@ -490,7 +490,7 @@ ItemsPage *ItemArrangementProxyModel::createFolder(const QString &id)
 
     connect(page, &ItemsPage::pageCountChanged, this, [this, fullId]() {
         int folderId = QStringView{fullId}.mid(17).toInt();
-        emit folderPageCountChanged(folderId);
+        Q_EMIT folderPageCountChanged(folderId);
     });
 
     return page;

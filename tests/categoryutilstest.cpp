@@ -14,7 +14,7 @@ using C = CategoryUtils::Categorytype;
 class TestCategoryUtils : public QObject
 {
     Q_OBJECT
-private slots:
+private Q_SLOTS:
     void parseDDECategoryStringKnown();
     void parseDDECategoryStringUnknown();
     void parseXdgCategoryStringSingle();
