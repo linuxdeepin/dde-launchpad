@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2024 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2024-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -21,7 +21,7 @@ public:
     // QSortFilterProxyModel interface
 protected:
     bool filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const override;
-signals:
+Q_SIGNALS:
     void maxRowCountChanged();
 private:
     int m_maxRowCount = -1;

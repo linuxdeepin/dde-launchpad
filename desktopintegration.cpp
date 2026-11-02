@@ -293,5 +293,5 @@ void DesktopIntegration::setIconScaleFactor(qreal factor)
         qCInfo(logDesktopIntegration) << "Icon scale factor saved:" << factor;
     }
     
-    emit iconScaleFactorChanged();
+    Q_EMIT iconScaleFactorChanged();
 }

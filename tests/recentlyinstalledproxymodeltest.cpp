@@ -18,7 +18,7 @@ constexpr int LastLaunchedTimeRole = Qt::UserRole + 3;
 class TestRecentlyInstalledProxyModel : public QObject
 {
     Q_OBJECT
-private slots:
+private Q_SLOTS:
     void filtersAndSortsByInstalledTime();
     void ascendingOrder();
     void componentCompleteSortsDescending();

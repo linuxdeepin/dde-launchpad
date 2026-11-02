@@ -24,7 +24,7 @@ public:
 protected:
     bool eventFilter(QObject *obj, QEvent *event) override;
 
-signals:
+Q_SIGNALS:
     void inputReceived(const QString &input);
     void inputMethodSourceChanged();
 

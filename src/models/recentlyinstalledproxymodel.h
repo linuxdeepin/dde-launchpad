@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2024 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2024-2026 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -25,7 +25,7 @@ protected:
     bool filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const override;
     bool lessThan(const QModelIndex &source_left, const QModelIndex &source_right) const override;
 
-signals:
+Q_SIGNALS:
     void lastLaunchedTimeRoleChanged();
     void installedTimeRoleChanged();
 

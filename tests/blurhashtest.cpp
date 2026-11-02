@@ -32,7 +32,7 @@ size_t expectedHashLength(int cx, int cy)
 class TestBlurhash : public QObject
 {
     Q_OBJECT
-private slots:
+private Q_SLOTS:
     void decodeEmptyStringReturnsEmpty();
     void decodeInvalidHashReturnsEmpty();
     void encodeRejectsInvalidInput();

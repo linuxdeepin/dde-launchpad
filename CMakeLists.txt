@@ -6,6 +6,8 @@ cmake_minimum_required(VERSION 3.10)
 
 project(dde-launchpad VERSION 0.7.0)
 
+add_compile_definitions(QT_NO_KEYWORDS)
+
 option(BUILD_TESTING "Whether or not to build the tests" OFF)
 option(CMAKE_EXPORT_COMPILE_COMMANDS "clangd support" ON)
 

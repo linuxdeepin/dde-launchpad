@@ -58,7 +58,7 @@ public:
     Q_INVOKABLE void showHelp();
     Q_INVOKABLE void setCurrentFrameToWindowedFrame();
 
-signals:
+Q_SIGNALS:
     void currentFrameChanged();
     void currentScreenChanged();
     void visibleChanged(bool visible);
@@ -75,7 +75,7 @@ private:
     void Show();
     void ShowByMode(qlonglong in0);
     void Toggle();
-signals:
+Q_SIGNALS:
     void Closed();
     void Shown();
     void VisibleChanged(bool visible);
