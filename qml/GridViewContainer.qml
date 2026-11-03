@@ -11,6 +11,7 @@ import org.deepin.dtk 1.0
 
 FocusScope {
     id: root
+    Accessible.id: "GridViewContainer_FocusScope"
     visible: true
 
     property alias model: gridView.model
@@ -81,6 +82,7 @@ FocusScope {
 
             GridView {
                 id: gridView
+                Accessible.id: "GridViewContainer_GridView"
                 objectName: "GridView"
 
                 ScrollBar.vertical: root.vScrollBar
