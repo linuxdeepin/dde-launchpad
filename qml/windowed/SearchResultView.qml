@@ -38,6 +38,7 @@ Control {
             id: delegateSearchResultModel
             model: SearchFilterProxyModel
             delegate: IconItemDelegate {
+                Accessible.id: "SearchResultView_Pane"
                 width: searchResultViewContainer.cellWidth
                 height: searchResultViewContainer.cellHeight
                 iconSource: iconName
@@ -52,6 +53,7 @@ Control {
         }
 
         GridViewContainer {
+            Accessible.id: "SearchResultView_Pane_2"
             id: searchResultViewContainer
             objectName: "SearchResultViewContainer"
             Accessible.role: Accessible.Pane
@@ -71,6 +73,7 @@ Control {
 
             vScrollBar: ScrollBar {
                 id: vScrollBar
+                Accessible.id: "SearchResultView_ScrollBar"
                 objectName: "VScrollBar"
                 visible: parent.model.count > 4 * 4
                 active: parent.model.count > 4 * 4
@@ -107,3 +110,4 @@ Control {
         Accessible.ignored: true
     }
 }
+

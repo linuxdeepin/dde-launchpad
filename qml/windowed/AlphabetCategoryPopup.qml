@@ -12,6 +12,7 @@ import org.deepin.launchpad.windowed 1.0 as Windowed
 
 Popup {
     id: root
+    Accessible.id: "AlphabetCategoryPopup_Popup"
     modal: true
     dim: true
     padding: 0
@@ -44,6 +45,7 @@ Popup {
         id: alphabetCategoryDelegateModel
 
         delegate: ToolButton {
+            Accessible.id: "AlphabetCategoryPopup_ToolButton"
             width: alphabetCategoryContainer.cellWidth + paddingColumns
             height: alphabetCategoryContainer.cellHeight + paddingRows
             text: modelData
@@ -83,6 +85,7 @@ Popup {
     }
 
     Windowed.GridViewContainer {
+        Accessible.id: "AlphabetCategoryPopup_Pane"
         id: alphabetCategoryContainer
         objectName: "AlphabetCategoryContainer"
         Accessible.role: Accessible.Pane
@@ -112,6 +115,7 @@ Popup {
     }
 
     Item {
+        Accessible.id: "AlphabetCategoryPopup_Item"
         focus: root.visible
         Keys.onPressed: function (event) {
             if (event.key === Qt.Key_Left ||
@@ -128,3 +132,4 @@ Popup {
         dropShadowColor: null
     }
 }
+

@@ -17,6 +17,7 @@ Column {
     spacing: 15
 
     Switch {
+        Accessible.id: "DebugDialog_Switch"
         text: "Use regular window (need restart)"
         objectName: "UseRegularWindowNeedRestart"
         checked: DebugHelper.useRegularWindow
@@ -26,6 +27,7 @@ Column {
     }
 
     Switch {
+        Accessible.id: "DebugDialog_Switch"
         text: "Avoid launch application"
         objectName: "AvoidLaunchApplication"
         checked: DebugHelper.avoidLaunchApp
@@ -38,6 +40,7 @@ Column {
         text: "Avoid hide launchpad window"
         objectName: "AvoidHideLaunchpadWindow"
         checked: DebugHelper.avoidHideWindow
+        Accessible.id: "DebugDialog_Switch"
         onCheckedChanged: {
             DebugHelper.avoidHideWindow = checked
         }
@@ -45,6 +48,7 @@ Column {
 
     Switch {
         text: "Display item's bounding rectangle"
+        Accessible.id: "DebugDialog_ToolButton"
         objectName: "DisplayItemSBoundingRectangle"
         checked: DebugHelper.itemBoundingEnabled
         onCheckedChanged: {
@@ -53,6 +57,7 @@ Column {
     }
 
     ToolButton {
+        Accessible.id: "DebugDialog_ToolButton"
         text: "Close launchpad application"
         objectName: "CloseLaunchpadApplication"
         onClicked: {

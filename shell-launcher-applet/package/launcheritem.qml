@@ -260,11 +260,12 @@ AppletItem {
             anchors.fill: parent
             focus: true
             sourceComponent: FullscreenFrame {
+                Accessible.id: "launcheritem_Pane"
                 objectName: "Loader_FullscreenFrame"
-                Accessible.role: Accessible.Pane
             }
 
             Label {
+                Accessible.id: "launcheritem_Label"
                 visible: DebugHelper.qtDebugEnabled
                 z: 999
 
@@ -375,6 +376,7 @@ AppletItem {
         }
 
         WindowedFrame {
+            Accessible.id: "launcheritem_Pane_3"
             objectName: "Launcheritem_WindowedFrame"
             Accessible.role: Accessible.Pane
             anchors.fill: parent
@@ -449,6 +451,7 @@ AppletItem {
                 
                 Button {
                     id: cancelButton
+                    Accessible.id: "launcheritem_Button"
                     objectName: "CancelButton_2"
                     Layout.fillWidth: true
                     text: qsTr("Cancel")
@@ -459,6 +462,7 @@ AppletItem {
                 WarningButton {
                     id: confirmButton
                     objectName: "ConfirmButton_2"
+                    Accessible.id: "launcheritem_WarningButton"
                     Layout.fillWidth: true
                     text: qsTr("Confirm")
                     onClicked: {
@@ -523,3 +527,4 @@ AppletItem {
         }
     }
 }
+
