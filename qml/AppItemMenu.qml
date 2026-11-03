@@ -30,6 +30,7 @@ Loader {
 
         Menu {
             id: contextMenu
+            Accessible.id: "AppItemMenu_Menu"
             objectName: "ContextMenu"
 
             topMargin: isFullscreen && DesktopIntegration.dockPosition === Qt.UpArrow ? dockSpacing : 0
@@ -42,6 +43,7 @@ Loader {
             palette: DTK.palette
 
             MenuItem {
+                Accessible.id: "AppItemMenu_MenuItem"
                 text: qsTr("Open")
                 objectName: "Open"
                 enabled: !root.desktopId.startsWith("internal/folders/")
@@ -53,6 +55,7 @@ Loader {
             MenuItem {
                 id: pinToTopMenu
                 objectName: "PinToTopMenu"
+                Accessible.id: "AppItemMenu_MenuItem"
                 enabled: false
                 visible: isFavoriteItem && !hideFavoriteMenu
                 height: visible ? implicitHeight : 0 // FIXME: seems this can cause some issue
@@ -62,6 +65,7 @@ Loader {
                 }
             }
             MenuItem {
+                Accessible.id: "AppItemMenu_MenuItem"
                 id: moveToTopMenu
                 objectName: "MoveToTopMenu"
                 visible: !hideMoveToTopMenu
@@ -86,12 +90,14 @@ Loader {
                         FavoritedProxyModel.addFavorite(root.desktopId);
                     }
                 }
+                Accessible.id: "AppItemMenu_MenuItem"
             }
             MenuSeparator {
                 visible: pinToTopMenu.visible && addOrRemoveFavMenu.visible
                 height: visible ? implicitHeight : 0 // FIXME: same as above
             }
             MenuItem {
+                Accessible.id: "AppItemMenu_MenuItem"
                 objectName: "RemoveFromDesktop"
                 enabled: !root.desktopId.startsWith("internal/folders/")
                 text: DesktopIntegration.isOnDesktop(root.desktopId) ? qsTr("Remove from desktop") : qsTr("Send to desktop")
@@ -107,6 +113,7 @@ Loader {
                 objectName: "RemoveFromDock"
                 enabled: !root.desktopId.startsWith("internal/")
                 text: DesktopIntegration.isDockedApp(root.desktopId) ? qsTr("Remove from dock") : qsTr("Send to dock")
+                Accessible.id: "AppItemMenu_MenuItem"
                 onTriggered: {
                     if (DesktopIntegration.isDockedApp(root.desktopId)) {
                         DesktopIntegration.removeFromDock(root.desktopId);
@@ -120,6 +127,7 @@ Loader {
                 objectName: "RemoveFromStartup"
                 enabled: !root.desktopId.startsWith("internal/folders/")
                 text: root.autoStart ? qsTr("Remove from startup") : qsTr("Add to startup")
+                Accessible.id: "AppItemMenu_MenuItem"
                 onTriggered: {
                     DesktopIntegration.setAutoStart(root.desktopId, !root.autoStart)
                 }
@@ -132,6 +140,7 @@ Loader {
                 height: visible ? implicitHeight : 0 // FIXME: same as above
             }
             MenuItem {
+                Accessible.id: "AppItemMenu_MenuItem"
                 objectName: "DisableDisplayScaling"
                 visible: !hideDisplayScalingMenu
                 enabled: visible && !root.desktopId.startsWith("internal/folders/")
@@ -144,6 +153,7 @@ Loader {
                 }
             }
             MenuItem {
+                Accessible.id: "AppItemMenu_MenuItem"
                 objectName: "Uninstall"
                 enabled: !root.desktopId.startsWith("internal/folders/") && !DesktopIntegration.appIsCompulsoryForDesktop(root.desktopId)
                 text: qsTr("Uninstall")
@@ -196,3 +206,4 @@ Loader {
         item.popup()
     }
 }
+

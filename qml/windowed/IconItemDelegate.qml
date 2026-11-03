@@ -45,6 +45,7 @@ Control {
 
     contentItem: Button {
         id: iconButton
+        Accessible.id: "IconItemDelegate_Button"
         focusPolicy: Qt.NoFocus
         ColorSelector.pressed: false
         ColorSelector.family: Palette.CrystalColor

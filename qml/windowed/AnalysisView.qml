@@ -33,9 +33,9 @@ Control {
         }
 
         FrequentlyUsedView {
+            Accessible.id: "AnalysisView_Pane"
             id: frequentlyUsedView
             objectName: "FrequentlyUsedView"
-            Accessible.role: Accessible.Pane
             model: freqUsedModel
             visible: count > 0
             maxCount: recentlyInstalledView.visible ? 12 : 16
@@ -43,6 +43,7 @@ Control {
         }
 
         RecentlyInstalledView {
+            Accessible.id: "AnalysisView_Pane_3"
             id: recentlyInstalledView
             objectName: "RecentlyInstalledView"
             Accessible.role: Accessible.Pane
@@ -66,3 +67,4 @@ Control {
         Accessible.ignored: true
     }
 }
+
