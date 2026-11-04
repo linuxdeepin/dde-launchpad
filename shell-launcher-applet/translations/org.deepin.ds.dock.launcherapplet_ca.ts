@@ -39,11 +39,11 @@
     </message>
     <message>
         <source>Remove from startup</source>
-        <translation>Eliminar de l&apos;arrencada</translation>
+        <translation>Elimina de l&apos;arrencada</translation>
     </message>
     <message>
         <source>Add to startup</source>
-        <translation>Afegir a l&apos;arrencada</translation>
+        <translation>Afegeix a l&apos;arrencada</translation>
     </message>
     <message>
         <source>Use a proxy</source>
