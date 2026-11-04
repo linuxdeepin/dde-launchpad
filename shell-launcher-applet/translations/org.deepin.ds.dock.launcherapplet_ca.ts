@@ -15,11 +15,11 @@
     </message>
     <message>
         <source>Remove from favorites</source>
-        <translation>Elimina-ho dels favorits</translation>
+        <translation>Elimina dels favorits</translation>
     </message>
     <message>
         <source>Add to favorites</source>
-        <translation>Afegeix-ho als favorits</translation>
+        <translation>Afegeix als favorits</translation>
     </message>
     <message>
         <source>Remove from desktop</source>
