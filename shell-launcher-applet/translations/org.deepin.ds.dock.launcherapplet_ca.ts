@@ -27,7 +27,7 @@
     </message>
     <message>
         <source>Send to desktop</source>
-        <translation>Enviar a l&apos;escriptori</translation>
+        <translation>Envia a l&apos;escriptori</translation>
     </message>
     <message>
         <source>Remove from dock</source>
