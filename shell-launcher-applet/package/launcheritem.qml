@@ -356,11 +356,11 @@ AppletItem {
             anchors.fill: parent
             blendColor: {
                 const appearance = DS.applet("org.deepin.ds.dde-appearance")
-                const alpha = appearance && appearance.opacity >= 0 ? appearance.opacity : 0.6
+                const appearanceOpacity = appearance ? appearance.opacity : -1
                 if (valid) {
                     return DStyle.Style.control.selectColor(undefined,
-                        Qt.rgba(235 / 255.0, 235 / 255.0, 235 / 255.0, alpha),
-                        Qt.rgba(0, 0, 0, 85 / 255))
+                        Qt.rgba(235 / 255.0, 235 / 255.0, 235 / 255.0, appearanceOpacity >= 0 ? appearanceOpacity : 0.6),
+                        Qt.rgba(0, 0, 0, appearanceOpacity >= 0 ? appearanceOpacity : 85 / 255))
                 }
                 return DStyle.Style.control.selectColor(undefined,
                     DStyle.Style.behindWindowBlur.lightNoBlurColor,
