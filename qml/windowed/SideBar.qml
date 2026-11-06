@@ -36,6 +36,7 @@ ColumnLayout {
         D.Menu {
             id: categorizedMenu
             objectName: "CategorizedMenu"
+            popupType: Popup.Window
 
             D.MenuItem {
                 text: qsTr("Free sorting")
