@@ -23,6 +23,7 @@ Loader {
 
         Menu {
             id: contextMenu
+            Accessible.id: "DummyAppItemMenu_Menu"
             objectName: "ContextMenu_2"
             topMargin: isFullscreen && DesktopIntegration.dockPosition === Qt.UpArrow ? dockSpacing : 0
             bottomMargin: isFullscreen && DesktopIntegration.dockPosition === Qt.DownArrow ? dockSpacing : 0
@@ -31,6 +32,7 @@ Loader {
             modal: true
 
             MenuItem {
+                Accessible.id: "DummyAppItemMenu_MenuItem"
                 text: qsTr("Install")
                 objectName: "Install"
                 onTriggered: {
@@ -39,6 +41,7 @@ Loader {
             }
 
             MenuItem {
+                Accessible.id: "DummyAppItemMenu_MenuItem"
                 text: qsTr("Remove")
                 objectName: "Remove"
                 onTriggered: {

@@ -1,480 +1,480 @@
 version: '1.0'
 widgets: []
 qml_elements:
-- element_type: Menu
-  id: contextMenu
-  accessible_id: ContextMenu
-  accessible_role: ''
-  source_file: qml/AppItemMenu.qml
-  parent_type: Component
-  line: 30
 - element_type: MenuItem
-  id: ''
-  accessible_id: Open
+  id: contextMenu
+  accessible_id: AppItemMenu_MenuItem
   accessible_role: ''
   source_file: qml/AppItemMenu.qml
-  parent_type: Menu
-  line: 43
+  parent_type: ''
+  line: 45
 - element_type: MenuItem
   id: pinToTopMenu
-  accessible_id: PinToTopMenu
+  accessible_id: AppItemMenu_MenuItem
   accessible_role: ''
   source_file: qml/AppItemMenu.qml
-  parent_type: Menu
-  line: 52
-- element_type: MenuItem
-  id: moveToTopMenu
-  accessible_id: MoveToTopMenu
-  accessible_role: ''
-  source_file: qml/AppItemMenu.qml
-  parent_type: Menu
-  line: 63
-- element_type: MenuItem
-  id: addOrRemoveFavMenu
-  accessible_id: AddOrRemoveFavMenu
-  accessible_role: ''
-  source_file: qml/AppItemMenu.qml
-  parent_type: Menu
-  line: 74
+  parent_type: ''
+  line: 67
 - element_type: MenuItem
   id: ''
-  accessible_id: RemoveFromDesktop
+  accessible_id: AppItemMenu_MenuItem
   accessible_role: ''
   source_file: qml/AppItemMenu.qml
-  parent_type: Menu
-  line: 93
+  parent_type: ''
+  line: 99
 - element_type: MenuItem
   id: ''
-  accessible_id: RemoveFromDock
+  accessible_id: AppItemMenu_MenuItem
   accessible_role: ''
   source_file: qml/AppItemMenu.qml
-  parent_type: Menu
-  line: 105
+  parent_type: ''
+  line: 112
 - element_type: MenuItem
   id: ''
-  accessible_id: RemoveFromStartup
+  accessible_id: AppItemMenu_MenuItem
   accessible_role: ''
   source_file: qml/AppItemMenu.qml
-  parent_type: Menu
-  line: 118
-- element_type: MenuItem
-  id: ''
-  accessible_id: UseAProxy
-  accessible_role: ''
-  source_file: qml/AppItemMenu.qml
-  parent_type: Menu
+  parent_type: ''
   line: 126
 - element_type: MenuItem
   id: ''
-  accessible_id: DisableDisplayScaling
+  accessible_id: AppItemMenu_MenuItem
   accessible_role: ''
   source_file: qml/AppItemMenu.qml
-  parent_type: Menu
-  line: 133
+  parent_type: ''
+  line: 142
+- element_type: MenuItem
+  id: ''
+  accessible_id: AppItemMenu_MenuItem
+  accessible_role: ''
+  source_file: qml/AppItemMenu.qml
+  parent_type: ''
+  line: 155
 - element_type: Switch
   id: ''
-  accessible_id: UseRegularWindowNeedRestart
+  accessible_id: DebugDialog_Switch
   accessible_role: ''
   source_file: qml/DebugDialog.qml
   parent_type: ''
   line: 19
 - element_type: Switch
   id: ''
-  accessible_id: AvoidLaunchApplication
+  accessible_id: DebugDialog_Switch
   accessible_role: ''
   source_file: qml/DebugDialog.qml
   parent_type: ''
-  line: 28
+  line: 29
 - element_type: Switch
   id: ''
-  accessible_id: AvoidHideLaunchpadWindow
+  accessible_id: DebugDialog_Switch
   accessible_role: ''
   source_file: qml/DebugDialog.qml
   parent_type: ''
-  line: 37
+  line: 39
 - element_type: Switch
   id: ''
-  accessible_id: DisplayItemSBoundingRectangle
+  accessible_id: DebugDialog_ToolButton
   accessible_role: ''
   source_file: qml/DebugDialog.qml
   parent_type: ''
-  line: 46
+  line: 49
 - element_type: ToolButton
   id: ''
-  accessible_id: CloseLaunchpadApplication
+  accessible_id: DebugDialog_ToolButton
   accessible_role: ''
   source_file: qml/DebugDialog.qml
   parent_type: ''
-  line: 55
-- element_type: Menu
+  line: 59
+- element_type: MenuItem
   id: contextMenu
-  accessible_id: ContextMenu_2
+  accessible_id: DummyAppItemMenu_MenuItem
   accessible_role: ''
   source_file: qml/DummyAppItemMenu.qml
-  parent_type: Component
-  line: 24
+  parent_type: ''
+  line: 34
 - element_type: MenuItem
   id: ''
-  accessible_id: Install
+  accessible_id: DummyAppItemMenu_MenuItem
   accessible_role: ''
   source_file: qml/DummyAppItemMenu.qml
-  parent_type: Menu
-  line: 33
-- element_type: MenuItem
+  parent_type: ''
+  line: 43
+- element_type: Control
+  id: folderLoader
+  accessible_id: FolderGridViewPopup_Control
+  accessible_role: ''
+  source_file: qml/FolderGridViewPopup.qml
+  parent_type: ''
+  line: 79
+- element_type: Item
   id: ''
-  accessible_id: Remove
+  accessible_id: FolderGridViewPopup_Item
   accessible_role: ''
-  source_file: qml/DummyAppItemMenu.qml
-  parent_type: Menu
-  line: 41
+  source_file: qml/FolderGridViewPopup.qml
+  parent_type: ''
+  line: 90
 - element_type: TextInput
-  id: folderNameEdit
-  accessible_id: FolderNameEdit
+  id: ''
+  accessible_id: FolderGridViewPopup_TextInput
   accessible_role: ''
   source_file: qml/FolderGridViewPopup.qml
-  parent_type: Loader
-  line: 120
-- element_type: GridViewContainer
-  id: folderGridViewContainer
-  accessible_id: folderGridViewContainer
-  accessible_role: Accessible.Pane
+  parent_type: ''
+  line: 123
+- element_type: Text
+  id: ''
+  accessible_id: FolderGridViewPopup_Text
+  accessible_role: ''
   source_file: qml/FolderGridViewPopup.qml
-  parent_type: Component
-  line: 400
-- element_type: GridViewContainer
-  id: folderGridViewContainer
-  accessible_id: FolderGridViewContainer_2
-  accessible_role: Accessible.Pane
+  parent_type: ''
+  line: 151
+- element_type: Rectangle
+  id: folderNameTextMouseArea
+  accessible_id: FolderGridViewPopup_Rectangle
+  accessible_role: ''
   source_file: qml/FolderGridViewPopup.qml
-  parent_type: Component
-  line: 485
+  parent_type: ''
+  line: 182
+- element_type: SwipeView
+  id: ''
+  accessible_id: FolderGridViewPopup_SwipeView
+  accessible_role: ''
+  source_file: qml/FolderGridViewPopup.qml
+  parent_type: ''
+  line: 294
+- element_type: Item
+  id: ''
+  accessible_id: FolderGridViewPopup_Item_MouseArea
+  accessible_role: ''
+  source_file: qml/FolderGridViewPopup.qml
+  parent_type: ''
+  line: 687
 - element_type: PageIndicator
-  id: folderPageIndicator
-  accessible_id: FolderPageIndicator
+  id: ''
+  accessible_id: FolderGridViewPopup_PageIndicator
   accessible_role: ''
   source_file: qml/FolderGridViewPopup.qml
-  parent_type: Loader
-  line: 690
+  parent_type: ''
+  line: 700
+- element_type: Item
+  id: ''
+  accessible_id: FolderGridViewPopup_Item_Background
+  accessible_role: ''
+  source_file: qml/FolderGridViewPopup.qml
+  parent_type: ''
+  line: 731
+- element_type: Control
+  id: ''
+  accessible_id: FullscreenFrame_Control
+  accessible_role: ''
+  source_file: qml/FullscreenFrame.qml
+  parent_type: ''
+  line: 78
+- element_type: Rectangle
+  id: flipPageDelay
+  accessible_id: FullscreenFrame_Rectangle
+  accessible_role: ''
+  source_file: qml/FullscreenFrame.qml
+  parent_type: ''
+  line: 244
 - element_type: ToolButton
-  id: exitFullscreenBtn
+  id: fullscreenHeader
   accessible_id: ExitFullscreenBtn
   accessible_role: ''
   source_file: qml/FullscreenFrame.qml
   parent_type: ''
-  line: 319
+  line: 321
 - element_type: PageIndicator
-  id: indicator
-  accessible_id: Indicator
+  id: ''
+  accessible_id: FullscreenFrame_PageIndicator
   accessible_role: ''
   source_file: qml/FullscreenFrame.qml
   parent_type: ''
-  line: 339
+  line: 341
 - element_type: ListView
-  id: listviewPage
-  accessible_id: ListviewPage
+  id: itemPageModel
+  accessible_id: FullscreenFrame_ListView
   accessible_role: ''
   source_file: qml/FullscreenFrame.qml
   parent_type: ''
-  line: 382
-- element_type: GridViewContainer
-  id: gridViewContainer
-  accessible_id: gridViewContainer
-  accessible_role: Accessible.Pane
-  source_file: qml/FullscreenFrame.qml
-  parent_type: ListView
-  line: 459
-- element_type: GridViewContainer
-  id: searchResultGridViewContainer
-  accessible_id: SearchResultGridViewContainer
-  accessible_role: Accessible.Pane
+  line: 385
+- element_type: FocusScope
+  id: ''
+  accessible_id: FullscreenFrame_FocusScope
+  accessible_role: ''
   source_file: qml/FullscreenFrame.qml
   parent_type: ''
-  line: 741
+  line: 430
 - element_type: ScrollBar
   id: ''
-  accessible_id: GridViewContainer_ScrollBar
-  accessible_role: ''
-  source_file: qml/FullscreenFrame.qml
-  parent_type: GridViewContainer
-  line: 761
-- element_type: FolderGridViewPopup
-  id: folderGridViewPopup
-  accessible_id: FolderGridViewPopup
+  accessible_id: FullscreenFrame_ScrollBar
   accessible_role: ''
   source_file: qml/FullscreenFrame.qml
   parent_type: ''
-  line: 810
-- element_type: GridView
-  id: gridView
-  accessible_id: GridView
+  line: 774
+- element_type: SearchEdit
+  id: ''
+  accessible_id: FullscreenFrame_SearchEdit
+  accessible_role: ''
+  source_file: qml/FullscreenFrame.qml
+  parent_type: ''
+  line: 784
+- element_type: FocusScope
+  id: ''
+  accessible_id: GridViewContainer_FocusScope
   accessible_role: ''
   source_file: qml/GridViewContainer.qml
   parent_type: ''
-  line: 82
-- element_type: WindowedFrame
+  line: 12
+- element_type: GridView
   id: ''
-  accessible_id: Loader_WindowedFrame
-  accessible_role: Accessible.Pane
-  source_file: qml/Main.qml
-  parent_type: Loader
-  line: 272
+  accessible_id: GridViewContainer_GridView
+  accessible_role: ''
+  source_file: qml/GridViewContainer.qml
+  parent_type: ''
+  line: 83
+- element_type: Control
+  id: ''
+  accessible_id: ''
+  accessible_role: ''
+  source_file: qml/IconItemDelegate.qml
+  parent_type: ''
+  line: 18
 - element_type: Button
-  id: cancelButton
-  accessible_id: CancelButton
+  id: ''
+  accessible_id: IconItemDelegate_Button
+  accessible_role: ''
+  source_file: qml/IconItemDelegate.qml
+  parent_type: ''
+  line: 57
+- element_type: Column
+  id: ''
+  accessible_id: IconItemDelegate_Column
+  accessible_role: ''
+  source_file: qml/IconItemDelegate.qml
+  parent_type: ''
+  line: 64
+- element_type: Loader
+  id: ''
+  accessible_id: IconItemDelegate_Loader
+  accessible_role: ''
+  source_file: qml/IconItemDelegate.qml
+  parent_type: ''
+  line: 111
+- element_type: Label
+  id: ''
+  accessible_id: Main_Label
   accessible_role: ''
   source_file: qml/Main.qml
   parent_type: ''
-  line: 425
-- element_type: GridViewContainer
-  id: alphabetCategoryContainer
-  accessible_id: AlphabetCategoryContainer
-  accessible_role: Accessible.Pane
+  line: 358
+- element_type: Button
+  id: layout
+  accessible_id: Main_Button
+  accessible_role: ''
+  source_file: qml/Main.qml
+  parent_type: ''
+  line: 429
+- element_type: WarningButton
+  id: ''
+  accessible_id: Main_WarningButton
+  accessible_role: ''
+  source_file: qml/Main.qml
+  parent_type: ''
+  line: 445
+- element_type: Label
+  id: windowedFrameImpl
+  accessible_id: Main_Label
+  accessible_role: ''
+  source_file: qml/Main.qml
+  parent_type: ''
+  line: 279
+- element_type: ToolButton
+  id: alphabetCategoryDelegateModel
+  accessible_id: AlphabetCategoryPopup_ToolButton
+  accessible_role: ''
   source_file: qml/windowed/AlphabetCategoryPopup.qml
   parent_type: ''
-  line: 85
-- element_type: FrequentlyUsedView
-  id: frequentlyUsedView
-  accessible_id: FrequentlyUsedView
-  accessible_role: Accessible.Pane
-  source_file: qml/windowed/AnalysisView.qml
-  parent_type: ''
-  line: 35
-- element_type: RecentlyInstalledView
-  id: recentlyInstalledView
-  accessible_id: RecentlyInstalledView
-  accessible_role: Accessible.Pane
-  source_file: qml/windowed/AnalysisView.qml
-  parent_type: ''
-  line: 45
-- element_type: ColumnLayout
+  line: 47
+- element_type: Item
   id: ''
-  accessible_id: CategoryListView
-  accessible_role: Accessible.Pane
-  source_file: qml/windowed/AppList.qml
+  accessible_id: AlphabetCategoryPopup_Item
+  accessible_role: ''
+  source_file: qml/windowed/AlphabetCategoryPopup.qml
   parent_type: ''
-  line: 17
-- element_type: FreeSortListView
-  id: freeSortView
-  accessible_id: FreeSortListView
-  accessible_role: Accessible.Pane
-  source_file: qml/windowed/AppList.qml
-  parent_type: ''
-  line: 58
+  line: 117
 - element_type: ToolButton
-  id: headingBtn
-  accessible_id: HeadingBtn
+  id: ''
+  accessible_id: AppListView_ToolButton
   accessible_role: ''
   source_file: qml/windowed/AppListView.qml
-  parent_type: Component
+  parent_type: ''
   line: 99
+- element_type: Item
+  id: delegateCategorizedModel
+  accessible_id: AppListView_Item
+  accessible_role: ''
+  source_file: qml/windowed/AppListView.qml
+  parent_type: ''
+  line: 170
 - element_type: ItemDelegate
-  id: itemDelegate
-  accessible_id: ItemDelegate_2_<index>
+  id: delegateCategorizedModel
+  accessible_id: AppListView_ItemDelegate
   accessible_role: ''
   source_file: qml/windowed/AppListView.qml
   parent_type: ''
-  line: 172
-- element_type: Menu
-  id: ddeCategoryMenu
-  accessible_id: DdeCategoryMenu
-  accessible_role: ''
-  source_file: qml/windowed/AppListView.qml
-  parent_type: ''
-  line: 296
+  line: 174
 - element_type: MenuItem
-  id: menuItem
-  accessible_id: MenuItem_<index>
-  accessible_role: ''
-  source_file: qml/windowed/AppListView.qml
-  parent_type: Repeater
-  line: 306
-- element_type: ListView
-  id: listView
-  accessible_id: ListView_2
+  id: ddeCategoryMenu
+  accessible_id: AppListView_MenuItem
   accessible_role: ''
   source_file: qml/windowed/AppListView.qml
   parent_type: ''
-  line: 366
+  line: 309
+- element_type: ListView
+  id: ''
+  accessible_id: AppListView_ListView
+  accessible_role: ''
+  source_file: qml/windowed/AppListView.qml
+  parent_type: ''
+  line: 370
 - element_type: ScrollBar
   id: ''
-  accessible_id: ListView_ScrollBar_2
+  accessible_id: AppListView_ScrollBar
   accessible_role: ''
   source_file: qml/windowed/AppListView.qml
-  parent_type: ListView
-  line: 417
-- element_type: AlphabetCategoryPopup
-  id: alphabetCategoryPopup
-  accessible_id: AlphabetCategoryPopup
-  accessible_role: ''
-  source_file: qml/windowed/AppListView.qml
-  parent_type: ListView
-  line: 429
+  parent_type: ''
+  line: 422
 - element_type: ToolButton
-  id: shutdownBtn
-  accessible_id: ShutdownBtn
+  id: control
+  accessible_id: BottomBar_ToolButton
   accessible_role: ''
   source_file: qml/windowed/BottomBar.qml
   parent_type: ''
   line: 26
+- element_type: SearchEdit
+  id: ''
+  accessible_id: BottomBar_SearchEdit
+  accessible_role: ''
+  source_file: qml/windowed/BottomBar.qml
+  parent_type: ''
+  line: 55
 - element_type: ToolButton
-  id: fullscreenBtn
+  id: ''
   accessible_id: FullscreenBtn
   accessible_role: ''
   source_file: qml/windowed/BottomBar.qml
   parent_type: ''
-  line: 99
+  line: 101
 - element_type: ListView
-  id: listView
-  accessible_id: ListView
+  id: ''
+  accessible_id: FreeSortListView_ListView
   accessible_role: ''
   source_file: qml/windowed/FreeSortListView.qml
   parent_type: ''
   line: 54
 - element_type: ScrollBar
   id: ''
-  accessible_id: ListView_ScrollBar
+  accessible_id: FreeSortListView_ScrollBar
   accessible_role: ''
   source_file: qml/windowed/FreeSortListView.qml
-  parent_type: ListView
-  line: 92
-- element_type: ItemDelegate
-  id: itemDelegate
-  accessible_id: ItemDelegate_<index>
-  accessible_role: ''
-  source_file: qml/windowed/FreeSortListView.qml
-  parent_type: ListView
-  line: 264
-- element_type: GridViewContainer
-  id: frequentlyUsedViewContainer
-  accessible_id: FrequentlyUsedViewContainer
-  accessible_role: Accessible.Pane
-  source_file: qml/windowed/FrequentlyUsedView.qml
   parent_type: ''
-  line: 36
+  line: 93
+- element_type: ItemDelegate
+  id: dropIndicator
+  accessible_id: FreeSortListView_ItemDelegate
+  accessible_role: ''
+  source_file: qml/windowed/FreeSortListView.qml
+  parent_type: ''
+  line: 266
+- element_type: FocusScope
+  id: ''
+  accessible_id: ''
+  accessible_role: ''
+  source_file: qml/windowed/GridViewContainer.qml
+  parent_type: ''
+  line: 14
 - element_type: GridView
-  id: gridView
-  accessible_id: GridView_2
+  id: item
+  accessible_id: GridViewContainer_GridView
   accessible_role: ''
   source_file: qml/windowed/GridViewContainer.qml
   parent_type: ''
   line: 57
-- element_type: GridViewContainer
-  id: recentlyInstalledViewContainer
-  accessible_id: RecentlyInstalledViewContainer
-  accessible_role: Accessible.Pane
-  source_file: qml/windowed/RecentlyInstalledView.qml
-  parent_type: ''
-  line: 34
-- element_type: GridViewContainer
-  id: searchResultViewContainer
-  accessible_id: SearchResultViewContainer
-  accessible_role: Accessible.Pane
-  source_file: qml/windowed/SearchResultView.qml
-  parent_type: ''
-  line: 54
-- element_type: ScrollBar
-  id: vScrollBar
-  accessible_id: VScrollBar
-  accessible_role: ''
-  source_file: qml/windowed/SearchResultView.qml
-  parent_type: GridViewContainer
-  line: 72
-- element_type: Menu
-  id: categorizedMenu
-  accessible_id: CategorizedMenu
-  accessible_role: ''
-  source_file: qml/windowed/SideBar.qml
-  parent_type: Component
-  line: 36
-- element_type: MenuItem
+- element_type: Control
   id: ''
-  accessible_id: FreeSorting
+  accessible_id: ''
   accessible_role: ''
-  source_file: qml/windowed/SideBar.qml
-  parent_type: Menu
-  line: 40
-- element_type: MenuItem
-  id: ''
-  accessible_id: SortByCategory
-  accessible_role: ''
-  source_file: qml/windowed/SideBar.qml
-  parent_type: Menu
-  line: 55
-- element_type: MenuItem
-  id: ''
-  accessible_id: SortByName
-  accessible_role: ''
-  source_file: qml/windowed/SideBar.qml
-  parent_type: Menu
-  line: 68
-- element_type: ToolButton
-  id: title
-  accessible_id: Title
-  accessible_role: ''
-  source_file: qml/windowed/SideBar.qml
+  source_file: qml/windowed/IconItemDelegate.qml
   parent_type: ''
-  line: 92
-- element_type: SideBar
-  id: sideBar
-  accessible_id: SideBar
-  accessible_role: Accessible.Pane
-  source_file: qml/windowed/WindowedFrame.qml
-  parent_type: ''
-  line: 83
-- element_type: AppList
-  id: appList
-  accessible_id: AppList
-  accessible_role: Accessible.Pane
-  source_file: qml/windowed/WindowedFrame.qml
-  parent_type: ''
-  line: 132
-- element_type: AnalysisView
-  id: ''
-  accessible_id: Component_AnalysisView
-  accessible_role: Accessible.Pane
-  source_file: qml/windowed/WindowedFrame.qml
-  parent_type: Component
-  line: 146
-- element_type: SearchResultView
-  id: ''
-  accessible_id: Component_SearchResultView
-  accessible_role: Accessible.Pane
-  source_file: qml/windowed/WindowedFrame.qml
-  parent_type: Component
-  line: 154
-- element_type: BottomBar
-  id: bottomBar
-  accessible_id: BottomBar
-  accessible_role: Accessible.ToolBar
-  source_file: qml/windowed/WindowedFrame.qml
-  parent_type: ''
-  line: 170
-- element_type: FolderGridViewPopup
-  id: folderGridViewPopup
-  accessible_id: FolderGridViewPopup_2
-  accessible_role: ''
-  source_file: qml/windowed/WindowedFrame.qml
-  parent_type: ''
-  line: 203
-- element_type: FullscreenFrame
-  id: ''
-  accessible_id: Loader_FullscreenFrame
-  accessible_role: Accessible.Pane
-  source_file: shell-launcher-applet/package/launcheritem.qml
-  parent_type: Loader
-  line: 244
-- element_type: WindowedFrame
-  id: ''
-  accessible_id: Launcheritem_WindowedFrame
-  accessible_role: Accessible.Pane
-  source_file: shell-launcher-applet/package/launcheritem.qml
-  parent_type: ''
-  line: 283
+  line: 13
 - element_type: Button
-  id: cancelButton
-  accessible_id: CancelButton_2
+  id: ''
+  accessible_id: IconItemDelegate_Button
+  accessible_role: ''
+  source_file: qml/windowed/IconItemDelegate.qml
+  parent_type: ''
+  line: 46
+- element_type: ScrollBar
+  id: ''
+  accessible_id: SearchResultView_ScrollBar
+  accessible_role: ''
+  source_file: qml/windowed/SearchResultView.qml
+  parent_type: ''
+  line: 74
+- element_type: D.MenuItem
+  id: categorizedMenu
+  accessible_id: SideBar_MenuItem
+  accessible_role: ''
+  source_file: qml/windowed/SideBar.qml
+  parent_type: ''
+  line: 41
+- element_type: D.MenuItem
+  id: ''
+  accessible_id: SideBar_MenuItem
+  accessible_role: ''
+  source_file: qml/windowed/SideBar.qml
+  parent_type: ''
+  line: 57
+- element_type: D.MenuItem
+  id: ''
+  accessible_id: SideBar_MenuItem
+  accessible_role: ''
+  source_file: qml/windowed/SideBar.qml
+  parent_type: ''
+  line: 71
+- element_type: D.ToolButton
+  id: ''
+  accessible_id: SideBar_ToolButton
+  accessible_role: ''
+  source_file: qml/windowed/SideBar.qml
+  parent_type: ''
+  line: 96
+- element_type: D.ActionButton
+  id: ''
+  accessible_id: SideBar_ActionButton
+  accessible_role: ''
+  source_file: qml/windowed/SideBar.qml
+  parent_type: ''
+  line: 151
+- element_type: Button
+  id: ''
+  accessible_id: launcheritem_Button
   accessible_role: ''
   source_file: shell-launcher-applet/package/launcheritem.qml
   parent_type: ''
-  line: 346
+  line: 432
+- element_type: WarningButton
+  id: cancelButton
+  accessible_id: launcheritem_WarningButton
+  accessible_role: ''
+  source_file: shell-launcher-applet/package/launcheritem.qml
+  parent_type: ''
+  line: 442
+- element_type: Label
+  id: ''
+  accessible_id: launcheritem_Label
+  accessible_role: ''
+  source_file: shell-launcher-applet/package/launcheritem.qml
+  parent_type: ''
+  line: 262
 transient_elements: []

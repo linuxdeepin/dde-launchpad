@@ -56,6 +56,7 @@ ColumnLayout {
         }
 
         FreeSortListView {
+            Accessible.id: "AppList_List"
             id: freeSortView
             objectName: "FreeSortListView"
             Accessible.role: Accessible.Pane
@@ -83,3 +84,4 @@ ColumnLayout {
         }
     }
 }
+

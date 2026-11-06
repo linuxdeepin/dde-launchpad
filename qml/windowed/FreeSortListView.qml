@@ -53,6 +53,7 @@ Item {
 
     ListView {
         id: listView
+        Accessible.id: "FreeSortListView_ListView"
         objectName: "ListView"
         anchors.fill: parent
         highlightFollowsCurrentItem: true
@@ -90,6 +91,7 @@ Item {
         }
 
         ScrollBar.vertical: ScrollBar {
+            Accessible.id: "FreeSortListView_ScrollBar"
             objectName: "ListView_ScrollBar"
         }
 
@@ -263,6 +265,7 @@ Item {
 
             ItemDelegate {
                 id: itemDelegate
+                Accessible.id: "FreeSortListView_ItemDelegate"
                 objectName: "ItemDelegate_" + index
                 text: model.display.startsWith("internal/category/") ? getCategoryName(model.display.substring(18)) : model.display
                 checkable: false
