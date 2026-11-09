@@ -392,7 +392,9 @@ AppletItem {
         property string appId: ""
         property string appName: ""
 
-        DLayerShellWindow.anchors: DLayerShellWindow.AnchorNone
+        Component.onCompleted: {
+            DLayerShellWindow.anchors = DLayerShellWindow.AnchorNone
+        }
 
         minimumWidth: layout.implicitWidth + 2 * DStyle.Style.dialogWindow.contentHMargin
         minimumHeight: layout.implicitHeight + DStyle.Style.dialogWindow.titleBarHeight
