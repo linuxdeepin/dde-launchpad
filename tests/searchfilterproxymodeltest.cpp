@@ -319,7 +319,9 @@ void TestSearchFilterProxyModel::testSharedModelAdapter()
     hiddenItem->setData(false, SourceNoDisplayRole);
     QCOMPARE(appsModel.rowCount(), initialRowCount + 1);
     QCOMPARE(rowsInsertedSpy.count(), 1);
-    QCOMPARE(appsModel.indexFromDesktopId("org.test.hidden").data(AppsModel::DesktopIdRole).toString(),
+    // indexFromDesktopId() expects the normalized id (raw ids get ".desktop" appended)
+    QCOMPARE(appsModel.indexFromDesktopId(AppsModel::normalizedDesktopId("org.test.hidden"))
+                 .data(AppsModel::DesktopIdRole).toString(),
              QStringLiteral("org.test.hidden"));
 
     auto suffixedItem = createTestAppItem("org.test.suffixed.desktop", "Suffixed", "Suffixed");
