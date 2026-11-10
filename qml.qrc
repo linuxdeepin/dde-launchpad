@@ -1,7 +1,4 @@
 <RCC>
-    <qresource prefix="/">
-        <file>images/application-x-desktop.svg</file>
-    </qresource>
     <qresource prefix="/dsg/built-in-icons">
         <file alias="exit_fullscreen.dci">images/exit_fullscreen.dci</file>
         <file alias="emblem_autostart.dci">images/emblem_autostart.dci</file>
