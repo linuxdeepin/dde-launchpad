@@ -24,7 +24,7 @@ InputEventItem {
     property Palette appTextColor: Palette {
         normal {
             common: Qt.rgba(0, 0, 0, 1)
-            crystal: Qt.rgba(0, 0, 0, 1)
+            crystal: Qt.rgba(1, 1, 1, 1)
         }
         normalDark {
             common: Qt.rgba(1, 1, 1, 0.7)
@@ -791,7 +791,7 @@ InputEventItem {
 
                 property Palette iconPalette: Palette {
                     normal {
-                        crystal: Qt.rgba(0, 0, 0, 1)
+                        crystal: Qt.rgba(1, 1, 1, 1)
                     }
                     normalDark {
                         crystal: Qt.rgba(1, 1, 1, 1)

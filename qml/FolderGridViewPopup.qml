@@ -112,7 +112,7 @@ Popup {
                 property Palette titleTextColor: Palette {
                     normal {
                         common: Qt.rgba(0, 0, 0, 1)
-                        crystal: Qt.rgba(0, 0, 0, 1)
+                        crystal: Qt.rgba(1, 1, 1, 1)
                     }
                     normalDark {
                         common: Qt.rgba(1, 1, 1, 1)
