@@ -12,7 +12,6 @@
 
 #include "itemarrangementproxymodel.h"
 #include "appsmodel.h"
-#include "foldermodelstub.h"
 
 namespace {
 
@@ -58,15 +57,14 @@ private slots:
     void roleNamesContainsExtendedRoles();
     void allArrangedItemsContainsAllApps();
     void bringToFrontMovesItemToFirstPosition();
-    void bringToFrontForwardsToProvider();
-    void commitDndOperationDoesNotCrash();
+    void bringToFrontOnNonexistentIsNoop();
+    void bringToFrontOnFirstItemIsNoop();
+    void commitDndOperationWithSameIdIsNoop();
     void creatEmptyPageIncreasesPageCount();
     void removeEmptyPageRemovesEmptyPages();
-    void createReturnsSameInstance();
 
 private:
     QStandardItemModel m_sourceModel;
-    FolderModelStub m_folderModel;
     int findRowForDesktopId(const QString &desktopId);
 };
 
@@ -105,12 +103,9 @@ void TestItemArrangementProxyModel::initTestCase()
     AppsModel::instance().setSourceModel(&m_sourceModel);
     AppsModel::instance().setReady(true);
 
-    ItemArrangementProxyModel::instance().setFolderModel(&m_folderModel);
-
-    // Give arrange-e a non-zero initial position so bringToFront's assertion
-    // that it lands at (page 0, pos 0) is meaningful (not a vacuous truth).
-    m_folderModel.positions.insert("arrange-e.desktop",
-                                   QVariantMap{{"page", 1}, {"pos", 2}, {"group", 0}});
+    // Accessing the singleton triggers construction + onSourceModelChanged,
+    // which adds all AppsModel items to topLevel pages.
+    ItemArrangementProxyModel::instance();
 }
 
 void TestItemArrangementProxyModel::pageCountIsPositiveAfterSetup()
@@ -137,6 +132,7 @@ void TestItemArrangementProxyModel::findItemReturnsValidPositionForExistingItem(
 
 void TestItemArrangementProxyModel::findItemReturnsInvalidForNonexistent()
 {
+    auto &model = ItemArrangementProxyModel::instance();
     int row = findRowForDesktopId("nonexistent.desktop");
     QCOMPARE(row, -1);
 }
@@ -191,8 +187,13 @@ void TestItemArrangementProxyModel::roleNamesContainsExtendedRoles()
 
 void TestItemArrangementProxyModel::allArrangedItemsContainsAllApps()
 {
-    for (const auto &id : {"arrange-a", "arrange-b", "arrange-c", "arrange-d", "arrange-e"})
-        QVERIFY2(findRowForDesktopId(id) >= 0, id);
+    // allArrangedItems is private, but itemsPage() is public and returns m_topLevel
+    auto all = ItemArrangementProxyModel::instance().itemsPage()->allArrangedItems();
+    QVERIFY(all.contains("arrange-a.desktop"));
+    QVERIFY(all.contains("arrange-b.desktop"));
+    QVERIFY(all.contains("arrange-c.desktop"));
+    QVERIFY(all.contains("arrange-d.desktop"));
+    QVERIFY(all.contains("arrange-e.desktop"));
 }
 
 void TestItemArrangementProxyModel::bringToFrontMovesItemToFirstPosition()
@@ -217,29 +218,43 @@ void TestItemArrangementProxyModel::bringToFrontMovesItemToFirstPosition()
     QCOMPARE(model.data(idx, ItemArrangementProxyModel::IndexInPageRole).toInt(), 0);
 }
 
-void TestItemArrangementProxyModel::bringToFrontForwardsToProvider()
+void TestItemArrangementProxyModel::bringToFrontOnNonexistentIsNoop()
 {
     auto &model = ItemArrangementProxyModel::instance();
-    // Clear state left by the previous bringToFront test so the assertion
-    // below verifies *this* call's forwarding, not a stale entry.
-    m_folderModel.broughtToFront.clear();
-    // The adapter forwards every call; noop semantics belong to the shared provider.
     QSignalSpy spy(&model, &ItemArrangementProxyModel::itemBroughtToFront);
-    model.bringToFront("arrange-e");
-    QCOMPARE(spy.count(), 1);
-    // .desktop normalization happens before forwarding
-    QCOMPARE(m_folderModel.broughtToFront.last(), "arrange-e.desktop");
+    model.bringToFront("nonexistent-id.desktop");
+    QCOMPARE(spy.count(), 0); // no signal emitted
 }
 
-void TestItemArrangementProxyModel::commitDndOperationDoesNotCrash()
+void TestItemArrangementProxyModel::bringToFrontOnFirstItemIsNoop()
 {
     auto &model = ItemArrangementProxyModel::instance();
-    // commitDndOperation does not short-circuit on same-id; it always
-    // forwards to the folder model's rearrange().  Verify forwarding occurred.
-    m_folderModel.lastMove.clear();
+
+    // self-establish: bring arrange-b to front first so it's at (0, 0)
+    int row = findRowForDesktopId("arrange-b");
+    QVERIFY(row >= 0);
+    model.bringToFront("arrange-b");
+
+    // verify it's now at page 0, index 0
+    row = findRowForDesktopId("arrange-b");
+    QVERIFY(row >= 0);
+    QModelIndex idx = model.index(row, 0);
+    QCOMPARE(model.data(idx, ItemArrangementProxyModel::PageRole).toInt(), 0);
+    QCOMPARE(model.data(idx, ItemArrangementProxyModel::IndexInPageRole).toInt(), 0);
+
+    // bringToFront on an item already at (0, 0) should be noop
+    QSignalSpy spy(&model, &ItemArrangementProxyModel::itemBroughtToFront);
+    model.bringToFront("arrange-b");
+    QCOMPARE(spy.count(), 0);
+}
+
+void TestItemArrangementProxyModel::commitDndOperationWithSameIdIsNoop()
+{
+    auto &model = ItemArrangementProxyModel::instance();
+    // dragging onto itself should return early
     model.commitDndOperation("arrange-a", "arrange-a",
                              ItemArrangementProxyModel::DndJoin);
-    QVERIFY(!m_folderModel.lastMove.isEmpty());
+    // no crash, no assertion failure
 }
 
 void TestItemArrangementProxyModel::creatEmptyPageIncreasesPageCount()
@@ -274,18 +289,8 @@ void TestItemArrangementProxyModel::removeEmptyPageRemovesEmptyPages()
     QCOMPARE(model.pageCount(0), baseline);
 }
 
-void TestItemArrangementProxyModel::createReturnsSameInstance()
-{
-    // The create() static method (QML singleton factory) should return
-    // the same singleton instance as instance().
-    ItemArrangementProxyModel *created = ItemArrangementProxyModel::create(nullptr, nullptr);
-    QVERIFY(created != nullptr);
-    QCOMPARE(created, &ItemArrangementProxyModel::instance());
-}
-
 void TestItemArrangementProxyModel::cleanupTestCase()
 {
-    ItemArrangementProxyModel::instance().setFolderModel(nullptr);
     // delete the item-arrangement.ini written by saveItemArrangementToUserData()
     const QString basePath = QStandardPaths::writableLocation(QStandardPaths::GenericConfigLocation);
     const QString iniPath = QDir(basePath).absoluteFilePath("deepin/dde-launchpad/item-arrangement.ini");

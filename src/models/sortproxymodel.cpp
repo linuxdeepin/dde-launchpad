@@ -9,7 +9,7 @@
 
   SPDX-FileCopyrightText: 2018 Klarälvdalens Datakonsult AB, a KDAB Group company <info@kdab.com>
   Author: André Somers <andre.somers@kdab.com>
-  SPDX-FileCopyrightText: 2025-2026 UnionTech Software Technology Co., Ltd.
+  SPDX-FileCopyrightText: 2025 UnionTech Software Technology Co., Ltd.
   Author: Wang Zichong <wangzichong@deepin.org>
 
   SPDX-License-Identifier: MIT
@@ -20,7 +20,7 @@
 #include <QVariant>
 #include <QLoggingCategory>
 
-#include <QCollator>
+#include <private/qabstractitemmodel_p.h>
 
 Q_DECLARE_LOGGING_CATEGORY(logModels)
 namespace
@@ -249,12 +249,18 @@ bool SortProxyModel::lessThan(const QModelIndex &source_left, const QModelIndex 
     const QVariant lhs = source_left.data(m_sortRole);
     const QVariant rhs = source_right.data(m_sortRole);
 
-    if (lhs.typeId() != QMetaType::QString || rhs.typeId() != QMetaType::QString)
-        return lhs.toDouble() < rhs.toDouble();
-
-    QCollator collator;
-    collator.setCaseSensitivity(m_caseSensitivity);
-    return collator.compare(lhs.toString(), rhs.toString()) < 0;
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+    if (lhs.typeId() == QMetaType::QString && rhs.typeId() == QMetaType::QString)
+#else
+    if (lhs.type() == QVariant::String && rhs.type() == QVariant::String)
+#endif
+    {
+        return QString::compare(lhs.toString(), rhs.toString(), m_caseSensitivity) < 0;
+    }
+    else
+    {
+        return QAbstractItemModelPrivate::isVariantLessThan(lhs, rhs, m_caseSensitivity, false);
+    }
 }
 
 void SortProxyModel::resetInternalData()

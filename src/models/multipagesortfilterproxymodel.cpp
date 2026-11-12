@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2023-2026 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2023 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -16,21 +16,11 @@ MultipageSortFilterProxyModel::MultipageSortFilterProxyModel(QObject *parent)
     setDynamicSortFilter(true);
 
     connect(this, &MultipageSortFilterProxyModel::onFolderIdChanged, this, [this](){
-        #if QT_VERSION >= QT_VERSION_CHECK(6, 12, 0)
-        beginFilterChange();
-        endFilterChange();
-#else
         invalidateFilter();
-#endif
     });
 
     connect(this, &MultipageSortFilterProxyModel::onPageIdChanged, this, [this](){
-        #if QT_VERSION >= QT_VERSION_CHECK(6, 12, 0)
-        beginFilterChange();
-        endFilterChange();
-#else
         invalidateFilter();
-#endif
     });
 }
 

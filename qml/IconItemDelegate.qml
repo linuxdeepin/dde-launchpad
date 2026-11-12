@@ -55,14 +55,12 @@ Control {
     }
 
     contentItem: Button {
-        Accessible.id: "IconItemDelegate_Button"
         hoverEnabled: !root.iconIntroAnimRunning
         focusPolicy: Qt.NoFocus
         ColorSelector.pressed: false
         ColorSelector.family: D.Palette.CrystalColor
         flat: true
         contentItem: Column {
-            Accessible.id: "IconItemDelegate_Column"
             anchors.fill: parent
 
             Item {
@@ -109,7 +107,6 @@ Control {
                 }
 
                 Loader {
-                    Accessible.id: "IconItemDelegate_Loader"
                     id: iconLoader
                     anchors.fill: parent
                     asynchronous: true

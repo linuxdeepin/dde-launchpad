@@ -271,13 +271,11 @@ QtObject {
             anchors.fill: parent
             focus: true
             sourceComponent: WindowedFrame {
-                Accessible.id: "Main_Pane"
                 objectName: "Loader_WindowedFrame"
                 Accessible.role: Accessible.Pane
             }
 
             Label {
-                Accessible.id: "Main_Label"
                 visible: DebugHelper.qtDebugEnabled
                 z: 999
 
@@ -356,7 +354,6 @@ QtObject {
             source: "FullscreenFrame.qml"
 
             Label {
-                Accessible.id: "Main_Label"
                 visible: DebugHelper.qtDebugEnabled
                 z: 999
 
@@ -428,7 +425,6 @@ QtObject {
                 Item {
                     Button {
                         id: cancelButton
-                        Accessible.id: "Main_Button"
                         objectName: "CancelButton"
                         text: qsTr("Cancel")
                         onClicked: {
@@ -444,7 +440,6 @@ QtObject {
                 Item {
                     WarningButton {
                         id: confirmButton
-                        Accessible.id: "Main_WarningButton"
                         objectName: "ConfirmButton"
                         text: qsTr("Confirm")
                         onClicked: {
@@ -462,4 +457,3 @@ QtObject {
         }
     }
 }
-

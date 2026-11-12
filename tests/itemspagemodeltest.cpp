@@ -10,7 +10,6 @@
 #include "itemspagemodel.h"
 #include "itemarrangementproxymodel.h"
 #include "appsmodel.h"
-#include "foldermodelstub.h"
 
 namespace {
 
@@ -55,11 +54,9 @@ private slots:
     void sigPageAddedInsertsRows();
     void sigPageRemovedRemovesRows();
     void sourceModelGetterReturnsSetModel();
-    void cleanupTestCase();
 
 private:
     QStandardItemModel m_sourceModel;
-    FolderModelStub m_folderModel;
 };
 
 void TestItemsPageModel::initTestCase()
@@ -85,7 +82,9 @@ void TestItemsPageModel::initTestCase()
     AppsModel::instance().setSourceModel(&m_sourceModel);
     AppsModel::instance().setReady(true);
 
-    ItemArrangementProxyModel::instance().setFolderModel(&m_folderModel);
+    // Accessing the singleton triggers construction + onSourceModelChanged,
+    // which adds all AppsModel items to topLevel pages.
+    ItemArrangementProxyModel::instance();
 }
 
 void TestItemsPageModel::rowCountIsZeroWithoutSourceModel()
@@ -139,7 +138,7 @@ void TestItemsPageModel::rowCountReflectsItemsPageCount()
     model.setSourceModel(&iapm);
 
     // rowCount should match the topLevel pageCount (apps added in initTestCase)
-    QCOMPARE(model.rowCount(), iapm.pageCount(0));
+    QCOMPARE(model.rowCount(), iapm.itemsPage()->pageCount());
     QVERIFY(model.rowCount() > 0);
 }
 
@@ -185,11 +184,6 @@ void TestItemsPageModel::sourceModelGetterReturnsSetModel()
     auto &iapm = ItemArrangementProxyModel::instance();
     model.setSourceModel(&iapm);
     QCOMPARE(model.sourceModel(), &iapm);
-}
-
-void TestItemsPageModel::cleanupTestCase()
-{
-    ItemArrangementProxyModel::instance().setFolderModel(nullptr);
 }
 
 QTEST_MAIN(TestItemsPageModel)

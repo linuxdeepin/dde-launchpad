@@ -81,9 +81,9 @@ InputEventItem {
     // ----------- Drag and Drop related functions  END  -----------
 
     SideBar {
-        Accessible.id: "WindowedFrame_Pane"
         id: sideBar
         objectName: "SideBar"
+        Accessible.role: Accessible.Pane
         anchors.left: parent.left
         anchors.top: parent.top
         anchors.bottom: parent.bottom
@@ -128,10 +128,8 @@ InputEventItem {
         spacing: 0
         Behavior on opacity {
             NumberAnimation { duration: 200; easing.type: Easing.OutQuad }
-                Accessible.id: "WindowedFrame_List"
         }
         AppList {
-            Accessible.id: "WindowedFrame_List_2"
             id: appList
             objectName: "AppList"
             Accessible.role: Accessible.Pane
@@ -146,15 +144,14 @@ InputEventItem {
             Component {
                 id: analysisViewCom
                 AnalysisView {
-                    Accessible.id: "WindowedFrame_Pane_2"
                     objectName: "Component_AnalysisView"
+                    Accessible.role: Accessible.Pane
                     nextKeyTabTarget: appList.keyTabTarget
                 }
             }
             Component {
                 id: searchResultViewCom
                 SearchResultView {
-                    Accessible.id: "WindowedFrame_Pane_6"
                     objectName: "Component_SearchResultView"
                     Accessible.role: Accessible.Pane
                     nextKeyTabTarget: appList.keyTabTarget
@@ -171,7 +168,6 @@ InputEventItem {
     }
 
     BottomBar {
-        Accessible.id: "WindowedFrame_Pane_5"
         id: bottomBar
         objectName: "BottomBar"
         Accessible.role: Accessible.ToolBar
@@ -354,5 +350,3 @@ InputEventItem {
         }
     }
 }
-
-

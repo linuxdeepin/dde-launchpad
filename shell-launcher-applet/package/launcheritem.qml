@@ -36,12 +36,6 @@ AppletItem {
         {
             updateLaunchpadPos()
         }
-        function onWidthChanged() {
-            Qt.callLater(updateLaunchpadPos)
-        }
-        function onHeightChanged() {
-            Qt.callLater(updateLaunchpadPos)
-        }
         function onViewDeactivated() {
             if (LauncherController.visible) {
                 LauncherController.hideWithTimer()
@@ -260,12 +254,11 @@ AppletItem {
             anchors.fill: parent
             focus: true
             sourceComponent: FullscreenFrame {
-                Accessible.id: "launcheritem_Pane"
                 objectName: "Loader_FullscreenFrame"
+                Accessible.role: Accessible.Pane
             }
 
             Label {
-                Accessible.id: "launcheritem_Label"
                 visible: DebugHelper.qtDebugEnabled
                 z: 999
 
@@ -301,24 +294,12 @@ AppletItem {
         readonly property bool isDarkTheme: D.DTK.themeType === D.ApplicationHelper.DarkType
         readonly property int dockThickness: dockIsHorizontal ? Panel.rootObject.height
                                                              : Panel.rootObject.width
-        readonly property int dockEdgeMargin: {
-            const layer = Panel.rootObject.DLayerShellWindow
-            // The dock only sets a margin on its anchored edge.
-            return dockIsHorizontal ? layer.topMargin + layer.bottomMargin
-                                    : layer.leftMargin + layer.rightMargin
-        }
         readonly property int dockReservedZone: DesktopIntegration.isTreeLand() ? Panel.rootObject.DLayerShellWindow.exclusionZone : 0
-
+        
         readonly property int dockExclusion: DesktopIntegration.dockSpacing
-                                              + Math.max(0, dockThickness + dockEdgeMargin - dockReservedZone)
-        readonly property int iconAlignOffset: {
-            const screenLength = dockIsHorizontal ? Screen.width : Screen.height
-            const dockLength = dockIsHorizontal ? Panel.rootObject.width : Panel.rootObject.height
-            // Convert the dock-local icon position to a screen-relative offset.
-            const iconOffset = (screenLength - dockLength) / 2 + (dockIsHorizontal ? itemPos.x : itemPos.y)
-            return Math.max(DesktopIntegration.dockSpacing,
-                Math.min(iconOffset, screenLength - (dockIsHorizontal ? width : height) - DesktopIntegration.dockSpacing))
-        }
+                                              + Math.max(0, dockThickness - dockReservedZone)
+        readonly property int iconAlignOffset: Math.max(dockIsHorizontal ? itemPos.x : itemPos.y,
+                                                       DesktopIntegration.dockSpacing)
 
         DLayerShellWindow.anchors: {
             switch (dockPosition) {
@@ -376,7 +357,6 @@ AppletItem {
         }
 
         WindowedFrame {
-            Accessible.id: "launcheritem_Pane_3"
             objectName: "Launcheritem_WindowedFrame"
             Accessible.role: Accessible.Pane
             anchors.fill: parent
@@ -385,7 +365,6 @@ AppletItem {
         onVisibleChanged: {
             if (visible) {
                 assignDockScreen(windowedModeLauncher)
-                updateLaunchpadPos()
                 requestActivate()
                 LauncherController.closeAllPopups()
             }
@@ -413,9 +392,7 @@ AppletItem {
         property string appId: ""
         property string appName: ""
 
-        Component.onCompleted: {
-            DLayerShellWindow.anchors = DLayerShellWindow.AnchorNone
-        }
+        DLayerShellWindow.anchors: DLayerShellWindow.AnchorNone
 
         minimumWidth: layout.implicitWidth + 2 * DStyle.Style.dialogWindow.contentHMargin
         minimumHeight: layout.implicitHeight + DStyle.Style.dialogWindow.titleBarHeight
@@ -451,7 +428,6 @@ AppletItem {
                 
                 Button {
                     id: cancelButton
-                    Accessible.id: "launcheritem_Button"
                     objectName: "CancelButton_2"
                     Layout.fillWidth: true
                     text: qsTr("Cancel")
@@ -462,7 +438,6 @@ AppletItem {
                 WarningButton {
                     id: confirmButton
                     objectName: "ConfirmButton_2"
-                    Accessible.id: "launcheritem_WarningButton"
                     Layout.fillWidth: true
                     text: qsTr("Confirm")
                     onClicked: {
@@ -527,4 +502,3 @@ AppletItem {
         }
     }
 }
-

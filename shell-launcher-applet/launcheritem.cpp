@@ -5,9 +5,7 @@
 #include "launcheritem.h"
 #include "pluginfactory.h"
 #include "../launchercontroller.h"
-#include "../desktopintegration.h"
 #include <appsmodel.h>
-#include <itemarrangementproxymodel.h>
 #include <blurhashimageprovider.h>
 
 #include <QLoggingCategory>
@@ -31,11 +29,6 @@ LauncherItem::LauncherItem(QObject *parent)
     qCDebug(logApplet) << "Initializing LauncherItem applet";
 }
 
-QObject *LauncherItem::folderApplicationBackend() const
-{
-    return &DesktopIntegration::instance();
-}
-
 bool LauncherItem::load()
 {
     DAppletBridge bridge(QStringLiteral("org.deepin.ds.dde-apps"));
@@ -50,10 +43,6 @@ bool LauncherItem::load()
         qCWarning(logApplet) << "dde-apps did not provide an application model";
         return false;
     }
-
-    auto folders = applet->property("appGroupModel").value<QAbstractItemModel *>();
-    if (!folders) return false;
-    ItemArrangementProxyModel::instance().setFolderModel(folders);
 
     auto &appsModel = AppsModel::instance();
     appsModel.setSourceModel(model);

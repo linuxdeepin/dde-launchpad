@@ -98,7 +98,6 @@ FocusScope {
                 height: headingBtn.height
                 ToolButton {
                     id: headingBtn
-                    Accessible.id: "AppListView_ToolButton"
                     objectName: "HeadingBtn"
 
                     enabled: true
@@ -168,11 +167,9 @@ FocusScope {
         model: CategorizedSortProxyModel
 
         delegate: Item {
-            Accessible.id: "AppListView_Item"
             width: listView.width
             height: itemDelegate.height
             ItemDelegate {
-                Accessible.id: "AppListView_ItemDelegate"
                 id: itemDelegate
                 objectName: "ItemDelegate_2_" + index
                 anchors {
@@ -307,7 +304,6 @@ FocusScope {
         Repeater {
             model: ddeCategoryMenu.existingSections
             delegate: MenuItem {
-                Accessible.id: "AppListView_MenuItem"
                 id: menuItem
                 objectName: "MenuItem_" + index
                 text: getCategoryName(modelData)
@@ -370,7 +366,6 @@ FocusScope {
     ListView {
         id: listView
         objectName: "ListView_2"
-        Accessible.id: "AppListView_ListView"
 
         anchors.fill: parent
         highlightFollowsCurrentItem: true
@@ -420,7 +415,6 @@ FocusScope {
         model: delegateCategorizedModel
 
         ScrollBar.vertical: ScrollBar {
-            Accessible.id: "AppListView_ScrollBar"
             objectName: "ListView_ScrollBar_2"
         }
 

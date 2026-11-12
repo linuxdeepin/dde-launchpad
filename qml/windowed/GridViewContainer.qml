@@ -56,7 +56,6 @@ FocusScope {
 
         GridView {
             id: gridView
-            Accessible.id: "GridViewContainer_GridView"
             objectName: "GridView_2"
             width: root.cellWidth * columns + paddingColumns * Math.max(0, columns - 1) + paddingColumns
             height: root.cellHeight * rows + paddingRows * Math.max(0, rows - 1) + paddingRows
