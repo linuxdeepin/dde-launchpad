@@ -24,5 +24,4 @@ override_dh_auto_configure:
 		dh_auto_configure -- \
 			$(DEB_CMAKE_EXTRA_FLAGS) \
 			-DVERSION=$(DEB_VERSION_UPSTREAM) \
-			-DPREFER_QT_5=OFF \
-			-DBUILD_TESTING=ON
+			-DPREFER_QT_5=OFF

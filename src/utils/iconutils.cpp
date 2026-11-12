@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2023-2026 UnionTech Software Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2023 UnionTech Software Technology Co., Ltd.
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -77,7 +77,7 @@ bool IconUtils::getThemeIcon(QPixmap &pixmap, const QString &iconName, const int
 
         // TODO why icon is not null, but it's name is empty.
         if (icon.isNull() || icon.name().isEmpty()) {
-            icon = DIconTheme::findQIcon(QStringLiteral("application-x-desktop"));
+            icon = QIcon(":/images/application-x-desktop.svg");
             qWarning() << "It fallbacks to default icon for [" << actualIconName << "].";
             findIcon = false;
         }

@@ -6,13 +6,13 @@
 
 #include <QtQml/qqml.h>
 
-#include <QPointer>
+#include "itemspage.h"
 #include "appsmodel.h"
 
-#include <QAbstractListModel>
+#include <QConcatenateTablesProxyModel>
 #include <QStandardItemModel>
 
-class ItemArrangementProxyModel : public QAbstractListModel
+class ItemArrangementProxyModel : public QConcatenateTablesProxyModel
 {
     Q_OBJECT
     QML_NAMED_ELEMENT(ItemArrangementProxyModel)
@@ -62,8 +62,7 @@ public:
     Q_INVOKABLE int creatEmptyPage(int folderId = 0) const;
     Q_INVOKABLE void removeEmptyPage() const;
 
-    void setFolderModel(QAbstractItemModel *model);
-    int rowCount(const QModelIndex &parent = {}) const override;
+    ItemsPage *itemsPage() { return m_topLevel; }
 
     // QAbstractItemModel interface
 public:
@@ -78,12 +77,20 @@ signals:
 private:
     explicit ItemArrangementProxyModel(QObject *parent = nullptr);
 
-private slots:
-    void refreshArrangement();
+    void loadItemArrangementFromUserData();
+    void saveItemArrangementToUserData();
+    std::tuple<int, int, int> findItem(const QString & id, bool searchTopLevelOnly = false) const;
+    void onSourceModelChanged();
+    void onFolderModelChanged();
 
-private:
-    QVariantMap folderInfo(const QString &id) const;
-    void rebuildFolders();
-    QPointer<QAbstractItemModel> m_folderModel;
-    QStringList m_folderIds;
+    QString findAvailableFolderId();
+    ItemsPage * createFolder(const QString & id);
+    void removeFolder(const QString & idNumber);
+    ItemsPage * folderById(int id);
+    QStringList allArrangedItems() const;
+
+    // <folder-id, items-arrangement-data> folder-id: internal/folder/<id number>
+    ItemsPage * m_topLevel;
+    QHash<QString, ItemsPage *> m_folders;
+    QStandardItemModel m_folderModel;
 };

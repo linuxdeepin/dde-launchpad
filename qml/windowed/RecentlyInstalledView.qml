@@ -32,7 +32,6 @@ Control {
         }
 
         GridViewContainer {
-            Accessible.id: "RecentlyInstalledView_Pane"
             id: recentlyInstalledViewContainer
             objectName: "RecentlyInstalledViewContainer"
             Accessible.role: Accessible.Pane
@@ -49,7 +48,6 @@ Control {
             }
 
             delegate: IconItemDelegate {
-                Accessible.id: "RecentlyInstalledView_Pane_2"
                 iconSource: iconName
                 width: recentlyInstalledViewContainer.cellWidth
                 height: recentlyInstalledViewContainer.cellHeight
@@ -72,4 +70,3 @@ Control {
         Accessible.ignored: true
     }
 }
-

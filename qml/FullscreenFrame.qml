@@ -76,7 +76,6 @@ InputEventItem {
     // ----------- Drag and Drop related functions  END  -----------
 
     Control {
-        Accessible.id: "FullscreenFrame_Control"
         id: baseLayer
         visible: true
         anchors.fill: parent
@@ -242,7 +241,6 @@ InputEventItem {
             sourceSize: Qt.size(width / 3, height / 3)
 
             Rectangle {
-                Accessible.id: "FullscreenFrame_Rectangle"
                 anchors.fill: parent
                 color: folderGridViewPopup.visible ? Qt.rgba(0, 0, 0, 0.6)
                                                    : DesktopIntegration.isTreeLand()
@@ -339,7 +337,6 @@ InputEventItem {
                     }
 
                     PageIndicator {
-                        Accessible.id: "FullscreenFrame_PageIndicator"
                         id: indicator
                         objectName: "Indicator"
 
@@ -383,7 +380,6 @@ InputEventItem {
                 }
 
                 ListView {
-                    Accessible.id: "FullscreenFrame_ListView"
                     id: listviewPage
                     objectName: "ListviewPage"
 
@@ -428,7 +424,6 @@ InputEventItem {
                     model: itemPageModel
 
                     delegate: FocusScope {
-                        Accessible.id: "FullscreenFrame_FocusScope"
                         id: listItem
                         width: listviewPage.width
                         height: listviewPage.height
@@ -462,8 +457,8 @@ InputEventItem {
                         }
 
                         GridViewContainer {
-                            Accessible.id: "FullscreenFrame_Pane"
                             id: gridViewContainer
+                            Accessible.role: Accessible.Pane
                             objectName: "gridViewContainer"
                             anchors.fill: parent
                             rows: 4
@@ -647,7 +642,6 @@ InputEventItem {
                                 }
 
                                 IconItemDelegate {
-                                    Accessible.id: "FullscreenFrame_Pane_2"
                                     id: iconItemDelegate
                                     anchors {
                                         fill: parent
@@ -733,7 +727,6 @@ InputEventItem {
                     id: delegateSearchResultModel
                     model: SearchFilterProxyModel
                     delegate: IconItemDelegate {
-                        Accessible.id: "FullscreenFrame_Pane_5"
                         iconSource: iconName
                         width: searchResultGridViewContainer.cellWidth
                         height: searchResultGridViewContainer.cellHeight
@@ -750,7 +743,6 @@ InputEventItem {
                 }
 
                 GridViewContainer {
-                    Accessible.id: "FullscreenFrame_Pane_6"
                     id: searchResultGridViewContainer
                     objectName: "SearchResultGridViewContainer"
                     Accessible.role: Accessible.Pane
@@ -771,7 +763,6 @@ InputEventItem {
                     padding: 10
                     interactive: true
                     vScrollBar: ScrollBar {
-                        Accessible.id: "FullscreenFrame_ScrollBar"
                         objectName: "GridViewContainer_ScrollBar"
                         visible: parent.model.count > 4 * 8
                         active: parent.model.count > 4 * 8
@@ -781,7 +772,6 @@ InputEventItem {
 
 
             SearchEdit {
-                Accessible.id: "FullscreenFrame_SearchEdit"
                 id: searchEdit
                 objectName: "FullscreenSearchEdit"
 
@@ -946,5 +936,3 @@ InputEventItem {
         }
     }
 }
-
-

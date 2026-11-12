@@ -34,7 +34,6 @@ Control {
         }
 
         GridViewContainer {
-            Accessible.id: "FrequentlyUsedView_Pane"
             id: frequentlyUsedViewContainer
             objectName: "FrequentlyUsedViewContainer"
             Accessible.role: Accessible.Pane
@@ -52,7 +51,6 @@ Control {
             }
 
             delegate: IconItemDelegate {
-                Accessible.id: "FrequentlyUsedView_Pane_2"
                 width: frequentlyUsedViewContainer.cellWidth
                 height: frequentlyUsedViewContainer.cellHeight
                 iconSource: iconName
@@ -76,4 +74,3 @@ Control {
         Accessible.ignored: true
     }
 }
-

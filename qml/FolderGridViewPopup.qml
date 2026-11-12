@@ -15,7 +15,6 @@ import org.deepin.launchpad.windowed 1.0 as Windowed
 
 Popup {
     id: root
-    Accessible.id: "FolderGridViewPopup_Popup"
 
     property alias currentFolderId: folderLoader.currentFolderId
     property alias innerItem: folderLoader.item
@@ -77,7 +76,6 @@ Popup {
         anchors.fill: parent
 
         sourceComponent: Control {
-            Accessible.id: "FolderGridViewPopup_Control"
             // Ensure drop won't fallthough the Popup.
             background: DropArea {
                 anchors.fill: parent
@@ -88,7 +86,6 @@ Popup {
             }
 
             contentItem: Item {
-                Accessible.id: "FolderGridViewPopup_Item"
                 anchors.fill: parent
 
                 DropArea {
@@ -121,7 +118,6 @@ Popup {
                 }
 
                 TextInput {
-                    Accessible.id: "FolderGridViewPopup_TextInput"
                     id: folderNameEdit
                     objectName: "FolderNameEdit"
                     Layout.fillWidth: true
@@ -149,7 +145,6 @@ Popup {
                     selectionColor: palette.highlight
                 }
                 Text {
-                    Accessible.id: "FolderGridViewPopup_Text"
                     id: folderNameText
                     Layout.fillWidth: true
                     Layout.leftMargin: contentRoot.titleMargin - root.padding
@@ -180,7 +175,6 @@ Popup {
                 }
 
                 Rectangle {
-                    Accessible.id: "FolderGridViewPopup_Rectangle"
                     Layout.fillWidth: true
                     Layout.fillHeight: true
                     color: "transparent"
@@ -292,7 +286,6 @@ Popup {
                     }
 
                     SwipeView {
-                        Accessible.id: "FolderGridViewPopup_SwipeView"
                         id: folderPagesView
                         objectName: "FolderPagesView"
                         clip: gridViews.count > 1
@@ -405,8 +398,8 @@ Popup {
                                     Component {
                                         id: fullScreenGridViewContainer
                                         GridViewContainer {
-                                            Accessible.id: "FolderGridViewPopup_Pane"
                                             id: folderGridViewContainer
+                                            Accessible.role: Accessible.Pane
                                             objectName: "folderGridViewContainer"
                                             anchors.fill: parent
                                             rows: 3
@@ -489,7 +482,6 @@ Popup {
                                     Component {
                                         id: listViewGridViewContainer
                                         Windowed.GridViewContainer {
-                                            Accessible.id: "FolderGridViewPopup_Pane_3"
                                             id: folderGridViewContainer
                                             objectName: "FolderGridViewContainer_2"
                                             Accessible.role: Accessible.Pane
@@ -658,7 +650,6 @@ Popup {
                                         Keys.forwardTo: [innerItem]
 
                                         IconItemDelegate {
-                                            Accessible.id: "FolderGridViewPopup_Pane_4"
                                             id: innerItem
                                             anchors.fill: parent
                                             dndEnabled: true
@@ -684,7 +675,6 @@ Popup {
                     }
 
                     Item {
-                        Accessible.id: "FolderGridViewPopup_Item_MouseArea"
                         anchors.fill: parent
                         MouseArea {
                             anchors.fill: parent
@@ -697,7 +687,6 @@ Popup {
                 }
 
                 PageIndicator {
-                    Accessible.id: "FolderGridViewPopup_PageIndicator"
                     Layout.alignment: Qt.AlignHCenter
                     visible: folderPagesView.count > 1 ? true : false
                     id: folderPageIndicator
@@ -728,7 +717,6 @@ Popup {
     }
     }
     background: Item {
-        Accessible.id: "FolderGridViewPopup_Item_Background"
         FloatingPanel {
             anchors.fill: parent
             radius: isWindowedMode ? 12 : 36
@@ -756,4 +744,3 @@ Popup {
         normalDark: Qt.rgba(0, 0, 0, 0.4)
     }
 }
-

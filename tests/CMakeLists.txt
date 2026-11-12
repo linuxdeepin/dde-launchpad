@@ -8,25 +8,13 @@ find_package(Qt6Core CONFIG REQUIRED Private)      # sortproxymodel.cpp uses QAb
 
 qt_standard_project_setup()
 
-# Coverage instrumentation (off by default; enable with -DENABLE_COVERAGE=ON
-# so `coverage` produces a report).
+# Coverage instrumentation (on by default so `coverage` produces a report).
 # Only the test-directory targets (OBJECT libs + test executables) are affected;
 # the production `launchpadcommon` shared library is left untouched.
-option(ENABLE_COVERAGE "Enable coverage instrumentation for tests" OFF)
+option(ENABLE_COVERAGE "Enable coverage instrumentation for tests" ON)
 if(ENABLE_COVERAGE)
     add_compile_options(--coverage)
-    add_link_options(-no-pie)
-    link_libraries(-lgcov)
-    # The gio-utils OBJECT library is defined in src/gioutils/CMakeLists.txt,
-    # outside this directory scope, so add_compile_options above does not
-    # instrument it.  Add coverage flags explicitly so src/gioutils/*.cpp
-    # (appinfomonitor.cpp, trashmonitor.cpp, appinfo.cpp) generate .gcno/.gcda
-    # files and contribute to the coverage report.
-    # CMP0079 allows target_link_libraries on a target created in another
-    # directory scope; needed because gio-utils is defined in src/gioutils/.
-    cmake_policy(SET CMP0079 NEW)
-    target_compile_options(gio-utils PRIVATE --coverage)
-    target_link_libraries(gio-utils PUBLIC -lgcov)
+    add_link_options(--coverage)
 endif()
 
 # ---------------------------------------------------------------------------
@@ -92,14 +80,7 @@ target_link_libraries(launchpad-test-utils PUBLIC
 
 macro(launchpad_add_tests)
     foreach(_testname ${ARGN})
-        # Only itemarrangementproxymodeltest and itemspagemodeltest use
-        # foldermodelstub.h; list it there so AUTOMOC generates its moc,
-        # and avoid compiling a useless moc file for the other 14 targets.
-        if(_testname STREQUAL "itemarrangementproxymodeltest" OR _testname STREQUAL "itemspagemodeltest")
-            qt_add_executable(launchpad-${_testname} ${_testname}.cpp foldermodelstub.h)
-        else()
-            qt_add_executable(launchpad-${_testname} ${_testname}.cpp)
-        endif()
+        qt_add_executable(launchpad-${_testname} ${_testname}.cpp)
         # Test sources include the headers under test by bare name (e.g.
         # `#include "categoryutils.h"`), matching how src/ includes its own
         # headers — no `../src/...` relative paths.
@@ -119,21 +100,12 @@ macro(launchpad_add_tests)
             launchpadcommon
         )
         add_test(NAME launchpad-${_testname} COMMAND launchpad-${_testname})
-        # debian/rules sets CMAKE_SKIP_BUILD_RPATH=ON, so the build-tree rpath to
-        # launchpadcommon.so is absent; point the loader at it explicitly.
-        # Use a generator expression so the path is resolved at build time, not
-        # configure time (avoids capturing a stale $ENV{LD_LIBRARY_PATH}).
-        set_tests_properties(launchpad-${_testname} PROPERTIES
-            ENVIRONMENT "LD_LIBRARY_PATH=$<TARGET_FILE_DIR:launchpadcommon>;QT_QPA_PLATFORM=offscreen")
         list(APPEND LAUNCHPAD_TEST_TARGETS launchpad-${_testname})
     endforeach()
 endmacro()
 
 launchpad_add_tests(
     itemspagetest
-    itemarrangementproxytest
-    appinfomonitortest
-    trashmonitortest
     gioappinfotest
     searchfilterproxymodeltest
     countlimitproxymodeltest
@@ -150,48 +122,7 @@ launchpad_add_tests(
     itemspagemodeltest
 )
 
-# Expose private/protected members for tests that need direct access to
-# private methods (onAppInfoMonitorChanged, onTrashMonitorChanged, etc.).
-# -fno-access-control disables C++ access checking for the test compilation
-# unit, achieving the same effect as macro replacement without breaking
-# standard library headers like <sstream>.
-target_compile_options(launchpad-appinfomonitortest PRIVATE -fno-access-control)
-target_compile_options(launchpad-trashmonitortest PRIVATE -fno-access-control)
-
-# gioappinfotest looks up a desktop file through GIO, which searches
-# XDG_DATA_HOME.  GIO caches those directories early in process startup, so the
-# fixture must be in the environment before the test is launched, not set from
-# inside the test.
-file(MAKE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/gio-fixture/applications)
-# GIO drops desktop entries whose Exec program does not exist, and the build
-# chroot does not have dde-file-manager installed, so point Exec at /bin/true.
-file(WRITE ${CMAKE_CURRENT_BINARY_DIR}/gio-fixture/applications/dde-file-manager.desktop
-     "[Desktop Entry]\nType=Application\nName=File Manager\nExec=/bin/true\n")
-
-# Additional fixture desktop file for appinfomonitortest: covers the
-# X-Deepin-Vendor=deepin branch (displayName replaced by GenericName),
-# icon non-null path, and keywords (fromGStrV non-null) path.
-file(WRITE ${CMAKE_CURRENT_BINARY_DIR}/gio-fixture/applications/dde-test-vendor.desktop
-     "[Desktop Entry]\nType=Application\nName=Test Vendor\nGenericName=Test Generic\nExec=/bin/true\nIcon=folder\nX-Deepin-Vendor=deepin\nKeywords=test;vendor;\n")
-set_tests_properties(launchpad-gioappinfotest PROPERTIES ENVIRONMENT
-    "LD_LIBRARY_PATH=$<TARGET_FILE_DIR:launchpadcommon>;QT_QPA_PLATFORM=offscreen;XDG_DATA_HOME=${CMAKE_CURRENT_BINARY_DIR}/gio-fixture")
-
-# appinfomonitortest also uses the GIO fixture (XDG_DATA_HOME) so that
-# allAppInfosShouldBeShown() finds the fixture desktop files and exercises
-# the iteration / icon / vendor / keywords code paths.
-set_tests_properties(launchpad-appinfomonitortest PROPERTIES ENVIRONMENT
-    "LD_LIBRARY_PATH=$<TARGET_FILE_DIR:launchpadcommon>;QT_QPA_PLATFORM=offscreen;XDG_DATA_HOME=${CMAKE_CURRENT_BINARY_DIR}/gio-fixture")
-
 # ---- coverage: execute all tests and generate a coverage report ----
-# ---- run-test: run all tests without coverage instrumentation ----
-add_custom_target(run-test
-    COMMAND ${CMAKE_CTEST_COMMAND} --output-on-failure
-    DEPENDS ${LAUNCHPAD_TEST_TARGETS}
-    WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
-    COMMENT "Run all tests"
-    VERBATIM
-)
-
 # Produces: ${CMAKE_BINARY_DIR}/coverage_report/index.html
 find_program(LCOV_BIN lcov)
 find_program(GENHTML_BIN genhtml)

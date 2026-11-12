@@ -61,6 +61,7 @@ add_subdirectory(src/gioutils)
 add_subdirectory(src/utils)
 add_subdirectory(src/quick)
 add_subdirectory(src/ddeintegration)
+add_subdirectory(src/treelandintegration)
 add_subdirectory(src/models)
 add_subdirectory(qml/windowed)
 
@@ -146,6 +147,7 @@ target_link_libraries(launchpadcommon PUBLIC
     launcher-qml-utils
     launcher-models
     dde-integration-dbus
+    treeland-integration
     Dde::Shell
 )
 

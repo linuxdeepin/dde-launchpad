@@ -25,7 +25,6 @@ Control {
     contentItem: RowLayout {
         ToolButton {
             id: shutdownBtn
-            Accessible.id: "BottomBar_ToolButton"
             objectName: "ShutdownBtn"
             icon.name: "shutdown"
             background: ItemBackground {
@@ -54,7 +53,6 @@ Control {
 
             contentItem: SearchEdit {
                 id: searchEdit
-                Accessible.id: "BottomBar_SearchEdit"
                 objectName: "WindowedSearchEdit"
                 padding: 1
                 placeholder: qsTr("Search")

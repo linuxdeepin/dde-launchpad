@@ -35,11 +35,9 @@ ColumnLayout {
         id: categorizedCom
         D.Menu {
             id: categorizedMenu
-            Accessible.id: "SideBar_Menu"
             objectName: "CategorizedMenu"
 
             D.MenuItem {
-                Accessible.id: "SideBar_MenuItem"
                 text: qsTr("Free sorting")
                 objectName: "FreeSorting"
                 icon.name: categorizedIcon("freeSort")
@@ -55,7 +53,6 @@ ColumnLayout {
             }
 
             D.MenuItem {
-                Accessible.id: "SideBar_MenuItem"
                 text: qsTr("Sort by category")
                 objectName: "SortByCategory"
                 icon.name: categorizedIcon(CategorizedSortProxyModel.DDECategory)
@@ -69,7 +66,6 @@ ColumnLayout {
             }
 
             D.MenuItem {
-                Accessible.id: "SideBar_MenuItem"
                 text: qsTr("Sort by name")
                 objectName: "SortByName"
                 icon.name: categorizedIcon(CategorizedSortProxyModel.Alphabetary)
@@ -96,7 +92,6 @@ ColumnLayout {
     D.ToolButton {
         id: title
         objectName: "Title"
-        Accessible.id: "SideBar_ToolButton"
 
         Layout.alignment: Qt.AlignCenter
         KeyNavigation.down: computer
@@ -149,7 +144,6 @@ ColumnLayout {
     }
 
     component SideBarButton: D.ActionButton {
-        Accessible.id: "SideBar_ActionButton"
         id: btn
         ToolTip.visible: hovered
         ToolTip.delay: 500
