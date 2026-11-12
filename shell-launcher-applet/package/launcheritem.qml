@@ -417,6 +417,7 @@ AppletItem {
             DLayerShellWindow.anchors = DLayerShellWindow.AnchorNone
         }
 
+        width: minimumWidth
         minimumWidth: layout.implicitWidth + 2 * DStyle.Style.dialogWindow.contentHMargin
         minimumHeight: layout.implicitHeight + DStyle.Style.dialogWindow.titleBarHeight
         maximumWidth: minimumWidth
