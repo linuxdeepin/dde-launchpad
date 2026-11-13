@@ -56,7 +56,21 @@ void AppWiz::legacyRequestUninstall(const QString &desktopFileFullPath)
                 if (args.size() < 1) {
                     qCDebug(logDdeIntegration) << "Pre-uninstall script" << preUninstallScript << "is invalid, aborting uninstallation for" << desktopFileFullPath;
                     return;
-                } else if (args.size() == 1) {
+                }
+
+                // Security: validate the script path to prevent command injection (CWE-78).
+                // Only allow absolute paths to executables that exist and are executable.
+                QFileInfo scriptInfo(args[0]);
+                if (!scriptInfo.isAbsolute()) {
+                    qCWarning(logDdeIntegration) << "Pre-uninstall script path is not absolute, aborting:" << args[0];
+                    return;
+                }
+                if (!scriptInfo.exists() || !scriptInfo.isExecutable()) {
+                    qCWarning(logDdeIntegration) << "Pre-uninstall script does not exist or is not executable, aborting:" << args[0];
+                    return;
+                }
+
+                if (args.size() == 1) {
                     process.start(args[0]);
                 } else {
                     process.start(args[0], args.mid(1));
