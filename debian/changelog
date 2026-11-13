@@ -1,3 +1,10 @@
+dde-launchpad (2.0.52.1) unstable; urgency=medium
+
+  * feat: defer layer shell anchor config to onCompleted
+  * fix: honor uninstall dialog width constraint
+
+ -- Wu JiangYu <wujiangyu@uniontech.com>  Fri, 13 Nov 2026 11:34:02 +0800
+
 dde-launchpad (2.0.52) unstable; urgency=medium
 
   * fix: set DWindow themeType for windowed launcher
