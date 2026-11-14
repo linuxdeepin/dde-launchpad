@@ -37,6 +37,7 @@ ColumnLayout {
             id: categorizedMenu
             Accessible.id: "SideBar_Menu"
             objectName: "CategorizedMenu"
+            popupType: Popup.Window
 
             D.MenuItem {
                 Accessible.id: "SideBar_MenuItem"

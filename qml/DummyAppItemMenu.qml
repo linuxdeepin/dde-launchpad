@@ -25,6 +25,7 @@ Loader {
             id: contextMenu
             Accessible.id: "DummyAppItemMenu_Menu"
             objectName: "ContextMenu_2"
+            popupType: Popup.Window
             topMargin: isFullscreen && DesktopIntegration.dockPosition === Qt.UpArrow ? dockSpacing : 0
             bottomMargin: isFullscreen && DesktopIntegration.dockPosition === Qt.DownArrow ? dockSpacing : 0
             leftMargin: isFullscreen && DesktopIntegration.dockPosition === Qt.LeftArrow ? dockSpacing : 0
