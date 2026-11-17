@@ -1,3 +1,23 @@
+dde-launchpad (6.2.0) unstable; urgency=medium
+
+  * refactor: delegate folder management to dde-shell shared model
+  * fix: remove deprecated treeland personalization integration
+  * fix: correct launcher position calculation with dock margins
+  * fix: replace private isVariantLessThan with numeric/string compare;
+    fix deprecated invalidateFilter
+  * test: add unit tests and enable packaging tests
+  * feat: defer layer shell anchor config to onCompleted
+  * fix: add AT-SPI accessible properties for QML controls
+  * refactor: use theme lookup for fallback icon
+  * test(iconutils): relax theme icon fallback assert
+  * fix: correct text color in crystal theme for launcher folder view
+  * chore: Sync by
+    https://github.com/linuxdeepin/.github/commit/88d36aea6c90c8d1de4d42
+    c68aebbf72bcb80b1c
+  * fix: 修复深色主题下启动器窗口透明度不跟随不透明度设置变化
+
+ -- zhangkun <zhangkun2@uniontech.com>  Tue, 17 Nov 2026 22:07:49 +0800
+
 dde-launchpad (2.0.52) unstable; urgency=medium
 
   * fix: set DWindow themeType for windowed launcher
