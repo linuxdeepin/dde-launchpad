@@ -348,8 +348,9 @@ AppletItem {
         DWindow.enableSystemResize: false
         DWindow.enableSystemMove: false
         DWindow.enableBlurWindow: true
-        DWindow.shadowOffset: Qt.point(0, 25)
-        DWindow.shadowColor: isDarkTheme ? Qt.rgba(0, 0, 0, 0.5) : Qt.rgba(0, 0, 0, 0.2)
+        DWindow.shadowRadius: 40
+        DWindow.shadowOffset: DesktopIntegration.isTreeLand() ? Qt.point(0, 10) : Qt.point(0, 25)
+        DWindow.shadowColor: isDarkTheme ? Qt.rgba(0.23, 0.17, 0.17, 0.5) : Qt.rgba(0, 0, 0, 0.2)
         D.ColorSelector.family: D.Palette.CrystalColor
 
         StyledBehindWindowBlur {
