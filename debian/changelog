@@ -1,3 +1,9 @@
+dde-launchpad (6.2.1) unstable; urgency=medium
+
+  * fix: keep launchpad search configuration private
+
+ -- zhaofangxun <zhaofangxun@uniontech.com>  Thu, 19 Nov 2026 20:50:38 +0800
+
 dde-launchpad (6.2.0) unstable; urgency=medium
 
   * refactor: delegate folder management to dde-shell shared model
