@@ -413,6 +413,7 @@ AppletItem {
         property string appId: ""
         property string appName: ""
 
+        DWindow.windowRadius: D.DTK.platformTheme.windowRadius
         Component.onCompleted: {
             DLayerShellWindow.anchors = DLayerShellWindow.AnchorNone
         }
