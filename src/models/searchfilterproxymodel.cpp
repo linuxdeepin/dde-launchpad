@@ -89,6 +89,7 @@ int SearchFilterProxyModel::calculateWeight(const QModelIndex &modelIndex) const
     const QString & name = modelIndex.data(AppsModel::NameRole).toString();
     const QString & vendor = modelIndex.data(AppsModel::VendorRole).toString();
     const QString & genericName = modelIndex.data(AppsModel::GenericNameRole).toString();
+    const QStringList keywords = modelIndex.data(AppsModel::KeywordsRole).toStringList();
     const QString & transliterated = modelIndex.data(AppsModel::AllTransliteratedRole).toString();
     const QString & jianpin = Dtk::Core::firstLetters(displayName, TS_NoneTone).join(',');
 
@@ -127,6 +128,13 @@ int SearchFilterProxyModel::calculateWeight(const QModelIndex &modelIndex) const
     QString searchPatternLower = searchPatternDelBlank.toLower();
     QString displayNameLower = displayName.toLower().remove(" ");
     QString targetNameLower = targetName.toLower().remove(" ");
+    const QString genericNameLower = genericName.toLower().remove(" ");
+    QStringList keywordsLower;
+    for (const QString &keyword : keywords) {
+        const QString normalized = keyword.toLower().remove(" ");
+        if (!normalized.isEmpty() && !keywordsLower.contains(normalized))
+            keywordsLower.append(normalized);
+    }
     QString transliteratedLower = transliterated.toLower();
     QString jianpinLower = jianpin.toLower();
     QString nameFirstLettersLower = nameFirstLetters.toLower();
@@ -142,6 +150,11 @@ int SearchFilterProxyModel::calculateWeight(const QModelIndex &modelIndex) const
 
     matchTypes.push_back(qMakePair(QString("targetName_exact"), [&]() -> bool {
         return (targetNameLower == searchPatternLower);
+    }));
+
+    // GenericName 是独立于 Name 的检索字段，对所有应用都参与匹配
+    matchTypes.push_back(qMakePair(QString("genericName_exact"), [&]() -> bool {
+        return !genericNameLower.isEmpty() && genericNameLower == searchPatternLower;
     }));
 
     // 中文拼音匹配
@@ -205,6 +218,15 @@ int SearchFilterProxyModel::calculateWeight(const QModelIndex &modelIndex) const
         return false;
     }));
 
+    matchTypes.push_back(qMakePair(QString("genericName_word_start"), [&]() -> bool {
+        const QStringList words = genericName.split(" ", Qt::SkipEmptyParts);
+        for (const QString &word : words) {
+            if (word.toLower().startsWith(searchPatternLower))
+                return true;
+        }
+        return false;
+    }));
+
     matchTypes.push_back(qMakePair(QString("displayName_middle"), [&]() -> bool {
         if (displayNameLower.contains(searchPatternLower)) {
             QStringList displayWords = displayName.split(" ", Qt::SkipEmptyParts);
@@ -238,6 +260,10 @@ int SearchFilterProxyModel::calculateWeight(const QModelIndex &modelIndex) const
         return (targetNameLower.contains(searchPatternLower));
     }));
 
+    matchTypes.push_back(qMakePair(QString("genericName_middle"), [&]() -> bool {
+        return !genericNameLower.isEmpty() && genericNameLower.contains(searchPatternLower);
+    }));
+
     matchTypes.push_back(qMakePair(QString("transliterated_middle"), [&]() -> bool {
         return transliteratedLower.contains(searchPatternLower);
     }));
@@ -249,6 +275,30 @@ int SearchFilterProxyModel::calculateWeight(const QModelIndex &modelIndex) const
     matchTypes.push_back(qMakePair(QString("jianpin_middle"), [&]() -> bool {
         QString jianpinNormalized = QString(jianpinLower).remove(",").remove(" ");
         return jianpinNormalized.contains(searchPatternLower);
+    }));
+
+    // Keywords 是规范中用于辅助搜索的字段，优先级低于名称类匹配
+    matchTypes.push_back(qMakePair(QString("keyword_exact"), [&]() -> bool {
+        return keywordsLower.contains(searchPatternLower);
+    }));
+
+    matchTypes.push_back(qMakePair(QString("keyword_word_start"), [&]() -> bool {
+        for (const QString &keyword : keywords) {
+            const QStringList words = keyword.split(" ", Qt::SkipEmptyParts);
+            for (const QString &word : words) {
+                if (word.toLower().startsWith(searchPatternLower))
+                    return true;
+            }
+        }
+        return false;
+    }));
+
+    matchTypes.push_back(qMakePair(QString("keyword_middle"), [&]() -> bool {
+        for (const QString &keywordLower : keywordsLower) {
+            if (keywordLower.contains(searchPatternLower))
+                return true;
+        }
+        return false;
     }));
 
     // 英文搜索特殊情况处理
