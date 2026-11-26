@@ -677,7 +677,6 @@ InputEventItem {
                                         console.log("open folder id:" + idNum)
                                     }
                                     onMenuTriggered: {
-                                        if (folderIcons) return;
                                         showContextMenu(this, model)
                                         baseLayer.focus = true
                                     }
