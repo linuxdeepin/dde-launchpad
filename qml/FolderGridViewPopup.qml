@@ -111,8 +111,8 @@ Popup {
 
                 property Palette titleTextColor: Palette {
                     normal {
-                        common: Qt.rgba(0, 0, 0, 1)
-                        crystal: Qt.rgba(1, 1, 1, 1)
+                        common: isWindowedMode ? Qt.rgba(0, 0, 0, 1) : Qt.rgba(1, 1, 1, 1)
+                        crystal: isWindowedMode ? Qt.rgba(0, 0, 0, 1) : Qt.rgba(1, 1, 1, 1)
                     }
                     normalDark {
                         common: Qt.rgba(1, 1, 1, 1)
