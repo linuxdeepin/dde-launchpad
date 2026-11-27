@@ -74,6 +74,7 @@ set(SOURCE_FILES
     launchercontroller.cpp launchercontroller.h
     debughelper.cpp debughelper.h
     inputeventitem.h inputeventitem.cpp
+    x11keymaskfixer.h x11keymaskfixer.cpp
 )
 
 set(QML_FILES
